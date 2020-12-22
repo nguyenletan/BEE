@@ -1,11 +1,5 @@
 import React from 'react'
-import styled, { createGlobalStyle } from 'styled-components'
-
-const GlobalStyle = createGlobalStyle`
-  input {
-    border-radius: 0.5rem;
-  }
-`
+import styled from 'styled-components'
 
 const LoginPage = styled.div`
   height: 100vh;
