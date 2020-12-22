@@ -11,8 +11,8 @@ function App () {
   return (
     <div className="App container">
       <Switch>
-        <Route path="/Login" component={Login} />
-        <Redirect to="/Login" />
+        <Route path="/login" component={Login} />
+        <Redirect to="/login" />
       </Switch>
     </div>
   )
