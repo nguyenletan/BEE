@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const LoginPage = styled.div`
   height: 100vh;
@@ -22,20 +23,23 @@ const SubTitle = styled.p`
   text-align: left;
   padding-left: 6px;
   margin: 0 0 2rem;
-
+  color: var(--dark);
 `
 
 const LoginForm = styled.form`
   width: 400px;
+`
 
+const LoginText = styled.span`
+  color: var(--white);
 `
 
 const LoginInput = styled.input`
-  border-radius: 0.5rem;
+  border-radius: 0.65rem;
   border-color: #7b7b7b;
 `
 const LoginButton = styled.button`
-  border-radius: 0.5rem;
+  border-radius: 0.65rem;
 `
 
 const Login = () => {
@@ -57,7 +61,7 @@ const Login = () => {
                     aria-describedby="password"/>
       </div>
       <div className="form-group d-flex justify-content-between">
-        <LoginButton type="submit" className="btn btn-primary">Login</LoginButton>
+        <LoginButton type="submit" className="btn btn-primary"><Link to="/portfolio"><LoginText>Login</LoginText></Link></LoginButton>
         <LoginButton type="submit" className="btn btn-outline-primary text-right">SignUp</LoginButton>
       </div>
     </LoginForm>
