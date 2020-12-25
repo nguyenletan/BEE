@@ -56,8 +56,8 @@ const ActiveMenuItem = styled.span`
 
 const NumberMessage = styled.span`
   border-radius: 50%;
-  padding: 2px 8px;
-  font-size: 0.8rem;
+  padding: 1px 5px;
+  font-size: 0.7rem;
   background-color: var(--primary);
   color: var(--white);
   @media (max-width: 768px) {
