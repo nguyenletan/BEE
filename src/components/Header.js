@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const LogoHeader = styled.span`
   color: var(--white);
@@ -18,6 +19,12 @@ const HeaderWrapper = styled.header`
   margin-bottom: 40px;
   @media (max-width: 620px) {
     height: auto;
+  }
+  a {
+    color: var(--white);
+    &:hover {
+      text-decoration: none;
+    }
   }
 `
 
@@ -60,7 +67,7 @@ const NumberMessage = styled.span`
 
 const Header = () => {
   return <HeaderWrapper className="row">
-    <LogoHeader>BEE</LogoHeader>
+    <LogoHeader><Link to="/">BEE</Link></LogoHeader>
     <Menu>
       <ActiveMenuItem>Building</ActiveMenuItem>
       <MenuItem>Messages <NumberMessage>3</NumberMessage></MenuItem>
