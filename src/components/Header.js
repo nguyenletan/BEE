@@ -16,16 +16,25 @@ const HeaderWrapper = styled.header`
   line-height: 80px;
   height: 80px;
   margin-bottom: 40px;
+  @media (max-width: 620px) {
+    height: auto;
+  }
 `
 
 const Menu = styled.div`
   margin-left: 30px;
+  @media (max-width: 620px) {
+    margin-left: 10px;
+  }
 `
 
 const MenuItem = styled.span`
   display: inline-block;
   margin-right: 30px;
   font-size: 1.1rem;
+  @media (max-width: 768px) {
+   margin-right: 10px;
+  }
 `
 
 const ActiveMenuItem = styled.span`
@@ -33,6 +42,20 @@ const ActiveMenuItem = styled.span`
   margin-right: 30px;
   font-size: 1.1rem;
   border-bottom: 3px solid var(--primary);
+  @media (max-width: 768px) {
+    margin-right: 10px;
+  }
+`
+
+const NumberMessage = styled.span`
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  background-color: var(--primary);
+  color: var(--white);
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const Header = () => {
@@ -40,8 +63,7 @@ const Header = () => {
     <LogoHeader>BEE</LogoHeader>
     <Menu>
       <ActiveMenuItem>Building</ActiveMenuItem>
-      <MenuItem>Message</MenuItem>
-      <MenuItem>Message</MenuItem>
+      <MenuItem>Messages <NumberMessage>3</NumberMessage></MenuItem>
       <MenuItem>Setting</MenuItem>
       <MenuItem>Logout</MenuItem>
     </Menu>

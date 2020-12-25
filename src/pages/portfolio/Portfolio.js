@@ -33,7 +33,7 @@ const PortfolioWrapper = styled.div`
 
 const Description = styled.p`
   margin-bottom: 0;
-  line-height: 26px;
+  line-height: 30px;
 `
 
 const BuildingBlocks = styled.ol`
@@ -47,7 +47,13 @@ const AddingIcon = styled.i`
   color: var(--primary);
   font-size: 26px;
   margin-left: 0.3rem;
-  line-height: 26px;
+  line-height: 30px;
+`
+
+const AddBuildingText = styled.span`
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const Portfolio = () => {
@@ -56,14 +62,14 @@ const Portfolio = () => {
   })
   return <>
     <Header/>
-    <PortfolioWrapper className="container">
+    <PortfolioWrapper className="container-fluid container-md">
 
       <div className="d-flex justify-content-between">
         <Description className="">Please select a building to see it’s energy performance and asset
           health</Description>
 
         <div>
-          <span className="text-primary font-weight-bold">Add building</span>
+          <AddBuildingText className="text-primary font-weight-bold">Add building</AddBuildingText>
           <AddingIcon className="bi bi-plus-circle-fill"/>
         </div>
       </div>
