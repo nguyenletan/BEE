@@ -1,46 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-
-const LoginPage = styled.div`
-  height: 100vh;
-
-`
-
-const Title = styled.h1`
-  color: var(--primary);
-  font-weight: 700;
-  font-size: 88px;
-  margin: 0;
-  line-height: 1;
-  text-align: left;
-  padding: 0;
-  letter-spacing: 0.25em;
-`
-
-const SubTitle = styled.p`
-  line-height: 1;
-  text-align: left;
-  padding-left: 6px;
-  margin: 0 0 2rem;
-  color: var(--dark);
-`
-
-const LoginForm = styled.form`
-  width: 400px;
-`
-
-const LoginText = styled.span`
-  color: var(--white);
-`
-
-const LoginInput = styled.input`
-  border-radius: 0.65rem;
-  border-color: #7b7b7b;
-`
-const LoginButton = styled.button`
-  border-radius: 0.65rem;
-`
+import { LoginButton, LoginForm, LoginInput, LoginPage, LoginText, SubTitle, Title } from './LoginStyle'
 
 const Login = () => {
   return <LoginPage
