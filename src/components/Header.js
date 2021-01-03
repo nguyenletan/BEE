@@ -5,12 +5,12 @@ import { SearchIcon, SearchInput, InputGroup, LogoHeader, HeaderWrapper, Menu, M
 
 const Header = () => {
   return <HeaderWrapper className="row">
-    <LogoHeader><Link to="/">BEE</Link></LogoHeader>
+    <LogoHeader><Link to="/portfolio">BEE</Link></LogoHeader>
     <Menu className="flex-fill">
       <ActiveMenuItem>Building</ActiveMenuItem>
       <MenuItem>Messages <NumberMessage>3</NumberMessage></MenuItem>
       <MenuItem>Setting</MenuItem>
-      <MenuItem>Logout</MenuItem>
+      <MenuItem><Link to="/">Logout</Link></MenuItem>
     </Menu>
     <SearchMenu>
       <InputGroup className="input-group">

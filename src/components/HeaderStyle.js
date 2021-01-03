@@ -43,6 +43,9 @@ export const MenuItem = styled.span`
   @media (max-width: 768px) {
     margin-right: 10px;
   }
+  a {
+    color: #212529;
+  }
 `
 
 export const ActiveMenuItem = styled.span`

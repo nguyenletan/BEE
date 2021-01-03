@@ -15,5 +15,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.nav-pills .nav-link {
+  font-size: 1.1rem;
+  color: var(--gray);
+}
 
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: var(--primary);
+  background-color: var(--white);
+  border-bottom: 4px solid var(--primary);
+  border-radius: 0;
+  font-weight: 700;
+}
 

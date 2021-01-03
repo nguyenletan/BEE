@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 import Login from './pages/login/Login'
 import Portfolio from './pages/portfolio/Portfolio'
+import EnergyPerformance from './pages/energyPerformance/EnergyPerformance'
 
 function App () {
   return (
@@ -14,6 +15,7 @@ function App () {
         <Switch>
           <Route path="/" component={Login} exact/>
           <Route path="/portfolio" component={Portfolio}/>
+          <Route path="/energy-performance/:id" component={EnergyPerformance}/>
         </Switch>
       </Router>
     </div>

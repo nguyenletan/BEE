@@ -16,7 +16,7 @@ const buildingData = [
   },
   {
     id: 2,
-    title: 'Design Excellent Center',
+    title: 'Hill Bay Central Bank',
     address: '21 Hill Bay Boulevard, Rungapore 784398',
     photo: buildingImage2
   }, {
