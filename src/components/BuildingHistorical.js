@@ -1,5 +1,5 @@
 import React from 'react'
-import BuildingHistoricalNav from './BuildingHistoricalNav'
+
 import { Bar } from '@nivo/bar'
 import styled from 'styled-components'
 
@@ -90,7 +90,7 @@ const BuildingHistorical = (props) => {
 
   return (
     <>
-      <BuildingHistoricalNav/>
+
       <div className="d-flex mt-5">
         <BuildingEnergyUsageWrapper>
           <BuildingEnergyUsageChartTitle>Building Energy Usage (MWh)</BuildingEnergyUsageChartTitle>

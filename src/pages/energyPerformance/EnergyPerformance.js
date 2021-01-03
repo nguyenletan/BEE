@@ -7,6 +7,7 @@ import Header from '../../components/Header'
 import BuildingInfo from '../../components/BuildingInfo'
 import BuildingHistorical from '../../components/BuildingHistorical'
 import { useParams } from 'react-router'
+import BuildingHistoricalNav from '../../components/BuildingHistoricalNav'
 
 const EnergyPerformanceWrapper = styled.div`
   margin-left: 100px;
@@ -76,7 +77,7 @@ const EnergyPerformance = () => {
                     buildingInfoLastEdited={BuildingInfoData.buildingInfoLastEdited}
       />
 
-
+      <BuildingHistoricalNav id={id}/>
       <BuildingHistorical/>
     </EnergyPerformanceWrapper>
 
