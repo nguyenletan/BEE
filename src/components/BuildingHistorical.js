@@ -1,7 +1,8 @@
 import React from 'react'
-
 import { Bar } from '@nivo/bar'
 import styled from 'styled-components'
+import redUpImage from '../assets/images/red_up.jpg'
+import greenDownImage from '../assets/images/green_down.jpg'
 
 const SummaryBox = styled.div`
   background-color: #fafafa;
@@ -34,6 +35,34 @@ const BuildingEnergyUsageChartTitle = styled.h3`
   margin-bottom: 30px;
 `
 
+const HistoricalComparison = styled.div`
+  background-color: #fafafa;
+  border-radius: 15px;
+  width: 70%;
+  margin: 20px auto 30px;
+  padding: 30px;
+
+  h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: auto 0;
+  }
+`
+
+const UpAndDownImg = styled.img`
+  width: 60px;
+  height: 60px;
+`
+
+const UpAndDownImgTitle = styled.h5`
+  font-size: 0.8rem;
+  margin-bottom: 2px;
+`
+
+const UpAndDownImgValue = styled.span`
+  font-size: 1.1rem;
+`
+
 const BuildingHistorical = (props) => {
   const buildingEnergyUsageData = [
     { month: 'Jan', energyUsage: '590' },
@@ -57,6 +86,12 @@ const BuildingHistorical = (props) => {
 
   const annualEnergyCost = annualEnergyConsumption * 0.3043 * 1000
   const annualCarbonEmissions = annualEnergyConsumption * 0.624
+
+  const historicalComparision = {
+    sameMonthLastYear: 2.61,
+    lastMonth: -1.3,
+    _12MonthPeriod: 8
+  }
 
   const CustomBarComponent = (props) => {
 
@@ -121,6 +156,30 @@ const BuildingHistorical = (props) => {
           </SummaryBox>
         </div>
       </div>
+      <HistoricalComparison className="d-flex justify-content-around">
+        <h4>Historical<br/>Comparison</h4>
+        <div className="d-flex justify-content-start">
+          <UpAndDownImg src={historicalComparision.sameMonthLastYear >= 0 ? redUpImage : greenDownImage}/>
+          <div className="ml-2 d-flex flex-column justify-content-end">
+            <UpAndDownImgTitle>Same Month<br/>Last Year</UpAndDownImgTitle>
+            <UpAndDownImgValue>{historicalComparision.sameMonthLastYear >= 0 ? `+${historicalComparision.sameMonthLastYear}` : `${historicalComparision.sameMonthLastYear}`} MWh</UpAndDownImgValue>
+          </div>
+        </div>
+        <div className="d-flex justify-content-start">
+          <UpAndDownImg src={historicalComparision.lastMonth >= 0 ? redUpImage : greenDownImage}/>
+          <div className="ml-2 d-flex flex-column justify-content-end">
+            <UpAndDownImgTitle>Last Month</UpAndDownImgTitle>
+            <UpAndDownImgValue>{historicalComparision.lastMonth >= 0 ? `+${historicalComparision.lastMonth}` : `${historicalComparision.lastMonth}`} MWh</UpAndDownImgValue>
+          </div>
+        </div>
+        <div className="d-flex justify-content-start">
+          <UpAndDownImg src={historicalComparision._12MonthPeriod >= 0 ? redUpImage : greenDownImage}/>
+          <div className="ml-2 d-flex flex-column justify-content-end">
+            <UpAndDownImgTitle>12 Month Period</UpAndDownImgTitle>
+            <UpAndDownImgValue>{historicalComparision._12MonthPeriod >= 0 ? `+${historicalComparision._12MonthPeriod}` : `${historicalComparision._12MonthPeriod}`} MWh</UpAndDownImgValue>
+          </div>
+        </div>
+      </HistoricalComparison>
     </>
   )
 
