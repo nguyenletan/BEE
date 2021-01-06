@@ -147,11 +147,11 @@ const BuildingHistorical = (props) => {
             <SummaryBoxValue>{annualEnergyConsumption}</SummaryBoxValue>
           </SummaryBox>
           <SummaryBox className="flex-shrink-0">
-            <SummaryBoxTitle>Annual Energy Consumption (MWh/Yr)</SummaryBoxTitle>
+            <SummaryBoxTitle>Annual Energy Cost ($)</SummaryBoxTitle>
             <SummaryBoxValue>{annualEnergyCost}</SummaryBoxValue>
           </SummaryBox>
           <SummaryBox className="flex-shrink-0">
-            <SummaryBoxTitle>Annual Energy Consumption (MWh/Yr)</SummaryBoxTitle>
+            <SummaryBoxTitle>Annual Carbon Emissions (Tons/Yr)</SummaryBoxTitle>
             <SummaryBoxValue>{annualCarbonEmissions}</SummaryBoxValue>
           </SummaryBox>
         </div>
