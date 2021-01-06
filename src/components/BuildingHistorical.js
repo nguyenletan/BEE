@@ -26,7 +26,7 @@ const BuildingEnergyUsageWrapper = styled.div`
   padding: 25px 30px 0;
   margin-right: 30px;
   margin-bottom: 20px;
-  border-radius: 15px;
+  border-radius: 25px;
 `
 
 const BuildingEnergyUsageChartTitle = styled.h3`

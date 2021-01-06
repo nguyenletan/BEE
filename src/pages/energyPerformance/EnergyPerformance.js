@@ -1,24 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
-import image1 from "../../assets/images/building1.jpg"
-import image2 from "../../assets/images/building2.jpg"
-import image3 from "../../assets/images/building3.jpg"
+import image1 from '../../assets/images/building1.jpg'
+import image2 from '../../assets/images/building2.jpg'
+import image3 from '../../assets/images/building3.jpg'
 import Header from '../../components/Header'
 import BuildingInfo from '../../components/BuildingInfo'
 import BuildingHistorical from '../../components/BuildingHistorical'
 import { useParams } from 'react-router'
 import BuildingHistoricalNav from '../../components/BuildingHistoricalNav'
+import BreakDown from '../../components/BreakDown'
+
 
 const EnergyPerformanceWrapper = styled.div`
   margin-left: 100px;
   margin-right: 100px;
 `
 
-
-
 const EnergyPerformance = () => {
 
-  const  { id } = useParams();
+  const { id } = useParams()
 
   const BuildingInfoDataArray = [{
     name: 'Design Excellence Center',
@@ -30,7 +30,25 @@ const EnergyPerformance = () => {
     storey: 7,
     constructed: '1980-1990',
     greenBuildingRating: 'LEED Gold',
-    buildingInfoLastEdited: '25/03/2020'
+    buildingInfoLastEdited: '25/03/2020',
+    breakDownConsumption: [
+      { id: 'cooling', value: 15, color: '#636c2e' },
+      { id: 'heating', value: 39, color: '#87972f' },
+      { id: 'lighting', value: 28, color: '#acbf42' },
+      { id: 'mechanical ventilation', value: 11, color: '#c1cf74' },
+      { id: 'others', value: 8, color: '#d5dfa3' }],
+    breakDownCost: [
+      { id: 'cooling', value: 22, color: '#636c2e' },
+      { id: 'heating', value: 12, color: '#87972f' },
+      { id: 'lighting', value: 39, color: '#acbf42' },
+      { id: 'mechanical ventilation', value: 16, color: '#c1cf74' },
+      { id: 'others', value: 10, color: '#d5dfa3' }],
+    breakDownCO2Emissions: [
+      { id: 'cooling', value: 20, color: '#636c2e' },
+      { id: 'heating', value: 19, color: '#87972f' },
+      { id: 'lighting', value: 37, color: '#acbf42' },
+      { id: 'mechanical ventilation', value: 16, color: '#c1cf74' },
+      { id: 'others', value: 9, color: '#d5dfa3' }],
   },
     {
       name: 'Hill Bay Central Bank',
@@ -42,7 +60,25 @@ const EnergyPerformance = () => {
       storey: 7,
       constructed: '1980-1990',
       greenBuildingRating: 'LEED Gold',
-      buildingInfoLastEdited: '25/03/2020'
+      buildingInfoLastEdited: '25/03/2020',
+      breakDownConsumption: [
+        { id: 'cooling', value: 15, color: '#636c2e' },
+        { id: 'heating', value: 39, color: '#87972f' },
+        { id: 'lighting', value: 28, color: '#acbf42' },
+        { id: 'mechanical ventilation', value: 11, color: '#c1cf74' },
+        { id: 'others', value: 8, color: '#d5dfa3' }],
+      breakDownCost: [
+        { id: 'cooling', value: 22, color: '#636c2e' },
+        { id: 'heating', value: 12, color: '#87972f' },
+        { id: 'lighting', value: 39, color: '#acbf42' },
+        { id: 'mechanical ventilation', value: 16, color: '#c1cf74' },
+        { id: 'others', value: 10, color: '#d5dfa3' }],
+      breakDownCO2Emissions: [
+        { id: 'cooling', value: 20, color: '#636c2e' },
+        { id: 'heating', value: 19, color: '#87972f' },
+        { id: 'lighting', value: 37, color: '#acbf42' },
+        { id: 'mechanical ventilation', value: 16, color: '#c1cf74' },
+        { id: 'others', value: 9, color: '#d5dfa3' }],
     },
     {
       name: 'People Square Middle',
@@ -54,13 +90,30 @@ const EnergyPerformance = () => {
       storey: 7,
       constructed: '1980-1990',
       greenBuildingRating: 'LEED Gold',
-      buildingInfoLastEdited: '25/03/2020'
+      buildingInfoLastEdited: '25/03/2020',
+      breakDownConsumption: [
+        { id: 'cooling', value: 15, color: '#636c2e' },
+        { id: 'heating', value: 39, color: '#87972f' },
+        { id: 'lighting', value: 28, color: '#acbf42' },
+        { id: 'mechanical ventilation', value: 11, color: '#c1cf74' },
+        { id: 'others', value: 8, color: '#d5dfa3' }],
+      breakDownCost: [
+        { id: 'cooling', value: 22, color: '#636c2e' },
+        { id: 'heating', value: 12, color: '#87972f' },
+        { id: 'lighting', value: 39, color: '#acbf42' },
+        { id: 'mechanical ventilation', value: 16, color: '#c1cf74' },
+        { id: 'others', value: 10, color: '#d5dfa3' }],
+      breakDownCO2Emissions: [
+        { id: 'cooling', value: 20, color: '#636c2e' },
+        { id: 'heating', value: 19, color: '#87972f' },
+        { id: 'lighting', value: 37, color: '#acbf42' },
+        { id: 'mechanical ventilation', value: 16, color: '#c1cf74' },
+        { id: 'others', value: 9, color: '#d5dfa3' }],
     }
-
   ]
 
+  const BuildingInfoData = BuildingInfoDataArray[id - 1]
 
-  const BuildingInfoData = BuildingInfoDataArray[id-1]
   return <>
     <Header/>
 
@@ -79,9 +132,21 @@ const EnergyPerformance = () => {
 
       <BuildingHistoricalNav id={id}/>
       <BuildingHistorical/>
+      <div className="d-flex mb-4">
+        <BreakDown title="Consumption Breakdown"
+                   subTitle="MWh / Yr | %"
+                   data={BuildingInfoData.breakDownConsumption}
+        />
+        <BreakDown title="Cost Breakdown"
+                   subTitle="$ / Yr | %"
+                   data={BuildingInfoData.breakDownCost}
+        />
+        <BreakDown title="CO2 Emissions Breakdown"
+                   subTitle="Tons / Yr | %"
+                   data={BuildingInfoData.breakDownCO2Emissions}
+        />
+      </div>
     </EnergyPerformanceWrapper>
-
-
   </>
 }
 
