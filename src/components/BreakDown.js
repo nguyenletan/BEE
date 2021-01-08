@@ -26,6 +26,7 @@ const Ul = styled.ul`
   margin-block-end: 0;
   padding-inline-start: 0;
   font-size: 0.85rem;
+  margin-bottom: 30px;
 `
 
 const Label = styled.label`
@@ -77,7 +78,8 @@ const BreakDown = (props) => {
     <Pie {...commonProperties}
          innerRadius={0.82}
          colors={{ datum: 'data.color' }}
-         radialLabel={d => `${d.id}: ${d.value}`}
+         tooltipFormat={value =>`${value + "%"}`}
+         radialLabel={d => `${d.id}: ${d.value}%`}
          radialLabelsLinkColor={{
            from: 'color',
          }}
