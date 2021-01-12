@@ -94,7 +94,6 @@ const BuildingHistorical = (props) => {
   }
 
   const CustomBarComponent = (props) => {
-
     const { x, y, height } = props
 
     const translateValue = `translate(${x + 23}, ${y})`

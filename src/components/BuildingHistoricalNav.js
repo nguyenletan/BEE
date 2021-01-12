@@ -1,17 +1,21 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink, useRouteMatch } from 'react-router-dom'
 
-const BuildingHistoricalNav = ({id}) => {
+const BuildingHistoricalNav = () => {
+
+  let { url } = useRouteMatch()
   return <nav className="nav nav-pills flex-column flex-sm-row">
-    <Link className="flex-sm-fill text-sm-center nav-link active" to={'/energy-performance/' + id}>Energy Performance</Link>
-    <Link className="flex-sm-fill text-sm-center nav-link" to={'/energy-performance/' + id}>Comparison</Link>
-    <Link className="flex-sm-fill text-sm-center nav-link" to={'/energy-performance/' + id}>Improve</Link>
-    <Link className="flex-sm-fill text-sm-center nav-link" to={'/energy-performance/' + id}>Asset Reliability</Link>
+    <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to={url + '/energy-performance'}>Energy
+      Performance</NavLink>
+    <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link"
+             to={url + '/comparison'}>Comparison</NavLink>
+    <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link"
+             to={url + '/improve'}>Improve</NavLink>
+    <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to={url + '/asset-reliability'}>Asset
+      Reliability</NavLink>
   </nav>
 }
 
-BuildingHistoricalNav.propTypes = {
-
-}
+BuildingHistoricalNav.propTypes = {}
 
 export default BuildingHistoricalNav

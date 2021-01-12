@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import home1Img from '../assets/images/home1.png'
-import home2Img from '../assets/images/home2.png'
+import roofImg from '../assets/images/roof.png'
+import wallImg from '../assets/images/wall.png'
+import floorImg from '../assets/images/floor.png'
+import openingImg from '../assets/images/opening.png'
 import plugLoadImg from '../assets/images/plug-load.png'
-
-
 
 const IncidentalGainsWrapper = styled.div`
   width: 95%;
@@ -60,7 +60,7 @@ const IncidentalGains = (props) => {
             <IncidentalGainsItemTitle>Roof</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{roof}W/m2</IncidentalGainsItemValue>
           </div>
-          <IncidentalGainsItemImage src={home1Img} alt="Roof" width="33"/>
+          <IncidentalGainsItemImage src={roofImg} alt="Roof" width="33"/>
         </IncidentalGainsItem>
 
         <IncidentalGainsItem className="d-flex justify-content-between align-items-center">
@@ -68,7 +68,7 @@ const IncidentalGains = (props) => {
             <IncidentalGainsItemTitle>Wall</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{wall}W/m2</IncidentalGainsItemValue>
           </div>
-          <IncidentalGainsItemImage src={home1Img} alt="Wall" width="33"/>
+          <IncidentalGainsItemImage src={wallImg} alt="Wall" width="33"/>
         </IncidentalGainsItem>
 
         <IncidentalGainsItem className="d-flex justify-content-between align-items-center">
@@ -76,7 +76,7 @@ const IncidentalGains = (props) => {
             <IncidentalGainsItemTitle>Openings</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{openings}W/m2</IncidentalGainsItemValue>
           </div>
-          <IncidentalGainsItemImage src={home2Img} alt="Openings" width="33"/>
+          <IncidentalGainsItemImage src={openingImg} alt="Openings" width="33"/>
         </IncidentalGainsItem>
 
         <IncidentalGainsItem className="d-flex justify-content-between align-items-center">
@@ -84,7 +84,7 @@ const IncidentalGains = (props) => {
             <IncidentalGainsItemTitle>Floor</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{floor}W/m2</IncidentalGainsItemValue>
           </div>
-          <IncidentalGainsItemImage src={home1Img} alt="Floor" width="33"/>
+          <IncidentalGainsItemImage src={floorImg} alt="Floor" width="33"/>
         </IncidentalGainsItem>
 
         <IncidentalGainsItem className="d-flex justify-content-between align-items-center">
