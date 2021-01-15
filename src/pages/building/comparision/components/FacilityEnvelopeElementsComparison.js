@@ -37,13 +37,17 @@ const ItemImg = styled.img`
 `
 
 const ItemImgSubTitle = styled.span`
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   display: block;
   margin: auto;
 `
 
 const ItemRow = styled.div`
-  margin-bottom: 20px
+  margin-bottom: 20px;
+  padding: 5px;
+  &:hover {
+    box-shadow: 1px 1px 5px 3px #ddd;
+  }
 `
 
 const FacilityEnvelopeElementsComparison = () => {

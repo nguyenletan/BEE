@@ -30,6 +30,7 @@ const ListItem = styled.div`
   font-size: 0.85rem;
   margin: auto;
   text-align: center;
+ 
 `
 
 const ItemImg = styled.img`
@@ -37,13 +38,17 @@ const ItemImg = styled.img`
 `
 
 const ItemImgSubTitle = styled.span`
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   display: block;
   margin: auto;
 `
 
 const ItemRow = styled.div`
-  margin-bottom: 10px
+  margin-bottom: 10px;
+  &:hover {
+    box-shadow: 1px 1px 5px 3px #ddd;
+  }
+  padding: 5px;
 `
 
 const SubSystemComparison = () => {
