@@ -17,7 +17,7 @@ const FacilityEnvelopeElementsComparisonWrapper = styled.div`
   background-color: #fafafa;
   padding: 20px;
   margin-right: 20px;
-  width: 25%;
+  width: 28%;
 `
 
 const ListHeader = styled.div`
@@ -50,9 +50,9 @@ const ItemImgSubTitle = styled.span`
 const ItemRow = styled.div`
   margin-bottom: 10px;
   padding: 5px;
-  transition: box-shadow 300ms ease-in-out;
+  transition: box-shadow 100ms ease-in-out;
   &:hover {
-    box-shadow: 1px 0px 6px 1px #ddd;
+    box-shadow: 0px 0px 5px 1px #ddd;
   }
 `
 

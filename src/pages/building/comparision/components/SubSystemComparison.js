@@ -46,11 +46,15 @@ const ItemImgSubTitle = styled.span`
 
 const ItemRow = styled.div`
   margin-bottom: 10px;
-
+  padding: 5px;
+  transition: box-shadow 100ms ease-in-out;
   &:hover {
-    box-shadow: 1px 1px 5px 3px #ddd;
+    box-shadow: 0px 0px 5px 1px #ddd;
   }
+`
 
+const HeadRow = styled.div`
+  margin-bottom: 10px;
   padding: 5px;
 `
 
@@ -99,14 +103,14 @@ const SubSystemComparison = () => {
     <SubSystemComparisonWrapper>
       <SubSystemComparisonTitle>Sub-System Comparison</SubSystemComparisonTitle>
 
-      <ItemRow className="row">
+      <HeadRow className="row">
         <ListHeader className="col-2"/>
         <ListHeader className="col-2">Current <span className="text-primary">Energy</span> Performance</ListHeader>
         <ListHeader className="col-2">Potential<br/>Best-in-class</ListHeader>
 
         <ListHeader className="col-2">Current <span className="text-primary">C02</span> Performance</ListHeader>
         <ListHeader className="col-2">Potential<br/>Best-in-class</ListHeader>
-      </ItemRow>
+      </HeadRow>
 
       <ItemRow className="row">
         <ListItem className="col-2">
