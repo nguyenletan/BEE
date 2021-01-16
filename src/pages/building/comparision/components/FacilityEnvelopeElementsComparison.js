@@ -17,18 +17,20 @@ const FacilityEnvelopeElementsComparisonWrapper = styled.div`
   background-color: #fafafa;
   padding: 20px;
   margin-right: 20px;
+  width: 25%;
 `
 
 const ListHeader = styled.div`
   font-size: 0.7em;
   margin: auto;
+  text-align: center;
   padding-left: 5px;
   padding-right: 5px;
 `
 
 const ListItem = styled.div`
   font-size: 0.7rem;
-  margin: auto;
+  margin: auto 0;
   text-align: center;
   padding: 0;
 `
@@ -48,8 +50,9 @@ const ItemImgSubTitle = styled.span`
 const ItemRow = styled.div`
   margin-bottom: 10px;
   padding: 5px;
+  transition: box-shadow 300ms ease-in-out;
   &:hover {
-    box-shadow: 1px 1px 5px 3px #ddd;
+    box-shadow: 1px 0px 6px 1px #ddd;
   }
 `
 

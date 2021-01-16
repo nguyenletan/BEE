@@ -18,6 +18,7 @@ const SubSystemComparisonWrapper = styled.div`
   border-radius: 15px;
   background-color: #fafafa;
   padding: 20px 20px 10px 20px;
+  width: 40%;
 `
 
 const ListHeader = styled.div`

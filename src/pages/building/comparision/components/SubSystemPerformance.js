@@ -1,6 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Radar} from '@nivo/radar'
+import { Radar } from '@nivo/radar'
+
+import {
+  coolingSVG,
+  energySVG,
+  envelopeSVG,
+  heatingSVG,
+  lightingSVG,
+  mechVentSVG,
+  renewableSVG
+} from '../../../../SvgConstants'
 
 const SubSystemPerformanceTitle = styled.h3`
   font-size: 1.15rem;
@@ -75,26 +85,127 @@ const SubSystemPerformance = () => {
 
   // const curveOptions = ['linearClosed', 'basisClosed', 'catmullRomClosed', 'cardinalClosed']
 
-  const LabelComponent = ({ id, anchor }) => {
-    // console.log(id)
-    const names = id.split(' ')
-    const texts = names.map((name, index) => <text
-      y={index * 16}
-      style={{ fontSize: 12, fill: '#343a40' }}>{name}</text>)
-    return (
-      <g transform={`translate(${anchor === 'end' ? -60 : anchor === 'middle' ? -30 : 0}, -20)`}>
+  const LabelComponent = (props) => {
+    const { id, anchor, angle } = props
+    let texts = ''
+    let iconSVG = ''
+    let translateX = anchor === 'end' ? -50 : anchor === 'middle' ? -20 : -10
+    let translateY = angle < 0 ? -60 : -30
+    switch (id) {
+      case 'Energy Usage Intensity':
+        iconSVG = energySVG()
+        translateX = -15
+        texts = <>
+          <text
+            y={50} x={-25}
+            style={{ fontSize: 12, fill: '#343a40' }}>Energy Usage
+          </text>
+          <text
+            y={66} x={-25}
+            style={{ fontSize: 12, fill: '#343a40' }}>Intensity
+          </text>
+        </>
+        translateX = -5
+        translateY = -45
+        break
+      case 'Cooling Efficiency':
+        iconSVG = coolingSVG()
+        texts = <>
+          <text
+            y={50} x={-6}
+            style={{ fontSize: 12, fill: '#343a40' }}>Cooling
+          </text>
+          <text
+            y={66} x={-6}
+            style={{ fontSize: 12, fill: '#343a40' }}>Efficiency
+          </text>
+        </>
+        translateX = -10
+        translateY = -40
+        break
+      case 'Heating Efficiency':
+        iconSVG = heatingSVG()
+        texts = <>
+          <text
+            y={50} x={-13}
+            style={{ fontSize: 12, fill: '#343a40' }}>Heating
+          </text>
+          <text
+            y={66} x={-13}
+            style={{ fontSize: 12, fill: '#343a40' }}>Efficiency
+          </text>
+        </>
+        translateX = -15
+        translateY = -40
+        break
+      case 'Lighting Efficacy':
+        iconSVG = lightingSVG()
+        texts = <>
+          <text
+            y={50} x={-13}
+            style={{ fontSize: 12, fill: '#343a40' }}>Lighting
+          </text>
+          <text
+            y={66} x={-13}
+            style={{ fontSize: 12, fill: '#343a40' }}>Efficacy
+          </text>
+        </>
+        translateX = -5
+        translateY = -20
+        break
+      case 'Mechanical Ventilation Efficiency':
+        iconSVG = mechVentSVG()
+        texts = <>
+          <text
+            y={50} x={-13}
+            style={{ fontSize: 12, fill: '#343a40' }}>Mechanical
+          </text>
+          <text
+            y={66} x={-40}
+            style={{ fontSize: 12, fill: '#343a40' }}>Ventilation Efficiency
+          </text>
+        </>
+        translateX = -20
+        translateY = -22
+        break
+      case 'Envelope Performance':
+        iconSVG = envelopeSVG()
+        texts = <>
+          <text
+            y={50} x={0}
+            style={{ fontSize: 12, fill: '#343a40' }}>Envelope
+          </text>
+          <text
+            y={66} x={-10}
+            style={{ fontSize: 12, fill: '#343a40' }}>Performance
+          </text>
+        </>
+        translateX = -30
+        translateY = -30
+        break
+      case 'Renewables Usage':
+        iconSVG = renewableSVG()
+        texts = <>
+          <text
+            y={50} x={-10}
+            style={{ fontSize: 12, fill: '#343a40' }}>Envelope
+          </text>
+          <text
+            y={66} x={-30}
+            style={{ fontSize: 12, fill: '#343a40' }}>Performance
+          </text>
+        </>
+        translateX = -30
+        translateY = -30
+        break
+      default:
+        break
+    }
 
+    return (
+      <g transform={`translate(${translateX} ${translateY})`}>
+        {iconSVG}
         {texts}
-        {/*<text*/}
-        {/*  y={24}*/}
-        {/*  style={{*/}
-        {/*    fontSize: 24,*/}
-        {/*    fontWeight: 'bold',*/}
-        {/*    fill: '#3a9896',*/}
-        {/*  }}*/}
-        {/*>*/}
-        {/*  +{Math.round(Math.random() * 100)}%*/}
-        {/*</text>*/}
       </g>
     )
   }
