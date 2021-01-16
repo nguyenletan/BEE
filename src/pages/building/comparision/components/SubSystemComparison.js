@@ -17,24 +17,24 @@ const SubSystemComparisonTitle = styled.h3`
 const SubSystemComparisonWrapper = styled.div`
   border-radius: 15px;
   background-color: #fafafa;
-  padding: 20px;
+  padding: 20px 20px 10px 20px;
 `
 
 const ListHeader = styled.div`
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   margin: auto;
-  text-align: center;
+  padding: 0;
 `
 
 const ListItem = styled.div`
   font-size: 0.85rem;
   margin: auto;
   text-align: center;
- 
+  padding: 0;
 `
 
 const ItemImg = styled.img`
-
+  margin: auto;
 `
 
 const ItemImgSubTitle = styled.span`
@@ -45,9 +45,11 @@ const ItemImgSubTitle = styled.span`
 
 const ItemRow = styled.div`
   margin-bottom: 10px;
+
   &:hover {
     box-shadow: 1px 1px 5px 3px #ddd;
   }
+
   padding: 5px;
 `
 
@@ -98,10 +100,10 @@ const SubSystemComparison = () => {
 
       <ItemRow className="row">
         <ListHeader className="col-2"/>
-        <ListHeader className="col-2">Current Energy Performance</ListHeader>
+        <ListHeader className="col-2">Current <span className="text-primary">Energy</span> Performance</ListHeader>
         <ListHeader className="col-2">Potential<br/>Best-in-class</ListHeader>
-        <ListHeader className="col-1"/>
-        <ListHeader className="col-2">Current C02 Performance</ListHeader>
+
+        <ListHeader className="col-2">Current <span className="text-primary">C02</span> Performance</ListHeader>
         <ListHeader className="col-2">Potential<br/>Best-in-class</ListHeader>
       </ItemRow>
 
@@ -116,7 +118,7 @@ const SubSystemComparison = () => {
         <ListItem className="col-2"><EnergySquare
           color={getCurrentColor(subSystemComparisonData.cooling.potentialBestInClass)}
           text={subSystemComparisonData.cooling.potentialBestInClass}/></ListItem>
-        <ListItem className="col-1"/>
+
         <ListItem className="col-2"><EnergySquare
           color={getPotentialColor(subSystemComparisonData.cooling.currentCO2Performance)}
           text={subSystemComparisonData.cooling.currentCO2Performance}/></ListItem>
@@ -136,7 +138,7 @@ const SubSystemComparison = () => {
         <ListItem className="col-2"><EnergySquare
           color={getCurrentColor(subSystemComparisonData.heating.potentialBestInClass)}
           text={subSystemComparisonData.heating.potentialBestInClass}/></ListItem>
-        <ListItem className="col-1"/>
+
         <ListItem className="col-2"><EnergySquare
           color={getPotentialColor(subSystemComparisonData.heating.currentCO2Performance)}
           text={subSystemComparisonData.heating.currentCO2Performance}/></ListItem>
@@ -156,7 +158,7 @@ const SubSystemComparison = () => {
         <ListItem className="col-2"><EnergySquare
           color={getCurrentColor(subSystemComparisonData.lighting.potentialBestInClass)}
           text={subSystemComparisonData.lighting.potentialBestInClass}/></ListItem>
-        <ListItem className="col-1"/>
+
         <ListItem className="col-2"><EnergySquare
           color={getPotentialColor(subSystemComparisonData.lighting.currentCO2Performance)}
           text={subSystemComparisonData.lighting.currentCO2Performance}/></ListItem>
@@ -176,7 +178,7 @@ const SubSystemComparison = () => {
         <ListItem className="col-2"><EnergySquare
           color={getCurrentColor(subSystemComparisonData.mechanicalVentilation.potentialBestInClass)}
           text={subSystemComparisonData.mechanicalVentilation.potentialBestInClass}/></ListItem>
-        <ListItem className="col-1"/>
+
         <ListItem className="col-2"><EnergySquare
           color={getPotentialColor(subSystemComparisonData.mechanicalVentilation.currentCO2Performance)}
           text={subSystemComparisonData.mechanicalVentilation.currentCO2Performance}/></ListItem>
@@ -196,7 +198,7 @@ const SubSystemComparison = () => {
         <ListItem className="col-2"><EnergySquare
           color={getCurrentColor(subSystemComparisonData.renewable.potentialBestInClass)}
           text={subSystemComparisonData.renewable.potentialBestInClass}/></ListItem>
-        <ListItem className="col-1"/>
+
         <ListItem className="col-2"><EnergySquare
           color={getPotentialColor(subSystemComparisonData.renewable.currentCO2Performance)}
           text={subSystemComparisonData.renewable.currentCO2Performance}/></ListItem>
@@ -216,7 +218,7 @@ const SubSystemComparison = () => {
         <ListItem className="col-2"><EnergySquare
           color={getCurrentColor(subSystemComparisonData.plugLoads.potentialBestInClass)}
           text={subSystemComparisonData.plugLoads.potentialBestInClass}/></ListItem>
-        <ListItem className="col-1"/>
+
         <ListItem className="col-2"><EnergySquare
           color={getPotentialColor(subSystemComparisonData.plugLoads.currentCO2Performance)}
           text={subSystemComparisonData.plugLoads.currentCO2Performance}/></ListItem>

@@ -65,7 +65,7 @@ const subSystemPerformanceData = {
 const SubSystemPerformance = () => {
 
   const commonProperties = {
-    width: 450,
+    width: 400,
     height: 350,
     margin: { top: 120, right: 0, bottom: 40, left: 0 },
     ...subSystemPerformanceData,
@@ -76,7 +76,7 @@ const SubSystemPerformance = () => {
   // const curveOptions = ['linearClosed', 'basisClosed', 'catmullRomClosed', 'cardinalClosed']
 
   const LabelComponent = ({ id, anchor }) => {
-    console.log(id)
+    // console.log(id)
     const names = id.split(' ')
     const texts = names.map((name, index) => <text
       y={index * 16}
@@ -116,14 +116,14 @@ const SubSystemPerformance = () => {
       colors={['#478D58', '#63AE62', '#AACC72',]}
       legends={[
         {
-          anchor: 'top-center',
+          anchor: 'top-right',
           direction: 'row',
           translateX: 0,
           translateY: -105,
-          itemWidth: 145,
-          itemHeight: 20,
+          itemWidth: 135,
+          itemHeight: 10,
           itemTextColor: '#999',
-          symbolSize: 12,
+          symbolSize: 8,
           symbolShape: 'circle',
           effects: [
             {

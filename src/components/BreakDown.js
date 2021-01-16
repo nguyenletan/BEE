@@ -67,6 +67,14 @@ const BreakDown = (props) => {
 
   //console.log(commonProperties.data)
 
+  // const LabelComponent = (d) => {
+  //   const { label, value } = d
+  //   const names = label.split(' ')
+  //   return (
+  //     label
+  //   )
+  // }
+
   const list = data.map(x => <li className="d-flex justify-content-between">
     <Label>{x.id}:</Label>
     <span>{x.value}%</span>
@@ -77,20 +85,24 @@ const BreakDown = (props) => {
     <BreakDownSubTitle>{subTitle}</BreakDownSubTitle>
     <Pie {...commonProperties}
          innerRadius={0.82}
+         fit={true}
+         startAngle={-120}
          colors={{ datum: 'data.color' }}
-         tooltipFormat={value =>`${value + "%"}`}
-         radialLabel={d => `${d.id}: ${d.value}%`}
+         tooltipFormat={value => `${value + '%'}`}
+         //radialLabel={LabelComponent}
          radialLabelsLinkColor={{
            from: 'color',
          }}
-         radialLabelsLinkStrokeWidth={3}
+         radialLabelsLinkHorizontalLength={10}
+         radialLabelsTextXOffset={3}
+         radialLabelsLinkStrokeWidth={2}
          radialLabelsTextColor={{
            from: 'color',
            modifiers: [['darker', 1.2]],
          }}
          enableSliceLabels={false}
     />
-    <Ul >
+    <Ul>
       {list}
     </Ul>
 

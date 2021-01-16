@@ -20,20 +20,23 @@ const FacilityEnvelopeElementsComparisonWrapper = styled.div`
 `
 
 const ListHeader = styled.div`
-  font-size: 0.85rem;
+  font-size: 0.7em;
   margin: auto;
-  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
 `
 
 const ListItem = styled.div`
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   margin: auto;
   text-align: center;
+  padding: 0;
 `
 
 const ItemImg = styled.img`
   width: 63px;
   display: block;
+  margin: auto;
 `
 
 const ItemImgSubTitle = styled.span`
@@ -43,11 +46,16 @@ const ItemImgSubTitle = styled.span`
 `
 
 const ItemRow = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding: 5px;
   &:hover {
     box-shadow: 1px 1px 5px 3px #ddd;
   }
+`
+
+const HeadRow = styled.div`
+  margin-bottom: 10px;
+  padding: 5px;
 `
 
 const FacilityEnvelopeElementsComparison = () => {
@@ -64,11 +72,11 @@ const FacilityEnvelopeElementsComparison = () => {
       <FacilityEnvelopeElementsComparisonTitle>Facility Envelope Elements
         Comparison</FacilityEnvelopeElementsComparisonTitle>
 
-      <ItemRow className="row">
+      <HeadRow className="row">
         <ListHeader className="col-4"/>
-        <ListHeader className="col-4">Current Energy Performance</ListHeader>
+        <ListHeader className="col-4">Current <span className="text-primary">Energy</span> Performance</ListHeader>
         <ListHeader className="col-4">Potential<br/>Best-in-class</ListHeader>
-      </ItemRow>
+      </HeadRow>
 
       <ItemRow className="row">
         <ListItem className="col-4">
