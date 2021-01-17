@@ -4,6 +4,7 @@ import styled from 'styled-components'
 // import shuffle from 'lodash/shuffle'
 import { Bump } from '@nivo/bump'
 
+
 const PerformanceComparisonTitle = styled.h3`
   font-size: 1.15rem;
   font-weight: 700;
@@ -23,11 +24,11 @@ const PerformanceComparisonWrapper = styled.div`
 //     data: [
 //       {
 //         x: 1,
-//         y: 1
+//         y: 'A'
 //       },
 //       {
 //         x: 1,
-//         y: 2
+//         y: 'B'
 //       }
 //     ]
 //   },
@@ -36,11 +37,11 @@ const PerformanceComparisonWrapper = styled.div`
 //     data: [
 //       {
 //         x: 1,
-//         y: 1
+//         y: 'A'
 //       },
 //       {
 //         x: 1,
-//         y: 2
+//         y: 'B'
 //       }
 //     ]
 //   }
@@ -284,6 +285,7 @@ const PerformanceComparison = () => {
     <Bump  {...commonProps}
            pointBorderColor={{ from: 'serie.color' }}
            startLabel={false}
+           yScale={{ type: 'point' }}
            colors={['#87972F', '#636c2e', '#c1cf74', 'transparent', 'transparent', 'transparent', 'transparent']}/>
 
   </PerformanceComparisonWrapper>

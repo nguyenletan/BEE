@@ -4,7 +4,8 @@ import SubSystemPerformance from './components/SubSystemPerformance'
 import styled from 'styled-components'
 import FacilityEnvelopeElementsComparison from './components/FacilityEnvelopeElementsComparison'
 import SubSystemComparison from './components/SubSystemComparison'
-import PerformanceComparison from './components/PerformanceComparison'
+//import PerformanceComparison from './components/PerformanceComparison'
+import PerformanceComparison2 from './components/PerformanceComparison2'
 
 const ComparisonWrapper = styled.div`
   margin-bottom: 40px;
@@ -20,7 +21,11 @@ const Comparison = ({ data }) => {
         <SubSystemComparison/>
 
       </div>
-      <PerformanceComparison/>
+      {/*<PerformanceComparison/>*/}
+
+      <PerformanceComparison2/>
+
+
     </ComparisonWrapper>
   )
 }
