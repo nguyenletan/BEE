@@ -180,7 +180,7 @@ const PerformanceComparison2 = () => {
       {...commonProperties}
       curve="monotoneX"
       data={data}
-      useMesh={true}
+      useMesh={false}
       enableSlices={false}
       enablePoint={true}
       pointSize={12}
@@ -193,7 +193,6 @@ const PerformanceComparison2 = () => {
         min: 1,
         max: 7
       }}
-
       axisLeft={{
         tickValues: [1, 2, 3, 4, 5, 6, 7],
         format: value => {
@@ -210,7 +209,7 @@ const PerformanceComparison2 = () => {
           direction: 'row',
           justify: false,
           translateX: 0,
-          translateY: 0,
+          translateY: -25,
           itemWidth: 200,
           itemHeight: 20,
           itemsSpacing: 4,
