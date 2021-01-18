@@ -8,7 +8,7 @@ const Block = styled.div`
   margin-bottom: ${props => props.marginBottom ? props.marginBottom : '10px'};
   margin-left: ${props => props.marginLeft ? props.marginLeft : '0px'};
   text-align: ${props => props.textAlign ? props.textAlign : 'right'};
-  padding-right: 0.35em;
+  padding-right: ${props => props.paddingRight ? props.paddingRight : '0.35em'};
   font-weight: 600;
   font-size: 24px;
   line-height: 36px;
@@ -24,23 +24,31 @@ const ArrowLeft = styled.div`
   margin-bottom: ${props => props.marginBottom ? props.marginBottom : '10px'};
 `
 
+const BlockWrapper = styled.div`
+  margin-left: ${props => props.marginLeft ? props.marginLeft : '0px'};
+`
+
 const BarBlock = (props) => {
-  const { text, backgroundColor, marginLeft, width, isArrow, textAlign, marginBottom } = props
+  const { text, backgroundColor, marginLeft, width, isArrow, textAlign, marginBottom, paddingRight } = props
+  console.log(props)
   return isArrow
     ? (
-      <div className="d-flex">
+      <BlockWrapper className="d-flex" marginLeft={marginLeft}>
         <ArrowLeft backgroundColor={backgroundColor} marginBottom={marginBottom}/>
         <Block
-          marginLeft={marginLeft}
+          paddingRight={paddingRight}
           width={width}
           backgroundColor={backgroundColor}
           textAlign={textAlign}
           marginBottom={marginBottom}>{text}</Block>
-      </div>)
-    : <Block marginLeft={marginLeft}
-             width={width}
-             backgroundColor={backgroundColor}
-             marginBottom={marginBottom}>{text}</Block>
+      </BlockWrapper>)
+    : <Block
+        paddingRight={paddingRight}
+        textAlign={textAlign}
+        marginLeft={marginLeft}
+        width={width}
+        backgroundColor={backgroundColor}
+        marginBottom={marginBottom}>{text}</Block>
 
 }
 

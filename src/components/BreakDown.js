@@ -75,7 +75,7 @@ const BreakDown = (props) => {
   //   )
   // }
 
-  const list = data.map(x => <li className="d-flex justify-content-between">
+  const list = data.map(x => <li className="d-flex justify-content-between" key={x.id}>
     <Label>{x.id}:</Label>
     <span>{x.value}%</span>
   </li>)

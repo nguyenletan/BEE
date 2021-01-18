@@ -22,6 +22,7 @@ const SubSystemPerformanceWrapper = styled.div`
   background-color: #fafafa;
   padding: 20px;
   margin-right: 20px;
+  min-height: 500px;
 `
 
 const subSystemPerformanceData = {
@@ -77,7 +78,7 @@ const SubSystemPerformance = () => {
   const commonProperties = {
     width: 400,
     height: 350,
-    margin: { top: 120, right: 0, bottom: 40, left: 0 },
+    margin: { top: 120, right: 0, bottom: 0, left: 0 },
     ...subSystemPerformanceData,
     indexBy: 'name',
     animate: true

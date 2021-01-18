@@ -43,7 +43,7 @@ const BarIndicator = styled.div`
 
 const BarIndicatorHeader = styled.div`
   margin-bottom: 20px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   height: 45px;
 `
 
@@ -110,14 +110,14 @@ const PerformanceBlock = ({ data }) => {
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
-                <BarBlock width="71px" backgroundColor="#F0EA6F" text="D" isArrow={true} textAlign="center"/>
+                <BarBlock width="64px" backgroundColor="#F0EA6F" text="D" isArrow={true} textAlign="center"/>
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
                 <BarBlock width="1px" backgroundColor="transparent" text="" marginBottom="0px"/>
               </BarIndicatorColumn>
               <div className="col-6">
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
-                <BarBlock width="71px" backgroundColor="#63AE62" text="B" isArrow={true} textAlign="center"/>
+                <BarBlock width="64px" backgroundColor="#63AE62" text="B" isArrow={true} textAlign="center"/>
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
@@ -176,14 +176,14 @@ const PerformanceBlock = ({ data }) => {
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
-                <BarBlock width="71px" backgroundColor="#3c82c6" text="D" isArrow={true} textAlign="center"/>
+                <BarBlock width="64px" backgroundColor="#3c82c6" text="D" isArrow={true} textAlign="center"/>
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
                 <BarBlock width="1px" backgroundColor="transparent" text="" marginBottom="0px"/>
               </BarIndicatorColumn>
               <div className="col-6">
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
-                <BarBlock width="71px" backgroundColor="#63bcf2" text="B" isArrow={true} textAlign="center"/>
+                <BarBlock width="64px" backgroundColor="#63bcf2" text="B" isArrow={true} textAlign="center"/>
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>
                 <BarBlock width="1px" backgroundColor="transparent" text=""/>

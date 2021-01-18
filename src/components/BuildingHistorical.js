@@ -99,8 +99,8 @@ const BuildingHistorical = (props) => {
     const translateValue = `translate(${x + 23}, ${y})`
     const translateValue2 = `translate(0, ${height - 10})`
     return <g transform={translateValue}>
-      <rect width={13} height={height} rx="7" ry="7" fill="#87972f" strokeWidth="0" stroke="#87972f"/>
-      <rect width={13} height={10} fill="#87972f" strokeWidth="0" stroke="#87972f" transform={translateValue2}/>
+      <rect width={13} height={height} rx="7" ry="7" fill="#87972f"  stroke="#87972f"/>
+      <rect width={13} height={10} fill="#87972f" stroke="#87972f" transform={translateValue2}/>
     </g>
 
   }

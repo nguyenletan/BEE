@@ -10,6 +10,7 @@ import BuildingHistoricalNav from '../../components/BuildingHistoricalNav'
 import EnergyPerformance from './energyPerformance/EnergyPerformance'
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom'
 import Comparison from './comparision/Comparison'
+import Improve from './improve/Improve'
 
 const BuildingWrapper = styled.div`
   margin-left: 100px;
@@ -195,6 +196,9 @@ const Building = () => {
         </Route>
         <Route path={`${path}/comparison`}>
           <Comparison/>
+        </Route>
+        <Route path={`${path}/improve`}>
+          <Improve data={BuildingInfoData.energyPerformance}/>
         </Route>
         <Redirect to={`${path}/energy-performance`}/>
       </Switch>
