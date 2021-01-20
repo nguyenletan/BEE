@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import openingsImg from '../../../../assets/images/opening.png'
+import openingsImg from '../../../../assets/images/openings.svg'
 import coolingImg from '../../../../assets/images/cooling.svg'
 import lightingImg from '../../../../assets/images/lighting.svg'
+import heatingImg from '../../../../assets/images/heating.svg'
+import wallImg from '../../../../assets/images/wall.svg'
 
 const ImprovementMeasuresWrapper = styled.div`
   padding: 20px;
@@ -28,12 +30,12 @@ const ImprovementMeasuresTable = styled.table`
   }
 
   thead tr {
-    height: 3rem;
+ 
     border-bottom: 1px solid #eaeaea;
   }
 
   tbody tr {
-    line-height: 122px;
+    line-height: 100px;
     border-bottom: 1px solid #eaeaea;
   }
 
@@ -54,6 +56,11 @@ const Image = styled.img`
 
 `
 
+const ImprovementMeasuresTableWrapper = styled.div`
+  height: 350px;
+  overflow: auto;
+`
+
 const ImageWrapper = styled.span`
   width: 45px;
   text-align: center;
@@ -68,54 +75,39 @@ const InfoButton = styled.button`
   text-transform: uppercase;
 `
 
-const improvementMeasuresData = [
-  {
-    measures: 'LED Replacement',
-    investmentCost: 36000,
-    energySavings: 74.3,
-    energyCostSavings: 19300,
-    paybackPeriod: 2.7,
-    co2EmissionsAvoided: 65
-  },
-  {
-    measures: 'chiller unit replacement',
-    investmentCost: 234000,
-    energySavings: 177.09,
-    energyCostSavings: 46000,
-    paybackPeriod: 5.1,
-    co2EmissionsAvoided: 154.92
-  },
-  {
-    measures: 'double glaze lowe windows',
-    investmentCost: 103000,
-    energySavings: 106.45,
-    energyCostSavings: 27650,
-    paybackPeriod: 3.7,
-    co2EmissionsAvoided: 93.12
-  }
-]
-
-const ImprovementMeasures = () => {
-  const rows = improvementMeasuresData.map(item => {
-    let imgSrc = lightingImg
-    let width = 60
-    switch (item.measures) {
-      case 'chiller unit replacement':
+const ImprovementMeasures = ({ data }) => {
+  const rows = data.map(item => {
+    let imgSrc
+    let width
+    switch (item.subSystem) {
+      case 'Cooling':
         imgSrc = coolingImg
         width = 30
         break
-      case 'double glaze lowe windows':
+      case 'Openings':
         imgSrc = openingsImg
         width = 45
         break
-      default:
+      case 'Lighting':
         imgSrc = lightingImg
+        width = 25
+        break
+      case 'Heating':
+        imgSrc = heatingImg
+        width = 20
+        break
+      case 'Walls':
+        imgSrc = wallImg
+        width = 40
+        break
+      default:
+        imgSrc = ''
         width = 25
         break
 
     }
     return (
-      <tr>
+      <tr key={item.measures}>
         <FirstTd><ImageWrapper><Image src={imgSrc} alt={item.measures} width={width}/></ImageWrapper>{item.measures}
         </FirstTd>
         <td>{item.investmentCost}</td>
@@ -145,10 +137,14 @@ const ImprovementMeasures = () => {
           <th></th>
         </tr>
         </thead>
-        <tbody>
-        {rows}
-        </tbody>
       </ImprovementMeasuresTable>
+      <ImprovementMeasuresTableWrapper>
+        <ImprovementMeasuresTable className="table">
+          <tbody>
+          {rows}
+          </tbody>
+        </ImprovementMeasuresTable>
+      </ImprovementMeasuresTableWrapper>
     </ImprovementMeasuresWrapper>
 
   )

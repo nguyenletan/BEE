@@ -27,14 +27,14 @@ const BarTitle = styled.h4`
 const BarHeader = styled.h3`
   font-size: 1.1rem;
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   height: 45px;
 `
 
 const BarWrapper = styled.div`
   background-color: #fafafa;
   border-radius: 15px;
-  padding: 20px 15px;
+  padding: 20px 20px;
   margin-right: ${props => props.marginRight ? props.marginRight : '0px'};;
 `
 
@@ -51,7 +51,7 @@ const IndicatorText = styled.span`
 const BuildingEnergyPerformance = () => {
   return (
     <BuildingEnergyPerformanceWrapper className="d-flex justify-content-between">
-      <BarWrapper className="d-flex" marginRight="20px">
+      <BarWrapper className="d-flex" marginRight="30px">
         <BarChart>
           <BarHeader>Building Energy<br/>Performance</BarHeader>
           <div className="d-flex">

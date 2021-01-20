@@ -30,7 +30,7 @@ const BlockWrapper = styled.div`
 
 const BarBlock = (props) => {
   const { text, backgroundColor, marginLeft, width, isArrow, textAlign, marginBottom, paddingRight } = props
-  console.log(props)
+
   return isArrow
     ? (
       <BlockWrapper className="d-flex" marginLeft={marginLeft}>

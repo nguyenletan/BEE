@@ -50,9 +50,9 @@ const IndicatorText = styled.span`
 const CO2EmissionsPerformance = () => {
   return (
     <BuildingEnergyPerformanceWrapper className="d-flex justify-content-between">
-      <BarWrapper className="d-flex" marginRight="20px">
+      <BarWrapper className="d-flex">
         <BarChart>
-          <BarHeader>Building Energy Performance</BarHeader>
+          <BarHeader>Building Energy<br/>Performance</BarHeader>
           <div className="d-flex">
             <Hr/>
             <BarBlock width="36px" backgroundColor="#93d2f0" text="A" textAlign="center" paddingRight="0"/>

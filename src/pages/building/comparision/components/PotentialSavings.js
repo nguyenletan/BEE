@@ -14,7 +14,7 @@ const PotentialSavingsTitle = styled.h3`
 `
 
 const PotentialSavingItem = styled.li`
-  width: 170px;
+  width: 165px;
   min-height: 158px;
   background-color: #fafafa;
   border-radius: 10px;
@@ -76,21 +76,21 @@ const potentialSavingsData = {
 
 const PotentialSavings = () => {
   const PotentialSavingItems = potentialSavingsData.saving.map(item => (
-    <PotentialSavingItem>
+    <PotentialSavingItem key={item.title}>
     <PotentialSavingItemTitle>{item.title} ({item.unit})</PotentialSavingItemTitle>
     <PotentialSavingItemValue>{item.value}</PotentialSavingItemValue>
   </PotentialSavingItem>))
 
   return (
     <PotentialSavingsWrapper className="row">
-      <div className="col-6">
+      <div className="col-5">
         <PotentialSavingsTitle>Potential Savings</PotentialSavingsTitle>
         <div className="d-flex justify-content-between flex-wrap">
           {PotentialSavingItems}
         </div>
       </div>
 
-      <div className="col-6">
+      <div className="col-7">
         <div className="d-flex">
           <BuildingEnergyPerformance/>
           <CO2EmissionsPerformance/>
