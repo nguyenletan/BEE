@@ -110,7 +110,7 @@ const Improve = ({ data }) => {
     <ImproveWrapper>
       <PotentialSavings/>
 
-      <div className="d-flex mb-4">
+      <div className="d-flex mb-5">
         <BreakDown title="Energy Savings Breakdown"
                    subTitle="%"
                    data={data.breakDownConsumption}

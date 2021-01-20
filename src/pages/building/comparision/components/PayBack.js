@@ -29,7 +29,7 @@ const PayBack = ({ data }) => {
 
   const commonProps = {
     width: 790,
-    height: 600,
+    height: 470,
     margin: { top: 24, right: 30, bottom: 40, left: 50 },
     nodeSize: 10,
     blendMode: 'multiply',
