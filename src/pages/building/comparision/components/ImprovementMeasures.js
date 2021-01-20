@@ -69,7 +69,7 @@ const ImageWrapper = styled.span`
 `
 
 const InfoButton = styled.button`
-  border-radius: 15px;
+  border-radius: 20px;
   padding-left: 18px;
   padding-right: 18px;
   text-transform: uppercase;
