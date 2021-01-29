@@ -9,12 +9,16 @@ const Block = styled.div`
   background-color: ${props => props.backgroundColor ? props.backgroundColor : 'transparent'};
   text-align: center;
   line-height: 58px;
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 1.1rem;
+  font-weight: 600;
   border-radius: 8px;
   margin-right: 3px;
   margin-bottom: 3px;
   transition: background-color 500ms ease-in-out;
+  :hover {
+    box-shadow: 0 0 15px 15px rgba(50, 80, 50, 0.55);
+    transition: box-shadow 200ms ease-in-out
+  }
 
 `
 
@@ -28,7 +32,7 @@ const HeaderBlock = styled.div`
   font-size: 0.9rem;
   border-radius: 8px;
   margin-right: 3px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 `
 
 const IndexBlock = styled.div`
@@ -38,10 +42,11 @@ const IndexBlock = styled.div`
   background-color: transparent;
   border-radius: 8px;
   margin-right: 15px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   span {
     line-height: 0.9rem;
     vertical-align: middle;
