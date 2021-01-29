@@ -11,6 +11,7 @@ import EnergyPerformance from './energyPerformance/EnergyPerformance'
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom'
 import Comparison from './comparision/Comparison'
 import Improve from './improve/Improve'
+import AssetReliability from './assetReliability/AssetReliability'
 
 const BuildingWrapper = styled.div`
   margin-left: 100px;
@@ -32,7 +33,6 @@ const Building = () => {
     constructed: '1980-1990',
     greenBuildingRating: 'LEED Gold',
     buildingInfoLastEdited: '25/03/2020',
-
     energyPerformance: {
 
       breakDownConsumption: [
@@ -69,7 +69,7 @@ const Building = () => {
         floor: 2.3,
         plugLoads: 5
       }
-    }
+    },
   },
     {
       name: 'Hill Bay Central Bank',
@@ -165,7 +165,8 @@ const Building = () => {
           floor: 2.3,
           plugLoads: 5
         }
-      }
+      },
+
 
     }
   ]
@@ -199,6 +200,9 @@ const Building = () => {
         </Route>
         <Route path={`${path}/improve`}>
           <Improve data={BuildingInfoData.energyPerformance}/>
+        </Route>
+        <Route path={`${path}/asset-reliability`}>
+          <AssetReliability data={BuildingInfoData.energyPerformance}/>
         </Route>
         <Redirect to={`${path}/energy-performance`}/>
       </Switch>

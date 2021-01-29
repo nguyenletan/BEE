@@ -34,7 +34,7 @@ const BarWrapper = styled.div`
   background-color: #fafafa;
   border-radius: 15px;
   padding: 20px;
-  margin-right: ${props => props.marginRight ? props.marginRight : '0px'};;
+  margin-right: ${props => props.marginRight ? props.marginRight : '0px'};
 `
 
 const BarIndicator = styled.div`
