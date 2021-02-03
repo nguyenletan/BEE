@@ -3,6 +3,9 @@ import AssetHealth from './components/AssetHealth'
 import PotentialFaultRisks from './components/PotentialFaultRisks1'
 import CurrentSubSystemHealth from './components/CurrentSubSystemHealth'
 import PotentialFaultList from './components/PotentialFaultsList'
+import MaintenanceBudget from './components/MaintenanceBudget'
+import MaintenanceBudgetBySubSystem from './components/MaintenanceBudgetBySubSystem'
+
 
 const AssetReliability = () => {
 
@@ -95,18 +98,91 @@ const AssetReliability = () => {
       ],
       keys: ['value']
     },
+    maintenanceBudget: [
+      {
+        id: 'used',
+        label: 'Used',
+        value: 236850,
+        color: '#87972f',
+        remaining: 77691
+      },
+      {
+        id: 'remaining',
+        label: 'Remaining',
+        value: 77691,
+        color: '#ecedef',
+        remaining: 77691
+      }
+    ],
+    maintenanceBudgetBySubSystem: [
+      {
+        id: 0,
+        subSystem: 'cooling',
+        used: 5000,
+        accrued: 1300,
+        allocated: 7300,
+      },
+      {
+        id: 1,
+        subSystem: 'heating',
+        used: 3000,
+        accrued: 5100,
+        allocated: 6500,
+      },{
+        id: 2,
+        subSystem: 'lighting',
+        used: 3100,
+        accrued: 200,
+        allocated: 4300,
+      },{
+        id: 3,
+        subSystem: 'mechanical ventilation',
+        used: 5900,
+        accrued: 900,
+        allocated: 7200,
+      },{
+        id:4,
+        subSystem: 'facility envelope',
+        used: 4000,
+        accrued: 5900,
+        allocated: 4300,
+      },{
+        id: 5,
+        subSystem: 'renewables',
+        used: 1800,
+        accrued: 500,
+        allocated: 3100
+      },
+      {
+        id: 6,
+        subSystem: 'others',
+        used: 2100,
+        accrued: 300,
+        allocated: 3100,
+      },
+    ]
 
   }
 
-  return <div>
-    <AssetHealth/>
-    <div className="d-flex mb-4" >
-      <PotentialFaultRisks data={data.listOfPotentialFaults}/>
-      <CurrentSubSystemHealth data={data.currentSubSystemHealth}/>
-    </div>
+  return (
+    <div>
+      <AssetHealth/>
+      <div className="d-flex mb-4">
+        <PotentialFaultRisks data={data.listOfPotentialFaults}/>
+        <CurrentSubSystemHealth data={data.currentSubSystemHealth}/>
+      </div>
 
-    <PotentialFaultList data={data.listOfPotentialFaults}/>
-  </div>
+      <PotentialFaultList data={data.listOfPotentialFaults}/>
+
+      <div className="d-flex mb-4">
+        <MaintenanceBudget data={data.maintenanceBudget}/>
+
+        <MaintenanceBudgetBySubSystem data={data.maintenanceBudgetBySubSystem}/>
+
+      </div>
+
+    </div>
+  )
 
 }
 

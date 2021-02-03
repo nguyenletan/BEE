@@ -25,8 +25,8 @@ const Ul = styled.ul`
   margin-block-start: 0;
   margin-block-end: 0;
   padding-inline-start: 0;
-  font-size: 0.85rem;
-  margin-bottom: 30px;
+  font-size: ${props => props.fontSize ? props.fontSize : '0.85rem'};
+  margin-bottom: 0;
 `
 
 const Label = styled.label`
@@ -34,12 +34,12 @@ const Label = styled.label`
 `
 
 const BreakDown = (props) => {
-  const { title, data, subTitle } = props
+  const { title, data, subTitle, startAngle, innerRadius, informationFontSize, isCenteredPercentage } = props
 
   const commonProperties = {
-    width: 350,
-    height: 280,
-    margin: { top: 20, right: 80, bottom: 0, left: 80 },
+    width: 320,
+    height: 230,
+    margin: { top: 20, right: 80, bottom: 20, left: 80 },
     data: data,
     animate: true,
   }
@@ -75,21 +75,56 @@ const BreakDown = (props) => {
   //   )
   // }
 
+  const CenteredPercentage = ({ dataWithArc, centerX, centerY }) => {
+
+    const total = dataWithArc[0].value + dataWithArc[1].value
+    const percentage = (dataWithArc[0].value / total) * 100
+
+    return (
+      <>
+        <text
+          x={centerX}
+          y={centerY - 15}
+          textAnchor="middle"
+          dominantBaseline="central"
+          style={{
+            fontSize: '24px',
+            fontWeight: '700',
+          }}
+        >
+          {percentage.toFixed(1)} %
+        </text>
+        <text
+          x={centerX}
+          y={centerY + 15}
+          textAnchor="middle"
+          dominantBaseline="central"
+          style={{
+            fontSize: '24px',
+            fontWeight: '700',
+          }}
+        >
+          Used
+        </text>
+      </>
+    )
+  }
+
   const list = data.map(x => <li className="d-flex justify-content-between" key={x.id}>
-    <Label>{x.id}:</Label>
-    <span>{x.value}%</span>
+    <Label fontSize={informationFontSize}>{x.id}:</Label>
+    <span fontSize={informationFontSize}>{x.value}%</span>
   </li>)
 
   return <BreakDownBlock className="">
     <BreakDownTitle>{title}</BreakDownTitle>
-    <BreakDownSubTitle>{subTitle}</BreakDownSubTitle>
+    {subTitle ?? (<BreakDownSubTitle>{subTitle}</BreakDownSubTitle>)}
     <Pie {...commonProperties}
-         innerRadius={0.82}
+         innerRadius={innerRadius ?? 0.82}
          fit={true}
-         startAngle={-120}
+         startAngle={startAngle ?? -120}
          colors={{ datum: 'data.color' }}
          tooltipFormat={value => `${value + '%'}`}
-         //radialLabel={LabelComponent}
+      //radialLabel={LabelComponent}
          radialLabelsLinkColor={{
            from: 'color',
          }}
@@ -101,6 +136,7 @@ const BreakDown = (props) => {
            modifiers: [['darker', 1.2]],
          }}
          enableSliceLabels={false}
+         layers={['slices', 'sliceLabels', 'radialLabels', 'legends', isCenteredPercentage === true ? CenteredPercentage : '']}
     />
     <Ul>
       {list}
