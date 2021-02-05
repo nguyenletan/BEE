@@ -2,10 +2,18 @@ import React, { Fragment } from 'react'
 import { line } from 'd3-shape'
 import styled from 'styled-components'
 import { monotoneX } from 'd3-shape/src/curve/monotone'
-import { Bar } from "@nivo/bar";
+import { Bar } from '@nivo/bar'
+import {
+  coolingSVG,
+  envelopeSVG,
+  heatingSVG,
+  lightingSVG,
+  mechVentSVG,
+  plugLoadSVG,
+  renewableSVG
+} from '../../../../SvgConstants'
 
 const lineColor = '#636c2e'
-
 
 const MaintenanceBudgetBySubSystemWrapper = styled.div`
   background-color: #fafafa;
@@ -22,15 +30,15 @@ const MaintenanceBudgetBySubSystemTitle = styled.h3`
 
 const MaintenanceBudgetBySubSystem = ({ data }) => {
   const keys = ['used', 'accrued']
-
+  console.log(data)
   const commonProps = {
     width: 800,
-    height: 340,
-    margin: { top: 20, right: 0, bottom: 60, left: 20 },
+    height: 350,
+    margin: { top: 0, right: 0, bottom: 80, left: 20 },
     data: data,
     indexBy: 'id',
     keys,
-    padding: 0.8,
+    padding: 0.75,
     enableLabel: false,
     groupMode: 'stacked'
   }
@@ -46,14 +54,15 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
         // console.log(bar)
         // console.log(i)
 
-        if(bar.data.id !== 'accrued')
-           return null
+        if (bar.data.id !== 'accrued')
+          return null
 
-        return xScale(bar.data.index) + bar.width / 2})
+        return xScale(bar.data.index) + bar.width / 2
+      })
       .y(bar => {
         //console.log(bar.data.data.allocated)
 
-        if(bar.data.id !== 'accrued')
+        if (bar.data.id !== 'accrued')
           return null
 
         // console.log(++k)
@@ -69,9 +78,12 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
           d={lineGenerator(bars)}
           fill="none"
           stroke={lineColor}
-          strokeWidth={2}
-          strokeDasharray="18"
-          style={{ pointerEvents: "none" }}
+          strokeWidth={2.5}
+          strokeDasharray="20"
+          axisBottom={{
+            renderTick: CustomTick,
+          }}
+          style={{ pointerEvents: 'none' }}
         />
 
         {
@@ -79,23 +91,105 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
             ///j++;
             // console.log('j: ', j)
             // console.log(bar)
-            if(bar.data.id !== 'used')
+            if (bar.data.id !== 'accrued')
               return null
             return (
-            <>
-              {/*<text x={xScale(bar.data.index) + bar.width / 2} y={yScale(bar.data.data.allocated)}></text>*/}
-              <circle
-                key={bar.key}
-                cx={xScale(bar.data.index) + bar.width / 2}
-                cy={yScale(bar.data.data.allocated)}
-                r={4}
-                fill="white"
-                stroke={lineColor}
-                style={{ pointerEvents: "none" }}
-              />
-            </>
-        )})}
+              <>
+                {/*<text x={xScale(bar.data.index) + bar.width / 2} y={yScale(bar.data.data.allocated)}></text>*/}
+                <circle
+                  key={bar.key}
+                  cx={xScale(bar.data.index) + bar.width / 2}
+                  cy={yScale(bar.data.data.allocated)}
+                  r={4}
+                  fill="white"
+                  stroke={lineColor}
+                  style={{ pointerEvents: 'none' }}
+                />
+              </>
+            )
+          })}
       </Fragment>
+    )
+  }
+
+  const CustomTick = tick => {
+
+    let x = 18
+    let y = 50
+
+    let imgX = 0
+    let imgY = 0
+
+    const item = data.find(i => i.id === tick.value)
+    console.log(item)
+
+    const icon = (subSystem) => {
+      switch (subSystem) {
+        case 'cooling':
+          return (
+            <g transform={`translate(${imgX}, ${imgY})`}>
+            {coolingSVG()}
+          </g>)
+
+        case 'heating':
+          imgX = 10
+          return (
+            <g transform={`translate(${imgX}, ${imgY})`}>
+            {heatingSVG()}
+          </g>)
+
+        case 'mechanical ventilation':
+          return (<g transform={`translate(${imgX}, ${imgY})`}>
+            {mechVentSVG()}
+          </g>)
+
+        case 'lighting':
+          imgX = 6
+          return (<g transform={`translate(${imgX}, ${imgY})`}>
+            {lightingSVG()}
+          </g>)
+
+
+        case 'facility envelope':
+          imgX = -8
+          return (<g transform={`translate(${imgX}, ${imgY})`}>
+            {envelopeSVG()}
+          </g>)
+
+        case 'renewables':
+          imgX = -5
+          return (<g transform={`translate(${imgX}, ${imgY})`}>
+            {renewableSVG()}
+          </g>)
+
+        case 'others':
+          imgX = 3
+          imgY = 3
+          return (<g transform={`translate(${imgX}, ${imgY})`}>
+            {plugLoadSVG()}
+          </g>)
+        default:
+          return ''
+      }
+    }
+
+    return (
+      <g transform={`translate(${tick.x - 18},${tick.y + 6})`}>
+
+        {icon(item.subSystem)}
+
+        <text
+          transform={`translate(${x},${y})`}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          style={{
+            fill: '#333',
+            fontSize: 10,
+          }}
+        >
+          {item.subSystem}
+        </text>
+      </g>
     )
   }
 
@@ -108,7 +202,10 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
         layers={[
           'grid', 'axes', 'bars', 'markers', 'legends', Line
         ]}
-        borderRadius={2}
+        borderRadius={1}
+        axisBottom={{
+          renderTick: CustomTick,
+        }}
         legends={[
           {
             dataFrom: 'keys',
@@ -116,7 +213,7 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
             direction: 'row',
             justify: false,
             translateX: 0,
-            translateY: 60,
+            translateY: 95,
             itemsSpacing: 2,
             itemWidth: 92,
             itemHeight: 20,
