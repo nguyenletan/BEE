@@ -16,7 +16,7 @@ const Block = styled.div`
   margin-bottom: 3px;
   transition: background-color 500ms ease-in-out;
   :hover {
-    box-shadow: 0 0 10px 0px rgba(50, 80, 50, 0.35);
+    box-shadow: 1px 1px 10px 1px rgba(50, 80, 50, 0.5);
     transition: box-shadow 200ms ease-in-out
   }
 

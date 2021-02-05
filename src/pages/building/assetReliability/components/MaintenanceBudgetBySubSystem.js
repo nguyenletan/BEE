@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { line } from 'd3-shape'
 import styled from 'styled-components'
-import { monotoneX } from 'd3-shape/src/curve/monotone'
+//import { monotoneX } from 'd3-shape/src/curve/monotone'
 import { Bar } from '@nivo/bar'
 import {
   coolingSVG,
@@ -44,53 +44,46 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
   }
 
   const Line = ({ bars, xScale, yScale }) => {
-    // let i = 0
-    // let j = 0
-    // let k = 0
+
     const lineGenerator = line()
       .x(bar => {
 
-        // console.log('bar: ')
-        // console.log(bar)
-        // console.log(i)
 
-        if (bar.data.id !== 'accrued')
+        if (bar.data.id !== 'used')
           return null
 
         return xScale(bar.data.index) + bar.width / 2
       })
       .y(bar => {
-        //console.log(bar.data.data.allocated)
 
-        if (bar.data.id !== 'accrued')
+
+        if (bar.data.id !== 'used')
           return null
 
-        // console.log(++k)
-        // console.log('bar.data.data.allocated:' + bar.data.data.allocated)
         return yScale(bar.data.data.allocated)
-      }).curve(monotoneX)
+      })//.curve(monotoneX)
 
-    //console.log(lineGenerator(bars))
+    // console.log(lineGenerator(bars))
+    // console.log(x)
+    // console.log(y)
+
+    //console.log(lineGenerator)
+    let pathString = lineGenerator(bars).replaceAll('L0,0', '');
+
 
     return (
       <Fragment>
         <path
-          d={lineGenerator(bars)}
+          d={pathString}
           fill="none"
           stroke={lineColor}
           strokeWidth={2.5}
-          strokeDasharray="20"
-          axisBottom={{
-            renderTick: CustomTick,
-          }}
+          strokeDasharray="18"
           style={{ pointerEvents: 'none' }}
         />
 
         {
           bars.map(bar => {
-            ///j++;
-            // console.log('j: ', j)
-            // console.log(bar)
             if (bar.data.id !== 'accrued')
               return null
             return (
@@ -112,18 +105,15 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
     )
   }
 
+
   const CustomTick = tick => {
-
-    let x = 18
-    let y = 50
-
-    let imgX = 0
-    let imgY = 0
-
+    const x = 18
+    const y = 50
     const item = data.find(i => i.id === tick.value)
-    console.log(item)
 
     const icon = (subSystem) => {
+      let imgX = 0
+      let imgY = 0
       switch (subSystem) {
         case 'cooling':
           return (
@@ -149,7 +139,6 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
             {lightingSVG()}
           </g>)
 
-
         case 'facility envelope':
           imgX = -8
           return (<g transform={`translate(${imgX}, ${imgY})`}>
@@ -168,6 +157,7 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
           return (<g transform={`translate(${imgX}, ${imgY})`}>
             {plugLoadSVG()}
           </g>)
+
         default:
           return ''
       }

@@ -127,14 +127,16 @@ const AssetReliability = () => {
         subSystem: 'heating',
         used: 3000,
         accrued: 5100,
-        allocated: 6500,
-      },{
+        allocated: 6500
+      },
+      {
         id: 2,
         subSystem: 'lighting',
         used: 3100,
         accrued: 200,
         allocated: 4300,
-      },{
+      },
+      {
         id: 3,
         subSystem: 'mechanical ventilation',
         used: 5900,
