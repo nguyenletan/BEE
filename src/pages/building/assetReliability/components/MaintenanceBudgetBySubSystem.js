@@ -28,12 +28,34 @@ const MaintenanceBudgetBySubSystemTitle = styled.h3`
   margin-bottom: 2rem;
 `
 
+const Legend = styled.ul`
+  width: 100%;
+  margin-bottom: 0;
+  li {
+    list-style-type: none;
+    font-size: 12px;
+    line-height: 12px;
+    vertical-align: center;
+    margin-right: 2rem;
+  }
+`
+const LegendBox = styled.span`
+  background-color: ${props => props.backgroundColor ? props.backgroundColor : 'var(--primary)'};
+  border-radius: ${props => props.borderRadius ? props.borderRadius : '50%;'};
+  width: ${props => props.weight ? props.weight : '12px'};
+  height: ${props => props.height ? props.height : '12px'};
+  display: inline-block;
+  line-height: 12px;
+  margin-right: 6px;
+  vertical-align: ${props => props.verticleAlign ? props.verticleAlign : 'bottom'};
+`
+
 const MaintenanceBudgetBySubSystem = ({ data }) => {
   const keys = ['used', 'accrued']
   console.log(data)
   const commonProps = {
     width: 800,
-    height: 350,
+    height: 320,
     margin: { top: 0, right: 0, bottom: 80, left: 20 },
     data: data,
     indexBy: 'id',
@@ -48,14 +70,12 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
     const lineGenerator = line()
       .x(bar => {
 
-
         if (bar.data.id !== 'used')
           return null
 
         return xScale(bar.data.index) + bar.width / 2
       })
       .y(bar => {
-
 
         if (bar.data.id !== 'used')
           return null
@@ -68,8 +88,7 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
     // console.log(y)
 
     //console.log(lineGenerator)
-    let pathString = lineGenerator(bars).replaceAll('L0,0', '');
-
+    let pathString = lineGenerator(bars).replaceAll('L0,0', '')
 
     return (
       <Fragment>
@@ -105,7 +124,6 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
     )
   }
 
-
   const CustomTick = tick => {
     const x = 18
     const y = 50
@@ -118,15 +136,15 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
         case 'cooling':
           return (
             <g transform={`translate(${imgX}, ${imgY})`}>
-            {coolingSVG()}
-          </g>)
+              {coolingSVG()}
+            </g>)
 
         case 'heating':
           imgX = 10
           return (
             <g transform={`translate(${imgX}, ${imgY})`}>
-            {heatingSVG()}
-          </g>)
+              {heatingSVG()}
+            </g>)
 
         case 'mechanical ventilation':
           return (<g transform={`translate(${imgX}, ${imgY})`}>
@@ -196,31 +214,38 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
         axisBottom={{
           renderTick: CustomTick,
         }}
-        legends={[
-          {
-            dataFrom: 'keys',
-            anchor: 'bottom',
-            direction: 'row',
-            justify: false,
-            translateX: 0,
-            translateY: 95,
-            itemsSpacing: 2,
-            itemWidth: 92,
-            itemHeight: 20,
-            itemDirection: 'left-to-right',
-            itemOpacity: 0.85,
-            symbolSize: 20,
-            effects: [
-              {
-                on: 'hover',
-                style: {
-                  itemOpacity: 1
-                }
-              }
-            ]
-          }
-        ]}
+        // legends={[
+        //   {
+        //     dataFrom: 'keys',
+        //     anchor: 'bottom',
+        //     direction: 'row',
+        //     justify: false,
+        //     translateX: 0,
+        //     translateY: 95,
+        //     itemsSpacing: 2,
+        //     itemWidth: 92,
+        //     itemHeight: 20,
+        //     itemDirection: 'left-to-right',
+        //     itemOpacity: 0.85,
+        //     symbolSize: 20,
+        //     effects: [
+        //       {
+        //         on: 'hover',
+        //         style: {
+        //           itemOpacity: 1
+        //         }
+        //       }
+        //     ]
+        //   }
+        // ]}
       />
+
+      <Legend className="d-flex justify-content-center">
+        <li><LegendBox backgroundColor="#87972f"/>Used</li>
+        <li><LegendBox backgroundColor="#d3dca1"/>Accrued</li>
+        <li><LegendBox backgroundColor="#636c2e" height="3px" weight="20px" borderRadius="20%" verticleAlign="middle"/>Allocated
+        </li>
+      </Legend>
     </MaintenanceBudgetBySubSystemWrapper>
   )
 }
