@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { line } from 'd3-shape'
 import styled from 'styled-components'
 //import { monotoneX } from 'd3-shape/src/curve/monotone'
-import { Bar } from '@nivo/bar'
+import { ResponsiveBar } from '@nivo/bar'
 import {
   coolingSVG,
   envelopeSVG,
@@ -19,7 +19,6 @@ const MaintenanceBudgetBySubSystemWrapper = styled.div`
   background-color: #fafafa;
   border-radius: 15px;
   padding: 30px 40px 30px 30px;
-  margin-right: 40px;
 `
 
 const MaintenanceBudgetBySubSystemTitle = styled.h3`
@@ -39,6 +38,7 @@ const Legend = styled.ul`
     margin-right: 2rem;
   }
 `
+
 const LegendBox = styled.span`
   background-color: ${props => props.backgroundColor ? props.backgroundColor : 'var(--primary)'};
   border-radius: ${props => props.borderRadius ? props.borderRadius : '50%;'};
@@ -50,13 +50,18 @@ const LegendBox = styled.span`
   vertical-align: ${props => props.verticleAlign ? props.verticleAlign : 'bottom'};
 `
 
+const ResponsiveBarWrapper =styled.div`
+  width: 100%;
+  height: 250px;
+  margin-bottom: 100px;
+`
+
 const MaintenanceBudgetBySubSystem = ({ data }) => {
   const keys = ['used', 'accrued']
-  console.log(data)
+
   const commonProps = {
-    width: 800,
-    height: 320,
-    margin: { top: 0, right: 0, bottom: 80, left: 20 },
+
+    margin: { top: 0, right: 0, bottom: 0, left: 20 },
     data: data,
     indexBy: 'id',
     keys,
@@ -83,11 +88,6 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
         return yScale(bar.data.data.allocated)
       })//.curve(monotoneX)
 
-    // console.log(lineGenerator(bars))
-    // console.log(x)
-    // console.log(y)
-
-    //console.log(lineGenerator)
     let pathString = lineGenerator(bars).replaceAll('L0,0', '')
 
     return (
@@ -204,48 +204,26 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
   return (
     <MaintenanceBudgetBySubSystemWrapper>
       <MaintenanceBudgetBySubSystemTitle>Maintenance Budget By Sub-System</MaintenanceBudgetBySubSystemTitle>
-      <Bar
-        {...commonProps}
-        colors={['#87972f', '#d3dca1', '#636c2e']}
-        layers={[
-          'grid', 'axes', 'bars', 'markers', 'legends', Line
-        ]}
-        borderRadius={1}
-        axisBottom={{
-          renderTick: CustomTick,
-        }}
-        // legends={[
-        //   {
-        //     dataFrom: 'keys',
-        //     anchor: 'bottom',
-        //     direction: 'row',
-        //     justify: false,
-        //     translateX: 0,
-        //     translateY: 95,
-        //     itemsSpacing: 2,
-        //     itemWidth: 92,
-        //     itemHeight: 20,
-        //     itemDirection: 'left-to-right',
-        //     itemOpacity: 0.85,
-        //     symbolSize: 20,
-        //     effects: [
-        //       {
-        //         on: 'hover',
-        //         style: {
-        //           itemOpacity: 1
-        //         }
-        //       }
-        //     ]
-        //   }
-        // ]}
-      />
-
+      <ResponsiveBarWrapper>
+        <ResponsiveBar
+          {...commonProps}
+          colors={['#87972f', '#d3dca1', '#636c2e']}
+          layers={[
+            'grid', 'axes', 'bars', 'markers', 'legends', Line
+          ]}
+          borderRadius={1}
+          axisBottom={{
+            renderTick: CustomTick,
+          }}
+        />
+      </ResponsiveBarWrapper>
       <Legend className="d-flex justify-content-center">
         <li><LegendBox backgroundColor="#87972f"/>Used</li>
         <li><LegendBox backgroundColor="#d3dca1"/>Accrued</li>
         <li><LegendBox backgroundColor="#636c2e" height="3px" weight="20px" borderRadius="20%" verticleAlign="middle"/>Allocated
         </li>
       </Legend>
+
     </MaintenanceBudgetBySubSystemWrapper>
   )
 }

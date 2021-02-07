@@ -48,6 +48,7 @@ const PotentialFaultRiskSubLeftTitle = styled.aside`
 `
 
 const PotentialFaultRiskRow = styled.div`
+  flex-wrap: nowrap;
 `
 
 const PotentialFaultRisks = ({ data }) => {

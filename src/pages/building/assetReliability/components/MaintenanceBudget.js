@@ -8,6 +8,7 @@ const MaintenanceBudget = ({ data }) => {
                data={data}
                innerRadius={0.88}
                isCenteredPercentage={true}
+               marginRight="0px"
     />
   )
 }

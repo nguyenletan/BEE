@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Line } from '@nivo/line'
+import { ResponsiveLine } from '@nivo/line'
 
 import coolingImg from '../../../../assets/images/cooling.svg'
 import heatingImg from '../../../../assets/images/heating.svg'
@@ -72,6 +72,9 @@ const AssetHealthWrapper = styled.div`
   padding: 20px;
   margin-top: 40px;
   margin-bottom: 40px;
+  width: 100%;
+  height: 440px;
+
 `
 
 const AssetHealth = () => {
@@ -586,9 +589,8 @@ const AssetHealth = () => {
   const [selectedData, selectData] = useState(data.cooling)
 
   const commonProperties = {
-    width: 1200,
-    height: 300,
-    margin: { top: 20, right: 0, bottom: 20, left: 40 },
+
+    margin: { top: 30, right: 20, bottom: 110, left: 40 },
     //data: selectedData,
     animate: true,
     motionConfig: 'gentle'
@@ -619,13 +621,16 @@ const AssetHealth = () => {
 
       <AssetHealthOptions className="d-flex">
 
-        <AssetHealthOptionItem className={selectedData.name === 'cooling' ? 'active': ''} onClick={() => onSelect('cooling')}>
+        <AssetHealthOptionItem className={selectedData.name === 'cooling' ? 'active' : ''}
+                               onClick={() => onSelect('cooling')}>
           <AssetHealthOptionIcons src={coolingImg}/>Cooling</AssetHealthOptionItem>
 
-        <AssetHealthOptionItem className={selectedData.name === 'heating' ? 'active': ''} onClick={() => onSelect('heating')}><AssetHealthOptionIcons
+        <AssetHealthOptionItem className={selectedData.name === 'heating' ? 'active' : ''}
+                               onClick={() => onSelect('heating')}><AssetHealthOptionIcons
           src={heatingImg}/>Heating</AssetHealthOptionItem>
 
-        <AssetHealthOptionItem className={selectedData.name === 'mechanical ventilation' ? 'active': ''} onClick={() => onSelect('mechanical ventilation')}><AssetHealthOptionIcons
+        <AssetHealthOptionItem className={selectedData.name === 'mechanical ventilation' ? 'active' : ''}
+                               onClick={() => onSelect('mechanical ventilation')}><AssetHealthOptionIcons
           src={mechVenImg}/>Mechanical
           Ventilation</AssetHealthOptionItem>
 
@@ -641,7 +646,7 @@ const AssetHealth = () => {
       </AssetHealthTimeLineOptions>
     </div>
 
-    <Line
+    <ResponsiveLine
       {...commonProperties}
       data={selectedData.data}
       curve="catmullRom"

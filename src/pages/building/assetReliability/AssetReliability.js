@@ -5,7 +5,11 @@ import CurrentSubSystemHealth from './components/CurrentSubSystemHealth'
 import PotentialFaultList from './components/PotentialFaultsList'
 import MaintenanceBudget from './components/MaintenanceBudget'
 import MaintenanceBudgetBySubSystem from './components/MaintenanceBudgetBySubSystem'
+import styled from 'styled-components'
 
+const AssetReliabilityWrapper = styled.div`
+  margin-bottom: 40px;
+`
 
 const AssetReliability = () => {
 
@@ -167,7 +171,7 @@ const AssetReliability = () => {
   }
 
   return (
-    <div>
+    <AssetReliabilityWrapper>
       <AssetHealth/>
       <div className="d-flex mb-4">
         <PotentialFaultRisks data={data.listOfPotentialFaults}/>
@@ -176,14 +180,16 @@ const AssetReliability = () => {
 
       <PotentialFaultList data={data.listOfPotentialFaults}/>
 
-      <div className="d-flex mb-4">
-        <MaintenanceBudget data={data.maintenanceBudget}/>
-
-        <MaintenanceBudgetBySubSystem data={data.maintenanceBudgetBySubSystem}/>
-
+      <div className="row mb-4">
+        <div className="col-4">
+          <MaintenanceBudget data={data.maintenanceBudget}/>
+        </div>
+        <div className="col-8">
+          <MaintenanceBudgetBySubSystem data={data.maintenanceBudgetBySubSystem}/>
+        </div>
       </div>
 
-    </div>
+    </AssetReliabilityWrapper>
   )
 
 }

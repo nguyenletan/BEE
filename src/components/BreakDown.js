@@ -6,7 +6,7 @@ const BreakDownBlock = styled.div`
   background-color: #fafafa;
   border-radius: 20px;
   padding: 30px;
-  margin-right: 30px;
+  margin-right: ${props => props.marginRight ? props.marginRight : '30px'};
 `
 
 const BreakDownTitle = styled.h4`
@@ -34,7 +34,9 @@ const Label = styled.label`
 `
 
 const BreakDown = (props) => {
-  const { title, data, subTitle, startAngle, innerRadius, informationFontSize, isCenteredPercentage } = props
+  const { title, data, subTitle, startAngle, innerRadius, informationFontSize, isCenteredPercentage, marginRight } = props
+
+  console.log(marginRight)
 
   const commonProperties = {
     width: 320,
@@ -44,36 +46,6 @@ const BreakDown = (props) => {
     animate: true,
   }
 
-  // const legends = [
-  //   {
-  //     anchor: 'bottom',
-  //     direction: 'row',
-  //     translateY: 56,
-  //     itemWidth: 100,
-  //     itemHeight: 18,
-  //     itemTextColor: '#fff',
-  //     symbolSize: 18,
-  //     symbolShape: 'circle',
-  //     effects: [
-  //       {
-  //         on: 'hover',
-  //         style: {
-  //           itemTextColor: '#000',
-  //         },
-  //       },
-  //     ],
-  //   },
-  // ]
-
-  //console.log(commonProperties.data)
-
-  // const LabelComponent = (d) => {
-  //   const { label, value } = d
-  //   const names = label.split(' ')
-  //   return (
-  //     label
-  //   )
-  // }
 
   const CenteredPercentage = ({ dataWithArc, centerX, centerY }) => {
 
@@ -115,7 +87,8 @@ const BreakDown = (props) => {
     <span fontSize={informationFontSize}>{x.value}%</span>
   </li>)
 
-  return <BreakDownBlock className="">
+
+  return <BreakDownBlock marginRight={marginRight}>
     <BreakDownTitle>{title}</BreakDownTitle>
     {subTitle ?? (<BreakDownSubTitle>{subTitle}</BreakDownSubTitle>)}
     <Pie {...commonProperties}
