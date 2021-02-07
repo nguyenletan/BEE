@@ -185,7 +185,7 @@ const CurrentSubSystemHealth = ({data}) => {
   ))
 
   return (
-    <CurrentSubSystemHealthWrapper>
+    <CurrentSubSystemHealthWrapper className="mb-4">
       <CurrentSubSystemHealthTitle>Current Sub-System Health</CurrentSubSystemHealthTitle>
       <Radar {...commonProperties}  colors={['#87972f']}/>
       <CurrentSubSystemHealthList>

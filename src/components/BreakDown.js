@@ -1,12 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Pie } from '@nivo/pie'
+import { ResponsivePie } from '@nivo/pie'
 
 const BreakDownBlock = styled.div`
   background-color: #fafafa;
   border-radius: 20px;
   padding: 30px;
   margin-right: ${props => props.marginRight ? props.marginRight : '30px'};
+  width:100%;
+
+`
+
+const ResponsivePieWrapper = styled.div`
+  width: 100%;
+  height: 250px;
 `
 
 const BreakDownTitle = styled.h4`
@@ -39,9 +46,8 @@ const BreakDown = (props) => {
   console.log(marginRight)
 
   const commonProperties = {
-    width: 320,
-    height: 230,
-    margin: { top: 20, right: 80, bottom: 20, left: 80 },
+
+    margin: { top: 40, right: 20, bottom: 20, left: 20 },
     data: data,
     animate: true,
   }
@@ -91,7 +97,8 @@ const BreakDown = (props) => {
   return <BreakDownBlock marginRight={marginRight}>
     <BreakDownTitle>{title}</BreakDownTitle>
     {subTitle ?? (<BreakDownSubTitle>{subTitle}</BreakDownSubTitle>)}
-    <Pie {...commonProperties}
+    <ResponsivePieWrapper>
+    <ResponsivePie {...commonProperties}
          innerRadius={innerRadius ?? 0.82}
          fit={true}
          startAngle={startAngle ?? -120}
@@ -111,6 +118,7 @@ const BreakDown = (props) => {
          enableSliceLabels={false}
          layers={['slices', 'sliceLabels', 'radialLabels', 'legends', isCenteredPercentage === true ? CenteredPercentage : '']}
     />
+    </ResponsivePieWrapper>
     <Ul>
       {list}
     </Ul>

@@ -15,7 +15,6 @@ const PotentialFaultRiskTitle = styled.h3`
   margin-bottom: 2rem;
 `
 
-
 const PotentialFaultRiskSubTopTitle = styled.h4`
   width: 100%;
   font-size: 1.05rem;
@@ -123,7 +122,7 @@ const PotentialFaultRisks = ({ data }) => {
   })
 
   return (
-    <PotentialFaultRiskWrapper>
+    <PotentialFaultRiskWrapper className="mb-4">
 
       <PotentialFaultRiskTitle>Potential Fault Risks</PotentialFaultRiskTitle>
       <PotentialFaultRiskSubTopTitle>Impact</PotentialFaultRiskSubTopTitle>

@@ -173,18 +173,18 @@ const AssetReliability = () => {
   return (
     <AssetReliabilityWrapper>
       <AssetHealth/>
-      <div className="d-flex mb-4">
+      <div className="d-flex mb-4 justify-content-center flex-wrap">
         <PotentialFaultRisks data={data.listOfPotentialFaults}/>
         <CurrentSubSystemHealth data={data.currentSubSystemHealth}/>
       </div>
 
       <PotentialFaultList data={data.listOfPotentialFaults}/>
 
-      <div className="row mb-4">
-        <div className="col-4">
+      <div className="row">
+        <div className="col-12 col-sm-8 col-xl-4 mb-4">
           <MaintenanceBudget data={data.maintenanceBudget}/>
         </div>
-        <div className="col-8">
+        <div className="col-12 col-xl-8 mb-4">
           <MaintenanceBudgetBySubSystem data={data.maintenanceBudgetBySubSystem}/>
         </div>
       </div>
