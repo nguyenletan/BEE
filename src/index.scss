@@ -32,3 +32,8 @@ svg {
   overflow: visible;
 }
 
+@media (min-width: 576px) {
+  .modal-sm {
+    max-width: 400px;
+  }
+}
