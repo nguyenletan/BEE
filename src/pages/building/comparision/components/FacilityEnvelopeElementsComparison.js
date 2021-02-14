@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Modal from 'react-bootstrap/modal'
+import { Container, Modal } from 'react-bootstrap'
 import roofImg from '../../../../assets/images/roof.png'
 import wallImg from '../../../../assets/images/wall.png'
 import openingsImg from '../../../../assets/images/opening.png'
 import floorImg from '../../../../assets/images/floor.png'
 import { getCurrentColor } from '../../../../Utilities'
 import EnergySquare from './EnergySquare'
-import { Container } from 'react-bootstrap'
+
 
 const FacilityEnvelopeElementsComparisonTitle = styled.h3`
   font-size: 1.15rem;

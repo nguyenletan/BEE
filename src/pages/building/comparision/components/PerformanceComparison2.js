@@ -193,7 +193,7 @@ const PerformanceComparison2 = () => {
         onClick={onClick}
         className="btn btn-primary btn-sm">Edit Comparison
       </EditConfigurationButton>
-     
+
 
     </ChartHeader>
 
