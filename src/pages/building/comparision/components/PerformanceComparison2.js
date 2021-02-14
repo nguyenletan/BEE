@@ -1,6 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ResponsiveLine } from '@nivo/line'
+import { Container, Modal } from 'react-bootstrap'
+import roofImg from '../../../../assets/images/roof.svg'
+import wallImg from '../../../../assets/images/wall.svg'
+import openingsImg from '../../../../assets/images/openings.svg'
+import floorImg from '../../../../assets/images/floor.svg'
+import lightingImg from '../../../../assets/images/lighting.svg'
+import coolingImg from '../../../../assets/images/cooling.svg'
+import heatingImg from '../../../../assets/images/heating.svg'
+import mechVentImg from '../../../../assets/images/mechanical-ventilation.svg'
+import renewableImg from '../../../../assets/images/renewable.svg'
+import plugloadImg from '../../../../assets/images/plugload.svg'
+
+
 
 const ChartHeader = styled.div`
   margin-left: 20px;
@@ -26,64 +39,109 @@ const PerformanceComparisonWrapper = styled.div`
   padding: 20px;
   margin-top: 40px;
   margin-bottom: 40px;
-
   height: 500px;
   min-width: 100%;
+`
+
+const PopupTitle = styled.h3`
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+`
+
+const PopupCategory = styled.section`
+  margin-top: 1.5rem;
 
 `
 
-const data = [{
-  id: 'Design Excellent Center',
-  data: [
-    {
-      'x': 'Cooling',
-      'y': '5',
+const PopupCategoryTitle = styled.h4`
+  font-size: .95rem;
+  margin-bottom: .5rem;
+`
 
-    },
-    {
-      'x': 'Heating',
-      'y': '5'
-    },
-    {
-      'x': 'Lighting',
-      'y': '3'
-    },
-    {
-      'x': 'Mechanical Ventilation',
-      'y': '4'
-    },
-    {
-      'x': 'Roof',
-      'y': '5'
-    },
-    {
-      'x': 'Wall',
-      'y': '4'
-    },
-    {
-      'x': 'Openings',
-      'y': '5'
-    },
-    {
-      'x': 'Floor',
-      'y': '3'
-    },
-    {
-      'x': 'Renewable',
-      'y': '3'
-    },
-    {
-      'x': 'Plug Loads',
-      'y': '3'
-    },
-  ]
-},
+const ParameterList = styled.ul`
+  padding-inline-start: 10px;
+  font-size: .9rem;
+  max-height: 125px;
+  overflow: auto;
+`
+
+const ParameterItem = styled.li`
+  list-style-type: none;
+  margin-top: .3rem;
+  &.sub-systems .custom-control-label::before {
+    //top: 0.5rem;
+  }
+`
+
+const ParameterItemIcon = styled.img`
+  margin-right: .5rem;
+  width: 27px;
+  height: 27px;
+`
+
+const UpdateBtn = styled.button`
+  border-radius: 15px; 
+  margin-right: 15px;
+  font-size: .8rem;
+`
+const CancelBtn = styled.button`
+  border-width: 0;
+  border-radius: 15px;
+  font-size: .85rem;
+`
+
+const data = [
+  {
+    id: 'Design Excellent Center',
+    data: [
+      {
+        'x': 'Cooling',
+        'y': '5',
+      },
+      {
+        'x': 'Heating',
+        'y': '5'
+      },
+      {
+        'x': 'Lighting',
+        'y': '3'
+      },
+      {
+        'x': 'Mechanical Ventilation',
+        'y': '4'
+      },
+      {
+        'x': 'Roof',
+        'y': '5'
+      },
+      {
+        'x': 'Wall',
+        'y': '4'
+      },
+      {
+        'x': 'Openings',
+        'y': '5'
+      },
+      {
+        'x': 'Floor',
+        'y': '3'
+      },
+      {
+        'x': 'Renewable',
+        'y': '3'
+      },
+      {
+        'x': 'Plug Loads',
+        'y': '3'
+      },
+    ]
+  },
   {
     id: 'Hill Bay Central Bank Center',
     data: [{
       'x': 'Cooling',
       'y': '6',
-
     },
       {
         'x': 'Heating',
@@ -169,6 +227,16 @@ const data = [{
     ]
   }
 ]
+
+const otherMonitoredEquipments = [
+  'Photocopy Printers',
+  'Computers',
+  'Water Heaters',
+  'Water Cooler',
+  'Server Rack',
+  'Add additional equipment'
+]
+
 const commonProperties = {
   margin: { top: 0, right: 30, bottom: 0, left: 40 },
   data,
@@ -178,10 +246,125 @@ const commonProperties = {
 }
 
 const PerformanceComparison2 = () => {
+  const [show, setShow] = useState(false)
+
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   const onClick = (e) => {
     console.log(e)
+    handleShow()
+  }
 
+  const getIcon = (type) => {
+    switch (type) {
+      case 'Roof':
+        return roofImg
+
+      case 'Wall':
+        return wallImg
+
+      case 'Openings':
+        return openingsImg
+
+      case 'Floor':
+        return floorImg
+
+      case 'Cooling':
+        return coolingImg
+
+      case 'Heating':
+        return heatingImg
+
+      case 'Lighting':
+        return lightingImg
+
+      case 'Mechanical Ventilation':
+        return mechVentImg
+
+      case 'Renewable':
+        return renewableImg
+
+      case 'Plug Loads':
+        return plugloadImg
+
+      default:
+        return ''
+    }
+  }
+
+  const Popup = () => {
+
+    const buildingItems = data.map((item, index) => {
+      return (
+        <ParameterItem key={item.id}>
+          <div className="custom-control custom-checkbox">
+            <input type="checkbox" className="custom-control-input" id={"checkbox_building_" + index} />
+            <label className="custom-control-label" htmlFor={"checkbox_building_" + index}>{item.id}</label>
+          </div>
+        </ParameterItem>
+      )
+    })
+
+    const subSystemItems = data[0].data.map((item, index) => {
+      return (
+        <ParameterItem key={item.id} className="sub-systems">
+          <div className="custom-control custom-checkbox">
+            <input type="checkbox" className="custom-control-input" id={"checkbox_subsystem_" + index} />
+            <label className="custom-control-label" htmlFor={"checkbox_subsystem_" + index}>
+              <ParameterItemIcon src={getIcon(item.x)} alt={item.x} title={item.x}/>
+              {item.x}
+            </label>
+          </div>
+        </ParameterItem>
+      )
+    })
+
+    const otherMonitoredEquipmentItems = otherMonitoredEquipments.map((item, index) => {
+      return (
+        <ParameterItem key={item.id}>
+          <div className="custom-control custom-checkbox">
+            <input type="checkbox" className="custom-control-input" id={"checkbox_otherMonitoredEquipments_" + index} />
+            <label className="custom-control-label" htmlFor={"checkbox_otherMonitoredEquipments_" + index}>{item}</label>
+          </div>
+        </ParameterItem>
+      )
+    })
+
+    return (
+      <Modal show={show} onHide={handleClose} size="sm">
+        <Modal.Body>
+          <Container className="mt-4">
+            <PopupTitle>Comparison Parameters</PopupTitle>
+            <PopupCategory>
+              <PopupCategoryTitle>Building</PopupCategoryTitle>
+              <ParameterList>
+                {buildingItems}
+              </ParameterList>
+            </PopupCategory>
+
+            <PopupCategory>
+              <PopupCategoryTitle>Sub-Systems</PopupCategoryTitle>
+              <ParameterList>
+                {subSystemItems}
+              </ParameterList>
+            </PopupCategory>
+
+            <PopupCategory>
+              <PopupCategoryTitle>Other Monitored Equipment</PopupCategoryTitle>
+              <ParameterList>
+                {otherMonitoredEquipmentItems}
+              </ParameterList>
+            </PopupCategory>
+
+            <div className="d-flex justify-content-center mb-2 mt-5">
+              <UpdateBtn className="btn btn-primary btn-sm" onClick={handleClose}>Update</UpdateBtn>
+              <CancelBtn className="btn btn-outline-primary btn-sm" onClick={handleClose}>Cancel</CancelBtn>
+            </div>
+          </Container>
+        </Modal.Body>
+      </Modal>
+    )
   }
 
   return <PerformanceComparisonWrapper>
@@ -193,7 +376,6 @@ const PerformanceComparison2 = () => {
         onClick={onClick}
         className="btn btn-primary btn-sm">Edit Comparison
       </EditConfigurationButton>
-
 
     </ChartHeader>
 
@@ -254,6 +436,7 @@ const PerformanceComparison2 = () => {
                       }]
                     }
     />
+    <Popup/>
   </PerformanceComparisonWrapper>
 }
 

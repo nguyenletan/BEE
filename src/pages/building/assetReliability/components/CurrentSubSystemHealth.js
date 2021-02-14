@@ -176,8 +176,6 @@ const CurrentSubSystemHealth = ({data}) => {
     borderWidth: 1,
     blendMode: 'multiply',
     gridLevels: 3,
-
-
   }
 
   const list = data.data.map(item => (

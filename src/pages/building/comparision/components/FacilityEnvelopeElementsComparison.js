@@ -8,7 +8,6 @@ import floorImg from '../../../../assets/images/floor.png'
 import { getCurrentColor } from '../../../../Utilities'
 import EnergySquare from './EnergySquare'
 
-
 const FacilityEnvelopeElementsComparisonTitle = styled.h3`
   font-size: 1.15rem;
   font-weight: 700;
@@ -119,7 +118,6 @@ const FacilityEnvelopeElementsComparison = () => {
   const handleShow = () => setShow(true)
 
   const openPopup = (data) => {
-    console.log('popup')
     setPopupProps(data)
     handleShow()
   }
@@ -151,68 +149,68 @@ const FacilityEnvelopeElementsComparison = () => {
       <Modal show={show} onHide={handleClose} size="sm">
         <Modal.Body>
           <Container className="mt-4">
-          <div className="d-flex justify-content-center">
-            <PopupIcon src={icon} alt="roof" title="roof"/>
-            <PopupTitle>{type} Performance</PopupTitle>
-          </div>
-          <ComparisonTable>
-            <div className="row mt-3">
-              <div className="col-6 text-center">
-                Current Energy Performance
-              </div>
-              <div className="col-6 text-center">
-                Potential<br/>Best-In-Class
-              </div>
+            <div className="d-flex justify-content-center">
+              <PopupIcon src={icon} alt="roof" title="roof"/>
+              <PopupTitle>{type} Performance</PopupTitle>
             </div>
+            <ComparisonTable>
+              <div className="row mt-3">
+                <div className="col-6 text-center">
+                  Current Energy Performance
+                </div>
+                <div className="col-6 text-center">
+                  Potential<br/>Best-In-Class
+                </div>
+              </div>
 
-            <div className="row mt-3">
-              <div className="col-6 text-center">
-                <EnergySquare color={getCurrentColor(current)}
-                              text={current}/>
+              <div className="row mt-3">
+                <div className="col-6 text-center">
+                  <EnergySquare color={getCurrentColor(current)}
+                                text={current}/>
+                </div>
+                <div className="col-6 text-center">
+                  <EnergySquare color={getCurrentColor(potentialBestInClass)}
+                                text={potentialBestInClass}/>
+                </div>
               </div>
-              <div className="col-6 text-center">
-                <EnergySquare color={getCurrentColor(potentialBestInClass)}
-                              text={potentialBestInClass}/>
-              </div>
-            </div>
 
-            <div className="row mt-3">
-              <div className="col-6 text-center flex-column">
-                <FirstLine>Windows Glazing Type</FirstLine>
-                <SecondLine>Single Glazed</SecondLine>
+              <div className="row mt-3">
+                <div className="col-6 text-center flex-column">
+                  <FirstLine>Windows Glazing Type</FirstLine>
+                  <SecondLine>Single Glazed</SecondLine>
+                </div>
+                <div className="col-6 text-center">
+                  <FirstLine>Windows Glazing Type</FirstLine>
+                  <SecondLine>Double Glazed</SecondLine>
+                </div>
               </div>
-              <div className="col-6 text-center">
-                <FirstLine>Windows Glazing Type</FirstLine>
-                <SecondLine>Double Glazed</SecondLine>
-              </div>
-            </div>
 
-            <div className="row mt-3">
-              <div className="col-6 text-center">
-                <FirstLine>U-Value W/m2K</FirstLine>
-                <SecondLine>1.53</SecondLine>
+              <div className="row mt-3">
+                <div className="col-6 text-center">
+                  <FirstLine>U-Value W/m2K</FirstLine>
+                  <SecondLine>1.53</SecondLine>
+                </div>
+                <div className="col-6 text-center">
+                  <FirstLine>U-Value W/m2K</FirstLine>
+                  <SecondLine>0.87</SecondLine>
+                </div>
               </div>
-              <div className="col-6 text-center">
-                <FirstLine>U-Value W/m2K</FirstLine>
-                <SecondLine>0.87</SecondLine>
-              </div>
-            </div>
 
-            <div className="row mt-3">
-              <div className="col-6 text-center">
-                <FirstLine>Shading Coefficient</FirstLine>
-                <SecondLine>0.9</SecondLine>
+              <div className="row mt-3">
+                <div className="col-6 text-center">
+                  <FirstLine>Shading Coefficient</FirstLine>
+                  <SecondLine>0.9</SecondLine>
+                </div>
+                <div className="col-6 text-center">
+                  <FirstLine>Shading Coefficient</FirstLine>
+                  <SecondLine>0.9</SecondLine>
+                </div>
               </div>
-              <div className="col-6 text-center">
-                <FirstLine>Shading Coefficient</FirstLine>
-                <SecondLine>0.9</SecondLine>
-              </div>
-            </div>
-          </ComparisonTable>
+            </ComparisonTable>
 
-          <PopupDescription>Decreasing the U-Value of the windows in turn reduces heating and cooling
-            loads.</PopupDescription>
-          <CloseBtn className="btn btn-outline-primary btn-sm mb-3" onClick={handleClose}>Close</CloseBtn>
+            <PopupDescription>Decreasing the U-Value of the windows in turn reduces heating and cooling
+              loads.</PopupDescription>
+            <CloseBtn className="btn btn-outline-primary btn-sm mb-3" onClick={handleClose}>Close</CloseBtn>
           </Container>
         </Modal.Body>
       </Modal>

@@ -124,8 +124,6 @@ const PotentialFaultRisk = ({ data }) => {
     }
   })
 
-  console.log(payBackData)
-
   const width = 800
   const height = 350
   const marginBottom = 40
