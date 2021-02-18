@@ -172,6 +172,7 @@ const Building = () => {
   ]
 
   const BuildingInfoData = BuildingInfoDataArray[id - 1]
+
   let { path } = useRouteMatch()
   return <>
     <Header/>
@@ -193,10 +194,10 @@ const Building = () => {
 
       <Switch>
         <Route path={`${path}/energy-performance`}>
-          <EnergyPerformance data={BuildingInfoData.energyPerformance}/>
+          <EnergyPerformance data={BuildingInfoData.energyPerformance} />
         </Route>
         <Route path={`${path}/comparison`}>
-          <Comparison/>
+          <Comparison data={{buildingName: BuildingInfoData.name, id: id}}/>
         </Route>
         <Route path={`${path}/improve`}>
           <Improve data={BuildingInfoData.energyPerformance}/>

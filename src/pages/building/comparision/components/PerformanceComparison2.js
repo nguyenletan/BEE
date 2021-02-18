@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ResponsiveLine } from '@nivo/line'
-import { Container, Modal } from 'react-bootstrap'
+import { Container, FormCheck, Modal } from 'react-bootstrap'
 import roofImg from '../../../../assets/images/roof.svg'
 import wallImg from '../../../../assets/images/wall.svg'
 import openingsImg from '../../../../assets/images/openings.svg'
@@ -12,8 +12,6 @@ import heatingImg from '../../../../assets/images/heating.svg'
 import mechVentImg from '../../../../assets/images/mechanical-ventilation.svg'
 import renewableImg from '../../../../assets/images/renewable.svg'
 import plugloadImg from '../../../../assets/images/plugload.svg'
-
-
 
 const ChartHeader = styled.div`
   margin-left: 20px;
@@ -69,6 +67,7 @@ const ParameterList = styled.ul`
 const ParameterItem = styled.li`
   list-style-type: none;
   margin-top: .3rem;
+
   &.sub-systems .custom-control-label::before {
     //top: 0.5rem;
   }
@@ -81,178 +80,194 @@ const ParameterItemIcon = styled.img`
 `
 
 const UpdateBtn = styled.button`
-  border-radius: 15px; 
+  border-radius: 15px;
   margin-right: 15px;
   font-size: .8rem;
+  padding-left: 20px;
+  padding-right: 20px;
 `
 const CancelBtn = styled.button`
   border-width: 0;
   border-radius: 15px;
   font-size: .85rem;
+  padding-left: 20px;
+  padding-right: 20px;
 `
 
-const data = [
-  {
-    id: 'Design Excellent Center',
-    data: [
-      {
-        'x': 'Cooling',
-        'y': '5',
-      },
-      {
-        'x': 'Heating',
-        'y': '5'
-      },
-      {
-        'x': 'Lighting',
-        'y': '3'
-      },
-      {
-        'x': 'Mechanical Ventilation',
-        'y': '4'
-      },
-      {
-        'x': 'Roof',
-        'y': '5'
-      },
-      {
-        'x': 'Wall',
-        'y': '4'
-      },
-      {
-        'x': 'Openings',
-        'y': '5'
-      },
-      {
-        'x': 'Floor',
-        'y': '3'
-      },
-      {
-        'x': 'Renewable',
-        'y': '3'
-      },
-      {
-        'x': 'Plug Loads',
-        'y': '3'
-      },
-    ]
-  },
-  {
-    id: 'Hill Bay Central Bank Center',
-    data: [{
-      'x': 'Cooling',
-      'y': '6',
-    },
-      {
-        'x': 'Heating',
-        'y': '6'
-      },
-      {
-        'x': 'Lighting',
-        'y': '5'
-      },
-      {
-        'x': 'Mechanical Ventilation',
-        'y': '5'
-      },
-      {
-        'x': 'Roof',
-        'y': '3'
-      },
-      {
-        'x': 'Wall',
-        'y': '3'
-      },
-      {
-        'x': 'Openings',
-        'y': '4'
-      },
-      {
-        'x': 'Floor',
-        'y': '5'
-      },
-      {
-        'x': 'Renewable',
-        'y': '4'
-      },
-      {
-        'x': 'Plug Loads',
-        'y': '2'
-      },
-    ]
-  },
-  {
-    id: 'F+E Campus',
-    data: [{
-      'x': 'Cooling',
-      'y': '4',
-
-    },
-      {
-        'x': 'Heating',
-        'y': '5'
-      },
-      {
-        'x': 'Lighting',
-        'y': '4'
-      },
-      {
-        'x': 'Mechanical Ventilation',
-        'y': '5'
-      },
-      {
-        'x': 'Roof',
-        'y': '4'
-      },
-      {
-        'x': 'Wall',
-        'y': '4'
-      },
-      {
-        'x': 'Openings',
-        'y': '5'
-      },
-      {
-        'x': 'Floor',
-        'y': '3'
-      },
-      {
-        'x': 'Renewable',
-        'y': '6'
-      },
-      {
-        'x': 'Plug Loads',
-        'y': '6'
-      },
-    ]
-  }
-]
-
-const otherMonitoredEquipments = [
-  'Photocopy Printers',
-  'Computers',
-  'Water Heaters',
-  'Water Cooler',
-  'Server Rack',
-  'Add additional equipment'
-]
-
-const commonProperties = {
-  margin: { top: 0, right: 30, bottom: 0, left: 40 },
-  data,
-  animate: true,
-  height: 350
-  //enableSlices: 'x',
-}
-
 const PerformanceComparison2 = () => {
+  const data = [
+    {
+      id: 'Design Excellent Center',
+      data: [
+        {
+          'x': 'Cooling',
+          'y': '5',
+        },
+        {
+          'x': 'Heating',
+          'y': '5'
+        },
+        {
+          'x': 'Lighting',
+          'y': '3'
+        },
+        {
+          'x': 'Mechanical Ventilation',
+          'y': '4'
+        },
+        {
+          'x': 'Roof',
+          'y': '5'
+        },
+        {
+          'x': 'Wall',
+          'y': '4'
+        },
+        {
+          'x': 'Openings',
+          'y': '5'
+        },
+        {
+          'x': 'Floor',
+          'y': '3'
+        },
+        {
+          'x': 'Renewable',
+          'y': '3'
+        },
+        {
+          'x': 'Plug Loads',
+          'y': '3'
+        },
+      ]
+    },
+    {
+      id: 'Hill Bay Central Bank Center',
+      data: [{
+        'x': 'Cooling',
+        'y': '6',
+      },
+        {
+          'x': 'Heating',
+          'y': '6'
+        },
+        {
+          'x': 'Lighting',
+          'y': '5'
+        },
+        {
+          'x': 'Mechanical Ventilation',
+          'y': '5'
+        },
+        {
+          'x': 'Roof',
+          'y': '3'
+        },
+        {
+          'x': 'Wall',
+          'y': '3'
+        },
+        {
+          'x': 'Openings',
+          'y': '4'
+        },
+        {
+          'x': 'Floor',
+          'y': '5'
+        },
+        {
+          'x': 'Renewable',
+          'y': '4'
+        },
+        {
+          'x': 'Plug Loads',
+          'y': '2'
+        },
+      ]
+    },
+    {
+      id: 'F+E Campus',
+      data: [{
+        'x': 'Cooling',
+        'y': '4',
+
+      },
+        {
+          'x': 'Heating',
+          'y': '5'
+        },
+        {
+          'x': 'Lighting',
+          'y': '4'
+        },
+        {
+          'x': 'Mechanical Ventilation',
+          'y': '5'
+        },
+        {
+          'x': 'Roof',
+          'y': '4'
+        },
+        {
+          'x': 'Wall',
+          'y': '4'
+        },
+        {
+          'x': 'Openings',
+          'y': '5'
+        },
+        {
+          'x': 'Floor',
+          'y': '3'
+        },
+        {
+          'x': 'Renewable',
+          'y': '6'
+        },
+        {
+          'x': 'Plug Loads',
+          'y': '6'
+        },
+      ]
+    }
+  ]
+
+  const otherMonitoredEquipments = [
+    'Photocopy Printers',
+    'Computers',
+    'Water Heaters',
+    'Water Cooler',
+    'Server Rack',
+    'Add additional equipment'
+  ]
+
+  const commonProperties = {
+    margin: { top: 0, right: 30, bottom: 0, left: 40 },
+    animate: true,
+    height: 350
+    //enableSlices: 'x',
+  }
+
   const [show, setShow] = useState(false)
+  const [chartData, setChartData] = useState(data)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
+  const onUpdate = (buildings, subSystems) => {
+    filterData(buildings, subSystems)
+    setShow(false)
+  }
+
+  const filterData = (buildings, subSystems) => {
+    const arr = [...data.filter(i => buildings.includes(i.id))]
+    arr.forEach(a => {
+      a.data = [...a.data.filter(d => subSystems.includes(d.x))]
+    })
+    setChartData(arr)
+  }
+
   const onClick = (e) => {
-    console.log(e)
     handleShow()
   }
 
@@ -294,14 +309,34 @@ const PerformanceComparison2 = () => {
   }
 
   const Popup = () => {
+    //const selectedBuildings = [];
+    let selectedBuildings = data.map(d => d.id)
+    let selectedSubSystems = data[0].data.map(d => d.x)
+
+    const onSelectBuilding = (e) => {
+      if (e.target.checked) {
+        selectedBuildings = [...new Set([...selectedBuildings, e.target.value])]
+      } else {
+        selectedBuildings = selectedBuildings.filter((value) => e.target.value !== value)
+      }
+    }
+
+    const onSelectSubSystem = (e) => {
+
+      if (e.target.checked) {
+        selectedSubSystems = [...new Set([...selectedSubSystems, e.target.value])]
+      } else {
+        selectedSubSystems = selectedSubSystems.filter((value) => e.target.value !== value)
+      }
+
+      console.log(selectedSubSystems)
+    }
 
     const buildingItems = data.map((item, index) => {
       return (
         <ParameterItem key={item.id}>
-          <div className="custom-control custom-checkbox">
-            <input type="checkbox" className="custom-control-input" id={"checkbox_building_" + index} />
-            <label className="custom-control-label" htmlFor={"checkbox_building_" + index}>{item.id}</label>
-          </div>
+          <FormCheck type="checkbox" id={'checkbox_building_' + index} label={item.id} onChange={onSelectBuilding}
+                     value={item.id} defaultChecked={true}/>
         </ParameterItem>
       )
     })
@@ -310,8 +345,9 @@ const PerformanceComparison2 = () => {
       return (
         <ParameterItem key={item.id} className="sub-systems">
           <div className="custom-control custom-checkbox">
-            <input type="checkbox" className="custom-control-input" id={"checkbox_subsystem_" + index} />
-            <label className="custom-control-label" htmlFor={"checkbox_subsystem_" + index}>
+            <input onChange={onSelectSubSystem} type="checkbox" className="custom-control-input"
+                   id={'checkbox_subsystem_' + index} value={item.x} defaultChecked={true}/>
+            <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + index}>
               <ParameterItemIcon src={getIcon(item.x)} alt={item.x} title={item.x}/>
               {item.x}
             </label>
@@ -324,8 +360,10 @@ const PerformanceComparison2 = () => {
       return (
         <ParameterItem key={item.id}>
           <div className="custom-control custom-checkbox">
-            <input type="checkbox" className="custom-control-input" id={"checkbox_otherMonitoredEquipments_" + index} />
-            <label className="custom-control-label" htmlFor={"checkbox_otherMonitoredEquipments_" + index}>{item}</label>
+            <input type="checkbox" className="custom-control-input"
+                   id={'checkbox_otherMonitoredEquipments_' + index}/>
+            <label className="custom-control-label"
+                   htmlFor={'checkbox_otherMonitoredEquipments_' + index}>{item}</label>
           </div>
         </ParameterItem>
       )
@@ -358,7 +396,8 @@ const PerformanceComparison2 = () => {
             </PopupCategory>
 
             <div className="d-flex justify-content-center mb-2 mt-5">
-              <UpdateBtn className="btn btn-primary btn-sm" onClick={handleClose}>Update</UpdateBtn>
+              <UpdateBtn className="btn btn-primary btn-sm"
+                         onClick={() => onUpdate(selectedBuildings, selectedSubSystems)}>Update</UpdateBtn>
               <CancelBtn className="btn btn-outline-primary btn-sm" onClick={handleClose}>Cancel</CancelBtn>
             </div>
           </Container>
@@ -381,7 +420,7 @@ const PerformanceComparison2 = () => {
 
     <ResponsiveLine {...commonProperties}
                     curve="monotoneX"
-                    data={data}
+                    data={chartData}
                     useMesh={false}
                     enableSlices={false}
                     enablePoint={true}
