@@ -329,7 +329,6 @@ const PerformanceComparison2 = () => {
         selectedSubSystems = selectedSubSystems.filter((value) => e.target.value !== value)
       }
 
-      console.log(selectedSubSystems)
     }
 
     const buildingItems = data.map((item, index) => {

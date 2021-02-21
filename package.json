@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "/",
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "@nivo/bar": "^0.67.0",
     "@nivo/bump": "^0.67.0",
     "@nivo/core": "^0.67.0",
@@ -12,6 +14,7 @@
     "@nivo/pie": "^0.67.0",
     "@nivo/radar": "^0.67.0",
     "@nivo/scatterplot": "^0.67.0",
+    "@primer/octicons-react": "^12.0.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.0",
