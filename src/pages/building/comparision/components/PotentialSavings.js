@@ -30,53 +30,18 @@ const PotentialSavingItemTitle = styled.h4`
 `
 
 const PotentialSavingItemValue = styled.h4`
-  font-size: 3rem;
+  font-size: 2rem;
   text-align: center;
   margin: auto;
-
+  line-height: 3rem;
   color: var(--primary);
 `
 
+const PotentialSavings = ({data}) => {
+  console.log(data)
 
-const potentialSavingsData = {
-  saving:
-    [
-      {
-        title: 'Annual Energy Savings',
-        unit: 'MWh',
-        value: -618
-      },
-      {
-        title: 'Annual Energy Cost Savings',
-        unit: '$1000',
-        value: -68.2
-      },
-      {
-        title: 'Annual CO2 Emissions Avoided',
-        unit: 'Tons',
-        value: -189
-      },
-      {
-        title: 'Investment Cost',
-        unit: '$1000',
-        value: 460
-      },
-      {
-        title: 'Simple Payback',
-        unit: 'Years',
-        value: 6.7
-      },
-      {
-        title: 'Energy Usage Intensity Reduction',
-        unit: 'kWh/m2/yr',
-        value: -23.8
-      }
-    ]
-}
-
-const PotentialSavings = () => {
-  const PotentialSavingItems = potentialSavingsData.saving.map(item => (
-    <PotentialSavingItem key={item.title}>
+  const PotentialSavingItems = data.saving.map(item => (
+    <PotentialSavingItem key={item.title} className="d-flex flex-column">
     <PotentialSavingItemTitle>{item.title} ({item.unit})</PotentialSavingItemTitle>
     <PotentialSavingItemValue>{item.value}</PotentialSavingItemValue>
   </PotentialSavingItem>))

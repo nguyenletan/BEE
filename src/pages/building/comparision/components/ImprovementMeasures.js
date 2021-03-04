@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-
+import Input from '@material-ui/core/Input'
 import Slider from '@material-ui/core/Slider'
 import openingsImg from '../../../../assets/images/openings.svg'
 import coolingImg from '../../../../assets/images/cooling.svg'
@@ -9,7 +9,9 @@ import heatingImg from '../../../../assets/images/heating.svg'
 import wallImg from '../../../../assets/images/wall.svg'
 import { Col, Container, Modal, Row } from 'react-bootstrap'
 import { LinkExternalIcon, XCircleIcon } from '@primer/octicons-react'
+import IRR from '../../../../IRR'
 import { withStyles } from '@material-ui/core'
+
 
 const ImprovementMeasuresWrapper = styled.div`
   padding: 20px;
@@ -90,7 +92,6 @@ const PopupTitle = styled.h3`
   color: var(--primary);
 `
 
-
 const HeaderGroupButton = styled.div`
 
 `
@@ -134,7 +135,7 @@ const MeasureName = styled.span`
 `
 
 const RangeWrapper = styled.div`
-
+  visibility: ${props => props.show === false ? 'hidden' : 'visible'};
 `
 
 const PopupBodyInnerWrapper = styled.div`
@@ -194,27 +195,87 @@ const valuetext = (value) => {
   return `${value}°%`
 }
 
-const ImprovementMeasures = ({ data }) => {
-
+const ImprovementMeasures = ({ data, setResult }) => {
+  let isChanged = false
   const [show, setShow] = useState(false)
   const [popUpProps, setPopupProps] = useState({})
+  //const [popUpResult, setPopUpResult] = useState({})
 
-  const handleClose = () => setShow(false)
+  const handleClose = (isChanged, result) => {
+    console.log(result)
+    if(isChanged) {
+      //setPopUpResult({ ...result })
+      setResult({...result})
+    }
+    setShow(false)
+  }
   const handleShow = () => setShow(true)
 
   const openPopup = (data) => {
     setPopupProps(data)
-    console.log('openPopup')
     handleShow()
   }
 
   const Popup = (props) => {
-    const { icon, measure } = props?.data
-    const [value, setValue] = React.useState(60)
-    const [showSlider, setShowSlider] = useState(false)
 
-    const handleChange = (event, newValue) => {
+
+    const calculateIRRValue = (firstValue, secondValue, loopTime = 20) => {
+      const IRRvalues = new Array(loopTime - 1)
+      for (let i = 0; i < IRRvalues.length; i++) {
+        IRRvalues[i] = secondValue
+      }
+
+      let internalRateOfReturn = IRR([firstValue, ...IRRvalues])
+      if (internalRateOfReturn !== '#NUM!') {
+        internalRateOfReturn = +internalRateOfReturn.toFixed(2) * 100
+      }
+      return internalRateOfReturn
+    }
+
+    const { icon, measure } = props?.data
+
+    const [showSlider, setShowSlider] = useState(false)
+    const [detailValue, setDetailValue] = useState({
+      investmentCost: props.data.investmentCost,
+      energyCostSavings: props.data.energyCostSavings,
+      energySavings: props.data.energySavings,
+      paybackPeriod: props.data.paybackPeriod,
+      co2EmissionsAvoided: props.data.co2EmissionsAvoided,
+      internalRateOfReturn: calculateIRRValue(-props.data.investmentCost, props.data.energyCostSavings, 20)
+    })
+    const [value, setValue] = React.useState(detailValue.internalRateOfReturn)
+
+    const handleSliderChange = (event, newValue) => {
       setValue(newValue)
+    }
+
+    const saveHandle = () => {
+      const investmentCost = (60000 * value / 100)
+      const energyCostSavings = (32167 * value / 100)
+      console.log('saveHandle')
+      setDetailValue({
+        ...detailValue, ...{
+          energySavings: +(123.8 * value / 100).toFixed(2),
+          investmentCost: investmentCost,
+          energyCostSavings: energyCostSavings,
+          co2EmissionsAvoided: +(108.3 * value / 100).toFixed(2),
+          paybackPeriod: value > 0 ? +(investmentCost / energyCostSavings).toFixed(2) : 0,
+          internalRateOfReturn: value > 0 ? calculateIRRValue(-investmentCost, energyCostSavings, 20) : 0
+        }
+      })
+      isChanged = true
+    }
+
+    const handleInputChange = (event) => {
+      setValue(event.target.value === '' ? '' : Number(event.target.value))
+    }
+
+    const handleBlur = () => {
+      if (value < 0) {
+        setValue(0)
+      } else if (value > 100) {
+        setValue(100)
+      }
     }
 
     return (
@@ -229,12 +290,12 @@ const ImprovementMeasures = ({ data }) => {
                   if (showSlider === false) {
                     setShowSlider(true)
                   } else {
-                    handleClose()
+                    saveHandle()
                   }
                 }}>
                   <LinkExternalIcon size={16} className="mr-1"/><span>{showSlider ? 'Save' : 'Edit'}</span>
                 </HeaderButton>
-                <HeaderButton className="" onClick={handleClose}>
+                <HeaderButton className="" onClick={() => {handleClose(isChanged, detailValue)}}>
                   <XCircleIcon size={16} className="mr-1"/><span>Close</span>
                 </HeaderButton>
               </HeaderGroupButton>
@@ -246,16 +307,31 @@ const ImprovementMeasures = ({ data }) => {
                 <PopupValue>{value}%</PopupValue>
                 <MeasureName>{measure}</MeasureName>
               </PopupValueWrapper>
-              <RangeWrapper className="d-flex flex-column justify-content-end w-75">
+              <RangeWrapper className="d-flex justify-content-between w-100  align-items-center" show={showSlider}>
                 <PrettoSlider
-                  disabled={!showSlider}
+                  className="mr-4"
                   marks={marks}
                   valueLabelDisplay="auto"
                   aria-label="LED replacement slider"
                   defaultValue={60}
                   getAriaValueText={valuetext}
-                  onChange={handleChange}
+                  onChange={handleSliderChange}
+                  value={value}
                   step={1}/>
+                <Input
+                  style={{ 'margin-top': '-30px' }}
+                  className="ml-2"
+                  onChange={handleInputChange}
+                  onBlur={handleBlur}
+                  value={value}
+                  inputProps={{
+                    step: 10,
+                    min: 0,
+                    max: 100,
+                    type: 'number',
+                    'aria-labelledby': 'input-slider',
+                  }}
+                />
               </RangeWrapper>
             </div>
           </Container>
@@ -265,26 +341,27 @@ const ImprovementMeasures = ({ data }) => {
           <PopupBodyInnerWrapper className="container my-2">
             <Row>
               <Col xs={8} sm={4} className="col">Annual Energy Savings</Col>
-              <Col xs={4} sm={2} className="col col-value">123.6 MWh</Col>
+              <Col xs={4} sm={2} className="col col-value">{detailValue.energySavings} MWh</Col>
               <Col xs={8} sm={4} className="col">Investment Cost</Col>
-              <Col xs={4} sm={2} className="col col-value">$ 37,000</Col>
+              <Col xs={4} sm={2} className="col col-value">${detailValue.investmentCost}</Col>
             </Row>
             <Row>
               <Col xs={8} sm={4} className="col">Annual Energy Cost Savings</Col>
-              <Col xs={4} sm={2} className="col col-value">$ 19,300 / yr</Col>
+              <Col xs={4} sm={2} className="col col-value">${detailValue.energyCostSavings} / yr</Col>
               <Col xs={8} sm={4} className="col">Simple Payback</Col>
-              <Col xs={4} sm={2} className="col col-value">2 yr</Col>
+              <Col xs={4} sm={2} className="col col-value">{detailValue.paybackPeriod} yr</Col>
             </Row>
             <Row>
               <Col xs={8} sm={4} className="col">Annual CO2 Emissions Avoided</Col>
-              <Col xs={4} sm={2} className="col col-value">57 Tons/yr</Col>
+              <Col xs={4} sm={2} className="col col-value">{detailValue.co2EmissionsAvoided} Tons/yr</Col>
               <Col xs={8} sm={4} className="col">Internal Rate of Return</Col>
-              <Col xs={4} sm={2} className="col col-value">27%</Col>
+              <Col xs={4} sm={2} className="col col-value">{detailValue.internalRateOfReturn} %</Col>
             </Row>
           </PopupBodyInnerWrapper>
         </Modal.Body>
       </Modal>
     )
+
   }
 
   const rows = data.map(item => {
@@ -323,16 +400,21 @@ const ImprovementMeasures = ({ data }) => {
           <ImageWrapper><Image src={imgSrc} alt={item.measures} width={width}/></ImageWrapper>
           {item.measures}
         </FirstTd>
-        <td>{item.investmentCost}</td>
-        <td>{item.energySavings}</td>
-        <td>{item.energyCostSavings}</td>
-        <td>{item.paybackPeriod}</td>
-        <td>{item.co2EmissionsAvoided}</td>
-        <td>
+        <td width="18%">{item.investmentCost}</td>
+        <td width="12%">{item.energySavings}</td>
+        <td width="12%">{item.energyCostSavings}</td>
+        <td width="12%">{item.paybackPeriod}</td>
+        <td width="12%">{item.co2EmissionsAvoided}</td>
+        <td width="10%">
           <InfoButton className="btn btn-primary btn-sm"
                       onClick={() => openPopup({
                         icon: imgSrc,
-                        measure: item.measures
+                        measure: item.measures,
+                        investmentCost: item.investmentCost,
+                        energyCostSavings: item.energyCostSavings,
+                        energySavings: item.energySavings,
+                        paybackPeriod: item.paybackPeriod,
+                        co2EmissionsAvoided: item.co2EmissionsAvoided
                       })}>
             Info
           </InfoButton>
@@ -348,12 +430,12 @@ const ImprovementMeasures = ({ data }) => {
         <thead>
         <tr>
           <FirstTh>MEASURES</FirstTh>
-          <th>INVESTMENT COST<br/>($)</th>
-          <th>ENERGY SAVINGS<br/>(MWH/YR)</th>
-          <th>ENERGY COST<br/>SAVINGS ($/YR)</th>
-          <th>PAYBACK PERIOD<br/>(YR)</th>
-          <th>CO2 EMISSIONS<br/>AVOIDED (TONS/YR)</th>
-          <th></th>
+          <th width="18%">INVESTMENT COST<br/>($)</th>
+          <th width="12%">ENERGY SAVINGS<br/>(MWH/YR)</th>
+          <th width="12%">ENERGY COST<br/>SAVINGS ($/YR)</th>
+          <th width="12%">PAYBACK PERIOD<br/>(YR)</th>
+          <th width="12%">CO2 EMISSIONS<br/>AVOIDED (TONS/YR)</th>
+          <th width="10%"></th>
         </tr>
         </thead>
       </ImprovementMeasuresTable>
