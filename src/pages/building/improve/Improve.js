@@ -145,7 +145,7 @@ const Improve = (props) => {
   })
   const [breakDownConsumption, setBreakDownConsumption] = useState([...props.data.breakDownConsumption])
   const [breakDownCost, setBreakDownCost] = useState([...props.data.breakDownCost])
-  const [breakDownCO2Emissions, setBreakDownCO2Emissions] = useState([...props.data.breakDownCO2Emissions])
+  const [breakDownCO2Emissions] = useState([...props.data.breakDownCO2Emissions])
 
   useEffect(() => {
     let investmentCost = 0
