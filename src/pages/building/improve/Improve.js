@@ -109,6 +109,8 @@ const Improve = (props) => {
   //const [data, setData] = useState(improveData)
   const [popupResult, setResult] = useState()
   const [potentialSavingsData, setPotentialSavingsData] = useState({
+    energyPerformance: {current: "D", improved: "C"},
+    CO2EmissionsPerformance: {current: "D", improved: "C"},
     saving:
       [
         {
@@ -147,7 +149,7 @@ const Improve = (props) => {
   const [breakDownCost, setBreakDownCost] = useState([...props.data.breakDownCost])
   const [breakDownCO2Emissions] = useState([...props.data.breakDownCO2Emissions])
 
-  useEffect(() => {
+  const updateValue = () => {
     let investmentCost = 0
     let energyCostSavings = 0
     let annualEnergySavings = 0
@@ -183,7 +185,14 @@ const Improve = (props) => {
             break
         }
       }
-      setPotentialSavingsData(tmp)
+
+      console.log(popupResult.internalRateOfReturn)
+
+      tmp.energyPerformance.improved = popupResult.percentageLEDUsage >= 90 ? "B" : "C" //IF(C65>=0.9,"B","C")
+      tmp.CO2EmissionsPerformance.improved = popupResult.percentageLEDUsage >= 90 ? "B" : "C" //IF(C65>=0.9,"B","C")
+
+      setPotentialSavingsData({...tmp})
+
 
       tmp = breakDownConsumption
       let total = tmp[0].value + tmp[1].value + tmp[2].value + tmp[3].value
@@ -262,6 +271,11 @@ const Improve = (props) => {
 
 
     }
+  }
+
+  useEffect(() => {
+    updateValue()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [popupResult])
 
   return (

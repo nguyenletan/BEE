@@ -2,7 +2,6 @@ import React from 'react'
 import BarBlock from './BarBlock'
 import styled from 'styled-components'
 
-
 const BuildingEnergyPerformanceWrapper = styled.div`
 
 
@@ -48,7 +47,17 @@ const IndicatorText = styled.span`
   line-height: 36px;
 `
 
-const BuildingEnergyPerformance = () => {
+const BuildingEnergyPerformance = ({ improved }) => {
+  console.log(improved)
+
+  const Indicator = (({ text, backgroundColor, type }) => (
+    improved === text && <>
+      <BarBlock width="53px" backgroundColor={backgroundColor} text={text} isArrow={true} textAlign="center"
+                marginLeft="7px"/>
+      <IndicatorText>{type}</IndicatorText>
+    </>
+  ))
+
   return (
     <BuildingEnergyPerformanceWrapper className="d-flex justify-content-between">
       <BarWrapper className="d-flex" marginRight="30px">
@@ -57,36 +66,42 @@ const BuildingEnergyPerformance = () => {
           <div className="d-flex">
             <Hr/>
             <BarBlock width="36px" backgroundColor="#478D58" text="A" textAlign="center" paddingRight="0"/>
+            <Indicator text="A" backgroundColor="#478D58" type="Improved"/>
           </div>
           <div className="d-flex ">
             <BarTitle marginTop="-12px">Most Efficient</BarTitle>
             <BarBlock width="36px" backgroundColor="#63AE62" textAlign="center" text="B" paddingRight="0"/>
+            <Indicator text="B" backgroundColor="#63AE62" type="Improved"/>
           </div>
 
           <div className="d-flex">
             <Hr marginTop="10px"/>
-            <BarBlock width="36px" backgroundColor="#AACC72" textAlign="center" text="C" paddingRight="0" />
-            <BarBlock width="53px" backgroundColor="#AACC72" text="C" isArrow={true} textAlign="center" marginLeft="7px"/>
-            <IndicatorText>Improved</IndicatorText>
+            <BarBlock width="36px" backgroundColor="#AACC72" textAlign="center" text="C" paddingRight="0"/>
+            <Indicator text="C" backgroundColor="#AACC72" type="Improved"/>
           </div>
           <div className="d-flex ">
             <BarTitle>Average Performance</BarTitle>
             <BarBlock width="36px" backgroundColor="#F0EA6F" textAlign="center" text="D" paddingRight="0"/>
-            <BarBlock width="53px" backgroundColor="#F0EA6F" text="D" isArrow={true} textAlign="center" marginLeft="7px"/>
+            <BarBlock width="53px" backgroundColor="#F0EA6F" text="D" isArrow={true} textAlign="center"
+                      marginLeft="7px"/>
             <IndicatorText>Current</IndicatorText>
+            <Indicator text="D" backgroundColor="#F0EA6F" type="Improved"/>
           </div>
 
           <div className="d-flex">
             <Hr marginTop="20px"/>
             <BarBlock width="36px" backgroundColor="#ecb75f" textAlign="center" text="E" paddingRight="0"/>
+            <Indicator text="E" backgroundColor="#ecb75f" type="Improved"/>
           </div>
           <div className="d-flex ">
             <BarTitle marginTop="10px">Least Efficient</BarTitle>
             <BarBlock width="36px" backgroundColor="#df7f4f" textAlign="center" text="F" paddingRight="0"/>
+            <Indicator text="F" backgroundColor="#df7f4f" type="Improved"/>
           </div>
           <div className="d-flex">
             <Hr marginTop="35px"/>
             <BarBlock width="36px" backgroundColor="#d94545" textAlign="center" text="G" paddingRight="0"/>
+            <Indicator text="G" backgroundColor="#d94545" type="Improved"/>
           </div>
         </BarChart>
       </BarWrapper>

@@ -235,13 +235,15 @@ const ImprovementMeasures = ({ data, setResult }) => {
     const { icon, measure } = props?.data
 
     const [showSlider, setShowSlider] = useState(false)
+
     const [detailValue, setDetailValue] = useState({
       investmentCost: props.data.investmentCost,
       energyCostSavings: props.data.energyCostSavings,
       energySavings: props.data.energySavings,
       paybackPeriod: props.data.paybackPeriod,
       co2EmissionsAvoided: props.data.co2EmissionsAvoided,
-      internalRateOfReturn: calculateIRRValue(-props.data.investmentCost, props.data.energyCostSavings, 20)
+      internalRateOfReturn: calculateIRRValue(-props.data.investmentCost, props.data.energyCostSavings, 20),
+      percentageLEDUsage: calculateIRRValue(-props.data.investmentCost, props.data.energyCostSavings, 20)
     })
     const [value, setValue] = React.useState(detailValue.internalRateOfReturn)
 
@@ -260,7 +262,8 @@ const ImprovementMeasures = ({ data, setResult }) => {
           energyCostSavings: energyCostSavings,
           co2EmissionsAvoided: +(108.3 * value / 100).toFixed(2),
           paybackPeriod: value > 0 ? +(investmentCost / energyCostSavings).toFixed(2) : 0,
-          internalRateOfReturn: value > 0 ? calculateIRRValue(-investmentCost, energyCostSavings, 20) : 0
+          internalRateOfReturn: value > 0 ? calculateIRRValue(-investmentCost, energyCostSavings, 20) : 0,
+          percentageLEDUsage: value
         }
       })
       isChanged = true

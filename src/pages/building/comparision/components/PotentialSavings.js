@@ -57,8 +57,8 @@ const PotentialSavings = ({data}) => {
 
       <div className="col-7">
         <div className="d-flex">
-          <BuildingEnergyPerformance/>
-          <CO2EmissionsPerformance/>
+          <BuildingEnergyPerformance improved={data.energyPerformance.improved}/>
+          <CO2EmissionsPerformance improved={data.CO2EmissionsPerformance.improved}/>
         </div>
       </div>
 
