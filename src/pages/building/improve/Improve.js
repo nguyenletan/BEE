@@ -147,7 +147,7 @@ const Improve = (props) => {
   })
   const [breakDownConsumption, setBreakDownConsumption] = useState([...props.data.breakDownConsumption])
   const [breakDownCost, setBreakDownCost] = useState([...props.data.breakDownCost])
-  const [breakDownCO2Emissions] = useState([...props.data.breakDownCO2Emissions])
+  const [breakDownCO2Emissions,setBreakDownCO2Emissions] = useState([...props.data.breakDownCO2Emissions])
 
   const updateValue = () => {
     let investmentCost = 0
@@ -244,30 +244,30 @@ const Improve = (props) => {
       }
       setBreakDownCost([...tmp])
 
-      // tmp = breakDownCO2Emissions
-      // total = tmp[0].value + tmp[1].value + tmp[3].value + tmp[4].value
-      // for (let i = 0; i < tmp.length; i++) {
-      //   switch (tmp[i].id) {
-      //     case 'cooling':
-      //       tmp[i].value = +(tmp[i].value * 100 / (total + (energyCostSavings/1000))).toFixed(2)
-      //       break
-      //     case 'heating':
-      //       tmp[i].value = +(tmp[i].value * 100 / (total + (energyCostSavings/1000))).toFixed(2)
-      //       break
-      //     case 'lighting':
-      //       tmp[i].value = +((energyCostSavings/1000) * 100 / (total + (energyCostSavings/1000))).toFixed(2)
-      //       break
-      //     case 'mechanical ventilation':
-      //       tmp[i].value = +(tmp[i].value * 100 / (total + (energyCostSavings/1000))).toFixed(2)
-      //       break
-      //     case 'others':
-      //       tmp[i].value = +(tmp[i].value * 100 / (total + (energyCostSavings/1000))).toFixed(2)
-      //       break
-      //     default:
-      //       break
-      //   }
-      // }
-      // setBreakDownCO2Emissions([...tmp])
+      tmp = breakDownCO2Emissions
+      total = tmp[0].value + tmp[1].value + tmp[3].value + tmp[4].value + popupResult.co2EmissionsAvoided
+      for (let i = 0; i < tmp.length; i++) {
+        switch (tmp[i].id) {
+          case 'cooling':
+            tmp[i].value = +(tmp[i].value * 100 / total).toFixed(2)
+            break
+          case 'heating':
+            tmp[i].value = +(tmp[i].value * 100 / total).toFixed(2)
+            break
+          case 'lighting':
+            tmp[i].value = +(popupResult.co2EmissionsAvoided * 100 / (total + (energyCostSavings/1000))).toFixed(2)
+            break
+          case 'mechanical ventilation':
+            tmp[i].value = +(tmp[i].value * 100 / total).toFixed(2)
+            break
+          case 'others':
+            tmp[i].value = +(tmp[i].value * 100 / total).toFixed(2)
+            break
+          default:
+            break
+        }
+      }
+      setBreakDownCO2Emissions([...tmp])
 
 
     }
