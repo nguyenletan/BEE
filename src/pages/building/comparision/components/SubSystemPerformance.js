@@ -25,61 +25,14 @@ const SubSystemPerformanceWrapper = styled.div`
   min-height: 500px;
 `
 
-const subSystemPerformanceData = {
-  data: [
-    {
-      name: 'Energy Usage Intensity',
-      Minimum_Requirement: 46,
-      Current_Performance: 53,
-      Potential_Best_In_Class: 76
-    },
-    {
-      name: 'Cooling Efficiency',
-      Minimum_Requirement: 30,
-      Current_Performance: 28,
-      Potential_Best_In_Class: 70
-    },
-    {
-      name: 'Heating Efficiency',
-      Minimum_Requirement: 40,
-      Current_Performance: 53,
-      Potential_Best_In_Class: 76
-    },
-    {
-      name: 'Lighting Efficacy',
-      Minimum_Requirement: 40,
-      Current_Performance: 38,
-      Potential_Best_In_Class: 76
-    },
-    {
-      name: 'Mechanical Ventilation Efficiency',
-      Minimum_Requirement: 49,
-      Current_Performance: 51,
-      Potential_Best_In_Class: 68
-    },
-    {
-      name: 'Envelope Performance',
-      Minimum_Requirement: 20,
-      Current_Performance: 72,
-      Potential_Best_In_Class: 76
-    },
-    {
-      name: 'Renewables Usage',
-      Minimum_Requirement: 19,
-      Current_Performance: 53,
-      Potential_Best_In_Class: 64
-    },
-  ],
-  keys: ['Minimum_Requirement', 'Current_Performance', 'Potential_Best_In_Class']
-}
 
-const SubSystemPerformance = () => {
+const SubSystemPerformance = ({data}) => {
 
   const commonProperties = {
     width: 400,
     height: 350,
     margin: { top: 120, right: 0, bottom: 0, left: 0 },
-    ...subSystemPerformanceData,
+    ...data,
     indexBy: 'name',
     animate: true
   }

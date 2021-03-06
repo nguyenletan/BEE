@@ -48,8 +48,6 @@ const IndicatorText = styled.span`
 `
 
 const BuildingEnergyPerformance = ({ improved }) => {
-  console.log(improved)
-
   const Indicator = (({ text, backgroundColor, type }) => (
     improved === text && <>
       <BarBlock width="53px" backgroundColor={backgroundColor} text={text} isArrow={true} textAlign="center"

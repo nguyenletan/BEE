@@ -12,7 +12,6 @@ import { LinkExternalIcon, XCircleIcon } from '@primer/octicons-react'
 import IRR from '../../../../IRR'
 import { withStyles } from '@material-ui/core'
 
-
 const ImprovementMeasuresWrapper = styled.div`
   padding: 20px;
   border-radius: 10px;
@@ -150,6 +149,12 @@ const PopupBodyInnerWrapper = styled.div`
   }
 `
 
+const Message = styled.div`
+  font-size: .9rem;
+  color: var(--danger);
+  font-weight: 600;
+`
+
 const PrettoSlider = withStyles({
   root: {
     color: '#87972f',
@@ -202,10 +207,9 @@ const ImprovementMeasures = ({ data, setResult }) => {
   //const [popUpResult, setPopUpResult] = useState({})
 
   const handleClose = (isChanged, result) => {
-    console.log(result)
-    if(isChanged) {
+    if (isChanged) {
       //setPopUpResult({ ...result })
-      setResult({...result})
+      setResult({ ...result })
     }
     setShow(false)
   }
@@ -217,7 +221,6 @@ const ImprovementMeasures = ({ data, setResult }) => {
   }
 
   const Popup = (props) => {
-
 
     const calculateIRRValue = (firstValue, secondValue, loopTime = 20) => {
       const IRRvalues = new Array(loopTime - 1)
@@ -254,7 +257,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
     const saveHandle = () => {
       const investmentCost = (60000 * value / 100)
       const energyCostSavings = (32167 * value / 100)
-      console.log('saveHandle')
+
       setDetailValue({
         ...detailValue, ...{
           energySavings: +(123.8 * value / 100).toFixed(2),
@@ -316,27 +319,33 @@ const ImprovementMeasures = ({ data, setResult }) => {
                   marks={marks}
                   valueLabelDisplay="auto"
                   aria-label="LED replacement slider"
-                  defaultValue={60}
+                  defaultValue={value}
                   getAriaValueText={valuetext}
                   onChange={handleSliderChange}
                   value={value}
                   step={1}/>
-                <Input
-                  style={{ 'margin-top': '-30px' }}
-                  className="ml-2"
-                  onChange={handleInputChange}
-                  onBlur={handleBlur}
-                  value={value}
-                  inputProps={{
-                    step: 10,
-                    min: 0,
-                    max: 100,
-                    type: 'number',
-                    'aria-labelledby': 'input-slider',
-                  }}
-                />
+                <div style={{width: '200px'}} className="d-flex flex-column align-items-center justify-content-center">
+                  <Input
+                    className="ml-2"
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
+                    value={value}
+                    style={{width: "50px"}}
+                    inputProps={{
+                      step: 10,
+                      min: 0,
+                      max: 100,
+                      type: 'number',
+                      'aria-labelledby': 'input-slider',
+                    }}
+                  />
+                  <Message className="d-flex justify-content-end mt-2">
+                    <span>{'0 <= Value <= 100 '}</span>
+                  </Message>
+                </div>
               </RangeWrapper>
             </div>
+
           </Container>
         </Modal.Header>
 

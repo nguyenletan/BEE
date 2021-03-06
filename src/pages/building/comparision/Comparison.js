@@ -12,7 +12,6 @@ const ComparisonWrapper = styled.div`
 `
 
 const Comparison = ({ data }) => {
-  console.log(data)
   return (
     <ComparisonWrapper>
       <PerformanceBlock/>

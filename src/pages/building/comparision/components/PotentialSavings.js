@@ -38,7 +38,6 @@ const PotentialSavingItemValue = styled.h4`
 `
 
 const PotentialSavings = ({data}) => {
-  console.log(data)
 
   const PotentialSavingItems = data.saving.map(item => (
     <PotentialSavingItem key={item.title} className="d-flex flex-column">

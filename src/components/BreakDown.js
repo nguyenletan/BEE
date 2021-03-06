@@ -43,8 +43,6 @@ const Label = styled.label`
 const BreakDown = (props) => {
   const { title, data, subTitle, startAngle, innerRadius, informationFontSize, isCenteredPercentage, marginRight } = props
 
-  console.log(marginRight)
-
   const commonProperties = {
 
     margin: { top: 40, right: 20, bottom: 20, left: 20 },

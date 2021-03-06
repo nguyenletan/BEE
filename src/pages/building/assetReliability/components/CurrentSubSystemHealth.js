@@ -40,7 +40,6 @@ const CurrentSubSystemHealthList = styled.ul`
 
 const CurrentSubSystemHealth = ({data}) => {
 
-  console.log(data)
   const LabelComponent = (props) => {
     const { id, anchor, angle } = props
     let texts = ''

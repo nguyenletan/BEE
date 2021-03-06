@@ -47,7 +47,6 @@ const IndicatorText = styled.span`
 `
 
 const CO2EmissionsPerformance = ({ improved }) => {
-  console.log(improved)
 
   const Indicator = (({ text, backgroundColor, type }) => (
     improved === text && <>

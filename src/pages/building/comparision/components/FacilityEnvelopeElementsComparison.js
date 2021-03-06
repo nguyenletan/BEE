@@ -143,8 +143,6 @@ const FacilityEnvelopeElementsComparison = () => {
         break
     }
 
-    console.log(icon)
-
     return (
       <Modal show={show} onHide={handleClose} size="sm">
         <Modal.Body>
