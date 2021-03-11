@@ -56,13 +56,13 @@ const IndexBlock = styled.div`
 `
 
 const PotentialFaultRiskBlock = (props) => {
-  const { color, value, isHeader, isIndexCol, height } = props
+  const { color, value, isHeader, isIndexCol, height, onClick } = props
 
   return isIndexCol === true
-    ? <IndexBlock height={height}><span>{value}</span></IndexBlock>
+    ? <IndexBlock onClick={onClick} height={height}><span>{value}</span></IndexBlock>
     : isHeader === true
       ? <HeaderBlock>{value}</HeaderBlock>
-      : <Block backgroundColor={color}>{value === 0 ? '' : value}</Block>
+      : <Block onClick={onClick} backgroundColor={color}>{value === 0 ? '' : value}</Block>
 
 }
 
