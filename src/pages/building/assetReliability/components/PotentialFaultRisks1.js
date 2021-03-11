@@ -61,6 +61,7 @@ const PotentialFaultRisks = ({ data }) => {
 
   const [showMsgModal, setShowMsgModal] = useState(false)
   const [showListFaultRisksModal, setShowListFaultRisksModal] = useState(false)
+  const [listFaultRisksModalProps, setlistFaultRisksModalProps] = useState({})
 
   const MsgModal = () => {
     return (
@@ -74,7 +75,9 @@ const PotentialFaultRisks = ({ data }) => {
 
   }
 
-  const ListFaultRisksModal = () => {
+  const ListFaultRisksModal = (props) => {
+    console.log(props)
+
     const ImprovementMeasuresTableWrapper = styled.div`
       height: 350px;
       overflow: auto;
@@ -130,7 +133,7 @@ const PotentialFaultRisks = ({ data }) => {
       text-transform: uppercase;
     `
 
-    const rows =  Array.from(setOfListFaultRisksForModal).map(item => {
+    const rows =  props.data?.list?.map(item => {
       let imgSrc
       let width
       switch (item.subSystem) {
@@ -208,10 +211,18 @@ const PotentialFaultRisks = ({ data }) => {
 
   }
 
-  const onClick = (value) => {
+
+
+  const onClick = (value, likelihood, impact) => {
+    console.log('impact: ' + impact)
+    console.log('likelihood: ' + likelihood)
+
     if (value === 0) {
       setShowMsgModal(true)
     } else if (value > 0) {
+      //console.log(data.filter(item => item.impact === impact && item.likelihood === likelihood))
+      setlistFaultRisksModalProps({list: data.filter(item => item.impact === impact && item.likelihood === likelihood)})
+
       setShowListFaultRisksModal(true)
     }
   }
@@ -258,7 +269,7 @@ const PotentialFaultRisks = ({ data }) => {
           setOfListFaultRisksForModal.add(data[idx])
         }
         return (
-          <PotentialFaultRiskBlock key={index} color={color} value={col} onClick={() => onClick(col)}/>
+          <PotentialFaultRiskBlock key={index} color={color} value={col} onClick={() => onClick(col, idx + 1, index + 1)}/>
         )
       }
     )
@@ -301,7 +312,7 @@ const PotentialFaultRisks = ({ data }) => {
         <PotentialFaultRiskSubLeftTitle><h4>Likelihood</h4></PotentialFaultRiskSubLeftTitle>
         <div>
           <PotentialFaultRiskRow className="row">
-            <PotentialFaultRiskBlock key="" isIndexCol={true} height={40} value=""/>
+            <PotentialFaultRiskBlock key="empty" isIndexCol={true} height={40} value=""/>
             <PotentialFaultRiskBlock key="Negligible" isHeader={true} value="Negligible"/>
             <PotentialFaultRiskBlock key="Minor" isHeader={true} value="Minor"/>
             <PotentialFaultRiskBlock key="Moderate" isHeader={true} value="Moderate"/>
@@ -312,7 +323,7 @@ const PotentialFaultRisks = ({ data }) => {
         </div>
       </div>
       <MsgModal/>
-      <ListFaultRisksModal/>
+      <ListFaultRisksModal data={listFaultRisksModalProps}/>
     </PotentialFaultRiskWrapper>
   )
 }
