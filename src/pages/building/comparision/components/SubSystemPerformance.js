@@ -23,8 +23,8 @@ const SubSystemPerformanceWrapper = styled.div`
   padding: 20px;
   margin-right: 20px;
   min-height: 500px;
+  margin-bottom: 50px;
 `
-
 
 const SubSystemPerformance = ({data}) => {
 

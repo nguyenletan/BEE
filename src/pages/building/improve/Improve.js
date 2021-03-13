@@ -350,7 +350,7 @@ const Improve = (props) => {
         />
       </div>
 
-      <div className="d-flex mb-5">
+      <div className="d-flex mb-5 flex-lg-wrap justify-content-lg-center">
         <SubSystemPerformance data={subSystemPerformance}/>
 
         <PayBack data={improveData.improvementMeasuresData}/>

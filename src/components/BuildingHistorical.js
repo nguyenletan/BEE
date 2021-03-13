@@ -4,17 +4,36 @@ import styled from 'styled-components'
 import redUpImage from '../assets/images/red_up.jpg'
 import greenDownImage from '../assets/images/green_down.jpg'
 
+const SummaryBoxWrapper = styled.div`
+  justify-content: space-between;
+  width: 100%;
+  
+  @media (min-width: 1200px) {
+    width: 80%;
+
+  }
+  @media (min-width: 1366px) {
+    flex-direction: column;
+
+  }
+`
+
 const SummaryBox = styled.div`
   background-color: #fafafa;
   padding: 15px 20px;
   margin-bottom: 20px;
   border-radius: 15px;
+  max-width: 200px;
+  @media only screen and (min-width: 1366px) {
+  
+  }
 `
 
 const SummaryBoxTitle = styled.p`
   margin-bottom: 0;
 
 `
+
 const SummaryBoxValue = styled.p`
   color: var(--primary);
   font-size: 34px;
@@ -25,7 +44,7 @@ const BuildingEnergyUsageWrapper = styled.div`
   background-color: #fafafa;
   padding: 25px 30px 0;
   margin-right: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   border-radius: 25px;
 `
 
@@ -108,7 +127,7 @@ const BuildingHistorical = (props) => {
   const commonProps = {
     width: 920,
     height: 310,
-    margin: { top: 0, right: 0, bottom: 20, left: 30 },
+    margin: { top: 0, right: 0, bottom: 50, left: 30 },
     data: buildingEnergyUsageData,//generateCountriesData(keys, { size: 7 }),
     indexBy: 'month',
     keys,
@@ -124,8 +143,7 @@ const BuildingHistorical = (props) => {
 
   return (
     <>
-
-      <div className="d-flex mt-5">
+      <div className="d-flex mt-5 flex-lg-wrap justify-content-md-center">
         <BuildingEnergyUsageWrapper>
           <BuildingEnergyUsageChartTitle>Building Energy Usage (MWh)</BuildingEnergyUsageChartTitle>
           <Bar {...commonProps}
@@ -140,7 +158,7 @@ const BuildingHistorical = (props) => {
                )}
           />
         </BuildingEnergyUsageWrapper>
-        <div className="d-flex flex-column">
+        <SummaryBoxWrapper className="d-flex">
           <SummaryBox className="flex-shrink-0">
             <SummaryBoxTitle>Annual Energy Consumption (MWh/Yr)</SummaryBoxTitle>
             <SummaryBoxValue>{annualEnergyConsumption}</SummaryBoxValue>
@@ -153,8 +171,9 @@ const BuildingHistorical = (props) => {
             <SummaryBoxTitle>Annual Carbon Emissions (Tons/Yr)</SummaryBoxTitle>
             <SummaryBoxValue>{annualCarbonEmissions}</SummaryBoxValue>
           </SummaryBox>
-        </div>
+        </SummaryBoxWrapper>
       </div>
+      
       <HistoricalComparison className="d-flex justify-content-around">
         <h4>Historical<br/>Comparison</h4>
         <div className="d-flex justify-content-start">

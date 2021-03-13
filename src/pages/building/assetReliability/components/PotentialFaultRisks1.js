@@ -13,8 +13,7 @@ import mechanicalImg from '../../../../assets/images/mechanical-ventilation.svg'
 const PotentialFaultRiskWrapper = styled.div`
   background-color: #fafafa;
   border-radius: 15px;
-  padding: 30px 40px 30px 30px;
-  margin-right: 40px;
+  padding: 40px 50px 40px 30px;
 `
 
 const PotentialFaultRiskTitle = styled.h3`
@@ -97,7 +96,7 @@ const PotentialFaultRisks = ({ data }) => {
 
   const [showMsgModal, setShowMsgModal] = useState(false)
   const [showListFaultRisksModal, setShowListFaultRisksModal] = useState(false)
-  const [listFaultRisksModalProps, setlistFaultRisksModalProps] = useState({})
+  const [listFaultRisksModalProps, setListFaultRisksModalProps] = useState({})
 
   const MsgModal = () => {
     return (
@@ -299,7 +298,7 @@ const PotentialFaultRisks = ({ data }) => {
     if (value === 0) {
       setShowMsgModal(true)
     } else if (value > 0) {
-      setlistFaultRisksModalProps({
+      setListFaultRisksModalProps({
         likelihoodTitle: getRowTitle(likelihood - 1),
         impactTitle: getColTitle(impact - 1),
         list: data.filter(item => item.impact === impact && item.likelihood === likelihood)
@@ -309,6 +308,7 @@ const PotentialFaultRisks = ({ data }) => {
   }
 
   const likelihoodList = data.map(item => item.likelihood)
+  
   const impactList = data.map(item => item.impact)
 
   const riskMatrix = []
@@ -380,6 +380,7 @@ const PotentialFaultRisks = ({ data }) => {
       </div>
       <MsgModal/>
       <ListFaultRisksModal data={listFaultRisksModalProps}/>
+      
     </PotentialFaultRiskWrapper>
   )
 }
