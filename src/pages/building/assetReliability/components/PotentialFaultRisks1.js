@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import PotentialFaultRiskBlock from './PotentialFaultRiskBlock'
-import { Modal } from 'react-bootstrap'
+import { Container, Modal } from 'react-bootstrap'
+import { XIcon } from '@primer/octicons-react'
 import coolingImg from '../../../../assets/images/cooling.svg'
 import openingsImg from '../../../../assets/images/openings.svg'
 import lightingImg from '../../../../assets/images/lighting.svg'
 import heatingImg from '../../../../assets/images/heating.svg'
 import wallImg from '../../../../assets/images/wall.svg'
+import mechanicalImg from '../../../../assets/images/mechanical-ventilation.svg'
 
 const PotentialFaultRiskWrapper = styled.div`
   background-color: #fafafa;
@@ -57,6 +59,40 @@ const PotentialFaultRiskRow = styled.div`
   flex-wrap: nowrap;
 `
 
+const getRowTitle = (idxRow) => {
+  switch (idxRow) {
+    case 0:
+      return 'Rare'
+    case 1:
+      return 'Unlikely'
+    case 2:
+      return 'Possible'
+    case 3:
+      return 'Likely'
+    case 4:
+      return 'Almost Certain'
+    default:
+      return ''
+  }
+}
+
+const getColTitle = (idxCol) => {
+  switch (idxCol) {
+    case 0:
+      return 'Negligible'
+    case 1:
+      return 'Minor'
+    case 2:
+      return 'Moderate'
+    case 3:
+      return 'Major'
+    case 4:
+      return 'Critical'
+    default:
+      return ''
+  }
+}
+
 const PotentialFaultRisks = ({ data }) => {
 
   const [showMsgModal, setShowMsgModal] = useState(false)
@@ -76,14 +112,11 @@ const PotentialFaultRisks = ({ data }) => {
   }
 
   const ListFaultRisksModal = (props) => {
-    console.log(props)
-
     const ImprovementMeasuresTableWrapper = styled.div`
       height: 350px;
       overflow: auto;
       font-size: .9rem;
     `
-
     const ImprovementMeasuresTable = styled.table`
       border-top: none;
 
@@ -116,7 +149,6 @@ const PotentialFaultRisks = ({ data }) => {
     const FirstTd = styled.td`
       text-align: left !important;
     `
-
     const Image = styled.img`
 
     `
@@ -132,10 +164,41 @@ const PotentialFaultRisks = ({ data }) => {
       padding-right: 18px;
       text-transform: uppercase;
     `
+    const TypeListWrapper = styled.div`
+      font-size: .9rem;
+      margin-left: 10px;
+    `
+    const TypeItem = styled.div`
+      margin-right: 2rem;
+    `
+    const Header = styled.h4`
+      font-size: 1.2rem;
+      margin-left: 10px;
+      font-weight: 700;
+      margin-bottom: 0;
+    `
+    const HeaderGroupButton = styled.div`
+
+    `
+    const HeaderButton = styled.a`
+      color: var(--primary);
+      font-weight: 600;
+      cursor: pointer;
+
+      :hover {
+        text-decoration: underline;
+      }
+
+      span {
+        vertical-align: text-bottom;
+        line-height: 24px;
+      }
+    `
 
     const rows =  props.data?.list?.map(item => {
       let imgSrc
       let width
+
       switch (item.subSystem) {
         case 'Cooling':
           imgSrc = coolingImg
@@ -157,23 +220,27 @@ const PotentialFaultRisks = ({ data }) => {
           imgSrc = wallImg
           width = 40
           break
+        case 'Mechanical Ventilation':
+          imgSrc = mechanicalImg
+          width =  40
+          break
         default:
           imgSrc = ''
           width = 25
           break
-
       }
+
       return (
         <tr key={item.measures}>
-          <FirstTd width="15%">
+          <FirstTd width="21%">
             <ImageWrapper><Image src={imgSrc} alt={item.measures} width={width}/></ImageWrapper>
             {item.subSystem}
           </FirstTd>
-          <td width="16%">{item.fault}</td>
-          <td width="18%">{item.asset}</td>
-          <td width="14%">{item.potentialDownTime}</td>
-          <td width="14%">{item.sparePartsLeadTime}</td>
-          <td width="14%">{item.estimatedTimeToFailure}</td>
+          <td width="15%">{item.fault}</td>
+          <td width="19%">{item.asset}</td>
+          <td width="12%">{item.potentialDownTime}</td>
+          <td width="12%">{item.sparePartsLeadTime}</td>
+          <td width="12%">{item.estimatedTimeToFailure}</td>
           <td>
             <InfoButton className="btn btn-primary btn-sm">Info</InfoButton>
           </td>
@@ -183,46 +250,60 @@ const PotentialFaultRisks = ({ data }) => {
 
     return (
       <Modal show={showListFaultRisksModal} onHide={() => setShowListFaultRisksModal(false)} size="xl">
-
+        <Modal.Header>
+        <Container className="mt-0">
+            <div className="d-flex justify-content-between align-items-center">
+              <Header>Potential Fault</Header>
+              <HeaderGroupButton>
+                <HeaderButton className="" onClick={() => {setShowListFaultRisksModal(false)}}>
+                  <XIcon size={24} className="mr-0"/><span>Close</span>
+                </HeaderButton>
+              </HeaderGroupButton>
+            </div>
+  
+          </Container>
+          </Modal.Header>
         <Modal.Body>
-          <ImprovementMeasuresTable className="table">
-            <thead>
-              <tr>
-                <FirstTh width="15%">System</FirstTh>
-                <th width="16%">Fault</th>
-                <th width="18%">Asset</th>
-                <th width="14%">Potential<br/>Downtime (Days)</th>
-                <th width="14%">Spare Parts Lead <br/>Time (Days)</th>
-                <th width="14%">Estimated Time <br/>to Failure Days</th>
-                <th>Details</th>
-              </tr>
-            </thead>
-          </ImprovementMeasuresTable>
-          <ImprovementMeasuresTableWrapper>
+          <Container className="mt-4">
+            <TypeListWrapper className="d-flex">
+              <TypeItem>Likelihood - <strong>{props.data?.likelihoodTitle}</strong></TypeItem>
+              <TypeItem>Impact - <strong>{props.data?.impactTitle}</strong></TypeItem>
+            </TypeListWrapper>
             <ImprovementMeasuresTable className="table">
-              <tbody>
-              {rows}
-              </tbody>
+              <thead>
+                <tr>
+                  <FirstTh width="21%">System</FirstTh>
+                  <th width="15%">Fault</th>
+                  <th width="19%">Asset</th>
+                  <th width="12%">Potential<br/>Downtime (Days)</th>
+                  <th width="12%">Spare Parts Lead <br/>Time (Days)</th>
+                  <th width="12%">Estimated Time <br/>to Failure Days</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
             </ImprovementMeasuresTable>
-          </ImprovementMeasuresTableWrapper>
+            <ImprovementMeasuresTableWrapper>
+              <ImprovementMeasuresTable className="table">
+                <tbody>
+                {rows}
+                </tbody>
+              </ImprovementMeasuresTable>
+            </ImprovementMeasuresTableWrapper>
+         </Container>
         </Modal.Body>
       </Modal>
     )
-
   }
 
-
-
   const onClick = (value, likelihood, impact) => {
-    console.log('impact: ' + impact)
-    console.log('likelihood: ' + likelihood)
-
     if (value === 0) {
       setShowMsgModal(true)
     } else if (value > 0) {
-      //console.log(data.filter(item => item.impact === impact && item.likelihood === likelihood))
-      setlistFaultRisksModalProps({list: data.filter(item => item.impact === impact && item.likelihood === likelihood)})
-
+      setlistFaultRisksModalProps({
+        likelihoodTitle: getRowTitle(likelihood - 1),
+        impactTitle: getColTitle(impact - 1),
+        list: data.filter(item => item.impact === impact && item.likelihood === likelihood)
+      })
       setShowListFaultRisksModal(true)
     }
   }
@@ -241,9 +322,6 @@ const PotentialFaultRisks = ({ data }) => {
   for (let i = 0; i < likelihoodList.length; i++) {
     riskMatrix[likelihoodList[i] - 1][impactList[i] - 1] += 1
   }
-
-  const setOfListFaultRisksForModal =  new Set()
-
 
   const rows = riskMatrix.map((row, idx) => {
 
@@ -265,40 +343,18 @@ const PotentialFaultRisks = ({ data }) => {
 
     const cols = row.map((col, index) => {
         const color = col > 0 ? activeColorMatrix[idx][index] : inactiveColorMatrix[idx][index]
-        if(col === 1) {
-          setOfListFaultRisksForModal.add(data[idx])
-        }
+       
         return (
           <PotentialFaultRiskBlock key={index} color={color} value={col} onClick={() => onClick(col, idx + 1, index + 1)}/>
         )
       }
     )
 
-    let indexColTitle = ''
-
-    switch (idx) {
-      case 0:
-        indexColTitle = 'Rare'
-        break
-      case 1:
-        indexColTitle = 'Unlikely'
-        break
-      case 2:
-        indexColTitle = 'Possible'
-        break
-      case 3:
-        indexColTitle = 'Likely'
-        break
-      case 4:
-        indexColTitle = 'Almost Certain'
-        break
-      default:
-        break
-    }
+    const indexRowTitle = getRowTitle(idx)
 
     return (
       <PotentialFaultRiskRow className="row" key={idx}>
-        <PotentialFaultRiskBlock key={indexColTitle} isIndexCol={true} value={indexColTitle}/>
+        <PotentialFaultRiskBlock key={indexRowTitle} isIndexCol={true} value={indexRowTitle}/>
         {cols}
       </PotentialFaultRiskRow>)
   })
