@@ -8,7 +8,11 @@ import MaintenanceBudgetBySubSystem from './components/MaintenanceBudgetBySubSys
 import styled from 'styled-components'
 
 const AssetReliabilityWrapper = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+`
+
+const TheSecondWrapper = styled.div`
+  margin-bottom: 50px;
 `
 
 const AssetReliability = () => {
@@ -175,10 +179,10 @@ const AssetReliability = () => {
       
       <AssetHealth/>
       
-      <div className="d-flex mb-4 justify-content-center flex-wrap">
+      <TheSecondWrapper className="d-flex mb-5 justify-content-lg-center justify-content-xl-between flex-wrap">
         <PotentialFaultRisks data={data.listOfPotentialFaults}/>
         <CurrentSubSystemHealth data={data.currentSubSystemHealth}/>
-      </div>
+      </TheSecondWrapper>
 
       <PotentialFaultList data={data.listOfPotentialFaults}/>
 

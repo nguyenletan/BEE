@@ -3,12 +3,17 @@ import BuildingHistorical from '../../../components/BuildingHistorical'
 import BreakDown from '../../../components/BreakDown'
 import ElectricalSystemInformation from '../../../components/ElectricalSystemInformation'
 import IncidentalGains from '../../../components/IncidentalGains'
+import styled from 'styled-components'
+
+const BreakDownWrapper = styled.div`
+  margin-bottom: 50px;
+`
 
 const EnergyPerformance = ({ data }) => (
   <>
     <BuildingHistorical/>
 
-    <div className="d-flex mb-4">
+    <BreakDownWrapper className="d-flex">
       <BreakDown title="Consumption Breakdown"
                  subTitle="%"
                  data={data.breakDownConsumption}
@@ -21,7 +26,7 @@ const EnergyPerformance = ({ data }) => (
                  subTitle="%"
                  data={data.breakDownCO2Emissions}
       />
-    </div>
+    </BreakDownWrapper>
 
     <ElectricalSystemInformation
       overallCoolingLoad={data.electricalSystemInformation.overallCoolingLoad}

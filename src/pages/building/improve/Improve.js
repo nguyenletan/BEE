@@ -10,6 +10,10 @@ const ImproveWrapper = styled.div`
   margin-bottom: 40px;
 `
 
+const BreakDownWrapper = styled.div`
+  margin-bottom: 50px;
+`
+
 const Improve = (props) => {
   const improveData = {
     improvementMeasuresData: [
@@ -335,7 +339,7 @@ const Improve = (props) => {
 
       <PotentialSavings data={potentialSavingsData}/>
 
-      <div className="d-flex mb-5">
+      <BreakDownWrapper className="d-flex">
         <BreakDown title="Energy Savings Breakdown"
                    subTitle="%"
                    data={breakDownConsumption}
@@ -348,7 +352,7 @@ const Improve = (props) => {
                    subTitle="%"
                    data={breakDownCO2Emissions}
         />
-      </div>
+      </BreakDownWrapper>
 
       <div className="d-flex mb-5 flex-lg-wrap justify-content-lg-center">
         <SubSystemPerformance data={subSystemPerformance}/>

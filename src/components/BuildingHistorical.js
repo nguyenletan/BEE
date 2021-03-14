@@ -12,9 +12,8 @@ const SummaryBoxWrapper = styled.div`
     width: 80%;
 
   }
-  @media (min-width: 1366px) {
+  @media (min-width: 1400px) {
     flex-direction: column;
-
   }
 `
 
@@ -82,6 +81,17 @@ const UpAndDownImgValue = styled.span`
   font-size: 1.1rem;
 `
 
+const HistoricalComparisonContainer = styled.div`
+  flex-wrap: wrap;
+  @media (min-width: 1400px) {
+    flex-wrap: nowrap;
+  }
+`
+
+const HistoricalComparisonWrapper = styled.div`
+  margin-bottom: 50px;
+`
+
 const BuildingHistorical = (props) => {
   const buildingEnergyUsageData = [
     { month: 'Jan', energyUsage: '590' },
@@ -142,8 +152,8 @@ const BuildingHistorical = (props) => {
   //console.log(generateCountriesData(keys, { size: 7 }))
 
   return (
-    <>
-      <div className="d-flex mt-5 flex-lg-wrap justify-content-md-center">
+    <HistoricalComparisonWrapper>
+      <HistoricalComparisonContainer className="d-flex mt-5 justify-content-md-center">
         <BuildingEnergyUsageWrapper>
           <BuildingEnergyUsageChartTitle>Building Energy Usage (MWh)</BuildingEnergyUsageChartTitle>
           <Bar {...commonProps}
@@ -172,7 +182,7 @@ const BuildingHistorical = (props) => {
             <SummaryBoxValue>{annualCarbonEmissions}</SummaryBoxValue>
           </SummaryBox>
         </SummaryBoxWrapper>
-      </div>
+      </HistoricalComparisonContainer>
       
       <HistoricalComparison className="d-flex justify-content-around">
         <h4>Historical<br/>Comparison</h4>
@@ -198,7 +208,7 @@ const BuildingHistorical = (props) => {
           </div>
         </div>
       </HistoricalComparison>
-    </>
+    </HistoricalComparisonWrapper>
   )
 
 }
