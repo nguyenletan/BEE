@@ -6,6 +6,7 @@ import lightingImg from '../../../../assets/images/lighting.svg'
 import heatingImg from '../../../../assets/images/heating.svg'
 import wallImg from '../../../../assets/images/wall.svg'
 import mechVentImg from '../../../../assets/images/mechanical-ventilation.svg'
+import { Link , useRouteMatch } from 'react-router-dom'
 
 const ImprovementMeasuresWrapper = styled.div`
   padding: 20px;
@@ -75,9 +76,16 @@ const InfoButton = styled.button`
   padding-left: 18px;
   padding-right: 18px;
   text-transform: uppercase;
+  a {
+    color: white !important;
+  }
 `
 
 const PotentialFaultList = ({ data }) => {
+
+
+  let { url } = useRouteMatch()
+
   const rows = data.map(item => {
     let imgSrc
     let width
@@ -122,7 +130,7 @@ const PotentialFaultList = ({ data }) => {
         <td width="12%">{item.sparePartsLeadTime}</td>
         <td width="12%">{item.estimatedTimeToFailure}</td>
         <td width="10%">
-          <InfoButton className="btn btn-primary btn-sm">Info</InfoButton>
+          <InfoButton className="btn btn-primary btn-sm"><Link to={url + '/issue/' + item.id}>Info</Link></InfoButton>
         </td>
       </tr>
     )

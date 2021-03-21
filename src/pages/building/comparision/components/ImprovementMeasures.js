@@ -447,7 +447,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
           <th width="12%">ENERGY COST<br/>SAVINGS ($/YR)</th>
           <th width="12%">PAYBACK PERIOD<br/>(YR)</th>
           <th width="12%">CO2 EMISSIONS<br/>AVOIDED (TONS/YR)</th>
-          <th width="10%"></th>
+          <th width="10%"/>
         </tr>
         </thead>
       </ImprovementMeasuresTable>

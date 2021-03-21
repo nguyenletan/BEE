@@ -1,3 +1,9 @@
+import coolingImg from './assets/images/cooling.svg'
+import openingsImg from './assets/images/openings.svg'
+import lightingImg from './assets/images/lighting.svg'
+import heatingImg from './assets/images/heating.svg'
+import wallImg from './assets/images/wall.svg'
+
 
 
 export const getCurrentColor = (type) => {
@@ -40,4 +46,75 @@ export const getPotentialColor = (type) => {
     default:
       return '#fff'
   }
+}
+
+
+export const getLikelihoodTitle = (value) => {
+  switch (value) {
+    case 1:
+      return 'Rare'
+    case 2:
+      return 'Unlikely'
+    case 3:
+      return 'Possible'
+    case 4:
+      return 'Likely'
+    case 5:
+      return 'Almost Certain'
+    default:
+      return ''
+  }
+}
+
+export const getImpactTitle = (value) => {
+  switch (value) {
+    case 1:
+      return 'Negligible'
+    case 2:
+      return 'Minor'
+    case 3:
+      return 'Moderate'
+    case 4:
+      return 'Major'
+    case 5:
+      return 'Critical'
+    default:
+      return ''
+  }
+}
+
+export const getSubSystemIcon = (subSystem) => {
+  let imgSrc
+  let width
+  switch (subSystem) {
+    case 'Cooling':
+      imgSrc = coolingImg
+      width = 30
+      break
+    case 'Openings':
+      imgSrc = openingsImg
+      width = 45
+      break
+    case 'Lighting':
+      imgSrc = lightingImg
+      width = 25
+      break
+    case 'Heating':
+      imgSrc = heatingImg
+      width = 20
+      break
+    case 'Walls':
+      imgSrc = wallImg
+      width = 40
+      break
+    default:
+      imgSrc = ''
+      width = 25
+      break
+  }
+  return {
+    imgSrc: imgSrc,
+    width: width
+  }
+
 }

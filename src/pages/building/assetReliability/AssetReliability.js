@@ -1,25 +1,22 @@
 import React from 'react'
-import AssetHealth from './components/AssetHealth'
-import PotentialFaultRisks from './components/PotentialFaultRisks1'
-import CurrentSubSystemHealth from './components/CurrentSubSystemHealth'
-import PotentialFaultList from './components/PotentialFaultsList'
-import MaintenanceBudget from './components/MaintenanceBudget'
-import MaintenanceBudgetBySubSystem from './components/MaintenanceBudgetBySubSystem'
+
 import styled from 'styled-components'
+
+import AssetReliabilityMain from './AssetReliabilityMain'
+import { Route, Switch, useRouteMatch } from 'react-router-dom'
+import IssueDetail from './IssueDetail'
 
 const AssetReliabilityWrapper = styled.div`
   margin-bottom: 50px;
 `
 
-const TheSecondWrapper = styled.div`
-  margin-bottom: 50px;
-`
 
 const AssetReliability = () => {
 
   const data = {
     listOfPotentialFaults: [
       {
+        id: 0,
         subSystem: 'Cooling',
         asset: 'Chiller 1 - Compressor',
         fault: 'Motor Winding',
@@ -30,6 +27,7 @@ const AssetReliability = () => {
         impact: 5
       },
       {
+        id: 1,
         subSystem: 'Mechanical Ventilation',
         asset: 'Carpark Fan 4',
         fault: 'Worn Bearings',
@@ -40,6 +38,7 @@ const AssetReliability = () => {
         impact: 1
       },
       {
+        id: 2,
         subSystem: 'Heating',
         asset: 'Pump 2',
         fault: 'Shalft Alignment',
@@ -50,6 +49,7 @@ const AssetReliability = () => {
         impact: 4
       },
       {
+        id: 3,
         subSystem: 'Cooling',
         asset: 'CHW Pump 2',
         fault: 'Broken Rotor Bar',
@@ -60,6 +60,7 @@ const AssetReliability = () => {
         impact: 4
       },
       {
+        id: 4,
         subSystem: 'Cooling',
         asset: 'Cooling Tower 1 - Fan',
         fault: 'Worn Bearings',
@@ -70,6 +71,7 @@ const AssetReliability = () => {
         impact: 4
       },
       {
+        id: 5,
         subSystem: 'Heating',
         asset: 'Air Source Heat Pump 1 - Fan',
         fault: 'Worn Bearings',
@@ -80,6 +82,7 @@ const AssetReliability = () => {
         impact: 3
       },
       {
+        id: 6,
         subSystem: 'Mechanical Ventilation',
         asset: 'Carpark Fan 1',
         fault: 'Motor Winding',
@@ -150,13 +153,13 @@ const AssetReliability = () => {
         used: 5900,
         accrued: 900,
         allocated: 7200,
-      },{
-        id:4,
+      }, {
+        id: 4,
         subSystem: 'facility envelope',
         used: 4000,
         accrued: 5900,
         allocated: 4300,
-      },{
+      }, {
         id: 5,
         subSystem: 'renewables',
         used: 1800,
@@ -171,29 +174,22 @@ const AssetReliability = () => {
         allocated: 3100,
       },
     ]
-
   }
+
+  let { path } = useRouteMatch()
 
   return (
     <AssetReliabilityWrapper>
-      
-      <AssetHealth/>
-      
-      <TheSecondWrapper className="d-flex mb-5 justify-content-lg-center justify-content-xl-between flex-wrap">
-        <PotentialFaultRisks data={data.listOfPotentialFaults}/>
-        <CurrentSubSystemHealth data={data.currentSubSystemHealth}/>
-      </TheSecondWrapper>
 
-      <PotentialFaultList data={data.listOfPotentialFaults}/>
 
-      <div className="row">
-        <div className="col-12 col-sm-8 col-xl-4 mb-4">
-          <MaintenanceBudget data={data.maintenanceBudget}/>
-        </div>
-        <div className="col-12 col-xl-8 mb-4">
-          <MaintenanceBudgetBySubSystem data={data.maintenanceBudgetBySubSystem}/>
-        </div>
-      </div>
+      <Switch>
+        <Route exact={true} path={`${path}/`}>
+          <AssetReliabilityMain data={data}/>
+        </Route>
+        <Route path={`${path}/issue/:id`}>
+          <IssueDetail data={data.listOfPotentialFaults}/>
+        </Route>
+      </Switch>
 
     </AssetReliabilityWrapper>
   )
