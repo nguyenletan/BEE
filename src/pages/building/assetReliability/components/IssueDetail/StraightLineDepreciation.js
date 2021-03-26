@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ResponsiveLine } from '@nivo/line'
+import { line } from 'd3-shape'
 
 const Wrapper = styled.div`
   background-color: #fafafa;
@@ -12,7 +13,7 @@ const Wrapper = styled.div`
 const Title = styled.h3`
   font-size: 1rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 `
 
 const ChartWrapper = styled.div`
@@ -193,6 +194,16 @@ const StraightLineDepreciation = () => {
 
   ]
 
+
+  const Line = () => {
+    return (
+      <>
+        <text x="200" y="0" className="small">Current Age</text>
+        <line x1="236" y1="10" x2="236" y2="285" stroke="#5F5283" strokeDasharray="8" strokeWidth={1}/>
+      </>
+    )
+  }
+
   const commonProperties = {
 
     margin: { top: 30, right: 10, bottom: 35, left: 55 },
@@ -221,13 +232,14 @@ const StraightLineDepreciation = () => {
       legendOffset: 36,
       legendPosition: 'middle'
     },
+    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends', Line],
     legends: [
         {
           anchor: 'top middle',
           direction: 'row',
           justify: false,
           translateX: -20,
-          translateY: -35,
+          translateY: -45,
           itemsSpacing: 0,
           itemDirection: 'left-to-right',
           itemWidth: 200,
