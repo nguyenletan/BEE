@@ -19,7 +19,7 @@ const ChartWrapper = styled.div`
   height: 350px;
 `
 
-const StraightLineDepreciation = () => {
+const UnitsOfProductionDepreciation = () => {
   const data = [
     {
       'id': 'Standard Depreciation',
@@ -30,79 +30,79 @@ const StraightLineDepreciation = () => {
           'x': 0
         },
         {
-          'y': 1425000,
+          'y': 1439250,
           'x': 1
         },
         {
-          'y': 1350000,
+          'y': 1347750,
           'x': 2
         },
         {
-          'y': 1275000,
+          'y': 1236750,
           'x': 3
         },
         {
-          'y': 1200000,
+          'y': 1146000,
           'x': 4
         },
         {
-          'y': 1125000,
+          'y': 1064250,
           'x': 5
         },
         {
-          'y': 1050000,
+          'y': 978000,
           'x': 6
         },
         {
-          'y': 975000,
+          'y': 888000,
           'x': 7
         },
         {
-          'y': 900000,
+          'y': 795000,
           'x': 8
         },
         {
-          'y': 825000,
+          'y': 708000,
           'x': 9
         },
         {
-          'y': 750000,
+          'y': 604500,
           'x': 10
         },
         {
-          'y': 675000,
+          'y': 504750,
           'x': 11
         },
         {
-          'y': 600000,
+          'y': 461250,
           'x': 12
         },
         {
-          'y': 525000,
+          'y': 399750,
           'x': 13
         },
         {
-          'y': 450000,
+          'y': 357750,
           'x': 14
         },
         {
-          'y': 375000,
+          'y': 307500,
           'x': 15
         },
         {
-          'y': 300000,
+          'y': 234000,
           'x': 16
         },
         {
-          'y': 225000,
+          'y': 161250,
           'x': 17
         },
         {
-          'y': 150000,
+          'y': 95250,
           'x': 18
         },
         {
-          'y': 75000,
+          'y': 42000,
           'x': 19
         },
         {
@@ -120,68 +120,67 @@ const StraightLineDepreciation = () => {
           'x': 0
         },
         {
-          'y': 1411765,
+          'y': 1380882,
           'x': 1
         },
         {
-          'y': 1323529,
+          'y': 1296176,
           'x': 2
         },
         {
-          'y': 1235294,
+          'y': 1171765,
           'x': 3
         },
         {
-          'y': 1147059,
+          'y': 1079118,
           'x': 4
         },
         {
-          'y': 1058824,
+          'y': 953824,
           'x': 5
         },
         {
-
-          'y': 970588,
+          'y': 855882,
           'x': 6
         },
         {
-          'y': 882353,
+          'y': 748235,
           'x': 7
         },
         {
-          'y': 794118,
+          'y': 615882,
           'x': 8
         },
         {
-          'y': 705882,
+          'y': 509118,
           'x': 9
         },
         {
-          'y': 617647,
+          'y': 401471,
           'x': 10
         },
         {
-          'y': 529412,
+          'y': 279706,
           'x': 11
         },
         {
-          'y': 441176,
+          'y': 187059,
           'x': 12
         },
         {
-          'y': 352941,
+          'y': 68824,
           'x': 13
         },
         {
-          'y': 264706,
+          'y': 34412,
           'x': 14
         },
         {
-          'y': 176471,
+          'y': 17206,
           'x': 15
         },
         {
-          'y': 88235,
+          'y': 8603,
           'x': 16
         },
         {
@@ -202,7 +201,8 @@ const StraightLineDepreciation = () => {
     enableSlices: 'x',
     enableGridX: false,
     enableGridY: true,
-    enablePoints:false,
+    enablePoints: false,
+    curve: 'natural',
     axisLeft: {
       orient: 'left',
       tickSize: 5,
@@ -222,34 +222,33 @@ const StraightLineDepreciation = () => {
       legendPosition: 'middle'
     },
     legends: [
-        {
-          anchor: 'top middle',
-          direction: 'row',
-          justify: false,
-          translateX: -20,
-          translateY: -35,
-          itemsSpacing: 0,
-          itemDirection: 'left-to-right',
-          itemWidth: 200,
-          itemHeight: 20,
-          itemOpacity: 0.75,
-          symbolSize: 10,
-          symbolShape: 'circle',
-          symbolBorderColor: 'rgba(0, 0, 0, .5)',
-          effects: [
-            {
-              on: 'hover',
-              style: {
-                itemBackground: 'rgba(0, 0, 0, .03)',
-                itemOpacity: 1
-              }
+      {
+        anchor: 'top middle',
+        direction: 'row',
+        justify: false,
+        translateX: -20,
+        translateY: -35,
+        itemsSpacing: 0,
+        itemDirection: 'left-to-right',
+        itemWidth: 200,
+        itemHeight: 20,
+        itemOpacity: 0.75,
+        symbolSize: 10,
+        symbolShape: 'circle',
+        symbolBorderColor: 'rgba(0, 0, 0, .5)',
+        effects: [
+          {
+            on: 'hover',
+            style: {
+              itemBackground: 'rgba(0, 0, 0, .03)',
+              itemOpacity: 1
             }
-          ]
-        }
+          }
         ]
+      }
+    ]
   }
 
-  console.log(data)
   return (
     <Wrapper>
       <Title>Straight Line Depreciation</Title>
@@ -270,4 +269,4 @@ const StraightLineDepreciation = () => {
 
 }
 
-export default StraightLineDepreciation
+export default UnitsOfProductionDepreciation

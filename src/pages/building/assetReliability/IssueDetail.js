@@ -3,6 +3,12 @@ import IssueDetailOverall from './components/IssueDetail/IssueDetail'
 import { useParams } from 'react-router'
 import EquipmentDetail from './components/IssueDetail/EquipmentDetail'
 import StraightLineDepreciation from './components/IssueDetail/StraightLineDepreciation'
+import DoubleDecliningBalanceDepreciation from './components/IssueDetail/DoubleDecliningBalanceDepreciation'
+import UnitsOfProductionDepreciation from './components/IssueDetail/UnitsOfProductionDepreciation'
+
+// const Breadcrum = styled.span`
+//
+// `
 
 const IssueDetail = ({ data }) => {
 
@@ -12,6 +18,7 @@ const IssueDetail = ({ data }) => {
 
   return (
     <>
+
       <div className="mt-5 row">
         <div className="col col-12 col-lg-4 ">
           <IssueDetailOverall data={data[id]}/>
@@ -28,11 +35,11 @@ const IssueDetail = ({ data }) => {
         </div>
 
         <div className="col col-12 col-lg-4 ">
-
+          <DoubleDecliningBalanceDepreciation/>
         </div>
 
         <div className="col col-12 col-lg-4 ">
-
+          <UnitsOfProductionDepreciation/>
         </div>
       </div>
     </>

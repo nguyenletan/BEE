@@ -19,7 +19,7 @@ const ChartWrapper = styled.div`
   height: 350px;
 `
 
-const StraightLineDepreciation = () => {
+const DoubleDecliningBalanceDepreciation = () => {
   const data = [
     {
       'id': 'Standard Depreciation',
@@ -30,79 +30,79 @@ const StraightLineDepreciation = () => {
           'x': 0
         },
         {
-          'y': 1425000,
+          'y': 1462500,
           'x': 1
         },
         {
-          'y': 1350000,
+          'y': 1398000,
           'x': 2
         },
         {
-          'y': 1275000,
+          'y': 1302000,
           'x': 3
         },
         {
-          'y': 1200000,
+          'y': 1240500,
           'x': 4
         },
         {
-          'y': 1125000,
+          'y': 1145250,
           'x': 5
         },
         {
-          'y': 1050000,
+          'y': 1095000,
           'x': 6
         },
         {
-          'y': 975000,
+          'y': 993750,
           'x': 7
         },
         {
-          'y': 900000,
+          'y': 893250,
           'x': 8
         },
         {
-          'y': 825000,
+          'y': 799500,
           'x': 9
         },
         {
-          'y': 750000,
+          'y': 742500,
           'x': 10
         },
         {
-          'y': 675000,
+          'y': 630000,
           'x': 11
         },
         {
-          'y': 600000,
+          'y': 560250,
           'x': 12
         },
         {
-          'y': 525000,
+          'y': 474000,
           'x': 13
         },
         {
-          'y': 450000,
+          'y': 429750,
           'x': 14
         },
         {
-          'y': 375000,
+          'y': 386250,
           'x': 15
         },
         {
-          'y': 300000,
+          'y': 333750,
           'x': 16
         },
         {
-          'y': 225000,
+          'y': 255750,
           'x': 17
         },
         {
-          'y': 150000,
+          'y': 189750,
           'x': 18
         },
         {
-          'y': 75000,
+          'y': 132750,
           'x': 19
         },
         {
@@ -120,19 +120,19 @@ const StraightLineDepreciation = () => {
           'x': 0
         },
         {
-          'y': 1411765,
+          'y': 1412647,
           'x': 1
         },
         {
-          'y': 1323529,
+          'y': 1290882,
           'x': 2
         },
         {
-          'y': 1235294,
+          'y': 1237941,
           'x': 3
         },
         {
-          'y': 1147059,
+          'y': 1132059,
           'x': 4
         },
         {
@@ -140,49 +140,52 @@ const StraightLineDepreciation = () => {
           'x': 5
         },
         {
-
-          'y': 970588,
+          'y': 1059706,
           'x': 6
         },
         {
-          'y': 882353,
+          'y': 940588,
           'x': 7
         },
         {
-          'y': 794118,
+          'y': 894706,
           'x': 8
         },
         {
-          'y': 705882,
+          'y': 786176,
           'x': 9
         },
         {
-          'y': 617647,
+          'y': 726176,
           'x': 10
         },
         {
-          'y': 529412,
+          'y': 675882,
           'x': 11
         },
         {
-          'y': 441176,
+          'y': 562941,
           'x': 12
         },
         {
-          'y': 352941,
+          'y': 480000,
           'x': 13
         },
         {
-          'y': 264706,
+          'y': 370588,
           'x': 14
         },
         {
-          'y': 176471,
+          'y': 323824,
           'x': 15
         },
         {
-          'y': 88235,
+          'y': 213529,
           'x': 16
+        },
+        {
+          'y': 103235,
+          'x': 17
         },
         {
           'y': 0,
@@ -202,7 +205,8 @@ const StraightLineDepreciation = () => {
     enableSlices: 'x',
     enableGridX: false,
     enableGridY: true,
-    enablePoints:false,
+    enablePoints: false,
+    curve: 'natural',
     axisLeft: {
       orient: 'left',
       tickSize: 5,
@@ -222,34 +226,33 @@ const StraightLineDepreciation = () => {
       legendPosition: 'middle'
     },
     legends: [
-        {
-          anchor: 'top middle',
-          direction: 'row',
-          justify: false,
-          translateX: -20,
-          translateY: -35,
-          itemsSpacing: 0,
-          itemDirection: 'left-to-right',
-          itemWidth: 200,
-          itemHeight: 20,
-          itemOpacity: 0.75,
-          symbolSize: 10,
-          symbolShape: 'circle',
-          symbolBorderColor: 'rgba(0, 0, 0, .5)',
-          effects: [
-            {
-              on: 'hover',
-              style: {
-                itemBackground: 'rgba(0, 0, 0, .03)',
-                itemOpacity: 1
-              }
+      {
+        anchor: 'top middle',
+        direction: 'row',
+        justify: false,
+        translateX: -20,
+        translateY: -35,
+        itemsSpacing: 0,
+        itemDirection: 'left-to-right',
+        itemWidth: 200,
+        itemHeight: 20,
+        itemOpacity: 0.75,
+        symbolSize: 10,
+        symbolShape: 'circle',
+        symbolBorderColor: 'rgba(0, 0, 0, .5)',
+        effects: [
+          {
+            on: 'hover',
+            style: {
+              itemBackground: 'rgba(0, 0, 0, .03)',
+              itemOpacity: 1
             }
-          ]
-        }
+          }
         ]
+      }
+    ]
   }
 
-  console.log(data)
   return (
     <Wrapper>
       <Title>Straight Line Depreciation</Title>
@@ -270,4 +273,4 @@ const StraightLineDepreciation = () => {
 
 }
 
-export default StraightLineDepreciation
+export default DoubleDecliningBalanceDepreciation
