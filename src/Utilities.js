@@ -3,8 +3,7 @@ import openingsImg from './assets/images/openings.svg'
 import lightingImg from './assets/images/lighting.svg'
 import heatingImg from './assets/images/heating.svg'
 import wallImg from './assets/images/wall.svg'
-
-
+import mechVentImg from './assets/images/mechanical-ventilation.svg'
 
 export const getCurrentColor = (type) => {
   switch (type) {
@@ -28,7 +27,7 @@ export const getCurrentColor = (type) => {
 }
 
 export const getPotentialColor = (type) => {
-  switch (type){
+  switch (type) {
     case 'A':
       return '#93d2f0'
     case 'B':
@@ -47,7 +46,6 @@ export const getPotentialColor = (type) => {
       return '#fff'
   }
 }
-
 
 export const getLikelihoodTitle = (value) => {
   switch (value) {
@@ -86,6 +84,7 @@ export const getImpactTitle = (value) => {
 export const getSubSystemIcon = (subSystem) => {
   let imgSrc
   let width
+  console.log(subSystem)
   switch (subSystem) {
     case 'Cooling':
       imgSrc = coolingImg
@@ -105,6 +104,10 @@ export const getSubSystemIcon = (subSystem) => {
       break
     case 'Walls':
       imgSrc = wallImg
+      width = 40
+      break
+    case 'Mechanical Ventilation':
+      imgSrc = mechVentImg
       width = 40
       break
     default:

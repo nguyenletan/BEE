@@ -5,20 +5,38 @@ import EquipmentDetail from './components/IssueDetail/EquipmentDetail'
 import StraightLineDepreciation from './components/IssueDetail/StraightLineDepreciation'
 import DoubleDecliningBalanceDepreciation from './components/IssueDetail/DoubleDecliningBalanceDepreciation'
 import UnitsOfProductionDepreciation from './components/IssueDetail/UnitsOfProductionDepreciation'
+import { ArrowLeft } from 'react-bootstrap-icons'
+import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
 
-// const Breadcrum = styled.span`
-//
-// `
+const Breadcrumb = styled.div`
+  margin-top: 20px;
+`
+
+const BreadcrumbItem = styled.a`
+  line-height: 28px;
+  color: var(--primary);
+  cursor: pointer;
+  margin-right: .3rem;
+`
+
+const BreadcrumbItemActive = styled.span`
+  line-height: 28px;
+  font-weight: 700;
+  color: var(--primary);
+`
 
 const IssueDetail = ({ data }) => {
 
   const { id } = useParams()
-
-  console.log(data[id])
+  const history = useHistory()
 
   return (
     <>
-
+      <Breadcrumb>
+        <BreadcrumbItem onClick={() => history.goBack()}><ArrowLeft color="#87972f" size={28}/> Asset Reliability /
+        </BreadcrumbItem><BreadcrumbItemActive>{data[id].asset} Issue</BreadcrumbItemActive>
+      </Breadcrumb>
       <div className="mt-5 row">
         <div className="col col-12 col-lg-4 ">
           <IssueDetailOverall data={data[id]}/>

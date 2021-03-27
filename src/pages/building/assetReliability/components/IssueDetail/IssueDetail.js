@@ -28,7 +28,7 @@ const RowItemTitle =styled.h5`
 
 const RowItemValue =styled.p`
   color: var(--primary);
-
+  display: flex;
   font-size: 1.1rem;
   font-weight: 600;
 `
@@ -50,7 +50,7 @@ const IssueDetailOverall =({data}) => {
           <RowItemTitle>System</RowItemTitle>
           <RowItemValue>
             <Image src={subSystemIconObj.imgSrc} alt={data.subSystem} width={subSystemIconObj.width}/>
-            {data.subSystem}</RowItemValue>
+            <span>{data.subSystem}</span></RowItemValue>
         </div>
         <div>
           <RowItemTitle>Asset</RowItemTitle>

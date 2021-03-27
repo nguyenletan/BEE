@@ -18,6 +18,7 @@ const AssetReliabilityMain = ({data}) => {
 
   return (
     <>
+
       <AssetHealth/>
 
       <TheSecondWrapper className="d-flex mb-5 justify-content-lg-center justify-content-xl-between flex-wrap">

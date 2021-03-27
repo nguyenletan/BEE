@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import plusminusSVG from '../../../../../assets/images/plusminus.svg'
 
 const Wrapper = styled.div`
   background-color: #fafafa;
@@ -49,6 +49,10 @@ const Calculator = styled.span`
   width: 40px;
 `
 
+const PlusMinusImg = styled.img`
+  
+`
+
 const EquipmentDetail = ({data}) => {
 
   return (
@@ -82,26 +86,26 @@ const EquipmentDetail = ({data}) => {
           <RowItem className="d-flex justify-content-start">
             <div className="mr-5 d-flex flex-column">
               <RowItemTitle>Yearly Maintenance cost ($)</RowItemTitle>
-              <RowItemValue>200,000 + 10%</RowItemValue>
+              <RowItemValue>200,000 <PlusMinusImg src={plusminusSVG} alt={plusminusSVG}/> 10%</RowItemValue>
             </div>
             <div className="mr-5 d-flex flex-column">
               <RowItemTitle>Yearly Ad-hoc Cost ($)</RowItemTitle>
-              <RowItemValue>20,000 + 10%</RowItemValue>
+              <RowItemValue>20,000 <PlusMinusImg src={plusminusSVG} alt={plusminusSVG}/> 10%</RowItemValue>
             </div>
           </RowItem>
         </div>
         <div className="col-6">
           <strong className="mb-2 d-block" style={{'margin-top':'-3px'}}>Estimated Part Replacement Value ($)</strong>
-          <RowItem className="d-flex justify-content-start">
+          <RowItem className="d-flex justify-content-between">
 
-            <div className="mr-2 d-flex flex-column">
-              <RowItemTitle>Estimated Part Replacement Value ($)</RowItemTitle>
+            <div className="mr-0 d-flex flex-column" style={{width: '40%'}}>
+              <RowItemTitle>Replacement Value</RowItemTitle>
               <RowItemValue>6000</RowItemValue>
             </div>
-            <div className="mr-2"><Calculator>+</Calculator></div>
+            <div className="mr-0"><Calculator>+</Calculator></div>
             <div className="d-flex flex-column">
-              <RowItemTitle>Yearly Ad-hoc Cost ($)</RowItemTitle>
-              <RowItemValue>20,000 + 10%</RowItemValue>
+              <RowItemTitle>Local Labour & Other Cost</RowItemTitle>
+              <RowItemValue>20,000 ~ 10%</RowItemValue>
             </div>
           </RowItem>
           <RowItem className="d-flex justify-content-start">
