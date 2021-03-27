@@ -73,7 +73,7 @@ const EquipmentDetail = ({data}) => {
           <RowItem className="d-flex justify-content-start align-items-start">
             <div className="mr-5 d-flex flex-column">
               <RowItemTitle>Estimated Net Present Value ($)</RowItemTitle>
-              <RowItemValue>680,000$</RowItemValue>
+              <RowItemValue>680,000</RowItemValue>
             </div>
             <div className="mr-5 d-flex flex-column">
               <RowItemTitle>Depreciating %</RowItemTitle>
