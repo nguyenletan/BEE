@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   background-color: #fafafa;
   border-radius: 15px;
   padding: 30px;
-  min-width: 420px;
+
 `
 
 const Title = styled.h3`
@@ -238,8 +238,8 @@ const StraightLineDepreciation = () => {
           anchor: 'top middle',
           direction: 'row',
           justify: false,
-          translateX: -20,
-          translateY: -45,
+          translateX: -60,
+          translateY: -40,
           itemsSpacing: 0,
           itemDirection: 'left-to-right',
           itemWidth: 200,

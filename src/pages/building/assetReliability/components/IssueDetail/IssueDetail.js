@@ -5,8 +5,9 @@ import { getImpactTitle, getLikelihoodTitle, getSubSystemIcon } from '../../../.
 const Wrapper = styled.div`
   background-color: #fafafa;
   border-radius: 15px;
-  padding: 30px;
-  min-width: 420px;
+  padding: 30px 30px 10px 30px;
+  //min-width: 400px;
+  
 `
 
 const Title = styled.h3`
@@ -68,7 +69,7 @@ const IssueDetailOverall =({data}) => {
         </div>
       </RowItem>
       <RowItem className="d-flex justify-content-start">
-        <div className="mr-5 d-flex flex-column">
+        <div className="mr-4 d-flex flex-column">
           <RowItemTitle>Likelihood</RowItemTitle>
           <RowItemValue>{getLikelihoodTitle(data.likelihood)}</RowItemValue>
         </div>
@@ -78,7 +79,7 @@ const IssueDetailOverall =({data}) => {
         </div>
       </RowItem>
       <RowItem className="d-flex justify-content-start">
-        <div className="mr-5 d-flex flex-column">
+        <div className="d-flex flex-column">
           <RowItemTitle>Potential Downtime (Days)</RowItemTitle>
           <RowItemValue>{data.potentialDownTime}</RowItemValue>
         </div>

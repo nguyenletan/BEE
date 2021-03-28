@@ -50,7 +50,7 @@ const Calculator = styled.span`
 `
 
 const PlusMinusImg = styled.img`
-  
+
 `
 
 const EquipmentDetail = ({data}) => {
@@ -61,21 +61,21 @@ const EquipmentDetail = ({data}) => {
       <div className="row">
         <div className="col-6">
           <RowItem className="d-flex justify-content-start">
-            <div className="mr-5 d-flex flex-column">
+            <div className="mr-3 d-flex flex-column">
               <RowItemTitle>Asset Age (Years)</RowItemTitle>
               <RowItemValue>16</RowItemValue>
             </div>
-            <div className="mr-5 d-flex flex-column">
+            <div className="mr-3 d-flex flex-column">
               <RowItemTitle>Expected Life (Years)</RowItemTitle>
               <RowItemValue>20</RowItemValue>
             </div>
           </RowItem>
           <RowItem className="d-flex justify-content-start align-items-start">
-            <div className="mr-5 d-flex flex-column">
+            <div className="mr-3 d-flex flex-column">
               <RowItemTitle>Estimated Net Present Value ($)</RowItemTitle>
               <RowItemValue>680,000</RowItemValue>
             </div>
-            <div className="mr-5 d-flex flex-column">
+            <div className="mr-3 d-flex flex-column">
               <RowItemTitle>Depreciating %</RowItemTitle>
               <RowItemValue>80</RowItemValue>
             </div>
@@ -84,12 +84,12 @@ const EquipmentDetail = ({data}) => {
           <strong className="mb-2 d-block">Maintenance</strong>
 
           <RowItem className="d-flex justify-content-start">
-            <div className="mr-5 d-flex flex-column">
+            <div className="mr-3 d-flex flex-column">
               <RowItemTitle>Yearly Maintenance cost ($)</RowItemTitle>
               <RowItemValue>200,000 <PlusMinusImg src={plusminusSVG} alt={plusminusSVG}/> 10%</RowItemValue>
             </div>
-            <div className="mr-5 d-flex flex-column">
-              <RowItemTitle>Yearly Ad-hoc Cost ($)</RowItemTitle>
+            <div className="mr-0 d-flex flex-column">
+              <RowItemTitle className="pb-3">Yearly Ad-hoc Cost ($)</RowItemTitle>
               <RowItemValue>20,000 <PlusMinusImg src={plusminusSVG} alt={plusminusSVG}/> 10%</RowItemValue>
             </div>
           </RowItem>
@@ -98,8 +98,8 @@ const EquipmentDetail = ({data}) => {
           <strong className="mb-2 d-block" style={{'margin-top':'-3px'}}>Estimated Part Replacement Value ($)</strong>
           <RowItem className="d-flex justify-content-between">
 
-            <div className="mr-0 d-flex flex-column" style={{width: '40%'}}>
-              <RowItemTitle>Replacement Value</RowItemTitle>
+            <div className="mr-3 d-flex flex-column" style={{width: '40%'}}>
+              <RowItemTitle className="pb-3">Replacement Value</RowItemTitle>
               <RowItemValue>6000</RowItemValue>
             </div>
             <div className="mr-0"><Calculator>+</Calculator></div>
@@ -110,7 +110,7 @@ const EquipmentDetail = ({data}) => {
           </RowItem>
           <RowItem className="d-flex justify-content-start">
 
-            <div className="mr-5 d-flex flex-column">
+            <div className="mr-0 d-flex flex-column">
               <RowItemTitle>Year on Year Maintenance Cost Increase (%)</RowItemTitle>
               <RowItemValue>8</RowItemValue>
             </div>
