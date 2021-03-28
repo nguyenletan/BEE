@@ -42,7 +42,7 @@ const IssueDetail = ({ data }) => {
         </BreadcrumbItem><BreadcrumbItemActive>{data[id].asset} Issue</BreadcrumbItemActive>
       </Breadcrumb>
       <div className="mt-5 row">
-        <div className="col col-12 col-xl-4 ">
+        <div className="col col-12 col-xl-4 mb-5">
           <IssueDetailOverall data={data[id]}/>
         </div>
         <div className="col col-12 col-xl-8">
@@ -52,11 +52,11 @@ const IssueDetail = ({ data }) => {
       </div>
       
       <div className="mt-5 mb-5 row">
-        <div className="col col-12 col-xl-4 ">
+        <div className="col col-12 col-xl-4 mb-5">
           <StraightLineDepreciation/>
         </div>
         
-        <div className="col col-12 col-xl-4 ">
+        <div className="col col-12 col-xl-4 mb-5">
           <DoubleDecliningBalanceDepreciation/>
         </div>
         
