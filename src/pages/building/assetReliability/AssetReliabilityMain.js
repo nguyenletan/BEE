@@ -8,7 +8,6 @@ import MaintenanceBudgetBySubSystem from './components/MaintenanceBudgetBySubSys
 
 import styled from 'styled-components'
 
-
 const TheSecondWrapper = styled.div`
   margin-bottom: 50px;
 `

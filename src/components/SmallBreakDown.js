@@ -5,10 +5,9 @@ import { ResponsivePie } from '@nivo/pie'
 const BreakDownBlock = styled.div`
   background-color: #fafafa;
   border-radius: 20px;
-  padding: 30px;
+  padding: 20px 0;
   margin-right: ${props => props.marginRight ? props.marginRight : '30px'};
   width: 100%;
-
 `
 
 const ResponsivePieWrapper = styled.div`
@@ -17,9 +16,10 @@ const ResponsivePieWrapper = styled.div`
 `
 
 const BreakDownTitle = styled.h4`
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: .85rem;
   margin-bottom: 0;
+  text-align: center;
+  padding: 0 20px;
 `
 
 const BreakDownSubTitle = styled.p`
@@ -40,7 +40,7 @@ const Label = styled.label`
   text-transform: capitalize;
 `
 
-const BreakDown = (props) => {
+const SmallBreakDown = (props) => {
   const {
     enableRadialLabels,
     valueFontSize,
@@ -58,12 +58,12 @@ const BreakDown = (props) => {
 
   const commonProperties = {
 
-    margin: { top: 40, right: 20, bottom: 20, left: 20 },
+    margin: { top: 20, right: 0, bottom: 0, left: 0 },
     data: data,
     animate: true,
   }
 
-  const chartHeight = hasDescription ? "250px" : "150px"
+  const chartHeight = hasDescription ? "250px" : "125px"
 
   const CenteredPercentage = ({ dataWithArc, centerX, centerY }) => {
 
@@ -144,4 +144,4 @@ const BreakDown = (props) => {
   </BreakDownBlock>
 }
 
-export default BreakDown
+export default SmallBreakDown

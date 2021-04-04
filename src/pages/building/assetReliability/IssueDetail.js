@@ -3,14 +3,14 @@ import { ArrowLeft } from 'react-bootstrap-icons'
 import { useParams } from 'react-router'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-import DoubleDecliningBalanceDepreciation
-  from './components/IssueDetail/DoubleDecliningBalanceDepreciation'
+import DoubleDecliningBalanceDepreciation from './components/IssueDetail/DoubleDecliningBalanceDepreciation'
 import EquipmentDetail from './components/IssueDetail/EquipmentDetail'
 import IssueDetailOverall from './components/IssueDetail/IssueDetail'
-import StraightLineDepreciation
-  from './components/IssueDetail/StraightLineDepreciation'
-import UnitsOfProductionDepreciation
-  from './components/IssueDetail/UnitsOfProductionDepreciation'
+import StraightLineDepreciation from './components/IssueDetail/StraightLineDepreciation'
+import UnitsOfProductionDepreciation from './components/IssueDetail/UnitsOfProductionDepreciation'
+import Obsolescence from './components/IssueDetail/Obsolescence'
+import ObsolescenceMoreInfo from './components/IssueDetail/ObsolescenceMoreInfo'
+import WallLineChart from './components/IssueDetail/WallLineChart'
 
 const Breadcrumb = styled.div`
   margin-top: 20px;
@@ -30,10 +30,10 @@ const BreadcrumbItemActive = styled.span`
 `
 
 const IssueDetail = ({ data }) => {
-  
+
   const { id } = useParams()
   const history = useHistory()
-  
+
   return (
     <>
       <Breadcrumb>
@@ -48,25 +48,44 @@ const IssueDetail = ({ data }) => {
         <div className="col col-12 col-xl-8">
           <EquipmentDetail/>
         </div>
-      
+
       </div>
-      
+
       <div className="mt-5 mb-5 row">
         <div className="col col-12 col-xl-4 mb-5">
           <StraightLineDepreciation/>
         </div>
-        
+
         <div className="col col-12 col-xl-4 mb-5">
           <DoubleDecliningBalanceDepreciation/>
         </div>
-        
+
         <div className="col col-12 col-xl-4 ">
           <UnitsOfProductionDepreciation/>
         </div>
       </div>
+
+
+      <div className="row mt-5 mb-5">
+        <div className="col col-12 col-xl-6">
+          <Obsolescence/>
+        </div>
+        <div className="col col-12 col-xl-6">
+          <ObsolescenceMoreInfo/>
+        </div>
+      </div>
+
+      <div className="row mt-5 mb-5">
+        <div className="col col-12 col-xl-6">
+          <WallLineChart title="Annual Maintenance Cost ($)"/>
+        </div>
+        <div className="col col-12 col-xl-6">
+          <WallLineChart title="Energy Consumption (MWh)"/>
+        </div>
+      </div>
     </>
   )
-  
+
 }
 
 export default IssueDetail

@@ -344,14 +344,17 @@ const Improve = (props) => {
         <BreakDown title="Energy Savings Breakdown"
                    subTitle="%"
                    data={breakDownConsumption}
+                   hasDescription={true}
         />
         <BreakDown title="Cost Savings Breakdown"
                    subTitle="%"
                    data={breakDownCost}
+                   hasDescription={true}
         />
         <BreakDown title="CO2 Emissions Avoided"
                    subTitle="%"
                    data={breakDownCO2Emissions}
+                   hasDescription={true}
         />
       </BreakDownWrapper>
 
