@@ -81,7 +81,7 @@ const ObsolescenceMoreInfo = () => {
                           noCenterText={true}
           />
         </ColItem>
-        <ColItem className="col col-4">
+        <ColItem className="col col-4 mb-4">
           <SmallBreakDown title="New Efficiency"
                           startAngle={-0}
                           data={data}
@@ -93,10 +93,20 @@ const ObsolescenceMoreInfo = () => {
                           noCenterText={true}
           />
         </ColItem>
+        <ColItem className="col col-4">
+          <SmallBreakDown title="Annual Maintenance Cost Savings ($1000/Yr)"
+                          startAngle={-0}
+                          data={data}
+                          innerRadius={0.88}
+                          isCenteredPercentage={true}
+                          marginRight="0px"
+                          valueFontSize="18px"
+                          enableRadialLabels={false}
+                          noCenterText={true}
+          />
+        </ColItem>
       </RowItem>
-
     </Wrapper>
-
   )
 
 }

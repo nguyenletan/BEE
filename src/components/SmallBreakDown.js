@@ -16,10 +16,11 @@ const ResponsivePieWrapper = styled.div`
 `
 
 const BreakDownTitle = styled.h4`
-  font-size: .85rem;
+  font-size: .8rem;
   margin-bottom: 0;
   text-align: center;
   padding: 0 20px;
+  min-height: 1.8rem;
 `
 
 const BreakDownSubTitle = styled.p`
