@@ -173,8 +173,8 @@ const Obsolescence = () => {
               <ParameterItem key="ParameterItem4">
                 <div className="custom-control custom-checkbox">
                   <input type="checkbox" className="custom-control-input"
-                         id={'checkbox_subsystem_' + 5} defaultChecked={false}/>
-                  <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + 5}>
+                         id={'checkbox_subsystem_' + 4} defaultChecked={false}/>
+                  <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + 4}>
                     Maintenance cost has increased significantly
                   </label>
                 </div>
