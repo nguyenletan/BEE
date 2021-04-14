@@ -68,7 +68,7 @@ const BuildingInfo = (props) => {
         </div>
         <div className="col-3">
           <p className="mb-1">Green Building Rating</p>
-          <p className="mb-0">{greenBuildingRating}%</p>
+          <p className="mb-0">{greenBuildingRating}</p>
         </div>
       </div>
       <BuildingLastEdited className="ml-1">Last Edited: {buildingInfoLastEdited}</BuildingLastEdited>

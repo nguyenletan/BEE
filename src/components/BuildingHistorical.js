@@ -30,7 +30,6 @@ const SummaryBox = styled.div`
 
 const SummaryBoxTitle = styled.p`
   margin-bottom: 0;
-
 `
 
 const SummaryBoxValue = styled.p`
@@ -41,7 +40,7 @@ const SummaryBoxValue = styled.p`
 
 const BuildingEnergyUsageWrapper = styled.div`
   background-color: #fafafa;
-  padding: 25px 30px 0;
+  padding: 35px 30px 0;
   margin-right: 30px;
   margin-bottom: 50px;
   border-radius: 25px;
@@ -51,6 +50,7 @@ const BuildingEnergyUsageChartTitle = styled.h3`
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 30px;
+  color: var(--dark);
 `
 
 const HistoricalComparison = styled.div`
@@ -122,26 +122,26 @@ const BuildingHistorical = (props) => {
     _12MonthPeriod: 8
   }
 
-  const CustomBarComponent = (props) => {
-    const { x, y, height } = props
-
-    const translateValue = `translate(${x + 23}, ${y})`
-    const translateValue2 = `translate(0, ${height - 10})`
-    return <g transform={translateValue}>
-      <rect width={13} height={height} rx="7" ry="7" fill="#87972f"  stroke="#87972f"/>
-      <rect width={13} height={10} fill="#87972f" stroke="#87972f" transform={translateValue2}/>
-    </g>
-
-  }
+  // const CustomBarComponent = (props) => {
+  //   const { x, y, height } = props
+  //
+  //   const translateValue = `translate(${x + 23}, ${y})`
+  //   const translateValue2 = `translate(0, ${height - 10})`
+  //   return <g transform={translateValue}>
+  //     <rect width={13} height={height} rx="7" ry="7" fill="#87972f"  stroke="#87972f"/>
+  //     <rect width={13} height={10} fill="#87972f" stroke="#87972f" transform={translateValue2}/>
+  //   </g>
+  //
+  // }
 
   const commonProps = {
     width: 920,
     height: 310,
-    margin: { top: 0, right: 0, bottom: 50, left: 30 },
+    margin: { top: 0, right: 0, bottom: 30, left: 50 },
     data: buildingEnergyUsageData,//generateCountriesData(keys, { size: 7 }),
     indexBy: 'month',
     keys,
-    padding: 0.2,
+    padding: 0.66,
     labelTextColor: 'white',//'inherit:lighter(1.4)',
     labelSkipWidth: 16,
     labelSkipHeight: 16,
@@ -160,9 +160,9 @@ const BuildingHistorical = (props) => {
                colors={({ id, data }) => {
                  return '#87972f'
                }}
-               barComponent={CustomBarComponent}
+               //barComponent={CustomBarComponent}
                tooltip={({ id, value, color }) => (
-                 <strong style={{ color }}>
+                 <strong style={{ color: "#373637" }}>
                    {id}: {value} MWh/Yr
                  </strong>
                )}

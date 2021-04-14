@@ -105,10 +105,62 @@ const CloseBtn = styled.button`
 const FacilityEnvelopeElementsComparison = () => {
 
   const facilityEnvelopeComparisonData = {
-    roof: { current: 'C', potentialBestInClass: 'A' },
-    wall: { current: 'D', potentialBestInClass: 'B' },
-    openings: { current: 'C', potentialBestInClass: 'B' },
-    floor: { current: 'E', potentialBestInClass: 'C' },
+    roof: {
+      current: 'C',
+      potentialBestInClass: 'A',
+      fittingLabel: 'Roof Insulation Type',
+      currentFittingName: 'Concrete Slab - Uninsulated',
+      potentialBestInClassFittingName: 'Concrete Slab - Insulated',
+      firstMetricLabel: 'U-Value W/m2K',
+      currentFirstMetricValue: '1.7',
+      potentialBestInClassFirstMetricValue: '0.9',
+      secondMetricLabel: '',
+      currentSecondMetricValue: '',
+      potentialBestInClassSecondMetricValue: '',
+      supplementaryText: 'Decreasing the U-Value of the roof insulation in turn reduces heating and cooling loads'
+    },
+    wall: {
+      current: 'D',
+      potentialBestInClass: 'B',
+      fittingLabel: 'Roof Insulation Type',
+      currentFittingName: 'Concrete Slab - Uninsulated',
+      potentialBestInClassFittingName: 'Concrete Slab - Insulated',
+      firstMetricLabel: 'U-Value W/m2K',
+      currentFirstMetricValue: '1.7',
+      potentialBestInClassFirstMetricValue: '0.9',
+      secondMetricLabel: '',
+      currentSecondMetricValue: '',
+      potentialBestInClassSecondMetricValue: '',
+      supplementaryText: 'Decreasing the U-Value of the roof insulation in turn reduces heating and cooling loads'
+    },
+    openings: {
+      current: 'C',
+      potentialBestInClass: 'B',
+      fittingLabel: 'Roof Insulation Type',
+      currentFittingName: 'Concrete Slab - Uninsulated',
+      potentialBestInClassFittingName: 'Concrete Slab - Insulated',
+      firstMetricLabel: 'U-Value W/m2K',
+      currentFirstMetricValue: '1.7',
+      potentialBestInClassFirstMetricValue: '0.9',
+      secondMetricLabel: '',
+      currentSecondMetricValue: '',
+      potentialBestInClassSecondMetricValue: '',
+      supplementaryText: 'Decreasing the U-Value of the roof insulation in turn reduces heating and cooling loads'
+    },
+    floor: {
+      current: 'E',
+      potentialBestInClass: 'C',
+      fittingLabel: 'Roof Insulation Type',
+      currentFittingName: 'Concrete Slab - Uninsulated',
+      potentialBestInClassFittingName: 'Concrete Slab - Insulated',
+      firstMetricLabel: 'U-Value W/m2K',
+      currentFirstMetricValue: '1.7',
+      potentialBestInClassFirstMetricValue: '0.9',
+      secondMetricLabel: '',
+      currentSecondMetricValue: '',
+      potentialBestInClassSecondMetricValue: '',
+      supplementaryText: 'Decreasing the U-Value of the roof insulation in turn reduces heating and cooling loads'
+    },
   }
 
   const [show, setShow] = useState(false)
@@ -123,7 +175,21 @@ const FacilityEnvelopeElementsComparison = () => {
   }
 
   const Popup = (props) => {
-    const { type, current, potentialBestInClass } = props?.data
+    const {
+      type,
+      current,
+      potentialBestInClass,
+      fittingLabel,
+      currentFittingName,
+      potentialBestInClassFittingName,
+      firstMetricLabel,
+      currentFirstMetricValue,
+      potentialBestInClassFirstMetricValue,
+      secondMetricLabel,
+      currentSecondMetricValue,
+      potentialBestInClassSecondMetricValue,
+      supplementaryText
+    } = props?.data
 
     let icon = ''
     switch (type) {
@@ -144,7 +210,7 @@ const FacilityEnvelopeElementsComparison = () => {
     }
 
     return (
-      <Modal show={show} onHide={handleClose} size="sm">
+      <Modal show={show} onHide={handleClose} size="md">
         <Modal.Body>
           <Container className="mt-4">
             <div className="d-flex justify-content-center">
@@ -174,40 +240,39 @@ const FacilityEnvelopeElementsComparison = () => {
 
               <div className="row mt-3">
                 <div className="col-6 text-center flex-column">
-                  <FirstLine>Windows Glazing Type</FirstLine>
-                  <SecondLine>Single Glazed</SecondLine>
+                  <FirstLine>{fittingLabel}</FirstLine>
+                  <SecondLine>{currentFittingName}</SecondLine>
                 </div>
                 <div className="col-6 text-center">
-                  <FirstLine>Windows Glazing Type</FirstLine>
-                  <SecondLine>Double Glazed</SecondLine>
-                </div>
-              </div>
-
-              <div className="row mt-3">
-                <div className="col-6 text-center">
-                  <FirstLine>U-Value W/m2K</FirstLine>
-                  <SecondLine>1.53</SecondLine>
-                </div>
-                <div className="col-6 text-center">
-                  <FirstLine>U-Value W/m2K</FirstLine>
-                  <SecondLine>0.87</SecondLine>
+                  <FirstLine>{fittingLabel}</FirstLine>
+                  <SecondLine>{potentialBestInClassFittingName}</SecondLine>
                 </div>
               </div>
 
               <div className="row mt-3">
                 <div className="col-6 text-center">
-                  <FirstLine>Shading Coefficient</FirstLine>
-                  <SecondLine>0.9</SecondLine>
+                  <FirstLine>{firstMetricLabel}</FirstLine>
+                  <SecondLine>{currentFirstMetricValue}</SecondLine>
                 </div>
                 <div className="col-6 text-center">
-                  <FirstLine>Shading Coefficient</FirstLine>
-                  <SecondLine>0.9</SecondLine>
+                  <FirstLine>{firstMetricLabel}</FirstLine>
+                  <SecondLine>{potentialBestInClassFirstMetricValue}</SecondLine>
+                </div>
+              </div>
+
+              <div className="row mt-3">
+                <div className="col-6 text-center">
+                  <FirstLine>{secondMetricLabel}</FirstLine>
+                  <SecondLine>{currentSecondMetricValue}</SecondLine>
+                </div>
+                <div className="col-6 text-center">
+                  <FirstLine>{secondMetricLabel}</FirstLine>
+                  <SecondLine>{potentialBestInClassSecondMetricValue}</SecondLine>
                 </div>
               </div>
             </ComparisonTable>
 
-            <PopupDescription>Decreasing the U-Value of the windows in turn reduces heating and cooling
-              loads.</PopupDescription>
+            <PopupDescription>{supplementaryText}.</PopupDescription>
             <CloseBtn className="btn btn-outline-primary btn-sm mb-3" onClick={handleClose}>Close</CloseBtn>
           </Container>
         </Modal.Body>
@@ -230,7 +295,17 @@ const FacilityEnvelopeElementsComparison = () => {
                onClick={() => openPopup({
                  type: 'roof',
                  current: facilityEnvelopeComparisonData.roof.current,
-                 potentialBestInClass: facilityEnvelopeComparisonData.roof.potentialBestInClass
+                 potentialBestInClass: facilityEnvelopeComparisonData.roof.potentialBestInClass,
+                 fittingLabel: 'Roof Insulation Type',
+                 currentFittingName: 'Concrete Slab - Uninsulated',
+                 potentialBestInClassFittingName: 'Concrete Slab - Insulated',
+                 firstMetricLabel: 'U-Value W/m2K',
+                 currentFirstMetricValue: '1.7',
+                 potentialBestInClassFirstMetricValue: '0.9',
+                 secondMetricLabel: '',
+                 currentSecondMetricValue: '',
+                 potentialBestInClassSecondMetricValue: '',
+                 supplementaryText: 'Decreasing the U-Value of the roof insulation in turn reduces heating and cooling loads'
                })}>
         <ListItem className="col-4">
           <ItemImg src={roofImg} alt="Roof"/>
@@ -247,7 +322,17 @@ const FacilityEnvelopeElementsComparison = () => {
                onClick={() => openPopup({
                  type: 'wall',
                  current: facilityEnvelopeComparisonData.wall.current,
-                 potentialBestInClass: facilityEnvelopeComparisonData.wall.potentialBestInClass
+                 potentialBestInClass: facilityEnvelopeComparisonData.wall.potentialBestInClass,
+                 fittingLabel: 'Wall Insulation Type',
+                 currentFittingName: 'Reinforced Concrete Wall',
+                 potentialBestInClassFittingName: 'Precast Concrete Wall',
+                 firstMetricLabel: 'U-Value W/m2K',
+                 currentFirstMetricValue: '3.02',
+                 potentialBestInClassFirstMetricValue: '1.07',
+                 secondMetricLabel: '',
+                 currentSecondMetricValue: '',
+                 potentialBestInClassSecondMetricValue: '',
+                 supplementaryText: 'Decreasing the U-Value of the wall insulation in turn reduces heating and cooling loads'
                })}>
         <ListItem className="col-4">
           <ItemImg src={wallImg} alt="Wall"/>
@@ -264,7 +349,17 @@ const FacilityEnvelopeElementsComparison = () => {
                onClick={() => openPopup({
                  type: 'openings',
                  current: facilityEnvelopeComparisonData.openings.current,
-                 potentialBestInClass: facilityEnvelopeComparisonData.openings.potentialBestInClass
+                 potentialBestInClass: facilityEnvelopeComparisonData.openings.potentialBestInClass,
+                 fittingLabel: 'Window Glazing Type',
+                 currentFittingName: 'Single Glazed Window',
+                 potentialBestInClassFittingName: 'Double Glazed',
+                 firstMetricLabel: 'U-Value W/m2K',
+                 currentFirstMetricValue: '1.53',
+                 potentialBestInClassFirstMetricValue: '0.87',
+                 secondMetricLabel: 'Shading Coefficient',
+                 currentSecondMetricValue: '0.9',
+                 potentialBestInClassSecondMetricValue: '0.9',
+                 supplementaryText: 'Decreasing the U-Value of the windows in turn reduces heating and cooling loads'
                })}>
         <ListItem className="col-4">
           <ItemImg src={openingsImg} alt="openings"/>
@@ -286,7 +381,17 @@ const FacilityEnvelopeElementsComparison = () => {
                onClick={() => openPopup({
                  type: 'floor',
                  current: facilityEnvelopeComparisonData.floor.current,
-                 potentialBestInClass: facilityEnvelopeComparisonData.floor.potentialBestInClass
+                 potentialBestInClass: facilityEnvelopeComparisonData.floor.potentialBestInClass,
+                 fittingLabel: 'Floor Insulation Type',
+                 currentFittingName: 'Solid Ground Floor',
+                 potentialBestInClassFittingName: 'Solid Ground Floor w/ Edge Insulation',
+                 firstMetricLabel: 'U-Value W/m2K',
+                 currentFirstMetricValue: '0.15',
+                 potentialBestInClassFirstMetricValue: '0.07',
+                 secondMetricLabel: '',
+                 currentSecondMetricValue: '',
+                 potentialBestInClassSecondMetricValue: '',
+                 supplementaryText: 'Decreasing the U-Value of the floor insulation in turn reduces heating and cooling loads'
                })}>
         <ListItem className="col-4">
           <ItemImg src={floorImg} alt="floor"/>
