@@ -181,7 +181,6 @@ const AssetReliability = () => {
   return (
     <AssetReliabilityWrapper>
 
-
       <Switch>
         <Route exact={true} path={`${path}/`}>
           <AssetReliabilityMain data={data}/>

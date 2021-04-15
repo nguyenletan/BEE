@@ -34,11 +34,9 @@ const WallLineChart = ({ data, title, noWall }) => {
 
   const Square = (props) => {
     const { series, innerHeight } = props
-    console.log(series)
+
     const data0 = series[0]?.data.filter(d => d.data.x === 0)
     const data1 = series[0]?.data.filter(d => d.data.x === 1)
-
-
 
     const x = data0[0]?.position?.x
     const width = data1[0]?.position?.x - data0[0]?.position?.x

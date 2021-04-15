@@ -194,17 +194,19 @@ const StraightLineDepreciation = () => {
   ]
 
 
-  const Line = () => {
+  const Line = ({series, innerHeight}) => {
+    const data0 = series[0]?.data.filter(d => d.data.x === 17)
+    const x = data0[0]?.position?.x
+   
     return (
       <>
-        <text x="200" y="0" className="small">Current Age</text>
-        <line x1="236" y1="10" x2="236" y2="285" stroke="#5F5283" strokeDasharray="8" strokeWidth={1}/>
+        <text x={x-30} y="0" className="small">Current Age</text>
+        <line x1={x} y1={8} x2={x} y2={innerHeight} stroke="#5F5283" strokeDasharray="8" strokeWidth={1}/>
       </>
     )
   }
 
   const commonProperties = {
-
     margin: { top: 30, right: 10, bottom: 35, left: 55 },
     data,
     animate: true,
@@ -260,7 +262,6 @@ const StraightLineDepreciation = () => {
         ]
   }
 
-  console.log(data)
   return (
     <Wrapper>
       <Title>Straight Line Depreciation</Title>
