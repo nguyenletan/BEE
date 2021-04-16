@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import {  Modal} from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
+
 
 const Wrapper = styled.div`
   background-color: #fafafa;
@@ -17,17 +18,11 @@ const Title = styled.h3`
 `
 
 const RowItem = styled.div`
-  font-size: .9rem;
+  font-size: .8rem;
 `
 
 const RowItemTitle = styled.h5`
-  font-size: .9rem;
-  margin-bottom: .2rem;
-  margin-right: .5rem;
-`
-
-const RowSubItemTitle = styled.h5`
-  font-size: .8rem;
+  font-size: .7rem;
   margin-bottom: .2rem;
   margin-right: .5rem;
 `
@@ -131,7 +126,7 @@ const Obsolescence = () => {
       <Modal show={show} onHide={handleClose} size="sm">
 
         <Modal.Body>
-          <PopupTitle>Obsolescence</PopupTitle>
+          <PopupTitle>Functional Obsolescence & New Replacement</PopupTitle>
           <PopupCategory>
             <PopupCategoryTitle>Technological</PopupCategoryTitle>
             <PopupCategorySubTitle>Due to asset age, critical spare parts may not be easily available</PopupCategorySubTitle>
@@ -261,61 +256,61 @@ const Obsolescence = () => {
 
   return (
     <Wrapper>
-      <Title>Obsolescence</Title>
-      <RowItem className="row">
-        <div className="col col-3">
-          <RowItemTitle>Technological Issues</RowItemTitle>
-          <RowItemValue>3</RowItemValue>
-        </div>
-        <div className="col col-2">
-          <RowItemTitle>Economic Issues</RowItemTitle>
-          <RowItemValue>2</RowItemValue>
-        </div>
-        <div className="col col-2">
-          <RowItemTitle>Statutory Issues</RowItemTitle>
-          <RowItemValue>1</RowItemValue>
-        </div>
-        <div className="col col-2">
-          <RowItemTitle>Functional Issues</RowItemTitle>
-          <RowItemValue>1</RowItemValue>
-        </div>
-        <div className="col col-2">
-          <RowItemTitle>Aesthetic Issues</RowItemTitle>
-          <RowItemValue>0</RowItemValue>
-        </div>
-      </RowItem>
+      <Title>Functional Obsolescence & New Replacement</Title>
 
-      <RowItem className="row mt-3">
-        <div className="col col-6">
-          <RowItemTitle className="mb-2">Estimated New Replacement Value ($)</RowItemTitle>
-          <RowItem className="row" style={{ fontSize: '.8rem' }}>
-            <div className="col col-5">
-              <RowSubItemTitle>Replacement Value</RowSubItemTitle>
+      <div className="row">
+        <div className="col-6">
+          <p className="mb-2 d-block" style={{marginTop:'-3px', fontSize: '.9rem'}}>Estimated New Replacement Value</p>
+          <RowItem className="d-flex justify-content-between">
+            <div className="mr-3 d-flex flex-column" style={{width: '40%'}}>
+              <RowItemTitle>Replacement Value ($)</RowItemTitle>
               <RowItemValue>1,350,000</RowItemValue>
             </div>
-            <Calculator className="col col-2 text-center">+</Calculator>
-            <div className="col col-5">
-              <RowSubItemTitle>Local Labor & Other Cost</RowSubItemTitle>
+            <div className="mr-0"><Calculator>+</Calculator></div>
+            <div className="d-flex flex-column">
+              <RowItemTitle>Local Labour & Other Cost</RowItemTitle>
               <RowItemValue>14 ~ 25%</RowItemValue>
             </div>
           </RowItem>
-        </div>
-
-        <div className="col col-6">
+          <p className="mb-2 d-block" style={{marginTop:'-3px', fontSize: '.9rem'}}>Estimated Maintenance Cost</p>
           <RowItem className="row">
-            <div className="col col-6">
-              <RowSubItemTitle>Simple Payback (Years)</RowSubItemTitle>
+            <div className="col-6">
+              <RowItemTitle>Annual Maintenance Savings ($)</RowItemTitle>
+              <RowItemValue>50,000</RowItemValue>
+            </div>
+            <div className="col-6">
+              <RowItemTitle style={{paddingBottom: '.85rem'}}>Warranty Period (Yr)</RowItemTitle>
+              <RowItemValue>1</RowItemValue>
+            </div>
+          </RowItem>
+
+
+        </div>
+        <div className="col-6">
+          <RowItem className="row" style={{marginBottom: '3.3rem'}}>
+            <div className="col-6">
+              <RowItemTitle>Annual Energy Savings (MWh/Yr)</RowItemTitle>
+              <RowItemValue>13.3</RowItemValue>
+            </div>
+            <div className="col-6">
+              <RowItemTitle>Annual Energy Cost Savings ($1000/Yr)</RowItemTitle>
+              <RowItemValue>13.3</RowItemValue>
+            </div>
+          </RowItem>
+
+          <RowItem className="row">
+            <div className="col-6">
+              <RowItemTitle>Simple Payback (Yrs)</RowItemTitle>
               <RowItemValue>7</RowItemValue>
             </div>
-            <div className="col col-6">
-              <RowSubItemTitle>Internal Rate of Return (%)</RowSubItemTitle>
+            <div className="col-6">
+              <RowItemTitle>Internal Rate of Return (%)</RowItemTitle>
               <RowItemValue>22</RowItemValue>
             </div>
           </RowItem>
         </div>
-
-      </RowItem>
-      <RowItem className="row ml-1">
+      </div>
+      <RowItem className="row ml-1 mt-3">
         <AddingButton className="btn btn-sm btn-primary">+ Add to Improvement Measures</AddingButton>
         <EditIconWrapper onClick={handleShow}><EditIcon className="bi bi-pencil-square"/>Edit</EditIconWrapper>
       </RowItem>

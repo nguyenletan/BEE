@@ -197,7 +197,7 @@ const StraightLineDepreciation = () => {
   const Line = ({series, innerHeight}) => {
     const data0 = series[0]?.data.filter(d => d.data.x === 17)
     const x = data0[0]?.position?.x
-   
+
     return (
       <>
         <text x={x-30} y="0" className="small">Current Age</text>

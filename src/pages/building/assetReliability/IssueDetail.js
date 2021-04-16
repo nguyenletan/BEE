@@ -231,7 +231,7 @@ const IssueDetail = ({ data }) => {
 
 
       <div className="row mt-5 mb-5">
-        <div className="col col-12 col-xl-6">
+        <div className="col col-12 col-xl-6 mb-5 mb-xl-0">
           <Obsolescence/>
         </div>
         <div className="col col-12 col-xl-6">

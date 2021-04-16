@@ -13,11 +13,12 @@ const RowItem = styled.div`
 const ColItem = styled.div``
 
 const ObsolescenceMoreInfo = () => {
-  const data = [
+  const data = {
+    annualEnergySavings: [
     {
       id: 'used',
       label: 'Used',
-      value: 236850,
+      value: 16850,
       color: '#87972f',
       remaining: 77691
     },
@@ -27,8 +28,88 @@ const ObsolescenceMoreInfo = () => {
       value: 77691,
       color: '#ecedef',
       remaining: 77691
-    }
-  ]
+    }],
+    annualEnergyCostSavings: [
+      {
+        id: 'used',
+        label: 'Used',
+        value: 56850,
+        color: '#87972f',
+        remaining: 77691
+      },
+      {
+        id: 'remaining',
+        label: 'Remaining',
+        value: 77691,
+        color: '#ecedef',
+        remaining: 77691
+      }
+    ],
+    annualCO2EmissionsAvoided: [
+      {
+        id: 'used',
+        label: 'Used',
+        value: 106850,
+        color: '#87972f',
+        remaining: 77691
+      },
+      {
+        id: 'remaining',
+        label: 'Remaining',
+        value: 77691,
+        color: '#ecedef',
+        remaining: 77691
+      }
+    ],
+    currentEfficiency: [
+      {
+        id: 'used',
+        label: 'Used',
+        value: 96850,
+        color: '#87972f',
+        remaining: 77691
+      },
+      {
+        id: 'remaining',
+        label: 'Remaining',
+        value: 77691,
+        color: '#ecedef',
+        remaining: 77691
+      }
+    ],
+    newEfficiency: [
+      {
+        id: 'used',
+        label: 'Used',
+        value: 46850,
+        color: '#87972f',
+        remaining: 77691
+      },
+      {
+        id: 'remaining',
+        label: 'Remaining',
+        value: 77691,
+        color: '#ecedef',
+        remaining: 77691
+      }
+    ],
+    annualMaintenanceCostSavings: [
+      {
+        id: 'used',
+        label: 'Used',
+        value: 236850,
+        color: '#87972f',
+        remaining: 77691
+      },
+      {
+        id: 'remaining',
+        label: 'Remaining',
+        value: 77691,
+        color: '#ecedef',
+        remaining: 77691
+      }
+    ],
+  }
 
   return (
     <Wrapper>
@@ -36,7 +117,7 @@ const ObsolescenceMoreInfo = () => {
         <ColItem className="col col-4 mb-4">
           <SmallBreakDown title="Annual Energy Savings (MWh)"
                      startAngle={-0}
-                     data={data}
+                     data={data.annualEnergySavings}
                      innerRadius={0.88}
                      isCenteredPercentage={true}
                      marginRight="0px"
@@ -48,7 +129,7 @@ const ObsolescenceMoreInfo = () => {
         <ColItem className="col col-4 mb-4">
           <SmallBreakDown title="Annual Energy Cost Savings ($1000)"
                           startAngle={-0}
-                          data={data}
+                          data={data.annualEnergyCostSavings}
                           innerRadius={0.88}
                           isCenteredPercentage={true}
                           marginRight="0px"
@@ -60,7 +141,7 @@ const ObsolescenceMoreInfo = () => {
         <ColItem className="col col-4 mb-4">
           <SmallBreakDown title="Annual CO2 Emissions Avoided (Tons/yr)"
                           startAngle={-0}
-                          data={data}
+                          data={data.annualCO2EmissionsAvoided}
                           innerRadius={0.88}
                           isCenteredPercentage={true}
                           marginRight="0px"
@@ -72,7 +153,7 @@ const ObsolescenceMoreInfo = () => {
         <ColItem className="col col-4 mb-4">
           <SmallBreakDown title="Current Efficiency"
                           startAngle={-0}
-                          data={data}
+                          data={data.currentEfficiency}
                           innerRadius={0.88}
                           isCenteredPercentage={true}
                           marginRight="0px"
@@ -84,7 +165,7 @@ const ObsolescenceMoreInfo = () => {
         <ColItem className="col col-4 mb-4">
           <SmallBreakDown title="New Efficiency"
                           startAngle={-0}
-                          data={data}
+                          data={data.newEfficiency}
                           innerRadius={0.88}
                           isCenteredPercentage={true}
                           marginRight="0px"
@@ -96,7 +177,7 @@ const ObsolescenceMoreInfo = () => {
         <ColItem className="col col-4">
           <SmallBreakDown title="Annual Maintenance Cost Savings ($1000/Yr)"
                           startAngle={-0}
-                          data={data}
+                          data={data.annualMaintenanceCostSavings}
                           innerRadius={0.88}
                           isCenteredPercentage={true}
                           marginRight="0px"
