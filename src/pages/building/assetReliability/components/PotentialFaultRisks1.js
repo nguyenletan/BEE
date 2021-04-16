@@ -114,7 +114,7 @@ const PotentialFaultRisks = ({ data }) => {
     const ImprovementMeasuresTableWrapper = styled.div`
       height: 350px;
       overflow: auto;
-      font-size: .9rem;
+      font-size: .8rem;
     `
     const ImprovementMeasuresTable = styled.table`
       border-top: none;
