@@ -54,7 +54,7 @@ const WallLineChart = ({ data, title, noWall }) => {
 
     return (
       <>
-        <text x={x} y="0" className="small">Warranty</text>
+        {!noWall && <text x={x} y="0" className="small">Warranty</text>}
         <line x1={x} y1={y1 - (margin.top + margin.bottom) - 5} x2={x} y2={innerHeight} stroke="#87972f" strokeDasharray="3"
               strokeWidth={1}/>
         {/*<line x1="300" y1="10" x2="300" y2="285" stroke="#87972f" strokeDasharray="2" strokeWidth={1}/>*/}
