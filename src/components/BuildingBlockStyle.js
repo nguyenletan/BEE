@@ -3,7 +3,10 @@ import styled from 'styled-components'
 export const BuildingImage = styled.img`
   width: 270px;
   height: 150px;
-  margin-right: 50px;
+  margin-right: 0px;
+  @media(min-width: 768px) {
+    margin-right: 50px;
+  }
   object-fit: cover;
   border-radius: 12px;
   margin-top: 25px;

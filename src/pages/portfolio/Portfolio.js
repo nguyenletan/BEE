@@ -45,7 +45,7 @@ const Portfolio = () => {
         </div>
       </div>
 
-      <BuildingBlocks className="d-flex justify-content-start flex-wrap">
+      <BuildingBlocks className="d-flex justify-content-center justify-content-md-start flex-wrap">
         {blocks}
       </BuildingBlocks>
     </PortfolioWrapper>
