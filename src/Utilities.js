@@ -84,7 +84,7 @@ export const getImpactTitle = (value) => {
 export const getSubSystemIcon = (subSystem) => {
   let imgSrc
   let width
-  console.log(subSystem)
+
   switch (subSystem) {
     case 'Cooling':
       imgSrc = coolingImg
