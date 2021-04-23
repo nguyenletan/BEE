@@ -11,23 +11,34 @@ const BuildingImage = styled.img`
   width: 320px;
   border-radius: 15px;
   height: 219px;
+  margin-bottom: 30px;
 `
 
 const GeneralInformation = styled.section`
-  margin-left: 10px;
-
+  @media (min-width: 1024px) {
+    padding-left: 10px;
+  }
 `
 
 const BuildingTitle = styled.h2`
   font-size: 2.2rem;
   color: var(--primary);
   font-weight: 700;
-  padding-left: 15px;
-  
+  padding-left: 0px;
+  width: 100%;
+
+
+  @media (min-width: 1024px) {
+    padding-left: 15px;
+    padding-bottom: .5em;
+  }
 `
 
 const BuildingAddress = styled.p`
   padding-left: 15px;
+  width: 100%;
+  @media (min-width: 1024px) {
+  }
 `
 
 const BuildingLastEdited = styled.p`
@@ -35,40 +46,49 @@ const BuildingLastEdited = styled.p`
   padding-left: 15px;
 `
 
+const TypeCol = styled.p`
+  display: inline;
+  padding-right: .5em;
+  @media (min-width: 740px) {
+    display: block;
+  }
+`
+
+
 const BuildingInfo = (props) => {
   const { name, image, address, useType,gfa, avgOccupancy, storey, buildingInfoLastEdited, constructed, greenBuildingRating } = props
-  return <BuildingInfoWrapper className="d-flex justify-content-left">
+  return <BuildingInfoWrapper className="d-flex justify-content-start flex-wrap">
     <BuildingImage src={image}/>
     <GeneralInformation className="flex-grow-1">
       <BuildingTitle>{name}</BuildingTitle>
       <BuildingAddress className="ml-1 mb-2">{address}</BuildingAddress>
-      <div className="row ml-1 mb-2">
-        <div className="col-3">
-          <p className="mb-1">Use Type</p>
-          <p className="mb-0">{useType}</p>
+      <div className="row ml-1 mb-2 w-100">
+        <div className="col-12 col-md-4 col-lg-3">
+          <TypeCol className="mb-1">Use Type</TypeCol>
+          <TypeCol className="mb-0">{useType}</TypeCol>
         </div>
-        <div className="col-3">
-          <p className="mb-1">GFA</p>
-          <p className="mb-0">{gfa}m2</p>
+        <div className="col-12 col-md-4 col-lg-3">
+          <TypeCol className="mb-1">GFA</TypeCol>
+          <TypeCol className="mb-0">{gfa}m2</TypeCol>
         </div>
-        <div className="col-3">
-          <p className="mb-1">Avg. Occupancy</p>
-          <p className="mb-0">{avgOccupancy}%</p>
+        <div className="col-12 col-md-4 col-lg-3">
+          <TypeCol className="mb-1">Avg. Occupancy</TypeCol>
+          <TypeCol className="mb-0">{avgOccupancy}%</TypeCol>
         </div>
       </div>
 
       <div className="row ml-1 mb-2">
-        <div className="col-3">
-          <p className="mb-1">Storey</p>
-          <p className="mb-0">{storey}</p>
+        <div className="col-12 col-md-4 col-lg-3">
+          <TypeCol className="mb-1">Storey</TypeCol>
+          <TypeCol className="mb-0">{storey}</TypeCol>
         </div>
-        <div className="col-3">
-          <p className="mb-1">Constructed</p>
-          <p className="mb-0">{constructed}m2</p>
+        <div className="col-12 col-md-4 col-lg-3">
+          <TypeCol className="mb-1">Constructed</TypeCol>
+          <TypeCol className="mb-0">{constructed}m2</TypeCol>
         </div>
-        <div className="col-3">
-          <p className="mb-1">Green Building Rating</p>
-          <p className="mb-0">{greenBuildingRating}</p>
+        <div className="col-12 col-md-4 col-lg-3">
+          <TypeCol className="mb-1">Green Building Rating</TypeCol>
+          <TypeCol className="mb-0">{greenBuildingRating}</TypeCol>
         </div>
       </div>
       <BuildingLastEdited className="ml-1">Last Edited: {buildingInfoLastEdited}</BuildingLastEdited>

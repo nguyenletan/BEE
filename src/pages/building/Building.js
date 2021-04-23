@@ -14,8 +14,11 @@ import Improve from './improve/Improve'
 import AssetReliability from './assetReliability/AssetReliability'
 
 const BuildingWrapper = styled.div`
-  margin-left: 100px;
-  margin-right: 100px;
+
+  @media(min-width: 1440px) {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
 `
 
 const Building = () => {
@@ -177,7 +180,7 @@ const Building = () => {
   return <>
     <Header/>
 
-    <BuildingWrapper className="">
+    <BuildingWrapper>
       <BuildingInfo name={BuildingInfoData.name}
                     image={BuildingInfoData.image}
                     address={BuildingInfoData.address}

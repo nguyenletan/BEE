@@ -7,34 +7,41 @@ import openingImg from '../assets/images/opening.png'
 import plugLoadImg from '../assets/images/plug-load.png'
 
 const IncidentalGainsWrapper = styled.div`
-  width: 95%;
+  width: 100%;
   margin: 0 auto 30px;
 `
 
 const IncidentalGainsTitle = styled.h4`
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 15px;
 `
 
 const IncidentalGainsList = styled.ul`
   list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+  @media(min-width: 768px) {
+    padding: 0 20px ;
+  }
 `
 
 const IncidentalGainsItem = styled.div`
   background-color: #fafafa;
   border-radius: 10px;
-  padding: 10px;
-  width: 210px;
+  padding: 10px 20px;
+  @media(min-width: 1024px) {
+    margin-right: 0;
+  }
 `
 
 const IncidentalGainsItemTitle = styled.h5`
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: .95rem;
+  font-weight: 600;
 `
 const IncidentalGainsItemValue = styled.span`
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: var(--primary);
 `
 
@@ -53,9 +60,9 @@ const IncidentalGains = (props) => {
   return (
     <IncidentalGainsWrapper>
       <IncidentalGainsTitle>Incidental Gains & Other Information</IncidentalGainsTitle>
-      <IncidentalGainsList className="d-flex justify-content-between">
+      <IncidentalGainsList className="d-flex justify-content-start row">
 
-        <IncidentalGainsItem className="d-flex justify-content-between align-items-center">
+        <IncidentalGainsItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
           <div className="mr-1">
             <IncidentalGainsItemTitle>Roof</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{roof}W/m2</IncidentalGainsItemValue>
@@ -63,7 +70,7 @@ const IncidentalGains = (props) => {
           <IncidentalGainsItemImage src={roofImg} alt="Roof" width="33"/>
         </IncidentalGainsItem>
 
-        <IncidentalGainsItem className="d-flex justify-content-between align-items-center">
+        <IncidentalGainsItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
           <div className="mr-3">
             <IncidentalGainsItemTitle>Wall</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{wall}W/m2</IncidentalGainsItemValue>
@@ -71,7 +78,7 @@ const IncidentalGains = (props) => {
           <IncidentalGainsItemImage src={wallImg} alt="Wall" width="33"/>
         </IncidentalGainsItem>
 
-        <IncidentalGainsItem className="d-flex justify-content-between align-items-center">
+        <IncidentalGainsItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
           <div className="mr-3">
             <IncidentalGainsItemTitle>Openings</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{openings}W/m2</IncidentalGainsItemValue>
@@ -79,7 +86,7 @@ const IncidentalGains = (props) => {
           <IncidentalGainsItemImage src={openingImg} alt="Openings" width="33"/>
         </IncidentalGainsItem>
 
-        <IncidentalGainsItem className="d-flex justify-content-between align-items-center">
+        <IncidentalGainsItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
           <div className="mr-3">
             <IncidentalGainsItemTitle>Floor</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{floor}W/m2</IncidentalGainsItemValue>
@@ -87,7 +94,7 @@ const IncidentalGains = (props) => {
           <IncidentalGainsItemImage src={floorImg} alt="Floor" width="33"/>
         </IncidentalGainsItem>
 
-        <IncidentalGainsItem className="d-flex justify-content-between align-items-center">
+        <IncidentalGainsItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
           <div className="mr-3">
             <IncidentalGainsItemTitle>Plug Loads</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{plugLoads}W/m2</IncidentalGainsItemValue>

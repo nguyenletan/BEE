@@ -26,7 +26,11 @@ body {
 ::selection {
   background-color: var(--lightgreen);
 }
-g
+
+#root {
+
+}
+
 .nav-pills .nav-link {
   font-size: 1.1rem;
   color: var(--gray);
