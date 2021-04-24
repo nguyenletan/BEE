@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Radar } from '@nivo/radar'
+import { ResponsiveRadar } from '@nivo/radar'
 
 import {
   coolingSVG,
@@ -15,23 +15,32 @@ import {
 const SubSystemPerformanceTitle = styled.h3`
   font-size: 1.15rem;
   font-weight: 700;
+  text-align: center;
+  @media(min-width: 1280px) {
+    text-align: left;
+  }
 `
 
 const SubSystemPerformanceWrapper = styled.div`
   border-radius: 15px;
   background-color: #fafafa;
   padding: 20px;
-  margin-right: 20px;
-  min-height: 500px;
+  //margin-right: 20px;
+  //min-height: 500px;
   margin-bottom: 50px;
+  height: 430px;
+  //max-width: 900px;
+  @media(min-width: 768) {
+    height: max(550px, calc(100vw/3.2));
+  }
 `
 
 const SubSystemPerformance = ({data}) => {
 
   const commonProperties = {
-    width: 400,
-    height: 350,
-    margin: { top: 120, right: 0, bottom: 0, left: 0 },
+    //width: 400,
+    //height: 350,
+    margin: { top: 120, right: 0, bottom: 100, left: 0 },
     ...data,
     indexBy: 'name',
     animate: true
@@ -167,7 +176,7 @@ const SubSystemPerformance = ({data}) => {
   return <SubSystemPerformanceWrapper>
     <SubSystemPerformanceTitle>Sub-System Performance</SubSystemPerformanceTitle>
 
-    <Radar
+    <ResponsiveRadar
       {...commonProperties}
       gridShape="linear"
       dotSize={0}
@@ -181,7 +190,7 @@ const SubSystemPerformance = ({data}) => {
       colors={['#478D58', '#63AE62', '#AACC72',]}
       legends={[
         {
-          anchor: 'top-right',
+          anchor: 'top',
           direction: 'row',
           translateX: 0,
           translateY: -105,

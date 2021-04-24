@@ -17,8 +17,10 @@ const FacilityEnvelopeElementsComparisonWrapper = styled.div`
   border-radius: 15px;
   background-color: #fafafa;
   padding: 20px;
-  margin-right: 20px;
-  width: 28%;
+  max-width: 500px;
+  margin: 0 auto;
+  //margin-right: 20px;
+  
 `
 
 const ListHeader = styled.div`

@@ -78,8 +78,7 @@ const HistoricalComparison = styled.div`
   @media (min-width: 1920px){
     width: 70%;
   }
-
-
+  
   h4 {
     font-size: 1.15rem;
     font-weight: 700;
@@ -95,7 +94,6 @@ const UpAndDownImg = styled.img`
 const UpAndDownImgTitle = styled.h5`
   font-size: 0.8rem;
   margin-bottom: 2px;
-
 `
 
 const UpAndDownImgValue = styled.span`

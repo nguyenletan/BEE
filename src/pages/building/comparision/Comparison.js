@@ -8,7 +8,7 @@ import SubSystemComparison from './components/SubSystemComparison'
 import PerformanceComparison2 from './components/PerformanceComparison2'
 
 const ComparisonWrapper = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 `
 
 const Comparison = ({ data }) => {
@@ -63,11 +63,16 @@ const Comparison = ({ data }) => {
   return (
     <ComparisonWrapper>
       <PerformanceBlock/>
-      <div className="d-flex justify-content-center">
-        <SubSystemPerformance data={subSystemPerformanceData}/>
-        <FacilityEnvelopeElementsComparison/>
-        <SubSystemComparison/>
-
+      <div className="d-flex justify-content-start row">
+        <div className="col col-12 col-xl-5">
+          <SubSystemPerformance data={subSystemPerformanceData}/>
+        </div>
+        <div className="col col-12 col-lg-5 col-xl-3 mb-5 mb-lg-0">
+          <FacilityEnvelopeElementsComparison/>
+        </div>
+        <div className="col col-12 col-lg-7 col-xl-4">
+          <SubSystemComparison/>
+        </div>
       </div>
       {/*<PerformanceComparison/>*/}
 

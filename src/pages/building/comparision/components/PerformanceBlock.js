@@ -3,9 +3,19 @@ import BarBlock from './BarBlock'
 import styled from 'styled-components'
 
 const PerformanceBlockWrapper = styled.div`
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: none;
+  @media (min-width: 768px) {
+    display: flex;
+  }
 `
+
+const PerformanceBlockInner = styled.div`
+  max-width: 800px;
+  min-width: 600px;
+  overflow-x: auto;
+`;
 
 const Hr = styled.hr`
   width: 100px;
@@ -33,8 +43,14 @@ const BarHeader = styled.h3`
 const BarWrapper = styled.div`
   background-color: #fafafa;
   border-radius: 15px;
-  padding: 20px;
+  padding: 30px 20px;
+  //max-width: 600px;
+  justify-content: center;
   margin-right: ${props => props.marginRight ? props.marginRight : '0px'};
+  //margin-bottom: 50px;
+  @media(min-width: 1280px) {
+    //margin-bottom: 0;
+  }
 `
 
 const BarIndicator = styled.div`
@@ -61,75 +77,75 @@ const BarChart = styled.div`
 const PerformanceBlock = ({ data }) => {
 
   return (
-    <PerformanceBlockWrapper className="d-flex justify-content-between">
-
-      <BarWrapper className="d-flex" marginRight="20px">
-
-        <BarChart>
-          <BarHeader>Building Energy Performance</BarHeader>
-          <div className="d-flex">
-            <Hr/>
-            <BarBlock width="85px" backgroundColor="#478D58" text="A"/>
-          </div>
-          <div className="d-flex ">
-            <BarTitle marginTop="-12px">Most Efficient</BarTitle>
-            <BarBlock width="108px" backgroundColor="#63AE62" text="B"/>
-          </div>
-
-          <div className="d-flex">
-            <Hr marginTop="10px"/>
-            <BarBlock width="126px" backgroundColor="#AACC72" text="C"/>
-          </div>
-          <div className="d-flex ">
-            <BarTitle>Average Performance</BarTitle>
-            <BarBlock width="149px" backgroundColor="#F0EA6F" text="D"/>
-          </div>
-
-          <div className="d-flex">
-            <Hr marginTop="20px"/>
-            <BarBlock width="172px" backgroundColor="#ecb75f" text="E"/>
-          </div>
-          <div className="d-flex ">
-            <BarTitle marginTop="10px">Least Efficient</BarTitle>
-            <BarBlock width="200px" backgroundColor="#df7f4f" text="F"/>
-          </div>
-          <div className="d-flex">
-            <Hr marginTop="35px"/>
-            <BarBlock width="220px" backgroundColor="#d94545" text="G"/>
-          </div>
-        </BarChart>
-        <BarIndicator>
-          <BarIndicatorHeader className="row">
-            <div className="col-6">Current</div>
-            <div className="col-6">Potential<br/>Best-In-Class</div>
-          </BarIndicatorHeader>
-
-          <BarIndicatorBody>
-            <div className="row">
-              <BarIndicatorColumn className="col-6">
-                <BarBlock width="1px" backgroundColor="transparent" text=""/>
-                <BarBlock width="1px" backgroundColor="transparent" text=""/>
-                <BarBlock width="1px" backgroundColor="transparent" text=""/>
-                <BarBlock width="64px" backgroundColor="#F0EA6F" text="D" isArrow={true} textAlign="center"/>
-                <BarBlock width="1px" backgroundColor="transparent" text=""/>
-                <BarBlock width="1px" backgroundColor="transparent" text=""/>
-                <BarBlock width="1px" backgroundColor="transparent" text="" marginBottom="0px"/>
-              </BarIndicatorColumn>
-              <div className="col-6">
-                <BarBlock width="1px" backgroundColor="transparent" text=""/>
-                <BarBlock width="64px" backgroundColor="#63AE62" text="B" isArrow={true} textAlign="center"/>
-                <BarBlock width="1px" backgroundColor="transparent" text=""/>
-                <BarBlock width="1px" backgroundColor="transparent" text=""/>
-                <BarBlock width="1px" backgroundColor="transparent" text=""/>
-                <BarBlock width="1px" backgroundColor="transparent" text=""/>
-                <BarBlock width="1px" backgroundColor="transparent" text="" marginBottom="0px"/>
-              </div>
+    <PerformanceBlockWrapper className="justify-content-center justify-content-xl-start row">
+      <PerformanceBlockInner className="col col-12 col-xl-6 mb-5 mb-xl-0">
+        <BarWrapper className="d-flex">
+          <BarChart>
+            <BarHeader>Building Energy Performance</BarHeader>
+            <div className="d-flex">
+              <Hr/>
+              <BarBlock width="85px" backgroundColor="#478D58" text="A"/>
             </div>
-          </BarIndicatorBody>
-        </BarIndicator>
-      </BarWrapper>
+            <div className="d-flex ">
+              <BarTitle marginTop="-12px">Most Efficient</BarTitle>
+              <BarBlock width="108px" backgroundColor="#63AE62" text="B"/>
+            </div>
 
-      <BarWrapper className="d-flex">
+            <div className="d-flex">
+              <Hr marginTop="10px"/>
+              <BarBlock width="126px" backgroundColor="#AACC72" text="C"/>
+            </div>
+            <div className="d-flex ">
+              <BarTitle>Average Performance</BarTitle>
+              <BarBlock width="149px" backgroundColor="#F0EA6F" text="D"/>
+            </div>
+
+            <div className="d-flex">
+              <Hr marginTop="20px"/>
+              <BarBlock width="172px" backgroundColor="#ecb75f" text="E"/>
+            </div>
+            <div className="d-flex ">
+              <BarTitle marginTop="10px">Least Efficient</BarTitle>
+              <BarBlock width="200px" backgroundColor="#df7f4f" text="F"/>
+            </div>
+            <div className="d-flex">
+              <Hr marginTop="35px"/>
+              <BarBlock width="220px" backgroundColor="#d94545" text="G"/>
+            </div>
+          </BarChart>
+          <BarIndicator>
+            <BarIndicatorHeader className="row">
+              <div className="col-6">Current</div>
+              <div className="col-6">Potential<br/>Best-In-Class</div>
+            </BarIndicatorHeader>
+
+            <BarIndicatorBody>
+              <div className="row">
+                <BarIndicatorColumn className="col-6">
+                  <BarBlock width="1px" backgroundColor="transparent" text=""/>
+                  <BarBlock width="1px" backgroundColor="transparent" text=""/>
+                  <BarBlock width="1px" backgroundColor="transparent" text=""/>
+                  <BarBlock width="64px" backgroundColor="#F0EA6F" text="D" isArrow={true} textAlign="center"/>
+                  <BarBlock width="1px" backgroundColor="transparent" text=""/>
+                  <BarBlock width="1px" backgroundColor="transparent" text=""/>
+                  <BarBlock width="1px" backgroundColor="transparent" text="" marginBottom="0px"/>
+                </BarIndicatorColumn>
+                <div className="col-6">
+                  <BarBlock width="1px" backgroundColor="transparent" text=""/>
+                  <BarBlock width="64px" backgroundColor="#63AE62" text="B" isArrow={true} textAlign="center"/>
+                  <BarBlock width="1px" backgroundColor="transparent" text=""/>
+                  <BarBlock width="1px" backgroundColor="transparent" text=""/>
+                  <BarBlock width="1px" backgroundColor="transparent" text=""/>
+                  <BarBlock width="1px" backgroundColor="transparent" text=""/>
+                  <BarBlock width="1px" backgroundColor="transparent" text="" marginBottom="0px"/>
+                </div>
+              </div>
+            </BarIndicatorBody>
+          </BarIndicator>
+        </BarWrapper>
+      </PerformanceBlockInner>
+      <PerformanceBlockInner className="col col-12 col-xl-6">
+        <BarWrapper className="d-flex">
 
         <BarChart>
           <BarHeader>CO2 Emissions Performance</BarHeader>
@@ -194,6 +210,7 @@ const PerformanceBlock = ({ data }) => {
           </BarIndicatorBody>
         </BarIndicator>
       </BarWrapper>
+      </PerformanceBlockInner>
     </PerformanceBlockWrapper>
   )
 }
