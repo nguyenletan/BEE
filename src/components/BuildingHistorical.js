@@ -5,12 +5,16 @@ import redUpImage from '../assets/images/red_up.jpg'
 import greenDownImage from '../assets/images/green_down.jpg'
 
 const SummaryBoxWrapper = styled.div`
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
-  
+  padding-left: 0;
+  padding-right: 0;
+  @media (min-width: 1024px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
   @media (min-width: 1200px) {
     width: 80%;
-
   }
   @media (min-width: 1400px) {
     flex-direction: column;
@@ -22,9 +26,16 @@ const SummaryBox = styled.div`
   padding: 15px 20px;
   // margin-bottom: 30px;
   border-radius: 15px;
-  max-width: 200px;
-  @media only screen and (min-width: 1366px) {
-  
+  width: 100%;
+  min-width: 0;
+  height: 100px;
+  text-align: center;
+  @media only screen and (min-width: 1024px) {
+    height: 153px;
+    text-align: left;
+  }
+  @media only screen and (min-width: 1440px) {
+    min-width: 200px;
   }
 `
 
@@ -34,15 +45,17 @@ const SummaryBoxTitle = styled.p`
 
 const SummaryBoxValue = styled.p`
   color: var(--primary);
-  font-size: 34px;
+  font-size: 28px;
   margin-bottom: 0;
 `
 
 const BuildingEnergyUsageWrapper = styled.div`
   background-color: #fafafa;
-  //padding: 35px 30px 0;
+  padding: 35px 30px 30px 30px;
   //margin-right: 30px;
   //margin-bottom: 50px;
+
+  height: 491px;
   border-radius: 25px;
 `
 
@@ -56,12 +69,16 @@ const BuildingEnergyUsageChartTitle = styled.h3`
 const HistoricalComparison = styled.div`
   background-color: #fafafa;
   border-radius: 15px;
-  width: 100%;
-  @media(min-width: 1440px) {
-    width: 80%;
-  }
-  margin: 30px auto;
+  margin-top: 30px;
   padding: 30px;
+  @media (min-width: 1440px) {
+    width: 80%;
+    margin: 50px auto 0;
+  }
+  @media (min-width: 1920px){
+    width: 70%;
+  }
+
 
   h4 {
     font-size: 1.15rem;
@@ -78,7 +95,7 @@ const UpAndDownImg = styled.img`
 const UpAndDownImgTitle = styled.h5`
   font-size: 0.8rem;
   margin-bottom: 2px;
-  
+
 `
 
 const UpAndDownImgValue = styled.span`
@@ -94,11 +111,13 @@ const HistoricalComparisonContainer = styled.div`
 
 const HistoricalComparisonWrapper = styled.div`
   margin-bottom: 50px;
+  margin-left: 15px;
+  margin-right: 15px;
 `
 
 const HistoricalComparisonInnerWrapper = styled.div`
   width: 108px;
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     width: auto;
   }
 `
@@ -147,14 +166,14 @@ const BuildingHistorical = (props) => {
 
   const commonProps = {
     // width: 920,
-    height: 350,
-    margin: { top: 0, right: 0, bottom: 40, left: 30 },
+    // height: 350,
+    margin: { top: 0, right: 0, bottom: 100, left: 30 },
     data: buildingEnergyUsageData,//generateCountriesData(keys, { size: 7 }),
     indexBy: 'month',
     keys,
     padding: 0.66,
     labelTextColor: 'white',//'inherit:lighter(1.4)',
-    labelSkipWidth: 16,
+    labelSkipWidth: 0,
     labelSkipHeight: 16,
     animate: true,
 
@@ -163,57 +182,60 @@ const BuildingHistorical = (props) => {
   //console.log(generateCountriesData(keys, { size: 7 }))
 
   return (
-    <HistoricalComparisonWrapper>
-      <HistoricalComparisonContainer className="d-flex mt-5 justify-content-start justify-content-md-center">
-        <div className="row">
-          <BuildingEnergyUsageWrapper className="col-12 col-lg-8 col-xl-10 mb-5 mb-lg-0">
-            <BuildingEnergyUsageChartTitle>Building Energy Usage (MWh)</BuildingEnergyUsageChartTitle>
-            <ResponsiveBar {...commonProps}
-                 colors={({ id, data }) => {
-                   return '#87972f'
-                 }}
-                 //barComponent={CustomBarComponent}
-                 tooltip={({ id, value, color }) => (
-                   <strong style={{ color: "#373637" }}>
-                     {id}: {value} MWh/Yr
-                   </strong>
-                 )}
-            />
-          </BuildingEnergyUsageWrapper>
-          <SummaryBoxWrapper className="d-flex col-12 col-lg-4 col-xl-2 flex-wrap">
-            <SummaryBox className="flex-shrink-0 mb-3">
-              <SummaryBoxTitle>Annual Energy Consumption (MWh/Yr)</SummaryBoxTitle>
-              <SummaryBoxValue>{annualEnergyConsumption}</SummaryBoxValue>
-            </SummaryBox>
-            <SummaryBox className="flex-shrink-0 mb-3">
-              <SummaryBoxTitle>Annual Energy Cost ($)</SummaryBoxTitle>
-              <SummaryBoxValue>{annualEnergyCost}</SummaryBoxValue>
-            </SummaryBox>
-            <SummaryBox className="flex-shrink-0 mb-3 mb-lg-0">
-              <SummaryBoxTitle>Annual Carbon Emissions (Tons/Yr)</SummaryBoxTitle>
-              <SummaryBoxValue>{annualCarbonEmissions}</SummaryBoxValue>
-            </SummaryBox>
-          </SummaryBoxWrapper>
-        </div>
+    <HistoricalComparisonWrapper className="">
+      <HistoricalComparisonContainer className="d-flex mt-5 justify-content-start row">
+
+        <BuildingEnergyUsageWrapper className="col-12 col-lg-8 col-xl-10 mb-5 mb-lg-0">
+          <BuildingEnergyUsageChartTitle>Building Energy Usage (MWh)</BuildingEnergyUsageChartTitle>
+          <ResponsiveBar {...commonProps}
+                         colors={({ id, data }) => {
+                           return '#87972f'
+                         }}
+            //barComponent={CustomBarComponent}
+                         tooltip={({ id, value, color }) => (
+                           <strong style={{ color: '#373637' }}>
+                             {id}: {value} MWh/Yr
+                           </strong>
+                         )}
+          />
+        </BuildingEnergyUsageWrapper>
+        <SummaryBoxWrapper className="d-flex col-12 col-lg-4 col-xl-2 flex-wrap">
+          <SummaryBox className="flex-shrink-0 mb-3">
+            <SummaryBoxTitle>Annual Energy Consumption (MWh/Yr)</SummaryBoxTitle>
+            <SummaryBoxValue>{annualEnergyConsumption}</SummaryBoxValue>
+          </SummaryBox>
+          <SummaryBox className="flex-shrink-0 mb-3">
+            <SummaryBoxTitle>Annual Energy Cost ($)</SummaryBoxTitle>
+            <SummaryBoxValue>{annualEnergyCost}</SummaryBoxValue>
+          </SummaryBox>
+          <SummaryBox className="flex-shrink-0 mb-3 mb-lg-0">
+            <SummaryBoxTitle>Annual Carbon Emissions (Tons/Yr)</SummaryBoxTitle>
+            <SummaryBoxValue>{annualCarbonEmissions}</SummaryBoxValue>
+          </SummaryBox>
+        </SummaryBoxWrapper>
+
       </HistoricalComparisonContainer>
-      
+
       <HistoricalComparison className="d-flex justify-content-around row">
         <h4 className="col col-12 col-md-3 mb-4 mb-lg-0 text-center">Historical<br/>Comparison</h4>
-        <div className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap">
+        <div
+          className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap">
           <UpAndDownImg src={historicalComparision.sameMonthLastYear >= 0 ? redUpImage : greenDownImage}/>
           <HistoricalComparisonInnerWrapper className="ml-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
             <UpAndDownImgTitle>Same Month<br/>Last Year</UpAndDownImgTitle>
             <UpAndDownImgValue>{historicalComparision.sameMonthLastYear >= 0 ? `+${historicalComparision.sameMonthLastYear}` : `${historicalComparision.sameMonthLastYear}`} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
         </div>
-        <div className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap">
+        <div
+          className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap">
           <UpAndDownImg src={historicalComparision.lastMonth >= 0 ? redUpImage : greenDownImage}/>
           <HistoricalComparisonInnerWrapper className="ml-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
             <UpAndDownImgTitle>Last Month</UpAndDownImgTitle>
             <UpAndDownImgValue>{historicalComparision.lastMonth >= 0 ? `+${historicalComparision.lastMonth}` : `${historicalComparision.lastMonth}`} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
         </div>
-        <div className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap">
+        <div
+          className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap">
           <UpAndDownImg src={historicalComparision._12MonthPeriod >= 0 ? redUpImage : greenDownImage}/>
           <HistoricalComparisonInnerWrapper className="ml-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
             <UpAndDownImgTitle>12 Month Period</UpAndDownImgTitle>
