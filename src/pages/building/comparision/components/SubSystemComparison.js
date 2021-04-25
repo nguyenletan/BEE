@@ -66,6 +66,10 @@ const HeadRow = styled.div`
 
 const PopupIcon = styled.img`
   margin-right: .5rem;
+  height: 50%;
+  @media (min-width: 768px){
+    height: auto;
+  }
 `
 
 const PopupTitle = styled.h3`
@@ -84,6 +88,7 @@ const PopupSubtitle = styled.h4`
   text-align: center;
   margin: 2rem auto auto;
   color: var(--inkydark);
+  //height: 2em;
 `
 
 const ComparisonTable = styled.div`
@@ -220,7 +225,7 @@ const SubSystemComparison = () => {
               <PopupTitle>{type} Performance</PopupTitle>
             </div>
             <div className="row">
-              <div className="col-6">
+              <div className="col col-12 col-md-6">
                 <PopupSubtitle>Energy Performance</PopupSubtitle>
                 <ComparisonTable>
                   <div className="row mt-3">
@@ -266,7 +271,7 @@ const SubSystemComparison = () => {
                   </div>
                 </ComparisonTable>
               </div>
-              <div className="col-6">
+              <div className="col col-12 col-md-6">
                 <PopupSubtitle>C02 Emission</PopupSubtitle>
                 <ComparisonTable>
                   <div className="row mt-3">

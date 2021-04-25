@@ -34,10 +34,13 @@ const EditConfigurationButton = styled.button`
 const PerformanceComparisonWrapper = styled.div`
   border-radius: 15px;
   background-color: #fafafa;
-  padding: 20px;
+  padding: 10px;
+  @media(min-width: 768px){
+    padding: 20px;
+  }
   margin-top: 40px;
   margin-bottom: 40px;
-  height: 500px;
+  height: max(500px, 100vw/4);
   min-width: 100%;
 `
 
@@ -242,9 +245,9 @@ const PerformanceComparison2 = () => {
   ]
 
   const commonProperties = {
-    margin: { top: 0, right: 30, bottom: 0, left: 40 },
+    margin: { top: 0, right: 20, bottom: 100, left: 20 },
     animate: true,
-    height: 350
+    //height: 350
     //enableSlices: 'x',
   }
 
@@ -406,8 +409,8 @@ const PerformanceComparison2 = () => {
   }
 
   return <PerformanceComparisonWrapper>
-    <ChartHeader className="d-flex justify-content-between mb-5">
-      <PerformanceComparisonTitle>Sub - System Performance</PerformanceComparisonTitle>
+    <ChartHeader className="d-flex justify-content-between mb-5 flex-wrap">
+      <PerformanceComparisonTitle className="mb-2 mb-md-0">Sub - System Performance</PerformanceComparisonTitle>
 
       <EditConfigurationButton
         type="button"
