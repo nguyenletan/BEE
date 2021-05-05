@@ -7,6 +7,8 @@ import {
 import Login from './pages/login/Login'
 import Portfolio from './pages/portfolio/Portfolio'
 import Building from './pages/building/Building'
+import Register from './pages/register/Register'
+import TermOfService from './pages/TermsOfService'
 
 function App () {
   return (
@@ -14,6 +16,8 @@ function App () {
       <Router>
         <Switch>
           <Route path="/" component={Login} exact/>
+          <Route path="/register" component={Register}/>
+          <Route path="/terms-of-service" component={TermOfService}/>
           <Route path="/portfolio" component={Portfolio}/>
           <Route path="/building/:id" component={Building}/>
         </Switch>

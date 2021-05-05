@@ -3,9 +3,28 @@ import { NavLink, useRouteMatch } from 'react-router-dom'
 import styled from 'styled-components'
 
 const SubNav = styled.nav`
-  display: none;
-  @media(min-width: 600px) {
-    display: flex;
+  display: flex;
+  align-items: center;
+  //@media(min-width: 600px) {
+  //  display: flex;
+  //}
+  a i {
+    display: none;
+  }
+  @media (max-width: 600px) {
+    a {
+      display: none;
+
+      i {
+        padding-left: .3em;
+        display: inline;
+      }
+
+      &.active {
+        display: flex;
+
+      }
+    }
   }
 
 `
@@ -15,7 +34,7 @@ const BuildingHistoricalNav = () => {
   let { url } = useRouteMatch()
   return <SubNav className="nav nav-pills flex-column flex-sm-row">
     <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to={url + '/energy-performance'}>Energy
-      Performance</NavLink>
+      Performance<i className="bi bi-caret-down-fill"></i></NavLink>
     <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link"
              to={url + '/comparison'}>Comparison</NavLink>
     <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link"

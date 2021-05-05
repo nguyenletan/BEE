@@ -51,12 +51,16 @@ const SummaryBoxValue = styled.p`
 
 const BuildingEnergyUsageWrapper = styled.div`
   background-color: #fafafa;
-  padding: 35px 30px 30px 30px;
+ 
   //margin-right: 30px;
   //margin-bottom: 50px;
 
+  padding: 25px 10px 0px 10px;
   height: 491px;
   border-radius: 25px;
+  @media(min-width: 1024px) {
+    padding: 35px 30px 30px 30px;
+  }
 `
 
 const BuildingEnergyUsageChartTitle = styled.h3`

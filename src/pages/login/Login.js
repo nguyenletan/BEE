@@ -21,8 +21,10 @@ const Login = () => {
                     aria-describedby="password"/>
       </div>
       <div className="form-group d-flex justify-content-between">
-        <LoginButton type="submit" className="btn btn-primary"><Link to="/portfolio"><LoginText>Login</LoginText></Link></LoginButton>
-        <LoginButton type="submit" className="btn btn-outline-primary text-right">SignUp</LoginButton>
+        <Link to="/portfolio"><LoginButton type="submit"
+                                           className="btn btn-primary"><LoginText>Login</LoginText></LoginButton></Link>
+        <Link to="/register"><LoginButton type="submit"
+                                          className="btn btn-outline-primary text-right">SignUp</LoginButton></Link>
       </div>
     </LoginForm>
 
