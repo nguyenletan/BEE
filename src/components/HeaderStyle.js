@@ -90,6 +90,11 @@ export const UserName = styled.span`
   vertical-align: middle;
 `
 
+export const SignOutButton = styled.button`
+
+
+`
+
 export const SearchMenu = styled.div`
   margin: auto 30px auto auto;
   @media (max-width: 768px) {

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const RegisterPage = styled.div`
   height: 100vh;
@@ -16,6 +17,7 @@ const Header = styled.h1`
   text-align: left;
   padding: 0;
   letter-spacing: 0.25em;
+
   a {
     &:hover {
       text-decoration: none;
@@ -42,6 +44,7 @@ const Successful = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   a {
     font-size: 18px;
   }
@@ -83,13 +86,42 @@ const ErrorMsg = styled.span`
 const Register = () => {
   const { register, handleSubmit, getValues, formState: { errors } } = useForm()
   const [isAgree, setIsAgree] = useState(false)
+  const [errorMsg, setErrorMsg] = useState(null)
   const [isRegistered, setIsRegistered] = useState(false)
 
-
+  //password: 2@00L2l2
   if (!isRegistered) {
     const onSubmit = data => {
       console.log(data)
-      setIsRegistered(true)
+
+      axios({
+        method: 'post',
+        url: '/users/signup',
+        data: {
+          email: data.email,
+          password: data.password
+        }
+      }).then((response) => {
+        //console.log(response);
+        setErrorMsg(null)
+        setIsRegistered(true)
+      }).catch(error => {
+        //console.log(error)
+        if (error.response) {
+          //   // client received an error response (5xx, 4xx)
+          setErrorMsg(error.response.data.message)
+        }
+
+        //else if (error.request) {
+        //   // client never received a response, or request never left
+        //
+        //   console.log(error.request)
+        // } else {
+        //   // anything else
+        //
+        // }
+      })
+
     }
 
     const comparePassword = () => getValues('password') === getValues('confirmPassword') ? true : 'The passwords you entered do not match.'
@@ -102,8 +134,10 @@ const Register = () => {
           <SubTitle>Building Energy Estimator</SubTitle>
         </div>
 
-
         <RegisterForm onSubmit={handleSubmit(onSubmit)}>
+          {errorMsg && <div className="alert alert-danger" role="alert">
+            {errorMsg}
+          </div>}
           <FormTitle className="mb-5">Create Your Account</FormTitle>
           <div className="form-group">
             <RegisterInput type="email"
@@ -156,7 +190,8 @@ const Register = () => {
             <AgreementCheckbox onChange={() => { setIsAgree(!isAgree)}}
                                id="agreement"
                                type="checkbox"/>
-            <label htmlFor="agreement">You Agree To Our <Link to="/terms-of-service" title="Terms Of Service">Terms Of Service.</Link>
+            <label htmlFor="agreement">You Agree To Our <Link to="/terms-of-service" title="Terms Of Service">Terms Of
+              Service.</Link>
             </label>
           </div>
           <div className="form-group d-flex justify-content-between">

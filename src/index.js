@@ -5,15 +5,19 @@ import './index.scss'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter } from 'react-router-dom'
+import {AuthProvider} from './AuthenticateProvider';
 
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 
+
 ReactDOM.render(
   <React.StrictMode>
+    <AuthProvider>
     <BrowserRouter>
       <App/>
     </BrowserRouter>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )

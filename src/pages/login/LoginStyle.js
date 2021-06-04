@@ -40,3 +40,7 @@ export const LoginInput = styled.input`
 export const LoginButton = styled.button`
   border-radius: 0.65rem;
 `
+
+export const ErrorMsg = styled.span`
+  color: var(--danger);
+`

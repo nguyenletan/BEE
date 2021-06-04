@@ -1,9 +1,25 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { SearchIcon, SearchInput, InputGroup, LogoHeader, HeaderWrapper, Menu, MenuItem, ActiveMenuItem, NumberMessage, UserNameAvatar, UserName, SearchMenu} from './HeaderStyle'
+import {useAuth} from '../AuthenticateProvider';
+import {
+  SearchIcon,
+  SearchInput,
+  InputGroup,
+  LogoHeader,
+  HeaderWrapper,
+  Menu,
+  MenuItem,
+  ActiveMenuItem,
+  NumberMessage,
+  UserNameAvatar,
+  SearchMenu,
+  SignOutButton,
+} from './HeaderStyle';
 
 
 const Header = () => {
+  const {logout} = useAuth();
+
   return <HeaderWrapper className="row">
     <LogoHeader><Link to="/portfolio">BEE</Link></LogoHeader>
     <Menu className="flex-fill">
@@ -18,7 +34,8 @@ const Header = () => {
         <SearchIcon className="input-group-text"><i className="bi bi-search"></i></SearchIcon>
       </InputGroup>
     </SearchMenu>
-    <UserNameAvatar><UserName>JC</UserName></UserNameAvatar>
+    {/*<UserNameAvatar><UserName>JC</UserName></UserNameAvatar>*/}
+    <UserNameAvatar><SignOutButton className="btn btn-primary btn-sm" onClick={logout}>Sign out</SignOutButton></UserNameAvatar>
   </HeaderWrapper>
 }
 
