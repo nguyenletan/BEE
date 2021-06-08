@@ -117,7 +117,41 @@ export const getSubSystemIcon = (subSystem) => {
   }
   return {
     imgSrc: imgSrc,
-    width: width
+    width: width,
   }
 
+}
+
+export const replaceAll = (str, replaceWith = '+') => {
+  const searchRegExp = /\s/g
+  if (str) {
+    return str.replace(searchRegExp, replaceWith)
+  }
+  return ''
+}
+
+export const getLatLngFromAddress = async (address) => {
+  let googleMapAPIEndPoint = 'https://maps.googleapis.com/maps/api/geocode/json'
+  let location = null
+  const url = googleMapAPIEndPoint + '?address=' + address + '&key=' + process.env.REACT_APP_GOOGLE_API_KEY
+  await fetch(url).then(response => response.json()).then(data => {
+    console.log(data)
+    location = data
+    return true
+  })
+  return location
+}
+
+export const getPlaceDetail = async (placeId) => {
+  let googleMapAPIEndPoint = 'https://maps.googleapis.com/maps/api/place/details/json'
+  let placeDetail = null
+  const url = googleMapAPIEndPoint + '?place_id=' + placeId + '&fields=name,rating,formatted_phone_number&key=' + process.env.REACT_APP_GOOGLE_API_KEY
+  await fetch(url,{
+    mode: 'cors'
+  }).then(response => response.json()).then(data => {
+    console.log(data)
+    placeDetail = data
+    return true
+  })
+  return placeDetail
 }

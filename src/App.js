@@ -8,12 +8,14 @@ import Portfolio from './pages/portfolio/Portfolio';
 import Building from './pages/building/Building';
 import Register from './pages/register/Register';
 import TermOfService from './pages/TermsOfService';
+import AddingBuilding from './pages/adding-building/AddingBuilding';
 
 
 function App() {
   const {user, loading} = useAuth();
   if (loading) return null;
   if (!user) return <FirebaseAuth/>;
+
   return (
       <>
         <div className="App container-fluid">
@@ -24,6 +26,7 @@ function App() {
               <Route path="/terms-of-service" component={TermOfService}/>
               <Route path="/portfolio" component={Portfolio}/>
               <Route path="/building/:id" component={Building}/>
+              <Route path="/adding-building" component={AddingBuilding}/>
             </Switch>
           </Router>
         </div>

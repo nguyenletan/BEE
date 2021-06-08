@@ -6,6 +6,7 @@ import buildingImage2 from '../../assets/images/building2.jpg'
 import buildingImage3 from '../../assets/images/building3.jpg'
 import BuildingBlock from '../../components/BuildingBlock'
 import { AddBuildingText, AddingIcon, BuildingBlocks, Description, PortfolioWrapper } from './PortfolioStyle'
+import {Link} from 'react-router-dom';
 
 const buildingData = [
   {
@@ -40,8 +41,10 @@ const Portfolio = () => {
           health</Description>
 
         <div>
-          <AddBuildingText className="text-primary font-weight-bold">Add building</AddBuildingText>
-          <AddingIcon className="bi bi-plus-circle-fill"/>
+          <Link to="/adding-building">
+            <AddBuildingText className="text-primary font-weight-bold">Add building</AddBuildingText>
+            <AddingIcon className="bi bi-plus-circle-fill"/>
+          </Link>
         </div>
       </div>
 
