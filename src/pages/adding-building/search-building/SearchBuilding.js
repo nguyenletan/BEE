@@ -159,7 +159,7 @@ const SearchBuilding = () => {
         {buildingInformationContext && <div className="col-4">
           <h2 className="text-primary">Is it your building?</h2>
           <Link to="adding-building/general-information">
-            <button className="btn btn-primary btn-md">Next</button>
+            <button className="btn btn-primary btn-md">Next ></button>
           </Link>
         </div>}
       </div>
