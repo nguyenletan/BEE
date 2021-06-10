@@ -3,25 +3,34 @@ import styled from 'styled-components'
 import { getLatLngFromAddress } from '../../../Utilities'
 import { BuildingInformationContext } from '../AddingBuilding'
 import { GoogleMap, Marker, OverlayView } from '@react-google-maps/api'
-import { Link } from 'react-router-dom'
-import GooglePlacesAutocomplete  from 'react-google-places-autocomplete'
+import { Redirect } from 'react-router-dom'
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
+import { ErrorMsg } from '../../login/LoginStyle'
+import { Form } from 'react-bootstrap'
+import { useForm } from 'react-hook-form'
 
-export const SearchButton = styled.button`
+const Title = styled.h2`
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 1em;
+`
+
+const SearchButton = styled.button`
   border-radius: 0.2rem;
 `
 
-export const Input = styled.input`
+const Input = styled.input`
   border-radius: 0.2em;
   border-color: #7b7b7b;
 `
 
-export const SearchButtonText = styled.span`
+const SearchButtonText = styled.span`
   color: var(--white);
 `
 
 const SearchBuilding = () => {
   const mapStyles = {
-    height: '500px',
+    height: '480px',
     width: '100%',
   }
 
@@ -42,10 +51,10 @@ const SearchBuilding = () => {
 
   const [searchValue, setSearchValue] = useState('')
 
+  const [isMovingNext, setIsMovingNext] = useState(false)
+
   const [buildingInformationContext, setBuildingInformationContext] = useContext(
     BuildingInformationContext)
-  console.log(buildingInformationContext)
-
 
   const onSearch = async () => {
     console.log(searchValue)
@@ -80,8 +89,33 @@ const SearchBuilding = () => {
       }
 
     }
-    console.log(information)
+
     setBuildingInformationContext(information)
+
+    setValue('address', information?.address, {
+      shouldValidate: true,
+      shouldDirty: true,
+    })
+    setValue('city', information?.city, {
+      shouldValidate: true,
+      shouldDirty: true,
+    })
+    setValue('state', information?.state, {
+      shouldValidate: true,
+      shouldDirty: true,
+    })
+    setValue('countryCode', information?.country, {
+      shouldValidate: true,
+      shouldDirty: true,
+    })
+    setValue('postalCode', information?.postalCode, {
+      shouldValidate: true,
+      shouldDirty: true,
+    })
+    setValue('buildingName', information?.buildingName, {
+      shouldValidate: true,
+      shouldDirty: true,
+    })
   }
 
   const DropdownIndicator = (props) => {
@@ -99,68 +133,204 @@ const SearchBuilding = () => {
     )
   }
 
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm({
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+    defaultValues: {
+      // buildingName: 'data?.buildingName',
+      // postalCode:data?.postalCode,
+      // address: data?.address,
+      // city: data?.city,
+      // countryCode: data?.countryCode,
+      // state: data?.state
+    },
+    resolver: undefined,
+    context: undefined,
+    criteriaMode: 'firstError',
+    shouldFocusError: false,
+    shouldUnregister: false,
+  })
+
+  const onSubmit = (data) => {
+    console.log(data)
+    console.log(buildingInformationContext)
+    setBuildingInformationContext({...buildingInformationContext, ...data})
+    setIsMovingNext(true)
+  }
+
   return (
     <>
-      <div className="row">
-        <div className="col-12 col-lg-6">
-          <div className="form-group col-12 col-lg-12">
-            <label htmlFor="building-name">Enter Building Name or
-              Address</label>
-            <div className="d-flex">
-              <div className="w-75 mr-1">
-                <GooglePlacesAutocomplete
-                  apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
-                  debounce={300}
-                  minLengthAutocomplete={1}
-                  selectProps={{
-                    components: { DropdownIndicator, NoOptionsMessage },
-                    isMulti: false,
-                    isClearable: true,
-                    searchValue,
-                    onChange: setSearchValue,
-                    placeholder: 'Building name or Address',
 
-                  }}
-                />
+      <Title>Search Online</Title>
+
+      {isMovingNext && <Redirect to="/adding-building/general-information"/>}
+
+      <div className="row">
+        <div className="col-12 col-lg-7">
+          <div className="row">
+
+            <div className="form-group col-12 col-lg-12 ml-0">
+              <label htmlFor="building-name">Enter Building Name or
+                Address</label>
+              <div className="d-flex">
+                <div className="w-75 mr-1">
+                  <GooglePlacesAutocomplete
+                    apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
+                    debounce={300}
+                    minLengthAutocomplete={1}
+                    selectProps={{
+                      components: { DropdownIndicator, NoOptionsMessage },
+                      isMulti: false,
+                      isClearable: true,
+                      searchValue,
+                      onChange: setSearchValue,
+                      placeholder: 'Building name or Address',
+
+                    }}
+                  />
+                </div>
+                <SearchButton type="button"
+                              onClick={onSearch}
+                              className="btn btn-primary"><SearchButtonText>Search</SearchButtonText></SearchButton>
               </div>
-              <SearchButton type="button"
-                            onClick={onSearch}
-                            className="btn btn-primary"><SearchButtonText>Search</SearchButtonText></SearchButton>
+            </div>
+
+          </div>
+
+          {buildingInformationContext &&
+          <div className="row mt-3 mb-5">
+            <div className="col-12 col-lg-12">
+              {/*<LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>*/}
+              <GoogleMap mapContainerStyle={mapStyles} zoom={18}
+                         center={buildingInformationContext.location}>
+                <OverlayView position={buildingInformationContext.location}
+                             mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
+                  <div
+                    style={divStyle}>{buildingInformationContext.formatted_address}</div>
+                </OverlayView>
+                <Marker
+                  position={buildingInformationContext.location}
+                  title={searchValue}
+                  zIndex={1}>
+                </Marker>
+              </GoogleMap>
+              {/*</LoadScript>*/}
             </div>
           </div>
-
-        </div>
-      </div>
-
-      <div className="row">
-        <div className="col-8"> {buildingInformationContext &&
-        <div className="row mt-3 mb-5">
-          <div className="col-12 col-lg-12">
-            {/*<LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>*/}
-            <GoogleMap mapContainerStyle={mapStyles} zoom={18}
-                       center={buildingInformationContext.location}>
-              <OverlayView position={buildingInformationContext.location}
-                           mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
-                <div
-                  style={divStyle}>{buildingInformationContext.formatted_address}</div>
-              </OverlayView>
-              <Marker
-                position={buildingInformationContext.location}
-                title={searchValue}
-                zIndex={1}>
-              </Marker>
-            </GoogleMap>
-            {/*</LoadScript>*/}
-          </div>
-        </div>
-        }
+          }
         </div>
 
-        {buildingInformationContext && <div className="col-4">
-          <h2 className="text-primary">Is it your building?</h2>
-          <Link to="adding-building/general-information">
-            <button className="btn btn-primary btn-md">Next ></button>
-          </Link>
+        {buildingInformationContext &&
+        <div className="col-12 col-lg-5">
+          <Form onSubmit={handleSubmit(onSubmit)}>
+
+            <h5 className="text-primary">Is the information correct?</h5>
+
+            <button type="submit" className="btn btn-primary btn-md mb-4">Yes</button>
+
+            <div className="form-group">
+              <label htmlFor="building-name">Building Name</label>
+              <Input type="text"
+                     className="form-control"
+                     id="building-name"
+                     aria-describedby="Building Name"
+                     placeholder="Building Name"
+                     {...register('buildingName', {
+                       required: true,
+                       maxLength: 100,
+                     })}/>
+              {errors?.buildingName?.type === 'required' &&
+              <ErrorMsg>Building Name is required</ErrorMsg>}
+              {errors?.buildingName?.type === 'maxLength' &&
+              <ErrorMsg>Max length is 100</ErrorMsg>}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="address">Address</label>
+              <Input type="text"
+                     className="form-control"
+                     id="address"
+                     aria-describedby="Address"
+                     placeholder="Address"
+                     autocomplete="off"
+                     {...register('address', {
+                       required: true,
+                       maxLength: 100,
+                     })}/>
+              {errors?.address?.type === 'maxLength' &&
+              <ErrorMsg>Max length is 100</ErrorMsg>}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="postal-code">Postal Code</label>
+              <Input type="text"
+                     inputMode="numeric"
+                     className="form-control"
+                     id="postal-code"
+                     aria-describedby="Postal Code"
+                     placeholder="Postal Code"
+                     autocomplete="off"
+                     {...register('postalCode', {
+                       required: true,
+                       maxLength: 10,
+                     })}/>
+              {errors?.postalCode?.type === 'required' &&
+              <ErrorMsg>Postal Code is required</ErrorMsg>}
+              {errors?.postalCode?.type === 'maxLength' &&
+              <ErrorMsg>Max length is 10</ErrorMsg>}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="city">City</label>
+              <Input type="text"
+                     className="form-control"
+                     id="city"
+                     aria-describedby="City"
+                     placeholder="City"
+                     autocomplete="off"
+                     {...register('city', {
+                       required: true,
+                       maxLength: 100,
+                     })}/>
+              {errors?.city?.type === 'maxLength' &&
+              <ErrorMsg>Max length is 100</ErrorMsg>}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="state">State</label>
+              <Input type="text"
+                     className="form-control"
+                     id="state"
+                     aria-describedby="State"
+                     placeholder="State"
+                     autocomplete="off"
+                     {...register('state', {
+                       required: false,
+                       maxLength: 100,
+                     })}/>
+              {errors?.state?.type === 'maxLength' &&
+              <ErrorMsg>Max length is 10</ErrorMsg>}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="country-code">Country Code</label>
+              <Input type="text"
+                     className="form-control"
+                     id="country-code"
+                     aria-describedby="Country Code"
+                     placeholder="Country Code"
+                     autocomplete="off"
+                     {...register('countryCode', {
+                       required: false,
+                       maxLength: 100,
+                     })}/>
+              {errors?.countryCode?.type === 'required' &&
+              <ErrorMsg>Country Code is required</ErrorMsg>}
+              {errors?.countryCode?.type === 'maxLength' &&
+              <ErrorMsg>Max length is 10</ErrorMsg>}
+            </div>
+
+          </Form>
         </div>}
       </div>
     </>

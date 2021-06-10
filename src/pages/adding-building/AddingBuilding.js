@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Header from '../../components/Header'
-import styled from 'styled-components'
+
 import {
   BrowserRouter as Router,
   Route,
@@ -9,11 +9,7 @@ import {
 } from 'react-router-dom'
 import GeneralInformation from './general-information/GeneralInformation'
 import SearchBuilding from './search-building/SearchBuilding'
-
-const Title = styled.h1`
-  color: var(--primary);
-  font-weight: 600;
-`
+import AskQuestion from './search-building/AskQuestion'
 
 export const BuildingInformationContext = React.createContext()
 
@@ -24,18 +20,21 @@ const AddingBuilding = () => {
 
   return (
     <>
-      <BuildingInformationContext.Provider value={[buildingInformationContext, setBuildingInformationContext]}>
-        <Header/>
 
-        <Title>New Building</Title>
-
-        <Router>
-          <Switch>
-            <Route path={`${path}/`} component={SearchBuilding} exact/>
-            <Route path={`${path}/general-information`}
-                   component={GeneralInformation} exact/>
-          </Switch>
-        </Router>
+      <Header/>
+      <BuildingInformationContext.Provider
+        value={[buildingInformationContext, setBuildingInformationContext]}>
+        <div className="container">
+          <Router>
+            <Switch>
+              <Route path={`${path}/`} component={AskQuestion} exact/>
+              <Route path={`${path}/search-building`}
+                     component={SearchBuilding}/>
+              <Route path={`${path}/general-information`}
+                     component={GeneralInformation}/>
+            </Switch>
+          </Router>
+        </div>
       </BuildingInformationContext.Provider>
     </>
   )
