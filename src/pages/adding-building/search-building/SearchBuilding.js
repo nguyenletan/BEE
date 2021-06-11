@@ -8,6 +8,7 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 import { ErrorMsg } from '../../login/LoginStyle'
 import { Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
+import Countries, { findCountryByCountryCode } from '../../../Country'
 
 const Title = styled.h2`
   color: var(--primary);
@@ -28,9 +29,14 @@ const SearchButtonText = styled.span`
   color: var(--white);
 `
 
+const Select = styled.select`
+  border-radius: 0.2em;
+  border-color: #7b7b7b;
+`
+
 const SearchBuilding = () => {
   const mapStyles = {
-    height: '480px',
+    height: '493px',
     width: '100%',
   }
 
@@ -65,7 +71,7 @@ const SearchBuilding = () => {
       address: '',
       city: '',
       state: '',
-      country: '',
+      countryCode: '',
       suburb: '',
       postalCode: '',
       location: result?.results[0]?.geometry?.location,
@@ -79,7 +85,9 @@ const SearchBuilding = () => {
         item.types.includes('locality')) {
         information.city += item.long_name
       } else if (item.types.includes('country')) {
-        information.country += item.long_name
+        const country = findCountryByCountryCode(item.short_name)
+        information.countryCode = country.alpha2Code
+
       } else if (item.types.includes('postal_code')) {
         information.postalCode += item.long_name
       } else if (item.types.includes('administrative_area_level_1')) {
@@ -104,7 +112,7 @@ const SearchBuilding = () => {
       shouldValidate: true,
       shouldDirty: true,
     })
-    setValue('countryCode', information?.country, {
+    setValue('countryCode', information?.countryCode, {
       shouldValidate: true,
       shouldDirty: true,
     })
@@ -154,7 +162,7 @@ const SearchBuilding = () => {
   const onSubmit = (data) => {
     console.log(data)
     console.log(buildingInformationContext)
-    setBuildingInformationContext({...buildingInformationContext, ...data})
+    setBuildingInformationContext({ ...buildingInformationContext, ...data })
     setIsMovingNext(true)
   }
 
@@ -226,7 +234,8 @@ const SearchBuilding = () => {
 
             <h5 className="text-primary">Is the information correct?</h5>
 
-            <button type="submit" className="btn btn-primary btn-md mb-4">Yes</button>
+            <button type="submit" className="btn btn-primary btn-md mb-4">Yes
+            </button>
 
             <div className="form-group">
               <label htmlFor="building-name">Building Name</label>
@@ -257,6 +266,8 @@ const SearchBuilding = () => {
                        required: true,
                        maxLength: 100,
                      })}/>
+              {errors?.address?.type === 'required' &&
+              <ErrorMsg>Address is required</ErrorMsg>}
               {errors?.address?.type === 'maxLength' &&
               <ErrorMsg>Max length is 100</ErrorMsg>}
             </div>
@@ -271,7 +282,7 @@ const SearchBuilding = () => {
                      placeholder="Postal Code"
                      autocomplete="off"
                      {...register('postalCode', {
-                       required: true,
+                       required: false,
                        maxLength: 10,
                      })}/>
               {errors?.postalCode?.type === 'required' &&
@@ -314,20 +325,16 @@ const SearchBuilding = () => {
 
             <div className="form-group">
               <label htmlFor="country-code">Country Code</label>
-              <Input type="text"
-                     className="form-control"
-                     id="country-code"
-                     aria-describedby="Country Code"
-                     placeholder="Country Code"
-                     autocomplete="off"
-                     {...register('countryCode', {
-                       required: false,
-                       maxLength: 100,
-                     })}/>
-              {errors?.countryCode?.type === 'required' &&
-              <ErrorMsg>Country Code is required</ErrorMsg>}
-              {errors?.countryCode?.type === 'maxLength' &&
-              <ErrorMsg>Max length is 10</ErrorMsg>}
+              <Select id="country" className="form-select" {...register('countryCode')}>
+                {Countries.map((o) => (
+                  <option
+                    key={o.alpha2Code}
+                    value={o.alpha2Code}
+                  >
+                    {o.name}
+                  </option>
+                ))}
+              </Select>
             </div>
 
           </Form>

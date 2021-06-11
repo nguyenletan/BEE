@@ -20,6 +20,7 @@ $font-family-sans-serif: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe 
   --lightgreen: #CDEAE5;
   --normalgreen: #A8D4CC;
   --purple: #5F5283;
+  --primary: #87972f;
 }
 
 body {
@@ -47,6 +48,9 @@ body {
   border-bottom: 4px solid var(--primary);
   border-radius: 0;
   font-weight: 700;
+}
+.btn-primary, .btn-primary:hover{
+  color: var(--offwhite);
 }
 
 svg {

@@ -13,20 +13,20 @@ import {
   NumberMessage,
   UserNameAvatar,
   SearchMenu,
-  SignOutButton,
-} from './HeaderStyle';
+  UserName,
+} from './HeaderStyle'
 
 
 const Header = () => {
   const {logout} = useAuth();
 
-  return <HeaderWrapper className="row">
+  return <HeaderWrapper className="">
     <LogoHeader><Link to="/portfolio">BEE</Link></LogoHeader>
     <Menu className="flex-fill">
       <ActiveMenuItem>Building</ActiveMenuItem>
       <MenuItem>Messages <NumberMessage>3</NumberMessage></MenuItem>
       <MenuItem>Setting</MenuItem>
-      <MenuItem><Link to="/">Logout</Link></MenuItem>
+      <MenuItem onClick={logout}>Logout</MenuItem>
     </Menu>
     <SearchMenu>
       <InputGroup className="input-group">
@@ -35,7 +35,7 @@ const Header = () => {
       </InputGroup>
     </SearchMenu>
     {/*<UserNameAvatar><UserName>JC</UserName></UserNameAvatar>*/}
-    <UserNameAvatar><SignOutButton className="btn btn-primary btn-sm" onClick={logout}>Sign out</SignOutButton></UserNameAvatar>
+    <UserNameAvatar><UserNameAvatar><UserName>JC</UserName></UserNameAvatar></UserNameAvatar>
   </HeaderWrapper>
 }
 

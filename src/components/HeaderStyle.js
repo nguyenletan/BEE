@@ -40,6 +40,7 @@ export const MenuItem = styled.span`
   display: inline-block;
   margin-right: 30px;
   font-size: 1.1rem;
+  cursor: pointer;
   @media (max-width: 768px) {
     margin-right: 10px;
   }

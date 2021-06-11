@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ErrorMsg } from '../../login/LoginStyle'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import cameraImg from '../../../assets/images/camera.jpg'
 import { Link } from 'react-router-dom'
+
+import Countries from '../../../Country'
+import { BuildingInformationContext } from '../AddingBuilding'
+
 
 const Form = styled.form`
 
@@ -91,12 +95,11 @@ const GeneralInformationFrom = ({ data }) => {
     shouldUnregister: false,
   })
   const [errorMsg] = useState(null)
-  const [selectedOriented, setSelectedOriented] = useState(oriented[0])
-  const [sustainabilityRating, setSustainabilityRating] = useState(oriented[0])
-  const [constructionPeriod, setConstructionPeriod] = useState(period[0])
-  const [buildingUseType, setBuildingUseType] = useState(useType[0])
 
+  const [buildingInformationContext, setBuildingInformationContext] = useContext(
+    BuildingInformationContext)
   useEffect(() => {
+
     setValue('address', data?.address, {
       shouldValidate: true,
       shouldDirty: true,
@@ -109,7 +112,7 @@ const GeneralInformationFrom = ({ data }) => {
       shouldValidate: true,
       shouldDirty: true,
     })
-    setValue('countryCode', data?.country, {
+    setValue('countryCode', data?.countryCode, {
       shouldValidate: true,
       shouldDirty: true,
     })
@@ -125,6 +128,8 @@ const GeneralInformationFrom = ({ data }) => {
 
   const onSubmit = (data) => {
     console.log(data)
+    setBuildingInformationContext({...buildingInformationContext, ...data})
+
   }
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -157,8 +162,7 @@ const GeneralInformationFrom = ({ data }) => {
             <div className="form-group col-12 col-lg-6">
               <label htmlFor="building-orientation">Building
                 Orientation</label>
-              <Select className="form-control" value={selectedOriented}
-                      onChange={(e) => setSelectedOriented(e.target.value)}>
+              <Select className="form-select" {...register('buildingOriented')}>
                 {oriented.map((o) => (
                   <option
                     key={o.id}
@@ -189,11 +193,8 @@ const GeneralInformationFrom = ({ data }) => {
             </div>
 
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="sustainability-rating">Sustainability
-                Rating</label>
-              <Select id="sustainability-rating" className="form-control"
-                      value={sustainabilityRating}
-                      onChange={(e) => setSustainabilityRating(e.target.value)}>
+              <label htmlFor="sustainability-rating-scheme">Sustainability Rating Scheme</label>
+              <Select id="sustainability-rating-scheme" className="form-select" {...register("sustainabilityRatingSchema")}>
                 {oriented.map((o) => (
                   <option
                     key={o.id}
@@ -204,7 +205,6 @@ const GeneralInformationFrom = ({ data }) => {
                 ))}
               </Select>
             </div>
-
 
           </div>
 
@@ -228,6 +228,39 @@ const GeneralInformationFrom = ({ data }) => {
               <ErrorMsg>Max length is 10</ErrorMsg>}
             </div>
             <div className="form-group col-12 col-lg-6">
+              <label htmlFor="sustainability-rating">Sustainability
+                Rating</label>
+              <Select id="sustainability-rating" className="form-select" {...register("sustainabilityRating")}>
+                {oriented.map((o) => (
+                  <option
+                    key={o.id}
+                    value={o.id}
+                  >
+                    {o.name}
+                  </option>
+                ))}
+              </Select>
+            </div>
+
+          </div>
+
+          <div className="row">
+            <div className="form-group col-12 col-lg-6">
+              <label htmlFor="city">City</label>
+              <Input type="text"
+                     className="form-control"
+                     id="city"
+                     aria-describedby="City"
+                     placeholder="City"
+                     autocomplete="off"
+                     {...register('city', {
+                       required: true,
+                       maxLength: 100,
+                     })}/>
+              {errors?.city?.type === 'maxLength' &&
+              <ErrorMsg>Max length is 100</ErrorMsg>}
+            </div>
+            <div className="form-group col-12 col-lg-6">
               <label htmlFor="storeys-above-ground">Storeys Above Ground</label>
               <Input type="text"
                      className="form-control"
@@ -248,42 +281,6 @@ const GeneralInformationFrom = ({ data }) => {
 
           <div className="row">
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="city">City</label>
-              <Input type="text"
-                     className="form-control"
-                     id="city"
-                     aria-describedby="City"
-                     placeholder="City"
-                     autocomplete="off"
-                     {...register('city', {
-                       required: true,
-                       maxLength: 100,
-                     })}/>
-              {errors?.city?.type === 'maxLength' &&
-              <ErrorMsg>Max length is 100</ErrorMsg>}
-            </div>
-            <div className="form-group col-12 col-lg-6">
-              <label htmlFor="storeys-below-ground">Storeys Below Ground</label>
-              <Input type="text"
-                     className="form-control"
-                     id="storeys-below-ground"
-                     aria-describedby="Storeys Below Ground"
-                     placeholder="Storeys Below Ground"
-                     autocomplete="off"
-                     {...register('Storeys Below Ground', {
-                       required: true,
-                       maxLength: 100,
-                     })}/>
-              {errors?.storeysBelowGround?.type === 'required' &&
-              <ErrorMsg>Storeys Below Ground is required</ErrorMsg>}
-              {errors?.storeysBelowGround?.type === 'maxLength' &&
-              <ErrorMsg>Max length is 100</ErrorMsg>}
-            </div>
-
-          </div>
-
-          <div className="row">
-            <div className="form-group col-12 col-lg-6">
               <label htmlFor="state">State</label>
               <Input type="text"
                      className="form-control"
@@ -298,7 +295,46 @@ const GeneralInformationFrom = ({ data }) => {
               {errors?.state?.type === 'maxLength' &&
               <ErrorMsg>Max length is 10</ErrorMsg>}
             </div>
+            <div className="form-group col-12 col-lg-6">
+              <label htmlFor="storeys-below-ground">Storeys Below Ground</label>
+              <Input type="text"
+                     className="form-control"
 
+                     id="storeys-below-ground"
+                     aria-describedby="Storeys Below Ground"
+                     placeholder="Storeys Below Ground"
+                     autocomplete="off"
+                     {...register('Storeys Below Ground', {
+                       required: true,
+                       maxLength: 100,
+                     })}/>
+              {errors?.storeysBelowGround?.type === 'required' &&
+              <ErrorMsg>Storeys Below Ground is required</ErrorMsg>}
+              {errors?.storeysBelowGround?.type === 'maxLength' &&
+              <ErrorMsg>Max length is 100</ErrorMsg>}
+            </div>
+          </div>
+
+          <div className="row">
+
+            <div className="form-group col-12 col-lg-6">
+              <label htmlFor="country-code">Country</label>
+              <Select id="country-code" className="form-select"
+                      {...register('countryCode')}>
+                {Countries.map((o) => (
+                  <option
+                    key={o.alpha2Code}
+                    value={o.alpha2Code}
+                  >
+                    {o.name}
+                  </option>
+                ))}
+              </Select>
+              {errors?.country?.type === 'required' &&
+              <ErrorMsg>Country Code is required</ErrorMsg>}
+              {errors?.country?.type === 'maxLength' &&
+              <ErrorMsg>Max length is 10</ErrorMsg>}
+            </div>
             <div className="form-group col-12 col-lg-6">
               <label htmlFor="gross-interior-area">Gross Interior Area</label>
               <Input type="text"
@@ -316,28 +352,28 @@ const GeneralInformationFrom = ({ data }) => {
               {errors?.grossInteriorArea?.type === 'maxLength' &&
               <ErrorMsg>Max length is 100</ErrorMsg>}
             </div>
+
+
           </div>
 
           <div className="row">
-
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="country-code">Country Code</label>
-              <Input type="text"
-                     className="form-control"
-                     id="country-code"
-                     aria-describedby="Country Code"
-                     placeholder="Country Code"
-                     autocomplete="off"
-                     {...register('countryCode', {
-                       required: false,
-                       maxLength: 100,
-                     })}/>
-              {errors?.countryCode?.type === 'required' &&
-              <ErrorMsg>Country Code is required</ErrorMsg>}
-              {errors?.countryCode?.type === 'maxLength' &&
-              <ErrorMsg>Max length is 10</ErrorMsg>}
+              <label htmlFor="construction-period">Construction Period</label>
+              <Select id="construction-period" className="form-select" {...register('construction-period')}>
+                {period.map((o) => (
+                  <option
+                    key={o.id}
+                    value={o.value}
+                  >
+                    {o.name}
+                  </option>
+                ))}
+              </Select>
+              {errors?.constructionPeriod?.type === 'required' &&
+              <ErrorMsg>Construction Period is required</ErrorMsg>}
+              {errors?.constructionPeriod?.type === 'maxLength' &&
+              <ErrorMsg>Max length is 100</ErrorMsg>}
             </div>
-
             <div className="form-group col-12 col-lg-6">
               <label htmlFor="net-usable-area">Net Usable Area</label>
               <Input type="text"
@@ -355,29 +391,27 @@ const GeneralInformationFrom = ({ data }) => {
               {errors?.netUsableArea?.type === 'maxLength' &&
               <ErrorMsg>Max length is 100</ErrorMsg>}
             </div>
+
           </div>
 
           <div className="row">
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="construction-period">Construction Period</label>
-              <Select id="construction-period" className="form-control"
-                      value={constructionPeriod}
-                      onChange={(e) => setConstructionPeriod(e.target.value)}>
-                {period.map((o) => (
+              <label htmlFor="use-type">Use Type</label>
+              <Select id="use-type" className="form-select" {...register('useType')}>
+                {useType.map((o) => (
                   <option
                     key={o.id}
-                    value={o.value}
+                    value={o.name}
                   >
                     {o.name}
                   </option>
                 ))}
               </Select>
-              {errors?.constructionPeriod?.type === 'required' &&
-              <ErrorMsg>Construction Period is required</ErrorMsg>}
-              {errors?.constructionPeriod?.type === 'maxLength' &&
+              {errors?.useType?.type === 'required' &&
+              <ErrorMsg>Use Type is required</ErrorMsg>}
+              {errors?.useType?.type === 'maxLength' &&
               <ErrorMsg>Max length is 100</ErrorMsg>}
             </div>
-
             <div className="form-group col-12 col-lg-6">
               <label htmlFor="avg-internal-floor-to-ceiling-height">Avg.
                 Internal Floor to Ceiling Height</label>
@@ -400,30 +434,8 @@ const GeneralInformationFrom = ({ data }) => {
           </div>
 
           <div className="row">
-            <div className="form-group col-12 col-lg-6">
-              <label htmlFor="use-type">Use Type</label>
-              <Select id="use-type" className="form-control"
-                      value={buildingUseType}
-                      onChange={(e) => setBuildingUseType(e.target.value)}>
-                {useType.map((o) => (
-                  <option
-                    key={o.id}
-                    value={o.name}
-                  >
-                    {o.name}
-                  </option>
-                ))}
-              </Select>
-              {errors?.useType?.type === 'required' &&
-              <ErrorMsg>Use Type is required</ErrorMsg>}
-              {errors?.useType?.type === 'maxLength' &&
-              <ErrorMsg>Max length is 100</ErrorMsg>}
-            </div>
-          </div>
-
-          <div className="row">
             <div className="form-group col-12 d-flex justify-content-between">
-              <Link to="/adding-building">
+              <Link to="/adding-building/search-building">
                 <button type="button" className="btn btn-secondary">&lt; Back
                 </button>
               </Link>
@@ -445,7 +457,7 @@ const GeneralInformationFrom = ({ data }) => {
           <input
             type="file"
             id="upload-button"
-            className="hidden"
+            className="d-none"
             onChange={handleChange}
           />
           <label className="mt-3 btn btn-primary" htmlFor="upload-button"
