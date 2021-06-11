@@ -7471,7 +7471,7 @@ const Countries = [
     'cioc': 'LUX',
   },
   {
-    'name': 'Macao',
+    'name': 'Macao (SAR)',
     'topLevelDomain': ['.mo'],
     'alpha2Code': 'MO',
     'alpha3Code': 'MAC',
@@ -12611,7 +12611,7 @@ const Countries = [
     'cioc': 'SYR',
   },
   {
-    'name': 'Taiwan',
+    'name': 'Taiwan (China)',
     'topLevelDomain': ['.tw'],
     'alpha2Code': 'TW',
     'alpha3Code': 'TWN',

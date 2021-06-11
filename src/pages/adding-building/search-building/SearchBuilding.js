@@ -324,7 +324,7 @@ const SearchBuilding = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="country-code">Country Code</label>
+              <label htmlFor="country-code">Country</label>
               <Select id="country" className="form-select" {...register('countryCode')}>
                 {Countries.map((o) => (
                   <option
