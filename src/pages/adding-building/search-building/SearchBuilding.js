@@ -8,7 +8,7 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 import { ErrorMsg } from '../../login/LoginStyle'
 import { Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
-import Countries, { findCountryByCountryCode } from '../../../Country'
+import Countries, { findCountryByCountryCode } from '../../../reference-tables/Country'
 
 const Title = styled.h2`
   color: var(--primary);
@@ -17,7 +17,7 @@ const Title = styled.h2`
 `
 
 const SearchButton = styled.button`
-  border-radius: 0.2rem;
+
 `
 
 const Input = styled.input`
@@ -300,7 +300,7 @@ const SearchBuilding = () => {
                      placeholder="City"
                      autocomplete="off"
                      {...register('city', {
-                       required: true,
+                       required: false,
                        maxLength: 100,
                      })}/>
               {errors?.city?.type === 'maxLength' &&

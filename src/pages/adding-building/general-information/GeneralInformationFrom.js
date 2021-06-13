@@ -3,15 +3,18 @@ import { ErrorMsg } from '../../login/LoginStyle'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import cameraImg from '../../../assets/images/camera.jpg'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
-import Countries from '../../../Country'
+import Countries from '../../../reference-tables/Country'
 import { BuildingInformationContext } from '../AddingBuilding'
+import UseType from '../../../reference-tables/UseType'
+import StepNav from '../step-nav/StepNav'
 
 
 const Form = styled.form`
 
 `
+
 const Input = styled.input`
   border-radius: 0.2em;
   border-color: #7b7b7b;
@@ -33,6 +36,19 @@ const Image = styled.img`
   height: 250px;
   object-fit: cover;
 `
+
+const LeftCol = styled.div`
+  max-height: calc(100vh - 245px);
+  overflow: auto;
+`
+
+
+const Title = styled.h2`
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 0;
+`
+
 
 const GeneralInformationFrom = ({ data }) => {
   const oriented = [
@@ -56,11 +72,7 @@ const GeneralInformationFrom = ({ data }) => {
     { id: 6, name: '1960-1970', value: '1960' },
   ]
 
-  const useType = [
-    { id: 0, name: 'Office' },
-    { id: 1, name: 'Retail' },
-    { id: 2, name: 'Hotels' },
-  ]
+  const [isMovingNext, setIsMovingNext] = useState(false)
 
   const [image, setImage] = useState({ preview: cameraImg, raw: '' })
 
@@ -70,10 +82,21 @@ const GeneralInformationFrom = ({ data }) => {
     formData.append('image', image.raw)
 
     if (e.target.files.length) {
-      setImage({
-        preview: URL.createObjectURL(e.target.files[0]),
-        raw: e.target.files[0],
-      })
+      let reader = new FileReader();
+      const file = e.target.files[0];
+      reader.readAsDataURL(file);
+      // on reader load something...
+      reader.onload = () => {
+        // Make a fileInfo Object
+        // const base64Image = reader.result.replace('data:image/png;base64,', '')
+        // .replace('data:image/jpg;base64,', '')
+        // .replace('data:image/jpeg;base64,', '');
+        setImage({
+          preview: URL.createObjectURL(e.target.files[0]),
+          raw: e.target.files[0],
+
+        })
+      };
     }
   }
 
@@ -94,7 +117,7 @@ const GeneralInformationFrom = ({ data }) => {
     shouldFocusError: false,
     shouldUnregister: false,
   })
-  const [errorMsg] = useState(null)
+
 
   const [buildingInformationContext, setBuildingInformationContext] = useContext(
     BuildingInformationContext)
@@ -127,24 +150,55 @@ const GeneralInformationFrom = ({ data }) => {
   }, [data, setValue])
 
   const onSubmit = (data) => {
-    console.log(data)
-    setBuildingInformationContext({...buildingInformationContext, ...data})
+    // console.log(data)
+    // console.log(image)
 
+    if(image.raw) {
+      let reader = new FileReader();
+      reader.readAsDataURL(image.raw);
+      // on reader load something...
+      reader.onload = () => {
+        data.buildingPhoto = reader.result
+        // Make a fileInfo Object
+        // const base64Image = reader.result.replace('data:image/png;base64,', '')
+        // .replace('data:image/jpg;base64,', '')
+        // .replace('data:image/jpeg;base64,', '');
+      };
+    }
+
+    setBuildingInformationContext({...buildingInformationContext, ...data})
+    setIsMovingNext(true)
+    console.log(data)
   }
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {errorMsg && <div className="alert alert-danger" role="alert">
-        {errorMsg}
-      </div>}
+      {isMovingNext && <Redirect to="/adding-building/activity"/>}
+
+      <div className="d-flex">
+
+        <Title>New Building</Title>
+
+        <div className="form-group ml-auto r">
+          <Link to="/adding-building/search-building">
+            <button type="button" className="btn btn-outline-primary mr-1">&lt; Back
+            </button>
+          </Link>
+          <button type="submit"
+                  className="btn btn-primary">Next &gt;</button>
+        </div>
+      </div>
+
+      <StepNav activePositon={0}/>
 
       <div className="row">
-        <div className="col-12 col-lg-8">
+        <LeftCol className="col-12 col-lg-8 ">
 
           <div className="row">
 
             <div className="form-group col-12 col-lg-6">
               <label htmlFor="building-name">Building Name</label>
               <Input type="text"
+                     style={{ border: errors.test ? '1px solid red' : '' }}
                      className="form-control"
                      id="building-name"
                      aria-describedby="Building Name"
@@ -219,11 +273,9 @@ const GeneralInformationFrom = ({ data }) => {
                      placeholder="Postal Code"
                      autocomplete="off"
                      {...register('postalCode', {
-                       required: true,
+                       required: false,
                        maxLength: 10,
                      })}/>
-              {errors?.postalCode?.type === 'required' &&
-              <ErrorMsg>Postal Code is required</ErrorMsg>}
               {errors?.postalCode?.type === 'maxLength' &&
               <ErrorMsg>Max length is 10</ErrorMsg>}
             </div>
@@ -254,7 +306,7 @@ const GeneralInformationFrom = ({ data }) => {
                      placeholder="City"
                      autocomplete="off"
                      {...register('city', {
-                       required: true,
+                       required: false,
                        maxLength: 100,
                      })}/>
               {errors?.city?.type === 'maxLength' &&
@@ -270,12 +322,15 @@ const GeneralInformationFrom = ({ data }) => {
                      autocomplete="off"
                      {...register('storeysAboveGround', {
                        required: true,
+                       pattern: /^[0-9.,]+$/i,
                        maxLength: 100,
                      })}/>
               {errors?.storeysAboveGround?.type === 'required' &&
               <ErrorMsg>Storeys Above Ground is required</ErrorMsg>}
               {errors?.storeysAboveGround?.type === 'maxLength' &&
               <ErrorMsg>Max length is 100</ErrorMsg>}
+              {errors?.storeysAboveGround?.type === 'pattern' &&
+              <ErrorMsg>Only Number</ErrorMsg>}
             </div>
           </div>
 
@@ -299,19 +354,22 @@ const GeneralInformationFrom = ({ data }) => {
               <label htmlFor="storeys-below-ground">Storeys Below Ground</label>
               <Input type="text"
                      className="form-control"
-
+                     inputMode="decimal"
                      id="storeys-below-ground"
                      aria-describedby="Storeys Below Ground"
                      placeholder="Storeys Below Ground"
                      autocomplete="off"
-                     {...register('Storeys Below Ground', {
+                     {...register('storeysBelowGround', {
                        required: true,
+                       pattern: /^[0-9.,]+$/i,
                        maxLength: 100,
                      })}/>
               {errors?.storeysBelowGround?.type === 'required' &&
               <ErrorMsg>Storeys Below Ground is required</ErrorMsg>}
               {errors?.storeysBelowGround?.type === 'maxLength' &&
               <ErrorMsg>Max length is 100</ErrorMsg>}
+              {errors?.storeysBelowGround?.type === 'pattern' &&
+              <ErrorMsg>Only Number</ErrorMsg>}
             </div>
           </div>
 
@@ -343,14 +401,18 @@ const GeneralInformationFrom = ({ data }) => {
                      aria-describedby="Gross Interior Area"
                      placeholder="Gross Interior Area"
                      autocomplete="off"
+                     inputMode="decimal"
                      {...register('grossInteriorArea', {
                        required: true,
+                       pattern: /^[0-9.,]+$/i,
                        maxLength: 100,
                      })}/>
               {errors?.grossInteriorArea?.type === 'required' &&
               <ErrorMsg>Gross Interior Area is required</ErrorMsg>}
               {errors?.grossInteriorArea?.type === 'maxLength' &&
               <ErrorMsg>Max length is 100</ErrorMsg>}
+              {errors?.grossInteriorArea?.type === 'pattern' &&
+              <ErrorMsg>Only Number</ErrorMsg>}
             </div>
 
 
@@ -378,18 +440,22 @@ const GeneralInformationFrom = ({ data }) => {
               <label htmlFor="net-usable-area">Net Usable Area</label>
               <Input type="text"
                      className="form-control"
+                     inputMode="decimal"
                      id="net-usable-area"
                      aria-describedby="Net Usable Area"
                      placeholder="Net Usable Area"
                      autocomplete="off"
                      {...register('netUsableArea', {
                        required: true,
+                       pattern: /^[0-9.,]+$/i,
                        maxLength: 100,
                      })}/>
               {errors?.netUsableArea?.type === 'required' &&
               <ErrorMsg>Net Usable Area is required</ErrorMsg>}
               {errors?.netUsableArea?.type === 'maxLength' &&
               <ErrorMsg>Max length is 100</ErrorMsg>}
+              {errors?.netUsableArea?.type === 'pattern' &&
+              <ErrorMsg>Only Number</ErrorMsg>}
             </div>
 
           </div>
@@ -398,7 +464,7 @@ const GeneralInformationFrom = ({ data }) => {
             <div className="form-group col-12 col-lg-6">
               <label htmlFor="use-type">Use Type</label>
               <Select id="use-type" className="form-select" {...register('useType')}>
-                {useType.map((o) => (
+                {UseType.map((o) => (
                   <option
                     key={o.id}
                     value={o.name}
@@ -417,12 +483,14 @@ const GeneralInformationFrom = ({ data }) => {
                 Internal Floor to Ceiling Height</label>
               <Input type="text"
                      className="form-control"
+                     inputMode="decimal"
                      id="avg-internal-floor-to-ceiling-height"
                      aria-describedby="Avg. Internal Floor to Ceiling Height"
                      placeholder="Avg. Internal Floor to Ceiling Height"
                      autocomplete="off"
                      {...register('avgInternalFloorToCeilingHeight', {
                        required: true,
+                       pattern: /^[0-9.,]+$/i,
                        maxLength: 100,
                      })}/>
               {errors?.avgInternalFloorToCeilingHeight?.type === 'required' &&
@@ -430,21 +498,13 @@ const GeneralInformationFrom = ({ data }) => {
                 required</ErrorMsg>}
               {errors?.avgInternalFloorToCeilingHeight?.type === 'maxLength' &&
               <ErrorMsg>Max length is 100</ErrorMsg>}
+              {errors?.avgInternalFloorToCeilingHeight?.type === 'pattern' &&
+              <ErrorMsg>Only Number</ErrorMsg>}
             </div>
           </div>
 
-          <div className="row">
-            <div className="form-group col-12 d-flex justify-content-between">
-              <Link to="/adding-building/search-building">
-                <button type="button" className="btn btn-secondary">&lt; Back
-                </button>
-              </Link>
-              <button type="submit"
-                      className="btn btn-primary text-right">Next &gt;</button>
-            </div>
-          </div>
 
-        </div>
+        </LeftCol>
 
         <div className="col-12 col-lg-4">
           <h5>Building photo</h5>

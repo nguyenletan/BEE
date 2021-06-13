@@ -4,13 +4,15 @@ import GeneralInformationFrom from './GeneralInformationFrom'
 import { BuildingInformationContext } from '../AddingBuilding'
 
 
-
 const GeneralInformation = () => {
 
-  const [buildingInformationContext] = useContext(BuildingInformationContext);
+  const [buildingInformationContext] = useContext(BuildingInformationContext)
 
   return (
+    <>
+
       <GeneralInformationFrom data={buildingInformationContext}/>
+    </>
   )
 }
 
