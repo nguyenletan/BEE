@@ -157,6 +157,9 @@ const SearchBuilding = () => {
     criteriaMode: 'firstError',
     shouldFocusError: false,
     shouldUnregister: false,
+    spaceUsageGFA : [{
+
+    }]
   })
 
   const onSubmit = (data) => {

@@ -10,14 +10,14 @@ import Register from './pages/register/Register';
 import TermOfService from './pages/TermsOfService';
 import AddingBuilding from './pages/adding-building/AddingBuilding';
 
-
+import { RecoilRoot } from 'recoil';
 function App() {
   const {user, loading} = useAuth();
   if (loading) return null;
   if (!user) return <FirebaseAuth/>;
 
   return (
-      <>
+      <RecoilRoot>
         <div className="App container-fluid gx-0">
           <Router>
             <Switch>
@@ -30,7 +30,7 @@ function App() {
             </Switch>
           </Router>
         </div>
-      </>
+      </RecoilRoot>
   );
 }
 

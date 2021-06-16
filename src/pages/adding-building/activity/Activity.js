@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import StepNav from '../step-nav/StepNav'
 import TimeTable from './TimeTable'
+import SpaceUsageGFA from './SapceUsageGFA'
 
 const Form = styled.form`
 
@@ -62,6 +63,10 @@ const Activity = () => {
       <div className="row">
         <div className="col-6">
           <TimeTable/>
+
+        </div>
+        <div className="col-6">
+          <SpaceUsageGFA/>
         </div>
       </div>
 

@@ -37,7 +37,9 @@ const AskQuestion = () => {
         <div className="col-12 col-md-5  m-auto">
           <div className="w-50 m-auto text-center">
             <p>Enter Information Manually</p>
-            <Link to={"/adding-building/general-information"}><button type="button" className="btn btn-primary">Enter Manually</button></Link>
+            <Link to={"/adding-building/general-information"}>
+              <button type="button" className="btn btn-primary">Enter Manually</button>
+            </Link>
           </div>
         </div>
       </Wrapper>

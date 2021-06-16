@@ -12,6 +12,7 @@ const UL = styled.ul`
 
     &.active {
       font-weight: 700;
+      font-size: 1.2em;
     }
   }
 `
