@@ -23,6 +23,11 @@ const Title = styled.h2`
 const Header = styled.div`
   margin-bottom: 20px;
   font-weight: 600;
+  span {
+    font-size: .95em;
+    font-weight: 400;
+    color: var(--primary);
+  }
 `
 
 const UL = styled.ul`
@@ -113,10 +118,10 @@ const ElectricityConsumption = () => {
             Month / Year
           </div>
           <div className="col-3">
-            Cost
+            Cost <span>($)</span>
           </div>
           <div className="col-3">
-            Value
+            Value <span>(kWh)</span>
           </div>
           <div className="col-3">
             <Adding title="Add new item"
