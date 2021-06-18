@@ -14,7 +14,7 @@
     "@nivo/core": "^0.70.1",
     "@nivo/generators": "^0.70.0",
     "@nivo/line": "^0.70.1",
-    "@nivo/pie": "^0.70.1",
+    "@nivo/pie": "^0.69.0",
     "@nivo/radar": "^0.70.1",
     "@nivo/scatterplot": "^0.70.1",
     "@primer/octicons-react": "^14.2.2",
