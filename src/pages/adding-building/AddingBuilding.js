@@ -11,6 +11,8 @@ import GeneralInformation from './general-information/GeneralInformation'
 import SearchBuilding from './search-building/SearchBuilding'
 import AskQuestion from './search-building/AskQuestion'
 import Activity from './activity/Activity'
+import ElectricityConsumption
+  from './electricity_consumption/ElectricityConsumption'
 
 export const BuildingInformationContext = React.createContext()
 
@@ -35,6 +37,8 @@ const AddingBuilding = () => {
                      component={GeneralInformation}/>
               <Route path={`${path}/activity`}
                      component={Activity}/>
+              <Route path={`${path}/electricity-consumption`}
+                     component={ElectricityConsumption}/>
             </Switch>
           </Router>
         </div>

@@ -53,8 +53,10 @@ const Activity = () => {
             <button type="button" className="btn btn-outline-primary mr-1">&lt; Back
             </button>
           </Link>
+          <Link to="/adding-building/electricity-consumption">
           <button type="submit"
                   className="btn btn-primary">Next &gt;</button>
+          </Link>
         </div>
       </div>
 

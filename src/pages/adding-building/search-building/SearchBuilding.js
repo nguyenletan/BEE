@@ -243,6 +243,7 @@ const SearchBuilding = () => {
             <div className="form-group">
               <label htmlFor="building-name">Building Name</label>
               <Input type="text"
+                     autofocus="true"
                      className="form-control"
                      id="building-name"
                      aria-describedby="Building Name"

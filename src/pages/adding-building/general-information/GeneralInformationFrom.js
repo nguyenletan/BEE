@@ -49,6 +49,15 @@ const Title = styled.h2`
   margin-bottom: 0;
 `
 
+const ComplexLabel =  styled.label`
+  display: flex;
+  justify-content: start;
+  .form-check {
+    margin-left: 1em;
+    color: var(--primary);
+  }
+`
+
 
 const GeneralInformationFrom = ({ data }) => {
   const oriented = [
@@ -394,7 +403,21 @@ const GeneralInformationFrom = ({ data }) => {
               <ErrorMsg>Max length is 10</ErrorMsg>}
             </div>
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="gross-interior-area">Gross Interior Area</label>
+              <ComplexLabel htmlFor="gross-interior-area">
+                <span>Gross Interior Area</span>
+                <div className="form-check">
+                  <input className="form-check-input" type="radio" name="gross-interior-area-unit"
+                         id="gross-interior-area-m" checked/>
+                  <label className="form-check-label"
+                         htmlFor="gross-interior-area-m">m<sup>2</sup></label>
+                </div>
+                <div className="form-check">
+                  <input className="form-check-input" type="radio" name="gross-interior-area-unit"
+                         id="gross-interior-area-ft"/>
+                  <label className="form-check-label"
+                         htmlFor="gross-interior-area-ft">ft<sup>2</sup></label>
+                </div>
+              </ComplexLabel>
               <Input type="text"
                      className="form-control"
                      id="gross-interior-area"
@@ -437,7 +460,20 @@ const GeneralInformationFrom = ({ data }) => {
               <ErrorMsg>Max length is 100</ErrorMsg>}
             </div>
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="net-usable-area">Net Usable Area</label>
+              <ComplexLabel htmlFor="net-usable-area"><span>Net Usable Area</span>
+                <div className="form-check">
+                  <input className="form-check-input" type="radio" name="net-usable-area-unit"
+                         id="net-usable-area-unit-m" checked />
+                  <label className="form-check-label"
+                         htmlFor="net-usable-area-unit-m">m<sup>2</sup></label>
+                </div>
+                <div className="form-check">
+                  <input className="form-check-input" type="radio" name="net-usable-area-unit"
+                         id="net-usable-area-unit-ft"/>
+                  <label className="form-check-label"
+                         htmlFor="net-usable-area-unit-ft">ft<sup>2</sup></label>
+                </div>
+              </ComplexLabel>
               <Input type="text"
                      className="form-control"
                      inputMode="decimal"
@@ -479,8 +515,21 @@ const GeneralInformationFrom = ({ data }) => {
               <ErrorMsg>Max length is 100</ErrorMsg>}
             </div>
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="avg-internal-floor-to-ceiling-height">Avg.
-                Internal Floor to Ceiling Height</label>
+              <ComplexLabel htmlFor="avg-internal-floor-to-ceiling-height"><span>Avg.
+                Internal Floor to Ceiling Height</span>
+                <div className="form-check">
+                  <input className="form-check-input" type="radio" name="avg-internal-floor-to-ceiling-height-unit"
+                         id="avg-internal-floor-to-ceiling-height-unit-m" checked/>
+                  <label className="form-check-label"
+                         htmlFor="avg-internal-floor-to-ceiling-height-unit-m">m<sup>2</sup></label>
+                </div>
+                <div className="form-check">
+                  <input className="form-check-input" type="radio" name="avg-internal-floor-to-ceiling-height-unit"
+                         id="avg-internal-floor-to-ceiling-height-unit-ft"/>
+                  <label className="form-check-label"
+                         htmlFor="avg-internal-floor-to-ceiling-height-unit-ft">ft<sup>2</sup></label>
+                </div>
+              </ComplexLabel>
               <Input type="text"
                      className="form-control"
                      inputMode="decimal"

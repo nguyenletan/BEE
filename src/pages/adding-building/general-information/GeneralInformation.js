@@ -10,7 +10,6 @@ const GeneralInformation = () => {
 
   return (
     <>
-
       <GeneralInformationFrom data={buildingInformationContext}/>
     </>
   )

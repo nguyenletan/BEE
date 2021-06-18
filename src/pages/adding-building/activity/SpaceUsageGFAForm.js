@@ -132,14 +132,17 @@ const SpaceUsageGFAForm = ({ data }) => {
                 ))}
               </Select>
             </div>
+
+
             <div className="form-group">
-              <div className="form-check form-switch">
+              <label className="form-label">Has Heat Recovery</label>
+
                 <input className="form-check-input" type="checkbox"
-                       id="flexSwitchCheckDefault"/>
-                <label className="form-check-label"
-                       htmlFor="flexSwitchCheckDefault">Has Heat
-                  Recovery</label>
-              </div>
+                       id="hasHeatRecovery"/>
+                  <label className="form-check-label"
+                         htmlFor="hasHeatRecovery">Yes</label>
+
+
             </div>
           </>)
         }
