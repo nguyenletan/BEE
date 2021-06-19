@@ -45,7 +45,7 @@ const OneMonthElectricityConsumption = ({ data }) => {
     setSelectedDate(date)
   }
   return (
-    <li className="row mb-2">
+    <li className="row mb-4">
       <div className="col-3">
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container justify="flex-start">
