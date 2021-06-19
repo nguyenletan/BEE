@@ -358,10 +358,13 @@ const Improve = (props) => {
         />
       </BreakDownWrapper>
 
-      <div className="d-flex mb-5 flex-lg-wrap justify-content-lg-center">
-        <SubSystemPerformance data={subSystemPerformance}/>
-
-        <PayBack data={improveData.improvementMeasuresData}/>
+      <div className="row mb-5">
+        <div className="col-12 col-xl-4">
+          <SubSystemPerformance data={subSystemPerformance}/>
+        </div>
+        <div className="col-12 col-xl-8">
+          <PayBack data={improveData.improvementMeasuresData}/>
+        </div>
       </div>
 
       <ImprovementMeasures data={improveData.improvementMeasuresData} setResult={setResult}/>

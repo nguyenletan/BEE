@@ -30,7 +30,7 @@ const SubSystemPerformanceWrapper = styled.div`
   margin-bottom: 50px;
   height: 430px;
   //max-width: 900px;
-  @media(min-width: 768) {
+  @media(min-width: 768px) {
     height: max(550px, calc(100vw/3.2));
   }
 `
