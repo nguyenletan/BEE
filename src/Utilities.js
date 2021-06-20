@@ -5,6 +5,8 @@ import heatingImg from './assets/images/heating.svg'
 import wallImg from './assets/images/wall.svg'
 import mechVentImg from './assets/images/mechanical-ventilation.svg'
 
+import {addMonths} from 'date-fns'
+
 export const getCurrentColor = (type) => {
   switch (type) {
     case 'A':
@@ -158,4 +160,13 @@ export const getPlaceDetail = async (placeId) => {
 
 export const removeItemAtIndex = (arr, index) => {
   return [...arr.slice(0, index), ...arr.slice(index + 1)];
+}
+
+export const getNextMonthYear = (month, year) =>{
+  let tmp = new Date(`${year}/${month + 1}/01`)
+  tmp = addMonths(tmp, 1)
+  return {
+    month: tmp.getMonth(),
+    year: tmp.getFullYear()
+  }
 }

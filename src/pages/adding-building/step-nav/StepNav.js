@@ -23,6 +23,10 @@ const StepNav = ({ activePositon }) => {
     <UL className="nav d-flex justify-content-between">
       <li className="nav-item">
         <NavLink activeClassName="active" className="nav-link"
+                 to={'/adding-building/search-building'}>Search Building</NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink activeClassName="active" className="nav-link"
                  to={'/adding-building/general-information'}>General
           Information</NavLink>
       </li>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import styled from 'styled-components'
 
 const Header = styled.div`
@@ -23,8 +22,10 @@ const Row = ({
   endTime
 }) => {
   const [isChecked, setIsChecked] = useState(false)
-  const [selectedStartTime, setSelectedStartTime] = React.useState(startTime)
+
   const [selectedEndTime, setSelectedEndTime] = React.useState(endTime)
+
+  const [selectedStartTime, setSelectedStartTime] = React.useState(startTime)
 
   return (
     <div className="row mt-2" key={`${name}`}>

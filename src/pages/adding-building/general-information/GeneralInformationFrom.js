@@ -9,7 +9,7 @@ import Countries from '../../../reference-tables/Country'
 import { BuildingInformationContext } from '../AddingBuilding'
 import UseType from '../../../reference-tables/UseType'
 import StepNav from '../step-nav/StepNav'
-
+import { SustainabilityRatingScheme } from '../../../reference-tables/GreenBuildingRatingSystem'
 
 const Form = styled.form`
 
@@ -42,22 +42,21 @@ const LeftCol = styled.div`
   overflow: auto;
 `
 
-
 const Title = styled.h2`
   color: var(--primary);
   font-weight: 600;
   margin-bottom: 0;
 `
 
-const ComplexLabel =  styled.label`
+const ComplexLabel = styled.label`
   display: flex;
   justify-content: start;
+
   .form-check {
     margin-left: 1em;
     color: var(--primary);
   }
 `
-
 
 const GeneralInformationFrom = ({ data }) => {
   const oriented = [
@@ -91,9 +90,9 @@ const GeneralInformationFrom = ({ data }) => {
     formData.append('image', image.raw)
 
     if (e.target.files.length) {
-      let reader = new FileReader();
-      const file = e.target.files[0];
-      reader.readAsDataURL(file);
+      let reader = new FileReader()
+      const file = e.target.files[0]
+      reader.readAsDataURL(file)
       // on reader load something...
       reader.onload = () => {
         // Make a fileInfo Object
@@ -105,7 +104,7 @@ const GeneralInformationFrom = ({ data }) => {
           raw: e.target.files[0],
 
         })
-      };
+      }
     }
   }
 
@@ -127,9 +126,9 @@ const GeneralInformationFrom = ({ data }) => {
     shouldUnregister: false,
   })
 
-
   const [buildingInformationContext, setBuildingInformationContext] = useContext(
     BuildingInformationContext)
+
   useEffect(() => {
 
     setValue('address', data?.address, {
@@ -158,13 +157,19 @@ const GeneralInformationFrom = ({ data }) => {
     })
   }, [data, setValue])
 
+
+  const [sustainabilityRating, setSustainabilityRating] = useState(SustainabilityRatingScheme[0].ratingLevels)
+  const onRatingSchemeChange = (e) => {
+    setSustainabilityRating(SustainabilityRatingScheme.filter(item => item.id.toString() === e.target.value.toString())[0]?.ratingLevels)
+  }
+
   const onSubmit = (data) => {
     // console.log(data)
     // console.log(image)
 
-    if(image.raw) {
-      let reader = new FileReader();
-      reader.readAsDataURL(image.raw);
+    if (image.raw) {
+      let reader = new FileReader()
+      reader.readAsDataURL(image.raw)
       // on reader load something...
       reader.onload = () => {
         data.buildingPhoto = reader.result
@@ -172,12 +177,11 @@ const GeneralInformationFrom = ({ data }) => {
         // const base64Image = reader.result.replace('data:image/png;base64,', '')
         // .replace('data:image/jpg;base64,', '')
         // .replace('data:image/jpeg;base64,', '');
-      };
+      }
     }
 
-    setBuildingInformationContext({...buildingInformationContext, ...data})
+    setBuildingInformationContext({ ...buildingInformationContext, ...data })
     setIsMovingNext(true)
-    console.log(data)
   }
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -189,7 +193,8 @@ const GeneralInformationFrom = ({ data }) => {
 
         <div className="form-group ml-auto r">
           <Link to="/adding-building/search-building">
-            <button type="button" className="btn btn-outline-primary mr-1">&lt; Back
+            <button type="button"
+                    className="btn btn-outline-primary mr-1">&lt; Back
             </button>
           </Link>
           <button type="submit"
@@ -256,14 +261,17 @@ const GeneralInformationFrom = ({ data }) => {
             </div>
 
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="sustainability-rating-scheme">Sustainability Rating Scheme</label>
-              <Select id="sustainability-rating-scheme" className="form-select" {...register("sustainabilityRatingSchema")}>
-                {oriented.map((o) => (
+              <label htmlFor="sustainability-rating-scheme">Sustainability
+                Rating Scheme</label>
+              <Select id="sustainability-rating-scheme"
+                      onChange={onRatingSchemeChange}
+                      className="form-select">
+                {SustainabilityRatingScheme.map((o) => (
                   <option
                     key={o.id}
                     value={o.id}
                   >
-                    {o.name}
+                    {o.shortName}
                   </option>
                 ))}
               </Select>
@@ -291,8 +299,10 @@ const GeneralInformationFrom = ({ data }) => {
             <div className="form-group col-12 col-lg-6">
               <label htmlFor="sustainability-rating">Sustainability
                 Rating</label>
-              <Select id="sustainability-rating" className="form-select" {...register("sustainabilityRating")}>
-                {oriented.map((o) => (
+              <Select id="sustainability-rating"
+                      className="form-select" {...register(
+                'sustainabilityRating')}>
+                {sustainabilityRating.map((o) => (
                   <option
                     key={o.id}
                     value={o.id}
@@ -406,13 +416,15 @@ const GeneralInformationFrom = ({ data }) => {
               <ComplexLabel htmlFor="gross-interior-area">
                 <span>Gross Interior Area</span>
                 <div className="form-check">
-                  <input className="form-check-input" type="radio" name="gross-interior-area-unit"
+                  <input className="form-check-input" type="radio"
+                         name="gross-interior-area-unit"
                          id="gross-interior-area-m" checked/>
                   <label className="form-check-label"
                          htmlFor="gross-interior-area-m">m<sup>2</sup></label>
                 </div>
                 <div className="form-check">
-                  <input className="form-check-input" type="radio" name="gross-interior-area-unit"
+                  <input className="form-check-input" type="radio"
+                         name="gross-interior-area-unit"
                          id="gross-interior-area-ft"/>
                   <label className="form-check-label"
                          htmlFor="gross-interior-area-ft">ft<sup>2</sup></label>
@@ -444,7 +456,9 @@ const GeneralInformationFrom = ({ data }) => {
           <div className="row">
             <div className="form-group col-12 col-lg-6">
               <label htmlFor="construction-period">Construction Period</label>
-              <Select id="construction-period" className="form-select" {...register('construction-period')}>
+              <Select id="construction-period"
+                      className="form-select" {...register(
+                'construction-period')}>
                 {period.map((o) => (
                   <option
                     key={o.id}
@@ -460,15 +474,18 @@ const GeneralInformationFrom = ({ data }) => {
               <ErrorMsg>Max length is 100</ErrorMsg>}
             </div>
             <div className="form-group col-12 col-lg-6">
-              <ComplexLabel htmlFor="net-usable-area"><span>Net Usable Area</span>
+              <ComplexLabel
+                htmlFor="net-usable-area"><span>Net Usable Area</span>
                 <div className="form-check">
-                  <input className="form-check-input" type="radio" name="net-usable-area-unit"
-                         id="net-usable-area-unit-m" checked />
+                  <input className="form-check-input" type="radio"
+                         name="net-usable-area-unit"
+                         id="net-usable-area-unit-m" checked/>
                   <label className="form-check-label"
                          htmlFor="net-usable-area-unit-m">m<sup>2</sup></label>
                 </div>
                 <div className="form-check">
-                  <input className="form-check-input" type="radio" name="net-usable-area-unit"
+                  <input className="form-check-input" type="radio"
+                         name="net-usable-area-unit"
                          id="net-usable-area-unit-ft"/>
                   <label className="form-check-label"
                          htmlFor="net-usable-area-unit-ft">ft<sup>2</sup></label>
@@ -499,7 +516,8 @@ const GeneralInformationFrom = ({ data }) => {
           <div className="row">
             <div className="form-group col-12 col-lg-6">
               <label htmlFor="use-type">Use Type</label>
-              <Select id="use-type" className="form-select" {...register('useType')}>
+              <Select id="use-type" className="form-select" {...register(
+                'useType')}>
                 {UseType.map((o) => (
                   <option
                     key={o.id}
@@ -515,19 +533,23 @@ const GeneralInformationFrom = ({ data }) => {
               <ErrorMsg>Max length is 100</ErrorMsg>}
             </div>
             <div className="form-group col-12 col-lg-6">
-              <ComplexLabel htmlFor="avg-internal-floor-to-ceiling-height"><span>Avg.
+              <ComplexLabel
+                htmlFor="avg-internal-floor-to-ceiling-height"><span>Avg.
                 Internal Floor to Ceiling Height</span>
                 <div className="form-check">
-                  <input className="form-check-input" type="radio" name="avg-internal-floor-to-ceiling-height-unit"
-                         id="avg-internal-floor-to-ceiling-height-unit-m" checked/>
+                  <input className="form-check-input" type="radio"
+                         name="avg-internal-floor-to-ceiling-height-unit"
+                         id="avg-internal-floor-to-ceiling-height-unit-m"
+                         checked/>
                   <label className="form-check-label"
-                         htmlFor="avg-internal-floor-to-ceiling-height-unit-m">m<sup>2</sup></label>
+                         htmlFor="avg-internal-floor-to-ceiling-height-unit-m">m</label>
                 </div>
                 <div className="form-check">
-                  <input className="form-check-input" type="radio" name="avg-internal-floor-to-ceiling-height-unit"
+                  <input className="form-check-input" type="radio"
+                         name="avg-internal-floor-to-ceiling-height-unit"
                          id="avg-internal-floor-to-ceiling-height-unit-ft"/>
                   <label className="form-check-label"
-                         htmlFor="avg-internal-floor-to-ceiling-height-unit-ft">ft<sup>2</sup></label>
+                         htmlFor="avg-internal-floor-to-ceiling-height-unit-ft">ft</label>
                 </div>
               </ComplexLabel>
               <Input type="text"
@@ -551,7 +573,6 @@ const GeneralInformationFrom = ({ data }) => {
               <ErrorMsg>Only Number</ErrorMsg>}
             </div>
           </div>
-
 
         </LeftCol>
 

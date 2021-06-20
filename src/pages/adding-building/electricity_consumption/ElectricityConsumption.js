@@ -9,6 +9,7 @@ import StepNav from '../step-nav/StepNav'
 import OneMonthElectricityConsumption from './OneMonthElectricityConsumption'
 
 import { electricityConsumptionListState } from '../../../atoms'
+import { getNextMonthYear } from '../../../Utilities'
 
 const Form = styled.form`
 
@@ -23,6 +24,7 @@ const Title = styled.h2`
 const Header = styled.div`
   margin-bottom: 20px;
   font-weight: 600;
+
   span {
     font-size: .95em;
     font-weight: 400;
@@ -75,12 +77,25 @@ const ElectricityConsumption = () => {
 
   const onAddElectricityConsumption = () => {
 
+    let nextMonthYear = {
+      month: new Date().getMonth(),
+      year: new Date().getFullYear(),
+    }
+    if (electricityConsumptionList !== null &&
+      electricityConsumptionList.length > 0) {
+      console.log(
+        electricityConsumptionList[electricityConsumptionList.length - 1])
+      nextMonthYear = getNextMonthYear(electricityConsumptionList[electricityConsumptionList.length - 1].month, electricityConsumptionList[electricityConsumptionList.length - 1].year)
+    }
+
+    console.log(nextMonthYear)
+
     setElectricityConsumptionList((oldElectricityConsumptionList) => [
       ...oldElectricityConsumptionList,
       {
         id: _.uniqueId(),
-        month: null,
-        year: null,
+        month: nextMonthYear.month,
+        year: nextMonthYear.year,
         value: 0,
         cost: 0,
       },

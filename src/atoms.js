@@ -18,10 +18,11 @@ export const electricityConsumptionListState = atom({
   key: 'electricityConsumption',
   default: [{
     id: _.uniqueId(),
-    month: null,
-    year: null,
+    month: new Date().getMonth(),
+    year: new Date().getFullYear(),
     value: 0,
     cost: 0,
   }],
 })
+
 

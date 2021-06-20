@@ -26,7 +26,8 @@ const Subtraction = styled.span`
 `
 
 const OneMonthElectricityConsumption = ({ data }) => {
-  const [selectedDate, setSelectedDate] = React.useState(
+  console.log(data)
+  const [selectedDate, setSelectedDate] = React.useState(`${data.year}/${data.month + 1}/01`
     //new Date("2014-08-18T21:11:54")
   )
 
