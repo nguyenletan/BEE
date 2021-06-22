@@ -5,6 +5,17 @@ import FanType from '../../../reference-tables/FanType'
 import { useRecoilState } from 'recoil'
 import { spaceUsageGFAListState } from '../../../atoms'
 import { removeItemAtIndex } from '../../../Utilities'
+import {
+  Checkbox,
+  FormControl, FormControlLabel,
+  InputLabel,
+  makeStyles,
+  MenuItem,
+  Select,
+  TextField,
+} from '@material-ui/core'
+import SpaceUsageType from '../../../reference-tables/SpaceUsageType'
+
 
 const Wrapper = styled.div`
   padding: 1em;
@@ -28,26 +39,32 @@ const Content = styled.div`
 
 `
 
-const Input = styled.input`
-  border-radius: 0.2em;
-  border-color: #7b7b7b;
-`
-
-const Select = styled.select`
-  border-color: #7b7b7b;
-`
-
 const SpanId = styled.span`
   color: var(--gray);
 `
 
 const SpaceUsageGFAForm = ({ data }) => {
   const [climateControl, selectedClimateControl] = useState(0)
-  const [isShowFanTypeAndHeatRecovery, setIsShowFanTypeAndHeatRecovery] = useState(false)
-  const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(spaceUsageGFAListState)
+  const [isShowFanTypeAndHeatRecovery, setIsShowFanTypeAndHeatRecovery] = useState(
+    false)
+  const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(
+    spaceUsageGFAListState)
+
+  const useStyles = makeStyles((theme) => ({
+    formControl: {
+      marginBottom: theme.spacing(3),
+      width: '100%',
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
+  }))
+
+  const classes = useStyles()
 
   const onRemoveItem = () => {
-    const index = spaceUsageGFAList.findIndex((listItem) => listItem.id === data.id)
+    const index = spaceUsageGFAList.findIndex(
+      (listItem) => listItem.id === data.id)
 
     const newList = removeItemAtIndex(spaceUsageGFAList, index)
     setSpaceUsageGFAList(newList)
@@ -56,7 +73,7 @@ const SpaceUsageGFAForm = ({ data }) => {
   const onClimateControlChange = (e) => {
     console.log(e.target.value)
     selectedClimateControl(e.target.value)
-    if (e.target.value === '3') {
+    if (e.target.value === 3) {
       setIsShowFanTypeAndHeatRecovery(true)
     } else {
       setIsShowFanTypeAndHeatRecovery(false)
@@ -67,82 +84,77 @@ const SpaceUsageGFAForm = ({ data }) => {
     <Wrapper className="shadow-sm rounded-2 border">
       <Header>
         <Title>{data.title} <SpanId>{data.id}</SpanId></Title>
-        <Subtraction onClick={onRemoveItem} title="Remove Item"><i className="bi bi-dash-lg"/></Subtraction>
+        <Subtraction onClick={onRemoveItem} title="Remove Item"><i
+          className="bi bi-dash-lg"/></Subtraction>
       </Header>
       <Content>
-        <div className="form-group">
-          <Select className="form-select">
-            <option key="-1" value="-1" selected>Select usage type</option>
-            <option
-              key="0"
-              value="0"
-            >
-              Usage Type 1
-            </option>
-            <option
-              key="1"
-              value="1"
-            >
-              Usage Type 2
-            </option>
-            <option
-              key="2"
-              value="2"
-            >
-              Usage Type 3
-            </option>
-          </Select>
-        </div>
-        <div className="form-group">
-          <label htmlFor="percentageOfGFA" className="form-label">% of
-            GFA</label>
-          <Input type="text" className="form-control "
-                 id="percentageOfGFA" placeholder="% of GFA"/>
-        </div>
-        <div className="form-group">
-          <label htmlFor="climateControl" className="form-label">Climate
-            Control</label>
-          <Select className="form-select"
-                  id="climateControl"
-                  value={climateControl}
-                  onChange={onClimateControlChange}
+        <FormControl className={classes.formControl}>
+          <InputLabel id="space-usage-type-label">Space Usage Type</InputLabel>
+          <Select
+            labelId="space-usage-type-label"
+            id="space-usage-type-select"
+
           >
-            {ClimateControlType.map((o) => (
-              <option
+            {SpaceUsageType.map((o) => (
+              <MenuItem
                 key={o.id}
                 value={o.id}
               >
                 {o.name}
-              </option>
+              </MenuItem>
             ))}
           </Select>
-        </div>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <TextField id="percentage-of-GFA" label="% of GFA" type="number"/>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel id="climate-control-label">Climate
+            Control</InputLabel>
+          <Select
+            id="climate-control-select"
+            labelId="climate-control-label"
+            value={climateControl}
+            defaultValue={ClimateControlType[0].id}
+            onChange={onClimateControlChange}
+          >
+            {ClimateControlType.map((o) => (
+              <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         {
           isShowFanTypeAndHeatRecovery && (<>
-            <div className="form-group">
-              <label htmlFor="fanType" className="form-label">Fan Type</label>
-              <Select className="form-select" id="fanType">
+            <FormControl className={classes.formControl}>
+              <InputLabel id="fan-type-label">Fan Type</InputLabel>
+              <Select
+                id="fan-type-select"
+                labelId="fan-type-label"
+              >
                 {FanType.map((o) => (
-                  <option
+                  <MenuItem
                     key={o.id}
                     value={o.id}
                   >
                     {o.name}
-                  </option>
+                  </MenuItem>
                 ))}
               </Select>
-            </div>
-
-
+            </FormControl>
             <div className="form-group">
-              <label className="form-label">Has Heat Recovery</label>
+              <label className="form-label d-block mb-0">Has Heat Recovery?</label>
+              <FormControlLabel
+                control={
+                  <Checkbox
 
-                <input className="form-check-input" type="checkbox"
-                       id="hasHeatRecovery"/>
-                  <label className="form-check-label"
-                         htmlFor="hasHeatRecovery">Yes</label>
-
-
+                    // checked={state.checkedB}
+                    // onChange={handleChange}
+                    name="checkedB"
+                    color="primary"
+                  />
+                }
+                label="Yes"
+              />
             </div>
           </>)
         }
