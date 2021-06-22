@@ -13,6 +13,7 @@ import AskQuestion from './search-building/AskQuestion'
 import Activity from './activity/Activity'
 import ElectricityConsumption
   from './electricity_consumption/ElectricityConsumption'
+import HVAC from './hvac/HVAC'
 
 export const BuildingInformationContext = React.createContext()
 
@@ -39,6 +40,8 @@ const AddingBuilding = () => {
                      component={Activity}/>
               <Route path={`${path}/electricity-consumption`}
                      component={ElectricityConsumption}/>
+              <Route path={`${path}/hvac`}
+                     component={HVAC}/>
             </Switch>
           </Router>
         </div>
