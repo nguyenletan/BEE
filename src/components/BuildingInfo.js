@@ -22,7 +22,7 @@ const GeneralInformation = styled.section`
 
 const BuildingTitle = styled.h2`
   font-size: 2.2rem;
-  color: var(--primary);
+  color: var(--bs-primary);
   font-weight: 700;
   padding-left: 0px;
   width: 100%;
@@ -61,8 +61,8 @@ const BuildingInfo = (props) => {
     <BuildingImage src={image}/>
     <GeneralInformation className="flex-grow-1">
       <BuildingTitle>{name}</BuildingTitle>
-      <BuildingAddress className="ml-1 mb-2">{address}</BuildingAddress>
-      <div className="row ml-1 mb-2 w-100">
+      <BuildingAddress className="ms-1 mb-2">{address}</BuildingAddress>
+      <div className="row mư-1 mb-2 w-100">
         <div className="col-12 col-md-4 col-lg-3">
           <TypeCol className="mb-1">Use Type</TypeCol>
           <TypeCol className="mb-0">{useType}</TypeCol>
@@ -77,7 +77,7 @@ const BuildingInfo = (props) => {
         </div>
       </div>
 
-      <div className="row ml-1 mb-2">
+      <div className="row ms-1 mb-2">
         <div className="col-12 col-md-4 col-lg-3">
           <TypeCol className="mb-1">Storey</TypeCol>
           <TypeCol className="mb-0">{storey}</TypeCol>
@@ -91,7 +91,7 @@ const BuildingInfo = (props) => {
           <TypeCol className="mb-0">{greenBuildingRating}</TypeCol>
         </div>
       </div>
-      <BuildingLastEdited className="ml-1">Last Edited: {buildingInfoLastEdited}</BuildingLastEdited>
+      <BuildingLastEdited className="ms-1">Last Edited: {buildingInfoLastEdited}</BuildingLastEdited>
     </GeneralInformation>
   </BuildingInfoWrapper>
 

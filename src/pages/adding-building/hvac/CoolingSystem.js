@@ -5,13 +5,15 @@ import {
   FormControl,
   FormControlLabel,
   InputLabel,
-  makeStyles,
   MenuItem,
 } from '@material-ui/core'
 import Select from '@material-ui/core/Select'
 import CoolingSystemType from '../../../reference-tables/CoolingSystemType'
 import ChillerEnergySourceType
   from '../../../reference-tables/ChillerEnergySourceType'
+import CompressorType from '../../../reference-tables/CompressorType'
+import RefrigerantType from '../../../reference-tables/RefrigerantType'
+import MaterialFormStyle from '../../../style/MaterialFormStyle'
 
 const Title = styled.h4`
   font-size: 1.1rem;
@@ -20,17 +22,7 @@ const Title = styled.h4`
 const CoolingSystem = () => {
   const [hasCoolingSystem, setHasCoolingSystem] = React.useState(false)
 
-  const useStyles = makeStyles((theme) => ({
-    formControl: {
-      marginBottom: theme.spacing(2),
-      minWidth: 220,
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
-  }))
-
-  const classes = useStyles()
+  const classes = MaterialFormStyle()
 
   const coolingSystemItems = CoolingSystemType.map(
     item => <MenuItem value={item.id}>{item.name}</MenuItem>)
@@ -62,40 +54,49 @@ const CoolingSystem = () => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-
             >
               {coolingSystemItems}
             </Select>
           </FormControl>
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">Cooling System
+            <InputLabel id="compressor-type-label">Compressor Type</InputLabel>
+            <Select
+              labelId="compressor-type-label"
+              id="compressor-type-select"
+            >
+              {CompressorType.map((o) => (
+                <MenuItem
+                  key={o.id}
+                  value={o.id}
+                >
+                  {o.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="refrigerant-type-label">Refrigerant
               Type</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-
+              labelId="refrigerant-type-label"
+              id="refrigerant-type-select"
             >
-              {coolingSystemItems}
+              {RefrigerantType.map((o) => (
+                <MenuItem
+                  key={o.id}
+                  value={o.id}
+                >
+                  {o.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">Chiller Type</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-
-            >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">Chiller Energy
+            <InputLabel id="chiller-energy-label">Chiller Energy
               Source</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              labelId="chiller-energy-label"
+              id="chiller-energy-select"
 
             >
               {ChillerEnergySourceTypeItems}

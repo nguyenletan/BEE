@@ -11,9 +11,10 @@ const Form = styled.form`
 `
 
 const Title = styled.h2`
-  color: var(--primary);
+  color: var(--bs-primary);
   font-weight: 600;
   margin-bottom: 0;
+  \
 `
 
 const Activity = () => {
@@ -44,13 +45,13 @@ const Activity = () => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
 
-      <div className="d-flex">
+      <div className="d-flex mt-5 mb-4">
 
         <Title>New Building</Title>
 
-        <div className="form-group ml-auto r">
+        <div className="form-group ms-auto">
           <Link to="/adding-building/search-building">
-            <button type="button" className="btn btn-outline-primary mr-1">&lt; Back
+            <button type="button" className="btn btn-outline-primary me-1">&lt; Back
             </button>
           </Link>
           <Link to="/adding-building/electricity-consumption">
@@ -60,12 +61,11 @@ const Activity = () => {
         </div>
       </div>
 
-      <StepNav activePositon={1}/>
+      <StepNav/>
 
       <div className="row">
         <div className="col-6">
           <TimeTable/>
-
         </div>
         <div className="col-6">
           <SpaceUsageGFA/>

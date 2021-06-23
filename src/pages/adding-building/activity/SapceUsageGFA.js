@@ -15,7 +15,7 @@ const Title = styled.span`
 `
 const Adding = styled.span`
   cursor: pointer;
-  color: var(--primary);
+  color: var(--bs-primary);
 `
 
 const UL = styled.ul`

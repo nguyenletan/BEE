@@ -17,7 +17,7 @@ export const BuildingBlocks = styled.ol`
 `
 
 export const AddingIcon = styled.i`
-  color: var(--primary);
+  color: var(--bs-primary);
   font-size: 26px;
   margin-left: 0.3rem;
   line-height: 30px;

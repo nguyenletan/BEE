@@ -42,7 +42,7 @@ const IncidentalGainsItemTitle = styled.h5`
 const IncidentalGainsItemValue = styled.span`
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--primary);
+  color: var(--bs-primary);
 `
 
 const IncidentalGainsItemImage = styled.img`
@@ -63,7 +63,7 @@ const IncidentalGains = (props) => {
       <IncidentalGainsList className="d-flex justify-content-start row">
 
         <IncidentalGainsItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
-          <div className="mr-1">
+          <div className="me-1">
             <IncidentalGainsItemTitle>Roof</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{roof}W/m2</IncidentalGainsItemValue>
           </div>
@@ -71,7 +71,7 @@ const IncidentalGains = (props) => {
         </IncidentalGainsItem>
 
         <IncidentalGainsItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
-          <div className="mr-3">
+          <div className="me-3">
             <IncidentalGainsItemTitle>Wall</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{wall}W/m2</IncidentalGainsItemValue>
           </div>
@@ -79,7 +79,7 @@ const IncidentalGains = (props) => {
         </IncidentalGainsItem>
 
         <IncidentalGainsItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
-          <div className="mr-3">
+          <div className="me-3">
             <IncidentalGainsItemTitle>Openings</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{openings}W/m2</IncidentalGainsItemValue>
           </div>
@@ -87,7 +87,7 @@ const IncidentalGains = (props) => {
         </IncidentalGainsItem>
 
         <IncidentalGainsItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
-          <div className="mr-3">
+          <div className="me-3">
             <IncidentalGainsItemTitle>Floor</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{floor}W/m2</IncidentalGainsItemValue>
           </div>
@@ -95,7 +95,7 @@ const IncidentalGains = (props) => {
         </IncidentalGainsItem>
 
         <IncidentalGainsItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
-          <div className="mr-3">
+          <div className="me-3">
             <IncidentalGainsItemTitle>Plug Loads</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{plugLoads}W/m2</IncidentalGainsItemValue>
           </div>

@@ -18,7 +18,7 @@ const Breadcrumb = styled.div`
 
 const BreadcrumbItem = styled.a`
   line-height: 28px;
-  color: var(--primary);
+  color: var(--bs-primary);
   cursor: pointer;
   margin-right: .3rem;
 `
@@ -26,7 +26,7 @@ const BreadcrumbItem = styled.a`
 const BreadcrumbItemActive = styled.span`
   line-height: 28px;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--bs-primary);
 `
 
 const IssueDetail = ({ data }) => {

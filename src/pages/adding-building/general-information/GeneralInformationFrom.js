@@ -10,25 +10,33 @@ import { BuildingInformationContext } from '../AddingBuilding'
 import UseType from '../../../reference-tables/UseType'
 import StepNav from '../step-nav/StepNav'
 import { SustainabilityRatingScheme } from '../../../reference-tables/GreenBuildingRatingSystem'
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from '@material-ui/core'
+import MaterialFormStyle from '../../../style/MaterialFormStyle'
 
 const Form = styled.form`
 
 `
 
-const Input = styled.input`
-  border-radius: 0.2em;
-  border-color: #7b7b7b;
-`
-
-const Select = styled.select`
-  border-radius: 0.2em;
-  border-color: #7b7b7b;
-`
+// const Input = styled.input`
+//   border-radius: 0.2em;
+//   border-color: #7b7b7b;
+// `
+//
+// const Select = styled.select`
+//   border-radius: 0.2em;
+//   border-color: #7b7b7b;
+// `
 
 const UploadImage = styled.div`
   width: 400px;
   margin: 0;
-  border: 1px solid var(--secondary);
+  border: 1px solid var(--bs-secondary);
 `
 
 const Image = styled.img`
@@ -38,12 +46,12 @@ const Image = styled.img`
 `
 
 const LeftCol = styled.div`
-  max-height: calc(100vh - 245px);
+  max-height: calc(100vh - 265px);
   overflow: auto;
 `
 
 const Title = styled.h2`
-  color: var(--primary);
+  color: var(--bs-primary);
   font-weight: 600;
   margin-bottom: 0;
 `
@@ -54,11 +62,12 @@ const ComplexLabel = styled.label`
 
   .form-check {
     margin-left: 1em;
-    color: var(--primary);
+    color: var(--bs-primary);
   }
 `
 
 const GeneralInformationFrom = ({ data }) => {
+  const classes = MaterialFormStyle()
   const oriented = [
     { id: 0, name: 'North' },
     { id: 1, name: 'North East' },
@@ -157,10 +166,12 @@ const GeneralInformationFrom = ({ data }) => {
     })
   }, [data, setValue])
 
-
-  const [sustainabilityRating, setSustainabilityRating] = useState(SustainabilityRatingScheme[0].ratingLevels)
+  const [sustainabilityRating, setSustainabilityRating] = useState(
+    SustainabilityRatingScheme[0].ratingLevels)
   const onRatingSchemeChange = (e) => {
-    setSustainabilityRating(SustainabilityRatingScheme.filter(item => item.id.toString() === e.target.value.toString())[0]?.ratingLevels)
+    setSustainabilityRating(SustainabilityRatingScheme.filter(
+      item => item.id.toString() ===
+        e.target.value.toString())[0]?.ratingLevels)
   }
 
   const onSubmit = (data) => {
@@ -187,14 +198,14 @@ const GeneralInformationFrom = ({ data }) => {
     <Form onSubmit={handleSubmit(onSubmit)}>
       {isMovingNext && <Redirect to="/adding-building/activity"/>}
 
-      <div className="d-flex">
+      <div className="d-flex mt-5 mb-4">
 
         <Title>New Building</Title>
 
-        <div className="form-group ml-auto r">
+        <div className="form-group ms-auto">
           <Link to="/adding-building/search-building">
             <button type="button"
-                    className="btn btn-outline-primary mr-1">&lt; Back
+                    className="btn btn-outline-primary me-1">&lt; Back
             </button>
           </Link>
           <button type="submit"
@@ -210,17 +221,17 @@ const GeneralInformationFrom = ({ data }) => {
           <div className="row">
 
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="building-name">Building Name</label>
-              <Input type="text"
-                     style={{ border: errors.test ? '1px solid red' : '' }}
-                     className="form-control"
-                     id="building-name"
-                     aria-describedby="Building Name"
-                     placeholder="Building Name"
-                     {...register('buildingName', {
-                       required: true,
-                       maxLength: 100,
-                     })}/>
+              <FormControl className={classes.formControl}>
+                <TextField type="text"
+                           id="building-name"
+                           aria-describedby="Building Name"
+                           placeholder="Building Name"
+                           label="Building Name"
+                           {...register('buildingName', {
+                             required: true,
+                             maxLength: 100,
+                           })}/>
+              </FormControl>
               {errors?.buildingName?.type === 'required' &&
               <ErrorMsg>Building Name is required</ErrorMsg>}
               {errors?.buildingName?.type === 'maxLength' &&
@@ -228,122 +239,131 @@ const GeneralInformationFrom = ({ data }) => {
             </div>
 
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="building-orientation">Building
-                Orientation</label>
-              <Select className="form-select" {...register('buildingOriented')}>
-                {oriented.map((o) => (
-                  <option
-                    key={o.id}
-                    value={o.id}
-                  >
-                    {o.name}
-                  </option>
-                ))}
-              </Select>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="building-orientation-label">Building
+                  Orientation</InputLabel>
+                <Select labelId="building-orientation-label"
+                        {...register('buildingOriented')}>
+                  {oriented.map((o) => (
+                    <MenuItem
+                      key={o.id}
+                      value={o.id}
+                    >
+                      {o.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </div>
           </div>
 
           <div className="row">
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="address">Address</label>
-              <Input type="text"
-                     className="form-control"
-                     id="address"
-                     aria-describedby="Address"
-                     placeholder="Address"
-                     autocomplete="off"
-                     {...register('address', {
-                       required: true,
-                       maxLength: 100,
-                     })}/>
+              <FormControl className={classes.formControl}>
+                <TextField type="text"
+                           className="form-control"
+                           id="address"
+                           aria-describedby="Address"
+                           label="Address"
+
+                           {...register('address', {
+                             required: true,
+                             maxLength: 100,
+                           })}/>
+              </FormControl>
               {errors?.address?.type === 'maxLength' &&
               <ErrorMsg>Max length is 100</ErrorMsg>}
             </div>
 
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="sustainability-rating-scheme">Sustainability
-                Rating Scheme</label>
-              <Select id="sustainability-rating-scheme"
-                      onChange={onRatingSchemeChange}
-                      className="form-select">
-                {SustainabilityRatingScheme.map((o) => (
-                  <option
-                    key={o.id}
-                    value={o.id}
-                  >
-                    {o.shortName}
-                  </option>
-                ))}
-              </Select>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="sustainability-rating-scheme-label">Sustainability
+                  Rating Scheme</InputLabel>
+                <Select id="sustainability-rating-scheme"
+                        labelId="sustainability-rating-scheme-label"
+                        onChange={onRatingSchemeChange}>
+                  {SustainabilityRatingScheme.map((o) => (
+                    <MenuItem
+                      key={o.id}
+                      value={o.id}
+                    >
+                      {o.shortName}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </div>
 
           </div>
 
           <div className="row">
-            <div className="form-group col-12 col-lg-6">
-              <label htmlFor="postal-code">Postal Code</label>
-              <Input type="text"
-                     inputMode="numeric"
-                     className="form-control"
-                     id="postal-code"
-                     aria-describedby="Postal Code"
-                     placeholder="Postal Code"
-                     autocomplete="off"
-                     {...register('postalCode', {
-                       required: false,
-                       maxLength: 10,
-                     })}/>
+            <div className="col-12 col-lg-6">
+              <FormControl className={classes.formControl}>
+
+                <TextField type="number"
+                           label="Postal Code"
+                           id="postal-code"
+                           aria-describedby="Postal Code"
+                           {...register('postalCode', {
+                             required: false,
+                             maxLength: 10,
+                           })}/>
+
+              </FormControl>
               {errors?.postalCode?.type === 'maxLength' &&
               <ErrorMsg>Max length is 10</ErrorMsg>}
             </div>
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="sustainability-rating">Sustainability
-                Rating</label>
-              <Select id="sustainability-rating"
-                      className="form-select" {...register(
-                'sustainabilityRating')}>
-                {sustainabilityRating.map((o) => (
-                  <option
-                    key={o.id}
-                    value={o.id}
-                  >
-                    {o.name}
-                  </option>
-                ))}
-              </Select>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="sustainability-rating-label">Sustainability
+                  Rating</InputLabel>
+                <Select id="sustainability-rating-select"
+                        labelId="sustainability-rating-label"
+                        {...register(
+                          'sustainabilityRating')}>
+                  {sustainabilityRating.map((o) => (
+                    <MenuItem
+                      key={o.id}
+                      value={o.id}
+                    >
+                      {o.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </div>
 
           </div>
 
           <div className="row">
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="city">City</label>
-              <Input type="text"
-                     className="form-control"
-                     id="city"
-                     aria-describedby="City"
-                     placeholder="City"
-                     autocomplete="off"
-                     {...register('city', {
-                       required: false,
-                       maxLength: 100,
-                     })}/>
+              <FormControl className={classes.formControl}>
+                <TextField type="text"
+                           className="form-control"
+                           id="city-select"
+                           aria-describedby="City"
+                           label="City"
+                           {...register('city', {
+                             required: false,
+                             maxLength: 100,
+                           })}/>
+              </FormControl>
               {errors?.city?.type === 'maxLength' &&
               <ErrorMsg>Max length is 100</ErrorMsg>}
             </div>
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="storeys-above-ground">Storeys Above Ground</label>
-              <Input type="text"
-                     className="form-control"
-                     id="storeys-above-ground"
-                     aria-describedby="Storeys Above Ground"
-                     placeholder="Storeys Above Ground"
-                     autocomplete="off"
-                     {...register('storeysAboveGround', {
-                       required: true,
-                       pattern: /^[0-9.,]+$/i,
-                       maxLength: 100,
-                     })}/>
+              <FormControl className={classes.formControl}>
+                <TextField type="text"
+                           className="form-control"
+                           id="storeys-above-ground"
+                           aria-describedby="Storeys Above Ground"
+                           label="Storeys Above Ground"
+                           {...register('storeysAboveGround', {
+                             required: true,
+                             pattern: /^[0-9.,]+$/i,
+                             maxLength: 100,
+                           })}/>
+              </FormControl>
               {errors?.storeysAboveGround?.type === 'required' &&
               <ErrorMsg>Storeys Above Ground is required</ErrorMsg>}
               {errors?.storeysAboveGround?.type === 'maxLength' &&
@@ -355,34 +375,32 @@ const GeneralInformationFrom = ({ data }) => {
 
           <div className="row">
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="state">State</label>
-              <Input type="text"
-                     className="form-control"
-                     id="state"
-                     aria-describedby="State"
-                     placeholder="State"
-                     autocomplete="off"
-                     {...register('state', {
-                       required: false,
-                       maxLength: 100,
-                     })}/>
+              <FormControl className={classes.formControl}>
+                <TextField type="text"
+                           className="form-control"
+                           id="state"
+                           aria-describedby="State"
+                           label="State"
+                           {...register('state', {
+                             required: false,
+                             maxLength: 100,
+                           })}/>
+              </FormControl>
               {errors?.state?.type === 'maxLength' &&
               <ErrorMsg>Max length is 10</ErrorMsg>}
             </div>
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="storeys-below-ground">Storeys Below Ground</label>
-              <Input type="text"
-                     className="form-control"
-                     inputMode="decimal"
-                     id="storeys-below-ground"
-                     aria-describedby="Storeys Below Ground"
-                     placeholder="Storeys Below Ground"
-                     autocomplete="off"
-                     {...register('storeysBelowGround', {
-                       required: true,
-                       pattern: /^[0-9.,]+$/i,
-                       maxLength: 100,
-                     })}/>
+              <FormControl className={classes.formControl}>
+                <TextField type="number"
+                           id="storeys-below-ground"
+                           aria-describedby="Storeys Below Ground"
+                           label="Storeys Below Ground"
+                           {...register('storeysBelowGround', {
+                             required: true,
+                             pattern: /^[0-9.,]+$/i,
+                             maxLength: 100,
+                           })}/>
+              </FormControl>
               {errors?.storeysBelowGround?.type === 'required' &&
               <ErrorMsg>Storeys Below Ground is required</ErrorMsg>}
               {errors?.storeysBelowGround?.type === 'maxLength' &&
@@ -395,18 +413,21 @@ const GeneralInformationFrom = ({ data }) => {
           <div className="row">
 
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="country-code">Country</label>
-              <Select id="country-code" className="form-select"
-                      {...register('countryCode')}>
-                {Countries.map((o) => (
-                  <option
-                    key={o.alpha2Code}
-                    value={o.alpha2Code}
-                  >
-                    {o.name}
-                  </option>
-                ))}
-              </Select>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="country-code-label">Country</InputLabel>
+                <Select id="country-code"
+                        labelId="country-code-label"
+                        {...register('countryCode')}>
+                  {Countries.map((o) => (
+                    <MenuItem
+                      key={o.alpha2Code}
+                      value={o.alpha2Code}
+                    >
+                      {o.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
               {errors?.country?.type === 'required' &&
               <ErrorMsg>Country Code is required</ErrorMsg>}
               {errors?.country?.type === 'maxLength' &&
@@ -430,18 +451,15 @@ const GeneralInformationFrom = ({ data }) => {
                          htmlFor="gross-interior-area-ft">ft<sup>2</sup></label>
                 </div>
               </ComplexLabel>
-              <Input type="text"
-                     className="form-control"
-                     id="gross-interior-area"
-                     aria-describedby="Gross Interior Area"
-                     placeholder="Gross Interior Area"
-                     autocomplete="off"
-                     inputMode="decimal"
-                     {...register('grossInteriorArea', {
-                       required: true,
-                       pattern: /^[0-9.,]+$/i,
-                       maxLength: 100,
-                     })}/>
+              <TextField type="text"
+                         id="gross-interior-area"
+                         aria-describedby="Gross Interior Area"
+                         placeholder="Gross Interior Area"
+                         {...register('grossInteriorArea', {
+                           required: true,
+                           pattern: /^[0-9.,]+$/i,
+                           maxLength: 100,
+                         })}/>
               {errors?.grossInteriorArea?.type === 'required' &&
               <ErrorMsg>Gross Interior Area is required</ErrorMsg>}
               {errors?.grossInteriorArea?.type === 'maxLength' &&
@@ -455,19 +473,22 @@ const GeneralInformationFrom = ({ data }) => {
 
           <div className="row">
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="construction-period">Construction Period</label>
-              <Select id="construction-period"
-                      className="form-select" {...register(
-                'construction-period')}>
-                {period.map((o) => (
-                  <option
-                    key={o.id}
-                    value={o.value}
-                  >
-                    {o.name}
-                  </option>
-                ))}
-              </Select>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="construction-period-label">Construction
+                  Period</InputLabel>
+                <Select id="construction-period"
+                        label="construction-period-label"
+                        {...register('construction-period')}>
+                  {period.map((o) => (
+                    <MenuItem
+                      key={o.id}
+                      value={o.value}
+                    >
+                      {o.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
               {errors?.constructionPeriod?.type === 'required' &&
               <ErrorMsg>Construction Period is required</ErrorMsg>}
               {errors?.constructionPeriod?.type === 'maxLength' &&
@@ -491,18 +512,15 @@ const GeneralInformationFrom = ({ data }) => {
                          htmlFor="net-usable-area-unit-ft">ft<sup>2</sup></label>
                 </div>
               </ComplexLabel>
-              <Input type="text"
-                     className="form-control"
-                     inputMode="decimal"
-                     id="net-usable-area"
-                     aria-describedby="Net Usable Area"
-                     placeholder="Net Usable Area"
-                     autocomplete="off"
-                     {...register('netUsableArea', {
-                       required: true,
-                       pattern: /^[0-9.,]+$/i,
-                       maxLength: 100,
-                     })}/>
+              <TextField type="number"
+                         id="net-usable-area"
+                         aria-describedby="Net Usable Area"
+                         placeholder="Net Usable Area"
+                         {...register('netUsableArea', {
+                           required: true,
+                           pattern: /^[0-9.,]+$/i,
+                           maxLength: 100,
+                         })}/>
               {errors?.netUsableArea?.type === 'required' &&
               <ErrorMsg>Net Usable Area is required</ErrorMsg>}
               {errors?.netUsableArea?.type === 'maxLength' &&
@@ -515,18 +533,21 @@ const GeneralInformationFrom = ({ data }) => {
 
           <div className="row">
             <div className="form-group col-12 col-lg-6">
-              <label htmlFor="use-type">Use Type</label>
-              <Select id="use-type" className="form-select" {...register(
-                'useType')}>
-                {UseType.map((o) => (
-                  <option
-                    key={o.id}
-                    value={o.name}
-                  >
-                    {o.name}
-                  </option>
-                ))}
-              </Select>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="use-type-label">Use Type</InputLabel>
+                <Select id="use-type"
+                        labelId="use-type-label"
+                        {...register('useType')}>
+                  {UseType.map((o) => (
+                    <option
+                      key={o.id}
+                      value={o.name}
+                    >
+                      {o.name}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
               {errors?.useType?.type === 'required' &&
               <ErrorMsg>Use Type is required</ErrorMsg>}
               {errors?.useType?.type === 'maxLength' &&
@@ -552,18 +573,16 @@ const GeneralInformationFrom = ({ data }) => {
                          htmlFor="avg-internal-floor-to-ceiling-height-unit-ft">ft</label>
                 </div>
               </ComplexLabel>
-              <Input type="text"
-                     className="form-control"
-                     inputMode="decimal"
-                     id="avg-internal-floor-to-ceiling-height"
-                     aria-describedby="Avg. Internal Floor to Ceiling Height"
-                     placeholder="Avg. Internal Floor to Ceiling Height"
-                     autocomplete="off"
-                     {...register('avgInternalFloorToCeilingHeight', {
-                       required: true,
-                       pattern: /^[0-9.,]+$/i,
-                       maxLength: 100,
-                     })}/>
+              <TextField type="number"
+                         inputMode="decimal"
+                         id="avg-internal-floor-to-ceiling-height"
+                         aria-describedby="Avg. Internal Floor to Ceiling Height"
+                         placeholder="Avg. Internal Floor to Ceiling Height"
+                         {...register('avgInternalFloorToCeilingHeight', {
+                           required: true,
+                           pattern: /^[0-9.,]+$/i,
+                           maxLength: 100,
+                         })}/>
               {errors?.avgInternalFloorToCeilingHeight?.type === 'required' &&
               <ErrorMsg>Avg. Internal Floor to Ceiling Height is
                 required</ErrorMsg>}

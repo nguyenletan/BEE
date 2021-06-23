@@ -9,12 +9,12 @@ import {
   Checkbox,
   FormControl, FormControlLabel,
   InputLabel,
-  makeStyles,
   MenuItem,
   Select,
   TextField,
 } from '@material-ui/core'
 import SpaceUsageType from '../../../reference-tables/SpaceUsageType'
+import MaterialFormStyle from '../../../style/MaterialFormStyle'
 
 
 const Wrapper = styled.div`
@@ -33,7 +33,7 @@ const Header = styled.div`
 
 const Subtraction = styled.span`
   cursor: pointer;
-  color: var(--primary);
+  color: var(--bs-primary);
 `
 const Content = styled.div`
 
@@ -50,17 +50,8 @@ const SpaceUsageGFAForm = ({ data }) => {
   const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(
     spaceUsageGFAListState)
 
-  const useStyles = makeStyles((theme) => ({
-    formControl: {
-      marginBottom: theme.spacing(3),
-      width: '100%',
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
-  }))
+  const classes = MaterialFormStyle()
 
-  const classes = useStyles()
 
   const onRemoveItem = () => {
     const index = spaceUsageGFAList.findIndex(

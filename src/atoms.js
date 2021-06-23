@@ -14,6 +14,16 @@ export const spaceUsageGFAListState = atom({
     }],
 })
 
+export const lightingSubSystemListState = atom({
+  key: 'lightingSubSystemList',
+  default: [{
+    id: _.uniqueId(),
+    title: 'Usage',
+    indoorLightingSystemType: '',
+    percentage: 0,
+  }],
+})
+
 export const electricityConsumptionListState = atom({
   key: 'electricityConsumption',
   default: [{

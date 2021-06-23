@@ -6,7 +6,7 @@ export const LoginPage = styled.div`
 `
 
 export const Title = styled.h1`
-  color: var(--primary);
+  color: var(--bs-primary);
   font-weight: 700;
   font-size: 88px;
   margin: 0;
@@ -42,5 +42,5 @@ export const LoginButton = styled.button`
 `
 
 export const ErrorMsg = styled.span`
-  color: var(--danger);
+  color: var(--bs-danger);
 `

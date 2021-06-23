@@ -34,7 +34,7 @@ const PotentialSavingItemValue = styled.h4`
   text-align: center;
   margin: auto;
   line-height: 3rem;
-  color: var(--primary);
+  color: var(--bs-primary);
 `
 
 const PotentialSavings = ({data}) => {

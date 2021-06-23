@@ -44,7 +44,7 @@ const SummaryBoxTitle = styled.p`
 `
 
 const SummaryBoxValue = styled.p`
-  color: var(--primary);
+  color: var(--bs-primary);
   font-size: 28px;
   margin-bottom: 0;
 `
@@ -223,7 +223,7 @@ const BuildingHistorical = (props) => {
         <div
           className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap">
           <UpAndDownImg src={historicalComparision.sameMonthLastYear >= 0 ? redUpImage : greenDownImage}/>
-          <HistoricalComparisonInnerWrapper className="ml-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
+          <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
             <UpAndDownImgTitle>Same Month<br/>Last Year</UpAndDownImgTitle>
             <UpAndDownImgValue>{historicalComparision.sameMonthLastYear >= 0 ? `+${historicalComparision.sameMonthLastYear}` : `${historicalComparision.sameMonthLastYear}`} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
@@ -231,7 +231,7 @@ const BuildingHistorical = (props) => {
         <div
           className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap">
           <UpAndDownImg src={historicalComparision.lastMonth >= 0 ? redUpImage : greenDownImage}/>
-          <HistoricalComparisonInnerWrapper className="ml-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
+          <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
             <UpAndDownImgTitle>Last Month</UpAndDownImgTitle>
             <UpAndDownImgValue>{historicalComparision.lastMonth >= 0 ? `+${historicalComparision.lastMonth}` : `${historicalComparision.lastMonth}`} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
@@ -239,7 +239,7 @@ const BuildingHistorical = (props) => {
         <div
           className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap">
           <UpAndDownImg src={historicalComparision._12MonthPeriod >= 0 ? redUpImage : greenDownImage}/>
-          <HistoricalComparisonInnerWrapper className="ml-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
+          <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
             <UpAndDownImgTitle>12 Month Period</UpAndDownImgTitle>
             <UpAndDownImgValue>{historicalComparision._12MonthPeriod >= 0 ? `+${historicalComparision._12MonthPeriod}` : `${historicalComparision._12MonthPeriod}`} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>

@@ -2,7 +2,7 @@ import  styled from 'styled-components'
 
 export const LogoHeader = styled.span`
   color: var(--white);
-  background-color: var(--primary);
+  background-color: var(--bs-primary);
   width: 80px;
   display: inline-block;
   line-height: 80px;
@@ -53,7 +53,7 @@ export const ActiveMenuItem = styled.span`
   display: inline-block;
   margin-right: 30px;
   font-size: 1.1rem;
-  border-bottom: 3px solid var(--primary);
+  border-bottom: 3px solid var(--bs-primary);
   @media (max-width: 768px) {
     margin-right: 10px;
   }
@@ -63,7 +63,7 @@ export const NumberMessage = styled.span`
   border-radius: 50%;
   padding: 1px 5px;
   font-size: 0.7rem;
-  background-color: var(--primary);
+  background-color: var(--bs-primary);
   color: var(--white);
   @media (max-width: 768px) {
     display: none;

@@ -16,7 +16,7 @@ const Form = styled.form`
 `
 
 const Title = styled.h2`
-  color: var(--primary);
+  color: var(--bs-primary);
   font-weight: 600;
   margin-bottom: 0;
 `
@@ -28,7 +28,7 @@ const Header = styled.div`
   span {
     font-size: .95em;
     font-weight: 400;
-    color: var(--primary);
+    color: var(--bs-primary);
   }
 `
 
@@ -40,7 +40,7 @@ const UL = styled.ul`
 const Adding = styled.span`
   cursor: pointer;
 
-  color: var(--primary);
+  color: var(--bs-primary);
 
   i {
     font-size: 24px;
@@ -111,14 +111,14 @@ const ElectricityConsumption = () => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
 
-      <div className="d-flex">
+      <div className="d-flex mt-5 mb-4">
 
         <Title>New Building</Title>
 
-        <div className="form-group ml-auto r">
+        <div className="form-group ms-auto">
           <Link to="/adding-building/activity">
             <button type="button"
-                    className="btn btn-outline-primary mr-1">&lt; Back
+                    className="btn btn-outline-primary me-1">&lt; Back
             </button>
           </Link>
           <button type="submit"

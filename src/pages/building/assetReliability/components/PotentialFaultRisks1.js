@@ -180,7 +180,7 @@ const PotentialFaultRisks = ({ data }) => {
 
     `
     const HeaderButton = styled.a`
-      color: var(--primary);
+      color: var(--bs-primary);
       font-weight: 600;
       cursor: pointer;
 
@@ -255,7 +255,7 @@ const PotentialFaultRisks = ({ data }) => {
               <Header>Potential Fault</Header>
               <HeaderGroupButton>
                 <HeaderButton className="" onClick={() => {setShowListFaultRisksModal(false)}}>
-                  <XIcon size={24} className="mr-0"/><span>Close</span>
+                  <XIcon size={24} className="me-0"/><span>Close</span>
                 </HeaderButton>
               </HeaderGroupButton>
             </div>

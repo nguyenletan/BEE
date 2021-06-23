@@ -1,10 +1,13 @@
 import React from 'react'
-import CoolingSystem from './CoolingSystem'
 import { Link } from 'react-router-dom'
 import StepNav from '../step-nav/StepNav'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
-import HeatingSystem from './HeatingSystem'
+import { useRecoilState } from 'recoil'
+import { lightingSubSystemListState } from '../../../atoms'
+import _ from 'lodash'
+
+import LightingSubSystem from './LightingSubSystem'
 
 const Form = styled.form`
 
@@ -16,7 +19,42 @@ const Title = styled.h2`
   margin-bottom: 0;
 `
 
-const HVAC = () => {
+const Header = styled.div`
+  margin-bottom: 20px;
+`
+
+const Adding = styled.span`
+  cursor: pointer;
+  color: var(--bs-primary);
+`
+
+const Ul = styled.ul`
+  list-style-type: none;
+  padding-left: 0;
+
+  li {
+    //margin-bottom: 20px;
+  }
+`
+
+const Lighting = () => {
+
+  const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
+    lightingSubSystemListState)
+
+  const onAddLightingSubSystemList = () => {
+
+    setLightingSubSystemList((oldLightingSubSystemList) => [
+      ...oldLightingSubSystemList,
+      {
+        id: _.uniqueId(),
+        title: `Usage`,
+        indoorLightingSystemType: '',
+        percentage: 0,
+      },
+    ])
+
+  }
 
   const onSubmit = (data) => {
     // console.log(data)
@@ -41,6 +79,12 @@ const HVAC = () => {
     shouldUnregister: false,
   })
 
+  const lis = lightingSubSystemList.map(item =>
+    <li className="col-12 col-lg-6 mb-4" key={item.id}>
+      <LightingSubSystem data={item}/>
+    </li>,
+  )
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
 
@@ -61,18 +105,22 @@ const HVAC = () => {
         </div>
       </div>
 
-      <StepNav activePositon={2}/>
-      <div className="row">
-        <div className="col-12 col-lg-6 col-xxl-4">
-          <CoolingSystem/>
-        </div>
+      <StepNav/>
 
-        <div className="col-12 col-lg-6 col-xxl-4">
-          <HeatingSystem/>
+      <div className="row">
+        <div className="col-12 col-lg-6">
+          <Header className="d-flex justify-content-between">
+            <h6>Lighting Subsystem</h6>
+            <Adding onClick={onAddLightingSubSystemList} title="Add new item"><i
+              className="bi bi-plus-lg font-weight-bolder"/></Adding>
+          </Header>
+          <Ul className="row">
+            {lis}
+          </Ul>
         </div>
       </div>
     </Form>
   )
 }
 
-export default HVAC
+export default Lighting

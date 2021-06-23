@@ -28,7 +28,7 @@ const RowItemTitle =styled.h5`
 `
 
 const RowItemValue =styled.p`
-  color: var(--primary);
+  color: var(--bs-primary);
   display: flex;
   font-size: 1.1rem;
   font-weight: 600;
@@ -47,7 +47,7 @@ const IssueDetailOverall =({data}) => {
     <Wrapper>
       <Title>Potential {data.asset} issue</Title>
       <RowItem className="d-flex justify-content-start">
-        <div className="mr-5 d-flex flex-column">
+        <div className="me-5 d-flex flex-column">
           <RowItemTitle>System</RowItemTitle>
           <RowItemValue>
             <Image src={subSystemIconObj.imgSrc} alt={data.subSystem} width={subSystemIconObj.width}/>
@@ -59,7 +59,7 @@ const IssueDetailOverall =({data}) => {
         </div>
       </RowItem>
       <RowItem className="d-flex justify-content-start">
-        <div className="mr-5 d-flex flex-column">
+        <div className="me-5 d-flex flex-column">
           <RowItemTitle>Asset ID</RowItemTitle>
           <RowItemValue>{data.id}</RowItemValue>
         </div>
@@ -69,7 +69,7 @@ const IssueDetailOverall =({data}) => {
         </div>
       </RowItem>
       <RowItem className="d-flex justify-content-start">
-        <div className="mr-4 d-flex flex-column">
+        <div className="me-4 d-flex flex-column">
           <RowItemTitle>Likelihood</RowItemTitle>
           <RowItemValue>{getLikelihoodTitle(data.likelihood)}</RowItemValue>
         </div>

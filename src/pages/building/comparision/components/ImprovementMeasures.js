@@ -88,7 +88,7 @@ const PopupTitle = styled.h3`
   margin-bottom: 0;
   text-align: center;
   text-transform: capitalize;
-  color: var(--primary);
+  color: var(--bs-primary);
 `
 
 const HeaderGroupButton = styled.div`
@@ -96,7 +96,7 @@ const HeaderGroupButton = styled.div`
 `
 
 const HeaderButton = styled.a`
-  color: var(--primary);
+  color: var(--bs-primary);
   font-weight: 600;
   cursor: pointer;
 
@@ -111,7 +111,7 @@ const HeaderButton = styled.a`
 `
 
 const PopupIcon = styled.img`
-  color: var(--primary);
+  color: var(--bs-primary);
   margin-right: 2rem;
   width: 55px;
 
@@ -124,7 +124,7 @@ const PopupValueWrapper = styled.div`
 
 const PopupValue = styled.span`
   font-size: 2.75rem;
-  color: var(--primary);
+  color: var(--bs-primary);
   vertical-align: text-top;
 `
 
@@ -145,13 +145,13 @@ const PopupBodyInnerWrapper = styled.div`
   }
 
   .col-value {
-    color: var(--primary);
+    color: var(--bs-primary);
   }
 `
 
 const Message = styled.div`
   font-size: .9rem;
-  color: var(--danger);
+  color: var(--bs-danger);
   font-weight: 600;
 `
 
@@ -292,17 +292,17 @@ const ImprovementMeasures = ({ data, setResult }) => {
             <div className="d-flex justify-content-between align-items-center">
               <PopupTitle>Improve Performance</PopupTitle>
               <HeaderGroupButton>
-                <HeaderButton className="mr-4" onClick={() => {
+                <HeaderButton className="me-4" onClick={() => {
                   if (showSlider === false) {
                     setShowSlider(true)
                   } else {
                     saveHandle()
                   }
                 }}>
-                  <LinkExternalIcon size={16} className="mr-1"/><span>{showSlider ? 'Save' : 'Edit'}</span>
+                  <LinkExternalIcon size={16} className="me-1"/><span>{showSlider ? 'Save' : 'Edit'}</span>
                 </HeaderButton>
                 <HeaderButton className="" onClick={() => {handleClose(isChanged, detailValue)}}>
-                  <XCircleIcon size={16} className="mr-1"/><span>Close</span>
+                  <XCircleIcon size={16} className="me-1"/><span>Close</span>
                 </HeaderButton>
               </HeaderGroupButton>
             </div>
@@ -315,7 +315,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
               </PopupValueWrapper>
               <RangeWrapper className="d-flex justify-content-between w-100  align-items-center" show={showSlider}>
                 <PrettoSlider
-                  className="mr-4"
+                  className="me-4"
                   marks={marks}
                   valueLabelDisplay="auto"
                   aria-label="LED replacement slider"
@@ -326,7 +326,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
                   step={1}/>
                 <div style={{width: '200px'}} className="d-flex flex-column align-items-center justify-content-center">
                   <Input
-                    className="ml-2"
+                    className="ms-2"
                     onChange={handleInputChange}
                     onBlur={handleBlur}
                     value={value}

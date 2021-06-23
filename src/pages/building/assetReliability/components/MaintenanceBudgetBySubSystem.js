@@ -40,7 +40,7 @@ const Legend = styled.ul`
 `
 
 const LegendBox = styled.span`
-  background-color: ${props => props.backgroundColor ? props.backgroundColor : 'var(--primary)'};
+  background-color: ${props => props.backgroundColor ? props.backgroundColor : 'var(--bs-primary)'};
   border-radius: ${props => props.borderRadius ? props.borderRadius : '50%;'};
   width: ${props => props.weight ? props.weight : '12px'};
   height: ${props => props.height ? props.height : '12px'};

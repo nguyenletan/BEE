@@ -4,15 +4,15 @@ import { NavLink } from 'react-router-dom'
 
 const UL = styled.ul`
   margin-bottom: 20px;
-
+ 
   .nav-link {
     padding-left: 0;
     padding-right: 0;
     margin-right: 1rem;
-
+    color: var(--bs-primary);
     &.active {
       font-weight: 700;
-      font-size: 1.2em;
+    //  font-size: 1.2em;
     }
   }
 `

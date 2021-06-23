@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form'
 import Countries, { findCountryByCountryCode } from '../../../reference-tables/Country'
 
 const Title = styled.h2`
-  color: var(--primary);
+  color: var(--bs-primary);
   font-weight: 600;
   margin-bottom: 1em;
 `
@@ -180,11 +180,11 @@ const SearchBuilding = () => {
         <div className="col-12 col-lg-7">
           <div className="row">
 
-            <div className="form-group col-12 col-lg-12 ml-0">
+            <div className="form-group col-12 col-lg-12 ms-0">
               <label htmlFor="building-name">Enter Building Name or
                 Address</label>
               <div className="d-flex">
-                <div className="w-75 mr-1">
+                <div className="w-75 me-1">
                   <GooglePlacesAutocomplete
                     apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
                     debounce={300}

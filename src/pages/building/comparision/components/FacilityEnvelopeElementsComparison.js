@@ -96,7 +96,7 @@ const FirstLine = styled.span`
 const SecondLine = styled.span`
   display: block;
   font-size: .85rem;
-  color: var(--primary);
+  color: var(--bs-primary);
 `
 
 const CloseBtn = styled.button`

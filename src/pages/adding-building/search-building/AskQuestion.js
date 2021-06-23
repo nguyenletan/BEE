@@ -6,7 +6,7 @@ import SearchIcon from '../../../assets/images/search.svg'
 import { Link } from 'react-router-dom'
 
 const Title = styled.h2`
-  color: var(--primary);
+  color: var(--bs-primary);
   font-weight: 600;
   text-align: center;
 `

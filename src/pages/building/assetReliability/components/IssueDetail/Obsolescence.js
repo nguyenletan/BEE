@@ -28,7 +28,7 @@ const RowItemTitle = styled.h5`
 `
 
 const RowItemValue = styled.p`
-  color: var(--primary);
+  color: var(--bs-primary);
   font-size: 1.1rem;
   font-weight: 600;
 `
@@ -36,7 +36,7 @@ const RowItemValue = styled.p`
 const Calculator = styled.span`
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--bs-primary);
   display: block;
   width: 40px;
 `
@@ -50,7 +50,7 @@ const AddingButton = styled.button`
 
 const EditIconWrapper = styled.span`
   line-height: 30px;
-  color: var(--primary);
+  color: var(--bs-primary);
   font-size: 16px;
   cursor: pointer;
   :hover {
@@ -61,7 +61,7 @@ const EditIconWrapper = styled.span`
   align-items: flex-end;
 `
 const EditIcon = styled.i`
-  color: var(--primary);
+  color: var(--bs-primary);
   font-size: 18px;
   margin-left: 1rem;
   margin-right: .35rem;
@@ -262,11 +262,11 @@ const Obsolescence = () => {
         <div className="col-6">
           <p className="mb-2 d-block" style={{marginTop:'-3px', fontSize: '.9rem'}}>Estimated New Replacement Value</p>
           <RowItem className="d-flex justify-content-between">
-            <div className="mr-3 d-flex flex-column" style={{width: '40%'}}>
+            <div className="me-3 d-flex flex-column" style={{width: '40%'}}>
               <RowItemTitle>Replacement Value ($)</RowItemTitle>
               <RowItemValue>1,350,000</RowItemValue>
             </div>
-            <div className="mr-0"><Calculator>+</Calculator></div>
+            <div className="me-0"><Calculator>+</Calculator></div>
             <div className="d-flex flex-column">
               <RowItemTitle>Local Labour & Other Cost</RowItemTitle>
               <RowItemValue>14 ~ 25%</RowItemValue>
@@ -310,7 +310,7 @@ const Obsolescence = () => {
           </RowItem>
         </div>
       </div>
-      <RowItem className="row ml-1 mt-3">
+      <RowItem className="row ms-1 mt-3">
         <AddingButton className="btn btn-sm btn-primary">+ Add to Improvement Measures</AddingButton>
         <EditIconWrapper onClick={handleShow}><EditIcon className="bi bi-pencil-square"/>Edit</EditIconWrapper>
       </RowItem>

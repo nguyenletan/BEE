@@ -26,7 +26,7 @@ const AssetHealthOptionItem = styled.li`
 
 
   &.active {
-    color: var(--primary);
+    color: var(--bs-primary);
     font-weight: 700;
   }
 
@@ -56,7 +56,7 @@ const AssetHealthTimeLineOptionItem = styled.ul`
 
 
   &.active {
-    color: var(--primary);
+    color: var(--bs-primary);
     font-weight: 700;
   }
 

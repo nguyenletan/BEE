@@ -42,7 +42,7 @@ const ElectricalSystemInformationItemTitle = styled.h5`
 const ElectricalSystemInformationItemValue = styled.span`
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--primary);
+  color: var(--bs-primary);
 `
 
 const ElectricalSystemInformationItemImage = styled.img`
@@ -65,7 +65,7 @@ const ElectricalSystemInformation = (props) => {
 
         <ElectricalSystemInformationItem
           className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
-          <div className="mr-3">
+          <div className="me-3">
             <ElectricalSystemInformationItemTitle>Cooling Load</ElectricalSystemInformationItemTitle>
             <ElectricalSystemInformationItemValue>{overallCoolingLoad}W/m2</ElectricalSystemInformationItemValue>
           </div>
@@ -74,7 +74,7 @@ const ElectricalSystemInformation = (props) => {
 
         <ElectricalSystemInformationItem
           className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
-          <div className="mr-3">
+          <div className="me-3">
             <ElectricalSystemInformationItemTitle>Heating Load</ElectricalSystemInformationItemTitle>
             <ElectricalSystemInformationItemValue>{overallHeatingLoad}W/m2</ElectricalSystemInformationItemValue>
           </div>
@@ -83,7 +83,7 @@ const ElectricalSystemInformation = (props) => {
 
         <ElectricalSystemInformationItem
           className="d-flex col col-6 col-lg-2  mb-3 mb-lg-0 justify-content-start align-items-center">
-          <div className="mr-3">
+          <div className="me-3">
             <ElectricalSystemInformationItemTitle>Lighting Load</ElectricalSystemInformationItemTitle>
             <ElectricalSystemInformationItemValue>{overallLightingLoad}W/m2</ElectricalSystemInformationItemValue>
           </div>
@@ -91,7 +91,7 @@ const ElectricalSystemInformation = (props) => {
         </ElectricalSystemInformationItem>
 
         <ElectricalSystemInformationItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
-          <div className="mr-1">
+          <div className="me-1">
             <ElectricalSystemInformationItemTitle>Mech. Vent. Load</ElectricalSystemInformationItemTitle>
             <ElectricalSystemInformationItemValue>{overallMechVentLoad}W/m2</ElectricalSystemInformationItemValue>
           </div>
@@ -99,7 +99,7 @@ const ElectricalSystemInformation = (props) => {
         </ElectricalSystemInformationItem>
 
         <ElectricalSystemInformationItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
-          <div className="mr-3">
+          <div className="me-3">
             <ElectricalSystemInformationItemTitle>P.V. System</ElectricalSystemInformationItemTitle>
             <ElectricalSystemInformationItemValue>{pvSystemInstalledCapacity}W/m2</ElectricalSystemInformationItemValue>
           </div>

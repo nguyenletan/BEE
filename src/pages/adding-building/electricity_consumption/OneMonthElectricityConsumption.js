@@ -18,7 +18,7 @@ import { removeItemAtIndex } from '../../../Utilities'
 
 const Subtraction = styled.span`
   cursor: pointer;
-  color: var(--primary);
+  color: var(--bs-primary);
 
   i {
     font-size: 24px;

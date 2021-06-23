@@ -9,7 +9,7 @@ const RegisterPage = styled.div`
 `
 
 const Header = styled.h1`
-  color: var(--primary);
+  color: var(--bs-primary);
   font-weight: 700;
   font-size: 88px;
   margin: 0;
@@ -51,7 +51,7 @@ const Successful = styled.div`
 `
 
 const SuccessfulTitle = styled.h1`
-  color: var(--primary);
+  color: var(--bs-primary);
   font-weight: 600;
   font-size: 42px;
   margin-bottom: .7em;
@@ -80,7 +80,7 @@ const AgreementCheckbox = styled.input`
 `
 
 const ErrorMsg = styled.span`
-  color: var(--danger);
+  color: var(--bs-danger);
 `
 
 const Register = () => {
