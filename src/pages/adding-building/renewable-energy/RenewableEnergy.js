@@ -1,13 +1,9 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import StepNav from '../step-nav/StepNav'
-import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
-import { useRecoilState } from 'recoil'
-import { lightingSubSystemListState } from '../../../atoms'
-import _ from 'lodash'
-
-import LightingSubSystem from './LightingSubSystem'
+import SolarPanel from './SolarPanel'
 
 const Form = styled.form`
 
@@ -19,42 +15,7 @@ const Title = styled.h2`
   margin-bottom: 0;
 `
 
-const Header = styled.div`
-  margin-bottom: 20px;
-`
-
-const Adding = styled.span`
-  cursor: pointer;
-  color: var(--bs-primary);
-`
-
-const Ul = styled.ul`
-  list-style-type: none;
-  padding-left: 0;
-
-  li {
-    //margin-bottom: 20px;
-  }
-`
-
-const Lighting = () => {
-
-  const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
-    lightingSubSystemListState)
-
-  const onAddLightingSubSystemList = () => {
-
-    setLightingSubSystemList((oldLightingSubSystemList) => [
-      ...oldLightingSubSystemList,
-      {
-        id: _.uniqueId(),
-        title: `Usage`,
-        indoorLightingSystemType: '',
-        percentage: 0,
-      },
-    ])
-
-  }
+const RenewableEnergy = () => {
 
   const onSubmit = (data) => {
     // console.log(data)
@@ -79,15 +40,6 @@ const Lighting = () => {
     shouldUnregister: false,
   })
 
-  const lis = lightingSubSystemList.map(item =>
-
-    <li className="col-12 col-lg-6 mb-4" key={item.id}>
-
-      <LightingSubSystem data={item}/>
-
-    </li>
-  )
-
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
 
@@ -111,19 +63,12 @@ const Lighting = () => {
       <StepNav/>
 
       <div className="row">
-        <div className="col-12 col-lg-6">
-          <Header className="d-flex justify-content-between">
-            <h6>Lighting Subsystem</h6>
-            <Adding onClick={onAddLightingSubSystemList} title="Add new item"><i
-              className="bi bi-plus-lg font-weight-bolder"/></Adding>
-          </Header>
-          <Ul className="row">
-            {lis}
-          </Ul>
+        <div className="col-12 col-lg-6 col-xxl-4">
+          <SolarPanel/>
         </div>
       </div>
     </Form>
   )
 }
 
-export default Lighting
+export default RenewableEnergy

@@ -4,15 +4,16 @@ import { NavLink } from 'react-router-dom'
 
 const UL = styled.ul`
   margin-bottom: 20px;
- 
+
   .nav-link {
     padding-left: 0;
     padding-right: 0;
     margin-right: 1rem;
     color: var(--bs-primary);
+
     &.active {
       font-weight: 700;
-    //  font-size: 1.2em;
+      //  font-size: 1.2em;
     }
   }
 `
@@ -23,7 +24,8 @@ const StepNav = () => {
     <UL className="nav d-flex justify-content-between">
       <li className="nav-item">
         <NavLink activeClassName="active" className="nav-link"
-                 to={'/adding-building/search-building'}>Search Building</NavLink>
+                 to={'/adding-building/search-building'}>Search
+          Building</NavLink>
       </li>
       <li className="nav-item">
         <NavLink activeClassName="active" className="nav-link"
@@ -36,7 +38,8 @@ const StepNav = () => {
       </li>
       <li className="nav-item">
         <NavLink activeClassName="active" className="nav-link"
-                 to={'/adding-building/electricity-consumption'}>Electricity Consumption</NavLink>
+                 to={'/adding-building/electricity-consumption'}>Electricity
+          Consumption</NavLink>
       </li>
       <li className="nav-item">
         <NavLink activeClassName="active" className="nav-link"
@@ -48,11 +51,13 @@ const StepNav = () => {
       </li>
       <li className="nav-item">
         <NavLink activeClassName="active" className="nav-link"
-                 to={'/adding-building/envelope-facade'}>Envelope & Facade</NavLink>
+                 to={'/adding-building/envelope-facade'}>Envelope &
+          Facade</NavLink>
       </li>
       <li className="nav-item">
         <NavLink activeClassName="active" className="nav-link"
-                 to={'/adding-building/renewable-energy'}>Renewable Energy</NavLink>
+                 to={'/adding-building/renewable-energy'}>Renewable
+          Energy</NavLink>
       </li>
     </UL>
   )

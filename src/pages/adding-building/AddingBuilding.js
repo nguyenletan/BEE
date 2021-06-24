@@ -16,6 +16,7 @@ import ElectricityConsumption
 import HVAC from './hvac/HVAC'
 import Lighting from './lighting/Lighting'
 import EnvelopFacade from './envelope-facade/EnvelopFacade'
+import RenewableEnergy from './renewable-energy/RenewableEnergy'
 
 export const BuildingInformationContext = React.createContext()
 
@@ -48,6 +49,8 @@ const AddingBuilding = () => {
                      component={Lighting}/>
               <Route path={`${path}/envelope-facade`}
                      component={EnvelopFacade}/>
+              <Route path={`${path}/renewable-energy`}
+                     component={RenewableEnergy}/>
             </Switch>
           </Router>
         </div>
