@@ -539,12 +539,12 @@ const GeneralInformationFrom = ({ data }) => {
                         labelId="use-type-label"
                         {...register('useType')}>
                   {UseType.map((o) => (
-                    <option
+                    <MenuItem
                       key={o.id}
                       value={o.name}
                     >
                       {o.name}
-                    </option>
+                    </MenuItem>
                   ))}
                 </Select>
               </FormControl>
