@@ -25,7 +25,7 @@ const PotentialFaultRiskTitle = styled.h3`
 const PotentialFaultRiskSubTopTitle = styled.h4`
   width: 100%;
   font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 500;
   text-align: center;
   margin: 0 auto 1rem;
 `
@@ -50,7 +50,7 @@ const PotentialFaultRiskSubLeftTitle = styled.aside`
     transform: rotate(270deg);
     width: 100%;
     font-size: 1.05rem;
-    font-weight: 600;
+    font-weight: 500;
   }
 `
 
@@ -121,7 +121,7 @@ const PotentialFaultRisks = ({ data }) => {
 
       th {
         font-size: 0.8rem;
-        font-weight: 600;
+        font-weight: 500;
         text-align: center;
         border: none !important;
         vertical-align: middle !important;
@@ -181,7 +181,7 @@ const PotentialFaultRisks = ({ data }) => {
     `
     const HeaderButton = styled.a`
       color: var(--bs-primary);
-      font-weight: 600;
+      font-weight: 500;
       cursor: pointer;
 
       :hover {

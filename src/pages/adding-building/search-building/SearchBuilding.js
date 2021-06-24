@@ -12,7 +12,7 @@ import Countries, { findCountryByCountryCode } from '../../../reference-tables/C
 
 const Title = styled.h2`
   color: var(--bs-primary);
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 1em;
 `
 

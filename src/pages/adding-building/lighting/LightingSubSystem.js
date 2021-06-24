@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  Fade,
   FormControl,
   InputLabel,
   MenuItem,
@@ -56,35 +57,38 @@ const LightingSubSystem = ({ data }) => {
   }
 
   return (
-    <Wrapper className="shadow-sm rounded-2 border">
-      <Header>
-        <Title>{data.title}<SpanId>{data.id}</SpanId></Title>
-        <Subtraction title="Remove Item" onClick={onRemoveItem}><i
-          className="bi bi-dash-lg"/></Subtraction>
-      </Header>
-      <Content>
-        <FormControl className={classes.formControl}>
-          <InputLabel id="space-usage-type-label">Space Usage Type</InputLabel>
-          <Select
-            labelId="space-usage-type-label"
-            id="space-usage-type-select"
+    <Fade in={true} timeout={400}>
+      <Wrapper className="shadow-sm rounded-2 border">
+        <Header>
+          <Title>{data.title}<SpanId>{data.id}</SpanId></Title>
+          <Subtraction title="Remove Item" onClick={onRemoveItem}><i
+            className="bi bi-dash-lg"/></Subtraction>
+        </Header>
+        <Content>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="lighting-fitting-type-label">Lighting Fitting
+              Type</InputLabel>
+            <Select
+              labelId="lighting-fitting-type-label"
+              id="lighting-fitting-type-select"
 
-          >
-            {LightingFittingType.map((o) => (
-              <MenuItem
-                key={o.id}
-                value={o.id}
-              >
-                {o.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl className={classes.formControl}>
-          <TextField id="percentage" label="Percentage %" type="number"/>
-        </FormControl>
-      </Content>
-    </Wrapper>
+            >
+              {LightingFittingType.map((o) => (
+                <MenuItem
+                  key={o.id}
+                  value={o.id}
+                >
+                  {o.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl className={classes.formControl}>
+            <TextField id="percentage" label="Percentage %" type="number"/>
+          </FormControl>
+        </Content>
+      </Wrapper>
+    </Fade>
   )
 }
 

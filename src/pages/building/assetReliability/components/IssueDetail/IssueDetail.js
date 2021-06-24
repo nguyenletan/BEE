@@ -31,7 +31,7 @@ const RowItemValue =styled.p`
   color: var(--bs-primary);
   display: flex;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 500;
 `
 const Image = styled.img`
   margin-right: .5rem;

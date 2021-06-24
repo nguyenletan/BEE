@@ -1,20 +1,20 @@
-const ExternalWallType = [
+const ExternalWindowType = [
   {
     id: 0,
-    name: 'Curtain Wall',
+    name: 'Single Glazed',
   },
   {
     id: 1,
-    name: 'Reinforced Concrete Wall',
+    name: 'Double Glazed (No Low-E Coating)',
   },
   {
     id: 2,
-    name: 'Precast Concrete Wall',
+    name: 'Double Glazed (Low-E Coating)',
   },
   {
     id: 3,
-    name: 'Masonry Brick Wall',
+    name: 'Triple Glazed (Low-E Coating)',
   },
 ]
 
-export default ExternalWallType
+export default ExternalWindowType

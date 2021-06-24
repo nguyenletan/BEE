@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
   color: var(--bs-primary);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 42px;
   margin-bottom: .7em;
 `

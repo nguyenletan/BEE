@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 const Title = styled.h2`
   color: var(--bs-primary);
-  font-weight: 600;
+  font-weight: 500;
   text-align: center;
 `
 

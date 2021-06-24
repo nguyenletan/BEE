@@ -25,7 +25,7 @@ const ImprovementMeasuresTable = styled.table`
 
   th {
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 500;
     text-align: center;
     border: none !important;
     vertical-align: middle !important;

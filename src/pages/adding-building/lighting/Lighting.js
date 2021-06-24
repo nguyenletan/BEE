@@ -15,7 +15,7 @@ const Form = styled.form`
 
 const Title = styled.h2`
   color: var(--bs-primary);
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 0;
 `
 
@@ -80,8 +80,11 @@ const Lighting = () => {
   })
 
   const lis = lightingSubSystemList.map(item =>
+
     <li className="col-12 col-lg-6 mb-4" key={item.id}>
+
       <LightingSubSystem data={item}/>
+
     </li>,
   )
 

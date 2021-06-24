@@ -29,7 +29,7 @@ const ImprovementMeasuresTable = styled.table`
 
   th {
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 500;
     text-align: center;
     border: none !important;
     vertical-align: middle !important;
@@ -97,7 +97,7 @@ const HeaderGroupButton = styled.div`
 
 const HeaderButton = styled.a`
   color: var(--bs-primary);
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
 
   :hover {
@@ -130,7 +130,7 @@ const PopupValue = styled.span`
 
 const MeasureName = styled.span`
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
 `
 
 const RangeWrapper = styled.div`
@@ -152,7 +152,7 @@ const PopupBodyInnerWrapper = styled.div`
 const Message = styled.div`
   font-size: .9rem;
   color: var(--bs-danger);
-  font-weight: 600;
+  font-weight: 500;
 `
 
 const PrettoSlider = withStyles({

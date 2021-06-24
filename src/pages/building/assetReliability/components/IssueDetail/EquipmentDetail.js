@@ -29,7 +29,7 @@ const RowItemTitle =styled.h5`
 const RowItemValue =styled.p`
   color: var(--bs-primary);
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 500;
 `
 const Button = styled.button`
   border-radius: 20px;

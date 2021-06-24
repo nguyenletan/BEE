@@ -30,7 +30,7 @@ const RowItemTitle = styled.h5`
 const RowItemValue = styled.p`
   color: var(--bs-primary);
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 500;
 `
 
 const Calculator = styled.span`
@@ -87,7 +87,7 @@ const PopupCategory = styled.section`
 
 const PopupCategoryTitle = styled.h4`
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: .3rem;
 `
 

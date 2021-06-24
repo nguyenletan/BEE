@@ -11,6 +11,7 @@ const SubNav = styled.nav`
   a i {
     display: none;
   }
+
   @media (max-width: 600px) {
     a {
       display: none;

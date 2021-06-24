@@ -82,7 +82,7 @@ const PopupTitle = styled.h3`
 `
 
 const PopupSubtitle = styled.h4`
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1rem;
   width: 100%;
   text-align: center;

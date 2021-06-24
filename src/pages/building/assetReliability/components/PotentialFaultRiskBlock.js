@@ -10,7 +10,7 @@ const Block = styled.div`
   text-align: center;
   line-height: 58px;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 500;
   border-radius: 8px;
   margin-right: 3px;
   margin-bottom: 3px;

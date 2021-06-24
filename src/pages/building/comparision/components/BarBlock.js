@@ -9,7 +9,7 @@ const Block = styled.div`
   margin-left: ${props => props.marginLeft ? props.marginLeft : '0px'};
   text-align: ${props => props.textAlign ? props.textAlign : 'right'};
   padding-right: ${props => props.paddingRight ? props.paddingRight : '0.35em'};
-  font-weight: 600;
+  font-weight: 500;
   font-size: 24px;
   line-height: 36px;
   color: var(--white);

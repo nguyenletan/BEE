@@ -13,7 +13,7 @@ const ElectricalSystemInformationWrapper = styled.div`
 
 const ElectricalSystemInformationTitle = styled.h4`
   font-size: 1.15rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 15px;
 `
 
@@ -37,11 +37,11 @@ const ElectricalSystemInformationItem = styled.div`
 
 const ElectricalSystemInformationItemTitle = styled.h5`
   font-size: .95rem;
-  font-weight: 600;
+  font-weight: 500;
 `
 const ElectricalSystemInformationItemValue = styled.span`
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--bs-primary);
 `
 

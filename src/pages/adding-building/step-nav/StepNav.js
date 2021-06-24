@@ -17,7 +17,7 @@ const UL = styled.ul`
   }
 `
 
-const StepNav = ({ activePositon }) => {
+const StepNav = () => {
 
   return (
     <UL className="nav d-flex justify-content-between">

@@ -52,7 +52,7 @@ const Successful = styled.div`
 
 const SuccessfulTitle = styled.h1`
   color: var(--bs-primary);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 42px;
   margin-bottom: .7em;
 `
@@ -72,7 +72,7 @@ const RegisterButton = styled.button`
 
 const FormTitle = styled.h2`
   color: var(--inkydark);
-  font-weight: 600;
+  font-weight: 500;
 `
 
 const AgreementCheckbox = styled.input`

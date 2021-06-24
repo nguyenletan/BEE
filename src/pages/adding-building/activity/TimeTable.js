@@ -15,14 +15,12 @@ const Content = styled.div`
 
 `
 
-
 const Row = ({
   id,
   name,
   startTime,
-  endTime
+  endTime,
 }) => {
-
 
   const [isChecked, setIsChecked] = useState(false)
 
@@ -39,7 +37,7 @@ const Row = ({
               name="checkedB"
               color="primary"
               id={`day-${id}`}
-              onChange={() =>setIsChecked(!isChecked)}
+              onChange={() => setIsChecked(!isChecked)}
             />
           }
           label={name}
@@ -50,13 +48,14 @@ const Row = ({
       <div className="col-4">
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardTimePicker
+            variant="inline"
             margin="normal"
             id="startTime"
             label="Start Time"
             disabled={!isChecked}
             mask="__:__ _M"
             ampm={true}
-            value={isChecked ? selectedStartTime: null}
+            value={isChecked ? selectedStartTime : null}
             onChange={(date) => setSelectedStartTime(date)}
             KeyboardButtonProps={{
               'aria-label': 'change time',
@@ -68,12 +67,13 @@ const Row = ({
       <div className="col-4">
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardTimePicker
+            variant="inline"
             margin="normal"
             id="endTime"
             label="End Time"
             disabled={!isChecked}
             mask="__:__ _M"
-            value={isChecked ? selectedEndTime: null}
+            value={isChecked ? selectedEndTime : null}
             onChange={(date) => setSelectedEndTime(date)}
             KeyboardButtonProps={{
               'aria-label': 'change time',

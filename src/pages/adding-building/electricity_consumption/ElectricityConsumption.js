@@ -17,13 +17,13 @@ const Form = styled.form`
 
 const Title = styled.h2`
   color: var(--bs-primary);
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 0;
 `
 
 const Header = styled.div`
   margin-bottom: 20px;
-  font-weight: 600;
+  font-weight: 500;
 
   span {
     font-size: .95em;
