@@ -62,7 +62,7 @@ const BuildingInfo = (props) => {
     <GeneralInformation className="flex-grow-1">
       <BuildingTitle>{name}</BuildingTitle>
       <BuildingAddress className="ms-1 mb-2">{address}</BuildingAddress>
-      <div className="row ms-1 mb-2 w-100">
+      <div className="row ms-2 mb-2 w-100">
         <div className="col-12 col-md-4 col-lg-3">
           <TypeCol className="mb-1">Use Type</TypeCol>
           <TypeCol className="mb-0">{useType}</TypeCol>
