@@ -5,7 +5,7 @@ import { BuildingInformationContext } from '../AddingBuilding'
 import { GoogleMap, Marker, OverlayView } from '@react-google-maps/api'
 import { Redirect } from 'react-router-dom'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
-import { Form } from 'react-bootstrap'
+
 import { Controller, useForm } from 'react-hook-form'
 
 import Countries, { findCountryByCountryCode } from '../../../reference-tables/Country'
@@ -14,7 +14,8 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
-  Paper, Select,
+  Paper,
+  Select,
   TextField,
 } from '@material-ui/core'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
@@ -232,7 +233,7 @@ const SearchBuilding = () => {
         {buildingInformationContext &&
         <div className="col-12 col-lg-5">
 
-          <Form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
 
             <h5 className="text-primary">Is the information correct?</h5>
 
@@ -243,7 +244,6 @@ const SearchBuilding = () => {
               <Controller
                 name="buildingName"
                 control={control}
-                defaultValue=""
                 render={({
                   field: { onChange, value },
                   fieldState: { error },
@@ -345,18 +345,19 @@ const SearchBuilding = () => {
             <Controller
               name="country"
               control={control}
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => (
+              render={({ field }) => (
                 <FormControl className={classes.formControl}>
                   <InputLabel id="country-label">Country</InputLabel>
-                  <Select labelId="country-label">
+                  <Select
+                    labelId="country-label"
+                    name="countryCode"
+                    value={field.value}
+                    {...field}
+                  >
                     {Countries.map((o) => (
                       <MenuItem
                         key={o.alpha2Code}
                         value={o.alpha2Code}
-                        onChange={onChange}
                       >
                         {o.name}
                       </MenuItem>
@@ -365,7 +366,7 @@ const SearchBuilding = () => {
                 </FormControl>
               )}
             />
-          </Form>
+          </form>
 
         </div>}
       </div>

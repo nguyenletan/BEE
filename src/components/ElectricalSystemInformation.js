@@ -64,7 +64,7 @@ const ElectricalSystemInformation = (props) => {
       <ElectricalSystemInformationList className="d-flex justify-content-start row">
 
         <ElectricalSystemInformationItem
-          className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
+          className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2">
           <div className="me-3">
             <ElectricalSystemInformationItemTitle>Cooling Load</ElectricalSystemInformationItemTitle>
             <ElectricalSystemInformationItemValue>{overallCoolingLoad}W/m2</ElectricalSystemInformationItemValue>
@@ -73,7 +73,7 @@ const ElectricalSystemInformation = (props) => {
         </ElectricalSystemInformationItem>
 
         <ElectricalSystemInformationItem
-          className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
+          className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2">
           <div className="me-3">
             <ElectricalSystemInformationItemTitle>Heating Load</ElectricalSystemInformationItemTitle>
             <ElectricalSystemInformationItemValue>{overallHeatingLoad}W/m2</ElectricalSystemInformationItemValue>
@@ -82,7 +82,7 @@ const ElectricalSystemInformation = (props) => {
         </ElectricalSystemInformationItem>
 
         <ElectricalSystemInformationItem
-          className="d-flex col col-6 col-lg-2  mb-3 mb-lg-0 justify-content-start align-items-center">
+          className="d-flex col col-6 col-lg-2  mb-3 mb-lg-0 justify-content-start align-items-center me-2">
           <div className="me-3">
             <ElectricalSystemInformationItemTitle>Lighting Load</ElectricalSystemInformationItemTitle>
             <ElectricalSystemInformationItemValue>{overallLightingLoad}W/m2</ElectricalSystemInformationItemValue>
@@ -90,7 +90,8 @@ const ElectricalSystemInformation = (props) => {
           <ElectricalSystemInformationItemImage src={lightingLoadImg} alt="Lighting Loading" width="23"/>
         </ElectricalSystemInformationItem>
 
-        <ElectricalSystemInformationItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
+        <ElectricalSystemInformationItem
+          className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2">
           <div className="me-1">
             <ElectricalSystemInformationItemTitle>Mech. Vent. Load</ElectricalSystemInformationItemTitle>
             <ElectricalSystemInformationItemValue>{overallMechVentLoad}W/m2</ElectricalSystemInformationItemValue>
@@ -98,7 +99,8 @@ const ElectricalSystemInformation = (props) => {
           <ElectricalSystemInformationItemImage src={mechVentLoadImg} width="36" alt="Mech. Vent. Load"/>
         </ElectricalSystemInformationItem>
 
-        <ElectricalSystemInformationItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center">
+        <ElectricalSystemInformationItem
+          className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2">
           <div className="me-3">
             <ElectricalSystemInformationItemTitle>P.V. System</ElectricalSystemInformationItemTitle>
             <ElectricalSystemInformationItemValue>{pvSystemInstalledCapacity}W/m2</ElectricalSystemInformationItemValue>
