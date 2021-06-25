@@ -114,7 +114,7 @@ const BreakDown = (props) => {
     {subTitle ?? (<BreakDownSubTitle>{subTitle}</BreakDownSubTitle>)}
     <ResponsivePieWrapper height={chartHeight}>
       <ResponsivePie {...commonProperties}
-                     innerRadius={innerRadius ?? 0.82}
+                     innerRadius={innerRadius ?? 0.60}
                      fit={true}
                      startAngle={startAngle ?? -120}
                      colors={{ datum: 'data.color' }}

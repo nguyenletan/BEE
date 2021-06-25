@@ -91,16 +91,19 @@ const HistoricalComparison = styled.div`
 `
 
 const UpAndDownImg = styled.img`
+
   width: 60px;
   height: 60px;
 `
 
 const UpAndDownImgTitle = styled.h5`
+
   font-size: 0.8rem;
   margin-bottom: 2px;
 `
 
 const UpAndDownImgValue = styled.span`
+  font-weight: 700;
   font-size: 1.1rem;
 `
 
@@ -173,7 +176,7 @@ const BuildingHistorical = (props) => {
     data: buildingEnergyUsageData,//generateCountriesData(keys, { size: 7 }),
     indexBy: 'month',
     keys,
-    padding: 0.66,
+    padding: 0.46,
     labelTextColor: 'white',//'inherit:lighter(1.4)',
     labelSkipWidth: 0,
     labelSkipHeight: 16,
