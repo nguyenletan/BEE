@@ -5,33 +5,24 @@ import { BuildingInformationContext } from '../AddingBuilding'
 import { GoogleMap, Marker, OverlayView } from '@react-google-maps/api'
 import { Redirect } from 'react-router-dom'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
-import { ErrorMsg } from '../../login/LoginStyle'
 import { Form } from 'react-bootstrap'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
+
 import Countries, { findCountryByCountryCode } from '../../../reference-tables/Country'
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Paper, Select,
+  TextField,
+} from '@material-ui/core'
+import MaterialFormStyle from '../../../style/MaterialFormStyle'
 
 const Title = styled.h2`
   color: var(--bs-primary);
   font-weight: 500;
   margin-bottom: 1em;
-`
-
-const SearchButton = styled.button`
-
-`
-
-const Input = styled.input`
-  border-radius: 0.2em;
-  border-color: #7b7b7b;
-`
-
-const SearchButtonText = styled.span`
-  color: var(--white);
-`
-
-const Select = styled.select`
-  border-radius: 0.2em;
-  border-color: #7b7b7b;
 `
 
 const SearchBuilding = () => {
@@ -54,6 +45,8 @@ const SearchBuilding = () => {
     borderRadius: '10px',
     opacity: 0.8,
   }
+
+  const classes = MaterialFormStyle()
 
   const [searchValue, setSearchValue] = useState('')
 
@@ -141,7 +134,11 @@ const SearchBuilding = () => {
     )
   }
 
-  const { register, handleSubmit, setValue, formState: { errors } } = useForm({
+  const {
+    control,
+    handleSubmit,
+    setValue,
+  } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     defaultValues: {
@@ -157,9 +154,7 @@ const SearchBuilding = () => {
     criteriaMode: 'firstError',
     shouldFocusError: false,
     shouldUnregister: false,
-    spaceUsageGFA : [{
-
-    }]
+    spaceUsageGFA: [{}],
   })
 
   const onSubmit = (data) => {
@@ -200,9 +195,10 @@ const SearchBuilding = () => {
                     }}
                   />
                 </div>
-                <SearchButton type="button"
-                              onClick={onSearch}
-                              className="btn btn-primary"><SearchButtonText>Search</SearchButtonText></SearchButton>
+                <Button variant="contained" color="primary" onClick={onSearch}>
+                  Search
+                </Button>
+
               </div>
             </div>
 
@@ -212,20 +208,22 @@ const SearchBuilding = () => {
           <div className="row mt-3 mb-5">
             <div className="col-12 col-lg-12">
               {/*<LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>*/}
-              <GoogleMap mapContainerStyle={mapStyles} zoom={18}
-                         center={buildingInformationContext.location}>
-                <OverlayView position={buildingInformationContext.location}
-                             mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
-                  <div
-                    style={divStyle}>{buildingInformationContext.formatted_address}</div>
-                </OverlayView>
-                <Marker
-                  position={buildingInformationContext.location}
-                  title={searchValue}
-                  zIndex={1}>
-                </Marker>
-              </GoogleMap>
-              {/*</LoadScript>*/}
+              <Paper elevation={3}>
+                <GoogleMap mapContainerStyle={mapStyles} zoom={18}
+                           center={buildingInformationContext.location}>
+                  <OverlayView position={buildingInformationContext.location}
+                               mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
+                    <div
+                      style={divStyle}>{buildingInformationContext.formatted_address}</div>
+                  </OverlayView>
+                  <Marker
+                    position={buildingInformationContext.location}
+                    title={searchValue}
+                    zIndex={1}>
+                  </Marker>
+                </GoogleMap>
+                {/*</LoadScript>*/}
+              </Paper>
             </div>
           </div>
           }
@@ -233,115 +231,142 @@ const SearchBuilding = () => {
 
         {buildingInformationContext &&
         <div className="col-12 col-lg-5">
+
           <Form onSubmit={handleSubmit(onSubmit)}>
 
             <h5 className="text-primary">Is the information correct?</h5>
 
-            <button type="submit" className="btn btn-primary btn-md mb-4">Yes
-            </button>
+            <Button type="submit" variant="contained"
+                    color="primary" className="mb-3 mt-2">Yes</Button>
 
-            <div className="form-group">
-              <label htmlFor="building-name">Building Name</label>
-              <Input type="text"
-                     autofocus="true"
-                     className="form-control"
-                     id="building-name"
-                     aria-describedby="Building Name"
-                     placeholder="Building Name"
-                     {...register('buildingName', {
-                       required: true,
-                       maxLength: 100,
-                     })}/>
-              {errors?.buildingName?.type === 'required' &&
-              <ErrorMsg>Building Name is required</ErrorMsg>}
-              {errors?.buildingName?.type === 'maxLength' &&
-              <ErrorMsg>Max length is 100</ErrorMsg>}
-            </div>
+            <FormControl className={classes.formControl}>
+              <Controller
+                name="buildingName"
+                control={control}
+                defaultValue=""
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <TextField
+                    label="Building Name"
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                  />
+                )}
+                rules={{ required: 'Building Name required' }}
+              />
+            </FormControl>
 
-            <div className="form-group">
-              <label htmlFor="address">Address</label>
-              <Input type="text"
-                     className="form-control"
-                     id="address"
-                     aria-describedby="Address"
-                     placeholder="Address"
-                     autocomplete="off"
-                     {...register('address', {
-                       required: true,
-                       maxLength: 100,
-                     })}/>
-              {errors?.address?.type === 'required' &&
-              <ErrorMsg>Address is required</ErrorMsg>}
-              {errors?.address?.type === 'maxLength' &&
-              <ErrorMsg>Max length is 100</ErrorMsg>}
-            </div>
+            <FormControl className={classes.formControl}>
+              <Controller
+                control={control}
+                name="address"
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <TextField
+                    label="Address"
+                    aria-describedby="Address"
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                  />
+                )}
+                rules={{ required: 'Building Name required' }}
+              />
+            </FormControl>
 
-            <div className="form-group">
-              <label htmlFor="postal-code">Postal Code</label>
-              <Input type="text"
-                     inputMode="numeric"
-                     className="form-control"
-                     id="postal-code"
-                     aria-describedby="Postal Code"
-                     placeholder="Postal Code"
-                     autocomplete="off"
-                     {...register('postalCode', {
-                       required: false,
-                       maxLength: 10,
-                     })}/>
-              {errors?.postalCode?.type === 'required' &&
-              <ErrorMsg>Postal Code is required</ErrorMsg>}
-              {errors?.postalCode?.type === 'maxLength' &&
-              <ErrorMsg>Max length is 10</ErrorMsg>}
-            </div>
+            <FormControl className={classes.formControl}>
+              <Controller
+                name="postalCode"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <TextField
+                    label="Postal Code"
+                    aria-describedby="Postal Code"
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                  />
+                )}
+              />
+            </FormControl>
 
-            <div className="form-group">
-              <label htmlFor="city">City</label>
-              <Input type="text"
-                     className="form-control"
-                     id="city"
-                     aria-describedby="City"
-                     placeholder="City"
-                     autocomplete="off"
-                     {...register('city', {
-                       required: false,
-                       maxLength: 100,
-                     })}/>
-              {errors?.city?.type === 'maxLength' &&
-              <ErrorMsg>Max length is 100</ErrorMsg>}
-            </div>
+            <FormControl className={classes.formControl}>
+              <Controller
+                name="city"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <TextField
+                    aria-describedby="City"
+                    label="City"
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                  />
+                )}
+              />
+            </FormControl>
 
-            <div className="form-group">
-              <label htmlFor="state">State</label>
-              <Input type="text"
-                     className="form-control"
-                     id="state"
-                     aria-describedby="State"
-                     placeholder="State"
-                     autocomplete="off"
-                     {...register('state', {
-                       required: false,
-                       maxLength: 100,
-                     })}/>
-              {errors?.state?.type === 'maxLength' &&
-              <ErrorMsg>Max length is 10</ErrorMsg>}
-            </div>
+            <FormControl className={classes.formControl}>
+              <Controller
+                name="state"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <TextField
+                    aria-describedby="State"
+                    label="State"
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                  />
+                )}
+              />
+            </FormControl>
 
-            <div className="form-group">
-              <label htmlFor="country-code">Country</label>
-              <Select id="country" className="form-select" {...register('countryCode')}>
-                {Countries.map((o) => (
-                  <option
-                    key={o.alpha2Code}
-                    value={o.alpha2Code}
-                  >
-                    {o.name}
-                  </option>
-                ))}
-              </Select>
-            </div>
 
+            <Controller
+              name="country"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => (
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="country-label">Country</InputLabel>
+                  <Select labelId="country-label">
+                    {Countries.map((o) => (
+                      <MenuItem
+                        key={o.alpha2Code}
+                        value={o.alpha2Code}
+                        onChange={onChange}
+                      >
+                        {o.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+            />
           </Form>
+
         </div>}
       </div>
     </>

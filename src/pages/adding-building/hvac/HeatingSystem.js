@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {
-  Checkbox,
+  Checkbox, Fade,
   FormControl,
   FormControlLabel,
   InputLabel,
@@ -23,7 +23,6 @@ const HeatingSystem = () => {
 
   const classes = MaterialFormStyle()
 
-
   return (
     <>
       <Title>Heating System Installed</Title>
@@ -40,60 +39,63 @@ const HeatingSystem = () => {
       />
 
       {hasHeatingSystem && (
-        <div className="d-flex flex-column">
-          <FormControl className={classes.formControl}>
-            <InputLabel id="heating-system-type-label">Heating System
-              Type</InputLabel>
-            <Select
-              labelId="heating-system-type-label"
-              id="heating-system-type-select"
-            >
-              {HeatingSystemType.map((o) => (
-                <MenuItem
-                  key={o.id}
-                  value={o.id}
-                >
-                  {o.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <InputLabel id="heater-type-label">Heater Type</InputLabel>
-            <Select
-              labelId="heater-type-label"
-              id="heater-type-select"
-            >
-              {HeaterType.map((o) => (
-                <MenuItem
-                  key={o.id}
-                  value={o.id}
-                >
-                  {o.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <InputLabel id="heater-energy-source-label">Heater Energy
-              Source</InputLabel>
-            <Select
-              labelId="heater-energy-source-label"
-              id="heater-energy-source-select"
+        <Fade in={hasHeatingSystem} timeout={500}>
+          <div className="d-flex flex-column">
+            <FormControl className={classes.formControl}>
+              <InputLabel id="heating-system-type-label">Heating System
+                Type</InputLabel>
+              <Select
+                labelId="heating-system-type-label"
+                id="heating-system-type-select"
+              >
+                {HeatingSystemType.map((o) => (
+                  <MenuItem
+                    key={o.id}
+                    value={o.id}
+                  >
+                    {o.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="heater-type-label">Heater Type</InputLabel>
+              <Select
+                labelId="heater-type-label"
+                id="heater-type-select"
+              >
+                {HeaterType.map((o) => (
+                  <MenuItem
+                    key={o.id}
+                    value={o.id}
+                  >
+                    {o.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="heater-energy-source-label">Heater Energy
+                Source</InputLabel>
+              <Select
+                labelId="heater-energy-source-label"
+                id="heater-energy-source-select"
 
-            >
-              {HeaterEnergySourceType.map((o) => (
-                <MenuItem
-                  key={o.id}
-                  value={o.id}
-                >
-                  {o.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
+              >
+                {HeaterEnergySourceType.map((o) => (
+                  <MenuItem
+                    key={o.id}
+                    value={o.id}
+                  >
+                    {o.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
+        </Fade>
       )}
+
     </>
   )
 }

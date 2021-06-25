@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {
-  Checkbox,
+  Checkbox, Fade,
   FormControl,
   FormControlLabel,
   InputLabel,
@@ -46,8 +46,8 @@ const CoolingSystem = () => {
       />
 
       {hasCoolingSystem && (
-
-        <div className="d-flex flex-column">
+        <Fade in={hasCoolingSystem} timeout={500}>
+          <div className="d-flex flex-column">
           <FormControl className={classes.formControl}>
             <InputLabel id="demo-simple-select-label">Cooling System
               Type</InputLabel>
@@ -103,6 +103,7 @@ const CoolingSystem = () => {
             </Select>
           </FormControl>
         </div>
+        </Fade>
       )}
     </>
   )

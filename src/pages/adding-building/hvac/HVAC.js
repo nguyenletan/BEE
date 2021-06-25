@@ -63,8 +63,9 @@ const HVAC = () => {
 
       <StepNav activePositon={2}/>
       <div className="row">
+        
         <div className="col-12 col-lg-6 col-xxl-4">
-          <CoolingSystem/>
+            <CoolingSystem/>
         </div>
 
         <div className="col-12 col-lg-6 col-xxl-4">
