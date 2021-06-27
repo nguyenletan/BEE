@@ -8,6 +8,7 @@ import { lightingSubSystemListState } from '../../../atoms'
 import _ from 'lodash'
 
 import LightingSubSystem from './LightingSubSystem'
+import { Button } from '@material-ui/core'
 
 const Form = styled.form`
 
@@ -96,14 +97,12 @@ const Lighting = () => {
         <Title>New Building</Title>
 
         <div className="form-group ms-auto">
-          <Link to="/adding-building/search-building">
-            <button type="button"
-                    className="btn btn-outline-primary me-1">&lt; Back
-            </button>
+          <Link to="/adding-building/hvac">
+            <Button variant="contained" color="default" className="me-2">&lt; Back
+            </Button>
           </Link>
-          <Link to="/adding-building/electricity-consumption">
-            <button type="submit"
-                    className="btn btn-primary">Next &gt;</button>
+          <Link to="/adding-building/envelope-facade">
+            <Button variant="contained" color="primary">Next &gt;</Button>
           </Link>
         </div>
       </div>

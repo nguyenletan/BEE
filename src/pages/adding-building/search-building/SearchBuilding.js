@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { getLatLngFromAddress } from '../../../Utilities'
 import { BuildingInformationContext } from '../AddingBuilding'
 import { GoogleMap, Marker, OverlayView } from '@react-google-maps/api'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 
 import { Controller, useForm } from 'react-hook-form'
@@ -19,11 +19,12 @@ import {
   TextField,
 } from '@material-ui/core'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
+import StepNav from '../step-nav/StepNav'
 
 const Title = styled.h2`
   color: var(--bs-primary);
   font-weight: 500;
-  margin-bottom: 1em;
+  margin-bottom: 0;
 `
 
 const SearchBuilding = () => {
@@ -168,9 +169,22 @@ const SearchBuilding = () => {
   return (
     <>
 
-      <Title>Search Online</Title>
 
       {isMovingNext && <Redirect to="/adding-building/general-information"/>}
+
+      <div className="d-flex mt-5 mb-4">
+
+        <Title>Search Online</Title>
+
+        <div className="form-group ms-auto">
+          <Link to="/adding-building/general-information">
+            <Button variant="contained" color="primary">Next &gt;</Button>
+          </Link>
+        </div>
+      </div>
+
+
+      <StepNav/>
 
       <div className="row">
         <div className="col-12 col-lg-7">

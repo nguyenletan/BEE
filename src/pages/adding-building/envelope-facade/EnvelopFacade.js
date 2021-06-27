@@ -4,7 +4,7 @@ import StepNav from '../step-nav/StepNav'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import {
-  Box,
+  Box, Button,
   FormControl,
   Input,
   InputLabel,
@@ -127,14 +127,12 @@ const EnvelopFacade = () => {
         <Title>New Building</Title>
 
         <div className="form-group ms-auto">
-          <Link to="/adding-building/search-building">
-            <button type="button"
-                    className="btn btn-outline-primary me-1">&lt; Back
-            </button>
+          <Link to="/adding-building/lighting">
+            <Button variant="contained" color="default" className="me-2">&lt; Back
+          </Button>
           </Link>
-          <Link to="/adding-building/electricity-consumption">
-            <button type="submit"
-                    className="btn btn-primary">Next &gt;</button>
+          <Link to="/adding-building/renewable-energy">
+            <Button variant="contained" color="primary" >Next &gt;</Button>
           </Link>
         </div>
       </div>

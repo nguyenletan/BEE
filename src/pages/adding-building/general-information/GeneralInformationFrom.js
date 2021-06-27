@@ -11,6 +11,7 @@ import UseType from '../../../reference-tables/UseType'
 import StepNav from '../step-nav/StepNav'
 import { SustainabilityRatingScheme } from '../../../reference-tables/GreenBuildingRatingSystem'
 import {
+  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -56,15 +57,6 @@ const Title = styled.h2`
   margin-bottom: 0;
 `
 
-const ComplexLabel = styled.label`
-  display: flex;
-  justify-content: start;
-
-  .form-check {
-    margin-left: 1em;
-    color: var(--bs-primary);
-  }
-`
 
 const GeneralInformationFrom = ({ data }) => {
   const classes = MaterialFormStyle()
@@ -204,16 +196,16 @@ const GeneralInformationFrom = ({ data }) => {
 
         <div className="form-group ms-auto">
           <Link to="/adding-building/search-building">
-            <button type="button"
-                    className="btn btn-outline-primary me-1">&lt; Back
-            </button>
+            <Button variant="contained" color="default"
+                    className="me-2">&lt; Back
+            </Button>
           </Link>
-          <button type="submit"
-                  className="btn btn-primary">Next &gt;</button>
+          <Link to="/adding-building/activity"><Button variant="contained"
+                                                       color="primary">Next &gt;</Button></Link>
         </div>
       </div>
 
-      <StepNav activePositon={0}/>
+      <StepNav/>
 
       <div className="row">
         <LeftCol className="col-12 col-lg-8 ">
@@ -433,33 +425,28 @@ const GeneralInformationFrom = ({ data }) => {
               {errors?.country?.type === 'maxLength' &&
               <ErrorMsg>Max length is 10</ErrorMsg>}
             </div>
-            <div className="form-group col-12 col-lg-6">
-              <ComplexLabel htmlFor="gross-interior-area">
-                <span>Gross Interior Area</span>
-                <div className="form-check">
-                  <input className="form-check-input" type="radio"
-                         name="gross-interior-area-unit"
-                         id="gross-interior-area-m" checked/>
-                  <label className="form-check-label"
-                         htmlFor="gross-interior-area-m">m<sup>2</sup></label>
-                </div>
-                <div className="form-check">
-                  <input className="form-check-input" type="radio"
-                         name="gross-interior-area-unit"
-                         id="gross-interior-area-ft"/>
-                  <label className="form-check-label"
-                         htmlFor="gross-interior-area-ft">ft<sup>2</sup></label>
-                </div>
-              </ComplexLabel>
+            <div className="d-flex justify-content-start mb-3 col-12 col-lg-6">
               <TextField type="text"
                          id="gross-interior-area"
                          aria-describedby="Gross Interior Area"
                          placeholder="Gross Interior Area"
+                         label="Gross Interior Area"
+                         className={classes.valueUnit}
                          {...register('grossInteriorArea', {
                            required: true,
                            pattern: /^[0-9.,]+$/i,
                            maxLength: 100,
                          })}/>
+              <FormControl className={classes.smallFormControl}>
+                <InputLabel id="gross-interior-area-unit-label"/>
+                <Select id="gross-interior-area-unit-select"
+                        labelId="gross-interior-area-unit-label"
+                        className={classes.unit}
+                        defaultValue="m2">
+                  <MenuItem value="m2">m<sup>2</sup></MenuItem>
+                  <MenuItem value="ft2">ft<sup>2</sup></MenuItem>
+                </Select>
+              </FormControl>
               {errors?.grossInteriorArea?.type === 'required' &&
               <ErrorMsg>Gross Interior Area is required</ErrorMsg>}
               {errors?.grossInteriorArea?.type === 'maxLength' &&
@@ -494,33 +481,28 @@ const GeneralInformationFrom = ({ data }) => {
               {errors?.constructionPeriod?.type === 'maxLength' &&
               <ErrorMsg>Max length is 100</ErrorMsg>}
             </div>
-            <div className="form-group col-12 col-lg-6">
-              <ComplexLabel
-                htmlFor="net-usable-area"><span>Net Usable Area</span>
-                <div className="form-check">
-                  <input className="form-check-input" type="radio"
-                         name="net-usable-area-unit"
-                         id="net-usable-area-unit-m" checked/>
-                  <label className="form-check-label"
-                         htmlFor="net-usable-area-unit-m">m<sup>2</sup></label>
-                </div>
-                <div className="form-check">
-                  <input className="form-check-input" type="radio"
-                         name="net-usable-area-unit"
-                         id="net-usable-area-unit-ft"/>
-                  <label className="form-check-label"
-                         htmlFor="net-usable-area-unit-ft">ft<sup>2</sup></label>
-                </div>
-              </ComplexLabel>
+            <div className="col-12 col-lg-6 d-flex justify-content-start mb-3">
               <TextField type="number"
                          id="net-usable-area"
                          aria-describedby="Net Usable Area"
                          placeholder="Net Usable Area"
+                         label="Net Usable Area"
+                         className={classes.valueUnit}
                          {...register('netUsableArea', {
                            required: true,
                            pattern: /^[0-9.,]+$/i,
                            maxLength: 100,
                          })}/>
+              <FormControl className={classes.smallFormControl}>
+                <InputLabel id="net-usable-area-unit-label"/>
+                <Select id="net-usable-area-unit-select"
+                        labelId="net-usable-area-unit-label"
+                        className={classes.unit}
+                        defaultValue="m2">
+                  <MenuItem value="m2">m<sup>2</sup></MenuItem>
+                  <MenuItem value="ft2">ft<sup>2</sup></MenuItem>
+                </Select>
+              </FormControl>
               {errors?.netUsableArea?.type === 'required' &&
               <ErrorMsg>Net Usable Area is required</ErrorMsg>}
               {errors?.netUsableArea?.type === 'maxLength' &&
@@ -553,36 +535,29 @@ const GeneralInformationFrom = ({ data }) => {
               {errors?.useType?.type === 'maxLength' &&
               <ErrorMsg>Max length is 100</ErrorMsg>}
             </div>
-            <div className="form-group col-12 col-lg-6">
-              <ComplexLabel
-                htmlFor="avg-internal-floor-to-ceiling-height"><span>Avg.
-                Internal Floor to Ceiling Height</span>
-                <div className="form-check">
-                  <input className="form-check-input" type="radio"
-                         name="avg-internal-floor-to-ceiling-height-unit"
-                         id="avg-internal-floor-to-ceiling-height-unit-m"
-                         checked/>
-                  <label className="form-check-label"
-                         htmlFor="avg-internal-floor-to-ceiling-height-unit-m">m</label>
-                </div>
-                <div className="form-check">
-                  <input className="form-check-input" type="radio"
-                         name="avg-internal-floor-to-ceiling-height-unit"
-                         id="avg-internal-floor-to-ceiling-height-unit-ft"/>
-                  <label className="form-check-label"
-                         htmlFor="avg-internal-floor-to-ceiling-height-unit-ft">ft</label>
-                </div>
-              </ComplexLabel>
+            <div className="col-12 col-lg-6 d-flex justify-content-start mb-3">
               <TextField type="number"
-                         inputMode="decimal"
                          id="avg-internal-floor-to-ceiling-height"
                          aria-describedby="Avg. Internal Floor to Ceiling Height"
                          placeholder="Avg. Internal Floor to Ceiling Height"
+                         className={classes.valueUnit}
+                         label="Avg. Internal Floor to Ceiling Height"
                          {...register('avgInternalFloorToCeilingHeight', {
                            required: true,
                            pattern: /^[0-9.,]+$/i,
                            maxLength: 100,
                          })}/>
+              <FormControl className={classes.smallFormControl}>
+                <InputLabel
+                  id="avg-internal-floor-to-ceiling-height-unit-label"/>
+                <Select id="avg-internal-floor-to-ceiling-height-unit-select"
+                        labelId="avg-internal-floor-to-ceiling-height-unit-label"
+                        className={classes.unit}
+                        defaultValue="m">
+                  <MenuItem value="m">m</MenuItem>
+                  <MenuItem value="ft">ft</MenuItem>
+                </Select>
+              </FormControl>
               {errors?.avgInternalFloorToCeilingHeight?.type === 'required' &&
               <ErrorMsg>Avg. Internal Floor to Ceiling Height is
                 required</ErrorMsg>}
@@ -609,7 +584,8 @@ const GeneralInformationFrom = ({ data }) => {
             className="d-none"
             onChange={handleChange}
           />
-          <label className="mt-3 btn btn-primary" htmlFor="upload-button"
+          <label className="mt-3 btn btn-primary border shadow"
+                 htmlFor="upload-button"
                  title="Upload image">Upload photo</label>
         </div>
       </div>

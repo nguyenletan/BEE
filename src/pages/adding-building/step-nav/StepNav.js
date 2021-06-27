@@ -13,7 +13,8 @@ const UL = styled.ul`
 
     &.active {
       font-weight: 700;
-      //  font-size: 1.2em;
+      //font-size: 1.1em;
+      text-decoration: underline;
     }
   }
 `

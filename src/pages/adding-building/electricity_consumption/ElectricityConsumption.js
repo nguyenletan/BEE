@@ -10,6 +10,7 @@ import OneMonthElectricityConsumption from './OneMonthElectricityConsumption'
 
 import { electricityConsumptionListState } from '../../../atoms'
 import { getNextMonthYear } from '../../../Utilities'
+import { Button } from '@material-ui/core'
 
 const Form = styled.form`
 
@@ -117,12 +118,11 @@ const ElectricityConsumption = () => {
 
         <div className="form-group ms-auto">
           <Link to="/adding-building/activity">
-            <button type="button"
-                    className="btn btn-outline-primary me-1">&lt; Back
-            </button>
+            <Button variant="contained" color="default" className="me-2">&lt; Back
+            </Button>
           </Link>
-          <button type="submit"
-                  className="btn btn-primary">Next &gt;</button>
+          <Link to="/adding-building/hvac">
+            <Button variant="contained" color="primary">Next &gt;</Button></Link>
         </div>
       </div>
 

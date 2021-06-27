@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import StepNav from '../step-nav/StepNav'
 import { useForm } from 'react-hook-form'
 import SolarPanel from './SolarPanel'
+import { Button } from '@material-ui/core'
 
 const Form = styled.form`
 
@@ -48,15 +49,13 @@ const RenewableEnergy = () => {
         <Title>New Building</Title>
 
         <div className="form-group ms-auto">
-          <Link to="/adding-building/search-building">
-            <button type="button"
-                    className="btn btn-outline-primary me-1">&lt; Back
-            </button>
+          <Link to="/adding-building/envelope-facade">
+            <Button variant="contained" color="default" className="me-2">&lt; Back
+            </Button>
           </Link>
-          <Link to="/adding-building/electricity-consumption">
-            <button type="submit"
-                    className="btn btn-primary">Next &gt;</button>
-          </Link>
+          {/*<Link to="/adding-building/electricity-consumption">*/}
+          {/*  <Button variant="contained" color="primary">Next &gt;</Button>*/}
+          {/*</Link>*/}
         </div>
       </div>
 

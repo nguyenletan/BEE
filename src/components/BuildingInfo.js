@@ -77,7 +77,7 @@ const BuildingInfo = (props) => {
         </div>
       </div>
 
-      <div className="row ms-1 mb-2">
+      <div className="row ms-2 mb-2">
         <div className="col-12 col-md-4 col-lg-3">
           <TypeCol className="mb-1">Storey</TypeCol>
           <TypeCol className="mb-0">{storey}</TypeCol>

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import StepNav from '../step-nav/StepNav'
 import TimeTable from './TimeTable'
 import SpaceUsageGFA from './SapceUsageGFA'
+import { Button } from '@material-ui/core'
 
 const Form = styled.form`
 
@@ -14,7 +15,6 @@ const Title = styled.h2`
   color: var(--bs-primary);
   font-weight: 500;
   margin-bottom: 0;
-  \
 `
 
 const Activity = () => {
@@ -50,13 +50,12 @@ const Activity = () => {
         <Title>New Building</Title>
 
         <div className="form-group ms-auto">
-          <Link to="/adding-building/search-building">
-            <button type="button" className="btn btn-outline-primary me-1">&lt; Back
-            </button>
+          <Link to="/adding-building/general-information">
+            <Button variant="contained" color="default" className="me-2">&lt; Back
+            </Button>
           </Link>
           <Link to="/adding-building/electricity-consumption">
-          <button type="submit"
-                  className="btn btn-primary">Next &gt;</button>
+            <Button  variant="contained" type="submit" color="primary">Next &gt;</Button>
           </Link>
         </div>
       </div>
