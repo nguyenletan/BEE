@@ -3,7 +3,7 @@ import {
   Fade,
   FormControl,
   InputLabel,
-  MenuItem,
+  MenuItem, Paper,
   Select,
   TextField,
 } from '@material-ui/core'
@@ -14,9 +14,6 @@ import { removeItemAtIndex } from '../../../Utilities'
 import { useRecoilState } from 'recoil'
 import { lightingSubSystemListState } from '../../../atoms'
 
-const Wrapper = styled.div`
-  padding: 1em;
-`
 
 const Title = styled.h6`
 
@@ -57,8 +54,8 @@ const LightingSubSystem = ({ data }) => {
   }
 
   return (
-    <Fade in={true} timeout={400}>
-      <Wrapper className="shadow-sm rounded-2 border">
+    <Fade in={true} timeout={500}>
+      <Paper elevation={3} className="p-3">
         <Header>
           <Title>{data.title}<SpanId>{data.id}</SpanId></Title>
           <Subtraction title="Remove Item" onClick={onRemoveItem}><i
@@ -87,7 +84,7 @@ const LightingSubSystem = ({ data }) => {
             <TextField id="percentage" label="Percentage %" type="number"/>
           </FormControl>
         </Content>
-      </Wrapper>
+      </Paper>
     </Fade>
   )
 }
