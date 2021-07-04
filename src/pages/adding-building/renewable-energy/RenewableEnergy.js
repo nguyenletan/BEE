@@ -1,18 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import StepNav from '../step-nav/StepNav'
 import { useForm } from 'react-hook-form'
 import SolarPanel from './SolarPanel'
-import { Button } from '@material-ui/core'
 import { useRecoilState } from 'recoil'
-import {
-  solarPanelSystemListState,
-} from '../../../atoms'
+import { solarPanelSystemListState } from '../../../atoms'
 import _ from 'lodash'
-import {Save, ArrowBack} from '@material-ui/icons';
-import Progress from '../../../components/Progress'
-
+import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
 
 const Form = styled.form`
 
@@ -44,7 +38,8 @@ const Ul = styled.ul`
 
 const RenewableEnergy = () => {
 
-  const [solarSystemList, setSolarSystemList] = useRecoilState(solarPanelSystemListState)
+  const [solarSystemList, setSolarSystemList] = useRecoilState(
+    solarPanelSystemListState)
 
   const onAddSolarSystemList = () => {
 
@@ -59,7 +54,7 @@ const RenewableEnergy = () => {
         orientationAngle: 0,
         systemLoss: 14,
         pvTechChoiceId: 0,
-        mountingType: 0
+        mountingType: 0,
       },
     ])
 
@@ -92,7 +87,7 @@ const RenewableEnergy = () => {
 
     <li className="col-12 col-lg-6 mb-4" key={item.id}>
       <SolarPanel data={item}/>
-    </li>
+    </li>,
   )
 
   return (
@@ -102,17 +97,12 @@ const RenewableEnergy = () => {
 
         <Title>New Building</Title>
 
-        <div className="d-flex ms-auto align-items-center">
-          <Progress value={65} />
-          <Button size="medium" startIcon={<Save />} variant="contained" color="primary" className="me-2">Save</Button>
-          <Link to="/adding-building/envelope-facade">
-            <Button size="medium" startIcon={<ArrowBack/>} variant="contained" color="default" className="me-2">Back
-            </Button>
-          </Link>
-          {/*<Link to="/adding-building/electricity-consumption">*/}
-          {/*  <Button variant="contained" color="primary">Next &gt;</Button>*/}
-          {/*</Link>*/}
-        </div>
+        <BackNextGroupButton
+          backLink="/adding-building/envelope-facade"
+          progressValue={90}
+          isDisabledSave={true}
+        />
+
       </div>
 
       <StepNav/>
@@ -121,7 +111,7 @@ const RenewableEnergy = () => {
         <div className="col-12 col-lg-8">
           <Header className="d-flex justify-content-between">
             <h6>Solar Panel Subsystem</h6>
-            <Adding  title="Add new item" onClick={onAddSolarSystemList}>
+            <Adding title="Add new item" onClick={onAddSolarSystemList}>
               <i className="bi bi-plus-lg font-weight-bolder"/>
             </Adding>
           </Header>

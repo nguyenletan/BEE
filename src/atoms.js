@@ -50,4 +50,17 @@ export const electricityConsumptionListState = atom({
   }],
 })
 
+export const generalBuildingInformationState = atom({
+  key: 'generalBuildingInformation',
+  default: null,
+})
 
+export const buildingActivityState = atom({
+  key: 'buildingActivity',
+  default: [],
+})
+
+export const addingBuildingProgressState = atom({
+  key: 'addingBuildingProgress',
+  default: 0,
+})

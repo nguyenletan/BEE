@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import StepNav from '../step-nav/StepNav'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
@@ -8,7 +7,7 @@ import { lightingSubSystemListState } from '../../../atoms'
 import _ from 'lodash'
 
 import LightingSubSystem from './LightingSubSystem'
-import { Button } from '@material-ui/core'
+import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
 
 const Form = styled.form`
 
@@ -86,7 +85,7 @@ const Lighting = () => {
 
       <LightingSubSystem data={item}/>
 
-    </li>
+    </li>,
   )
 
   return (
@@ -96,21 +95,20 @@ const Lighting = () => {
 
         <Title>New Building</Title>
 
-        <div className="form-group ms-auto">
-          <Link to="/adding-building/hvac">
-            <Button variant="contained" color="default" className="me-2">&lt; Back
-            </Button>
-          </Link>
-          <Link to="/adding-building/envelope-facade">
-            <Button variant="contained" color="primary">Next &gt;</Button>
-          </Link>
-        </div>
+        <BackNextGroupButton
+          backLink="/adding-building/hvac"
+          nextLink="/adding-building/envelope-facade"
+          progressValue={70}
+          isDisabledSave={true}
+        />
+
+
       </div>
 
       <StepNav/>
 
       <div className="row">
-        <div className="col-12 col-lg-6">
+        <div className="col-12 col-lg-8">
           <Header className="d-flex justify-content-between">
             <h6>Lighting Subsystem</h6>
             <Adding onClick={onAddLightingSubSystemList} title="Add new item"><i

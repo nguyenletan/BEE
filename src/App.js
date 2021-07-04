@@ -10,7 +10,8 @@ import Register from './pages/register/Register';
 import TermOfService from './pages/TermsOfService';
 import AddingBuilding from './pages/adding-building/AddingBuilding';
 
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot, useRecoilCallback, useRecoilSnapshot } from 'recoil'
+import { useEffect } from 'react'
 
 
 
@@ -31,6 +32,30 @@ const theme = createMuiTheme({
   },
 });
 
+function DebugObserver(){
+  const snapshot = useRecoilSnapshot();
+  useEffect(() => {
+    console.debug('The following atoms were modified:');
+    for (const node of snapshot.getNodes_UNSTABLE({isModified: true})) {
+      console.debug(node.key, snapshot.getLoadable(node));
+    }
+  }, [snapshot]);
+
+  return null;
+}
+
+function DebugButton() {
+  const onClick = useRecoilCallback(({snapshot}) => async () => {
+    console.log('Atom values:');
+    for (const node of snapshot.getNodes_UNSTABLE()) {
+      const value = await snapshot.getPromise(node);
+      console.log(node.key, value);
+    }
+  }, []);
+
+  return <button onClick={onClick}>Dump State</button>
+}
+
 function App() {
   const {user, loading} = useAuth();
   if (loading) return null;
@@ -39,6 +64,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <RecoilRoot>
+        <DebugObserver />
         <div className="App container-fluid gx-0">
           <Router>
             <Switch>
@@ -50,7 +76,9 @@ function App() {
               <Route path="/adding-building" component={AddingBuilding}/>
             </Switch>
           </Router>
+          <DebugButton/>
         </div>
+
       </RecoilRoot>
     </ThemeProvider>
   );

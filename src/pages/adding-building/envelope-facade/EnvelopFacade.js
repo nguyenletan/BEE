@@ -1,10 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import StepNav from '../step-nav/StepNav'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import {
-  Box, Button,
+  Box,
   FormControl,
   Input,
   InputLabel,
@@ -17,6 +16,7 @@ import Grid from '@material-ui/core/Grid'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import ExternalWallType from '../../../reference-tables/ExternalWallType'
 import ExternalWindowType from '../../../reference-tables/ExternalWindowType'
+import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
 
 const Form = styled.form`
 
@@ -75,7 +75,7 @@ const EnvelopFacade = () => {
   const marks = [
     {
       value: 0,
-      label: 0
+      label: 0,
     },
     {
       value: 0.1,
@@ -95,7 +95,7 @@ const EnvelopFacade = () => {
     },
     {
       value: 0.5,
-      label: 0.5
+      label: 0.5,
     },
     {
       value: 0.6,
@@ -115,7 +115,7 @@ const EnvelopFacade = () => {
     },
     {
       value: 1,
-      label: 1
+      label: 1,
     },
   ]
 
@@ -126,18 +126,16 @@ const EnvelopFacade = () => {
 
         <Title>New Building</Title>
 
-        <div className="form-group ms-auto">
-          <Link to="/adding-building/lighting">
-            <Button variant="contained" color="default" className="me-2">&lt; Back
-          </Button>
-          </Link>
-          <Link to="/adding-building/renewable-energy">
-            <Button variant="contained" color="primary" >Next &gt;</Button>
-          </Link>
-        </div>
+        <BackNextGroupButton
+          backLink="/adding-building/lighting"
+          nextLink="/adding-building/renewable-energy"
+          progressValue={70}
+          isDisabledSave={true}/>
+
       </div>
 
       <StepNav/>
+
       <div className="row">
         <div className="col-12 col-lg-6 col-xxl-4">
           <Box component="div" mb={3}>

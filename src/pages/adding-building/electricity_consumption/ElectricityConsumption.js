@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
@@ -10,7 +9,7 @@ import OneMonthElectricityConsumption from './OneMonthElectricityConsumption'
 
 import { electricityConsumptionListState } from '../../../atoms'
 import { getNextMonthYear } from '../../../Utilities'
-import { Button } from '@material-ui/core'
+import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
 
 const Form = styled.form`
 
@@ -86,7 +85,9 @@ const ElectricityConsumption = () => {
       electricityConsumptionList.length > 0) {
       console.log(
         electricityConsumptionList[electricityConsumptionList.length - 1])
-      nextMonthYear = getNextMonthYear(electricityConsumptionList[electricityConsumptionList.length - 1].month, electricityConsumptionList[electricityConsumptionList.length - 1].year)
+      nextMonthYear = getNextMonthYear(
+        electricityConsumptionList[electricityConsumptionList.length - 1].month,
+        electricityConsumptionList[electricityConsumptionList.length - 1].year)
     }
 
     console.log(nextMonthYear)
@@ -116,14 +117,13 @@ const ElectricityConsumption = () => {
 
         <Title>New Building</Title>
 
-        <div className="form-group ms-auto">
-          <Link to="/adding-building/activity">
-            <Button variant="contained" color="default" className="me-2">&lt; Back
-            </Button>
-          </Link>
-          <Link to="/adding-building/hvac">
-            <Button variant="contained" color="primary">Next &gt;</Button></Link>
-        </div>
+        <BackNextGroupButton
+          backLink="/adding-building/activity"
+          nextLink="/adding-building/hvac"
+          progressValue={70}
+          isDisabledSave={true}
+        />
+
       </div>
 
       <StepNav activePositon={2}/>

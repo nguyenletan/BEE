@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { getLatLngFromAddress } from '../../../Utilities'
-import { BuildingInformationContext } from '../AddingBuilding'
 import { GoogleMap, Marker, OverlayView } from '@react-google-maps/api'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 
 import { Controller, useForm } from 'react-hook-form'
@@ -13,13 +12,18 @@ import {
   Button,
   FormControl,
   InputLabel,
-  MenuItem,
+  NativeSelect,
   Paper,
-  Select,
   TextField,
 } from '@material-ui/core'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import StepNav from '../step-nav/StepNav'
+import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
+import { useRecoilState } from 'recoil'
+import {
+  addingBuildingProgressState,
+  generalBuildingInformationState,
+} from '../../../atoms'
 
 const Title = styled.h2`
   color: var(--bs-primary);
@@ -54,8 +58,37 @@ const SearchBuilding = () => {
 
   const [isMovingNext, setIsMovingNext] = useState(false)
 
-  const [buildingInformationContext, setBuildingInformationContext] = useContext(
-    BuildingInformationContext)
+  const [generalBuildingInformation, setGeneralBuildingInformation] = useRecoilState(
+    generalBuildingInformationState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
+    addingBuildingProgressState)
+
+  const setValueToForm = (information) => {
+    setValue('address', information?.address, {
+      shouldValidate: true,
+      shouldDirty: true,
+    })
+    setValue('city', information?.city, {
+      shouldValidate: true,
+      shouldDirty: true,
+    })
+    setValue('state', information?.state, {
+      shouldValidate: true,
+      shouldDirty: true,
+    })
+    setValue('countryCode', information?.countryCode, {
+      shouldValidate: true,
+      shouldDirty: true,
+    })
+    setValue('postalCode', information?.postalCode, {
+      shouldValidate: true,
+      shouldDirty: true,
+    })
+    setValue('buildingName', information?.buildingName, {
+      shouldValidate: true,
+      shouldDirty: true,
+    })
+  }
 
   const onSearch = async () => {
     console.log(searchValue)
@@ -93,33 +126,14 @@ const SearchBuilding = () => {
 
     }
 
-    setBuildingInformationContext(information)
-
-    setValue('address', information?.address, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('city', information?.city, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('state', information?.state, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('countryCode', information?.countryCode, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('postalCode', information?.postalCode, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('buildingName', information?.buildingName, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
+    setGeneralBuildingInformation(information)
+    setValueToForm(information)
   }
+
+  useEffect(() => {
+    setValueToForm(generalBuildingInformation)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const DropdownIndicator = (props) => {
     return (
@@ -161,14 +175,14 @@ const SearchBuilding = () => {
 
   const onSubmit = (data) => {
     console.log(data)
-    console.log(buildingInformationContext)
-    setBuildingInformationContext({ ...buildingInformationContext, ...data })
+    console.log(generalBuildingInformation)
+    setGeneralBuildingInformation({ ...generalBuildingInformation, ...data })
+    setAddingBuildingProgressState(5)
     setIsMovingNext(true)
   }
 
   return (
     <>
-
 
       {isMovingNext && <Redirect to="/adding-building/general-information"/>}
 
@@ -176,13 +190,13 @@ const SearchBuilding = () => {
 
         <Title>Search Online</Title>
 
-        <div className="form-group ms-auto">
-          <Link to="/adding-building/general-information">
-            <Button variant="contained" color="primary">Next &gt;</Button>
-          </Link>
-        </div>
-      </div>
+        <BackNextGroupButton
+          nextLink="/adding-building/general-information"
+          progressValue={addingBuildingProgress}
+          isDisabledSave={true}
+        />
 
+      </div>
 
       <StepNav/>
 
@@ -219,20 +233,20 @@ const SearchBuilding = () => {
 
           </div>
 
-          {buildingInformationContext &&
+          {generalBuildingInformation &&
           <div className="row mt-3 mb-5">
             <div className="col-12 col-lg-12">
               {/*<LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>*/}
               <Paper elevation={3}>
                 <GoogleMap mapContainerStyle={mapStyles} zoom={18}
-                           center={buildingInformationContext.location}>
-                  <OverlayView position={buildingInformationContext.location}
+                           center={generalBuildingInformation.location}>
+                  <OverlayView position={generalBuildingInformation.location}
                                mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
                     <div
-                      style={divStyle}>{buildingInformationContext.formatted_address}</div>
+                      style={divStyle}>{generalBuildingInformation.formatted_address}</div>
                   </OverlayView>
                   <Marker
-                    position={buildingInformationContext.location}
+                    position={generalBuildingInformation.location}
                     title={searchValue}
                     zIndex={1}>
                   </Marker>
@@ -244,7 +258,7 @@ const SearchBuilding = () => {
           }
         </div>
 
-        {buildingInformationContext &&
+        {generalBuildingInformation &&
         <div className="col-12 col-lg-5">
 
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -270,7 +284,6 @@ const SearchBuilding = () => {
                     helperText={error ? error.message : null}
                   />
                 )}
-                rules={{ required: 'Building Name required' }}
               />
             </FormControl>
 
@@ -291,7 +304,6 @@ const SearchBuilding = () => {
                     helperText={error ? error.message : null}
                   />
                 )}
-                rules={{ required: 'Building Name required' }}
               />
             </FormControl>
 
@@ -355,28 +367,27 @@ const SearchBuilding = () => {
               />
             </FormControl>
 
-
             <Controller
-              name="country"
+              name="countryCode"
               control={control}
               render={({ field }) => (
                 <FormControl className={classes.formControl}>
                   <InputLabel id="country-label">Country</InputLabel>
-                  <Select
+                  <NativeSelect
                     labelId="country-label"
                     name="countryCode"
                     value={field.value}
                     {...field}
                   >
                     {Countries.map((o) => (
-                      <MenuItem
+                      <option
                         key={o.alpha2Code}
                         value={o.alpha2Code}
                       >
                         {o.name}
-                      </MenuItem>
+                      </option>
                     ))}
-                  </Select>
+                  </NativeSelect>
                 </FormControl>
               )}
             />

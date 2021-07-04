@@ -76,7 +76,7 @@ const Progress = ({value}) => {
   // }, [])
 
   return (
-    <Box className={classes.root + " me-3"}>
+    <Box className={classes.root + " me-1"}>
       <LinearProgressWithLabel value={value}/>
     </Box>
   )

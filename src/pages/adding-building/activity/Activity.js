@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import StepNav from '../step-nav/StepNav'
 import TimeTable from './TimeTable'
 import SpaceUsageGFA from './SapceUsageGFA'
-import { Button } from '@material-ui/core'
+import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
+import { useRecoilState } from 'recoil'
+import {
+  addingBuildingProgressState, buildingActivityState,
+} from '../../../atoms'
+import { Redirect } from 'react-router-dom'
 
 const Form = styled.form`
 
@@ -19,52 +23,62 @@ const Title = styled.h2`
 
 const Activity = () => {
 
+  const [buildingActivity, setBuildingActivity] = useRecoilState(buildingActivityState)
+
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(addingBuildingProgressState)
+
+  const [isMovingNext, setIsMovingNext] = useState(false)
+
   const onSubmit = (data) => {
-    // console.log(data)
+    console.log(data)
     // console.log(image)
+    setBuildingActivity(data)
+    setAddingBuildingProgressState(45)
+    setIsMovingNext(true)
   }
 
-  const { handleSubmit } = useForm({
-    mode: 'onSubmit',
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    getValues,
+    register
+  } = useForm({
+    mode: 'onBlur',
     reValidateMode: 'onChange',
-    defaultValues: {
-      // buildingName: 'data?.buildingName',
-      // postalCode:data?.postalCode,
-      // address: data?.address,
-      // city: data?.city,
-      // countryCode: data?.countryCode,
-      // state: data?.state
-    },
-    resolver: undefined,
     context: undefined,
     criteriaMode: 'firstError',
     shouldFocusError: false,
     shouldUnregister: false,
   })
 
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-
+      {isMovingNext && <Redirect to="/adding-building/electricity-consumption"/>}
       <div className="d-flex mt-5 mb-4">
 
         <Title>New Building</Title>
 
-        <div className="form-group ms-auto">
-          <Link to="/adding-building/general-information">
-            <Button variant="contained" color="default" className="me-2">&lt; Back
-            </Button>
-          </Link>
-          <Link to="/adding-building/electricity-consumption">
-            <Button  variant="contained" type="submit" color="primary">Next &gt;</Button>
-          </Link>
-        </div>
+        <BackNextGroupButton
+          backLink="/adding-building/general-information"
+          nextLink="/adding-building/electricity-consumption"
+          progressValue={addingBuildingProgress}
+          isDisabledSave={true}
+        />
+
       </div>
 
       <StepNav/>
 
       <div className="row">
         <div className="col-6">
-          <TimeTable/>
+          <TimeTable
+            data={buildingActivity}
+            control={control}
+            setValue={setValue}
+            register={register}
+            getValues={getValues}/>
         </div>
         <div className="col-6">
           <SpaceUsageGFA/>
