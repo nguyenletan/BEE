@@ -1,8 +1,7 @@
-import { makeStyles } from '@material-ui/core'
 
-const MaterialFormStyle = makeStyles((theme) => ({
+const MaterialFormStyle = {
   formControl: {
-    marginBottom: theme.spacing(3),
+    marginBottom: '1.25em',
     minWidth: '100%',
   },
   smallFormControl: {
@@ -17,8 +16,8 @@ const MaterialFormStyle = makeStyles((theme) => ({
     minWidth: '270px'
   },
   selectEmpty: {
-    marginTop: theme.spacing(2),
+    marginTop: '1em',
   }
-}))
+}
 
 export default MaterialFormStyle

@@ -13,7 +13,7 @@ import LightingFittingType from '../../../reference-tables/LightingFittingType'
 import { removeItemAtIndex } from '../../../Utilities'
 import { useRecoilState } from 'recoil'
 import { lightingSubSystemListState } from '../../../atoms'
-
+import { makeStyles } from '@material-ui/core/styles'
 
 const Title = styled.h6`
 
@@ -43,7 +43,7 @@ const LightingSubSystem = ({ data }) => {
   const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
     lightingSubSystemListState)
 
-  const classes = MaterialFormStyle()
+  const classes = makeStyles((theme) => (MaterialFormStyle))()
 
   const onRemoveItem = () => {
     const index = lightingSubSystemList.findIndex(

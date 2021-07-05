@@ -12,6 +12,8 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+
 import Select from '@material-ui/core/Select'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import PVTechChoiceType from '../../../reference-tables/PVTechChoiceType'
@@ -21,6 +23,7 @@ import { solarPanelSystemListState } from '../../../atoms'
 import Grid from '@material-ui/core/Grid'
 import TrackingType from '../../../reference-tables/TrackingType'
 import MountingType from '../../../reference-tables/MountingType'
+
 
 const Title = styled.h6`
 
@@ -47,7 +50,7 @@ const SpanId = styled.span`
 const SolarPanel = ({ data }) => {
   const [solarSystemList, setSolarSystemList] = useRecoilState(
     solarPanelSystemListState)
-  const classes = MaterialFormStyle()
+  const classes = makeStyles((theme) => (MaterialFormStyle))()
 
   const [inclineAngleValue, setInclineAngleValue] = React.useState(0)
 

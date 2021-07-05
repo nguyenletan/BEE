@@ -17,6 +17,7 @@ import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import ExternalWallType from '../../../reference-tables/ExternalWallType'
 import ExternalWindowType from '../../../reference-tables/ExternalWindowType'
 import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
+import { makeStyles } from '@material-ui/core/styles'
 
 const Form = styled.form`
 
@@ -29,7 +30,7 @@ const Title = styled.h2`
 `
 
 const EnvelopFacade = () => {
-  const classes = MaterialFormStyle()
+  const classes = makeStyles((theme) => (MaterialFormStyle))()
 
   const onSubmit = (data) => {
     // console.log(data)

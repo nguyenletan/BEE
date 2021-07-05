@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core'
 import SpaceUsageType from '../../../reference-tables/SpaceUsageType'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
+import { makeStyles } from '@material-ui/core/styles'
 
 
 const Wrapper = styled.div`
@@ -43,14 +44,14 @@ const SpanId = styled.span`
   color: var(--gray);
 `
 
-const SpaceUsageGFAForm = ({ data }) => {
+const SpaceUsageGFAForm = ({ data,  control, setValue }) => {
   const [climateControl, selectedClimateControl] = useState(0)
   const [isShowFanTypeAndHeatRecovery, setIsShowFanTypeAndHeatRecovery] = useState(
     false)
   const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(
     spaceUsageGFAListState)
 
-  const classes = MaterialFormStyle()
+  const classes = makeStyles((theme) => (MaterialFormStyle))()
 
 
   const onRemoveItem = () => {

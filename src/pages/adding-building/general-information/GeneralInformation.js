@@ -22,6 +22,7 @@ import {
   addingBuildingProgressState,
   generalBuildingInformationState,
 } from '../../../atoms'
+import { makeStyles } from '@material-ui/core/styles'
 
 const Form = styled.form`
 
@@ -59,7 +60,7 @@ const GeneralInformation = () => {
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
 
-  const classes = MaterialFormStyle()
+  const classes = makeStyles((theme) => (MaterialFormStyle))()
 
   const oriented = [
     { id: 0, name: 'North' },

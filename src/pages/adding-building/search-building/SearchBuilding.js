@@ -16,6 +16,8 @@ import {
   Paper,
   TextField,
 } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import StepNav from '../step-nav/StepNav'
 import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
@@ -52,7 +54,7 @@ const SearchBuilding = () => {
     opacity: 0.8,
   }
 
-  const classes = MaterialFormStyle()
+  const classes = makeStyles((theme) => (MaterialFormStyle))()
 
   const [searchValue, setSearchValue] = useState('')
 

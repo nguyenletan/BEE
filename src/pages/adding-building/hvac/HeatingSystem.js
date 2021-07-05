@@ -13,15 +13,18 @@ import HeaterType from '../../../reference-tables/HeaterType'
 import HeaterEnergySourceType
   from '../../../reference-tables/HeaterEnergySourceType'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
+import { makeStyles } from '@material-ui/core/styles'
 
 const Title = styled.h4`
   font-size: 1.1rem;
 `
 
+
+
 const HeatingSystem = () => {
   const [hasHeatingSystem, setHasHeatingSystem] = React.useState(false)
 
-  const classes = MaterialFormStyle()
+  const classes = makeStyles((theme) => (MaterialFormStyle))()
 
   return (
     <>

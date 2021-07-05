@@ -14,6 +14,7 @@ import ChillerEnergySourceType
 import CompressorType from '../../../reference-tables/CompressorType'
 import RefrigerantType from '../../../reference-tables/RefrigerantType'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
+import { makeStyles } from '@material-ui/core/styles'
 
 const Title = styled.h4`
   font-size: 1.1rem;
@@ -22,7 +23,7 @@ const Title = styled.h4`
 const CoolingSystem = () => {
   const [hasCoolingSystem, setHasCoolingSystem] = React.useState(false)
 
-  const classes = MaterialFormStyle()
+  const classes = makeStyles((theme) => (MaterialFormStyle))()
 
   const coolingSystemItems = CoolingSystemType.map(
     item => <MenuItem value={item.id}>{item.name}</MenuItem>)
