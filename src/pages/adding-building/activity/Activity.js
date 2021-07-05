@@ -7,7 +7,8 @@ import SpaceUsageGFA from './SapceUsageGFA'
 import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
 import {
-  addingBuildingProgressState, buildingActivityState,
+  addingBuildingProgressState,
+  buildingActivityState,
 } from '../../../atoms'
 import { Redirect } from 'react-router-dom'
 
@@ -23,14 +24,16 @@ const Title = styled.h2`
 
 const Activity = () => {
 
-  const [buildingActivity, setBuildingActivity] = useRecoilState(buildingActivityState)
+  const [buildingActivity, setBuildingActivity] = useRecoilState(
+    buildingActivityState)
 
-  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(addingBuildingProgressState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
+    addingBuildingProgressState)
 
   const [isMovingNext, setIsMovingNext] = useState(false)
 
   const onSubmit = (data) => {
-    console.log(data)
+    //console.log(data)
     // console.log(image)
     setBuildingActivity(data)
     setAddingBuildingProgressState(45)
@@ -42,7 +45,7 @@ const Activity = () => {
     handleSubmit,
     setValue,
     getValues,
-    register
+    register,
   } = useForm({
     mode: 'onBlur',
     reValidateMode: 'onChange',
@@ -52,10 +55,10 @@ const Activity = () => {
     shouldUnregister: false,
   })
 
-
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to="/adding-building/electricity-consumption"/>}
+      {isMovingNext &&
+      <Redirect to="/adding-building/electricity-consumption"/>}
       <div className="d-flex mt-5 mb-4">
 
         <Title>New Building</Title>
@@ -81,7 +84,7 @@ const Activity = () => {
             getValues={getValues}/>
         </div>
         <div className="col-6">
-          <SpaceUsageGFA/>
+          <SpaceUsageGFA control={control} setValue={setValue}/>
         </div>
       </div>
 

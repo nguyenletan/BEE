@@ -26,7 +26,7 @@ const UL = styled.ul`
   }
 `
 
-const SpaceUsageGFA = () => {
+const SpaceUsageGFA = ({  control, setValue}) => {
 
   const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(spaceUsageGFAListState)
 
@@ -36,12 +36,13 @@ const SpaceUsageGFA = () => {
     setSpaceUsageGFAList((oldSpaceUsageGFAList) => [
       ...oldSpaceUsageGFAList,
       {
-        id: _.uniqueId(),
+        id: parseInt(_.uniqueId()),
         title: `Usage`,
-        GFA: '',
-        climateControl: '0',
-        fanType: '',
-        hasReheatRecovery: '',
+        typeId: 0,
+        percentage: 0,
+        climateControlId: 0,
+        fanTypeId: 0,
+        hasReheatRecovery: false,
       },
     ])
 
@@ -50,8 +51,10 @@ const SpaceUsageGFA = () => {
 
   const lis = spaceUsageGFAList.map(item =>
     <li className="col-12 col-lg-6 mb-4" key={item.id}>
-      <SpaceUsageGFAForm data={item}/>
-    </li>,
+      <SpaceUsageGFAForm data={item}
+                         control={control}
+                         setValue={setValue}/>
+    </li>
   )
 
   return (

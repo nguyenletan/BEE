@@ -4,10 +4,11 @@ import ClimateControlType from '../../../reference-tables/ClimateControlType'
 import FanType from '../../../reference-tables/FanType'
 import { useRecoilState } from 'recoil'
 import { spaceUsageGFAListState } from '../../../atoms'
-import { removeItemAtIndex } from '../../../Utilities'
+import { removeItemAtIndex, replaceItemAtIndex } from '../../../Utilities'
 import {
   Checkbox,
-  FormControl, FormControlLabel,
+  FormControl,
+  FormControlLabel,
   InputLabel,
   MenuItem,
   Select,
@@ -16,7 +17,6 @@ import {
 import SpaceUsageType from '../../../reference-tables/SpaceUsageType'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import { makeStyles } from '@material-ui/core/styles'
-
 
 const Wrapper = styled.div`
   padding: 1em;
@@ -44,15 +44,20 @@ const SpanId = styled.span`
   color: var(--gray);
 `
 
-const SpaceUsageGFAForm = ({ data,  control, setValue }) => {
-  const [climateControl, selectedClimateControl] = useState(0)
+const SpaceUsageGFAForm = ({ data, control, setValue }) => {
+  const [climateControl, selectedClimateControl] = useState(data.climateControlId ?? 0)
+  const [spaceUsageType, selectSpaceUsageType] = useState(data.typeId ?? 0)
+  const [percentage, setPercentage] = useState(data.percentage?? 0)
+  const [fanTypeId, selectFantTypeId] = useState(data.fanTypeId?? 0)
+  const [hasReheatRecovery, setHasReheatRecovery] = useState(data.hasReheatRecovery?? false)
+
   const [isShowFanTypeAndHeatRecovery, setIsShowFanTypeAndHeatRecovery] = useState(
-    false)
+    data.climateControlId === 3)
+
   const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(
     spaceUsageGFAListState)
 
   const classes = makeStyles((theme) => (MaterialFormStyle))()
-
 
   const onRemoveItem = () => {
     const index = spaceUsageGFAList.findIndex(
@@ -63,13 +68,71 @@ const SpaceUsageGFAForm = ({ data,  control, setValue }) => {
   }
 
   const onClimateControlChange = (e) => {
-    console.log(e.target.value)
+    //console.log(e.target.value)
     selectedClimateControl(e.target.value)
     if (e.target.value === 3) {
       setIsShowFanTypeAndHeatRecovery(true)
     } else {
       setIsShowFanTypeAndHeatRecovery(false)
     }
+
+    let index = spaceUsageGFAList.findIndex((o) => o.id === data.id)
+    const newList = replaceItemAtIndex(spaceUsageGFAList, index, {
+      ...data,
+      climateControlId: e.target.value,
+    })
+
+    setSpaceUsageGFAList(newList)
+  }
+
+  const onSpaceUsageTypeChange = (e) => {
+    //console.log(e.target.value)
+    selectSpaceUsageType(e.target.value)
+    let index = spaceUsageGFAList.findIndex((o) => o.id === data.id)
+    const newList = replaceItemAtIndex(spaceUsageGFAList, index, {
+      ...data,
+      typeId: e.target.value,
+    })
+
+    setSpaceUsageGFAList(newList)
+  }
+
+  const onFanTypeChange = (e) => {
+    //console.log(e.target.value)
+    selectFantTypeId(e.target.value)
+    let index = spaceUsageGFAList.findIndex((o) => o.id === data.id)
+    const newList = replaceItemAtIndex(spaceUsageGFAList, index, {
+      ...data,
+      fanTypeId: e.target.value,
+    })
+
+    setSpaceUsageGFAList(newList)
+  }
+
+  const onPercentageChange = (e) => {
+    //console.log(e.target.value)
+    setPercentage(e.target.value)
+    let index = spaceUsageGFAList.findIndex((o) => o.id === data.id)
+    const newList = replaceItemAtIndex(spaceUsageGFAList, index, {
+      ...data,
+      percentage: parseInt(e.target.value),
+    })
+
+    setSpaceUsageGFAList(newList)
+  }
+
+  const onHasReheatRecoveryChange = (e) => {
+    //console.log(e.target.value)
+
+    let index = spaceUsageGFAList.findIndex((o) => o.id === data.id)
+    const newList = replaceItemAtIndex(spaceUsageGFAList, index, {
+      ...data,
+      hasReheatRecovery: !hasReheatRecovery,
+    })
+
+    setHasReheatRecovery(!hasReheatRecovery)
+
+    setSpaceUsageGFAList(newList)
   }
 
   return (
@@ -80,12 +143,14 @@ const SpaceUsageGFAForm = ({ data,  control, setValue }) => {
           className="bi bi-dash-lg"/></Subtraction>
       </Header>
       <Content>
+
         <FormControl className={classes.formControl}>
           <InputLabel id="space-usage-type-label">Space Usage Type</InputLabel>
           <Select
             labelId="space-usage-type-label"
             id="space-usage-type-select"
-
+            value={spaceUsageType ?? ''}
+            onChange={onSpaceUsageTypeChange}
           >
             {SpaceUsageType.map((o) => (
               <MenuItem
@@ -97,8 +162,9 @@ const SpaceUsageGFAForm = ({ data,  control, setValue }) => {
             ))}
           </Select>
         </FormControl>
+
         <FormControl className={classes.formControl}>
-          <TextField id="percentage-of-GFA" label="% of GFA" type="number"/>
+          <TextField min={0} max={100} id="percentage-of-GFA" label="% of GFA" type="number" value={percentage} onChange={onPercentageChange}/>
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel id="climate-control-label">Climate
@@ -106,8 +172,7 @@ const SpaceUsageGFAForm = ({ data,  control, setValue }) => {
           <Select
             id="climate-control-select"
             labelId="climate-control-label"
-            value={climateControl}
-            defaultValue={ClimateControlType[0].id}
+            value={climateControl ?? ''}
             onChange={onClimateControlChange}
           >
             {ClimateControlType.map((o) => (
@@ -122,6 +187,8 @@ const SpaceUsageGFAForm = ({ data,  control, setValue }) => {
               <Select
                 id="fan-type-select"
                 labelId="fan-type-label"
+                value={fanTypeId ?? ''}
+                onChange={onFanTypeChange}
               >
                 {FanType.map((o) => (
                   <MenuItem
@@ -134,13 +201,13 @@ const SpaceUsageGFAForm = ({ data,  control, setValue }) => {
               </Select>
             </FormControl>
             <div className="form-group">
-              <label className="form-label d-block mb-0">Has Heat Recovery?</label>
+              <label className="form-label d-block mb-0">Has Heat
+                Recovery?</label>
               <FormControlLabel
                 control={
                   <Checkbox
-
-                    // checked={state.checkedB}
-                    // onChange={handleChange}
+                    checked={hasReheatRecovery}
+                    onChange={onHasReheatRecoveryChange}
                     name="checkedB"
                     color="primary"
                   />
