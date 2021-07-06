@@ -23,13 +23,13 @@ const Wrapper = styled.div`
 `
 
 const Title = styled.h6`
-
+  color: var(--bs-primary);
 `
 
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `
 
 const Subtraction = styled.span`
@@ -40,15 +40,13 @@ const Content = styled.div`
 
 `
 
-const SpanId = styled.span`
-  color: var(--gray);
-`
 
-const SpaceUsageGFAForm = ({ data, control, setValue }) => {
+const SpaceUsageGFAForm = ({ data }) => {
+  const [title, setTitle] = useState(data.title ?? `Usage ${data.id}`)
   const [climateControl, selectedClimateControl] = useState(data.climateControlId ?? 0)
   const [spaceUsageType, selectSpaceUsageType] = useState(data.typeId ?? 0)
   const [percentage, setPercentage] = useState(data.percentage?? 0)
-  const [fanTypeId, selectFantTypeId] = useState(data.fanTypeId?? 0)
+  const [fanTypeId, selectFanTypeId] = useState(data.fanTypeId?? 0)
   const [hasReheatRecovery, setHasReheatRecovery] = useState(data.hasReheatRecovery?? false)
 
   const [isShowFanTypeAndHeatRecovery, setIsShowFanTypeAndHeatRecovery] = useState(
@@ -99,11 +97,23 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
 
   const onFanTypeChange = (e) => {
     //console.log(e.target.value)
-    selectFantTypeId(e.target.value)
+    selectFanTypeId(e.target.value)
     let index = spaceUsageGFAList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(spaceUsageGFAList, index, {
       ...data,
       fanTypeId: e.target.value,
+    })
+
+    setSpaceUsageGFAList(newList)
+  }
+
+  const onTitleChange = (e) => {
+    //console.log(e.target.value)
+    setTitle(e.target.value)
+    let index = spaceUsageGFAList.findIndex((o) => o.id === data.id)
+    const newList = replaceItemAtIndex(spaceUsageGFAList, index, {
+      ...data,
+      title: e.target.value,
     })
 
     setSpaceUsageGFAList(newList)
@@ -138,12 +148,15 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
   return (
     <Wrapper className="shadow-sm rounded-2 border">
       <Header>
-        <Title>{data.title} <SpanId>{data.id}</SpanId></Title>
+        <Title>{title}</Title>
+
         <Subtraction onClick={onRemoveItem} title="Remove Item"><i
           className="bi bi-dash-lg"/></Subtraction>
       </Header>
       <Content>
-
+        <FormControl className={classes.formControl}>
+          <TextField id="title" label="Title" type="text" value={title} onChange={onTitleChange}/>
+        </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel id="space-usage-type-label">Space Usage Type</InputLabel>
           <Select

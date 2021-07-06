@@ -6,7 +6,7 @@ export const spaceUsageGFAListState = atom({
   default: [
     {
       id: parseInt(_.uniqueId()),
-      title: `Usage`,
+      title: `New Usage`,
       typeId: 0,
       percentage: 0,
       climateControlId: 0,
@@ -30,7 +30,7 @@ export const solarPanelSystemListState = atom({
   key: 'solarPanelSystemList',
   default: [
     {
-      id: _.uniqueId(),
+      id: parseInt(_.uniqueId()),
       title: 'System',
       installedCapacity: 0,
       trackingType: 0,
@@ -46,7 +46,7 @@ export const electricityConsumptionListState = atom({
   key: 'electricityConsumption',
   default: [
     {
-      id: _.uniqueId(),
+      id: parseInt(_.uniqueId()),
       month: new Date().getMonth(),
       year: new Date().getFullYear(),
       value: 0,
@@ -57,6 +57,29 @@ export const electricityConsumptionListState = atom({
 export const generalBuildingInformationState = atom({
   key: 'generalBuildingInformation',
   default: null,
+})
+
+export const coolingSystemState = atom({
+  key: 'coolingSystem',
+  default: {
+    id: parseInt(_.uniqueId()),
+    hasCoolingSystem: false,
+    coolingSystemTypeId: 0,
+    compressorTypeId: 0,
+    refrigerantTypeId: 0,
+    chillerEnergySourceTypeId: 0
+  }
+})
+
+export const heatingSystemState = atom({
+  key: 'heatingSystem',
+  default: {
+    id: parseInt(_.uniqueId()),
+    hasHeatingSystem: false,
+    heaterSystemTypeId: 0,
+    heaterTypeId: 0,
+    heaterEnergySourceTypeId: 0
+  }
 })
 
 export const buildingActivityState = atom({

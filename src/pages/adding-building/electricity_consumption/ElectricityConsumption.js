@@ -1,15 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import _ from 'lodash'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
 
+import AddIcon from '@material-ui/icons/Add'
 import StepNav from '../step-nav/StepNav'
 import OneMonthElectricityConsumption from './OneMonthElectricityConsumption'
 
-import { electricityConsumptionListState } from '../../../atoms'
+import {
+  addingBuildingProgressState,
+  electricityConsumptionListState,
+} from '../../../atoms'
 import { getNextMonthYear } from '../../../Utilities'
 import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
+import { Redirect } from 'react-router-dom'
 
 const Form = styled.form`
 
@@ -37,21 +42,22 @@ const UL = styled.ul`
   padding: 0;
 `
 
-const Adding = styled.span`
+const Adding = styled(AddIcon)`
   cursor: pointer;
-
   color: var(--bs-primary);
-
-  i {
-    font-size: 24px;
-  }
 `
 
 const ElectricityConsumption = () => {
 
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
+    addingBuildingProgressState)
+
+  const [isMovingNext, setIsMovingNext] = useState(false)
+
   const onSubmit = (data) => {
     // console.log(data)
-    // console.log(image)
+    setAddingBuildingProgressState(55)
+    setIsMovingNext(true)
   }
 
   const { handleSubmit } = useForm({
@@ -95,7 +101,7 @@ const ElectricityConsumption = () => {
     setElectricityConsumptionList((oldElectricityConsumptionList) => [
       ...oldElectricityConsumptionList,
       {
-        id: _.uniqueId(),
+        id: parseInt(_.uniqueId()),
         month: nextMonthYear.month,
         year: nextMonthYear.year,
         value: 0,
@@ -112,15 +118,15 @@ const ElectricityConsumption = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      {isMovingNext && <Redirect to="/adding-building/hvac"/>}
 
       <div className="d-flex mt-5 mb-4">
-
         <Title>New Building</Title>
 
         <BackNextGroupButton
           backLink="/adding-building/activity"
           nextLink="/adding-building/hvac"
-          progressValue={70}
+          progressValue={addingBuildingProgress}
           isDisabledSave={true}
         />
 
@@ -139,9 +145,8 @@ const ElectricityConsumption = () => {
             Value <span>(kWh)</span>
           </div>
           <div className="col-3">
-            <Adding title="Add new item"
-                    onClick={onAddElectricityConsumption}><i
-              className="bi bi-plus-circle"/></Adding>
+            <Adding titleAccess="Add new item" fontSize="large"
+                    onClick={onAddElectricityConsumption}/>
           </div>
         </Header>
         <UL>

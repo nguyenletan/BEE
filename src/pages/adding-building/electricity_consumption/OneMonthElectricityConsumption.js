@@ -5,31 +5,32 @@ import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers'
+import RemoveIcon from '@material-ui/icons/Remove';
 import Input from '@material-ui/core/Input'
 import Grid from '@material-ui/core/Grid'
 import DateFnsUtils from '@date-io/date-fns'
 import { useRecoilState } from 'recoil'
 import { electricityConsumptionListState } from '../../../atoms'
-import { removeItemAtIndex } from '../../../Utilities'
+import { removeItemAtIndex, replaceItemAtIndex } from '../../../Utilities'
 
 // const Input = styled.input`
 //   border-color: #7b7b7b;
 // `
 
-const Subtraction = styled.span`
+const Subtraction = styled(RemoveIcon)`
   cursor: pointer;
   color: var(--bs-primary);
-
-  i {
-    font-size: 24px;
-  }
 `
 
 const OneMonthElectricityConsumption = ({ data }) => {
-  console.log(data)
+  //console.log(data)
   const [selectedDate, setSelectedDate] = React.useState(`${data.year}/${data.month + 1}/01`
     //new Date("2014-08-18T21:11:54")
   )
+
+  const [value, setValue] = React.useState(data.value)
+  const [cost, setCost] = React.useState(data.value)
+
 
   const [electricityConsumptionList, setElectricityConsumptionList] = useRecoilState(
     electricityConsumptionListState)
@@ -42,9 +43,44 @@ const OneMonthElectricityConsumption = ({ data }) => {
     setElectricityConsumptionList(newList)
   }
 
-  const handleDateChange = (date) => {
+  const onDateChange = (date) => {
+    ///console.log(date)
+    //console.log(date.getFullYear())
     setSelectedDate(date)
+    let index = electricityConsumptionList.findIndex((o) => o.id === data.id)
+    const newList = replaceItemAtIndex(electricityConsumptionList, index, {
+      ...data,
+      month: date.getMonth(),
+      year: date.getFullYear(),
+    })
+
+    setElectricityConsumptionList(newList)
   }
+
+  const onCostChange = (e) => {
+    ///console.log(date)
+    setCost(e.target.value)
+    let index = electricityConsumptionList.findIndex((o) => o.id === data.id)
+    const newList = replaceItemAtIndex(electricityConsumptionList, index, {
+      ...data,
+      cost: e.target.value
+    })
+
+    setElectricityConsumptionList(newList)
+  }
+
+  const onValueChange = (e) => {
+    ///console.log(date)
+    setValue(e.target.value)
+    let index = electricityConsumptionList.findIndex((o) => o.id === data.id)
+    const newList = replaceItemAtIndex(electricityConsumptionList, index, {
+      ...data,
+      value: e.target.value
+    })
+
+    setElectricityConsumptionList(newList)
+  }
+
   return (
     <li className="row mb-4">
       <div className="col-3">
@@ -55,23 +91,25 @@ const OneMonthElectricityConsumption = ({ data }) => {
               openTo="year"
               views={['year', 'month']}
               value={selectedDate}
-              onChange={handleDateChange}
+              onChange={onDateChange}
             />
           </Grid>
         </MuiPickersUtilsProvider>
       </div>
       <div className="col-3">
         <Input type="number"
-               id="value" placeholder="Value"/>
-      </div>
-      <div className="col-3">
-        <Input type="number"
+               onChange={onCostChange}
+               value={cost}
                id="cost" placeholder="Cost"/>
       </div>
       <div className="col-3">
-        <Subtraction title="Remove Item" onClick={onRemoveItem}>
-          <i className="bi bi-dash-circle-fill"/>
-        </Subtraction>
+        <Input type="number"
+               onChange={onValueChange}
+               value={value}
+               id="value" placeholder="Value"/>
+      </div>
+      <div className="col-3">
+        <Subtraction titleAccess="Remove Item" onClick={onRemoveItem} fontSize="large"/>
       </div>
     </li>
   )

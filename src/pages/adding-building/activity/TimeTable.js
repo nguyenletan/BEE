@@ -39,6 +39,8 @@ const Row = ({
   useEffect(() => {
     // register(`${name}StartTime`)
     // register(`${codeName}EndTime`)
+    console.log(startTime)
+
     setValue(`${codeName}StartTime`, startTime)
     setValue(`${codeName}EndTime`, endTime)
     // eslint-disable-next-line react-hooks/exhaustive-deps

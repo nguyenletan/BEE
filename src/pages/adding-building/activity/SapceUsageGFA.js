@@ -26,7 +26,7 @@ const UL = styled.ul`
   }
 `
 
-const SpaceUsageGFA = ({  control, setValue}) => {
+const SpaceUsageGFA = () => {
 
   const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(spaceUsageGFAListState)
 
@@ -37,7 +37,7 @@ const SpaceUsageGFA = ({  control, setValue}) => {
       ...oldSpaceUsageGFAList,
       {
         id: parseInt(_.uniqueId()),
-        title: `Usage`,
+        title: `New Usage`,
         typeId: 0,
         percentage: 0,
         climateControlId: 0,
@@ -51,9 +51,7 @@ const SpaceUsageGFA = ({  control, setValue}) => {
 
   const lis = spaceUsageGFAList.map(item =>
     <li className="col-12 col-lg-6 mb-4" key={item.id}>
-      <SpaceUsageGFAForm data={item}
-                         control={control}
-                         setValue={setValue}/>
+      <SpaceUsageGFAForm data={item}/>
     </li>
   )
 

@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
 const UL = styled.ul`
-  margin-bottom: 20px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 
   .nav-link {
     padding-left: 0;

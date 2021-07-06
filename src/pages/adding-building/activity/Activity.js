@@ -84,7 +84,7 @@ const Activity = () => {
             getValues={getValues}/>
         </div>
         <div className="col-6">
-          <SpaceUsageGFA control={control} setValue={setValue}/>
+          <SpaceUsageGFA />
         </div>
       </div>
 

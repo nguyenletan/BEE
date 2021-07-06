@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CoolingSystem from './CoolingSystem'
 import StepNav from '../step-nav/StepNav'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import HeatingSystem from './HeatingSystem'
 import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
+import { useRecoilState } from 'recoil'
+import { addingBuildingProgressState } from '../../../atoms'
+import { Redirect } from 'react-router-dom'
 
 const Form = styled.form`
 
@@ -18,9 +21,15 @@ const Title = styled.h2`
 
 const HVAC = () => {
 
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
+    addingBuildingProgressState)
+
+  const [isMovingNext, setIsMovingNext] = useState(false)
+
   const onSubmit = (data) => {
     // console.log(data)
-    // console.log(image)
+    setAddingBuildingProgressState(65)
+    setIsMovingNext(true)
   }
 
   const { handleSubmit } = useForm({
@@ -43,6 +52,7 @@ const HVAC = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      {isMovingNext && <Redirect to="/adding-building/lighting"/>}
 
       <div className="d-flex mt-5 mb-4">
 
@@ -51,7 +61,7 @@ const HVAC = () => {
         <BackNextGroupButton
           backLink="/adding-building/electricity-consumption"
           nextLink="/adding-building/lighting"
-          progressValue={70}
+          progressValue={addingBuildingProgress}
           isDisabledSave={true}
         />
 
@@ -59,9 +69,9 @@ const HVAC = () => {
 
       <StepNav activePositon={2}/>
       <div className="row">
-        
+
         <div className="col-12 col-lg-6 col-xxl-5">
-            <CoolingSystem/>
+          <CoolingSystem/>
         </div>
 
         <div className="col-12 col-lg-6 col-xxl-5">
