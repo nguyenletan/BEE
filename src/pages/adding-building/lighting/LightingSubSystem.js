@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Fade,
   FormControl,
   InputLabel,
-  MenuItem, Paper,
+  MenuItem,
+  Paper,
   Select,
   TextField,
 } from '@material-ui/core'
 import styled from 'styled-components'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import LightingFittingType from '../../../reference-tables/LightingFittingType'
-import { removeItemAtIndex } from '../../../Utilities'
+import { removeItemAtIndex, replaceItemAtIndex } from '../../../Utilities'
 import { useRecoilState } from 'recoil'
 import { lightingSubSystemListState } from '../../../atoms'
 import { makeStyles } from '@material-ui/core/styles'
@@ -40,10 +41,36 @@ const SpanId = styled.span`
 
 const LightingSubSystem = ({ data }) => {
 
+  const classes = makeStyles((theme) => (MaterialFormStyle))()
+
   const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
     lightingSubSystemListState)
 
-  const classes = makeStyles((theme) => (MaterialFormStyle))()
+  const [indoorLightingSystemTypeId, setIndoorLightingSystemTypeId] = useState(
+    data.indoorLightingSystemTypeId ?? 0)
+  const [percentage, setPercentage] = useState(data.percentage ?? 0)
+
+  const onPercentageChange = (e) => {
+    setPercentage(e.target.value)
+
+    let index = lightingSubSystemList.findIndex((o) => o.id === data.id)
+    const newList = replaceItemAtIndex(lightingSubSystemList, index, {
+      ...data,
+      percentage: e.target.value,
+    })
+    setLightingSubSystemList(newList)
+  }
+
+  const onIndoorLightingSystemTypeIdChange = (e) => {
+    setIndoorLightingSystemTypeId(e.target.value)
+
+    let index = lightingSubSystemList.findIndex((o) => o.id === data.id)
+    const newList = replaceItemAtIndex(lightingSubSystemList, index, {
+      ...data,
+      indoorLightingSystemTypeId: e.target.value,
+    })
+    setLightingSubSystemList(newList)
+  }
 
   const onRemoveItem = () => {
     const index = lightingSubSystemList.findIndex(
@@ -68,7 +95,8 @@ const LightingSubSystem = ({ data }) => {
             <Select
               labelId="lighting-fitting-type-label"
               id="lighting-fitting-type-select"
-
+              value={indoorLightingSystemTypeId}
+              onChange={onIndoorLightingSystemTypeIdChange}
             >
               {LightingFittingType.map((o) => (
                 <MenuItem
@@ -81,7 +109,8 @@ const LightingSubSystem = ({ data }) => {
             </Select>
           </FormControl>
           <FormControl className={classes.formControl}>
-            <TextField id="percentage" label="Percentage %" type="number"/>
+            <TextField id="percentage" label="Percentage %" type="number"
+                       value={percentage} onChange={onPercentageChange}/>
           </FormControl>
         </Content>
       </Paper>

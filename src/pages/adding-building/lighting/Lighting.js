@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import StepNav from '../step-nav/StepNav'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
-import { lightingSubSystemListState } from '../../../atoms'
+import {
+  addingBuildingProgressState,
+  lightingSubSystemListState,
+} from '../../../atoms'
 import _ from 'lodash'
 
 import LightingSubSystem from './LightingSubSystem'
 import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
+import { Redirect } from 'react-router-dom'
 
 const Form = styled.form`
 
@@ -42,14 +46,19 @@ const Lighting = () => {
   const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
     lightingSubSystemListState)
 
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
+    addingBuildingProgressState)
+
+  const [isMovingNext, setIsMovingNext] = useState(false)
+
   const onAddLightingSubSystemList = () => {
 
     setLightingSubSystemList((oldLightingSubSystemList) => [
       ...oldLightingSubSystemList,
       {
-        id: _.uniqueId(),
-        title: `Usage`,
-        indoorLightingSystemType: '',
+        id: parseInt(_.uniqueId()),
+        title: `Fitting `,
+        indoorLightingSystemTypeId: 0,
         percentage: 0,
       },
     ])
@@ -58,7 +67,9 @@ const Lighting = () => {
 
   const onSubmit = (data) => {
     // console.log(data)
-    // console.log(image)
+    setAddingBuildingProgressState(75)
+    setIsMovingNext(true)
+
   }
 
   const { handleSubmit } = useForm({
@@ -82,15 +93,13 @@ const Lighting = () => {
   const lis = lightingSubSystemList.map(item =>
 
     <li className="col-12 col-lg-6 mb-4" key={item.id}>
-
       <LightingSubSystem data={item}/>
-
     </li>,
   )
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-
+      {isMovingNext && <Redirect to="/adding-building/envelope-facade"/>}
       <div className="d-flex mt-5 mb-4">
 
         <Title>New Building</Title>
@@ -98,7 +107,7 @@ const Lighting = () => {
         <BackNextGroupButton
           backLink="/adding-building/hvac"
           nextLink="/adding-building/envelope-facade"
-          progressValue={70}
+          progressValue={addingBuildingProgress}
           isDisabledSave={true}
         />
 
