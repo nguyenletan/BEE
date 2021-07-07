@@ -148,15 +148,15 @@ const SpaceUsageGFAForm = ({ data }) => {
   return (
     <Wrapper className="shadow-sm rounded-2 border">
       <Header>
-        <Title>{title}</Title>
+        <FormControl className={classes.mediumFormControl}>
+          <TextField id="title" label="Title" type="text" value={title} onChange={onTitleChange}/>
+        </FormControl>
 
         <Subtraction onClick={onRemoveItem} title="Remove Item"><i
           className="bi bi-dash-lg"/></Subtraction>
       </Header>
       <Content>
-        <FormControl className={classes.formControl}>
-          <TextField id="title" label="Title" type="text" value={title} onChange={onTitleChange}/>
-        </FormControl>
+
         <FormControl className={classes.formControl}>
           <InputLabel id="space-usage-type-label">Space Usage Type</InputLabel>
           <Select
