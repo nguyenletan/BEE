@@ -3,7 +3,7 @@ const CoolingSystemType = [
     name: 'Air-Cooled Chiller'
   },
   {id: 1,
-    name: 'Water-Cooled Chille'
+    name: 'Water-Cooled Chiller'
   },
   {id: 2,
     name: 'District Cooling System'
