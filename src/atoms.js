@@ -82,6 +82,18 @@ export const heatingSystemState = atom({
   }
 })
 
+export const envelopFacadeState = atom({
+  key: 'envelopFacade',
+  default: {
+    id: parseInt(_.uniqueId()),
+    externalWindowToWallRatio: 0.7,
+    externalRoofInsulationTypeId: 0,
+    externalWallInsulationTypeId: 0,
+    externalWindowInsulationTypeId: 0,
+    externalGroundFloorInsulationTypeId: 0
+  }
+})
+
 export const buildingActivityState = atom({
   key: 'buildingActivity',
   default: [],

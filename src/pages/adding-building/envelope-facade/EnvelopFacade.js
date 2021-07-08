@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import StepNav from '../step-nav/StepNav'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
@@ -7,6 +7,7 @@ import {
   FormControl,
   Input,
   InputLabel,
+  ListSubheader,
   MenuItem,
   Select,
   Slider,
@@ -18,6 +19,17 @@ import ExternalWallType from '../../../reference-tables/ExternalWallType'
 import ExternalWindowType from '../../../reference-tables/ExternalWindowType'
 import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
 import { makeStyles } from '@material-ui/core/styles'
+import ExternalRoofType from '../../../reference-tables/ExternalRoofType'
+import {
+  DomesticGroundFloorInsulationType,
+  NonDomesticGroundFloorInsulationType,
+} from '../../../reference-tables/GroundFloorInsulationType'
+import { useRecoilState } from 'recoil'
+import {
+  addingBuildingProgressState,
+  envelopFacadeState,
+} from '../../../atoms'
+import { Redirect } from 'react-router-dom'
 
 const Form = styled.form`
 
@@ -32,10 +44,12 @@ const Title = styled.h2`
 const EnvelopFacade = () => {
   const classes = makeStyles((theme) => (MaterialFormStyle))()
 
-  const onSubmit = (data) => {
-    // console.log(data)
-    // console.log(image)
-  }
+  const [envelopFacade, setEnvelopFacade] = useRecoilState(envelopFacadeState)
+
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
+    addingBuildingProgressState)
+
+  const [isMovingNext, setIsMovingNext] = useState(false)
 
   const { handleSubmit } = useForm({
     mode: 'onSubmit',
@@ -55,22 +69,26 @@ const EnvelopFacade = () => {
     shouldUnregister: false,
   })
 
-  const [value, setValue] = React.useState(0.7)
-
-  const handleSliderChange = (event, newValue) => {
-    setValue(newValue)
+  const onExternalWindowToWallRatioSliderChange = (event, newValue) => {
+    setEnvelopFacade({ ...envelopFacade, externalWindowToWallRatio: newValue })
   }
 
-  const handleInputChange = (event) => {
-    setValue(event.target.value === '' ? '' : Number(event.target.value))
-  }
-
-  const handleBlur = () => {
-    if (value < 0) {
-      setValue(0)
-    } else if (value > 1) {
-      setValue(1)
+  const onExternalWindowToWallRatioInputBlur = () => {
+    if (envelopFacade.externalWindowToWallRatio < 0) {
+      setEnvelopFacade({ ...envelopFacade, externalWindowToWallRatio: 0 })
+    } else if (envelopFacade.externalWindowToWallRatio > 1) {
+      setEnvelopFacade({ ...envelopFacade, externalWindowToWallRatio: 1 })
     }
+  }
+
+  const onSubmit = (data) => {
+    // console.log(data)
+    setAddingBuildingProgressState(80)
+    setIsMovingNext(true)
+  }
+
+  const onChange = (e) => {
+    setEnvelopFacade({ ...envelopFacade, [e.target.name]: e.target.value })
   }
 
   const marks = [
@@ -122,6 +140,8 @@ const EnvelopFacade = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      {isMovingNext &&
+      <Redirect to="/adding-building/renewable-energy"/>}
 
       <div className="d-flex mt-5 mb-4">
 
@@ -130,7 +150,7 @@ const EnvelopFacade = () => {
         <BackNextGroupButton
           backLink="/adding-building/lighting"
           nextLink="/adding-building/renewable-energy"
-          progressValue={70}
+          progressValue={addingBuildingProgress}
           isDisabledSave={true}/>
 
       </div>
@@ -150,18 +170,19 @@ const EnvelopFacade = () => {
                   max={1}
                   step={0.01}
                   marks={marks}
-                  value={typeof value === 'number' ? value : 0}
-                  onChange={handleSliderChange}
+                  value={envelopFacade.externalWindowToWallRatio}
+                  onChange={onExternalWindowToWallRatioSliderChange}
                   aria-labelledby="input-slider"
                   valueLabelDisplay="auto"
                 />
               </Grid>
               <Grid item>
                 <Input
-                  value={value}
+                  value={envelopFacade.externalWindowToWallRatio}
                   margin="dense"
-                  onChange={handleInputChange}
-                  onBlur={handleBlur}
+                  name="externalWindowToWallRatio"
+                  onChange={onChange}
+                  onBlur={onExternalWindowToWallRatioInputBlur}
                   inputProps={{
                     step: 0.01,
                     min: 0,
@@ -180,10 +201,18 @@ const EnvelopFacade = () => {
             <Select
               id="external-roof-type-select"
               labelId="external-roof-type-label"
+              name="externalRoofInsulationTypeId"
+              onChange={onChange}
+              value={envelopFacade.externalRoofInsulationTypeId}
             >
-              <MenuItem>External Roof Type1</MenuItem>
-              <MenuItem>External Roof Type2</MenuItem>
-              <MenuItem>External Roof Type3</MenuItem>
+              {ExternalRoofType.map((o) => (
+                <MenuItem
+                  key={o.id}
+                  value={o.id}
+                >
+                  {o.name}
+                </MenuItem>
+              ))}
 
             </Select>
           </FormControl>
@@ -194,6 +223,9 @@ const EnvelopFacade = () => {
             <Select
               id="external-wall-type-select"
               labelId="external-wall-type-label"
+              name="externalWallInsulationTypeId"
+              onChange={onChange}
+              value={envelopFacade.externalWallInsulationTypeId}
             >
               {ExternalWallType.map((o) => (
                 <MenuItem
@@ -213,6 +245,9 @@ const EnvelopFacade = () => {
             <Select
               id="external-window-type-select"
               labelId="external-window-type-label"
+              name="externalWindowInsulationTypeId"
+              onChange={onChange}
+              value={envelopFacade.externalWindowInsulationTypeId}
             >
               {ExternalWindowType.map((o) => (
                 <MenuItem
@@ -226,15 +261,34 @@ const EnvelopFacade = () => {
           </FormControl>
 
           <FormControl className={classes.formControl}>
-            <InputLabel id="external-ground-type-label">External Ground
+            <InputLabel id="external-ground-floor-type-label">External Ground
+              Floor
               Insulation Type</InputLabel>
             <Select
-              id="external-ground-type-select"
-              labelId="external-ground-type-label"
+              id="external-ground-floor-type-select"
+              labelId="external-ground-floor-type-label"
+              name="externalGroundFloorInsulationTypeId"
+              onChange={onChange}
+              value={envelopFacade.externalGroundFloorInsulationTypeId}
             >
-              <MenuItem>External Ground Insulation Type 1</MenuItem>
-              <MenuItem>External Ground Insulation Type 2</MenuItem>
-              <MenuItem>External Ground Insulation Type 3</MenuItem>
+              <ListSubheader>Domestic/Residential (D)</ListSubheader>
+              {DomesticGroundFloorInsulationType.map((o) => (
+                <MenuItem
+                  key={o.id}
+                  value={o.id}
+                >
+                  {o.name}
+                </MenuItem>
+              ))}
+              <ListSubheader>Non Domestic/Residential (N/D)</ListSubheader>
+              {NonDomesticGroundFloorInsulationType.map((o) => (
+                <MenuItem
+                  key={o.id}
+                  value={o.id}
+                >
+                  {o.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
 

@@ -22,10 +22,6 @@ const Wrapper = styled.div`
   padding: 1em;
 `
 
-const Title = styled.h6`
-  color: var(--bs-primary);
-`
-
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
