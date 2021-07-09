@@ -61,6 +61,10 @@ const StepNav = () => {
                  to={'/adding-building/renewable-energy'}>Renewable
           Energy</NavLink>
       </li>
+      <li className="nav-item">
+        <NavLink activeClassName="active" className="nav-link"
+                 to={'/adding-building/adding-building-successfully'}>Done</NavLink>
+      </li>
     </UL>
   )
 }

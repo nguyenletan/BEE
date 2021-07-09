@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import StepNav from '../step-nav/StepNav'
 import { useForm } from 'react-hook-form'
 import SolarPanel from './SolarPanel'
 import { useRecoilState } from 'recoil'
-import { solarPanelSystemListState } from '../../../atoms'
+import {
+  addingBuildingProgressState,
+  solarPanelSystemListState,
+} from '../../../atoms'
 import _ from 'lodash'
 import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
+import { Redirect } from 'react-router-dom'
 
 const Form = styled.form`
 
@@ -30,10 +34,6 @@ const Adding = styled.span`
 const Ul = styled.ul`
   list-style-type: none;
   padding-left: 0;
-
-  li {
-    //margin-bottom: 20px;
-  }
 `
 
 const RenewableEnergy = () => {
@@ -41,40 +41,38 @@ const RenewableEnergy = () => {
   const [solarSystemList, setSolarSystemList] = useRecoilState(
     solarPanelSystemListState)
 
-  const onAddSolarSystemList = () => {
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
+    addingBuildingProgressState)
 
+  const [isMovingNext, setIsMovingNext] = useState(false)
+
+  const onAddSolarSystemList = () => {
     setSolarSystemList((oldList) => [
       ...oldList,
       {
         id: _.uniqueId(),
         title: 'System',
         installedCapacity: 0,
-        trackingType: 0,
+        trackingTypeId: 0,
         inclineAngel: 0,
         orientationAngle: 0,
         systemLoss: 14,
         pvTechChoiceId: 0,
-        mountingType: 0,
+        mountingTypeId: 0,
       },
     ])
-
   }
 
   const onSubmit = (data) => {
     // console.log(data)
-    // console.log(image)
+    setAddingBuildingProgressState(100)
+    setIsMovingNext(true)
   }
 
   const { handleSubmit } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     defaultValues: {
-      // buildingName: 'data?.buildingName',
-      // postalCode:data?.postalCode,
-      // address: data?.address,
-      // city: data?.city,
-      // countryCode: data?.countryCode,
-      // state: data?.state
     },
     resolver: undefined,
     context: undefined,
@@ -92,15 +90,17 @@ const RenewableEnergy = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-
+      {isMovingNext &&
+      <Redirect to="/adding-building/adding-building-successfully"/>}
       <div className="d-flex mt-5 mb-4">
 
         <Title>New Building</Title>
 
         <BackNextGroupButton
           backLink="/adding-building/envelope-facade"
-          progressValue={90}
-          isDisabledSave={true}
+          noNextLink={true}
+          progressValue={addingBuildingProgress}
+          isDisabledSave={false}
         />
 
       </div>
