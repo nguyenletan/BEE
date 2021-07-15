@@ -24,8 +24,7 @@ const Title = styled.h2`
 
 const Activity = () => {
 
-  const [buildingActivity, setBuildingActivity] = useRecoilState(
-    buildingActivityState)
+  const [buildingActivity, setBuildingActivity] = useRecoilState(buildingActivityState)
 
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
@@ -67,7 +66,7 @@ const Activity = () => {
           backLink="/adding-building/general-information"
           nextLink="/adding-building/electricity-consumption"
           progressValue={addingBuildingProgress}
-          isDisabledSave={true}
+          isDisabledSave={addingBuildingProgress < 100}
         />
 
       </div>

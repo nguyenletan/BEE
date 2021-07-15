@@ -89,8 +89,7 @@ const ElectricityConsumption = () => {
     }
     if (electricityConsumptionList !== null &&
       electricityConsumptionList.length > 0) {
-      console.log(
-        electricityConsumptionList[electricityConsumptionList.length - 1])
+      console.log(electricityConsumptionList[electricityConsumptionList.length - 1])
       nextMonthYear = getNextMonthYear(
         electricityConsumptionList[electricityConsumptionList.length - 1].month,
         electricityConsumptionList[electricityConsumptionList.length - 1].year)
@@ -127,7 +126,7 @@ const ElectricityConsumption = () => {
           backLink="/adding-building/activity"
           nextLink="/adding-building/hvac"
           progressValue={addingBuildingProgress}
-          isDisabledSave={true}
+          isDisabledSave={addingBuildingProgress < 100}
         />
 
       </div>

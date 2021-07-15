@@ -195,7 +195,7 @@ const SearchBuilding = () => {
         <BackNextGroupButton
           nextLink="/adding-building/general-information"
           progressValue={addingBuildingProgress}
-          isDisabledSave={true}
+          isDisabledSave={addingBuildingProgress < 100}
         />
 
       </div>

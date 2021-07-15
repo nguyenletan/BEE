@@ -3,7 +3,10 @@ import BackNextGroupButton from './back-next-group-buttons/BackNextGroupButton'
 import StepNav from './step-nav/StepNav'
 import styled from 'styled-components'
 import Typography from '@material-ui/core/Typography'
-import DomainIcon from '@material-ui/icons/Domain';
+
+import BusinessRoundedIcon from '@material-ui/icons/BusinessRounded';
+import { useRecoilState } from 'recoil'
+import { addingBuildingProgressState } from '../../atoms'
 
 const Title = styled.h2`
   color: var(--bs-primary);
@@ -11,12 +14,14 @@ const Title = styled.h2`
   margin-bottom: 0;
 `
 
-const Icon = styled(DomainIcon)`
+const Icon = styled(BusinessRoundedIcon)`
   //color: var(--bs-primary);
   font-size: 56px !important;
 `
 
 const AddingBuildingSuccessfully = () => {
+
+  const [addingBuildingProgress] = useRecoilState(addingBuildingProgressState)
 
   return (
     <div>
@@ -26,7 +31,7 @@ const AddingBuildingSuccessfully = () => {
 
         <BackNextGroupButton
           backLink="/adding-building/renewable-energy"
-          progressValue="100"
+          progressValue={addingBuildingProgress}
           isInDoneStep={true}
         />
 

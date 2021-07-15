@@ -62,7 +62,7 @@ const HVAC = () => {
           backLink="/adding-building/electricity-consumption"
           nextLink="/adding-building/lighting"
           progressValue={addingBuildingProgress}
-          isDisabledSave={true}
+          isDisabledSave={addingBuildingProgress < 100}
         />
 
       </div>

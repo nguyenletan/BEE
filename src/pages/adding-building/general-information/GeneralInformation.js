@@ -63,14 +63,14 @@ const GeneralInformation = () => {
   const classes = makeStyles((theme) => (MaterialFormStyle))()
 
   const oriented = [
-    { id: 0, name: 'North' },
-    { id: 1, name: 'North East' },
-    { id: 2, name: 'East' },
-    { id: 3, name: 'South East' },
-    { id: 4, name: 'South' },
-    { id: 5, name: 'South West' },
-    { id: 6, name: 'West' },
-    { id: 7, name: 'North west' },
+    { id: 1, name: 'North' },
+    { id: 2, name: 'North East' },
+    { id: 3, name: 'East' },
+    { id: 4, name: 'South East' },
+    { id: 5, name: 'South' },
+    { id: 6, name: 'South West' },
+    { id: 7, name: 'West' },
+    { id: 8, name: 'North west' },
   ]
 
   const period = [
@@ -80,7 +80,14 @@ const GeneralInformation = () => {
     { id: 3, name: '1991-2000', value: '1991' },
     { id: 4, name: '1981-1990', value: '1981' },
     { id: 5, name: '1971-1980', value: '1971' },
-    { id: 6, name: '1960-1970', value: '1960' },
+    { id: 6, name: '1961-1970', value: '1961' },
+    { id: 7, name: '1951-1960', value: '1951' },
+    { id: 8, name: '1951-1950', value: '1941' },
+    { id: 9, name: '1931-1940', value: '1931' },
+    { id: 10, name: '1921-1930', value: '1921' },
+    { id: 11, name: '1911-1920', value: '1911' },
+    { id: 12, name: '1901-1910', value: '1901' },
+    { id: 13, name: 'before 1901', value: '1900' },
   ]
 
   const [isMovingNext, setIsMovingNext] = useState(false)
@@ -115,16 +122,19 @@ const GeneralInformation = () => {
       // on reader load something...
       reader.onload = () => {
         // Make a fileInfo Object
-        // const base64Image = reader.result.replace('data:image/png;base64,', '')
+        const base64Image = reader.result
+        //.replace('data:image/png;base64,', '')
         // .replace('data:image/jpg;base64,', '')
         // .replace('data:image/jpeg;base64,', '');
 
-        setValue('buildingPhoto', URL.createObjectURL(e.target.files[0]), {
+
+        console.log(base64Image)
+        setValue('buildingPhoto', base64Image, {
           shouldDirty: true,
         })
         setImage({
           preview: URL.createObjectURL(e.target.files[0]),
-          raw: URL.createObjectURL(e.target.files[0]),
+          raw: base64Image,
         })
       }
     }
@@ -156,8 +166,8 @@ const GeneralInformation = () => {
       shouldValidate: true,
       shouldDirty: true,
     })
-    setValue('constructionPeriodId',
-      generalBuildingInformation?.constructionPeriodId, {
+    setValue('constructionPeriodValue',
+      generalBuildingInformation?.constructionPeriodValue, {
         shouldValidate: true,
         shouldDirty: true,
       })
@@ -252,7 +262,7 @@ const GeneralInformation = () => {
           backLink="/adding-building/search-building"
           nextLink="/adding-building/activity"
           progressValue={addingBuildingProgress}
-          isDisabledSave={true}
+          isDisabledSave={addingBuildingProgress < 100}
         />
 
       </div>
@@ -620,7 +630,7 @@ const GeneralInformation = () => {
           <div className="row">
             <div className="form-group col-12 col-lg-6">
               <Controller
-                name="constructionPeriodId"
+                name="constructionPeriodValue"
                 control={control}
                 render={({
                   field: { onChange, value },
@@ -708,7 +718,7 @@ const GeneralInformation = () => {
                       {UseType.map((o) => (
                         <MenuItem
                           key={o.id}
-                          value={o.name}
+                          value={o.id}
                         >
                           {o.name}
                         </MenuItem>

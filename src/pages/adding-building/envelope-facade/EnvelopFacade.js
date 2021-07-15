@@ -151,7 +151,7 @@ const EnvelopFacade = () => {
           backLink="/adding-building/lighting"
           nextLink="/adding-building/renewable-energy"
           progressValue={addingBuildingProgress}
-          isDisabledSave={true}/>
+          isDisabledSave={addingBuildingProgress < 100}/>
 
       </div>
 

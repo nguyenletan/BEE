@@ -8,6 +8,9 @@ import DateFnsUtils from '@date-io/date-fns'
 
 import { Checkbox, FormControlLabel } from '@material-ui/core'
 import { Controller } from 'react-hook-form'
+import { useRecoilState } from 'recoil'
+import { buildingActivityState } from '../../../atoms'
+import { replaceItemAtIndex } from '../../../Utilities'
 
 const Header = styled.div`
   margin-bottom: 20px;
@@ -36,6 +39,12 @@ const Row = ({
 
   const [selectedStartTime, setSelectedStartTime] = React.useState(startTime)
 
+  const [buildingActivity, setBuildingActivity] = useRecoilState(buildingActivityState)
+
+  const onChange = (name, value) => {
+    setBuildingActivity({...buildingActivity, [name]: value})
+  }
+
   useEffect(() => {
     // register(`${name}StartTime`)
     // register(`${codeName}EndTime`)
@@ -53,7 +62,7 @@ const Row = ({
           name={`${codeName}Enable`}
           control={control}
           setValue={setValue}
-          render={({ onChange, value }) => (
+          render={({ value }) => (
             <FormControlLabel
               control={
                 <Checkbox
@@ -62,8 +71,9 @@ const Row = ({
                   checked={isChecked}
                   id={`day-${id}`}
                   onChange={() => {
-                    setIsChecked(!isChecked)
                     setValue(`${codeName}Enable`, !isChecked, { shouldDirty: true })
+                    onChange(`${codeName}Enable`, !isChecked)
+                    setIsChecked(!isChecked)
                   }}
                 />
               }
@@ -80,7 +90,7 @@ const Row = ({
           name={`${codeName}StartTime`}
           control={control}
           setValue={setValue}
-          render={({ onChange, value, name }) => (
+          render={({ value, name }) => (
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardTimePicker
                 variant="inline"
@@ -92,10 +102,12 @@ const Row = ({
                 autoOk
                 fullWidth
                 ampm={true}
+                name={`${codeName}StartTime`}
                 value={isChecked ? selectedStartTime : null}
                 onChange={(date) => {
                   setValue(`${codeName}StartTime`, date, { shouldDirty: true })
                   setSelectedStartTime(date)
+                  onChange(`${codeName}StartTime`, date)
                 }}
               />
             </MuiPickersUtilsProvider>
@@ -109,7 +121,7 @@ const Row = ({
           name={`${codeName}EndTime`}
           control={control}
           setValue={setValue}
-          render={({ onChange, value, name }) => (
+          render={({ value, name }) => (
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardTimePicker
                 variant="inline"
@@ -122,6 +134,7 @@ const Row = ({
                 onChange={(date) => {
                   setValue(`${codeName}EndTime`, date, { shouldDirty: true })
                   setSelectedEndTime(date)
+                  onChange(`${codeName}EndTime`, date)
                 }}
                 autoOk
                 fullWidth
@@ -135,7 +148,7 @@ const Row = ({
 const TimeTable = ({ data, control, setValue, getValues, register }) => {
   console.log(data?.saturdayEndTime !== null)
 
-  const timeTableData = [
+  const defaultTimeTableData = [
     {
       id: 0,
       name: 'Sunday',
@@ -202,7 +215,7 @@ const TimeTable = ({ data, control, setValue, getValues, register }) => {
     },
   ]
 
-  const rows = timeTableData.map(t => (
+  const rows = defaultTimeTableData.map(t => (
     <Row key={`${t.name}_${t.id}`}
          id={t.id}
          name={t.name}

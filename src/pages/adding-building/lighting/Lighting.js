@@ -108,7 +108,7 @@ const Lighting = () => {
           backLink="/adding-building/hvac"
           nextLink="/adding-building/envelope-facade"
           progressValue={addingBuildingProgress}
-          isDisabledSave={true}
+          isDisabledSave={addingBuildingProgress < 100}
         />
 
 

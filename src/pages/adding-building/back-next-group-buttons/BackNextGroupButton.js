@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Progress from '../../../components/Progress'
 import { Button } from '@material-ui/core'
 import { ArrowBack, ArrowForward, DoneAll, Save } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import {
+  buildingActivityState,
+  coolingSystemState,
+  electricityConsumptionListState,
+  envelopFacadeState,
+  generalBuildingInformationState,
+  heatingSystemState,
+  lightingSubSystemListState,
+  solarPanelSystemListState,
+  spaceUsageGFAListState,
+} from '../../../atoms'
+import { createBuilding } from '../../../api/BuildidingAPI'
+import { useAuth } from '../../../AuthenticateProvider'
+import Message from '../../../components/Message'
 
 const BackNextGroupButton = ({
   backLink,
@@ -14,43 +29,93 @@ const BackNextGroupButton = ({
   //submitFunc,
 }) => {
 
-  return isInDoneStep === true ? (
-    <div className="d-flex ms-auto align-items-center">
-      {progressValue !== undefined && <Progress value={progressValue}/>}
-      {backLink && <Link to={backLink}>
-        <Button startIcon={<ArrowBack/>} variant="contained" color="default"
-                className="me-2">Back
-        </Button>
-      </Link>}
-      <Link to="/">
-        <Button endIcon={<DoneAll/>} variant="contained" color="primary"
-                className="me-2">Done
-        </Button>
-      </Link>
-    </div>) : (
+  const generalBuildingInformation = useRecoilValue(
+    generalBuildingInformationState)
 
-    <div className="d-flex ms-auto align-items-center">
+  const buildingActivity = useRecoilValue(buildingActivityState)
 
-      {progressValue !== undefined && <Progress value={progressValue}/>}
+  const spaceUsageGFAList = useRecoilValue(spaceUsageGFAListState)
+  const lightingSubSystemList = useRecoilValue(lightingSubSystemListState)
+  const solarPanelSystemList = useRecoilValue(solarPanelSystemListState)
+  const electricityConsumptionList = useRecoilValue(
+    electricityConsumptionListState)
+  const coolingSystem = useRecoilValue(coolingSystemState)
+  const heatingSystem = useRecoilValue(heatingSystemState)
+  const envelopFacade = useRecoilValue(envelopFacadeState)
 
-      <Button type="submit" size="medium" startIcon={<Save/>}
+  const [savingMessage, setSavingMessage] = useState(null)
+
+  //const [isDisabledSaveButton, setIsDisabledSaveButton] = useState(isDisabledSave || progressValue < 100)
+
+  const { user } = useAuth()
+
+  const onSave = async (e) => {
+    const submitData = {
+      generalBuildingInformation: generalBuildingInformation,
+      buildingActivity: buildingActivity,
+      spaceUsageGFAList: spaceUsageGFAList,
+      lightingSubSystemList: lightingSubSystemList,
+      solarPanelSystemList: solarPanelSystemList,
+      electricityConsumptionList: electricityConsumptionList,
+      coolingSystem: coolingSystem,
+      heatingSystem: heatingSystem,
+      envelopFacade: envelopFacade,
+    }
+    const idToken = await user.getIdToken()
+    const message = await createBuilding(submitData, idToken)
+    setSavingMessage(message)
+  }
+
+  return (
+    <>
+      {/*{savingMessage && <Message text={savingMessage}/>}*/}
+      {
+        isInDoneStep === true ? (
+          <div className="d-flex ms-auto align-items-center">
+            {progressValue !== undefined && <Progress value={progressValue}/>}
+            {backLink && <Link to={backLink}>
+              <Button startIcon={<ArrowBack/>}
+                      variant="contained"
+                      color="default"
+                      className="me-2">Back
+              </Button>
+            </Link>}
+            <Link to="/">
+              <Button endIcon={<DoneAll/>} variant="contained" color="primary"
+                      className="me-2">Done
+              </Button>
+            </Link>
+          </div>) : (
+
+          <div className="d-flex ms-auto align-items-center">
+
+            {progressValue !== undefined && <Progress value={progressValue}/>}
+
+            <Button
+              onClick={onSave}
+              type="submit"
+              size="medium"
+              startIcon={<Save/>}
               variant="contained"
-              disabled={isDisabledSave}
+              //disabled={isDisabledSave}
               color="primary" className="me-5">Save</Button>
 
-      {backLink && <Link to={backLink}>
-        <Button startIcon={<ArrowBack/>} variant="contained" color="default"
-                className="me-2">Back
-        </Button>
-      </Link>}
+            {backLink && <Link to={backLink}>
+              <Button startIcon={<ArrowBack/>} variant="contained"
+                      color="default"
+                      className="me-2">Back
+              </Button>
+            </Link>}
 
-      {!noNextLink &&
-      <Button type="submit" endIcon={<ArrowForward/>} variant="contained"
-              color="primary">Next</Button>}
+            {!noNextLink &&
+            <Button type="submit" endIcon={<ArrowForward/>} variant="contained"
+                    color="primary">Next</Button>}
 
-    </div>
+          </div>
+        )
+      }
+    </>
   )
-
 }
 
 export default BackNextGroupButton

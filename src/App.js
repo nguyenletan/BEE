@@ -9,7 +9,7 @@ import Building from './pages/building/Building';
 import Register from './pages/register/Register';
 import TermOfService from './pages/TermsOfService';
 import AddingBuilding from './pages/adding-building/AddingBuilding';
-
+import { Alert, AlertTitle } from '@material-ui/lab';
 import { RecoilRoot, useRecoilCallback, useRecoilSnapshot } from 'recoil'
 import { useEffect } from 'react'
 
@@ -53,7 +53,7 @@ function DebugButton() {
     }
   }, []);
 
-  return <button onClick={onClick} className="visually-hidden">Dump State</button>
+  return <button onClick={onClick} className="-visually-hidden">Dump State</button>
 }
 
 function App() {
