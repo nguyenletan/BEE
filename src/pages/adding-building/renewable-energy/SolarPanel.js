@@ -167,7 +167,7 @@ const SolarPanel = ({ data }) => {
 
           <FormControl className={classes.formControl}>
             <TextField type="number"
-                       label="Installed Capacity (kWh)"
+                       label="Installed Capacity (kWp)"
                        name="installedCapacity"
                        value={data.installedCapacity}
                        onChange={onChange}/>

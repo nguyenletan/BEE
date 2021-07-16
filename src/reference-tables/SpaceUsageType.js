@@ -1,50 +1,51 @@
 const SpaceUsageType = [
   {
-    id: 0,
+    id: 1,
     name: 'Store Room'
   },
   {
-    id: 1,
+    id: 2,
     name: 'Circulation Area'
   },
   {
-    id: 2,
+    id: 3,
     name: 'Toilet'
   },
   {
-    id: 3,
+    id: 4,
     name: 'Reception'
   },
   {
-    id: 4,
+    id: 5,
     name: 'Plant Room'
   },
   {
-    id: 5,
+    id: 6,
     name: 'Office'
   },
   {
-    id: 6,
+    id: 7,
     name: 'Gym'
   },
   {
-    id: 7,
+    id: 8,
     name: 'Changing Room with Showers'
   },
   {
-    id: 8,
+    id: 9,
     name: 'Food Preparation Area'
   },
   {
-    id: 9,
-    name: 'Eating/drinking area'
-  },
-  {
     id: 10,
-    name: 'Workshop - small scale'
+    name:
+      'Eating/Drinking Area'
   },
   {
     id: 11,
+    name: 'Workshop - small scale'
+  },
+  {
+    id: 12,
     name: 'Car Park'
   },
 ]

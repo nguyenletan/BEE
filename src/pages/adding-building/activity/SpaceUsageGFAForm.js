@@ -46,7 +46,7 @@ const SpaceUsageGFAForm = ({ data }) => {
   const [hasReheatRecovery, setHasReheatRecovery] = useState(data.hasReheatRecovery?? false)
 
   const [isShowFanTypeAndHeatRecovery, setIsShowFanTypeAndHeatRecovery] = useState(
-    data.climateControlId === 3)
+    data.climateControlId === 4)
 
   const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(
     spaceUsageGFAListState)
@@ -64,7 +64,7 @@ const SpaceUsageGFAForm = ({ data }) => {
   const onClimateControlChange = (e) => {
     //console.log(e.target.value)
     selectedClimateControl(e.target.value)
-    if (e.target.value === 3) {
+    if (e.target.value === 4) {
       setIsShowFanTypeAndHeatRecovery(true)
     } else {
       setIsShowFanTypeAndHeatRecovery(false)

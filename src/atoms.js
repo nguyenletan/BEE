@@ -7,10 +7,10 @@ export const spaceUsageGFAListState = atom({
     {
       id: parseInt(_.uniqueId()),
       title: `New Usage`,
-      typeId: 0,
-      percentage: 0,
-      climateControlId: 0,
-      fanTypeId: 0,
+      typeId: 1,
+      percentage: 1,
+      climateControlId: 1,
+      fanTypeId: 1,
       hasReheatRecovery: false,
     }],
 })
@@ -67,8 +67,8 @@ export const coolingSystemState = atom({
     coolingSystemTypeId: 0,
     compressorTypeId: 0,
     refrigerantTypeId: 0,
-    chillerEnergySourceTypeId: 0
-  }
+    chillerEnergySourceTypeId: 0,
+  },
 })
 
 export const heatingSystemState = atom({
@@ -78,8 +78,8 @@ export const heatingSystemState = atom({
     hasHeatingSystem: false,
     heaterSystemTypeId: 0,
     heaterTypeId: 0,
-    heaterEnergySourceTypeId: 0
-  }
+    heaterEnergySourceTypeId: 0,
+  },
 })
 
 export const envelopFacadeState = atom({
@@ -90,13 +90,78 @@ export const envelopFacadeState = atom({
     externalRoofInsulationTypeId: 0,
     externalWallInsulationTypeId: 0,
     externalWindowInsulationTypeId: 0,
-    externalGroundFloorInsulationTypeId: 0
-  }
+    externalGroundFloorInsulationTypeId: 0,
+  },
 })
 
 export const buildingActivityState = atom({
   key: 'buildingActivity',
-  default: [],
+  default: [
+    {
+      id: 0,
+      name: 'Sunday',
+      codeName: 'sunday',
+      startTime: new Date('2014-08-18T09:00:00'),
+      endTime: new Date('2014-08-18T17:00:00'),
+      isEnable: false,
+    },
+    {
+      id: 1,
+      name: 'Monday',
+      codeName: 'monday',
+      startTime: new Date('2014-08-18T09:00:00'),
+      endTime: new Date('2014-08-18T17:00:00'),
+      isEnable: false,
+    },
+    {
+      id: 2,
+      name: 'Tuesday',
+      codeName: 'tuesday',
+      startTime: new Date('2014-08-18T09:00:00'),
+      endTime: new Date('2014-08-18T17:00:00'),
+      isEnable: false,
+    },
+    {
+      id: 3,
+      name: 'Wednesday',
+      codeName: 'wednesday',
+      startTime: new Date('2014-08-18T09:00:00'),
+      endTime: new Date('2014-08-18T17:00:00'),
+      isEnable: false,
+    },
+    {
+      id: 4,
+      name: 'Thursday',
+      codeName: 'thursday',
+      startTime: new Date('2014-08-18T09:00:00'),
+      endTime: new Date('2014-08-18T17:00:00'),
+      isEnable: false,
+    },
+    {
+      id: 5,
+      name: 'Friday',
+      codeName: 'friday',
+      startTime: new Date('2014-08-18T09:00:00'),
+      endTime: new Date('2014-08-18T17:00:00'),
+      isEnable: false,
+    },
+    {
+      id: 6,
+      name: 'Saturday',
+      codeName: 'saturday',
+      startTime: new Date('2014-08-18T09:00:00'),
+      endTime: new Date('2014-08-18T17:00:00'),
+      isEnable: false,
+    },
+    {
+      id: 7,
+      name: 'Public Holiday',
+      codeName: 'publicHoliday',
+      startTime: new Date('2014-08-18T09:00:00'),
+      endTime: new Date('2014-08-18T17:00:00'),
+      isEnable: false,
+    },
+  ],
 })
 
 export const addingBuildingProgressState = atom({

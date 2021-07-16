@@ -10,6 +10,7 @@ import Input from '@material-ui/core/Input'
 import Grid from '@material-ui/core/Grid'
 import DateFnsUtils from '@date-io/date-fns'
 import { useRecoilState } from 'recoil'
+
 import { electricityConsumptionListState } from '../../../atoms'
 import { removeItemAtIndex, replaceItemAtIndex } from '../../../Utilities'
 

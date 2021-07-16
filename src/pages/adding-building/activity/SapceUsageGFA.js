@@ -38,10 +38,10 @@ const SpaceUsageGFA = () => {
       {
         id: parseInt(_.uniqueId()),
         title: `New Usage`,
-        typeId: 0,
+        typeId: 1,
         percentage: 0,
-        climateControlId: 0,
-        fanTypeId: 0,
+        climateControlId: 1,
+        fanTypeId: 1,
         hasReheatRecovery: false,
       },
     ])

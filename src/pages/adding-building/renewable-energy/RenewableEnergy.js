@@ -110,7 +110,7 @@ const RenewableEnergy = () => {
       <div className="row">
         <div className="col-12 col-lg-8">
           <Header className="d-flex justify-content-between">
-            <h6>Solar Panel Subsystem</h6>
+            <h6>Solar P.V. System</h6>
             <Adding title="Add new item" onClick={onAddSolarSystemList}>
               <i className="bi bi-plus-lg font-weight-bolder"/>
             </Adding>

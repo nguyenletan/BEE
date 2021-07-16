@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import {Controller} from 'react-hook-form'
+import { Checkbox, FormControlLabel } from '@material-ui/core'
+import { useRecoilState } from 'recoil'
+import { buildingActivityState } from '../../../atoms'
+import { replaceItemAtIndex } from '../../../Utilities'
 import {
   KeyboardTimePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
 
-import { Checkbox, FormControlLabel } from '@material-ui/core'
-import { Controller } from 'react-hook-form'
-import { useRecoilState } from 'recoil'
-import { buildingActivityState } from '../../../atoms'
-import { replaceItemAtIndex } from '../../../Utilities'
 
 const Header = styled.div`
   margin-bottom: 20px;
@@ -20,66 +20,43 @@ const Content = styled.div`
 
 `
 
-const Row = ({
-  id,
-  name,
-  codeName,
-  startTime,
-  endTime,
-  isEnable,
-  control,
-  setValue,
-  getValues,
-  register,
-}) => {
+const Row = ({ data, control, setValue }) => {
 
-  const [isChecked, setIsChecked] = useState(isEnable)
+  const [buildingActivity, setBuildingActivity] = useRecoilState(
+    buildingActivityState)
 
-  const [selectedEndTime, setSelectedEndTime] = React.useState(endTime)
-
-  const [selectedStartTime, setSelectedStartTime] = React.useState(startTime)
-
-  const [buildingActivity, setBuildingActivity] = useRecoilState(buildingActivityState)
 
   const onChange = (name, value) => {
-    setBuildingActivity({...buildingActivity, [name]: value})
+    let index = buildingActivity.findIndex((o) => o.id === data.id)
+    const newList = replaceItemAtIndex(buildingActivity, index, {
+      ...data,
+      [name]: value,
+    })
+    setBuildingActivity(newList)
   }
 
-  useEffect(() => {
-    // register(`${name}StartTime`)
-    // register(`${codeName}EndTime`)
-    console.log(startTime)
+  // useEffect({
+  //   //setValue()
+  // }, [])
 
-    setValue(`${codeName}StartTime`, startTime)
-    setValue(`${codeName}EndTime`, endTime)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return (
-    <div className="row mt-2" key={`${name}`}>
+    <div className="row mt-2" key={`${data.name}`}>
       <div className="col-4 mt-auto">
-        <Controller
-          name={`${codeName}Enable`}
-          control={control}
-          setValue={setValue}
-          render={({ value }) => (
-            <FormControlLabel
-              control={
-                <Checkbox
-                  name="checkedTime"
-                  color="primary"
-                  checked={isChecked}
-                  id={`day-${id}`}
-                  onChange={() => {
-                    setValue(`${codeName}Enable`, !isChecked, { shouldDirty: true })
-                    onChange(`${codeName}Enable`, !isChecked)
-                    setIsChecked(!isChecked)
-                  }}
-                />
-              }
-              label={name}
+
+        <FormControlLabel
+          control={
+            <Checkbox
+              name={`${data.codeName}Enable`}
+              color="primary"
+              checked={data.isEnable}
+              id={`day-${data.id}`}
+              onChange={() => {
+                onChange('isEnable', !data.isEnable)
+              }}
             />
-          )}
+          }
+          label={data.name}
         />
 
 
@@ -87,7 +64,7 @@ const Row = ({
       <div className="col-4">
 
         <Controller
-          name={`${codeName}StartTime`}
+          name={`${data.codeName}StartTime`}
           control={control}
           setValue={setValue}
           render={({ value, name }) => (
@@ -97,17 +74,15 @@ const Row = ({
                 margin="normal"
                 id="startTime"
                 label="Start Time"
-                disabled={!isChecked}
+                disabled={!data.isEnable}
                 mask="__:__ _M"
                 autoOk
                 fullWidth
                 ampm={true}
-                name={`${codeName}StartTime`}
-                value={isChecked ? selectedStartTime : null}
+                name="startTime"
+                value={data.isEnable ? data.startTime : null}
                 onChange={(date) => {
-                  setValue(`${codeName}StartTime`, date, { shouldDirty: true })
-                  setSelectedStartTime(date)
-                  onChange(`${codeName}StartTime`, date)
+                  onChange('startTime', date)
                 }}
               />
             </MuiPickersUtilsProvider>
@@ -118,116 +93,47 @@ const Row = ({
       <div className="col-4">
 
         <Controller
-          name={`${codeName}EndTime`}
+          name={`${data.codeName}EndTime`}
           control={control}
           setValue={setValue}
-          render={({ value, name }) => (
+          render={({
+            field: { value },
+            fieldState: { error },
+          })  => (
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardTimePicker
                 variant="inline"
                 margin="normal"
                 id="endTime"
                 label="End Time"
-                disabled={!isChecked}
+                disabled={!data.isEnable}
                 mask="__:__ _M"
-                value={isChecked ? selectedEndTime : null}
+                value={data.isEnable ? data.endTime : null}
+                error={!!error}
+                helperText={error ? error.message : null}
                 onChange={(date) => {
-                  setValue(`${codeName}EndTime`, date, { shouldDirty: true })
-                  setSelectedEndTime(date)
-                  onChange(`${codeName}EndTime`, date)
+                  onChange('endTime', date)
+                  setValue(`${data.codeName}EndTime`, date)
                 }}
                 autoOk
                 fullWidth
               />
             </MuiPickersUtilsProvider>
-          )}/>
+          )}
+          //rules={{ required: `${data.codeName}EndTime is not empty` }}
+        />
       </div>
     </div>)
 }
 
 const TimeTable = ({ data, control, setValue, getValues, register }) => {
   console.log(data?.saturdayEndTime !== null)
+  const [buildingActivity, setBuildingActivity] = useRecoilState(
+    buildingActivityState)
 
-  const defaultTimeTableData = [
-    {
-      id: 0,
-      name: 'Sunday',
-      codeName: 'sunday',
-      startTime: data?.sundayStartTime ?? new Date('2014-08-18T09:00:00'),
-      endTime: data?.sundayEndTime ?? new Date('2014-08-18T17:00:00'),
-      isEnable: data?.sundayEnable === true,
-    },
-    {
-      id: 1,
-      name: 'Monday',
-      codeName: 'monday',
-      startTime: data?.mondayStartTime ?? new Date('2014-08-18T09:00:00'),
-      endTime: data?.mondayEndTime ?? new Date('2014-08-18T17:00:00'),
-      isEnable: data?.mondayEnable === true,
-    },
-    {
-      id: 2,
-      name: 'Tuesday',
-      codeName: 'tuesday',
-      startTime: data?.tuesdayStartTime ?? new Date('2014-08-18T09:00:00'),
-      endTime: data?.tuesdayEndTime ?? new Date('2014-08-18T17:00:00'),
-      isEnable: data?.tuesdayEnable === true,
-    },
-    {
-      id: 3,
-      name: 'Wednesday',
-      codeName: 'wednesday',
-      startTime: data?.wednesdayStartTime ?? new Date('2014-08-18T09:00:00'),
-      endTime: data?.wednesdayEndTime ?? new Date('2014-08-18T17:00:00'),
-      isEnable: data?.wednesdayEnable === true,
-    },
-    {
-      id: 4,
-      name: 'Thursday',
-      codeName: 'thursday',
-      startTime: data?.thursdayStartTime ?? new Date('2014-08-18T09:00:00'),
-      endTime: data?.thursdayEndTime ?? new Date('2014-08-18T17:00:00'),
-      isEnable: data?.thursdayEnable === true,
-    },
-    {
-      id: 5,
-      name: 'Friday',
-      codeName: 'friday',
-      startTime: data?.fridayStartTime ?? new Date('2014-08-18T09:00:00'),
-      endTime: data?.firdayEndTime ?? new Date('2014-08-18T17:00:00'),
-      isEnable: data?.fridayEnable === true,
-    },
-    {
-      id: 6,
-      name: 'Saturday',
-      codeName: 'saturday',
-      startTime: data?.saturdayStartTime ?? new Date('2014-08-18T09:00:00'),
-      endTime: data?.saturdayEndTime ?? new Date('2014-08-18T17:00:00'),
-      isEnable: data?.saturdayEnable === true,
-    },
-    {
-      id: 7,
-      name: 'Public Holiday',
-      codeName: 'publicHoliday',
-      startTime: data?.publicHolidayStartTime ?? new Date('2014-08-18T09:00:00'),
-      endTime: data?.publicHolidayEndTime ?? new Date('2014-08-18T17:00:00'),
-      isEnable: data?.publicHolidayEnable === true,
-    },
-  ]
-
-  const rows = defaultTimeTableData.map(t => (
-    <Row key={`${t.name}_${t.id}`}
-         id={t.id}
-         name={t.name}
-         codeName={t.codeName}
-         startTime={t.startTime}
-         endTime={t.endTime}
-         isEnable={t.isEnable}
-         control={control}
-         setValue={setValue}
-         getValues={getValues}
-         register={register}
-    />
+  const rows = buildingActivity.map(t => (
+    <Row key={`${t.name}_${t.id}`} data={t} control={control}
+         setValue={setValue}/>
   ))
   return (
     <>

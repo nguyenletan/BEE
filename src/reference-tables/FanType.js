@@ -1,7 +1,7 @@
 const FanType = [
-  { id: 0, name: 'Supply Only' },
-  { id: 1, name: 'Exhaust Only' },
-  { id: 2, name: 'Supply and Exhaust' },
+  { id: 1, name: 'Supply Only' },
+  { id: 2, name: 'Exhaust Only' },
+  { id: 3, name: 'Supply and Exhaust' },
 ]
 
 export default FanType

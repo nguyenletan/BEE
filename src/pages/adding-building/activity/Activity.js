@@ -5,7 +5,7 @@ import StepNav from '../step-nav/StepNav'
 import TimeTable from './TimeTable'
 import SpaceUsageGFA from './SapceUsageGFA'
 import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   addingBuildingProgressState,
   buildingActivityState,
@@ -24,7 +24,7 @@ const Title = styled.h2`
 
 const Activity = () => {
 
-  const [buildingActivity, setBuildingActivity] = useRecoilState(buildingActivityState)
+  const buildingActivity = useRecoilValue(buildingActivityState)
 
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
@@ -34,7 +34,7 @@ const Activity = () => {
   const onSubmit = (data) => {
     //console.log(data)
     // console.log(image)
-    setBuildingActivity(data)
+    //setBuildingActivity(data)
     setAddingBuildingProgressState(45)
     setIsMovingNext(true)
   }

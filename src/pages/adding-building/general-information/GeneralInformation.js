@@ -158,6 +158,7 @@ const GeneralInformation = () => {
       shouldValidate: true,
       shouldDirty: true,
     })
+    console.log(generalBuildingInformation?.postalCode)
     setValue('postalCode', generalBuildingInformation?.postalCode, {
       shouldValidate: true,
       shouldDirty: true,
@@ -407,7 +408,7 @@ const GeneralInformation = () => {
                   fieldState: { error },
                 }) => (
                   <FormControl className={classes.formControl}>
-                    <TextField type="number"
+                    <TextField type="text"
                                label="Postal Code"
                                id="postal-code"
                                value={value}

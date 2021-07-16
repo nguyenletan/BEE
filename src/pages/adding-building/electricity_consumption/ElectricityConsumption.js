@@ -141,7 +141,7 @@ const ElectricityConsumption = () => {
             Cost <span>($)</span>
           </div>
           <div className="col-3">
-            Value <span>(kWh)</span>
+            Consumption <span>(kWh)</span>
           </div>
           <div className="col-3">
             <Adding titleAccess="Add new item" fontSize="large"
