@@ -1,22 +1,22 @@
 const LightingFittingType = [
   {
-    id: 0,
+    id: 1,
     name: 'LED',
   },
   {
-    id: 1,
+    id: 2,
     name: 'Compact Fluorescent Lamb',
   },
   {
-    id: 2,
+    id: 3,
     name: 'Fluorescent T5 Tube',
   },
   {
-    id: 3,
+    id: 4,
     name: 'Fluorescent T8 Tube',
   },
   {
-    id: 4,
+    id: 5,
     name: 'Fluorescent T12 Tube',
   },
 ]

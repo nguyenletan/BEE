@@ -58,7 +58,7 @@ const Lighting = () => {
       {
         id: parseInt(_.uniqueId()),
         title: `Fitting `,
-        indoorLightingSystemTypeId: 0,
+        indoorLightingSystemTypeId: 1,
         percentage: 0,
       },
     ])
