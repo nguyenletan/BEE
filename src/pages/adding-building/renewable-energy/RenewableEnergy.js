@@ -9,7 +9,7 @@ import {
   solarPanelSystemListState,
 } from '../../../atoms'
 import _ from 'lodash'
-import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
+import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { Redirect } from 'react-router-dom'
 
 const Form = styled.form`

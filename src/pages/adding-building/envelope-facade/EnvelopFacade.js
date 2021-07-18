@@ -17,7 +17,7 @@ import Grid from '@material-ui/core/Grid'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import ExternalWallType from '../../../reference-tables/ExternalWallType'
 import ExternalWindowType from '../../../reference-tables/ExternalWindowType'
-import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
+import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { makeStyles } from '@material-ui/core/styles'
 import ExternalRoofType from '../../../reference-tables/ExternalRoofType'
 import {

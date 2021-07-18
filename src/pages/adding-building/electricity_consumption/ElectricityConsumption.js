@@ -13,7 +13,7 @@ import {
   electricityConsumptionListState,
 } from '../../../atoms'
 import { getNextMonthYear } from '../../../Utilities'
-import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
+import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { Redirect } from 'react-router-dom'
 
 const Form = styled.form`

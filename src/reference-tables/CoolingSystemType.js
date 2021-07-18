@@ -1,17 +1,17 @@
 const CoolingSystemType = [
-  {id: 0,
+  {id: 1,
     name: 'Air-Cooled Chiller'
   },
-  {id: 1,
+  {id: 2,
     name: 'Water-Cooled Chiller'
   },
-  {id: 2,
+  {id: 3,
     name: 'District Cooling System'
   },
-  {id: 3,
+  {id: 4,
     name: 'Split Unit AC'
   },
-  {id: 4,
+  {id: 5,
     name: 'Absorption Chiller'
   },
 ]

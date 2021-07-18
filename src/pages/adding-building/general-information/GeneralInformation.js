@@ -6,7 +6,7 @@ import cameraImg from '../../../assets/images/camera.jpg'
 import { Controller, useForm } from 'react-hook-form'
 import { SustainabilityRatingScheme } from '../../../reference-tables/GreenBuildingRatingSystem'
 import { Redirect } from 'react-router-dom'
-import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
+import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import StepNav from '../step-nav/StepNav'
 import {
   FormControl,
@@ -126,7 +126,6 @@ const GeneralInformation = () => {
         //.replace('data:image/png;base64,', '')
         // .replace('data:image/jpg;base64,', '')
         // .replace('data:image/jpeg;base64,', '');
-
 
         console.log(base64Image)
         setValue('buildingPhoto', base64Image, {
@@ -491,7 +490,7 @@ const GeneralInformation = () => {
                   fieldState: { error },
                 }) => (
                   <FormControl className={classes.formControl}>
-                    <TextField type="text"
+                    <TextField type="number"
                                id="storeys-above-ground"
                                aria-describedby="Storeys Above Ground"
                                label="Storeys Above Ground"
@@ -599,7 +598,7 @@ const GeneralInformation = () => {
                   fieldState: { error },
                 }) => (
                   <>
-                    <TextField type="text"
+                    <TextField type="number"
                                id="gross-interior-area"
                                aria-describedby="Gross Interior Area"
                                placeholder="Gross Interior Area"

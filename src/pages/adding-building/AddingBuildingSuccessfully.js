@@ -1,5 +1,5 @@
 import React from 'react'
-import BackNextGroupButton from './back-next-group-buttons/BackNextGroupButton'
+import BackNextGroupButton from '../../components/BackNextGroupButton'
 import StepNav from './step-nav/StepNav'
 import styled from 'styled-components'
 import Typography from '@material-ui/core/Typography'

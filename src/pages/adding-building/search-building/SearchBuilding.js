@@ -20,7 +20,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import StepNav from '../step-nav/StepNav'
-import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
+import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
 import {
   addingBuildingProgressState,

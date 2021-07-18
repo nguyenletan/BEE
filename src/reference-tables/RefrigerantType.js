@@ -1,71 +1,67 @@
 const RefrigerantType = [
   {
-    id: 0,
+    id: 1,
     name: 'R12'
   },
   {
-    id: 1,
+    id: 2,
     name: 'R123'
   },
   {
-    id: 2,
+    id: 3,
     name: 'R134a'
   },
   {
-    id: 3,
+    id: 4,
     name: 'R22'
   },
   {
-    id: 4,
+    id: 5,
     name: 'R290'
   },
   {
-    id: 5,
+    id: 6,
     name: 'R401a'
   },
   {
-    id: 6,
+    id: 7,
     name: 'R404a'
   },
   {
-    id: 7,
+    id: 8,
     name: 'R407a'
   },
   {
-    id: 8,
+    id: 9,
     name: 'R408a'
   },
   {
-    id: 9,
+    id: 10,
     name: 'R409a'
   },
   {
-    id: 10,
+    id: 11,
     name: 'R410a'
   },
   {
-    id: 11,
+    id: 12,
     name: 'R500'
   },
   {
-    id: 12,
+    id: 13,
     name: 'R502'
   },
   {
-    id: 13,
+    id: 14,
     name: 'R507'
   },
   {
-    id: 14,
+    id: 15,
     name: 'R600a'
   },
   {
-    id: 15,
-    name: 'R744'
-  },
-  {
     id: 16,
-    name: 'R717'
+    name: 'R744'
   },
   {
     id: 17,

@@ -1,15 +1,11 @@
 const HeatingSystemType = [
   {
-    id: 0,
+    id: 1,
     name: 'Warm Air Heating',
   },
   {
-    id: 1,
-    name: 'Destratification',
-  },
-  {
     id: 2,
-    name: 'Heating',
+    name: 'Destratification Heating',
   },
   {
     id: 3,

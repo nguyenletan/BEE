@@ -1,26 +1,26 @@
 const HeaterEnergySource = [
   {
-    id: 0,
+    id: 1,
     name: 'Electricity'
   },
   {
-    id: 1,
+    id: 2,
     name: 'District Steam'
   },
   {
-    id: 2,
+    id: 3,
     name: 'Natural Gas'
   },
   {
-    id: 3,
+    id: 4,
     name: 'Fuel Oil'
   },
   {
-    id: 4,
+    id: 5,
     name: 'Propane'
   },
   {
-    id: 5,
+    id: 6,
     name: 'District Hot Water'
   },
 ]

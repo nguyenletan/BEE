@@ -1,18 +1,18 @@
 const ChillerEnergySourceType = [
   {
-    id: 0,
+    id: 1,
     name: 'Hot Water'
   },
   {
-    id: 1,
+    id: 2,
     name: 'Steam'
   },
   {
-    id: 2,
+    id: 3,
     name: 'Exhaust'
   },
   {
-    id: 3,
+    id: 4,
     name: 'Electricity'
   },
 ]

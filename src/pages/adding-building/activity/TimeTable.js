@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import {Controller} from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 import { Checkbox, FormControlLabel } from '@material-ui/core'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { buildingActivityState } from '../../../atoms'
 import { replaceItemAtIndex } from '../../../Utilities'
 import {
@@ -10,7 +10,6 @@ import {
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
-
 
 const Header = styled.div`
   margin-bottom: 20px;
@@ -25,7 +24,6 @@ const Row = ({ data, control, setValue }) => {
   const [buildingActivity, setBuildingActivity] = useRecoilState(
     buildingActivityState)
 
-
   const onChange = (name, value) => {
     let index = buildingActivity.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(buildingActivity, index, {
@@ -34,11 +32,6 @@ const Row = ({ data, control, setValue }) => {
     })
     setBuildingActivity(newList)
   }
-
-  // useEffect({
-  //   //setValue()
-  // }, [])
-
 
   return (
     <div className="row mt-2" key={`${data.name}`}>
@@ -99,7 +92,7 @@ const Row = ({ data, control, setValue }) => {
           render={({
             field: { value },
             fieldState: { error },
-          })  => (
+          }) => (
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardTimePicker
                 variant="inline"
@@ -128,8 +121,7 @@ const Row = ({ data, control, setValue }) => {
 
 const TimeTable = ({ data, control, setValue, getValues, register }) => {
   console.log(data?.saturdayEndTime !== null)
-  const [buildingActivity, setBuildingActivity] = useRecoilState(
-    buildingActivityState)
+  const buildingActivity = useRecoilValue(buildingActivityState)
 
   const rows = buildingActivity.map(t => (
     <Row key={`${t.name}_${t.id}`} data={t} control={control}

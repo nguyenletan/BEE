@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import Progress from '../../../components/Progress'
+import React from 'react'
+import Progress from './Progress'
 import { Button } from '@material-ui/core'
 import { ArrowBack, ArrowForward, DoneAll, Save } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
@@ -14,10 +14,9 @@ import {
   lightingSubSystemListState,
   solarPanelSystemListState,
   spaceUsageGFAListState,
-} from '../../../atoms'
-import { createBuilding } from '../../../api/BuildidingAPI'
-import { useAuth } from '../../../AuthenticateProvider'
-import Message from '../../../components/Message'
+} from '../atoms'
+import { createBuilding } from '../api/BuildidingAPI'
+import { useAuth } from '../AuthenticateProvider'
 
 const BackNextGroupButton = ({
   backLink,
@@ -43,7 +42,7 @@ const BackNextGroupButton = ({
   const heatingSystem = useRecoilValue(heatingSystemState)
   const envelopFacade = useRecoilValue(envelopFacadeState)
 
-  const [savingMessage, setSavingMessage] = useState(null)
+  //const [setSavingMessage] = useState(null)
 
   //const [isDisabledSaveButton, setIsDisabledSaveButton] = useState(isDisabledSave || progressValue < 100)
 
@@ -63,7 +62,8 @@ const BackNextGroupButton = ({
     }
     const idToken = await user.getIdToken()
     const message = await createBuilding(submitData, idToken)
-    setSavingMessage(message)
+    console.log(message)
+    //setSavingMessage(message)
   }
 
   return (

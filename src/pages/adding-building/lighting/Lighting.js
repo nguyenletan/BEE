@@ -10,7 +10,7 @@ import {
 import _ from 'lodash'
 
 import LightingSubSystem from './LightingSubSystem'
-import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
+import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { Redirect } from 'react-router-dom'
 
 const Form = styled.form`

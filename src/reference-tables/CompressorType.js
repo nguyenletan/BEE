@@ -1,18 +1,18 @@
 const CompressorType = [
   {
-    id: 0,
+    id: 1,
     name: 'Centrifugal',
   },
   {
-    id: 1,
+    id: 2,
     name: 'Reciprocating',
   },
   {
-    id: 2,
+    id: 3,
     name: 'Scroll',
   },
   {
-    id: 3,
+    id: 4,
     name: 'Screw Driven',
   },
 ]

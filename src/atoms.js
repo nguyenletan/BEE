@@ -64,10 +64,10 @@ export const coolingSystemState = atom({
   default: {
     id: parseInt(_.uniqueId()),
     hasCoolingSystem: false,
-    coolingSystemTypeId: 0,
-    compressorTypeId: 0,
-    refrigerantTypeId: 0,
-    chillerEnergySourceTypeId: 0,
+    coolingSystemTypeId: 1,
+    compressorTypeId: 1,
+    refrigerantTypeId: 1,
+    chillerEnergySourceTypeId: 1,
   },
 })
 
@@ -76,9 +76,10 @@ export const heatingSystemState = atom({
   default: {
     id: parseInt(_.uniqueId()),
     hasHeatingSystem: false,
-    heaterSystemTypeId: 0,
-    heaterTypeId: 0,
-    heaterEnergySourceTypeId: 0,
+    heatingSystemTypeId: 1,
+    heaterTypeId: 1,
+    heaterEnergySourceTypeId: 1,
+
   },
 })
 

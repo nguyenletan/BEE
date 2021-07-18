@@ -1,22 +1,22 @@
 const HeaterType = [
   {
-    id: 0,
+    id: 1,
     name: 'Air Source Heat Pump'
   },
   {
-    id: 1,
+    id: 2,
     name: 'Electric Resistance Heater'
   },
   {
-    id: 2,
+    id: 3,
     name: 'Geothermal Heating'
   },
   {
-    id: 3,
+    id: 4,
     name: 'District Heating'
   },
   {
-    id: 4,
+    id: 5,
     name: 'Central Boiler'
   },
 ]

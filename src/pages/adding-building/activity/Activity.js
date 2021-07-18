@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import StepNav from '../step-nav/StepNav'
 import TimeTable from './TimeTable'
 import SpaceUsageGFA from './SapceUsageGFA'
-import BackNextGroupButton from '../back-next-group-buttons/BackNextGroupButton'
+import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   addingBuildingProgressState,
