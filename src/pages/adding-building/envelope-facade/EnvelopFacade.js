@@ -271,15 +271,15 @@ const EnvelopFacade = () => {
               onChange={onChange}
               value={envelopFacade.externalGroundFloorInsulationTypeId}
             >
-              <ListSubheader>Domestic/Residential (D)</ListSubheader>
-              {DomesticGroundFloorInsulationType.map((o) => (
-                <MenuItem
-                  key={o.id}
-                  value={o.id}
-                >
-                  {o.name}
-                </MenuItem>
-              ))}
+              {/*<ListSubheader>Domestic/Residential (D)</ListSubheader>*/}
+              {/*{DomesticGroundFloorInsulationType.map((o) => (*/}
+              {/*  <MenuItem*/}
+              {/*    key={o.id}*/}
+              {/*    value={o.id}*/}
+              {/*  >*/}
+              {/*    {o.name}*/}
+              {/*  </MenuItem>*/}
+              {/*))}*/}
               <ListSubheader>Non Domestic/Residential (N/D)</ListSubheader>
               {NonDomesticGroundFloorInsulationType.map((o) => (
                 <MenuItem

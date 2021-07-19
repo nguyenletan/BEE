@@ -1,18 +1,18 @@
 const PVTechChoiceType = [
   {
-    id: 0,
+    id: 1,
     name:  'crystSi'
   },
   {
-    id: 1,
+    id: 2,
     name: 'CIS'
   },
   {
-    id: 2,
+    id: 3,
     name: 'CdTe'
   },
   {
-    id: 3,
+    id: 4,
     name: 'Unknown'
   },
 ]

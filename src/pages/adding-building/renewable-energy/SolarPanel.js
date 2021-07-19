@@ -132,13 +132,13 @@ const SolarPanel = ({ data }) => {
   }
 
   useEffect(() => {
-    if (data.trackingTypeId === 0) {
+    if (data.trackingTypeId === 1) {
       setShowInclineAngel(true)
       setShowOrientationAngle(true)
-    } else if (data.trackingTypeId === 1) {
+    } else if (data.trackingTypeId === 2) {
       setShowInclineAngel(true)
       setShowOrientationAngle(false)
-    } else if (data.trackingTypeId === 2) {
+    } else if (data.trackingTypeId === 3) {
       setShowInclineAngel(false)
       setShowOrientationAngle(true)
     } else {

@@ -1,10 +1,10 @@
 const MountingType = [
   {
-    id: 0,
+    id: 1,
     name: 'Free Standing'
   },
   {
-    id: 1,
+    id: 2,
     name:'Building Integrated'
   }
 ]

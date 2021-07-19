@@ -1,18 +1,18 @@
 const ExternalWallType = [
   {
-    id: 0,
+    id: 1,
     name: 'Curtain Wall',
   },
   {
-    id: 1,
+    id: 2,
     name: 'Reinforced Concrete Wall',
   },
   {
-    id: 2,
+    id: 3,
     name: 'Precast Concrete Wall',
   },
   {
-    id: 3,
+    id: 4,
     name: 'Masonry Brick Wall',
   },
 ]

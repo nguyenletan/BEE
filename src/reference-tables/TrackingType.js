@@ -1,18 +1,18 @@
 const TrackingType = [
   {
-    id: 0,
+    id: 1,
     name: 'Fixed'
   },
   {
-    id: 1,
+    id: 2,
     name: 'Vertical Axis Tracking'
   },
   {
-    id: 2,
+    id: 3,
     name: 'Incline Axis Tracking'
   },
   {
-    id: 3,
+    id: 4,
     name: 'Two-Axis Tracking'
   },
 ]
