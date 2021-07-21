@@ -1,5 +1,6 @@
 import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { useJsApiLoader } from '@react-google-maps/api';
 import { useAuth } from './AuthenticateProvider'
 import FirebaseAuth from './FirebaseAuthenticate'
 import { createTheme , ThemeProvider } from '@material-ui/core/styles'
@@ -55,8 +56,15 @@ function DebugButton () {
 
 function App () {
   const { user, loading } = useAuth()
+  useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
+  })
+
   if (loading) return null
   if (!user) return <FirebaseAuth />
+
+
 
   return (
     <ThemeProvider theme={theme}>
