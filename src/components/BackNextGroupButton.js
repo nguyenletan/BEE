@@ -13,7 +13,7 @@ import {
   heatingSystemState,
   lightingSubSystemListState,
   solarPanelSystemListState,
-  spaceUsageGFAListState
+  spaceUsageGFAListState,
 } from '../atoms'
 import { createBuilding } from '../api/BuildidingAPI'
 import { useAuth } from '../AuthenticateProvider'
@@ -24,7 +24,7 @@ const BackNextGroupButton = ({
   progressValue,
   isDisabledSave,
   noNextLink,
-  isInDoneStep
+  isInDoneStep,
   // submitFunc,
 }) => {
   const generalBuildingInformation = useRecoilValue(
@@ -43,7 +43,7 @@ const BackNextGroupButton = ({
 
   // const [setSavingMessage] = useState(null)
 
-  // const [isDisabledSaveButton, setIsDisabledSaveButton] = useState(isDisabledSave || progressValue < 100)
+  //const [isDisabledSaveButton, setIsDisabledSaveButton] = useState(isDisabledSave || progressValue < 100)
 
   const { user } = useAuth()
 
@@ -57,7 +57,7 @@ const BackNextGroupButton = ({
       electricityConsumptionList: electricityConsumptionList,
       coolingSystem: coolingSystem,
       heatingSystem: heatingSystem,
-      envelopFacade: envelopFacade
+      envelopFacade: envelopFacade,
     }
     const idToken = await user.getIdToken()
     const message = await createBuilding(submitData, idToken)
@@ -70,58 +70,58 @@ const BackNextGroupButton = ({
       {/* {savingMessage && <Message text={savingMessage}/>} */}
       {
         isInDoneStep === true ? (
-          <div className='d-flex ms-auto align-items-center'>
-            {progressValue !== undefined && <Progress value={progressValue} />}
+          <div className="d-flex ms-auto align-items-center">
+            {progressValue !== undefined && <Progress value={progressValue}/>}
             {backLink && <Link to={backLink}>
               <Button
-                startIcon={<ArrowBack />}
-                variant='contained'
-                color='default'
-                className='me-2'
+                startIcon={<ArrowBack/>}
+                variant="contained"
+                color="default"
+                className="me-2"
               >Back
               </Button>
             </Link>}
-            <Link to='/'>
+            <Link to="/portfolio">
               <Button
-                endIcon={<DoneAll />} variant='contained' color='primary'
-                className='me-2'
+                endIcon={<DoneAll/>} variant="contained" color="primary"
+                className="me-2"
               >Done
               </Button>
             </Link>
           </div>) : (
 
-            <div className='d-flex ms-auto align-items-center'>
+          <div className="d-flex ms-auto align-items-center">
 
-              {progressValue !== undefined && <Progress value={progressValue} />}
+            {progressValue !== undefined && <Progress value={progressValue}/>}
 
+            <Button
+              onClick={onSave}
+              type="submit"
+              size="medium"
+              startIcon={<Save/>}
+              variant="contained"
+              disabled={isDisabledSave}
+              color="primary" className="me-5"
+            >Save
+            </Button>
+
+            {backLink && <Link to={backLink}>
               <Button
-                onClick={onSave}
-                type='submit'
-                size='medium'
-                startIcon={<Save />}
-                variant='contained'
-              // disabled={isDisabledSave}
-                color='primary' className='me-5'
-              >Save
+                startIcon={<ArrowBack/>} variant="contained"
+                color="default"
+                className="me-2"
+              >Back
               </Button>
+            </Link>}
 
-              {backLink && <Link to={backLink}>
-                <Button
-                  startIcon={<ArrowBack />} variant='contained'
-                  color='default'
-                  className='me-2'
-                >Back
-                </Button>
-              </Link>}
+            {!noNextLink &&
+            <Button
+              type="submit" endIcon={<ArrowForward/>} variant="contained"
+              color="primary"
+            >Next
+            </Button>}
 
-              {!noNextLink &&
-                <Button
-                  type='submit' endIcon={<ArrowForward />} variant='contained'
-                  color='primary'
-                >Next
-                </Button>}
-
-            </div>
+          </div>
         )
       }
     </>

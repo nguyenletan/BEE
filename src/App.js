@@ -76,7 +76,7 @@ function App () {
               <Route path='/' component={Portfolio} exact />
               <Route path='/register' component={Register} />
               <Route path='/terms-of-service' component={TermOfService} />
-              <Route path='/portfolio' component={Portfolio} />
+              <Route path='/building' component={Portfolio} exact/>
               <Route path='/building/:id' component={Building} />
               <Route path='/adding-building' component={AddingBuilding} />
             </Switch>

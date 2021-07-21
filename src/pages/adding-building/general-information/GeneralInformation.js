@@ -34,7 +34,7 @@ const Image = styled.img`
 `
 
 const LeftCol = styled.div`
-  max-height: calc(100vh - 265px);
+  max-height: calc(100vh - 325px);
   overflow: auto;
 `
 
@@ -606,7 +606,7 @@ const GeneralInformation = () => {
                             labelId="country-code-label"
                             value={generalBuildingInformation?.countryCode
                               ? generalBuildingInformation?.countryCode
-                              : ''}
+                              : null}
                             onChange={(e) => {
                               onChange(e)
                               onInputChange('countryCode',

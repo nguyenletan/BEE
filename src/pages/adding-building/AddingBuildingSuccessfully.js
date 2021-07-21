@@ -1,6 +1,6 @@
 import React from 'react'
 import BackNextGroupButton from '../../components/BackNextGroupButton'
-import StepNav from './step-nav/StepNav'
+
 import styled from 'styled-components'
 import Typography from '@material-ui/core/Typography'
 
@@ -8,11 +8,7 @@ import BusinessRoundedIcon from '@material-ui/icons/BusinessRounded'
 import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState } from '../../atoms'
 
-const Title = styled.h2`
-  color: var(--bs-primary);
-  font-weight: 500;
-  margin-bottom: 0;
-`
+
 
 const Icon = styled(BusinessRoundedIcon)`
   //color: var(--bs-primary);
@@ -24,23 +20,22 @@ const AddingBuildingSuccessfully = () => {
 
   return (
     <div>
-      <div className='d-flex mt-5 mb-4'>
+      <div className='d-flex mt-5 mb-5'>
 
-        <Title>New Building</Title>
+        {/*<Title>New Building</Title>*/}
 
         <BackNextGroupButton
-          backLink='/adding-building/renewable-energy'
           progressValue={addingBuildingProgress}
           isInDoneStep
         />
 
       </div>
 
-      <StepNav />
+      {/*<StepNav />*/}
 
-      <div className='text-center'>
-        <Icon />
-        <Typography variant='h3' gutterBottom className='text-center'>
+      <div className='text-center mt-5 pt-5'>
+        <Icon color="primary" />
+        <Typography variant='h3' gutterBottom className='text-center' color="primary">
           The building was successfully created!
         </Typography>
       </div>

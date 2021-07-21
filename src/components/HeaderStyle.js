@@ -37,15 +37,21 @@ export const Menu = styled.div`
 `
 
 export const MenuItem = styled.span`
-  display: inline-block;
+  display: inline-flex;
   margin-right: 30px;
   font-size: 1.1rem;
   cursor: pointer;
+  
   @media (max-width: 768px) {
     margin-right: 10px;
   }
   a {
     color: #212529;
+    text-decoration: none;
+    &.active {
+      text-decoration: none;
+      border-bottom: 3px solid var(--bs-primary);
+    }
   }
 `
 
@@ -53,7 +59,8 @@ export const ActiveMenuItem = styled.span`
   display: inline-block;
   margin-right: 30px;
   font-size: 1.1rem;
-  border-bottom: 3px solid var(--bs-primary);
+  color: #212529;
+
   @media (max-width: 768px) {
     margin-right: 10px;
   }

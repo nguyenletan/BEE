@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useAuth } from '../AuthenticateProvider'
 import {
   SearchIcon,
@@ -9,8 +9,6 @@ import {
   HeaderWrapper,
   Menu,
   MenuItem,
-  ActiveMenuItem,
-  NumberMessage,
   UserNameAvatar,
   SearchMenu,
   UserName
@@ -21,10 +19,11 @@ const Header = () => {
 
   return (
     <HeaderWrapper className=''>
-      <LogoHeader><Link to='/portfolio'>BEE</Link></LogoHeader>
+      <LogoHeader><Link to='/'>BEE</Link></LogoHeader>
       <Menu className='flex-fill'>
-        <ActiveMenuItem>Building</ActiveMenuItem>
-        <MenuItem>Messages <NumberMessage>3</NumberMessage></MenuItem>
+        <MenuItem><NavLink activeClassName='active' to={'/building'}>Building</NavLink></MenuItem>
+        {/*<MenuItem>Messages <NumberMessage>3</NumberMessage></MenuItem>*/}
+        <MenuItem>Message</MenuItem>
         <MenuItem>Setting</MenuItem>
         <MenuItem onClick={logout}>Logout</MenuItem>
       </Menu>
