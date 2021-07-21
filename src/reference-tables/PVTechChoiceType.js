@@ -1,7 +1,7 @@
 const PVTechChoiceType = [
   {
     id: 1,
-    name:  'crystSi'
+    name: 'crystSi'
   },
   {
     id: 2,
@@ -14,7 +14,7 @@ const PVTechChoiceType = [
   {
     id: 4,
     name: 'Unknown'
-  },
+  }
 ]
 
 export default PVTechChoiceType

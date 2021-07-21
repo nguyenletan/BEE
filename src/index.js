@@ -5,18 +5,17 @@ import './index.scss'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter } from 'react-router-dom'
-import {AuthProvider} from './AuthenticateProvider';
+import { AuthProvider } from './AuthenticateProvider'
 
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 
-
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-    <BrowserRouter>
-      <App/>
-    </BrowserRouter>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
@@ -25,5 +24,5 @@ ReactDOM.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-//reportWebVitals()
-reportWebVitals(console.log);
+// reportWebVitals()
+reportWebVitals(console.log)

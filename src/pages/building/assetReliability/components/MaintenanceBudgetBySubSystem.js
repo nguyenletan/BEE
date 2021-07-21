@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { line } from 'd3-shape'
 import styled from 'styled-components'
-//import { monotoneX } from 'd3-shape/src/curve/monotone'
+// import { monotoneX } from 'd3-shape/src/curve/monotone'
 import { ResponsiveBar } from '@nivo/bar'
 import {
   coolingSVG,
@@ -50,7 +50,7 @@ const LegendBox = styled.span`
   vertical-align: ${props => props.verticleAlign ? props.verticleAlign : 'bottom'};
 `
 
-const ResponsiveBarWrapper =styled.div`
+const ResponsiveBarWrapper = styled.div`
   width: 100%;
   height: 250px;
   margin-bottom: 100px;
@@ -71,56 +71,51 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
   }
 
   const Line = ({ bars, xScale, yScale }) => {
-
     const lineGenerator = line()
       .x(bar => {
-
-        if (bar.data.id !== 'used')
-          return null
+        if (bar.data.id !== 'used') { return null }
 
         return xScale(bar.data.index) + bar.width / 2
       })
       .y(bar => {
-
-        if (bar.data.id !== 'used')
-          return null
+        if (bar.data.id !== 'used') { return null }
 
         return yScale(bar.data.data.allocated)
-      })//.curve(monotoneX)
+      })// .curve(monotoneX)
 
-    let pathString = lineGenerator(bars).replaceAll('L0,0', '')
+    const pathString = lineGenerator(bars).replaceAll('L0,0', '')
 
     return (
-      <Fragment>
+      <>
         <path
           d={pathString}
-          fill="none"
+          fill='none'
           stroke={lineColor}
           strokeWidth={2.5}
-          strokeDasharray="18"
+          strokeDasharray='18'
           style={{ pointerEvents: 'none' }}
         />
 
         {
           bars.map(bar => {
-            if (bar.data.id !== 'accrued')
-              return null
+            if (bar.data.id !== 'accrued') { return null }
             return (
               <>
-                {/*<text x={xScale(bar.data.index) + bar.width / 2} y={yScale(bar.data.data.allocated)}></text>*/}
+                {/* <text x={xScale(bar.data.index) + bar.width / 2} y={yScale(bar.data.data.allocated)}></text> */}
                 <circle
                   key={bar.key}
                   cx={xScale(bar.data.index) + bar.width / 2}
                   cy={yScale(bar.data.data.allocated)}
                   r={4}
-                  fill="white"
+                  fill='white'
                   stroke={lineColor}
                   style={{ pointerEvents: 'none' }}
                 />
               </>
             )
-          })}
-      </Fragment>
+          })
+}
+      </>
     )
   }
 
@@ -137,44 +132,56 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
           return (
             <g transform={`translate(${imgX}, ${imgY})`}>
               {coolingSVG()}
-            </g>)
+            </g>
+          )
 
         case 'heating':
           imgX = 10
           return (
             <g transform={`translate(${imgX}, ${imgY})`}>
               {heatingSVG()}
-            </g>)
+            </g>
+          )
 
         case 'mechanical ventilation':
-          return (<g transform={`translate(${imgX}, ${imgY})`}>
-            {mechVentSVG()}
-          </g>)
+          return (
+            <g transform={`translate(${imgX}, ${imgY})`}>
+              {mechVentSVG()}
+            </g>
+          )
 
         case 'lighting':
           imgX = 6
-          return (<g transform={`translate(${imgX}, ${imgY})`}>
-            {lightingSVG()}
-          </g>)
+          return (
+            <g transform={`translate(${imgX}, ${imgY})`}>
+              {lightingSVG()}
+            </g>
+          )
 
         case 'facility envelope':
           imgX = -8
-          return (<g transform={`translate(${imgX}, ${imgY})`}>
-            {envelopeSVG()}
-          </g>)
+          return (
+            <g transform={`translate(${imgX}, ${imgY})`}>
+              {envelopeSVG()}
+            </g>
+          )
 
         case 'renewables':
           imgX = -5
-          return (<g transform={`translate(${imgX}, ${imgY})`}>
-            {renewableSVG()}
-          </g>)
+          return (
+            <g transform={`translate(${imgX}, ${imgY})`}>
+              {renewableSVG()}
+            </g>
+          )
 
         case 'others':
           imgX = 3
           imgY = 3
-          return (<g transform={`translate(${imgX}, ${imgY})`}>
-            {plugLoadSVG()}
-          </g>)
+          return (
+            <g transform={`translate(${imgX}, ${imgY})`}>
+              {plugLoadSVG()}
+            </g>
+          )
 
         default:
           return ''
@@ -188,11 +195,11 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
 
         <text
           transform={`translate(${x},${y})`}
-          textAnchor="middle"
-          dominantBaseline="middle"
+          textAnchor='middle'
+          dominantBaseline='middle'
           style={{
             fill: '#333',
-            fontSize: 10,
+            fontSize: 10
           }}
         >
           {item.subSystem}
@@ -213,14 +220,14 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
           ]}
           borderRadius={1}
           axisBottom={{
-            renderTick: CustomTick,
+            renderTick: CustomTick
           }}
         />
       </ResponsiveBarWrapper>
-      <Legend className="d-flex justify-content-center">
-        <li><LegendBox backgroundColor="#87972f"/>Used</li>
-        <li><LegendBox backgroundColor="#d3dca1"/>Accrued</li>
-        <li><LegendBox backgroundColor="#636c2e" height="3px" weight="20px" borderRadius="20%" verticleAlign="middle"/>Allocated
+      <Legend className='d-flex justify-content-center'>
+        <li><LegendBox backgroundColor='#87972f' />Used</li>
+        <li><LegendBox backgroundColor='#d3dca1' />Accrued</li>
+        <li><LegendBox backgroundColor='#636c2e' height='3px' weight='20px' borderRadius='20%' verticleAlign='middle' />Allocated
         </li>
       </Legend>
 

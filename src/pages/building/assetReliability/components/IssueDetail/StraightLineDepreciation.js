@@ -23,185 +23,184 @@ const ChartWrapper = styled.div`
 const StraightLineDepreciation = () => {
   const data = [
     {
-      'id': 'Standard Depreciation',
+      id: 'Standard Depreciation',
 
-      'data': [
+      data: [
         {
-          'y': 1500000,
-          'x': 0
+          y: 1500000,
+          x: 0
         },
         {
-          'y': 1425000,
-          'x': 1
+          y: 1425000,
+          x: 1
         },
         {
-          'y': 1350000,
-          'x': 2
+          y: 1350000,
+          x: 2
         },
         {
-          'y': 1275000,
-          'x': 3
+          y: 1275000,
+          x: 3
         },
         {
-          'y': 1200000,
-          'x': 4
+          y: 1200000,
+          x: 4
         },
         {
-          'y': 1125000,
-          'x': 5
+          y: 1125000,
+          x: 5
         },
         {
-          'y': 1050000,
-          'x': 6
+          y: 1050000,
+          x: 6
         },
         {
-          'y': 975000,
-          'x': 7
+          y: 975000,
+          x: 7
         },
         {
-          'y': 900000,
-          'x': 8
+          y: 900000,
+          x: 8
         },
         {
-          'y': 825000,
-          'x': 9
+          y: 825000,
+          x: 9
         },
         {
-          'y': 750000,
-          'x': 10
+          y: 750000,
+          x: 10
         },
         {
-          'y': 675000,
-          'x': 11
+          y: 675000,
+          x: 11
         },
         {
-          'y': 600000,
-          'x': 12
+          y: 600000,
+          x: 12
         },
         {
-          'y': 525000,
-          'x': 13
+          y: 525000,
+          x: 13
         },
         {
-          'y': 450000,
-          'x': 14
+          y: 450000,
+          x: 14
         },
         {
-          'y': 375000,
-          'x': 15
+          y: 375000,
+          x: 15
         },
         {
-          'y': 300000,
-          'x': 16
+          y: 300000,
+          x: 16
         },
         {
-          'y': 225000,
-          'x': 17
+          y: 225000,
+          x: 17
         },
         {
-          'y': 150000,
-          'x': 18
+          y: 150000,
+          x: 18
         },
         {
-          'y': 75000,
-          'x': 19
+          y: 75000,
+          x: 19
         },
         {
-          'y': 0,
-          'x': 20
-        },
-      ]
-    },
-    {
-      'id': 'Condition Based Depreciation',
-
-      'data': [
-        {
-          'y': 1500000,
-          'x': 0
-        },
-        {
-          'y': 1411765,
-          'x': 1
-        },
-        {
-          'y': 1323529,
-          'x': 2
-        },
-        {
-          'y': 1235294,
-          'x': 3
-        },
-        {
-          'y': 1147059,
-          'x': 4
-        },
-        {
-          'y': 1058824,
-          'x': 5
-        },
-        {
-
-          'y': 970588,
-          'x': 6
-        },
-        {
-          'y': 882353,
-          'x': 7
-        },
-        {
-          'y': 794118,
-          'x': 8
-        },
-        {
-          'y': 705882,
-          'x': 9
-        },
-        {
-          'y': 617647,
-          'x': 10
-        },
-        {
-          'y': 529412,
-          'x': 11
-        },
-        {
-          'y': 441176,
-          'x': 12
-        },
-        {
-          'y': 352941,
-          'x': 13
-        },
-        {
-          'y': 264706,
-          'x': 14
-        },
-        {
-          'y': 176471,
-          'x': 15
-        },
-        {
-          'y': 88235,
-          'x': 16
-        },
-        {
-          'y': 0,
-          'x': 17
+          y: 0,
+          x: 20
         }
       ]
     },
+    {
+      id: 'Condition Based Depreciation',
+
+      data: [
+        {
+          y: 1500000,
+          x: 0
+        },
+        {
+          y: 1411765,
+          x: 1
+        },
+        {
+          y: 1323529,
+          x: 2
+        },
+        {
+          y: 1235294,
+          x: 3
+        },
+        {
+          y: 1147059,
+          x: 4
+        },
+        {
+          y: 1058824,
+          x: 5
+        },
+        {
+
+          y: 970588,
+          x: 6
+        },
+        {
+          y: 882353,
+          x: 7
+        },
+        {
+          y: 794118,
+          x: 8
+        },
+        {
+          y: 705882,
+          x: 9
+        },
+        {
+          y: 617647,
+          x: 10
+        },
+        {
+          y: 529412,
+          x: 11
+        },
+        {
+          y: 441176,
+          x: 12
+        },
+        {
+          y: 352941,
+          x: 13
+        },
+        {
+          y: 264706,
+          x: 14
+        },
+        {
+          y: 176471,
+          x: 15
+        },
+        {
+          y: 88235,
+          x: 16
+        },
+        {
+          y: 0,
+          x: 17
+        }
+      ]
+    }
   ]
 
-
-  const Line = ({series, innerHeight}) => {
+  const Line = ({ series, innerHeight }) => {
     const data0 = series[0]?.data.filter(d => d.data.x === 17)
     const x = data0[0]?.position?.x
 
     return (
       <>
-        <text x={x-30} y="0" className="small">Current Age</text>
-        <line x1={x} y1={8} x2={x} y2={innerHeight} stroke="#5F5283" strokeDasharray="8" strokeWidth={1}/>
+        <text x={x - 30} y='0' className='small'>Current Age</text>
+        <line x1={x} y1={8} x2={x} y2={innerHeight} stroke='#5F5283' strokeDasharray='8' strokeWidth={1} />
       </>
     )
   }
@@ -210,11 +209,11 @@ const StraightLineDepreciation = () => {
     margin: { top: 30, right: 10, bottom: 35, left: 55 },
     data,
     animate: true,
-    colors: [ '#BA5657', '#87972f'],
+    colors: ['#BA5657', '#87972f'],
     enableSlices: 'x',
     enableGridX: false,
     enableGridY: true,
-    enablePoints:false,
+    enablePoints: false,
     axisLeft: {
       orient: 'left',
       tickSize: 5,
@@ -235,31 +234,31 @@ const StraightLineDepreciation = () => {
     },
     layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends', Line],
     legends: [
-        {
-          anchor: 'top middle',
-          direction: 'row',
-          justify: false,
-          translateX: -60,
-          translateY: -40,
-          itemsSpacing: 0,
-          itemDirection: 'left-to-right',
-          itemWidth: 200,
-          itemHeight: 20,
-          itemOpacity: 0.75,
-          symbolSize: 10,
-          symbolShape: 'circle',
-          symbolBorderColor: 'rgba(0, 0, 0, .5)',
-          effects: [
-            {
-              on: 'hover',
-              style: {
-                itemBackground: 'rgba(0, 0, 0, .03)',
-                itemOpacity: 1
-              }
+      {
+        anchor: 'top middle',
+        direction: 'row',
+        justify: false,
+        translateX: -60,
+        translateY: -40,
+        itemsSpacing: 0,
+        itemDirection: 'left-to-right',
+        itemWidth: 200,
+        itemHeight: 20,
+        itemOpacity: 0.75,
+        symbolSize: 10,
+        symbolShape: 'circle',
+        symbolBorderColor: 'rgba(0, 0, 0, .5)',
+        effects: [
+          {
+            on: 'hover',
+            style: {
+              itemBackground: 'rgba(0, 0, 0, .03)',
+              itemOpacity: 1
             }
-          ]
-        }
+          }
         ]
+      }
+    ]
   }
 
   return (
@@ -272,14 +271,13 @@ const StraightLineDepreciation = () => {
 
           yScale={{
             type: 'linear',
-            stacked: false,
+            stacked: false
           }}
         />
 
       </ChartWrapper>
     </Wrapper>
   )
-
 }
 
 export default StraightLineDepreciation

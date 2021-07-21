@@ -19,7 +19,6 @@ const PotentialFaultRiskTitle = styled.h4`
 `
 
 const PotentialFaultRisk = ({ data }) => {
-
   // data = [
   //     {
   //       measures: 'LED Replacement',
@@ -113,7 +112,7 @@ const PotentialFaultRisk = ({ data }) => {
   //     }
   //   ]
 
-  let payBackData = data.map(item => {
+  const payBackData = data.map(item => {
     return {
       id: item.asset,
       data: [{
@@ -149,26 +148,26 @@ const PotentialFaultRisk = ({ data }) => {
     axisLeft: {
       format: d => `${d}`,
       legend: 'Spare Parts Lead Time (Weeks)',
-      legendOffset: -35,
+      legendOffset: -35
     },
-    data: payBackData,
+    data: payBackData
 
   }
 
   const areaLayer = ({ nodes, xScale, yScale }) => {
-
-    return (<g transform="translate(0,0)" className="Quadrant__Background" opacity={1}>
+    return (
+      <g transform='translate(0,0)' className='Quadrant__Background' opacity={1}>
         <g>
-          <rect x="0" y="0" width={areaWidth} height={areaHeight} fill="#f7e2d8"/>
+          <rect x='0' y='0' width={areaWidth} height={areaHeight} fill='#f7e2d8' />
         </g>
         <g>
-          <rect x={areaWidth} y="0" width={areaWidth} height={areaHeight} fill="#f5d7d7"/>
+          <rect x={areaWidth} y='0' width={areaWidth} height={areaHeight} fill='#f5d7d7' />
         </g>
         <g>
-          <rect x="0" y={areaHeight} width={areaWidth} height={areaHeight} fill="#e4e7d3"/>
+          <rect x='0' y={areaHeight} width={areaWidth} height={areaHeight} fill='#e4e7d3' />
         </g>
         <g>
-          <rect x={areaWidth} y={areaHeight} width={areaWidth} height={areaHeight} fill="#f7e2d5"/>
+          <rect x={areaWidth} y={areaHeight} width={areaWidth} height={areaHeight} fill='#f7e2d5' />
         </g>
 
       </g>
@@ -180,7 +179,6 @@ const PotentialFaultRisk = ({ data }) => {
     x,
     y
   }) => {
-
     switch (node.data.subSystem) {
       case 'Cooling':
         return (
@@ -190,7 +188,7 @@ const PotentialFaultRisk = ({ data }) => {
         )
       case 'Heating':
         return (
-          <g transform={`translate(${x},${y-36})`}>
+          <g transform={`translate(${x},${y - 36})`}>
             {heatingSVG()}
           </g>
         )
@@ -238,7 +236,7 @@ const PotentialFaultRisk = ({ data }) => {
           'markers',
           'mesh',
           'legends',
-          'annotations',
+          'annotations'
         ]}
       />
     </PotentialFaultRiskWrapper>

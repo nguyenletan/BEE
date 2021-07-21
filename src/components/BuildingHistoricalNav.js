@@ -31,18 +31,27 @@ const SubNav = styled.nav`
 `
 
 const BuildingHistoricalNav = () => {
-
-  let { url } = useRouteMatch()
-  return <SubNav className="nav nav-pills flex-column flex-sm-row">
-    <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to={url + '/energy-performance'}>Energy
-      Performance<i className="bi bi-caret-down-fill"></i></NavLink>
-    <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link"
-             to={url + '/comparison'}>Comparison</NavLink>
-    <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link"
-             to={url + '/improve'}>Improve</NavLink>
-    <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to={url + '/asset-reliability'}>Asset
-      Reliability</NavLink>
-  </SubNav>
+  const { url } = useRouteMatch()
+  return (
+    <SubNav className='nav nav-pills flex-column flex-sm-row'>
+      <NavLink activeClassName='active' className='flex-sm-fill text-sm-center nav-link' to={url + '/energy-performance'}>Energy
+        Performance<i className='bi bi-caret-down-fill' />
+      </NavLink>
+      <NavLink
+        activeClassName='active' className='flex-sm-fill text-sm-center nav-link'
+        to={url + '/comparison'}
+      >Comparison
+      </NavLink>
+      <NavLink
+        activeClassName='active' className='flex-sm-fill text-sm-center nav-link'
+        to={url + '/improve'}
+      >Improve
+      </NavLink>
+      <NavLink activeClassName='active' className='flex-sm-fill text-sm-center nav-link' to={url + '/asset-reliability'}>Asset
+        Reliability
+      </NavLink>
+    </SubNav>
+  )
 }
 
 BuildingHistoricalNav.propTypes = {}

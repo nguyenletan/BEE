@@ -5,23 +5,23 @@ import axios from 'axios'
 // }
 
 export const createBuilding = async (data, idToken) => {
-  let result;
+  let result
   await axios({
     method: 'post',
     url: process.env.REACT_APP_BACKEND_API + '/buildings/',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${idToken}`,
+      Authorization: `Bearer ${idToken}`
     },
     data: data,
-    body: {},
+    body: {}
   }).then((response) => {
     console.log(response)
-    //result = response
+    // result = response
     result = 'Saving successfully!'
   }).catch(error => {
     if (error.response) {
-      //setErrorMsg(error.response.data.message)
+      // setErrorMsg(error.response.data.message)
       result = error.response.data.message
     }
   })

@@ -63,7 +63,6 @@ const PotentialFaultRiskBlock = (props) => {
     : isHeader === true
       ? <HeaderBlock>{value}</HeaderBlock>
       : <Block onClick={onClick} backgroundColor={color}>{value === 0 ? '' : value}</Block>
-
 }
 
 export default PotentialFaultRiskBlock

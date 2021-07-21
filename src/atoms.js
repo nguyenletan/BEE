@@ -6,7 +6,7 @@ export const spaceUsageGFAListState = atom({
   default: [
     {
       id: parseInt(_.uniqueId()),
-      title: `New Usage`,
+      title: 'New Usage',
       typeId: 1,
       percentage: 1,
       climateControlId: 1,
@@ -56,7 +56,27 @@ export const electricityConsumptionListState = atom({
 
 export const generalBuildingInformationState = atom({
   key: 'generalBuildingInformation',
-  default: null,
+  default: {
+    buildingName: null,
+    address: null,
+    city: null,
+    state: null,
+    countryCode: null,
+    postalCode: null,
+    suburb: null,
+    location: null,
+    storeysAboveGround: null,
+    storeysBelowGround: null,
+    grossInteriorArea: null,
+    netUsableArea: null,
+    avgInternalFloorToCeilingHeight: null,
+    buildingOrientedId: null,
+    constructionPeriodValue: null,
+    sustainabilityRatingSchemeId: null,
+    sustainabilityRatingId: null,
+    useTypeId: null,
+    buildingPhoto: null,
+  },
 })
 
 export const coolingSystemState = atom({

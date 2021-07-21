@@ -8,7 +8,7 @@ import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   addingBuildingProgressState,
-  buildingActivityState,
+  buildingActivityState
 } from '../../../atoms'
 import { Redirect } from 'react-router-dom'
 
@@ -23,7 +23,6 @@ const Title = styled.h2`
 `
 
 const Activity = () => {
-
   const buildingActivity = useRecoilValue(buildingActivityState)
 
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
@@ -32,9 +31,9 @@ const Activity = () => {
   const [isMovingNext, setIsMovingNext] = useState(false)
 
   const onSubmit = (data) => {
-    //console.log(data)
+    // console.log(data)
     // console.log(image)
-    //setBuildingActivity(data)
+    // setBuildingActivity(data)
     setAddingBuildingProgressState(45)
     setIsMovingNext(true)
   }
@@ -44,49 +43,49 @@ const Activity = () => {
     handleSubmit,
     setValue,
     getValues,
-    register,
+    register
   } = useForm({
     mode: 'onBlur',
     reValidateMode: 'onChange',
     context: undefined,
     criteriaMode: 'firstError',
     shouldFocusError: false,
-    shouldUnregister: false,
+    shouldUnregister: false
   })
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       {isMovingNext &&
-      <Redirect to="/adding-building/electricity-consumption"/>}
-      <div className="d-flex mt-5 mb-4">
+        <Redirect to='/adding-building/electricity-consumption' />}
+      <div className='d-flex mt-5 mb-4'>
 
         <Title>New Building</Title>
 
         <BackNextGroupButton
-          backLink="/adding-building/general-information"
-          nextLink="/adding-building/electricity-consumption"
+          backLink='/adding-building/general-information'
+          nextLink='/adding-building/electricity-consumption'
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
 
       </div>
 
-      <StepNav/>
+      <StepNav />
 
-      <div className="row">
-        <div className="col-6">
+      <div className='row'>
+        <div className='col-6'>
           <TimeTable
             data={buildingActivity}
             control={control}
             setValue={setValue}
             register={register}
-            getValues={getValues}/>
+            getValues={getValues}
+          />
         </div>
-        <div className="col-6">
+        <div className='col-6'>
           <SpaceUsageGFA />
         </div>
       </div>
-
 
     </Form>
   )

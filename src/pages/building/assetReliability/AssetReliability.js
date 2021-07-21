@@ -10,9 +10,7 @@ const AssetReliabilityWrapper = styled.div`
   margin-bottom: 50px;
 `
 
-
 const AssetReliability = () => {
-
   const data = {
     listOfPotentialFaults: [
       {
@@ -91,21 +89,21 @@ const AssetReliability = () => {
         estimatedTimeToFailure: 9,
         likelihood: 1,
         impact: 2
-      },
+      }
     ],
     currentSubSystemHealth: {
       data: [{
         name: 'Cooling',
-        value: 55,
+        value: 55
       },
-        {
-          name: 'Heating',
-          value: 95,
-        },
-        {
-          name: 'Mechanical Ventilation',
-          value: 71
-        }
+      {
+        name: 'Heating',
+        value: 95
+      },
+      {
+        name: 'Mechanical Ventilation',
+        value: 71
+      }
       ],
       keys: ['value']
     },
@@ -131,7 +129,7 @@ const AssetReliability = () => {
         subSystem: 'cooling',
         used: 5000,
         accrued: 1300,
-        allocated: 7300,
+        allocated: 7300
       },
       {
         id: 1,
@@ -145,20 +143,20 @@ const AssetReliability = () => {
         subSystem: 'lighting',
         used: 3100,
         accrued: 200,
-        allocated: 4300,
+        allocated: 4300
       },
       {
         id: 3,
         subSystem: 'mechanical ventilation',
         used: 5900,
         accrued: 900,
-        allocated: 7200,
+        allocated: 7200
       }, {
         id: 4,
         subSystem: 'facility envelope',
         used: 4000,
         accrued: 5900,
-        allocated: 4300,
+        allocated: 4300
       }, {
         id: 5,
         subSystem: 'renewables',
@@ -171,28 +169,27 @@ const AssetReliability = () => {
         subSystem: 'others',
         used: 2100,
         accrued: 300,
-        allocated: 3100,
-      },
+        allocated: 3100
+      }
     ]
   }
 
-  let { path } = useRouteMatch()
+  const { path } = useRouteMatch()
 
   return (
     <AssetReliabilityWrapper>
 
       <Switch>
-        <Route exact={true} path={`${path}/`}>
-          <AssetReliabilityMain data={data}/>
+        <Route exact path={`${path}/`}>
+          <AssetReliabilityMain data={data} />
         </Route>
         <Route path={`${path}/issue/:id`}>
-          <IssueDetail data={data.listOfPotentialFaults}/>
+          <IssueDetail data={data.listOfPotentialFaults} />
         </Route>
       </Switch>
 
     </AssetReliabilityWrapper>
   )
-
 }
 
 export default AssetReliability

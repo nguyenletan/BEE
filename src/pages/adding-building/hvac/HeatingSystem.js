@@ -6,7 +6,7 @@ import {
   FormControl,
   FormControlLabel,
   InputLabel,
-  MenuItem,
+  MenuItem
 } from '@material-ui/core'
 import Select from '@material-ui/core/Select'
 import HeatingSystemType from '../../../reference-tables/HeatingSystemType'
@@ -23,7 +23,6 @@ const Title = styled.h4`
 `
 
 const HeatingSystem = () => {
-
   const classes = makeStyles((theme) => (MaterialFormStyle))()
 
   const [heatingSystem, setHeatingSystem] = useRecoilState(heatingSystemState)
@@ -67,24 +66,25 @@ const HeatingSystem = () => {
       <FormControlLabel
         control={
           <Checkbox
-            name="checkedB"
-            color="primary"
+            name='checkedB'
+            color='primary'
             checked={hasHeatingSystem}
             onChange={onHasHeatingSystemChange}
           />
         }
-        label="Yes"
+        label='Yes'
       />
 
       {hasHeatingSystem && (
         <Fade in={hasHeatingSystem} timeout={500}>
-          <div className="d-flex flex-column">
+          <div className='d-flex flex-column'>
             <FormControl className={classes.formControl}>
-              <InputLabel id="heating-system-type-label">Heating System
-                Type</InputLabel>
+              <InputLabel id='heating-system-type-label'>Heating System
+                Type
+              </InputLabel>
               <Select
-                labelId="heating-system-type-label"
-                id="heating-system-type-select"
+                labelId='heating-system-type-label'
+                id='heating-system-type-select'
                 value={heatingSystemTypeId}
                 onChange={onHeatingSystemTypeIdChange}
               >
@@ -99,10 +99,10 @@ const HeatingSystem = () => {
               </Select>
             </FormControl>
             <FormControl className={classes.formControl}>
-              <InputLabel id="heater-type-label">Heater Type</InputLabel>
+              <InputLabel id='heater-type-label'>Heater Type</InputLabel>
               <Select
-                labelId="heater-type-label"
-                id="heater-type-select"
+                labelId='heater-type-label'
+                id='heater-type-select'
                 value={heaterTypeId}
                 onChange={onHeaterTypeIdChange}
               >
@@ -117,11 +117,12 @@ const HeatingSystem = () => {
               </Select>
             </FormControl>
             <FormControl className={classes.formControl}>
-              <InputLabel id="heater-energy-source-label">Heater Energy
-                Source</InputLabel>
+              <InputLabel id='heater-energy-source-label'>Heater Energy
+                Source
+              </InputLabel>
               <Select
-                labelId="heater-energy-source-label"
-                id="heater-energy-source-select"
+                labelId='heater-energy-source-label'
+                id='heater-energy-source-select'
                 value={heaterEnergySourceTypeId}
                 onChange={onHeaterEnergySourceTypeIdChange}
               >

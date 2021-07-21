@@ -8,24 +8,14 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 import { Controller, useForm } from 'react-hook-form'
 
 import Countries, { findCountryByCountryCode } from '../../../reference-tables/Country'
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  NativeSelect,
-  Paper,
-  TextField,
-} from '@material-ui/core'
+import { Button, FormControl, InputLabel, NativeSelect, Paper, TextField } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import StepNav from '../step-nav/StepNav'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
-import {
-  addingBuildingProgressState,
-  generalBuildingInformationState,
-} from '../../../atoms'
+import { addingBuildingProgressState, generalBuildingInformationState } from '../../../atoms'
 
 const Title = styled.h2`
   color: var(--bs-primary);
@@ -238,21 +228,22 @@ const SearchBuilding = () => {
           {generalBuildingInformation &&
           <div className="row mt-3 mb-5">
             <div className="col-12 col-lg-12">
-              {/*<LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>*/}
+
               <Paper elevation={3}>
-                <GoogleMap mapContainerStyle={mapStyles} zoom={18}
-                           center={generalBuildingInformation.location}>
-                  <OverlayView position={generalBuildingInformation.location}
-                               mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
-                    <div
-                      style={divStyle}>{generalBuildingInformation.formatted_address}</div>
-                  </OverlayView>
-                  <Marker
-                    position={generalBuildingInformation.location}
-                    title={searchValue}
-                    zIndex={1}>
-                  </Marker>
-                </GoogleMap>
+                {/*<LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>*/}
+                  <GoogleMap mapContainerStyle={mapStyles} zoom={18}
+                             center={generalBuildingInformation.location}>
+                    <OverlayView position={generalBuildingInformation.location}
+                                 mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
+                      <div
+                        style={divStyle}>{generalBuildingInformation.formatted_address}</div>
+                    </OverlayView>
+                    <Marker
+                      position={generalBuildingInformation.location}
+                      title={searchValue}
+                      zIndex={1}>
+                    </Marker>
+                  </GoogleMap>
                 {/*</LoadScript>*/}
               </Paper>
             </div>

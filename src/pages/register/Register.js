@@ -89,7 +89,7 @@ const Register = () => {
   const [errorMsg, setErrorMsg] = useState(null)
   const [isRegistered, setIsRegistered] = useState(false)
 
-  //password: 2@00L2l2
+  // password: 2@00L2l2
   if (!isRegistered) {
     const onSubmit = data => {
       console.log(data)
@@ -102,17 +102,17 @@ const Register = () => {
           password: data.password
         }
       }).then((response) => {
-        //console.log(response);
+        // console.log(response);
         setErrorMsg(null)
         setIsRegistered(true)
       }).catch(error => {
-        //console.log(error)
+        // console.log(error)
         if (error.response) {
           //   // client received an error response (5xx, 4xx)
           setErrorMsg(error.response.data.message)
         }
 
-        //else if (error.request) {
+        // else if (error.request) {
         //   // client never received a response, or request never left
         //
         //   console.log(error.request)
@@ -121,92 +121,105 @@ const Register = () => {
         //
         // }
       })
-
     }
 
     const comparePassword = () => getValues('password') === getValues('confirmPassword') ? true : 'The passwords you entered do not match.'
 
     return (
       <RegisterPage
-        className="d-flex justify-content-center justify-content-sm-around align-items-center align-content-center flex-wrap">
+        className='d-flex justify-content-center justify-content-sm-around align-items-center align-content-center flex-wrap'
+      >
         <div>
-          <Header><Link to="/">BEE</Link></Header>
+          <Header><Link to='/'>BEE</Link></Header>
           <SubTitle>Building Energy Estimator</SubTitle>
         </div>
 
         <RegisterForm onSubmit={handleSubmit(onSubmit)}>
-          {errorMsg && <div className="alert alert-danger" role="alert">
+          {errorMsg && <div className='alert alert-danger' role='alert'>
             {errorMsg}
           </div>}
-          <FormTitle className="mb-5">Create Your Account</FormTitle>
-          <div className="form-group">
-            <RegisterInput type="email"
-                           className="form-control"
-                           id="email"
-                           aria-describedby="email"
-                           placeholder="Email"
-                           autocomplete="off"
-                           {...register('email', {
-                             required: true,
-                             maxLength: 100,
-                             pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-                           })}/>
+          <FormTitle className='mb-5'>Create Your Account</FormTitle>
+          <div className='form-group'>
+            <RegisterInput
+              type='email'
+              className='form-control'
+              id='email'
+              aria-describedby='email'
+              placeholder='Email'
+              autocomplete='off'
+              {...register('email', {
+                required: true,
+                maxLength: 100,
+                pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+              })}
+            />
             {errors?.email?.type === 'required' && <ErrorMsg>Email is required</ErrorMsg>}
             {errors?.email?.type === 'pattern' && <ErrorMsg>Invalid email address</ErrorMsg>}
             {errors?.email?.type === 'maxLength' && <ErrorMsg>Max length is 100</ErrorMsg>}
           </div>
 
-          <div className="form-group">
-            <RegisterInput type="password"
-                           className="form-control"
-                           id="password"
-                           placeholder="Password"
-                           aria-describedby="password"
-                           {...register('password', {
-                             required: true,
-                             maxLength: 100,
-                             pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/
-                           })}/>
+          <div className='form-group'>
+            <RegisterInput
+              type='password'
+              className='form-control'
+              id='password'
+              placeholder='Password'
+              aria-describedby='password'
+              {...register('password', {
+                required: true,
+                maxLength: 100,
+                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/
+              })}
+            />
             {errors.password?.type === 'required' && <ErrorMsg>Password is required</ErrorMsg>}
             {errors.password?.type === 'pattern' &&
-            <ErrorMsg>Minimum of 8 characters must contain at least 1 lowercase alphabetical character, at least 1
-              uppercase, at least 1 numeric character, at least one special character such as !@#$%^&*</ErrorMsg>}
+              <ErrorMsg>Minimum of 8 characters must contain at least 1 lowercase alphabetical character, at least 1
+                uppercase, at least 1 numeric character, at least one special character such as !@#$%^&*
+              </ErrorMsg>}
             {errors.password?.type === 'maxLength' && <ErrorMsg>Max length is 100</ErrorMsg>}
           </div>
-          <div className="form-group">
-            <RegisterInput type="password"
-                           className="form-control"
-                           id="confirm-password"
-                           placeholder="Confirm Password"
-                           aria-describedby="password"
-                           ref="password"
-                           {...register('confirmPassword', {
-                             validate: comparePassword
-                           })}/>
+          <div className='form-group'>
+            <RegisterInput
+              type='password'
+              className='form-control'
+              id='confirm-password'
+              placeholder='Confirm Password'
+              aria-describedby='password'
+              ref='password'
+              {...register('confirmPassword', {
+                validate: comparePassword
+              })}
+            />
             {errors.confirmPassword?.type === 'validate' &&
-            <ErrorMsg>The passwords you entered do not match.</ErrorMsg>}
+              <ErrorMsg>The passwords you entered do not match.</ErrorMsg>}
           </div>
-          <div className="form-group">
-            <AgreementCheckbox onChange={() => { setIsAgree(!isAgree)}}
-                               id="agreement"
-                               type="checkbox"/>
-            <label htmlFor="agreement">You Agree To Our <Link to="/terms-of-service" title="Terms Of Service">Terms Of
-              Service.</Link>
+          <div className='form-group'>
+            <AgreementCheckbox
+              onChange={() => { setIsAgree(!isAgree) }}
+              id='agreement'
+              type='checkbox'
+            />
+            <label htmlFor='agreement'>You Agree To Our <Link to='/terms-of-service' title='Terms Of Service'>Terms Of
+              Service.
+            </Link>
             </label>
           </div>
-          <div className="form-group d-flex justify-content-between">
-            <RegisterButton type="submit" className="btn btn-primary" disabled={isAgree ? null : 'disabled'}>Complete
-              Registration</RegisterButton>
+          <div className='form-group d-flex justify-content-between'>
+            <RegisterButton type='submit' className='btn btn-primary' disabled={isAgree ? null : 'disabled'}>Complete
+              Registration
+            </RegisterButton>
           </div>
         </RegisterForm>
 
       </RegisterPage>
     )
   } else {
-    return (<Successful>
-      <SuccessfulTitle>Register successfully!</SuccessfulTitle>
-      <Link to={'/'}>Go to login page</Link>
-    </Successful>)
+    return (
+      <Successful>
+        <SuccessfulTitle>Register successfully!</SuccessfulTitle>
+        <Link to='/'>Go to login page</Link>
+      </Successful>
+    )
   }
 }
 

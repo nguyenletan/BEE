@@ -60,29 +60,27 @@ const BreakDown = (props) => {
 
     margin: { top: 40, right: 20, bottom: 20, left: 20 },
     data: data,
-    animate: true,
+    animate: true
   }
 
-  const chartHeight = hasDescription ? "250px" : "150px"
+  const chartHeight = hasDescription ? '250px' : '150px'
 
   const CenteredPercentage = ({ dataWithArc, centerX, centerY }) => {
-
     const total = dataWithArc[0].value + dataWithArc[1].value
     const percentage = (dataWithArc[0].value / total) * 100
 
     const percentageYPosition = !noCenterText ? -15 : +0
-
 
     return (
       <>
         <text
           x={centerX}
           y={centerY + percentageYPosition}
-          textAnchor="middle"
-          dominantBaseline="central"
+          textAnchor='middle'
+          dominantBaseline='central'
           style={{
             fontSize: valueFontSize ?? '24px',
-            fontWeight: '700',
+            fontWeight: '700'
           }}
         >
           {percentage.toFixed(1)} %
@@ -90,58 +88,60 @@ const BreakDown = (props) => {
         {!noCenterText && <text
           x={centerX}
           y={centerY + 15}
-          textAnchor="middle"
-          dominantBaseline="central"
+          textAnchor='middle'
+          dominantBaseline='central'
           style={{
             fontSize: valueFontSize ?? '24px',
-            fontWeight: '700',
+            fontWeight: '700'
           }}
-        >
+                          >
           Used
-        </text>
-        }
+        </text>}
       </>
     )
   }
 
-  const list = data.map(x => <li className="d-flex justify-content-between" key={x.id}>
+  const list = data.map(x => <li className='d-flex justify-content-between' key={x.id}>
     <Label fontSize={informationFontSize}>{x.id}:</Label>
     <span fontSize={informationFontSize}>{x.value}%</span>
   </li>)
 
-  return <BreakDownBlock marginRight={marginRight}>
-    <BreakDownTitle>{title}</BreakDownTitle>
-    {subTitle ?? (<BreakDownSubTitle>{subTitle}</BreakDownSubTitle>)}
-    <ResponsivePieWrapper height={chartHeight}>
-      <ResponsivePie {...commonProperties}
-                     innerRadius={innerRadius ?? 0.60}
-                     fit={true}
-                     startAngle={startAngle ?? -120}
-                     colors={{ datum: 'data.color' }}
-                     tooltipFormat={value => `${value + '%'}`}
-        //radialLabel={LabelComponent}
-                     radialLabelsLinkColor={{
-                       from: 'color',
-                     }}
-                     radialLabelsLinkHorizontalLength={10}
-                     radialLabelsTextXOffset={3}
-                     radialLabelsLinkStrokeWidth={2}
-                     radialLabelsTextColor={{
-                       from: 'color',
-                       modifiers: [['darker', 1.2]],
-                     }}
-                     enableSliceLabels={false}
-                     enableRadialLabels={enableRadialLabels ?? true}
-                     layers={['slices', 'sliceLabels', 'radialLabels', 'legends', isCenteredPercentage === true ? CenteredPercentage : '']}
-      />
-    </ResponsivePieWrapper>
-    {
+  return (
+    <BreakDownBlock marginRight={marginRight}>
+      <BreakDownTitle>{title}</BreakDownTitle>
+      {subTitle ?? (<BreakDownSubTitle>{subTitle}</BreakDownSubTitle>)}
+      <ResponsivePieWrapper height={chartHeight}>
+        <ResponsivePie
+          {...commonProperties}
+          innerRadius={innerRadius ?? 0.60}
+          fit
+          startAngle={startAngle ?? -120}
+          colors={{ datum: 'data.color' }}
+          tooltipFormat={value => `${value + '%'}`}
+        // radialLabel={LabelComponent}
+          radialLabelsLinkColor={{
+            from: 'color'
+          }}
+          radialLabelsLinkHorizontalLength={10}
+          radialLabelsTextXOffset={3}
+          radialLabelsLinkStrokeWidth={2}
+          radialLabelsTextColor={{
+            from: 'color',
+            modifiers: [['darker', 1.2]]
+          }}
+          enableSliceLabels={false}
+          enableRadialLabels={enableRadialLabels ?? true}
+          layers={['slices', 'sliceLabels', 'radialLabels', 'legends', isCenteredPercentage === true ? CenteredPercentage : '']}
+        />
+      </ResponsivePieWrapper>
+      {
       hasDescription && <Ul>
         {list}
-      </Ul>
+                        </Ul>
     }
 
-  </BreakDownBlock>
+    </BreakDownBlock>
+  )
 }
 
 export default BreakDown

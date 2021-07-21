@@ -105,7 +105,6 @@ const CloseBtn = styled.button`
 `
 
 const FacilityEnvelopeElementsComparison = () => {
-
   const facilityEnvelopeComparisonData = {
     roof: {
       current: 'C',
@@ -162,7 +161,7 @@ const FacilityEnvelopeElementsComparison = () => {
       currentSecondMetricValue: '',
       potentialBestInClassSecondMetricValue: '',
       supplementaryText: 'Decreasing the U-Value of the roof insulation in turn reduces heating and cooling loads'
-    },
+    }
   }
 
   const [show, setShow] = useState(false)
@@ -212,62 +211,66 @@ const FacilityEnvelopeElementsComparison = () => {
     }
 
     return (
-      <Modal show={show} onHide={handleClose} size="md">
+      <Modal show={show} onHide={handleClose} size='md'>
         <Modal.Body>
-          <Container className="mt-4">
-            <div className="d-flex justify-content-center">
-              <PopupIcon src={icon} alt="roof" title="roof"/>
+          <Container className='mt-4'>
+            <div className='d-flex justify-content-center'>
+              <PopupIcon src={icon} alt='roof' title='roof' />
               <PopupTitle>{type} Performance</PopupTitle>
             </div>
             <ComparisonTable>
-              <div className="row mt-3">
-                <div className="col-6 text-center">
+              <div className='row mt-3'>
+                <div className='col-6 text-center'>
                   Current Energy Performance
                 </div>
-                <div className="col-6 text-center">
-                  Potential<br/>Best-In-Class
+                <div className='col-6 text-center'>
+                  Potential<br />Best-In-Class
                 </div>
               </div>
 
-              <div className="row mt-3">
-                <div className="col-6 text-center">
-                  <EnergySquare color={getCurrentColor(current)}
-                                text={current}/>
+              <div className='row mt-3'>
+                <div className='col-6 text-center'>
+                  <EnergySquare
+                    color={getCurrentColor(current)}
+                    text={current}
+                  />
                 </div>
-                <div className="col-6 text-center">
-                  <EnergySquare color={getCurrentColor(potentialBestInClass)}
-                                text={potentialBestInClass}/>
+                <div className='col-6 text-center'>
+                  <EnergySquare
+                    color={getCurrentColor(potentialBestInClass)}
+                    text={potentialBestInClass}
+                  />
                 </div>
               </div>
 
-              <div className="row mt-3">
-                <div className="col-6 text-center flex-column">
+              <div className='row mt-3'>
+                <div className='col-6 text-center flex-column'>
                   <FirstLine>{fittingLabel}</FirstLine>
                   <SecondLine>{currentFittingName}</SecondLine>
                 </div>
-                <div className="col-6 text-center">
+                <div className='col-6 text-center'>
                   <FirstLine>{fittingLabel}</FirstLine>
                   <SecondLine>{potentialBestInClassFittingName}</SecondLine>
                 </div>
               </div>
 
-              <div className="row mt-3">
-                <div className="col-6 text-center">
+              <div className='row mt-3'>
+                <div className='col-6 text-center'>
                   <FirstLine>{firstMetricLabel}</FirstLine>
                   <SecondLine>{currentFirstMetricValue}</SecondLine>
                 </div>
-                <div className="col-6 text-center">
+                <div className='col-6 text-center'>
                   <FirstLine>{firstMetricLabel}</FirstLine>
                   <SecondLine>{potentialBestInClassFirstMetricValue}</SecondLine>
                 </div>
               </div>
 
-              <div className="row mt-3">
-                <div className="col-6 text-center">
+              <div className='row mt-3'>
+                <div className='col-6 text-center'>
                   <FirstLine>{secondMetricLabel}</FirstLine>
                   <SecondLine>{currentSecondMetricValue}</SecondLine>
                 </div>
-                <div className="col-6 text-center">
+                <div className='col-6 text-center'>
                   <FirstLine>{secondMetricLabel}</FirstLine>
                   <SecondLine>{potentialBestInClassSecondMetricValue}</SecondLine>
                 </div>
@@ -275,7 +278,7 @@ const FacilityEnvelopeElementsComparison = () => {
             </ComparisonTable>
 
             <PopupDescription>{supplementaryText}.</PopupDescription>
-            <CloseBtn className="btn btn-outline-primary btn-sm mb-3" onClick={handleClose}>Close</CloseBtn>
+            <CloseBtn className='btn btn-outline-primary btn-sm mb-3' onClick={handleClose}>Close</CloseBtn>
           </Container>
         </Modal.Body>
       </Modal>
@@ -285,128 +288,154 @@ const FacilityEnvelopeElementsComparison = () => {
   return (
     <FacilityEnvelopeElementsComparisonWrapper>
       <FacilityEnvelopeElementsComparisonTitle>Facility Envelope Elements
-        Comparison</FacilityEnvelopeElementsComparisonTitle>
+        Comparison
+      </FacilityEnvelopeElementsComparisonTitle>
 
-      <HeadRow className="row">
-        <ListHeader className="col-4"/>
-        <ListHeader className="col-4">Current <span className="text-primary">Energy</span> Performance</ListHeader>
-        <ListHeader className="col-4">Potential<br/>Best-in-class</ListHeader>
+      <HeadRow className='row'>
+        <ListHeader className='col-4' />
+        <ListHeader className='col-4'>Current <span className='text-primary'>Energy</span> Performance</ListHeader>
+        <ListHeader className='col-4'>Potential<br />Best-in-class</ListHeader>
       </HeadRow>
 
-      <ItemRow className="row"
-               onClick={() => openPopup({
-                 type: 'roof',
-                 current: facilityEnvelopeComparisonData.roof.current,
-                 potentialBestInClass: facilityEnvelopeComparisonData.roof.potentialBestInClass,
-                 fittingLabel: 'Roof Insulation Type',
-                 currentFittingName: 'Concrete Slab - Uninsulated',
-                 potentialBestInClassFittingName: 'Concrete Slab - Insulated',
-                 firstMetricLabel: 'U-Value W/m2K',
-                 currentFirstMetricValue: '1.7',
-                 potentialBestInClassFirstMetricValue: '0.9',
-                 secondMetricLabel: '',
-                 currentSecondMetricValue: '',
-                 potentialBestInClassSecondMetricValue: '',
-                 supplementaryText: 'Decreasing the U-Value of the roof insulation in turn reduces heating and cooling loads'
-               })}>
-        <ListItem className="col-4">
-          <ItemImg src={roofImg} alt="Roof"/>
+      <ItemRow
+        className='row'
+        onClick={() => openPopup({
+          type: 'roof',
+          current: facilityEnvelopeComparisonData.roof.current,
+          potentialBestInClass: facilityEnvelopeComparisonData.roof.potentialBestInClass,
+          fittingLabel: 'Roof Insulation Type',
+          currentFittingName: 'Concrete Slab - Uninsulated',
+          potentialBestInClassFittingName: 'Concrete Slab - Insulated',
+          firstMetricLabel: 'U-Value W/m2K',
+          currentFirstMetricValue: '1.7',
+          potentialBestInClassFirstMetricValue: '0.9',
+          secondMetricLabel: '',
+          currentSecondMetricValue: '',
+          potentialBestInClassSecondMetricValue: '',
+          supplementaryText: 'Decreasing the U-Value of the roof insulation in turn reduces heating and cooling loads'
+        })}
+      >
+        <ListItem className='col-4'>
+          <ItemImg src={roofImg} alt='Roof' />
           <ItemImgSubTitle>Roof</ItemImgSubTitle>
         </ListItem>
-        <ListItem className="col-4"><EnergySquare color={getCurrentColor(facilityEnvelopeComparisonData.roof.current)}
-                                                  text={facilityEnvelopeComparisonData.roof.current}/></ListItem>
-        <ListItem className="col-4"><EnergySquare
+        <ListItem className='col-4'><EnergySquare
+          color={getCurrentColor(facilityEnvelopeComparisonData.roof.current)}
+          text={facilityEnvelopeComparisonData.roof.current}
+                                    />
+        </ListItem>
+        <ListItem className='col-4'><EnergySquare
           color={getCurrentColor(facilityEnvelopeComparisonData.roof.potentialBestInClass)}
-          text={facilityEnvelopeComparisonData.roof.potentialBestInClass}/></ListItem>
+          text={facilityEnvelopeComparisonData.roof.potentialBestInClass}
+                                    />
+        </ListItem>
       </ItemRow>
 
-      <ItemRow className="row"
-               onClick={() => openPopup({
-                 type: 'wall',
-                 current: facilityEnvelopeComparisonData.wall.current,
-                 potentialBestInClass: facilityEnvelopeComparisonData.wall.potentialBestInClass,
-                 fittingLabel: 'Wall Insulation Type',
-                 currentFittingName: 'Reinforced Concrete Wall',
-                 potentialBestInClassFittingName: 'Precast Concrete Wall',
-                 firstMetricLabel: 'U-Value W/m2K',
-                 currentFirstMetricValue: '3.02',
-                 potentialBestInClassFirstMetricValue: '1.07',
-                 secondMetricLabel: '',
-                 currentSecondMetricValue: '',
-                 potentialBestInClassSecondMetricValue: '',
-                 supplementaryText: 'Decreasing the U-Value of the wall insulation in turn reduces heating and cooling loads'
-               })}>
-        <ListItem className="col-4">
-          <ItemImg src={wallImg} alt="Wall"/>
+      <ItemRow
+        className='row'
+        onClick={() => openPopup({
+          type: 'wall',
+          current: facilityEnvelopeComparisonData.wall.current,
+          potentialBestInClass: facilityEnvelopeComparisonData.wall.potentialBestInClass,
+          fittingLabel: 'Wall Insulation Type',
+          currentFittingName: 'Reinforced Concrete Wall',
+          potentialBestInClassFittingName: 'Precast Concrete Wall',
+          firstMetricLabel: 'U-Value W/m2K',
+          currentFirstMetricValue: '3.02',
+          potentialBestInClassFirstMetricValue: '1.07',
+          secondMetricLabel: '',
+          currentSecondMetricValue: '',
+          potentialBestInClassSecondMetricValue: '',
+          supplementaryText: 'Decreasing the U-Value of the wall insulation in turn reduces heating and cooling loads'
+        })}
+      >
+        <ListItem className='col-4'>
+          <ItemImg src={wallImg} alt='Wall' />
           <ItemImgSubTitle>Wall</ItemImgSubTitle>
         </ListItem>
-        <ListItem className="col-4"><EnergySquare color={getCurrentColor(facilityEnvelopeComparisonData.wall.current)}
-                                                  text={facilityEnvelopeComparisonData.wall.current}/></ListItem>
-        <ListItem className="col-4"><EnergySquare
+        <ListItem className='col-4'><EnergySquare
+          color={getCurrentColor(facilityEnvelopeComparisonData.wall.current)}
+          text={facilityEnvelopeComparisonData.wall.current}
+                                    />
+        </ListItem>
+        <ListItem className='col-4'><EnergySquare
           color={getCurrentColor(facilityEnvelopeComparisonData.wall.potentialBestInClass)}
-          text={facilityEnvelopeComparisonData.wall.potentialBestInClass}/></ListItem>
+          text={facilityEnvelopeComparisonData.wall.potentialBestInClass}
+                                    />
+        </ListItem>
       </ItemRow>
 
-      <ItemRow className="row"
-               onClick={() => openPopup({
-                 type: 'openings',
-                 current: facilityEnvelopeComparisonData.openings.current,
-                 potentialBestInClass: facilityEnvelopeComparisonData.openings.potentialBestInClass,
-                 fittingLabel: 'Window Glazing Type',
-                 currentFittingName: 'Single Glazed Window',
-                 potentialBestInClassFittingName: 'Double Glazed',
-                 firstMetricLabel: 'U-Value W/m2K',
-                 currentFirstMetricValue: '1.53',
-                 potentialBestInClassFirstMetricValue: '0.87',
-                 secondMetricLabel: 'Shading Coefficient',
-                 currentSecondMetricValue: '0.9',
-                 potentialBestInClassSecondMetricValue: '0.9',
-                 supplementaryText: 'Decreasing the U-Value of the windows in turn reduces heating and cooling loads'
-               })}>
-        <ListItem className="col-4">
-          <ItemImg src={openingsImg} alt="openings"/>
+      <ItemRow
+        className='row'
+        onClick={() => openPopup({
+          type: 'openings',
+          current: facilityEnvelopeComparisonData.openings.current,
+          potentialBestInClass: facilityEnvelopeComparisonData.openings.potentialBestInClass,
+          fittingLabel: 'Window Glazing Type',
+          currentFittingName: 'Single Glazed Window',
+          potentialBestInClassFittingName: 'Double Glazed',
+          firstMetricLabel: 'U-Value W/m2K',
+          currentFirstMetricValue: '1.53',
+          potentialBestInClassFirstMetricValue: '0.87',
+          secondMetricLabel: 'Shading Coefficient',
+          currentSecondMetricValue: '0.9',
+          potentialBestInClassSecondMetricValue: '0.9',
+          supplementaryText: 'Decreasing the U-Value of the windows in turn reduces heating and cooling loads'
+        })}
+      >
+        <ListItem className='col-4'>
+          <ItemImg src={openingsImg} alt='openings' />
           <ItemImgSubTitle>Openings</ItemImgSubTitle>
         </ListItem>
-        <ListItem className="col-4">
+        <ListItem className='col-4'>
           <EnergySquare
             color={getCurrentColor(facilityEnvelopeComparisonData.openings.current)}
-            text={facilityEnvelopeComparisonData.openings.current}/>
+            text={facilityEnvelopeComparisonData.openings.current}
+          />
         </ListItem>
-        <ListItem className="col-4">
+        <ListItem className='col-4'>
           <EnergySquare
             color={getCurrentColor(facilityEnvelopeComparisonData.openings.potentialBestInClass)}
-            text={facilityEnvelopeComparisonData.openings.potentialBestInClass}/>
+            text={facilityEnvelopeComparisonData.openings.potentialBestInClass}
+          />
         </ListItem>
       </ItemRow>
 
-      <ItemRow className="row"
-               onClick={() => openPopup({
-                 type: 'floor',
-                 current: facilityEnvelopeComparisonData.floor.current,
-                 potentialBestInClass: facilityEnvelopeComparisonData.floor.potentialBestInClass,
-                 fittingLabel: 'Floor Insulation Type',
-                 currentFittingName: 'Solid Ground Floor',
-                 potentialBestInClassFittingName: 'Solid Ground Floor w/ Edge Insulation',
-                 firstMetricLabel: 'U-Value W/m2K',
-                 currentFirstMetricValue: '0.15',
-                 potentialBestInClassFirstMetricValue: '0.07',
-                 secondMetricLabel: '',
-                 currentSecondMetricValue: '',
-                 potentialBestInClassSecondMetricValue: '',
-                 supplementaryText: 'Decreasing the U-Value of the floor insulation in turn reduces heating and cooling loads'
-               })}>
-        <ListItem className="col-4">
-          <ItemImg src={floorImg} alt="floor"/>
+      <ItemRow
+        className='row'
+        onClick={() => openPopup({
+          type: 'floor',
+          current: facilityEnvelopeComparisonData.floor.current,
+          potentialBestInClass: facilityEnvelopeComparisonData.floor.potentialBestInClass,
+          fittingLabel: 'Floor Insulation Type',
+          currentFittingName: 'Solid Ground Floor',
+          potentialBestInClassFittingName: 'Solid Ground Floor w/ Edge Insulation',
+          firstMetricLabel: 'U-Value W/m2K',
+          currentFirstMetricValue: '0.15',
+          potentialBestInClassFirstMetricValue: '0.07',
+          secondMetricLabel: '',
+          currentSecondMetricValue: '',
+          potentialBestInClassSecondMetricValue: '',
+          supplementaryText: 'Decreasing the U-Value of the floor insulation in turn reduces heating and cooling loads'
+        })}
+      >
+        <ListItem className='col-4'>
+          <ItemImg src={floorImg} alt='floor' />
           <ItemImgSubTitle>floor</ItemImgSubTitle>
         </ListItem>
-        <ListItem className="col-4"><EnergySquare color={getCurrentColor(facilityEnvelopeComparisonData.floor.current)}
-                                                  text={facilityEnvelopeComparisonData.floor.current}/></ListItem>
-        <ListItem className="col-4"><EnergySquare
+        <ListItem className='col-4'><EnergySquare
+          color={getCurrentColor(facilityEnvelopeComparisonData.floor.current)}
+          text={facilityEnvelopeComparisonData.floor.current}
+                                    />
+        </ListItem>
+        <ListItem className='col-4'><EnergySquare
           color={getCurrentColor(facilityEnvelopeComparisonData.floor.potentialBestInClass)}
-          text={facilityEnvelopeComparisonData.floor.potentialBestInClass}/></ListItem>
+          text={facilityEnvelopeComparisonData.floor.potentialBestInClass}
+                                    />
+        </ListItem>
       </ItemRow>
 
-      <Popup data={popUpProps}/>
+      <Popup data={popUpProps} />
 
     </FacilityEnvelopeElementsComparisonWrapper>
   )

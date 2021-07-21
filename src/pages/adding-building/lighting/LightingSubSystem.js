@@ -6,7 +6,7 @@ import {
   MenuItem,
   Paper,
   Select,
-  TextField,
+  TextField
 } from '@material-ui/core'
 import styled from 'styled-components'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
@@ -40,7 +40,6 @@ const SpanId = styled.span`
 `
 
 const LightingSubSystem = ({ data }) => {
-
   const classes = makeStyles((theme) => (MaterialFormStyle))()
 
   const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
@@ -53,10 +52,10 @@ const LightingSubSystem = ({ data }) => {
   const onPercentageChange = (e) => {
     setPercentage(e.target.value)
 
-    let index = lightingSubSystemList.findIndex((o) => o.id === data.id)
+    const index = lightingSubSystemList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(lightingSubSystemList, index, {
       ...data,
-      percentage: e.target.value,
+      percentage: e.target.value
     })
     setLightingSubSystemList(newList)
   }
@@ -64,10 +63,10 @@ const LightingSubSystem = ({ data }) => {
   const onIndoorLightingSystemTypeIdChange = (e) => {
     setIndoorLightingSystemTypeId(e.target.value)
 
-    let index = lightingSubSystemList.findIndex((o) => o.id === data.id)
+    const index = lightingSubSystemList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(lightingSubSystemList, index, {
       ...data,
-      indoorLightingSystemTypeId: e.target.value,
+      indoorLightingSystemTypeId: e.target.value
     })
     setLightingSubSystemList(newList)
   }
@@ -81,20 +80,23 @@ const LightingSubSystem = ({ data }) => {
   }
 
   return (
-    <Fade in={true} timeout={500}>
-      <Paper elevation={3} className="p-3">
+    <Fade in timeout={500}>
+      <Paper elevation={3} className='p-3'>
         <Header>
           <Title>{data.title}<SpanId>{data.id}</SpanId></Title>
-          <Subtraction title="Remove Item" onClick={onRemoveItem}><i
-            className="bi bi-dash-lg"/></Subtraction>
+          <Subtraction title='Remove Item' onClick={onRemoveItem}><i
+            className='bi bi-dash-lg'
+                                                                  />
+          </Subtraction>
         </Header>
         <Content>
           <FormControl className={classes.formControl}>
-            <InputLabel id="lighting-fitting-type-label">Lighting Fitting
-              Type</InputLabel>
+            <InputLabel id='lighting-fitting-type-label'>Lighting Fitting
+              Type
+            </InputLabel>
             <Select
-              labelId="lighting-fitting-type-label"
-              id="lighting-fitting-type-select"
+              labelId='lighting-fitting-type-label'
+              id='lighting-fitting-type-select'
               value={indoorLightingSystemTypeId}
               onChange={onIndoorLightingSystemTypeIdChange}
             >
@@ -109,8 +111,10 @@ const LightingSubSystem = ({ data }) => {
             </Select>
           </FormControl>
           <FormControl className={classes.formControl}>
-            <TextField id="percentage" label="Percentage %" type="number"
-                       value={percentage} onChange={onPercentageChange}/>
+            <TextField
+              id='percentage' label='Percentage %' type='number'
+              value={percentage} onChange={onPercentageChange}
+            />
           </FormControl>
         </Content>
       </Paper>

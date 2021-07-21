@@ -12,7 +12,7 @@ const Square = Styled.div`
   height: 38px;
   border-radius: 8px;
   background-color: ${props => props.color ? props.color : 'green'};
-`, EnergySquare = (props) => {
+`; const EnergySquare = (props) => {
   const { text, color } = props
 
   return (<Square color={color}>{text}</Square>)

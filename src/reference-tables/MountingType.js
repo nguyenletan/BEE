@@ -5,7 +5,7 @@ const MountingType = [
   },
   {
     id: 2,
-    name:'Building Integrated'
+    name: 'Building Integrated'
   }
 ]
 

@@ -6,7 +6,7 @@ const UseType = [
   { id: 14, name: 'Industrial' },
   { id: 15, name: 'Institution' },
   { id: 16, name: 'Mixed Use' },
-  { id: 17, name: 'Other' },
+  { id: 17, name: 'Other' }
 ]
 
 export default UseType

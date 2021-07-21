@@ -14,7 +14,7 @@ const TrackingType = [
   {
     id: 4,
     name: 'Two-Axis Tracking'
-  },
+  }
 ]
 
 export default TrackingType

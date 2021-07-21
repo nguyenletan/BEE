@@ -16,18 +16,18 @@ const Title = styled.h3`
   margin-bottom: 1.5rem;
 `
 
-const RowItem =styled.div`
+const RowItem = styled.div`
   font-size: .9rem;
 `
 
-const RowItemTitle =styled.h5`
+const RowItemTitle = styled.h5`
   width: 100px;
   font-size: .9rem;
   margin-bottom: .2rem;
   margin-right: .5rem;
 `
 
-const RowItemValue =styled.p`
+const RowItemValue = styled.p`
   color: var(--bs-primary);
   display: flex;
   font-size: 1.1rem;
@@ -37,8 +37,7 @@ const Image = styled.img`
   margin-right: .5rem;
 `
 
-const IssueDetailOverall =({data}) => {
-
+const IssueDetailOverall = ({ data }) => {
   const subSystemIconObj = getSubSystemIcon(data.subSystem)
 
   console.log(subSystemIconObj)
@@ -46,20 +45,21 @@ const IssueDetailOverall =({data}) => {
   return (
     <Wrapper>
       <Title>Potential {data.asset} issue</Title>
-      <RowItem className="d-flex justify-content-start">
-        <div className="me-5 d-flex flex-column">
+      <RowItem className='d-flex justify-content-start'>
+        <div className='me-5 d-flex flex-column'>
           <RowItemTitle>System</RowItemTitle>
           <RowItemValue>
-            <Image src={subSystemIconObj.imgSrc} alt={data.subSystem} width={subSystemIconObj.width}/>
-            <span>{data.subSystem}</span></RowItemValue>
+            <Image src={subSystemIconObj.imgSrc} alt={data.subSystem} width={subSystemIconObj.width} />
+            <span>{data.subSystem}</span>
+          </RowItemValue>
         </div>
         <div>
           <RowItemTitle>Asset</RowItemTitle>
           <RowItemValue>{data.asset}</RowItemValue>
         </div>
       </RowItem>
-      <RowItem className="d-flex justify-content-start">
-        <div className="me-5 d-flex flex-column">
+      <RowItem className='d-flex justify-content-start'>
+        <div className='me-5 d-flex flex-column'>
           <RowItemTitle>Asset ID</RowItemTitle>
           <RowItemValue>{data.id}</RowItemValue>
         </div>
@@ -68,8 +68,8 @@ const IssueDetailOverall =({data}) => {
           <RowItemValue>{data.fault}</RowItemValue>
         </div>
       </RowItem>
-      <RowItem className="d-flex justify-content-start">
-        <div className="me-4 d-flex flex-column">
+      <RowItem className='d-flex justify-content-start'>
+        <div className='me-4 d-flex flex-column'>
           <RowItemTitle>Likelihood</RowItemTitle>
           <RowItemValue>{getLikelihoodTitle(data.likelihood)}</RowItemValue>
         </div>
@@ -78,8 +78,8 @@ const IssueDetailOverall =({data}) => {
           <RowItemValue>{getImpactTitle(data.impact)}</RowItemValue>
         </div>
       </RowItem>
-      <RowItem className="d-flex justify-content-start">
-        <div className="d-flex flex-column">
+      <RowItem className='d-flex justify-content-start'>
+        <div className='d-flex flex-column'>
           <RowItemTitle>Potential Downtime (Days)</RowItemTitle>
           <RowItemValue>{data.potentialDownTime}</RowItemValue>
         </div>

@@ -173,47 +173,48 @@ const BuildingHistorical = (props) => {
     // width: 920,
     // height: 350,
     margin: { top: 0, right: 0, bottom: 100, left: 30 },
-    data: buildingEnergyUsageData,//generateCountriesData(keys, { size: 7 }),
+    data: buildingEnergyUsageData, // generateCountriesData(keys, { size: 7 }),
     indexBy: 'month',
     keys,
     padding: 0.46,
-    labelTextColor: 'white',//'inherit:lighter(1.4)',
+    labelTextColor: 'white', // 'inherit:lighter(1.4)',
     labelSkipWidth: 0,
     labelSkipHeight: 16,
-    animate: true,
+    animate: true
 
   }
 
-  //console.log(generateCountriesData(keys, { size: 7 }))
+  // console.log(generateCountriesData(keys, { size: 7 }))
 
   return (
-    <HistoricalComparisonWrapper className="">
-      <HistoricalComparisonContainer className="d-flex mt-5 justify-content-start row">
+    <HistoricalComparisonWrapper className=''>
+      <HistoricalComparisonContainer className='d-flex mt-5 justify-content-start row'>
 
-        <BuildingEnergyUsageWrapper className="col-12 col-lg-8 col-xl-10 mb-5 mb-lg-0">
+        <BuildingEnergyUsageWrapper className='col-12 col-lg-8 col-xl-10 mb-5 mb-lg-0'>
           <BuildingEnergyUsageChartTitle>Building Energy Usage (MWh)</BuildingEnergyUsageChartTitle>
-          <ResponsiveBar {...commonProps}
-                         colors={({ id, data }) => {
-                           return '#87972f'
-                         }}
-            //barComponent={CustomBarComponent}
-                         tooltip={({ id, value, color }) => (
-                           <strong style={{ color: '#373637' }}>
-                             {id}: {value} MWh/Yr
-                           </strong>
-                         )}
+          <ResponsiveBar
+            {...commonProps}
+            colors={({ id, data }) => {
+              return '#87972f'
+            }}
+            // barComponent={CustomBarComponent}
+            tooltip={({ id, value, color }) => (
+              <strong style={{ color: '#373637' }}>
+                {id}: {value} MWh/Yr
+              </strong>
+            )}
           />
         </BuildingEnergyUsageWrapper>
-        <SummaryBoxWrapper className="d-flex col-12 col-lg-4 col-xl-2 flex-wrap">
-          <SummaryBox className="flex-shrink-0 mb-3">
+        <SummaryBoxWrapper className='d-flex col-12 col-lg-4 col-xl-2 flex-wrap'>
+          <SummaryBox className='flex-shrink-0 mb-3'>
             <SummaryBoxTitle>Annual Energy Consumption (MWh/Yr)</SummaryBoxTitle>
             <SummaryBoxValue>{annualEnergyConsumption}</SummaryBoxValue>
           </SummaryBox>
-          <SummaryBox className="flex-shrink-0 mb-3">
+          <SummaryBox className='flex-shrink-0 mb-3'>
             <SummaryBoxTitle>Annual Energy Cost ($)</SummaryBoxTitle>
             <SummaryBoxValue>{annualEnergyCost}</SummaryBoxValue>
           </SummaryBox>
-          <SummaryBox className="flex-shrink-0 mb-3 mb-lg-0">
+          <SummaryBox className='flex-shrink-0 mb-3 mb-lg-0'>
             <SummaryBoxTitle>Annual Carbon Emissions (Tons/Yr)</SummaryBoxTitle>
             <SummaryBoxValue>{annualCarbonEmissions}</SummaryBoxValue>
           </SummaryBox>
@@ -221,28 +222,31 @@ const BuildingHistorical = (props) => {
 
       </HistoricalComparisonContainer>
 
-      <HistoricalComparison className="d-flex justify-content-around row">
-        <h4 className="col col-12 col-md-3 mb-4 mb-lg-0 text-center">Historical<br/>Comparison</h4>
+      <HistoricalComparison className='d-flex justify-content-around row'>
+        <h4 className='col col-12 col-md-3 mb-4 mb-lg-0 text-center'>Historical<br />Comparison</h4>
         <div
-          className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap">
-          <UpAndDownImg src={historicalComparision.sameMonthLastYear >= 0 ? redUpImage : greenDownImage}/>
-          <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
-            <UpAndDownImgTitle>Same Month<br/>Last Year</UpAndDownImgTitle>
+          className='col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap'
+        >
+          <UpAndDownImg src={historicalComparision.sameMonthLastYear >= 0 ? redUpImage : greenDownImage} />
+          <HistoricalComparisonInnerWrapper className='ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0'>
+            <UpAndDownImgTitle>Same Month<br />Last Year</UpAndDownImgTitle>
             <UpAndDownImgValue>{historicalComparision.sameMonthLastYear >= 0 ? `+${historicalComparision.sameMonthLastYear}` : `${historicalComparision.sameMonthLastYear}`} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
         </div>
         <div
-          className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap">
-          <UpAndDownImg src={historicalComparision.lastMonth >= 0 ? redUpImage : greenDownImage}/>
-          <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
+          className='col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap'
+        >
+          <UpAndDownImg src={historicalComparision.lastMonth >= 0 ? redUpImage : greenDownImage} />
+          <HistoricalComparisonInnerWrapper className='ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0'>
             <UpAndDownImgTitle>Last Month</UpAndDownImgTitle>
             <UpAndDownImgValue>{historicalComparision.lastMonth >= 0 ? `+${historicalComparision.lastMonth}` : `${historicalComparision.lastMonth}`} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
         </div>
         <div
-          className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap">
-          <UpAndDownImg src={historicalComparision._12MonthPeriod >= 0 ? redUpImage : greenDownImage}/>
-          <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
+          className='col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap'
+        >
+          <UpAndDownImg src={historicalComparision._12MonthPeriod >= 0 ? redUpImage : greenDownImage} />
+          <HistoricalComparisonInnerWrapper className='ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0'>
             <UpAndDownImgTitle>12 Month Period</UpAndDownImgTitle>
             <UpAndDownImgValue>{historicalComparision._12MonthPeriod >= 0 ? `+${historicalComparision._12MonthPeriod}` : `${historicalComparision._12MonthPeriod}`} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
@@ -250,7 +254,6 @@ const BuildingHistorical = (props) => {
       </HistoricalComparison>
     </HistoricalComparisonWrapper>
   )
-
 }
 
 BuildingHistorical.propTypes = {}

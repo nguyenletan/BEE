@@ -5,17 +5,17 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 1,
-        name: 'Excellent',
+        name: 'Excellent'
       },
       {
         id: 2,
-        name: 'Very Good',
+        name: 'Very Good'
       },
       {
         id: 3,
-        name: 'Good',
-      },
-    ],
+        name: 'Good'
+      }
+    ]
   },
   {
     id: 2,
@@ -23,33 +23,33 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 4,
-        name: 'A',
+        name: 'A'
       },
       {
         id: 5,
-        name: 'B',
+        name: 'B'
       },
       {
         id: 6,
-        name: 'C',
+        name: 'C'
       },
       {
         id: 7,
-        name: 'D',
+        name: 'D'
       },
       {
         id: 8,
-        name: 'E',
+        name: 'E'
       },
       {
         id: 9,
-        name: 'F',
+        name: 'F'
       },
       {
         id: 10,
-        name: 'G',
-      },
-    ],
+        name: 'G'
+      }
+    ]
   },
   {
     id: 3,
@@ -57,21 +57,21 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 11,
-        name: 'Platinum',
+        name: 'Platinum'
       },
       {
         id: 12,
-        name: 'Gold',
+        name: 'Gold'
       },
       {
         id: 13,
-        name: 'Silver',
+        name: 'Silver'
       },
       {
         id: 14,
-        name: 'Certified',
-      },
-    ],
+        name: 'Certified'
+      }
+    ]
   },
   {
     id: 4,
@@ -79,21 +79,21 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 15,
-        name: '4',
+        name: '4'
       },
       {
         id: 16,
-        name: '3',
+        name: '3'
       },
       {
         id: 17,
-        name: '2',
+        name: '2'
       },
       {
         id: 18,
-        name: '1',
-      },
-    ],
+        name: '1'
+      }
+    ]
   },
   {
     id: 5,
@@ -101,26 +101,26 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 24,
-        name: 'BOMA BESt Level 4',
+        name: 'BOMA BESt Level 4'
       },
       {
         id: 25,
-        name: 'BOMA BESt Level 3',
+        name: 'BOMA BESt Level 3'
       },
       {
         id: 26,
-        name: 'BOMA BESt Level 2',
+        name: 'BOMA BESt Level 2'
       },
       {
         id: 27,
-        name: 'BOMA BESt Level 1',
-      },
-    ],
+        name: 'BOMA BESt Level 1'
+      }
+    ]
   },
   {
     id: 6,
     shortName: 'GEM UK',
-    ratingLevels: [],
+    ratingLevels: []
   },
   {
     id: 7,
@@ -128,34 +128,34 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 28,
-        name: '6 Star',
+        name: '6 Star'
       },
       {
         id: 29,
-        name: '5 Star',
+        name: '5 Star'
       },
       {
         id: 30,
-        name: '4 Star',
+        name: '4 Star'
       },
       {
         id: 31,
-        name: '3 Star',
+        name: '3 Star'
       },
       {
         id: 32,
-        name: '2 Star',
+        name: '2 Star'
       },
       {
         id: 33,
-        name: '1 Star',
-      },
-    ],
+        name: '1 Star'
+      }
+    ]
   },
   {
     id: 8,
     shortName: 'BEAM',
-    ratingLevels: [],
+    ratingLevels: []
   },
   {
     id: 9,
@@ -163,13 +163,13 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 35,
-        name: 'Platinum',
+        name: 'Platinum'
       },
       {
         id: 36,
-        name: 'Gold',
-      },
-    ],
+        name: 'Gold'
+      }
+    ]
   },
   {
     id: 10,
@@ -177,30 +177,30 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 37,
-        name: 'Diamond',
+        name: 'Diamond'
       },
       {
         id: 38,
-        name: 'Gold',
+        name: 'Gold'
       },
       {
         id: 39,
-        name: 'Silver',
+        name: 'Silver'
       },
       {
         id: 40,
-        name: 'Bronze',
+        name: 'Bronze'
       },
       {
         id: 41,
-        name: 'Certified',
-      },
-    ],
+        name: 'Certified'
+      }
+    ]
   },
   {
     id: 11,
     shortName: 'GBCS',
-    ratingLevels: [],
+    ratingLevels: []
   },
   {
     id: 12,
@@ -208,13 +208,13 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 42,
-        name: 'First Grade Green Building',
+        name: 'First Grade Green Building'
       },
       {
         id: 43,
-        name: 'Certification Grade Green Building',
-      },
-    ],
+        name: 'Certification Grade Green Building'
+      }
+    ]
   },
   {
     id: 13,
@@ -222,25 +222,25 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 44,
-        name: 'S (Excellent)',
+        name: 'S (Excellent)'
       },
       {
         id: 45,
-        name: 'A',
+        name: 'A'
       },
       {
         id: 46,
-        name: 'B+',
+        name: 'B+'
       },
       {
         id: 47,
-        name: 'B-',
+        name: 'B-'
       },
       {
         id: 48,
-        name: 'C (Poor)',
-      },
-    ],
+        name: 'C (Poor)'
+      }
+    ]
   },
   {
     id: 14,
@@ -248,25 +248,25 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 49,
-        name: 'Platinum',
+        name: 'Platinum'
       },
       {
         id: 50,
-        name: 'Gold',
+        name: 'Gold'
       },
       {
         id: 51,
-        name: 'Silver',
+        name: 'Silver'
       },
       {
         id: 52,
-        name: 'Bronze',
+        name: 'Bronze'
       },
       {
         id: 53,
-        name: 'Certified',
-      },
-    ],
+        name: 'Certified'
+      }
+    ]
   },
   {
     id: 15,
@@ -274,25 +274,25 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 54,
-        name: '5 Star',
+        name: '5 Star'
       },
       {
         id: 55,
-        name: '4 Star',
+        name: '4 Star'
       },
       {
         id: 56,
-        name: '3 Star',
+        name: '3 Star'
       },
       {
         id: 57,
-        name: '2 Star',
+        name: '2 Star'
       },
       {
         id: 58,
-        name: '1 Star',
-      },
-    ],
+        name: '1 Star'
+      }
+    ]
   },
   {
     id: 16,
@@ -300,29 +300,29 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 59,
-        name: 'A+++ Level',
+        name: 'A+++ Level'
       },
       {
         id: 60,
-        name: 'A++ Level',
+        name: 'A++ Level'
       },
       {
         id: 61,
-        name: 'A+ Level',
+        name: 'A+ Level'
       },
       {
         id: 62,
-        name: 'A Level',
+        name: 'A Level'
       },
       {
         id: 63,
-        name: 'B Level',
+        name: 'B Level'
       },
       {
         id: 64,
-        name: 'C Level',
-      },
-    ],
+        name: 'C Level'
+      }
+    ]
   },
   {
     id: 17,
@@ -330,21 +330,21 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 65,
-        name: 'Exceptional',
+        name: 'Exceptional'
       },
       {
         id: 66,
-        name: 'Excellent',
+        name: 'Excellent'
       },
       {
         id: 67,
-        name: 'Very Good',
+        name: 'Very Good'
       },
       {
         id: 68,
-        name: 'Good',
-      },
-    ],
+        name: 'Good'
+      }
+    ]
   },
   {
     id: 18,
@@ -352,17 +352,17 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 69,
-        name: '3 Star',
+        name: '3 Star'
       },
       {
         id: 70,
-        name: '2 Star',
+        name: '2 Star'
       },
       {
         id: 71,
-        name: '1 Star',
-      },
-    ],
+        name: '1 Star'
+      }
+    ]
   },
   {
     id: 19,
@@ -370,25 +370,25 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 72,
-        name: '5 Star',
+        name: '5 Star'
       },
       {
         id: 73,
-        name: '4 Star',
+        name: '4 Star'
       },
       {
         id: 74,
-        name: '3 Star',
+        name: '3 Star'
       },
       {
         id: 75,
-        name: '2 Star',
+        name: '2 Star'
       },
       {
         id: 76,
-        name: '1 Star',
-      },
-    ],
+        name: '1 Star'
+      }
+    ]
   },
   {
     id: 20,
@@ -396,17 +396,17 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 77,
-        name: 'Gold',
+        name: 'Gold'
       },
       {
         id: 78,
-        name: 'Silver',
+        name: 'Silver'
       },
       {
         id: 79,
-        name: 'Bronze',
-      },
-    ],
+        name: 'Bronze'
+      }
+    ]
   },
   {
     id: 21,
@@ -414,34 +414,34 @@ export const SustainabilityRatingScheme = [
     ratingLevels: [
       {
         id: 80,
-        name: 'Super Platinum',
+        name: 'Super Platinum'
       },
       {
         id: 81,
-        name: 'Platinum',
+        name: 'Platinum'
       },
       {
         id: 82,
-        name: 'Gold',
+        name: 'Gold'
       },
       {
         id: 83,
-        name: 'Silver',
+        name: 'Silver'
       },
       {
         id: 84,
-        name: 'Certified',
-      },
-    ],
+        name: 'Certified'
+      }
+    ]
   },
   {
     id: 22,
     shortName: 'NA',
-    ratingLevels: [],
+    ratingLevels: []
   },
   {
     id: 23,
     shortName: 'Others',
-    ratingLevels: [],
-  },
+    ratingLevels: []
+  }
 ]

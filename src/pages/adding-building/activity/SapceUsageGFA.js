@@ -27,42 +27,39 @@ const UL = styled.ul`
 `
 
 const SpaceUsageGFA = () => {
-
   const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(spaceUsageGFAListState)
 
-
   const onAddSpaceUsageGFA = () => {
-
     setSpaceUsageGFAList((oldSpaceUsageGFAList) => [
       ...oldSpaceUsageGFAList,
       {
         id: parseInt(_.uniqueId()),
-        title: `New Usage`,
+        title: 'New Usage',
         typeId: 1,
         percentage: 0,
         climateControlId: 1,
         fanTypeId: 1,
-        hasReheatRecovery: false,
-      },
+        hasReheatRecovery: false
+      }
     ])
-
   }
 
-
   const lis = spaceUsageGFAList.map(item =>
-    <li className="col-12 col-lg-6 mb-4" key={item.id}>
-      <SpaceUsageGFAForm data={item}/>
+    <li className='col-12 col-lg-6 mb-4' key={item.id}>
+      <SpaceUsageGFAForm data={item} />
     </li>
   )
 
   return (
     <>
-      <Header className="d-flex justify-content-between">
+      <Header className='d-flex justify-content-between'>
         <Title>Space Usage and %GFA</Title>
-        <Adding onClick={onAddSpaceUsageGFA} title="Add new item"><i
-          className="bi bi-plus-lg font-weight-bolder"/></Adding>
+        <Adding onClick={onAddSpaceUsageGFA} title='Add new item'><i
+          className='bi bi-plus-lg font-weight-bolder'
+                                                                  />
+        </Adding>
       </Header>
-      <UL className="row">
+      <UL className='row'>
         {lis}
       </UL>
     </>

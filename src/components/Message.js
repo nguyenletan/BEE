@@ -6,12 +6,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
-  },
+      marginTop: theme.spacing(2)
+    }
+  }
 }))
 
-export default function Message ({text}) {
+export default function Message ({ text }) {
   const classes = useStyles()
 
   const [isHide, setIsHide] = useState(false)
@@ -24,7 +24,7 @@ export default function Message ({text}) {
   return (
     <>
       {!isHide && (<div className={classes.root}>
-        <Alert severity="error">
+        <Alert severity='error'>
           <AlertTitle>Error</AlertTitle>
           {text}
         </Alert>

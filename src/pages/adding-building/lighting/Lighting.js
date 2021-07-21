@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
 import {
   addingBuildingProgressState,
-  lightingSubSystemListState,
+  lightingSubSystemListState
 } from '../../../atoms'
 import _ from 'lodash'
 
@@ -42,7 +42,6 @@ const Ul = styled.ul`
 `
 
 const Lighting = () => {
-
   const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
     lightingSubSystemListState)
 
@@ -52,24 +51,21 @@ const Lighting = () => {
   const [isMovingNext, setIsMovingNext] = useState(false)
 
   const onAddLightingSubSystemList = () => {
-
     setLightingSubSystemList((oldLightingSubSystemList) => [
       ...oldLightingSubSystemList,
       {
         id: parseInt(_.uniqueId()),
-        title: `Fitting `,
+        title: 'Fitting ',
         indoorLightingSystemTypeId: 1,
-        percentage: 0,
-      },
+        percentage: 0
+      }
     ])
-
   }
 
   const onSubmit = (data) => {
     // console.log(data)
     setAddingBuildingProgressState(75)
     setIsMovingNext(true)
-
   }
 
   const { handleSubmit } = useForm({
@@ -87,43 +83,44 @@ const Lighting = () => {
     context: undefined,
     criteriaMode: 'firstError',
     shouldFocusError: false,
-    shouldUnregister: false,
+    shouldUnregister: false
   })
 
   const lis = lightingSubSystemList.map(item =>
 
-    <li className="col-12 col-lg-6 mb-4" key={item.id}>
-      <LightingSubSystem data={item}/>
-    </li>,
+    <li className='col-12 col-lg-6 mb-4' key={item.id}>
+      <LightingSubSystem data={item} />
+    </li>
   )
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to="/adding-building/envelope-facade"/>}
-      <div className="d-flex mt-5 mb-4">
+      {isMovingNext && <Redirect to='/adding-building/envelope-facade' />}
+      <div className='d-flex mt-5 mb-4'>
 
         <Title>New Building</Title>
 
         <BackNextGroupButton
-          backLink="/adding-building/hvac"
-          nextLink="/adding-building/envelope-facade"
+          backLink='/adding-building/hvac'
+          nextLink='/adding-building/envelope-facade'
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
 
-
       </div>
 
-      <StepNav/>
+      <StepNav />
 
-      <div className="row">
-        <div className="col-12 col-lg-8">
-          <Header className="d-flex justify-content-between">
+      <div className='row'>
+        <div className='col-12 col-lg-8'>
+          <Header className='d-flex justify-content-between'>
             <h6>Lighting Subsystem</h6>
-            <Adding onClick={onAddLightingSubSystemList} title="Add new item"><i
-              className="bi bi-plus-lg font-weight-bolder"/></Adding>
+            <Adding onClick={onAddLightingSubSystemList} title='Add new item'><i
+              className='bi bi-plus-lg font-weight-bolder'
+                                                                              />
+            </Adding>
           </Header>
-          <Ul className="row">
+          <Ul className='row'>
             {lis}
           </Ul>
         </div>

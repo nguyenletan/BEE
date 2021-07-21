@@ -33,14 +33,16 @@ const BarBlock = (props) => {
 
   return isArrow
     ? (
-      <BlockWrapper className="d-flex" marginLeft={marginLeft}>
-        <ArrowLeft backgroundColor={backgroundColor} marginBottom={marginBottom}/>
+      <BlockWrapper className='d-flex' marginLeft={marginLeft}>
+        <ArrowLeft backgroundColor={backgroundColor} marginBottom={marginBottom} />
         <Block
           paddingRight={paddingRight}
           width={width}
           backgroundColor={backgroundColor}
           textAlign={textAlign}
-          marginBottom={marginBottom}>{text}</Block>
+          marginBottom={marginBottom}
+        >{text}
+        </Block>
       </BlockWrapper>)
     : <Block
         paddingRight={paddingRight}
@@ -48,8 +50,9 @@ const BarBlock = (props) => {
         marginLeft={marginLeft}
         width={width}
         backgroundColor={backgroundColor}
-        marginBottom={marginBottom}>{text}</Block>
-
+        marginBottom={marginBottom}
+      >{text}
+    </Block>
 }
 
 export default BarBlock

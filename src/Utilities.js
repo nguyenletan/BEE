@@ -5,7 +5,7 @@ import heatingImg from './assets/images/heating.svg'
 import wallImg from './assets/images/wall.svg'
 import mechVentImg from './assets/images/mechanical-ventilation.svg'
 
-import {addMonths} from 'date-fns'
+import { addMonths } from 'date-fns'
 
 export const getCurrentColor = (type) => {
   switch (type) {
@@ -119,9 +119,8 @@ export const getSubSystemIcon = (subSystem) => {
   }
   return {
     imgSrc: imgSrc,
-    width: width,
+    width: width
   }
-
 }
 
 export const replaceAll = (str, replaceWith = '+') => {
@@ -133,7 +132,7 @@ export const replaceAll = (str, replaceWith = '+') => {
 }
 
 export const getLatLngFromAddress = async (address) => {
-  let googleMapAPIEndPoint = 'https://maps.googleapis.com/maps/api/geocode/json'
+  const googleMapAPIEndPoint = 'https://maps.googleapis.com/maps/api/geocode/json'
   let location = null
   const url = googleMapAPIEndPoint + '?address=' + address + '&key=' + process.env.REACT_APP_GOOGLE_API_KEY
   await fetch(url).then(response => response.json()).then(data => {
@@ -145,10 +144,10 @@ export const getLatLngFromAddress = async (address) => {
 }
 
 export const getPlaceDetail = async (placeId) => {
-  let googleMapAPIEndPoint = 'https://maps.googleapis.com/maps/api/place/details/json'
+  const googleMapAPIEndPoint = 'https://maps.googleapis.com/maps/api/place/details/json'
   let placeDetail = null
   const url = googleMapAPIEndPoint + '?place_id=' + placeId + '&fields=name,rating,formatted_phone_number&key=' + process.env.REACT_APP_GOOGLE_API_KEY
-  await fetch(url,{
+  await fetch(url, {
     mode: 'cors'
   }).then(response => response.json()).then(data => {
     console.log(data)
@@ -159,15 +158,14 @@ export const getPlaceDetail = async (placeId) => {
 }
 
 export const removeItemAtIndex = (arr, index) => {
-  return [...arr.slice(0, index), ...arr.slice(index + 1)];
+  return [...arr.slice(0, index), ...arr.slice(index + 1)]
 }
 
 export const replaceItemAtIndex = (arr, index, newValue) => {
-  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)]
 }
 
-
-export const getNextMonthYear = (month, year) =>{
+export const getNextMonthYear = (month, year) => {
   let tmp = new Date(`${year}/${month + 1}/01`)
   tmp = addMonths(tmp, 1)
   return {
@@ -175,4 +173,3 @@ export const getNextMonthYear = (month, year) =>{
     year: tmp.getFullYear()
   }
 }
-

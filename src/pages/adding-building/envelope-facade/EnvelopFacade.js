@@ -11,7 +11,7 @@ import {
   MenuItem,
   Select,
   Slider,
-  Typography,
+  Typography
 } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
@@ -20,14 +20,11 @@ import ExternalWindowType from '../../../reference-tables/ExternalWindowType'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { makeStyles } from '@material-ui/core/styles'
 import ExternalRoofType from '../../../reference-tables/ExternalRoofType'
-import {
-  DomesticGroundFloorInsulationType,
-  NonDomesticGroundFloorInsulationType,
-} from '../../../reference-tables/GroundFloorInsulationType'
+import { NonDomesticGroundFloorInsulationType } from '../../../reference-tables/GroundFloorInsulationType'
 import { useRecoilState } from 'recoil'
 import {
   addingBuildingProgressState,
-  envelopFacadeState,
+  envelopFacadeState
 } from '../../../atoms'
 import { Redirect } from 'react-router-dom'
 
@@ -66,7 +63,7 @@ const EnvelopFacade = () => {
     context: undefined,
     criteriaMode: 'firstError',
     shouldFocusError: false,
-    shouldUnregister: false,
+    shouldUnregister: false
   })
 
   const onExternalWindowToWallRatioSliderChange = (event, newValue) => {
@@ -94,76 +91,77 @@ const EnvelopFacade = () => {
   const marks = [
     {
       value: 0,
-      label: 0,
+      label: 0
     },
     {
-      value: 0.1,
+      value: 0.1
 
     },
     {
-      value: 0.2,
+      value: 0.2
 
     },
     {
-      value: 0.3,
+      value: 0.3
 
     },
     {
-      value: 0.4,
+      value: 0.4
 
     },
     {
       value: 0.5,
-      label: 0.5,
+      label: 0.5
     },
     {
-      value: 0.6,
+      value: 0.6
 
     },
     {
-      value: 0.7,
+      value: 0.7
 
     },
     {
-      value: 0.8,
+      value: 0.8
 
     },
     {
-      value: 0.9,
+      value: 0.9
 
     },
     {
       value: 1,
-      label: 1,
-    },
+      label: 1
+    }
   ]
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       {isMovingNext &&
-      <Redirect to="/adding-building/renewable-energy"/>}
+        <Redirect to='/adding-building/renewable-energy' />}
 
-      <div className="d-flex mt-5 mb-4">
+      <div className='d-flex mt-5 mb-4'>
 
         <Title>New Building</Title>
 
         <BackNextGroupButton
-          backLink="/adding-building/lighting"
-          nextLink="/adding-building/renewable-energy"
+          backLink='/adding-building/lighting'
+          nextLink='/adding-building/renewable-energy'
           progressValue={addingBuildingProgress}
-          isDisabledSave={addingBuildingProgress < 100}/>
+          isDisabledSave={addingBuildingProgress < 100}
+        />
 
       </div>
 
-      <StepNav/>
+      <StepNav />
 
-      <div className="row">
-        <div className="col-12 col-lg-6 col-xxl-4">
-          <Box component="div" mb={3}>
+      <div className='row'>
+        <div className='col-12 col-lg-6 col-xxl-4'>
+          <Box component='div' mb={3}>
             <Typography gutterBottom>
               External Window to Wall Ratio
             </Typography>
-            <Grid container spacing={2} alignItems="flex-start">
+            <Grid container spacing={2} alignItems='flex-start'>
               <Grid item xs>
                 <Slider
                   min={0}
@@ -172,15 +170,15 @@ const EnvelopFacade = () => {
                   marks={marks}
                   value={envelopFacade.externalWindowToWallRatio}
                   onChange={onExternalWindowToWallRatioSliderChange}
-                  aria-labelledby="input-slider"
-                  valueLabelDisplay="auto"
+                  aria-labelledby='input-slider'
+                  valueLabelDisplay='auto'
                 />
               </Grid>
               <Grid item>
                 <Input
                   value={envelopFacade.externalWindowToWallRatio}
-                  margin="dense"
-                  name="externalWindowToWallRatio"
+                  margin='dense'
+                  name='externalWindowToWallRatio'
                   onChange={onChange}
                   onBlur={onExternalWindowToWallRatioInputBlur}
                   inputProps={{
@@ -188,7 +186,7 @@ const EnvelopFacade = () => {
                     min: 0,
                     max: 1,
                     type: 'number',
-                    'aria-labelledby': 'input-slider',
+                    'aria-labelledby': 'input-slider'
                   }}
                 />
               </Grid>
@@ -196,12 +194,13 @@ const EnvelopFacade = () => {
           </Box>
 
           <FormControl className={classes.formControl}>
-            <InputLabel id="external-roof-type-label">External Roof Insulation
-              Type</InputLabel>
+            <InputLabel id='external-roof-type-label'>External Roof Insulation
+              Type
+            </InputLabel>
             <Select
-              id="external-roof-type-select"
-              labelId="external-roof-type-label"
-              name="externalRoofInsulationTypeId"
+              id='external-roof-type-select'
+              labelId='external-roof-type-label'
+              name='externalRoofInsulationTypeId'
               onChange={onChange}
               value={envelopFacade.externalRoofInsulationTypeId}
             >
@@ -218,12 +217,13 @@ const EnvelopFacade = () => {
           </FormControl>
 
           <FormControl className={classes.formControl}>
-            <InputLabel id="external-wall-type-label">External Wall Insulation
-              Type</InputLabel>
+            <InputLabel id='external-wall-type-label'>External Wall Insulation
+              Type
+            </InputLabel>
             <Select
-              id="external-wall-type-select"
-              labelId="external-wall-type-label"
-              name="externalWallInsulationTypeId"
+              id='external-wall-type-select'
+              labelId='external-wall-type-label'
+              name='externalWallInsulationTypeId'
               onChange={onChange}
               value={envelopFacade.externalWallInsulationTypeId}
             >
@@ -240,12 +240,13 @@ const EnvelopFacade = () => {
           </FormControl>
 
           <FormControl className={classes.formControl}>
-            <InputLabel id="external-window-type-label">External Window
-              Insulation Type</InputLabel>
+            <InputLabel id='external-window-type-label'>External Window
+              Insulation Type
+            </InputLabel>
             <Select
-              id="external-window-type-select"
-              labelId="external-window-type-label"
-              name="externalWindowInsulationTypeId"
+              id='external-window-type-select'
+              labelId='external-window-type-label'
+              name='externalWindowInsulationTypeId'
               onChange={onChange}
               value={envelopFacade.externalWindowInsulationTypeId}
             >
@@ -261,25 +262,26 @@ const EnvelopFacade = () => {
           </FormControl>
 
           <FormControl className={classes.formControl}>
-            <InputLabel id="external-ground-floor-type-label">External Ground
+            <InputLabel id='external-ground-floor-type-label'>External Ground
               Floor
-              Insulation Type</InputLabel>
+              Insulation Type
+            </InputLabel>
             <Select
-              id="external-ground-floor-type-select"
-              labelId="external-ground-floor-type-label"
-              name="externalGroundFloorInsulationTypeId"
+              id='external-ground-floor-type-select'
+              labelId='external-ground-floor-type-label'
+              name='externalGroundFloorInsulationTypeId'
               onChange={onChange}
               value={envelopFacade.externalGroundFloorInsulationTypeId}
             >
-              {/*<ListSubheader>Domestic/Residential (D)</ListSubheader>*/}
-              {/*{DomesticGroundFloorInsulationType.map((o) => (*/}
-              {/*  <MenuItem*/}
-              {/*    key={o.id}*/}
-              {/*    value={o.id}*/}
-              {/*  >*/}
-              {/*    {o.name}*/}
-              {/*  </MenuItem>*/}
-              {/*))}*/}
+              {/* <ListSubheader>Domestic/Residential (D)</ListSubheader> */}
+              {/* {DomesticGroundFloorInsulationType.map((o) => ( */}
+              {/*  <MenuItem */}
+              {/*    key={o.id} */}
+              {/*    value={o.id} */}
+              {/*  > */}
+              {/*    {o.name} */}
+              {/*  </MenuItem> */}
+              {/* ))} */}
               <ListSubheader>Non Domestic/Residential (N/D)</ListSubheader>
               {NonDomesticGroundFloorInsulationType.map((o) => (
                 <MenuItem
@@ -297,7 +299,6 @@ const EnvelopFacade = () => {
       </div>
     </Form>
   )
-
 }
 
 export default EnvelopFacade

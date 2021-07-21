@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import 'date-fns'
 import {
   KeyboardDatePicker,
-  MuiPickersUtilsProvider,
+  MuiPickersUtilsProvider
 } from '@material-ui/pickers'
 import RemoveIcon from '@material-ui/icons/Remove'
 import Input from '@material-ui/core/Input'
@@ -20,10 +20,10 @@ const Subtraction = styled(RemoveIcon)`
 `
 
 const OneMonthElectricityConsumption = ({ data }) => {
-  //console.log(data)
+  // console.log(data)
   const [selectedDate, setSelectedDate] = React.useState(
-    `${data.year}/${data.month + 1}/01`,
-    //new Date("2014-08-18T21:11:54")
+    `${data.year}/${data.month + 1}/01`
+    // new Date("2014-08-18T21:11:54")
   )
 
   const [electricityConsumptionList, setElectricityConsumptionList] = useRecoilState(
@@ -38,38 +38,38 @@ const OneMonthElectricityConsumption = ({ data }) => {
   }
 
   const onDateChange = (date) => {
-    ///console.log(date)
-    //console.log(date.getFullYear())
+    /// console.log(date)
+    // console.log(date.getFullYear())
     setSelectedDate(date)
-    let index = electricityConsumptionList.findIndex((o) => o.id === data.id)
+    const index = electricityConsumptionList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(electricityConsumptionList, index, {
       ...data,
       month: date.getMonth(),
-      year: date.getFullYear(),
+      year: date.getFullYear()
     })
 
     setElectricityConsumptionList(newList)
   }
 
   const onChange = (e) => {
-    let index = electricityConsumptionList.findIndex((o) => o.id === data.id)
+    const index = electricityConsumptionList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(electricityConsumptionList, index, {
       ...data,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     })
 
     setElectricityConsumptionList(newList)
   }
 
   return (
-    <li className="row mb-4">
+    <li className='row mb-4'>
 
-      <div className="col-3">
+      <div className='col-3'>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Grid container justify="flex-start">
+          <Grid container justify='flex-start'>
             <KeyboardDatePicker
-              variant="inline"
-              openTo="year"
+              variant='inline'
+              openTo='year'
               views={['year', 'month']}
               value={selectedDate}
               onChange={onDateChange}
@@ -78,25 +78,31 @@ const OneMonthElectricityConsumption = ({ data }) => {
         </MuiPickersUtilsProvider>
       </div>
 
-      <div className="col-3">
-        <Input type="number"
-               onChange={onChange}
-               value={data.cost}
-               name="cost"
-               id="cost" placeholder="Cost"/>
+      <div className='col-3'>
+        <Input
+          type='number'
+          onChange={onChange}
+          value={data.cost}
+          name='cost'
+          id='cost' placeholder='Cost'
+        />
       </div>
 
-      <div className="col-3">
-        <Input type="number"
-               name="value"
-               onChange={onChange}
-               value={data.value}
-               id="value" placeholder="Value"/>
+      <div className='col-3'>
+        <Input
+          type='number'
+          name='value'
+          onChange={onChange}
+          value={data.value}
+          id='value' placeholder='Value'
+        />
       </div>
 
-      <div className="col-3">
-        <Subtraction titleAccess="Remove Item" onClick={onRemoveItem}
-                     fontSize="large"/>
+      <div className='col-3'>
+        <Subtraction
+          titleAccess='Remove Item' onClick={onRemoveItem}
+          fontSize='large'
+        />
       </div>
     </li>
   )

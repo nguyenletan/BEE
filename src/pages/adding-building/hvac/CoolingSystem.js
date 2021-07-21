@@ -6,7 +6,7 @@ import {
   FormControl,
   FormControlLabel,
   InputLabel,
-  MenuItem,
+  MenuItem
 } from '@material-ui/core'
 import Select from '@material-ui/core/Select'
 import CoolingSystemType from '../../../reference-tables/CoolingSystemType'
@@ -24,7 +24,6 @@ const Title = styled.h4`
 `
 
 const CoolingSystem = () => {
-
   const classes = makeStyles((theme) => (MaterialFormStyle))()
 
   const [coolingSystem, setCoolingSystem] = useRecoilState(coolingSystemState)
@@ -73,28 +72,29 @@ const CoolingSystem = () => {
     <>
       <Title>Cooling System Installed</Title>
       <FormControlLabel
-        className="mb-2"
+        className='mb-2'
         control={
           <Checkbox
-            name="hasCoolingSystem"
-            color="primary"
+            name='hasCoolingSystem'
+            color='primary'
             checked={hasCoolingSystem}
             onChange={onHasCoolingSystemChange}
           />
         }
-        label="Yes"
+        label='Yes'
       />
 
       {hasCoolingSystem && (
         <Fade in={hasCoolingSystem} timeout={500}>
-          <div className="d-flex flex-column">
+          <div className='d-flex flex-column'>
 
             <FormControl className={classes.formControl}>
-              <InputLabel id="cooling-system-type-id-label">Cooling System
-                Type</InputLabel>
+              <InputLabel id='cooling-system-type-id-label'>Cooling System
+                Type
+              </InputLabel>
               <Select
-                labelId="cooling-system-type-id-label"
-                id="cooling-system-type-id-select"
+                labelId='cooling-system-type-id-label'
+                id='cooling-system-type-id-select'
                 value={coolingSystemTypeId}
                 onChange={onCoolingSystemTypeIdChange}
               >
@@ -104,11 +104,12 @@ const CoolingSystem = () => {
             </FormControl>
 
             <FormControl className={classes.formControl}>
-              <InputLabel id="compressor-type-label">Compressor
-                Type</InputLabel>
+              <InputLabel id='compressor-type-label'>Compressor
+                Type
+              </InputLabel>
               <Select
-                labelId="compressor-type-label"
-                id="compressor-type-select"
+                labelId='compressor-type-label'
+                id='compressor-type-select'
                 value={compressorTypeId}
                 onChange={onCompressorTypeIdChange}
               >
@@ -124,11 +125,12 @@ const CoolingSystem = () => {
             </FormControl>
 
             <FormControl className={classes.formControl}>
-              <InputLabel id="refrigerant-type-label">Refrigerant
-                Type</InputLabel>
+              <InputLabel id='refrigerant-type-label'>Refrigerant
+                Type
+              </InputLabel>
               <Select
-                labelId="refrigerant-type-label"
-                id="refrigerant-type-select"
+                labelId='refrigerant-type-label'
+                id='refrigerant-type-select'
                 value={refrigerantTypeId}
                 onChange={onRefrigerantTypeIdChange}
               >
@@ -144,11 +146,12 @@ const CoolingSystem = () => {
             </FormControl>
 
             <FormControl className={classes.formControl}>
-              <InputLabel id="chiller-energy-label">Chiller Energy
-                Source</InputLabel>
+              <InputLabel id='chiller-energy-label'>Chiller Energy
+                Source
+              </InputLabel>
               <Select
-                labelId="chiller-energy-label"
-                id="chiller-energy-select"
+                labelId='chiller-energy-label'
+                id='chiller-energy-select'
                 value={chillerEnergySourceTypeId}
                 onChange={onChillerEnergySourceTypeIdChange}
               >

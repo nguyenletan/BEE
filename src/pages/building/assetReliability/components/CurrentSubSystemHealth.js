@@ -37,9 +37,7 @@ const CurrentSubSystemHealthList = styled.ul`
   }
 `
 
-
-const CurrentSubSystemHealth = ({data}) => {
-
+const CurrentSubSystemHealth = ({ data }) => {
   const LabelComponent = (props) => {
     const { id, anchor, angle } = props
     let texts = ''
@@ -50,98 +48,124 @@ const CurrentSubSystemHealth = ({data}) => {
     switch (id) {
       case 'Cooling':
         iconSVG = coolingSVG()
-        texts = <>
-          <text
-            y={50} x={0}
-            style={{ fontSize: 12, fill: '#343a40' }}>{id}
-          </text>
-        </>
+        texts = (
+          <>
+            <text
+              y={50} x={0}
+              style={{ fontSize: 12, fill: '#343a40' }}
+            >{id}
+            </text>
+          </>
+        )
         translateX = -5
         translateY = -25
         break
       case 'Heating':
         iconSVG = heatingSVG()
-        texts = <>
-          <text
-            y={50} x={-6}
-            style={{ fontSize: 12, fill: '#343a40' }}>{id}
-          </text>
-        </>
+        texts = (
+          <>
+            <text
+              y={50} x={-6}
+              style={{ fontSize: 12, fill: '#343a40' }}
+            >{id}
+            </text>
+          </>
+        )
         translateX = -10
         translateY = -40
         break
       case 'Mechanical Ventilation':
         iconSVG = mechVentSVG()
-        texts = <>
-          <text
-            y={50} x={-13}
-            style={{ fontSize: 12, fill: '#343a40' }}>Mechanical
-          </text>
-          <text
-            y={66} x={-6}
-            style={{ fontSize: 12, fill: '#343a40' }}>Ventilation
-          </text>
-        </>
+        texts = (
+          <>
+            <text
+              y={50} x={-13}
+              style={{ fontSize: 12, fill: '#343a40' }}
+            >Mechanical
+            </text>
+            <text
+              y={66} x={-6}
+              style={{ fontSize: 12, fill: '#343a40' }}
+            >Ventilation
+            </text>
+          </>
+        )
         translateX = -15
         translateY = -40
         break
       case 'Lighting Efficacy':
         iconSVG = lightingSVG()
-        texts = <>
-          <text
-            y={50} x={-13}
-            style={{ fontSize: 12, fill: '#343a40' }}>Lighting
-          </text>
-          <text
-            y={66} x={-13}
-            style={{ fontSize: 12, fill: '#343a40' }}>Efficacy
-          </text>
-        </>
+        texts = (
+          <>
+            <text
+              y={50} x={-13}
+              style={{ fontSize: 12, fill: '#343a40' }}
+            >Lighting
+            </text>
+            <text
+              y={66} x={-13}
+              style={{ fontSize: 12, fill: '#343a40' }}
+            >Efficacy
+            </text>
+          </>
+        )
         translateX = -5
         translateY = -20
         break
       case 'Mechanical Ventilation Efficiency':
         iconSVG = mechVentSVG()
-        texts = <>
-          <text
-            y={50} x={-13}
-            style={{ fontSize: 12, fill: '#343a40' }}>Mechanical
-          </text>
-          <text
-            y={66} x={-40}
-            style={{ fontSize: 12, fill: '#343a40' }}>Ventilation Efficiency
-          </text>
-        </>
+        texts = (
+          <>
+            <text
+              y={50} x={-13}
+              style={{ fontSize: 12, fill: '#343a40' }}
+            >Mechanical
+            </text>
+            <text
+              y={66} x={-40}
+              style={{ fontSize: 12, fill: '#343a40' }}
+            >Ventilation Efficiency
+            </text>
+          </>
+        )
         translateX = -20
         translateY = -22
         break
       case 'Envelope Performance':
         iconSVG = envelopeSVG()
-        texts = <>
-          <text
-            y={50} x={0}
-            style={{ fontSize: 12, fill: '#343a40' }}>Envelope
-          </text>
-          <text
-            y={66} x={-10}
-            style={{ fontSize: 12, fill: '#343a40' }}>Performance
-          </text>
-        </>
+        texts = (
+          <>
+            <text
+              y={50} x={0}
+              style={{ fontSize: 12, fill: '#343a40' }}
+            >Envelope
+            </text>
+            <text
+              y={66} x={-10}
+              style={{ fontSize: 12, fill: '#343a40' }}
+            >Performance
+            </text>
+          </>
+        )
         translateX = -30
         translateY = -30
         break
       case 'Renewables Usage':
         iconSVG = renewableSVG()
-        texts = <>
-          <text
-            y={50} x={-10}
-            style={{ fontSize: 12, fill: '#343a40' }}>Envelope
-          </text>
-          <text
-            y={66} x={-30}
-            style={{ fontSize: 12, fill: '#343a40' }}>Performance
-          </text>
-        </>
+        texts = (
+          <>
+            <text
+              y={50} x={-10}
+              style={{ fontSize: 12, fill: '#343a40' }}
+            >Envelope
+            </text>
+            <text
+              y={66} x={-30}
+              style={{ fontSize: 12, fill: '#343a40' }}
+            >Performance
+            </text>
+          </>
+        )
         translateX = -30
         translateY = -30
         break
@@ -164,17 +188,17 @@ const CurrentSubSystemHealth = ({data}) => {
     ...data,
     indexBy: 'name',
     animate: true,
-    gridShape: "circular",
+    gridShape: 'circular',
     dotSize: 0,
-    dotBorderColor: "#fff",
+    dotBorderColor: '#fff',
     dotBorderWidth: 0,
     enableDotLabel: false,
     gridLabelOffset: 36,
     gridLabel: LabelComponent,
-    fillOpacity: .9,
+    fillOpacity: 0.9,
     borderWidth: 1,
     blendMode: 'multiply',
-    gridLevels: 3,
+    gridLevels: 3
   }
 
   const list = data.data.map(item => (
@@ -182,9 +206,9 @@ const CurrentSubSystemHealth = ({data}) => {
   ))
 
   return (
-    <CurrentSubSystemHealthWrapper className="mb-4">
+    <CurrentSubSystemHealthWrapper className='mb-4'>
       <CurrentSubSystemHealthTitle>Current Sub-System Health</CurrentSubSystemHealthTitle>
-      <Radar {...commonProperties}  colors={['#87972f']}/>
+      <Radar {...commonProperties} colors={['#87972f']} />
       <CurrentSubSystemHealthList>
         {list}
       </CurrentSubSystemHealthList>

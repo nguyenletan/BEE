@@ -6,7 +6,7 @@ import buildingImage2 from '../../assets/images/building2.jpg'
 import buildingImage3 from '../../assets/images/building3.jpg'
 import BuildingBlock from '../../components/BuildingBlock'
 import { AddBuildingText, AddingIcon, BuildingBlocks, Description, PortfolioWrapper } from './PortfolioStyle'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 const buildingData = [
   {
@@ -30,30 +30,32 @@ const buildingData = [
 
 const Portfolio = () => {
   const blocks = buildingData.map(data => {
-    return <BuildingBlock data={data} key={data.id}/>
+    return <BuildingBlock data={data} key={data.id} />
   })
-  return <>
-    <Header/>
-    <PortfolioWrapper className="container-fluid container-md">
+  return (
+    <>
+      <Header />
+      <PortfolioWrapper className='container-fluid container-md'>
 
-      <div className="d-flex justify-content-between">
-        <Description className="">Please select a building to see it’s energy performance and asset
-          health</Description>
+        <div className='d-flex justify-content-between'>
+          <Description className=''>Please select a building to see it’s energy performance and asset
+            health
+          </Description>
 
-        <div>
-          <Link to="/adding-building">
-            <AddBuildingText className="text-primary font-weight-bold">Add building</AddBuildingText>
-            <AddingIcon className="bi bi-plus-circle-fill"/>
-          </Link>
+          <div>
+            <Link to='/adding-building'>
+              <AddBuildingText className='text-primary font-weight-bold'>Add building</AddBuildingText>
+              <AddingIcon className='bi bi-plus-circle-fill' />
+            </Link>
+          </div>
         </div>
-      </div>
 
-      <BuildingBlocks className="d-flex justify-content-center justify-content-md-start flex-wrap">
-        {blocks}
-      </BuildingBlocks>
-    </PortfolioWrapper>
-  </>
-
+        <BuildingBlocks className='d-flex justify-content-center justify-content-md-start flex-wrap'>
+          {blocks}
+        </BuildingBlocks>
+      </PortfolioWrapper>
+    </>
+  )
 }
 
 export default Portfolio

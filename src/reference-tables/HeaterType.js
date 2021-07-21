@@ -18,7 +18,7 @@ const HeaterType = [
   {
     id: 5,
     name: 'Central Boiler'
-  },
+  }
 ]
 
 export default HeaterType

@@ -6,7 +6,7 @@ import lightingImg from '../../../../assets/images/lighting.svg'
 import heatingImg from '../../../../assets/images/heating.svg'
 import wallImg from '../../../../assets/images/wall.svg'
 import mechVentImg from '../../../../assets/images/mechanical-ventilation.svg'
-import { Link , useRouteMatch } from 'react-router-dom'
+import { Link, useRouteMatch } from 'react-router-dom'
 
 const ImprovementMeasuresWrapper = styled.div`
   padding: 20px;
@@ -82,9 +82,7 @@ const InfoButton = styled.button`
 `
 
 const PotentialFaultList = ({ data }) => {
-
-
-  let { url } = useRouteMatch()
+  const { url } = useRouteMatch()
 
   const rows = data.map(item => {
     let imgSrc
@@ -118,19 +116,18 @@ const PotentialFaultList = ({ data }) => {
         imgSrc = ''
         width = 25
         break
-
     }
     return (
       <tr key={item.asset}>
-        <FirstTd><ImageWrapper><Image src={imgSrc} alt={item.subSystem} width={width}/></ImageWrapper>{item.subSystem}
+        <FirstTd><ImageWrapper><Image src={imgSrc} alt={item.subSystem} width={width} /></ImageWrapper>{item.subSystem}
         </FirstTd>
-        <td width="18%">{item.asset}</td>
-        <td width="12%">{item.fault}</td>
-        <td width="12%">{item.potentialDownTime}</td>
-        <td width="12%">{item.sparePartsLeadTime}</td>
-        <td width="12%">{item.estimatedTimeToFailure}</td>
-        <td width="10%">
-          <InfoButton className="btn btn-primary btn-sm"><Link to={url + '/issue/' + item.id}>Info</Link></InfoButton>
+        <td width='18%'>{item.asset}</td>
+        <td width='12%'>{item.fault}</td>
+        <td width='12%'>{item.potentialDownTime}</td>
+        <td width='12%'>{item.sparePartsLeadTime}</td>
+        <td width='12%'>{item.estimatedTimeToFailure}</td>
+        <td width='10%'>
+          <InfoButton className='btn btn-primary btn-sm'><Link to={url + '/issue/' + item.id}>Info</Link></InfoButton>
         </td>
       </tr>
     )
@@ -139,21 +136,21 @@ const PotentialFaultList = ({ data }) => {
   return (
     <ImprovementMeasuresWrapper>
       <ImprovementMeasuresTitle>Improvement Measures</ImprovementMeasuresTitle>
-      <ImprovementMeasuresTable className="table">
+      <ImprovementMeasuresTable className='table'>
         <thead>
-        <tr>
-          <FirstTh>Sub-System</FirstTh>
-          <th width="18%">Asset</th>
-          <th width="12%">Fault</th>
-          <th width="12%">Potential<br/>downtime</th>
-          <th width="12%">Spare Parts<br/>Lead Time</th>
-          <th width="12%">Estimated Time<br/>To Failure</th>
-          <th width="10%">Details</th>
-        </tr>
+          <tr>
+            <FirstTh>Sub-System</FirstTh>
+            <th width='18%'>Asset</th>
+            <th width='12%'>Fault</th>
+            <th width='12%'>Potential<br />downtime</th>
+            <th width='12%'>Spare Parts<br />Lead Time</th>
+            <th width='12%'>Estimated Time<br />To Failure</th>
+            <th width='10%'>Details</th>
+          </tr>
         </thead>
       </ImprovementMeasuresTable>
       <ImprovementMeasuresTableWrapper>
-        <ImprovementMeasuresTable className="table">
+        <ImprovementMeasuresTable className='table'>
           <tbody>
             {rows}
           </tbody>

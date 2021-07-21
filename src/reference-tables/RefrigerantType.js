@@ -70,7 +70,7 @@ const RefrigerantType = [
   {
     id: 18,
     name: 'R718'
-  },
+  }
 ]
 
 export default RefrigerantType

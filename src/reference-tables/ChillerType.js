@@ -1,7 +1,8 @@
 const ChillerType = [
-  { id: 0,
+  {
+    id: 0,
     name: 'R12'
   }
 ]
 
-export  default ChillerType
+export default ChillerType

@@ -34,7 +34,7 @@ const ExternalRoofType = [
   {
     id: 9,
     name: 'Built-Up Roofing with Concrete Roof'
-  },
+  }
 ]
 
 export default ExternalRoofType

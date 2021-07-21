@@ -10,7 +10,7 @@ export const DomesticGroundFloorInsulationType = [
   {
     id: 4,
     name: 'Existing Buildings (Refurbishment)'
-  },
+  }
 ]
 
 export const NonDomesticGroundFloorInsulationType = [
@@ -25,6 +25,5 @@ export const NonDomesticGroundFloorInsulationType = [
   {
     id: 7,
     name: 'Existing Buildings N/D (Refurbishment)'
-  },
+  }
 ]
-

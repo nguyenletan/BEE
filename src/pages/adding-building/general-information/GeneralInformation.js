@@ -8,21 +8,14 @@ import { SustainabilityRatingScheme } from '../../../reference-tables/GreenBuild
 import { Redirect } from 'react-router-dom'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import StepNav from '../step-nav/StepNav'
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from '@material-ui/core'
+import { FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core'
 import Countries from '../../../reference-tables/Country'
 import UseType from '../../../reference-tables/UseType'
 import { useRecoilState } from 'recoil'
-import {
-  addingBuildingProgressState,
-  generalBuildingInformationState,
-} from '../../../atoms'
+import { addingBuildingProgressState, generalBuildingInformationState } from '../../../atoms'
 import { makeStyles } from '@material-ui/core/styles'
+import Orientation from '../../../reference-tables/Orientation'
+import Period from '../../../reference-tables/Period'
 
 const Form = styled.form`
 
@@ -61,34 +54,6 @@ const GeneralInformation = () => {
     addingBuildingProgressState)
 
   const classes = makeStyles((theme) => (MaterialFormStyle))()
-
-  const oriented = [
-    { id: 1, name: 'North' },
-    { id: 2, name: 'North East' },
-    { id: 3, name: 'East' },
-    { id: 4, name: 'South East' },
-    { id: 5, name: 'South' },
-    { id: 6, name: 'South West' },
-    { id: 7, name: 'West' },
-    { id: 8, name: 'North west' },
-  ]
-
-  const period = [
-    { id: 0, name: '2021-Now', value: '2021' },
-    { id: 1, name: '2011-2020', value: '2011' },
-    { id: 2, name: '2001-2010', value: '2001' },
-    { id: 3, name: '1991-2000', value: '1991' },
-    { id: 4, name: '1981-1990', value: '1981' },
-    { id: 5, name: '1971-1980', value: '1971' },
-    { id: 6, name: '1961-1970', value: '1961' },
-    { id: 7, name: '1951-1960', value: '1951' },
-    { id: 8, name: '1951-1950', value: '1941' },
-    { id: 9, name: '1931-1940', value: '1931' },
-    { id: 10, name: '1921-1930', value: '1921' },
-    { id: 11, name: '1911-1920', value: '1911' },
-    { id: 12, name: '1901-1910', value: '1901' },
-    { id: 13, name: 'before 1901', value: '1900' },
-  ]
 
   const [isMovingNext, setIsMovingNext] = useState(false)
 
@@ -137,6 +102,15 @@ const GeneralInformation = () => {
         })
       }
     }
+  }
+
+  const onInputChange = (name, value) => {
+    console.log(name)
+    console.log(value)
+    setGeneralBuildingInformation({
+      ...generalBuildingInformation,
+      [name]: value,
+    })
   }
 
   useEffect(() => {
@@ -235,14 +209,22 @@ const GeneralInformation = () => {
     }
   }, [formState])
 
+  useEffect(() => {
+    if (generalBuildingInformation !== null &&
+      generalBuildingInformation?.sustainabilityRatingSchemeId !== null) {
+      console.log(generalBuildingInformation?.sustainabilityRatingSchemeId)
+      console.log(SustainabilityRatingScheme.filter(
+        item => item.id.toString() ===
+          generalBuildingInformation?.sustainabilityRatingSchemeId?.toString())[0]?.ratingLevels)
+
+      setSustainabilityRating(SustainabilityRatingScheme.filter(
+        item => item.id.toString() ===
+          generalBuildingInformation?.sustainabilityRatingSchemeId?.toString())[0]?.ratingLevels)
+    }
+  }, [generalBuildingInformation, generalBuildingInformation?.sustainabilityRatingSchemeId])
+
   const [sustainabilityRating, setSustainabilityRating] = useState(
     SustainabilityRatingScheme[0].ratingLevels)
-
-  const onRatingSchemeChange = (e) => {
-    setSustainabilityRating(SustainabilityRatingScheme.filter(
-      item => item.id.toString() ===
-        e.target.value.toString())[0]?.ratingLevels)
-  }
 
   const onSubmit = (data) => {
     setGeneralBuildingInformation({ ...generalBuildingInformation, ...data })
@@ -286,13 +268,21 @@ const GeneralInformation = () => {
                   <FormControl className={classes.formControl}>
                     <TextField
                       label="Building Name"
-                      value={value}
-                      onChange={onChange}
+                      value={generalBuildingInformation?.buildingName}
+                      onChange={(e) => {
+                        onChange(e)
+                        onInputChange('buildingName', e.target.value)
+                      }}
                       error={!!error}
                       helperText={error ? error.message : null}
                     />
                   </FormControl>
                 )}
+                // rules={{
+                //   validate: () => {
+                //     return getValues("firstName") === "bill";
+                //   }
+                // }}
                 rules={{ required: 'Building Name is required' }}
               />
 
@@ -311,11 +301,17 @@ const GeneralInformation = () => {
                     <InputLabel id="building-orientation-label">Building
                       Orientation</InputLabel>
                     <Select labelId="building-orientation-label"
-                            value={value ? value : ''}
-                            onChange={onChange}
+                            value={generalBuildingInformation?.buildingOrientedId
+                              ? generalBuildingInformation?.buildingOrientedId
+                              : ''}
+                            onChange={(e) => {
+                              onChange(e)
+                              onInputChange('buildingOrientedId',
+                                e.target.value)
+                            }}
                             error={!!error}
                             helperText={error ? error.message : null}>>
-                      {oriented.map((o) => (
+                      {Orientation.map((o) => (
                         <MenuItem
                           key={o.id}
                           value={o.id}
@@ -346,8 +342,11 @@ const GeneralInformation = () => {
                     <TextField type="text"
                                id="address"
                                label="Address"
-                               value={value}
-                               onChange={onChange}
+                               value={generalBuildingInformation.address}
+                               onChange={(e) => {
+                                 onChange(e)
+                                 onInputChange('address', e.target.value)
+                               }}
                                error={!!error}
                                helperText={error ? error.message : null}
                     />
@@ -372,10 +371,14 @@ const GeneralInformation = () => {
                       Rating Scheme</InputLabel>
                     <Select id="sustainability-rating-scheme"
                             labelId="sustainability-rating-scheme-label"
-                            value={value ? value : ''}
+                            value={generalBuildingInformation?.sustainabilityRatingSchemeId
+                              ? generalBuildingInformation?.sustainabilityRatingSchemeId
+                              : ''}
                             onChange={(e) => {
-                              onRatingSchemeChange(e)
                               onChange(e)
+                              onInputChange(
+                                'sustainabilityRatingSchemeId',
+                                e.target.value)
                             }}
                             error={!!error}
                             helperText={error ? error.message : null}>
@@ -410,8 +413,12 @@ const GeneralInformation = () => {
                     <TextField type="text"
                                label="Postal Code"
                                id="postal-code"
-                               value={value}
-                               onChange={onChange}
+                               value={generalBuildingInformation.postalCode}
+                               onChange={(e) => {
+                                 onChange(e)
+                                 onInputChange('postalCode',
+                                   e.target.value)
+                               }}
                                error={!!error}
                                helperText={error ? error.message : null}
                                aria-describedby="Postal Code"
@@ -434,8 +441,14 @@ const GeneralInformation = () => {
                       Rating</InputLabel>
                     <Select id="sustainability-rating-select"
                             labelId="sustainability-rating-label"
-                            value={value ? value : ''}
-                            onChange={onChange}
+                            value={generalBuildingInformation?.sustainabilityRatingId
+                              ? generalBuildingInformation?.sustainabilityRatingId
+                              : ''}
+                            onChange={(e) => {
+                              onChange(e)
+                              onInputChange('sustainabilityRatingId',
+                                e.target.value)
+                            }}
                             error={!!error}
                             helperText={error ? error.message : null}
                     >
@@ -471,14 +484,16 @@ const GeneralInformation = () => {
                                id="city-select"
                                aria-describedby="City"
                                label="City"
-                               value={value}
-                               onChange={onChange}
+                               value={generalBuildingInformation.city}
+                               onChange={(e) => {
+                                 onChange(e)
+                                 onInputChange('city', e.target.value)
+                               }}
                                error={!!error}
                                helperText={error ? error.message : null}
                     />
                   </FormControl>
                 )}
-                rules={{ required: 'City is required' }}
               />
             </div>
             <div className="form-group col-12 col-lg-6">
@@ -494,14 +509,22 @@ const GeneralInformation = () => {
                                id="storeys-above-ground"
                                aria-describedby="Storeys Above Ground"
                                label="Storeys Above Ground"
-                               value={value}
-                               onChange={onChange}
+                               value={generalBuildingInformation.storeysAboveGround}
+                               onChange={(e) => {
+                                 onChange(e)
+                                 onInputChange('storeysAboveGround',
+                                   e.target.value)
+                               }}
+                               min={0}
                                error={!!error}
                                helperText={error ? error.message : null}
                     />
                   </FormControl>
                 )}
-                rules={{ required: 'Storeys Above Ground is required' }}
+                rules={{
+                  min: { value: 0, message: 'The value should be > -1' },
+                  required: 'Storeys Above Ground is required',
+                }}
               />
 
             </div>
@@ -521,14 +544,17 @@ const GeneralInformation = () => {
                                id="state"
                                aria-describedby="State"
                                label="State"
-                               value={value}
-                               onChange={onChange}
+                               value={generalBuildingInformation.state}
+                               onChange={(e) => {
+                                 onChange(e)
+                                 onInputChange('state',
+                                   e.target.value)
+                               }}
                                error={!!error}
                                helperText={error ? error.message : null}
                     />
                   </FormControl>
                 )}
-                rules={{ required: 'State is required' }}
               />
             </div>
             <div className="col-12 col-lg-6">
@@ -544,14 +570,21 @@ const GeneralInformation = () => {
                                id="storeys-below-ground"
                                aria-describedby="Storeys Below Ground"
                                label="Storeys Below Ground"
-                               value={value}
-                               onChange={onChange}
+                               value={generalBuildingInformation.storeysBelowGround}
+                               onChange={(e) => {
+                                 onChange(e)
+                                 onInputChange('storeysBelowGround',
+                                   e.target.value)
+                               }}
                                error={!!error}
                                helperText={error ? error.message : null}
                     />
                   </FormControl>
                 )}
-                rules={{ required: 'Storeys Below Ground is required' }}
+                rules={{
+                  min: { value: 0, message: 'The value should be > -1' },
+                  required: 'Storeys Below Ground is required',
+                }}
               />
             </div>
           </div>
@@ -567,11 +600,18 @@ const GeneralInformation = () => {
                   fieldState: { error },
                 }) => (
                   <FormControl className={classes.formControl}>
-                    <InputLabel id="country-code-label">Country</InputLabel>
+                    <InputLabel
+                      id="country-code-label">Country</InputLabel>
                     <Select id="country-code"
                             labelId="country-code-label"
-                            value={value ? value : ''}
-                            onChange={onChange}
+                            value={generalBuildingInformation?.countryCode
+                              ? generalBuildingInformation?.countryCode
+                              : ''}
+                            onChange={(e) => {
+                              onChange(e)
+                              onInputChange('countryCode',
+                                e.target.value)
+                            }}
                             error={!!error}
                             helperText={error ? error.message : null}
                     >
@@ -586,10 +626,11 @@ const GeneralInformation = () => {
                     </Select>
                   </FormControl>
                 )}
-                //rules={{ required: 'Country Code is required' }}
+                rules={{ required: 'Country Code is required' }}
               />
             </div>
-            <div className="d-flex justify-content-start mb-3 col-12 col-lg-6">
+            <div
+              className="d-flex justify-content-start mb-3 col-12 col-lg-6">
               <Controller
                 name="grossInteriorArea"
                 control={control}
@@ -597,31 +638,52 @@ const GeneralInformation = () => {
                   field: { onChange, value },
                   fieldState: { error },
                 }) => (
-                  <>
-                    <TextField type="number"
-                               id="gross-interior-area"
-                               aria-describedby="Gross Interior Area"
-                               placeholder="Gross Interior Area"
-                               label="Gross Interior Area"
-                               className={classes.valueUnit}
-                               value={value}
-                               onChange={onChange}
-                               error={!!error}
-                               helperText={error ? error.message : null}
-                    />
-                    <FormControl className={classes.smallFormControl}>
-                      <InputLabel id="gross-interior-area-unit-label"/>
-                      <Select id="gross-interior-area-unit-select"
-                              labelId="gross-interior-area-unit-label"
-                              className={classes.unit}
-                              defaultValue="m2">
-                        <MenuItem value="m2">m<sup>2</sup></MenuItem>
-                        <MenuItem value="ft2">ft<sup>2</sup></MenuItem>
-                      </Select>
-                    </FormControl>
-                  </>
+                  <TextField type="number"
+                             id="gross-interior-area"
+                             aria-describedby="Gross Interior Area"
+                             placeholder="Gross Interior Area"
+                             label="Gross Interior Area"
+                             className={classes.valueUnit}
+                             value={generalBuildingInformation.grossInteriorArea}
+                             onChange={(e) => {
+                               onChange(e)
+                               onInputChange('grossInteriorArea',
+                                 e.target.value)
+                             }}
+                             error={!!error}
+                             helperText={error ? error.message : null}
+                  />
                 )}
-                rules={{ required: 'Gross Interior Area is required' }}
+                rules={{
+                  min: { value: 0, message: 'The value should be > -1' },
+                  required: 'Gross Interior Area is required',
+                }}
+              />
+              <Controller
+                name="grossInteriorAreaUnit"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <FormControl className={classes.smallFormControl}>
+                    <InputLabel id="gross-interior-area-unit-label"/>
+                    <Select id="gross-interior-area-unit-select"
+                            labelId="gross-interior-area-unit-label"
+                            className={classes.unit}
+                            defaultValue="m2"
+                            value={generalBuildingInformation.grossInteriorAreaUnit}
+                            onChange={(e) => {
+                              onChange(e)
+                              onInputChange('grossInteriorAreaUnit',
+                                e.target.value)
+                            }}
+                    >
+                      <MenuItem value="m2">m<sup>2</sup></MenuItem>
+                      <MenuItem value="ft2">ft<sup>2</sup></MenuItem>
+                    </Select>
+                  </FormControl>
+                )}
               />
             </div>
 
@@ -641,14 +703,20 @@ const GeneralInformation = () => {
                       Period</InputLabel>
                     <Select id="construction-period"
                             label="construction-period-label"
-                            value={value ? value : ''}
-                            onChange={onChange}
+                            value={generalBuildingInformation?.constructionPeriodValue
+                              ? generalBuildingInformation?.constructionPeriodValue
+                              : ''}
+                            onChange={(e) => {
+                              onChange(e)
+                              onInputChange('constructionPeriodValue',
+                                e.target.value)
+                            }}
                             error={!!error}
                             helperText={error ? error.message : null}>
-                      {period.map((o) => (
+                      {Period.map((o) => (
                         <MenuItem
                           key={o.id}
-                          value={o.value}
+                          value={o.value} Period
                         >
                           {o.name}
                         </MenuItem>
@@ -659,7 +727,8 @@ const GeneralInformation = () => {
                 rules={{ required: 'Construction Period is required' }}
               />
             </div>
-            <div className="col-12 col-lg-6 d-flex justify-content-start mb-3">
+            <div
+              className="col-12 col-lg-6 d-flex justify-content-start mb-3">
               <Controller
                 name="netUsableArea"
                 control={control}
@@ -667,31 +736,56 @@ const GeneralInformation = () => {
                   field: { onChange, value },
                   fieldState: { error },
                 }) => (
-                  <>
-                    <TextField type="number"
-                               id="net-usable-area"
-                               aria-describedby="Net Usable Area"
-                               placeholder="Net Usable Area"
-                               label="Net Usable Area"
-                               className={classes.valueUnit}
-                               value={value}
-                               onChange={onChange}
-                               error={!!error}
-                               helperText={error ? error.message : null}
-                    />
-                    <FormControl className={classes.smallFormControl}>
-                      <InputLabel id="net-usable-area-unit-label"/>
-                      <Select id="net-usable-area-unit-select"
-                              labelId="net-usable-area-unit-label"
-                              className={classes.unit}
-                              defaultValue="m2">
-                        <MenuItem value="m2">m<sup>2</sup></MenuItem>
-                        <MenuItem value="ft2">ft<sup>2</sup></MenuItem>
-                      </Select>
-                    </FormControl>
-                  </>
+
+                  <TextField type="number"
+                             id="net-usable-area"
+                             aria-describedby="Net Usable Area"
+                             placeholder="Net Usable Area"
+                             label="Net Usable Area"
+                             className={classes.valueUnit}
+                             value={generalBuildingInformation?.netUsableArea}
+                             onChange={(e) => {
+                               onChange(e)
+                               onInputChange('netUsableArea',
+                                 e.target.value)
+                             }}
+                             error={!!error}
+                             helperText={error ? error.message : null}
+                  />
+
                 )}
-                rules={{ required: 'Net Usable Area is required' }}
+                rules={{
+                  min: { value: 0, message: 'The value should be > -1' },
+                  required: 'Net Usable Area is required',
+                }}
+              />
+
+              <Controller
+                name="netUsableAreaUnit"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+
+                  <FormControl className={classes.smallFormControl}>
+                    <InputLabel id="net-usable-area-unit-label"/>
+                    <Select id="net-usable-area-unit-select"
+                            labelId="net-usable-area-unit-label"
+                            className={classes.unit}
+                            value={generalBuildingInformation?.netUsableAreaUnit}
+                            onChange={(e) => {
+                              onChange(e)
+                              onInputChange('netUsableAreaUnit',
+                                e.target.value)
+                            }}
+                            defaultValue="m2">
+                      <MenuItem value="m2">m<sup>2</sup></MenuItem>
+                      <MenuItem value="ft2">ft<sup>2</sup></MenuItem>
+                    </Select>
+                  </FormControl>
+
+                )}
               />
             </div>
 
@@ -710,8 +804,14 @@ const GeneralInformation = () => {
                     <InputLabel id="use-type-label">Use Type</InputLabel>
                     <Select id="use-type"
                             labelId="use-type-label"
-                            value={value ? value : ''}
-                            onChange={onChange}
+                            value={generalBuildingInformation?.useTypeId
+                              ? generalBuildingInformation?.useTypeId
+                              : ''}
+                            onChange={(e) => {
+                              onChange(e)
+                              onInputChange('useTypeId',
+                                e.target.value)
+                            }}
                             error={!!error}
                             helperText={error ? error.message : null}
                     >
@@ -729,7 +829,8 @@ const GeneralInformation = () => {
                 rules={{ required: 'Use Type is required' }}
               />
             </div>
-            <div className="col-12 col-lg-6 d-flex justify-content-start mb-3">
+            <div
+              className="col-12 col-lg-6 d-flex justify-content-start mb-3">
               <Controller
                 name="avgInternalFloorToCeilingHeight"
                 control={control}
@@ -737,33 +838,58 @@ const GeneralInformation = () => {
                   field: { onChange, value },
                   fieldState: { error },
                 }) => (
-                  <>
-                    <TextField type="number"
-                               id="avg-internal-floor-to-ceiling-height"
-                               aria-describedby="Avg. Internal Floor to Ceiling Height"
-                               placeholder="Avg. Internal Floor to Ceiling Height"
-                               className={classes.valueUnit}
-                               label="Avg. Internal Floor to Ceiling Height"
-                               value={value}
-                               onChange={onChange}
-                               error={!!error}
-                               helperText={error ? error.message : null}
-                    />
-                    <FormControl className={classes.smallFormControl}>
-                      <InputLabel
-                        id="avg-internal-floor-to-ceiling-height-unit-label"/>
-                      <Select
-                        id="avg-internal-floor-to-ceiling-height-unit-select"
-                        labelId="avg-internal-floor-to-ceiling-height-unit-label"
-                        className={classes.unit}
-                        defaultValue="m">
-                        <MenuItem value="m">m</MenuItem>
-                        <MenuItem value="ft">ft</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </>
+
+                  <TextField type="number"
+                             id="avg-internal-floor-to-ceiling-height"
+                             aria-describedby="Avg. Internal Floor to Ceiling Height"
+                             placeholder="Avg. Internal Floor to Ceiling Height"
+                             className={classes.valueUnit}
+                             label="Avg. Internal Floor to Ceiling Height"
+                             value={generalBuildingInformation?.avgInternalFloorToCeilingHeight}
+                             onChange={(e) => {
+                               onChange(e)
+                               onInputChange(
+                                 'avgInternalFloorToCeilingHeight',
+                                 e.target.value)
+                             }}
+                             error={!!error}
+                             helperText={error ? error.message : null}
+                  />
                 )}
-                rules={{ required: 'Avg. Internal Floor to Ceiling Height is required' }}
+                rules={{
+                  min: { value: 0, message: 'The value should be > -1' },
+                  required: 'Avg. Internal Floor to Ceiling Height is required',
+                }}
+              />
+              <Controller
+                name="avgInternalFloorToCeilingHeightUnit"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+
+                  <FormControl className={classes.smallFormControl}>
+                    <InputLabel
+                      id="avg-internal-floor-to-ceiling-height-unit-label"/>
+                    <Select
+                      id="avg-internal-floor-to-ceiling-height-unit-select"
+                      labelId="avg-internal-floor-to-ceiling-height-unit-label"
+                      className={classes.unit}
+                      value={generalBuildingInformation?.avgInternalFloorToCeilingHeightUnit}
+                      onChange={(e) => {
+                        onChange(e)
+                        onInputChange(
+                          'avgInternalFloorToCeilingHeightUnit',
+                          e.target.value)
+                      }}
+                      defaultValue="m">
+                      <MenuItem value="m">m</MenuItem>
+                      <MenuItem value="ft">ft</MenuItem>
+                    </Select>
+                  </FormControl>
+
+                )}
               />
             </div>
           </div>

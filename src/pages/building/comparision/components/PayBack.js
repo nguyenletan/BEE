@@ -15,8 +15,7 @@ const PayBackTitle = styled.h4`
 `
 
 const PayBack = ({ data }) => {
-
-  let payBackData = data.map(item => {
+  const payBackData = data.map(item => {
     return {
       id: item.measures,
       data: [{
@@ -43,9 +42,9 @@ const PayBack = ({ data }) => {
     axisLeft: {
       format: d => `${d} Yr`,
       legend: 'Simple Payback (Yr)',
-      legendOffset: -50,
+      legendOffset: -50
     },
-    data: payBackData,
+    data: payBackData
   }
 
   const CustomNode = ({
@@ -53,7 +52,6 @@ const PayBack = ({ data }) => {
     x,
     y
   }) => {
-
     switch (node.data.subSystem) {
       case 'Cooling':
         return (

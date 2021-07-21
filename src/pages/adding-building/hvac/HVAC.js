@@ -20,7 +20,6 @@ const Title = styled.h2`
 `
 
 const HVAC = () => {
-
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
 
@@ -47,35 +46,35 @@ const HVAC = () => {
     context: undefined,
     criteriaMode: 'firstError',
     shouldFocusError: false,
-    shouldUnregister: false,
+    shouldUnregister: false
   })
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to="/adding-building/lighting"/>}
+      {isMovingNext && <Redirect to='/adding-building/lighting' />}
 
-      <div className="d-flex mt-5 mb-4">
+      <div className='d-flex mt-5 mb-4'>
 
         <Title>New Building</Title>
 
         <BackNextGroupButton
-          backLink="/adding-building/electricity-consumption"
-          nextLink="/adding-building/lighting"
+          backLink='/adding-building/electricity-consumption'
+          nextLink='/adding-building/lighting'
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
 
       </div>
 
-      <StepNav activePositon={2}/>
-      <div className="row">
+      <StepNav activePositon={2} />
+      <div className='row'>
 
-        <div className="col-12 col-lg-6 col-xxl-5">
-          <CoolingSystem/>
+        <div className='col-12 col-lg-6 col-xxl-5'>
+          <CoolingSystem />
         </div>
 
-        <div className="col-12 col-lg-6 col-xxl-5">
-          <HeatingSystem/>
+        <div className='col-12 col-lg-6 col-xxl-5'>
+          <HeatingSystem />
         </div>
       </div>
     </Form>

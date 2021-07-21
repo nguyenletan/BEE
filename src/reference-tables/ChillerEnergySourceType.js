@@ -14,7 +14,7 @@ const ChillerEnergySourceType = [
   {
     id: 4,
     name: 'Electricity'
-  },
+  }
 ]
 
 export default ChillerEnergySourceType

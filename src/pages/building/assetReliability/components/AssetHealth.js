@@ -87,53 +87,53 @@ const AssetHealth = () => {
           data:
             [
               {
-                'x': 'Jan',
-                'y': '35',
+                x: 'Jan',
+                y: '35'
               },
               {
-                'x': 'Feb',
-                'y': '41'
+                x: 'Feb',
+                y: '41'
               },
               {
-                'x': 'Mar',
-                'y': '43'
+                x: 'Mar',
+                y: '43'
               },
               {
-                'x': 'Apr',
-                'y': '49'
+                x: 'Apr',
+                y: '49'
               },
               {
-                'x': 'May',
-                'y': '53'
+                x: 'May',
+                y: '53'
               },
               {
-                'x': 'Jun',
-                'y': '50'
+                x: 'Jun',
+                y: '50'
               },
               {
-                'x': 'Jul',
-                'y': '47'
+                x: 'Jul',
+                y: '47'
               },
               {
-                'x': 'Aug',
-                'y': '34'
+                x: 'Aug',
+                y: '34'
               },
               {
-                'x': 'Sep',
-                'y': '26'
+                x: 'Sep',
+                y: '26'
               },
               {
-                'x': 'Oct',
-                'y': '31'
+                x: 'Oct',
+                y: '31'
               },
               {
-                'x': 'Nov',
-                'y': '37'
+                x: 'Nov',
+                y: '37'
               },
               {
-                'x': 'Dec',
-                'y': '50'
-              },
+                x: 'Dec',
+                y: '50'
+              }
             ]
         },
         {
@@ -141,53 +141,53 @@ const AssetHealth = () => {
           data:
             [
               {
-                'x': 'Jan',
-                'y': '55',
+                x: 'Jan',
+                y: '55'
               },
               {
-                'x': 'Feb',
-                'y': '60'
+                x: 'Feb',
+                y: '60'
               },
               {
-                'x': 'Mar',
-                'y': '63'
+                x: 'Mar',
+                y: '63'
               },
               {
-                'x': 'Apr',
-                'y': '73'
+                x: 'Apr',
+                y: '73'
               },
               {
-                'x': 'May',
-                'y': '72'
+                x: 'May',
+                y: '72'
               },
               {
-                'x': 'Jun',
-                'y': '59'
+                x: 'Jun',
+                y: '59'
               },
               {
-                'x': 'Jul',
-                'y': '53'
+                x: 'Jul',
+                y: '53'
               },
               {
-                'x': 'Aug',
-                'y': '50'
+                x: 'Aug',
+                y: '50'
               },
               {
-                'x': 'Sep',
-                'y': '59'
+                x: 'Sep',
+                y: '59'
               },
               {
-                'x': 'Oct',
-                'y': '64'
+                x: 'Oct',
+                y: '64'
               },
               {
-                'x': 'Nov',
-                'y': '71'
+                x: 'Nov',
+                y: '71'
               },
               {
-                'x': 'Dec',
-                'y': '74'
-              },
+                x: 'Dec',
+                y: '74'
+              }
             ]
         },
         {
@@ -195,55 +195,55 @@ const AssetHealth = () => {
           data:
             [
               {
-                'x': 'Jan',
-                'y': '95',
+                x: 'Jan',
+                y: '95'
               },
               {
-                'x': 'Feb',
-                'y': '96'
+                x: 'Feb',
+                y: '96'
               },
               {
-                'x': 'Mar',
-                'y': '92'
+                x: 'Mar',
+                y: '92'
               },
               {
-                'x': 'Apr',
-                'y': '85'
+                x: 'Apr',
+                y: '85'
               },
               {
-                'x': 'May',
-                'y': '83'
+                x: 'May',
+                y: '83'
               },
               {
-                'x': 'Jun',
-                'y': '75'
+                x: 'Jun',
+                y: '75'
               },
               {
-                'x': 'Jul',
-                'y': '73'
+                x: 'Jul',
+                y: '73'
               },
               {
-                'x': 'Aug',
-                'y': '70'
+                x: 'Aug',
+                y: '70'
               },
               {
-                'x': 'Sep',
-                'y': '75'
+                x: 'Sep',
+                y: '75'
               },
               {
-                'x': 'Oct',
-                'y': '81'
+                x: 'Oct',
+                y: '81'
               },
               {
-                'x': 'Nov',
-                'y': '88'
+                x: 'Nov',
+                y: '88'
               },
               {
-                'x': 'Dec',
-                'y': '91'
-              },
+                x: 'Dec',
+                y: '91'
+              }
             ]
-        },
+        }
       ]
     },
 
@@ -256,53 +256,53 @@ const AssetHealth = () => {
             data:
               [
                 {
-                  'x': 'Jan',
-                  'y': '38',
+                  x: 'Jan',
+                  y: '38'
                 },
                 {
-                  'x': 'Feb',
-                  'y': '41'
+                  x: 'Feb',
+                  y: '41'
                 },
                 {
-                  'x': 'Mar',
-                  'y': '44'
+                  x: 'Mar',
+                  y: '44'
                 },
                 {
-                  'x': 'Apr',
-                  'y': '49'
+                  x: 'Apr',
+                  y: '49'
                 },
                 {
-                  'x': 'May',
-                  'y': '53'
+                  x: 'May',
+                  y: '53'
                 },
                 {
-                  'x': 'Jun',
-                  'y': '55'
+                  x: 'Jun',
+                  y: '55'
                 },
                 {
-                  'x': 'Jul',
-                  'y': '47'
+                  x: 'Jul',
+                  y: '47'
                 },
                 {
-                  'x': 'Aug',
-                  'y': '40'
+                  x: 'Aug',
+                  y: '40'
                 },
                 {
-                  'x': 'Sep',
-                  'y': '31'
+                  x: 'Sep',
+                  y: '31'
                 },
                 {
-                  'x': 'Oct',
-                  'y': '35'
+                  x: 'Oct',
+                  y: '35'
                 },
                 {
-                  'x': 'Nov',
-                  'y': '40'
+                  x: 'Nov',
+                  y: '40'
                 },
                 {
-                  'x': 'Dec',
-                  'y': '55'
-                },
+                  x: 'Dec',
+                  y: '55'
+                }
               ]
           },
           {
@@ -310,53 +310,53 @@ const AssetHealth = () => {
             data:
               [
                 {
-                  'x': 'Jan',
-                  'y': '54',
+                  x: 'Jan',
+                  y: '54'
                 },
                 {
-                  'x': 'Feb',
-                  'y': '59'
+                  x: 'Feb',
+                  y: '59'
                 },
                 {
-                  'x': 'Mar',
-                  'y': '60'
+                  x: 'Mar',
+                  y: '60'
                 },
                 {
-                  'x': 'Apr',
-                  'y': '69'
+                  x: 'Apr',
+                  y: '69'
                 },
                 {
-                  'x': 'May',
-                  'y': '71'
+                  x: 'May',
+                  y: '71'
                 },
                 {
-                  'x': 'Jun',
-                  'y': '60'
+                  x: 'Jun',
+                  y: '60'
                 },
                 {
-                  'x': 'Jul',
-                  'y': '55'
+                  x: 'Jul',
+                  y: '55'
                 },
                 {
-                  'x': 'Aug',
-                  'y': '55'
+                  x: 'Aug',
+                  y: '55'
                 },
                 {
-                  'x': 'Sep',
-                  'y': '59'
+                  x: 'Sep',
+                  y: '59'
                 },
                 {
-                  'x': 'Oct',
-                  'y': '64'
+                  x: 'Oct',
+                  y: '64'
                 },
                 {
-                  'x': 'Nov',
-                  'y': '73'
+                  x: 'Nov',
+                  y: '73'
                 },
                 {
-                  'x': 'Dec',
-                  'y': '77'
-                },
+                  x: 'Dec',
+                  y: '77'
+                }
               ]
           },
           {
@@ -364,55 +364,55 @@ const AssetHealth = () => {
             data:
               [
                 {
-                  'x': 'Jan',
-                  'y': '93',
+                  x: 'Jan',
+                  y: '93'
                 },
                 {
-                  'x': 'Feb',
-                  'y': '87'
+                  x: 'Feb',
+                  y: '87'
                 },
                 {
-                  'x': 'Mar',
-                  'y': '85'
+                  x: 'Mar',
+                  y: '85'
                 },
                 {
-                  'x': 'Apr',
-                  'y': '85'
+                  x: 'Apr',
+                  y: '85'
                 },
                 {
-                  'x': 'May',
-                  'y': '79'
+                  x: 'May',
+                  y: '79'
                 },
                 {
-                  'x': 'Jun',
-                  'y': '78'
+                  x: 'Jun',
+                  y: '78'
                 },
                 {
-                  'x': 'Jul',
-                  'y': '83'
+                  x: 'Jul',
+                  y: '83'
                 },
                 {
-                  'x': 'Aug',
-                  'y': '85'
+                  x: 'Aug',
+                  y: '85'
                 },
                 {
-                  'x': 'Sep',
-                  'y': '88'
+                  x: 'Sep',
+                  y: '88'
                 },
                 {
-                  'x': 'Oct',
-                  'y': '81'
+                  x: 'Oct',
+                  y: '81'
                 },
                 {
-                  'x': 'Nov',
-                  'y': '85'
+                  x: 'Nov',
+                  y: '85'
                 },
                 {
-                  'x': 'Dec',
-                  'y': '92'
-                },
+                  x: 'Dec',
+                  y: '92'
+                }
               ]
-          },
+          }
         ]
       },
 
@@ -425,53 +425,53 @@ const AssetHealth = () => {
             data:
               [
                 {
-                  'x': 'Jan',
-                  'y': '39',
+                  x: 'Jan',
+                  y: '39'
                 },
                 {
-                  'x': 'Feb',
-                  'y': '41'
+                  x: 'Feb',
+                  y: '41'
                 },
                 {
-                  'x': 'Mar',
-                  'y': '44'
+                  x: 'Mar',
+                  y: '44'
                 },
                 {
-                  'x': 'Apr',
-                  'y': '55'
+                  x: 'Apr',
+                  y: '55'
                 },
                 {
-                  'x': 'May',
-                  'y': '53'
+                  x: 'May',
+                  y: '53'
                 },
                 {
-                  'x': 'Jun',
-                  'y': '50'
+                  x: 'Jun',
+                  y: '50'
                 },
                 {
-                  'x': 'Jul',
-                  'y': '47'
+                  x: 'Jul',
+                  y: '47'
                 },
                 {
-                  'x': 'Aug',
-                  'y': '39'
+                  x: 'Aug',
+                  y: '39'
                 },
                 {
-                  'x': 'Sep',
-                  'y': '40'
+                  x: 'Sep',
+                  y: '40'
                 },
                 {
-                  'x': 'Oct',
-                  'y': '36'
+                  x: 'Oct',
+                  y: '36'
                 },
                 {
-                  'x': 'Nov',
-                  'y': '41'
+                  x: 'Nov',
+                  y: '41'
                 },
                 {
-                  'x': 'Dec',
-                  'y': '50'
-                },
+                  x: 'Dec',
+                  y: '50'
+                }
               ]
           },
           {
@@ -479,53 +479,53 @@ const AssetHealth = () => {
             data:
               [
                 {
-                  'x': 'Jan',
-                  'y': '59',
+                  x: 'Jan',
+                  y: '59'
                 },
                 {
-                  'x': 'Feb',
-                  'y': '65'
+                  x: 'Feb',
+                  y: '65'
                 },
                 {
-                  'x': 'Mar',
-                  'y': '63'
+                  x: 'Mar',
+                  y: '63'
                 },
                 {
-                  'x': 'Apr',
-                  'y': '69'
+                  x: 'Apr',
+                  y: '69'
                 },
                 {
-                  'x': 'May',
-                  'y': '72'
+                  x: 'May',
+                  y: '72'
                 },
                 {
-                  'x': 'Jun',
-                  'y': '59'
+                  x: 'Jun',
+                  y: '59'
                 },
                 {
-                  'x': 'Jul',
-                  'y': '55'
+                  x: 'Jul',
+                  y: '55'
                 },
                 {
-                  'x': 'Aug',
-                  'y': '51'
+                  x: 'Aug',
+                  y: '51'
                 },
                 {
-                  'x': 'Sep',
-                  'y': '59'
+                  x: 'Sep',
+                  y: '59'
                 },
                 {
-                  'x': 'Oct',
-                  'y': '64'
+                  x: 'Oct',
+                  y: '64'
                 },
                 {
-                  'x': 'Nov',
-                  'y': '71'
+                  x: 'Nov',
+                  y: '71'
                 },
                 {
-                  'x': 'Dec',
-                  'y': '80'
-                },
+                  x: 'Dec',
+                  y: '80'
+                }
               ]
           },
           {
@@ -533,55 +533,55 @@ const AssetHealth = () => {
             data:
               [
                 {
-                  'x': 'Jan',
-                  'y': '95',
+                  x: 'Jan',
+                  y: '95'
                 },
                 {
-                  'x': 'Feb',
-                  'y': '92'
+                  x: 'Feb',
+                  y: '92'
                 },
                 {
-                  'x': 'Mar',
-                  'y': '92'
+                  x: 'Mar',
+                  y: '92'
                 },
                 {
-                  'x': 'Apr',
-                  'y': '85'
+                  x: 'Apr',
+                  y: '85'
                 },
                 {
-                  'x': 'May',
-                  'y': '80'
+                  x: 'May',
+                  y: '80'
                 },
                 {
-                  'x': 'Jun',
-                  'y': '79'
+                  x: 'Jun',
+                  y: '79'
                 },
                 {
-                  'x': 'Jul',
-                  'y': '73'
+                  x: 'Jul',
+                  y: '73'
                 },
                 {
-                  'x': 'Aug',
-                  'y': '74'
+                  x: 'Aug',
+                  y: '74'
                 },
                 {
-                  'x': 'Sep',
-                  'y': '71'
+                  x: 'Sep',
+                  y: '71'
                 },
                 {
-                  'x': 'Oct',
-                  'y': '79'
+                  x: 'Oct',
+                  y: '79'
                 },
                 {
-                  'x': 'Nov',
-                  'y': '81'
+                  x: 'Nov',
+                  y: '81'
                 },
                 {
-                  'x': 'Dec',
-                  'y': '83'
-                },
+                  x: 'Dec',
+                  y: '83'
+                }
               ]
-          },
+          }
         ]
       }
   }
@@ -591,14 +591,13 @@ const AssetHealth = () => {
   const commonProperties = {
 
     margin: { top: 30, right: 20, bottom: 110, left: 40 },
-    //data: selectedData,
+    // data: selectedData,
     animate: true,
     motionConfig: 'gentle'
-    //enableSlices: 'x',
+    // enableSlices: 'x',
   }
 
   const onSelect = (e) => {
-
     switch (e) {
       case 'cooling':
         selectData(data.cooling)
@@ -612,94 +611,106 @@ const AssetHealth = () => {
       default:
         break
     }
-
   }
 
-  return <AssetHealthWrapper>
-    <div className="d-flex">
-      <AssetHealthTitle>Asset Health</AssetHealthTitle>
+  return (
+    <AssetHealthWrapper>
+      <div className='d-flex'>
+        <AssetHealthTitle>Asset Health</AssetHealthTitle>
 
-      <AssetHealthOptions className="d-flex">
+        <AssetHealthOptions className='d-flex'>
 
-        <AssetHealthOptionItem className={selectedData.name === 'cooling' ? 'active' : ''}
-                               onClick={() => onSelect('cooling')}>
-          <AssetHealthOptionIcons src={coolingImg}/>Cooling</AssetHealthOptionItem>
+          <AssetHealthOptionItem
+            className={selectedData.name === 'cooling' ? 'active' : ''}
+            onClick={() => onSelect('cooling')}
+          >
+            <AssetHealthOptionIcons src={coolingImg} />Cooling
+          </AssetHealthOptionItem>
 
-        <AssetHealthOptionItem className={selectedData.name === 'heating' ? 'active' : ''}
-                               onClick={() => onSelect('heating')}><AssetHealthOptionIcons
-          src={heatingImg}/>Heating</AssetHealthOptionItem>
+          <AssetHealthOptionItem
+            className={selectedData.name === 'heating' ? 'active' : ''}
+            onClick={() => onSelect('heating')}
+          ><AssetHealthOptionIcons
+            src={heatingImg}
+          />Heating
+          </AssetHealthOptionItem>
 
-        <AssetHealthOptionItem className={selectedData.name === 'mechanical ventilation' ? 'active' : ''}
-                               onClick={() => onSelect('mechanical ventilation')}><AssetHealthOptionIcons
-          src={mechVenImg}/>Mechanical
-          Ventilation</AssetHealthOptionItem>
+          <AssetHealthOptionItem
+            className={selectedData.name === 'mechanical ventilation' ? 'active' : ''}
+            onClick={() => onSelect('mechanical ventilation')}
+          ><AssetHealthOptionIcons
+            src={mechVenImg}
+          />Mechanical
+          Ventilation
+          </AssetHealthOptionItem>
 
-      </AssetHealthOptions>
-    </div>
+        </AssetHealthOptions>
+      </div>
 
-    <div className="d-flex justify-content-end">
-      <AssetHealthTimeLineOptions>
-        <AssetHealthTimeLineOptionItem className="active">this year</AssetHealthTimeLineOptionItem>
-        <AssetHealthTimeLineOptionItem>this month</AssetHealthTimeLineOptionItem>
-        <AssetHealthTimeLineOptionItem>this week</AssetHealthTimeLineOptionItem>
-        <AssetHealthTimeLineOptionItem>today</AssetHealthTimeLineOptionItem>
-      </AssetHealthTimeLineOptions>
-    </div>
+      <div className='d-flex justify-content-end'>
+        <AssetHealthTimeLineOptions>
+          <AssetHealthTimeLineOptionItem className='active'>this year</AssetHealthTimeLineOptionItem>
+          <AssetHealthTimeLineOptionItem>this month</AssetHealthTimeLineOptionItem>
+          <AssetHealthTimeLineOptionItem>this week</AssetHealthTimeLineOptionItem>
+          <AssetHealthTimeLineOptionItem>today</AssetHealthTimeLineOptionItem>
+        </AssetHealthTimeLineOptions>
+      </div>
 
-    <ResponsiveLine
-      {...commonProperties}
-      data={selectedData.data}
-      curve="catmullRom"
-      useMesh={false}
-      enableSlices={false}
-      enablePoint={false}
-      pointSize={0}
-      pointColor={'#fff'}
-      pointBorderWidth={1}
-      enableGridX={false}
-      lineWidth={3}
-      yScale={{
-        type: 'linear',
-        min: 0,
-        max: 100
-      }}
-      axisLeft={{
-        tickValues: [0, 25, 50, 75, 100],
-        format: value => {
-          return value + '%'
-        }
-      }}
-      pointBorderColor={{ from: 'serieColor' }}
-      xScale={{ type: 'point' }}
-      colors={['#636c2e', '#87972F', '#c1cf74',]}
-      legends={[
-        {
-          anchor: 'top left',
-          direction: 'row',
-          justify: false,
-          translateX: 0,
-          translateY: -35,
-          itemWidth: 150,
-          itemHeight: 20,
-          itemsSpacing: 0,
-          symbolSize: 10,
-          symbolShape: 'circle',
-          itemDirection: 'left-to-right',
-          itemTextColor: '#777',
-          effects: [
-            {
-              on: 'hover',
-              style: {
-                itemBackground: 'rgba(0, 0, 0, .03)',
-                itemOpacity: 1
+      <ResponsiveLine
+        {...commonProperties}
+        data={selectedData.data}
+        curve='catmullRom'
+        useMesh={false}
+        enableSlices={false}
+        enablePoint={false}
+        pointSize={0}
+        pointColor='#fff'
+        pointBorderWidth={1}
+        enableGridX={false}
+        lineWidth={3}
+        yScale={{
+          type: 'linear',
+          min: 0,
+          max: 100
+        }}
+        axisLeft={{
+          tickValues: [0, 25, 50, 75, 100],
+          format: value => {
+            return value + '%'
+          }
+        }}
+        pointBorderColor={{ from: 'serieColor' }}
+        xScale={{ type: 'point' }}
+        colors={['#636c2e', '#87972F', '#c1cf74']}
+        legends={[
+          {
+            anchor: 'top left',
+            direction: 'row',
+            justify: false,
+            translateX: 0,
+            translateY: -35,
+            itemWidth: 150,
+            itemHeight: 20,
+            itemsSpacing: 0,
+            symbolSize: 10,
+            symbolShape: 'circle',
+            itemDirection: 'left-to-right',
+            itemTextColor: '#777',
+            effects: [
+              {
+                on: 'hover',
+                style: {
+                  itemBackground: 'rgba(0, 0, 0, .03)',
+                  itemOpacity: 1
+                }
               }
-            }
-          ]
-        }
-      ]}
-    />
+            ]
+          }
+        ]}
+      />
 
-  </AssetHealthWrapper>
+    </AssetHealthWrapper>
+  )
 }
 
 export default AssetHealth

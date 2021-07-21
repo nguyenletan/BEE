@@ -21,49 +21,75 @@ const UL = styled.ul`
 `
 
 const StepNav = () => {
-
   return (
-    <UL className="nav d-flex justify-content-between">
-      <li className="nav-item">
-        <NavLink activeClassName="active" className="nav-link"
-                 to={'/adding-building/search-building'}>Search
-          Building</NavLink>
+    <UL className='nav d-flex justify-content-between'>
+      <li className='nav-item'>
+        <NavLink
+          activeClassName='active' className='nav-link'
+          to='/adding-building/search-building'
+        >Search
+          Building
+        </NavLink>
       </li>
-      <li className="nav-item">
-        <NavLink activeClassName="active" className="nav-link"
-                 to={'/adding-building/general-information'}>General
-          Information</NavLink>
+      <li className='nav-item'>
+        <NavLink
+          activeClassName='active' className='nav-link'
+          to='/adding-building/general-information'
+        >General
+          Information
+        </NavLink>
       </li>
-      <li className="nav-item">
-        <NavLink activeClassName="active" className="nav-link"
-                 to={'/adding-building/activity'}>Activity</NavLink>
+      <li className='nav-item'>
+        <NavLink
+          activeClassName='active' className='nav-link'
+          to='/adding-building/activity'
+        >Activity
+        </NavLink>
       </li>
-      <li className="nav-item">
-        <NavLink activeClassName="active" className="nav-link"
-                 to={'/adding-building/electricity-consumption'}>Electricity
-          Consumption</NavLink>
+      <li className='nav-item'>
+        <NavLink
+          activeClassName='active' className='nav-link'
+          to='/adding-building/electricity-consumption'
+        >Electricity
+          Consumption
+        </NavLink>
       </li>
-      <li className="nav-item">
-        <NavLink activeClassName="active" className="nav-link"
-                 to={'/adding-building/hvac'}>HVAC</NavLink>
+      <li className='nav-item'>
+        <NavLink
+          activeClassName='active' className='nav-link'
+          to='/adding-building/hvac'
+        >HVAC
+        </NavLink>
       </li>
-      <li className="nav-item">
-        <NavLink activeClassName="active" className="nav-link"
-                 to={'/adding-building/lighting'}>Lighting</NavLink>
+      <li className='nav-item'>
+        <NavLink
+          activeClassName='active' className='nav-link'
+          to='/adding-building/lighting'
+        >Lighting
+        </NavLink>
       </li>
-      <li className="nav-item">
-        <NavLink activeClassName="active" className="nav-link"
-                 to={'/adding-building/envelope-facade'}>Envelope &
-          Facade</NavLink>
+      <li className='nav-item'>
+        <NavLink
+          activeClassName='active' className='nav-link'
+          to='/adding-building/envelope-facade'
+        >Envelope &
+          Facade
+        </NavLink>
       </li>
-      <li className="nav-item">
-        <NavLink activeClassName="active" className="nav-link"
-                 to={'/adding-building/renewable-energy'}>Renewable
-          Energy</NavLink>
+      <li className='nav-item'>
+        <NavLink
+          activeClassName='active' className='nav-link'
+          to='/adding-building/renewable-energy'
+        >Renewable
+          Energy
+        </NavLink>
       </li>
-      <li className="nav-item">
-        <NavLink activeClassName="active" className="nav-link"
-                 to={'/adding-building/adding-building-successfully'}>Done</NavLink>
+      <li className='nav-item'>
+        <NavLink
+          activeClassName='active' className='nav-link'
+          to='/adding-building/adding-building-successfully'
+        >Done
+        </NavLink>
       </li>
     </UL>
   )

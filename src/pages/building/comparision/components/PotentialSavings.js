@@ -37,33 +37,31 @@ const PotentialSavingItemValue = styled.h4`
   color: var(--bs-primary);
 `
 
-const PotentialSavings = ({data}) => {
-
+const PotentialSavings = ({ data }) => {
   const PotentialSavingItems = data.saving.map(item => (
-    <PotentialSavingItem key={item.title} className="d-flex flex-column">
-    <PotentialSavingItemTitle>{item.title} ({item.unit})</PotentialSavingItemTitle>
-    <PotentialSavingItemValue>{item.value}</PotentialSavingItemValue>
-  </PotentialSavingItem>))
+    <PotentialSavingItem key={item.title} className='d-flex flex-column'>
+      <PotentialSavingItemTitle>{item.title} ({item.unit})</PotentialSavingItemTitle>
+      <PotentialSavingItemValue>{item.value}</PotentialSavingItemValue>
+    </PotentialSavingItem>))
 
   return (
-    <PotentialSavingsWrapper className="row">
-      <div className="col-5">
+    <PotentialSavingsWrapper className='row'>
+      <div className='col-5'>
         <PotentialSavingsTitle>Potential Savings</PotentialSavingsTitle>
-        <div className="d-flex justify-content-between flex-wrap">
+        <div className='d-flex justify-content-between flex-wrap'>
           {PotentialSavingItems}
         </div>
       </div>
 
-      <div className="col-7">
-        <div className="d-flex">
-          <BuildingEnergyPerformance improved={data.energyPerformance.improved}/>
-          <CO2EmissionsPerformance improved={data.CO2EmissionsPerformance.improved}/>
+      <div className='col-7'>
+        <div className='d-flex'>
+          <BuildingEnergyPerformance improved={data.energyPerformance.improved} />
+          <CO2EmissionsPerformance improved={data.CO2EmissionsPerformance.improved} />
         </div>
       </div>
 
     </PotentialSavingsWrapper>
   )
-
 }
 
 export default PotentialSavings

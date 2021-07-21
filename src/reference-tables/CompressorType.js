@@ -1,20 +1,20 @@
 const CompressorType = [
   {
     id: 1,
-    name: 'Centrifugal',
+    name: 'Centrifugal'
   },
   {
     id: 2,
-    name: 'Reciprocating',
+    name: 'Reciprocating'
   },
   {
     id: 3,
-    name: 'Scroll',
+    name: 'Scroll'
   },
   {
     id: 4,
-    name: 'Screw Driven',
-  },
+    name: 'Screw Driven'
+  }
 ]
 
 export default CompressorType

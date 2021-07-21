@@ -12,27 +12,25 @@ const TheSecondWrapper = styled.div`
   margin-bottom: 50px;
 `
 
-const AssetReliabilityMain = ({data}) => {
-
-
+const AssetReliabilityMain = ({ data }) => {
   return (
     <>
 
-      <AssetHealth/>
+      <AssetHealth />
 
-      <TheSecondWrapper className="d-flex mb-5 justify-content-lg-center justify-content-xl-between flex-wrap">
-        <PotentialFaultRisks data={data.listOfPotentialFaults}/>
-        <CurrentSubSystemHealth data={data.currentSubSystemHealth}/>
+      <TheSecondWrapper className='d-flex mb-5 justify-content-lg-center justify-content-xl-between flex-wrap'>
+        <PotentialFaultRisks data={data.listOfPotentialFaults} />
+        <CurrentSubSystemHealth data={data.currentSubSystemHealth} />
       </TheSecondWrapper>
 
-      <PotentialFaultList data={data.listOfPotentialFaults}/>
+      <PotentialFaultList data={data.listOfPotentialFaults} />
 
-      <div className="row">
-        <div className="col-12 col-sm-8 col-xl-4 mb-4">
-          <MaintenanceBudget data={data.maintenanceBudget}/>
+      <div className='row'>
+        <div className='col-12 col-sm-8 col-xl-4 mb-4'>
+          <MaintenanceBudget data={data.maintenanceBudget} />
         </div>
-        <div className="col-12 col-xl-8 mb-4">
-          <MaintenanceBudgetBySubSystem data={data.maintenanceBudgetBySubSystem}/>
+        <div className='col-12 col-xl-8 mb-4'>
+          <MaintenanceBudgetBySubSystem data={data.maintenanceBudgetBySubSystem} />
         </div>
       </div>
     </>

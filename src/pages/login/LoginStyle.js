@@ -32,7 +32,6 @@ export const LoginText = styled.span`
   color: var(--white);
 `
 
-
 export const LoginInput = styled.input`
   border-radius: 0.65rem;
   border-color: #7b7b7b;

@@ -11,7 +11,7 @@ const Title = styled.h2`
   font-weight: 500;
   text-align: center;
 `
-const ORLabel= styled.div`
+const ORLabel = styled.div`
   font-size: 24px;
 `
 
@@ -23,26 +23,27 @@ const AskQuestion = () => {
   return (
     <>
       <Title>Your are adding a building into your portfolio. Do you want</Title>
-      <Wrapper className="row mt-6">
-        <div className="col-12 col-md-5 m-auto">
-          <div className="w-50 m-auto text-center">
-            <label htmlFor="" className="font-bold mb-3">Search building online</label>
-            <Link to={"/adding-building/search-building"}>
-              <div className="input-group">
+      <Wrapper className='row mt-6'>
+        <div className='col-12 col-md-5 m-auto'>
+          <div className='w-50 m-auto text-center'>
+            <label htmlFor='' className='font-bold mb-3'>Search building online</label>
+            <Link to='/adding-building/search-building'>
+              <div className='input-group'>
 
-              <input type="text" className="form-control"/>
-              <div className="input-group-append">
-                <img className="input-group-text" src={SearchIcon} alt="Search"/>
+                <input type='text' className='form-control' />
+                <div className='input-group-append'>
+                  <img className='input-group-text' src={SearchIcon} alt='Search' />
+                </div>
               </div>
-            </div></Link>
+            </Link>
           </div>
         </div>
-        <ORLabel className="col-11 col-md-1 text-center m-auto font-bold">OR</ORLabel>
-        <div className="col-12 col-md-5  m-auto">
-          <div className="w-50 m-auto text-center">
+        <ORLabel className='col-11 col-md-1 text-center m-auto font-bold'>OR</ORLabel>
+        <div className='col-12 col-md-5  m-auto'>
+          <div className='w-50 m-auto text-center'>
             <p>Enter Information Manually</p>
-            <Link to={"/adding-building/general-information"}>
-              <Button variant="contained" color="primary">Enter Manually</Button>
+            <Link to='/adding-building/general-information'>
+              <Button variant='contained' color='primary'>Enter Manually</Button>
             </Link>
           </div>
         </div>

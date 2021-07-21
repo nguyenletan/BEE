@@ -10,7 +10,7 @@ import OneMonthElectricityConsumption from './OneMonthElectricityConsumption'
 
 import {
   addingBuildingProgressState,
-  electricityConsumptionListState,
+  electricityConsumptionListState
 } from '../../../atoms'
 import { getNextMonthYear } from '../../../Utilities'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
@@ -48,7 +48,6 @@ const Adding = styled(AddIcon)`
 `
 
 const ElectricityConsumption = () => {
-
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
 
@@ -75,17 +74,16 @@ const ElectricityConsumption = () => {
     context: undefined,
     criteriaMode: 'firstError',
     shouldFocusError: false,
-    shouldUnregister: false,
+    shouldUnregister: false
   })
 
   const [electricityConsumptionList, setElectricityConsumptionList] = useRecoilState(
     electricityConsumptionListState)
 
   const onAddElectricityConsumption = () => {
-
     let nextMonthYear = {
       month: new Date().getMonth(),
-      year: new Date().getFullYear(),
+      year: new Date().getFullYear()
     }
     if (electricityConsumptionList !== null &&
       electricityConsumptionList.length > 0) {
@@ -104,48 +102,51 @@ const ElectricityConsumption = () => {
         month: nextMonthYear.month,
         year: nextMonthYear.year,
         value: 0,
-        cost: 0,
-      },
+        cost: 0
+      }
     ])
-
   }
 
   const lis = electricityConsumptionList.map(item =>
-    <OneMonthElectricityConsumption key={'ElectricityConsumption' + item.id}
-                                    data={item}/>,
+    <OneMonthElectricityConsumption
+      key={'ElectricityConsumption' + item.id}
+      data={item}
+    />
   )
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to="/adding-building/hvac"/>}
+      {isMovingNext && <Redirect to='/adding-building/hvac' />}
 
-      <div className="d-flex mt-5 mb-4">
+      <div className='d-flex mt-5 mb-4'>
         <Title>New Building</Title>
 
         <BackNextGroupButton
-          backLink="/adding-building/activity"
-          nextLink="/adding-building/hvac"
+          backLink='/adding-building/activity'
+          nextLink='/adding-building/hvac'
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
 
       </div>
 
-      <StepNav activePositon={2}/>
-      <div className="">
-        <Header className="row">
-          <div className="col-3">
+      <StepNav activePositon={2} />
+      <div className=''>
+        <Header className='row'>
+          <div className='col-3'>
             Month / Year
           </div>
-          <div className="col-3">
+          <div className='col-3'>
             Cost <span>($)</span>
           </div>
-          <div className="col-3">
+          <div className='col-3'>
             Consumption <span>(kWh)</span>
           </div>
-          <div className="col-3">
-            <Adding titleAccess="Add new item" fontSize="large"
-                    onClick={onAddElectricityConsumption}/>
+          <div className='col-3'>
+            <Adding
+              titleAccess='Add new item' fontSize='large'
+              onClick={onAddElectricityConsumption}
+            />
           </div>
         </Header>
         <UL>

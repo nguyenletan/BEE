@@ -47,7 +47,7 @@ const SpaceUsageType = [
   {
     id: 12,
     name: 'Car Park'
-  },
+  }
 ]
 
 export default SpaceUsageType

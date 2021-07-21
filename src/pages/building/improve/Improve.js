@@ -14,7 +14,6 @@ const BreakDownWrapper = styled.div`
   margin-bottom: 50px;
 `
 
-
 const Improve = (props) => {
   const improveData = {
     improvementMeasuresData: [
@@ -154,12 +153,12 @@ const Improve = (props) => {
         Minimum_Requirement: 19,
         Current_Performance: 53,
         Potential_Best_In_Class: 64
-      },
+      }
     ],
     keys: ['Minimum_Requirement', 'Current_Performance', 'Potential_Best_In_Class']
   }
 
-  //const [data, setData] = useState(improveData)
+  // const [data, setData] = useState(improveData)
   const [popupResult, setResult] = useState()
   const [potentialSavingsData, setPotentialSavingsData] = useState({
     energyPerformance: { current: 'D', improved: 'C' },
@@ -244,8 +243,8 @@ const Improve = (props) => {
         }
       }
 
-      tmp.energyPerformance.improved = popupResult.percentageLEDUsage >= 90 ? 'B' : 'C' //IF(C65>=0.9,"B","C")
-      tmp.CO2EmissionsPerformance.improved = popupResult.percentageLEDUsage >= 90 ? 'B' : 'C' //IF(C65>=0.9,"B","C")
+      tmp.energyPerformance.improved = popupResult.percentageLEDUsage >= 90 ? 'B' : 'C' // IF(C65>=0.9,"B","C")
+      tmp.CO2EmissionsPerformance.improved = popupResult.percentageLEDUsage >= 90 ? 'B' : 'C' // IF(C65>=0.9,"B","C")
 
       setPotentialSavingsData({ ...tmp })
 
@@ -338,36 +337,39 @@ const Improve = (props) => {
   return (
     <ImproveWrapper>
 
-      <PotentialSavings data={potentialSavingsData}/>
+      <PotentialSavings data={potentialSavingsData} />
 
-      <BreakDownWrapper className="d-flex">
-        <BreakDown title="Energy Savings Breakdown"
-                   subTitle="%"
-                   data={breakDownConsumption}
-                   hasDescription={true}
+      <BreakDownWrapper className='d-flex'>
+        <BreakDown
+          title='Energy Savings Breakdown'
+          subTitle='%'
+          data={breakDownConsumption}
+          hasDescription
         />
-        <BreakDown title="Cost Savings Breakdown"
-                   subTitle="%"
-                   data={breakDownCost}
-                   hasDescription={true}
+        <BreakDown
+          title='Cost Savings Breakdown'
+          subTitle='%'
+          data={breakDownCost}
+          hasDescription
         />
-        <BreakDown title="CO2 Emissions Avoided"
-                   subTitle="%"
-                   data={breakDownCO2Emissions}
-                   hasDescription={true}
+        <BreakDown
+          title='CO2 Emissions Avoided'
+          subTitle='%'
+          data={breakDownCO2Emissions}
+          hasDescription
         />
       </BreakDownWrapper>
 
-      <div className="row mb-5">
-        <div className="col-12 col-xl-4">
-          <SubSystemPerformance data={subSystemPerformance}/>
+      <div className='row mb-5'>
+        <div className='col-12 col-xl-4'>
+          <SubSystemPerformance data={subSystemPerformance} />
         </div>
-        <div className="col-12 col-xl-8">
-          <PayBack data={improveData.improvementMeasuresData}/>
+        <div className='col-12 col-xl-8'>
+          <PayBack data={improveData.improvementMeasuresData} />
         </div>
       </div>
 
-      <ImprovementMeasures data={improveData.improvementMeasuresData} setResult={setResult}/>
+      <ImprovementMeasures data={improveData.improvementMeasuresData} setResult={setResult} />
 
     </ImproveWrapper>
 

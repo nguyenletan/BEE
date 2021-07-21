@@ -4,7 +4,7 @@ import StepNav from './step-nav/StepNav'
 import styled from 'styled-components'
 import Typography from '@material-ui/core/Typography'
 
-import BusinessRoundedIcon from '@material-ui/icons/BusinessRounded';
+import BusinessRoundedIcon from '@material-ui/icons/BusinessRounded'
 import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState } from '../../atoms'
 
@@ -20,34 +20,32 @@ const Icon = styled(BusinessRoundedIcon)`
 `
 
 const AddingBuildingSuccessfully = () => {
-
   const [addingBuildingProgress] = useRecoilState(addingBuildingProgressState)
 
   return (
     <div>
-      <div className="d-flex mt-5 mb-4">
+      <div className='d-flex mt-5 mb-4'>
 
         <Title>New Building</Title>
 
         <BackNextGroupButton
-          backLink="/adding-building/renewable-energy"
+          backLink='/adding-building/renewable-energy'
           progressValue={addingBuildingProgress}
-          isInDoneStep={true}
+          isInDoneStep
         />
 
       </div>
 
-      <StepNav/>
+      <StepNav />
 
-      <div className="text-center">
+      <div className='text-center'>
         <Icon />
-        <Typography variant="h3" gutterBottom className="text-center" >
+        <Typography variant='h3' gutterBottom className='text-center'>
           The building was successfully created!
         </Typography>
       </div>
     </div>
   )
-
 }
 
 export default AddingBuildingSuccessfully
