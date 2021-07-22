@@ -32,13 +32,13 @@ export const solarPanelSystemListState = atom({
     {
       id: parseInt(_.uniqueId()),
       title: 'System',
-      installedCapacity: 0,
-      trackingTypeId: 0,
+      installedCapacity: 1,
+      trackingTypeId: 1,
       inclineAngel: 0,
       orientationAngle: 0,
       systemLoss: 14,
-      pvTechChoiceId: 0,
-      mountingTypeId: 0,
+      pvTechChoiceId: 1,
+      mountingTypeId: 1,
     }],
 })
 
