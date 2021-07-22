@@ -227,7 +227,7 @@ const GeneralInformation = () => {
     SustainabilityRatingScheme[0].ratingLevels)
 
   const onSubmit = (data) => {
-    setGeneralBuildingInformation({ ...generalBuildingInformation, ...data })
+    //setGeneralBuildingInformation({ ...generalBuildingInformation, ...data })
     setAddingBuildingProgressState(25)
     setIsMovingNext(true)
   }

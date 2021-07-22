@@ -51,7 +51,7 @@ function DebugButton () {
     }
   }, [])
 
-  return <button onClick={onClick} className='-visually-hidden'>Dump State</button>
+  return <button onClick={onClick} className='visually-hidden'>Dump State</button>
 }
 
 function App () {
@@ -63,8 +63,6 @@ function App () {
 
   if (loading) return null
   if (!user) return <FirebaseAuth />
-
-
 
   return (
     <ThemeProvider theme={theme}>
