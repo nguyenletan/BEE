@@ -81,7 +81,7 @@ const BackNextGroupButton = ({
               >Back
               </Button>
             </Link>}
-            <Link to="/portfolio">
+            <Link to="/building">
               <Button
                 endIcon={<DoneAll/>} variant="contained" color="primary"
                 className="me-2"

@@ -34,7 +34,7 @@ const Image = styled.img`
 `
 
 const LeftCol = styled.div`
-  max-height: calc(100vh - 325px);
+  max-height: calc(100vh - 333px);
   overflow: auto;
 `
 
