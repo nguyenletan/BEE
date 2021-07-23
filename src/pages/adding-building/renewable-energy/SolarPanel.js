@@ -18,11 +18,11 @@ import { makeStyles } from '@material-ui/core/styles'
 import Select from '@material-ui/core/Select'
 
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
-import PVTechChoiceType from '../../../reference-tables/PVTechChoiceType'
 import { removeItemAtIndex, replaceItemAtIndex } from '../../../Utilities'
 import { solarPanelSystemListState } from '../../../atoms'
 import TrackingType from '../../../reference-tables/TrackingType'
 import MountingType from '../../../reference-tables/MountingType'
+import PVPanelType from '../../../reference-tables/PVPanelType'
 
 const Title = styled.h6`
 
@@ -198,7 +198,7 @@ const SolarPanel = ({ data }) => {
           </FormControl>
 
           {showInclineAngle && <Box component='div' mb={1} mt={2}>
-            <Typography gutterBottom color='primary'>Incline Angle</Typography>
+            <Typography gutterBottom color='primary'>Incline Angle (degrees from horizontal)</Typography>
             <Grid container spacing={2} alignItems='flex-start'>
               <Grid item xs>
                 <Slider
@@ -242,9 +242,7 @@ const SolarPanel = ({ data }) => {
           </Box>}
 
           {showOrientationAngle && <Box component='div' mb={1} mt={2}>
-            <Typography gutterBottom color='primary'>Orientation
-              Angle
-            </Typography>
+            <Typography gutterBottom color='primary'>Orientation Angle (degrees from South)</Typography>
             <Grid container spacing={2} alignItems='flex-start'>
               <Grid item xs>
                 <Slider
@@ -287,9 +285,7 @@ const SolarPanel = ({ data }) => {
             </Grid>
           </Box>}
           <Box component='div' mb={1} mt={2}>
-            <Typography gutterBottom color='primary'>System Loss
-              (%)
-            </Typography>
+            <Typography gutterBottom color='primary'>System Loss (%)</Typography>
             <Grid container spacing={2} alignItems='flex-start'>
               <Grid item xs>
                 <Slider
@@ -334,7 +330,7 @@ const SolarPanel = ({ data }) => {
           </Box>
 
           <FormControl className={classes.formControl}>
-            <InputLabel id='pv-tech-choice-label'>PV Tech Choice</InputLabel>
+            <InputLabel id='pv-tech-choice-label'>P.V. Panel Type</InputLabel>
             <Select
               labelId='pv-tech-choice-type-label'
               id='pv-tech-choice-type-select'
@@ -342,7 +338,7 @@ const SolarPanel = ({ data }) => {
               value={data.pvTechChoiceId}
               onChange={onChange}
             >
-              {PVTechChoiceType.map((o) => (
+              {PVPanelType.map((o) => (
                 <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
               ))}
             </Select>
