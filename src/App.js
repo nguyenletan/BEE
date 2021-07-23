@@ -1,6 +1,5 @@
 import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { useJsApiLoader } from '@react-google-maps/api';
 import { useAuth } from './AuthenticateProvider'
 import FirebaseAuth from './FirebaseAuthenticate'
 import { createTheme , ThemeProvider } from '@material-ui/core/styles'

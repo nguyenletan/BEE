@@ -7,7 +7,6 @@ import {
   FormControl,
   Input,
   InputLabel,
-  ListSubheader,
   MenuItem,
   Select,
   Slider,
@@ -15,11 +14,9 @@ import {
 } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
-import ExternalWallType from '../../../reference-tables/ExternalWallType'
 import ExternalWindowType from '../../../reference-tables/ExternalWindowType'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { makeStyles } from '@material-ui/core/styles'
-import { NonDomesticGroundFloorInsulationType } from '../../../reference-tables/GroundFloorInsulationType'
 import { useRecoilState } from 'recoil'
 import {
   addingBuildingProgressState,
