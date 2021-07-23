@@ -55,6 +55,8 @@ const SearchBuilding = () => {
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
 
+  const [isShowTheMap, setIsShowTheMap] = useState(false)
+
   const setValueToForm = (information) => {
     setValue('address', information?.address, {
       shouldValidate: true,
@@ -118,8 +120,9 @@ const SearchBuilding = () => {
 
     }
 
-    setGeneralBuildingInformation(information)
+    setGeneralBuildingInformation({ ...generalBuildingInformation, ...information })
     setValueToForm(information)
+    setIsShowTheMap(true)
   }
 
   useEffect(() => {
@@ -183,7 +186,8 @@ const SearchBuilding = () => {
         <Title>Search Online</Title>
 
         <BackNextGroupButton
-          nextLink="/adding-building/general-information"
+          noNextLink={true}
+          //nextLink="/adding-building/general-information"
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
@@ -225,25 +229,25 @@ const SearchBuilding = () => {
 
           </div>
 
-          {generalBuildingInformation &&
+          {isShowTheMap &&
           <div className="row mt-3 mb-5">
             <div className="col-12 col-lg-12">
 
               <Paper elevation={3}>
                 {/*<LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>*/}
-                  <GoogleMap mapContainerStyle={mapStyles} zoom={18}
-                             center={generalBuildingInformation.location}>
-                    <OverlayView position={generalBuildingInformation.location}
-                                 mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
-                      <div
-                        style={divStyle}>{generalBuildingInformation.formatted_address}</div>
-                    </OverlayView>
-                    <Marker
-                      position={generalBuildingInformation.location}
-                      title={searchValue}
-                      zIndex={1}>
-                    </Marker>
-                  </GoogleMap>
+                <GoogleMap mapContainerStyle={mapStyles} zoom={18}
+                           center={generalBuildingInformation.location}>
+                  <OverlayView position={generalBuildingInformation.location}
+                               mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
+                    <div
+                      style={divStyle}>{generalBuildingInformation.formatted_address}</div>
+                  </OverlayView>
+                  <Marker
+                    position={generalBuildingInformation.location}
+                    title={searchValue}
+                    zIndex={1}>
+                  </Marker>
+                </GoogleMap>
                 {/*</LoadScript>*/}
               </Paper>
             </div>
@@ -251,7 +255,7 @@ const SearchBuilding = () => {
           }
         </div>
 
-        {generalBuildingInformation &&
+        {isShowTheMap &&
         <div className="col-12 col-lg-5">
 
           <form onSubmit={handleSubmit(onSubmit)}>

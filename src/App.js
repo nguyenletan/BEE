@@ -56,10 +56,6 @@ function DebugButton () {
 
 function App () {
   const { user, loading } = useAuth()
-  useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
-  })
 
   if (loading) return null
   if (!user) return <FirebaseAuth />
