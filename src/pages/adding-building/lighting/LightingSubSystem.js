@@ -112,7 +112,7 @@ const LightingSubSystem = ({ data }) => {
           </FormControl>
           <FormControl className={classes.formControl}>
             <TextField
-              id='percentage' label='Percentage %' type='number'
+              id='percentage' label='% of All Light Fittings' type='number'
               value={percentage} onChange={onPercentageChange}
             />
           </FormControl>

@@ -19,7 +19,6 @@ import ExternalWallType from '../../../reference-tables/ExternalWallType'
 import ExternalWindowType from '../../../reference-tables/ExternalWindowType'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { makeStyles } from '@material-ui/core/styles'
-import ExternalRoofType from '../../../reference-tables/ExternalRoofType'
 import { NonDomesticGroundFloorInsulationType } from '../../../reference-tables/GroundFloorInsulationType'
 import { useRecoilState } from 'recoil'
 import {
@@ -27,6 +26,7 @@ import {
   envelopFacadeState
 } from '../../../atoms'
 import { Redirect } from 'react-router-dom'
+import RoofType from '../../../reference-tables/RoofType'
 
 const Form = styled.form`
 
@@ -194,9 +194,7 @@ const EnvelopFacade = () => {
           </Box>
 
           <FormControl className={classes.formControl}>
-            <InputLabel id='external-roof-type-label'>External Roof Insulation
-              Type
-            </InputLabel>
+            <InputLabel id='external-roof-type-label'>Roof Type</InputLabel>
             <Select
               id='external-roof-type-select'
               labelId='external-roof-type-label'
@@ -204,30 +202,7 @@ const EnvelopFacade = () => {
               onChange={onChange}
               value={envelopFacade.externalRoofInsulationTypeId}
             >
-              {ExternalRoofType.map((o) => (
-                <MenuItem
-                  key={o.id}
-                  value={o.id}
-                >
-                  {o.name}
-                </MenuItem>
-              ))}
-
-            </Select>
-          </FormControl>
-
-          <FormControl className={classes.formControl}>
-            <InputLabel id='external-wall-type-label'>External Wall Insulation
-              Type
-            </InputLabel>
-            <Select
-              id='external-wall-type-select'
-              labelId='external-wall-type-label'
-              name='externalWallInsulationTypeId'
-              onChange={onChange}
-              value={envelopFacade.externalWallInsulationTypeId}
-            >
-              {ExternalWallType.map((o) => (
+              {RoofType.map((o) => (
                 <MenuItem
                   key={o.id}
                   value={o.id}
@@ -251,39 +226,6 @@ const EnvelopFacade = () => {
               value={envelopFacade.externalWindowInsulationTypeId}
             >
               {ExternalWindowType.map((o) => (
-                <MenuItem
-                  key={o.id}
-                  value={o.id}
-                >
-                  {o.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          <FormControl className={classes.formControl}>
-            <InputLabel id='external-ground-floor-type-label'>External Ground
-              Floor
-              Insulation Type
-            </InputLabel>
-            <Select
-              id='external-ground-floor-type-select'
-              labelId='external-ground-floor-type-label'
-              name='externalGroundFloorInsulationTypeId'
-              onChange={onChange}
-              value={envelopFacade.externalGroundFloorInsulationTypeId}
-            >
-              {/* <ListSubheader>Domestic/Residential (D)</ListSubheader> */}
-              {/* {DomesticGroundFloorInsulationType.map((o) => ( */}
-              {/*  <MenuItem */}
-              {/*    key={o.id} */}
-              {/*    value={o.id} */}
-              {/*  > */}
-              {/*    {o.name} */}
-              {/*  </MenuItem> */}
-              {/* ))} */}
-              <ListSubheader>Non Domestic/Residential (N/D)</ListSubheader>
-              {NonDomesticGroundFloorInsulationType.map((o) => (
                 <MenuItem
                   key={o.id}
                   value={o.id}

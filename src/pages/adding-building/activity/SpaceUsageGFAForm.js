@@ -174,7 +174,7 @@ const SpaceUsageGFAForm = ({ data }) => {
         </FormControl>
 
         <FormControl className={classes.formControl}>
-          <TextField min={0} max={100} id='percentage-of-GFA' label='% of GFA' type='number' value={percentage} onChange={onPercentageChange} />
+          <TextField min={0} max={100} id='percentage-of-GFA' label='% of Total Floor Area (Internal)' type='number' value={percentage} onChange={onPercentageChange} />
         </FormControl>
         <FormControl className={classes.formControl}>
           <InputLabel id='climate-control-label'>Climate
