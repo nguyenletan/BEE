@@ -640,9 +640,9 @@ const GeneralInformation = () => {
                 }) => (
                   <TextField type="number"
                              id="gross-interior-area"
-                             aria-describedby="Gross Interior Area"
-                             placeholder="Gross Interior Area"
-                             label="Gross Interior Area"
+                             aria-describedby="Total Floor Area (Internal)"
+                             placeholder="Total Floor Area (Internal)"
+                             label="Total Floor Area (Internal)"
                              className={classes.valueUnit}
                              value={generalBuildingInformation.grossInteriorArea}
                              onChange={(e) => {
@@ -656,7 +656,7 @@ const GeneralInformation = () => {
                 )}
                 rules={{
                   min: { value: 0, message: 'The value should be > -1' },
-                  required: 'Gross Interior Area is required',
+                  required: 'Total Floor Area is required',
                 }}
               />
               <Controller
