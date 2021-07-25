@@ -79,6 +79,8 @@ export const generalBuildingInformationState = atom({
     sustainabilityRatingId: null,
     useTypeId: null,
     buildingPhoto: null,
+    hasMajorRefurbishmentOrExtensionsDone: false,
+    latestYearForRefurbishmentOrExtension: null
   },
 })
 

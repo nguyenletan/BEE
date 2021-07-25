@@ -8,7 +8,7 @@ import { SustainabilityRatingScheme } from '../../../reference-tables/GreenBuild
 import { Redirect } from 'react-router-dom'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import StepNav from '../step-nav/StepNav'
-import { FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core'
+import { Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select, TextField } from '@material-ui/core'
 import Countries from '../../../reference-tables/Country'
 import UseType from '../../../reference-tables/UseType'
 import { useRecoilState } from 'recoil'
@@ -16,6 +16,9 @@ import { addingBuildingProgressState, generalBuildingInformationState } from '..
 import { makeStyles } from '@material-ui/core/styles'
 import Orientation from '../../../reference-tables/Orientation'
 import Period from '../../../reference-tables/Period'
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
+import DateFnsUtils from '@date-io/date-fns'
+import Grid from '@material-ui/core/Grid'
 
 const Form = styled.form`
 
@@ -52,6 +55,13 @@ const GeneralInformation = () => {
 
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
+
+  const onHasMajorRefurbishmentOrExtensionsDoneChange = (e) => {
+    setGeneralBuildingInformation({
+      ...generalBuildingInformation,
+      hasMajorRefurbishmentOrExtensionsDone: !generalBuildingInformation.hasMajorRefurbishmentOrExtensionsDone,
+    })
+  }
 
   const classes = makeStyles((theme) => (MaterialFormStyle))()
 
@@ -463,7 +473,6 @@ const GeneralInformation = () => {
                     </Select>
                   </FormControl>
                 )}
-                rules={{ required: 'Sustainability Rating is required' }}
               />
 
             </div>
@@ -892,6 +901,66 @@ const GeneralInformation = () => {
                 )}
               />
             </div>
+          </div>
+
+          <div className="row">
+            <div className="form-group col-12 col-lg-6">
+              <Controller
+                name="hasMajorRefurbishmentOrExtensionsDone"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <div className="form-group">
+                    <label className="form-label d-block mb-0">Has Major Refurbishment or Extensions Done?</label>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={generalBuildingInformation.hasMajorRefurbishmentOrExtensionsDone}
+                          onChange={(e) => {
+                            onChange(e)
+                            onHasMajorRefurbishmentOrExtensionsDoneChange(e)
+                          }}
+                          color="primary"
+                        />
+                      }
+                      label="Yes"
+                    />
+                  </div>
+                )}
+              />
+            </div>
+
+            <div className="col-12 col-lg-6 d-flex justify-content-start mb-3">
+              <Controller
+                name="latestYearForRefurbishmentOrExtension"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <Grid container justify='flex-start'>
+                      <KeyboardDatePicker
+                        maxDate={Date()}
+                        variant='inline'
+                        openTo='year'
+                        views={['year']}
+                        value={generalBuildingInformation.latestYearForRefurbishmentOrExtension}
+                        onChange={(date) => {
+                          onChange(date)
+                          console.log(date)
+                          onInputChange(
+                            'latestYearForRefurbishmentOrExtension', date.getFullYear())
+                        }}
+                      />
+                    </Grid>
+                  </MuiPickersUtilsProvider>
+                )}
+              />
+            </div>
+
           </div>
 
         </LeftCol>

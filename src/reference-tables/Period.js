@@ -8,7 +8,7 @@ const Period = [
   { id: 5, name: '1971-1980', value: '1971' },
   { id: 6, name: '1961-1970', value: '1961' },
   { id: 7, name: '1951-1960', value: '1951' },
-  { id: 8, name: '1951-1950', value: '1941' },
+  { id: 8, name: '1941-1950', value: '1941' },
   { id: 9, name: '1931-1940', value: '1931' },
   { id: 10, name: '1921-1930', value: '1921' },
   { id: 11, name: '1911-1920', value: '1911' },
