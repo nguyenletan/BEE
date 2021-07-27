@@ -35,6 +35,20 @@ const HeatingSystem = ({ control }) => {
 
   const onHeaterTypeIdChange = (e) => {
     setHeatingSystem({ ...heatingSystem, heaterTypeId: e.target.value })
+		if(e.target.value === 5) { //Central Boiler
+			// Energy Source == [Natural Gas, Fuel Oil, Propane]
+			
+		} else if(e.target.value === 1 || e.target.value === 2) {
+			// Energy Source == [Electricity]
+		} else if(e.target.value === 6 || e.target.value === 3) {
+			// Energy Source == [Geothermal Hot Water]
+		} else if(e.target.value === 4) {
+			// Energy Source == [District Hot Water]
+		} else if(e.target.value === 7) {
+			// Energy Source == [Natural Gas, Fuel Oil, Propane, Geothermal Hot Water]
+		} else {
+			
+		}
   }
 
   const onHeaterEnergySourceTypeIdChange = (e) => {

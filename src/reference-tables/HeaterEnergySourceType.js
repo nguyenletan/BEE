@@ -22,7 +22,11 @@ const HeaterEnergySource = [
   {
     id: 6,
     name: 'District Hot Water'
-  }
+  },
+	{
+		id: 7,
+		name: 'Geothermal Hot Water'
+	}
 ]
 
 export default HeaterEnergySource

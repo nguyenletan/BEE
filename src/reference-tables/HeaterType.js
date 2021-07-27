@@ -18,7 +18,15 @@ const HeaterType = [
   {
     id: 5,
     name: 'Central Boiler'
-  }
+  },
+	{
+		id: 6,
+		name: 'Ground Source Heat Pump'
+	},
+	{
+		id: 7,
+		name: 'Absorption Heat Pump',
+	}
 ]
 
 export default HeaterType
