@@ -14,7 +14,16 @@ const CompressorType = [
   {
     id: 4,
     name: 'Screw Driven'
+  },
+  {
+    id: 5,
+    name: 'Rotary Vane'
+  },
+  {
+    id: 6,
+    name: 'Screw'
   }
 ]
+
 
 export default CompressorType

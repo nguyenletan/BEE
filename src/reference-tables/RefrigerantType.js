@@ -1,4 +1,4 @@
-const RefrigerantType = [
+export const RefrigerantType = [
   {
     id: 1,
     name: 'R12'
@@ -70,7 +70,21 @@ const RefrigerantType = [
   {
     id: 18,
     name: 'R718'
-  }
+  },
+
 ]
 
-export default RefrigerantType
+
+export const AbsorptionChillerRefrigerantType = [
+  {
+    id: 19,
+    name: 'Water-Ammonia'
+  },
+
+  {
+    id: 20,
+    name: 'Water-Lithium Bromide'
+  },
+]
+
+

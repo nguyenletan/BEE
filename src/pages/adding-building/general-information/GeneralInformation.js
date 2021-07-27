@@ -932,34 +932,44 @@ const GeneralInformation = () => {
               />
             </div>
 
-            <div className="col-12 col-lg-6 d-flex justify-content-start mb-3">
-              <Controller
-                name="latestYearForRefurbishmentOrExtension"
-                control={control}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <Grid container justify='flex-start'>
-                      <KeyboardDatePicker
-                        maxDate={Date()}
-                        variant='inline'
-                        openTo='year'
-                        views={['year']}
-                        value={generalBuildingInformation.latestYearForRefurbishmentOrExtension}
-                        onChange={(date) => {
-                          onChange(date)
-                          console.log(date)
-                          onInputChange(
-                            'latestYearForRefurbishmentOrExtension', date.getFullYear())
-                        }}
-                      />
-                    </Grid>
-                  </MuiPickersUtilsProvider>
-                )}
-              />
-            </div>
+            {generalBuildingInformation.hasMajorRefurbishmentOrExtensionsDone === true && (
+              <div className="col-12 col-lg-6 d-flex justify-content-start mb-3">
+                <Controller
+                  name="latestYearForRefurbishmentOrExtension"
+                  control={control}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <FormControl className={classes.formControl}>
+                      <label>Latest Year for Refurbishment or Extension</label>
+                      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <Grid container justify="flex-start">
+                          <KeyboardDatePicker
+                            maxDate={Date()}
+                            variant="inline"
+                            openTo="year"
+                            views={['year']}
+                            value={generalBuildingInformation.latestYearForRefurbishmentOrExtension}
+                            onChange={(date) => {
+                              onChange(date)
+                              console.log(date)
+                              onInputChange(
+                                'latestYearForRefurbishmentOrExtension', date.getFullYear())
+                            }}
+                            error={!!error}
+                            helperText={error ? error.message : null}
+                          />
+                        </Grid>
+                      </MuiPickersUtilsProvider>
+                    </FormControl>
+                  )}
+                  rules={{
+                    required: 'Latest Year for Refurbishment or Extension is required',
+                  }}
+                />
+              </div>
+            )}
 
           </div>
 

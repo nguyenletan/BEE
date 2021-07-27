@@ -31,7 +31,7 @@ const HVAC = () => {
     setIsMovingNext(true)
   }
 
-  const { handleSubmit } = useForm({
+  const { handleSubmit, control } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     defaultValues: {
@@ -70,11 +70,11 @@ const HVAC = () => {
       <div className='row'>
 
         <div className='col-12 col-lg-6 col-xxl-5'>
-          <CoolingSystem />
+          <CoolingSystem control={control}/>
         </div>
 
         <div className='col-12 col-lg-6 col-xxl-5'>
-          <HeatingSystem />
+          <HeatingSystem control={control}/>
         </div>
       </div>
     </Form>
