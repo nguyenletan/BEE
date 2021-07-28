@@ -21,8 +21,9 @@ const HeatingSystem = ({ control }) => {
 
   const [heatingSystem, setHeatingSystem] = useRecoilState(heatingSystemState)
 
-  const [hasHeatingSystem, setHasHeatingSystem] = React.useState(
-    heatingSystem.hasHeatingSystem)
+  const [hasHeatingSystem, setHasHeatingSystem] = React.useState(heatingSystem.hasHeatingSystem)
+
+  const [energySourceType, setEnergySourceType] = React.useState(HeaterEnergySourceType)
 
   const onHasHeatingSystemChange = () => {
     setHeatingSystem({ ...heatingSystem, hasHeatingSystem: !hasHeatingSystem })
@@ -35,20 +36,26 @@ const HeatingSystem = ({ control }) => {
 
   const onHeaterTypeIdChange = (e) => {
     setHeatingSystem({ ...heatingSystem, heaterTypeId: e.target.value })
-		if(e.target.value === 5) { //Central Boiler
-			// Energy Source == [Natural Gas, Fuel Oil, Propane]
-			
-		} else if(e.target.value === 1 || e.target.value === 2) {
-			// Energy Source == [Electricity]
-		} else if(e.target.value === 6 || e.target.value === 3) {
-			// Energy Source == [Geothermal Hot Water]
-		} else if(e.target.value === 4) {
-			// Energy Source == [District Hot Water]
-		} else if(e.target.value === 7) {
-			// Energy Source == [Natural Gas, Fuel Oil, Propane, Geothermal Hot Water]
-		} else {
-			
-		}
+    if (e.target.value === 5) { //Central Boiler
+      // Energy Source == [Natural Gas, Fuel Oil, Propane]
+      setEnergySourceType(
+        HeaterEnergySourceType.filter(x => x.name === 'Natural Gas' || x.name === 'Fuel Oil' || x.name === 'Propane'))
+    } else if (e.target.value === 1 || e.target.value === 2) {
+      // Energy Source == [Electricity]
+      setEnergySourceType(HeaterEnergySourceType.filter(x => x.name === 'Electricity'))
+    } else if (e.target.value === 6 || e.target.value === 3) {
+      // Energy Source == [Geothermal Hot Water]
+      setEnergySourceType(HeaterEnergySourceType.filter(x => x.name === 'Geothermal Hot Water'))
+    } else if (e.target.value === 4) {
+      // Energy Source == [District Hot Water]
+      setEnergySourceType(HeaterEnergySourceType.filter(x => x.name === 'District Hot Water'))
+    } else if (e.target.value === 7) {
+      // Energy Source == [Natural Gas, Fuel Oil, Propane, Geothermal Hot Water]
+      setEnergySourceType(HeaterEnergySourceType.filter(
+        x => x.name === 'Natural Gas' || x.name === 'Fuel Oil' || x.name === 'Propane' || x.name === 'Geothermal Hot Water'))
+    } else {
+      setEnergySourceType(HeaterEnergySourceType)
+    }
   }
 
   const onHeaterEnergySourceTypeIdChange = (e) => {
@@ -155,7 +162,7 @@ const HeatingSystem = ({ control }) => {
                     error={!!error}
                     helperText={error ? error.message : null}
                   >
-                    {HeaterEnergySourceType.map((o) => (
+                    {energySourceType.map((o) => (
                       <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
                     ))}
                   </Select>
