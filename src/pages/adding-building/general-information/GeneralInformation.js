@@ -67,7 +67,7 @@ const GeneralInformation = () => {
 
   const [isMovingNext, setIsMovingNext] = useState(false)
 
-  const [image, setImage] = useState({ preview: cameraImg, raw: '' })
+  //const [image, setImage] = useState({ preview: cameraImg, raw: '' })
 
   const {
     control,
@@ -87,8 +87,8 @@ const GeneralInformation = () => {
   const handleChangeBuildingPhoto = (e) => {
     e.preventDefault()
     console.log(e)
-    const formData = new FormData()
-    formData.append('image', image.raw)
+    //const formData = new FormData()
+    //formData.append('image', image.raw)
 
     if (e.target.files.length) {
       let reader = new FileReader()
@@ -103,12 +103,18 @@ const GeneralInformation = () => {
         // .replace('data:image/jpeg;base64,', '');
 
         console.log(base64Image)
-        setValue('buildingPhoto', base64Image, {
-          shouldDirty: true,
-        })
-        setImage({
-          preview: URL.createObjectURL(e.target.files[0]),
-          raw: base64Image,
+        // setValue('buildingPhoto', base64Image, {
+        //   shouldDirty: true,
+        // })
+
+        // setImage({
+        //   preview: URL.createObjectURL(e.target.files[0]),
+        //   raw: base64Image,
+        // })
+
+        setGeneralBuildingInformation({
+          ...generalBuildingInformation,
+          buildingPhoto: base64Image,
         })
       }
     }
@@ -204,12 +210,12 @@ const GeneralInformation = () => {
         shouldDirty: true,
       })
 
-    if (generalBuildingInformation?.buildingPhoto) {
-      setImage({
-        raw: generalBuildingInformation?.buildingPhoto,
-        preview: generalBuildingInformation?.buildingPhoto,
-      })
-    }
+    // if (generalBuildingInformation?.buildingPhoto) {
+    //   setImage({
+    //     raw: generalBuildingInformation?.buildingPhoto,
+    //     preview: generalBuildingInformation?.buildingPhoto,
+    //   })
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -980,7 +986,7 @@ const GeneralInformation = () => {
           <UploadImage>
             <label htmlFor="upload-button" title="Upload image"
                    className="w-100 h-100 d-flex overflow-hidden m-0 cursor-pointer">
-              <Image src={image.preview} alt="upload"/>
+              <Image src={generalBuildingInformation.buildingPhoto ?? cameraImg} alt="upload"/>
             </label>
           </UploadImage>
           <input
@@ -999,7 +1005,7 @@ const GeneralInformation = () => {
                 type="hidden"
                 id="upload-button"
                 className="d-none"
-                value={value}
+                value={generalBuildingInformation.buildingPhoto}
                 onChange={(e) => {
                   onChange(e)
                   handleChangeBuildingPhoto(e)
