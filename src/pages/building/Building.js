@@ -250,8 +250,8 @@ const Building = () => {
               tfa={building.grossInteriorArea}
               tfaUnit={building.grossInteriorAreaUnit}
               storey={building.storeysAboveGround + building.storeysBelowGround}
-              constructed={building.completionYear}
-              greenBuildingRating={building.sustainabilityRatingSchemeName + ' / ' + building.sustainabilityRatingName}
+              constructed={building.completionYear + ' - ' + (building.completionYear + 10)}
+              greenBuildingRating={building.sustainabilityRatingSchemeName + ' - ' + building.sustainabilityRatingName}
               buildingInfoLastEdited={building.updatedAt
                 ? printDateTime(building.updatedAt, 'en-GB')
                 : printDateTime(building.createdAt, 'en-GB')}

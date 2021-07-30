@@ -18,9 +18,6 @@ const BeeLinearProgress = withStyles((theme) => ({
   colorPrimary: {
     // backgroundColor: 'rgba(174,213,129,.9)'
   },
-  text: {
-
-  }
 }))(LinearProgress)
 
 const textStyles = makeStyles({

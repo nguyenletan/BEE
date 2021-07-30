@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { formatNumber } from '../Utilities'
 
 const BuildingInfoWrapper = styled.div`
   margin-bottom: 30px;
@@ -69,7 +70,7 @@ const BuildingInfo = (props) => {
           </div>
           <div className='col-12 col-md-4 col-lg-3'>
             <TypeCol className='mb-1'>Total Floor Area (Internal)</TypeCol>
-            <TypeCol className='mb-0'>{tfa} {tfaUnit}</TypeCol>
+            <TypeCol className='mb-0'>{formatNumber(tfa, 0)} {tfaUnit}</TypeCol>
           </div>
           <div className='col-12 col-md-4 col-lg-6'>
             <TypeCol className='mb-1'>Green Building Rating</TypeCol>

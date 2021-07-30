@@ -179,3 +179,13 @@ export const printDateTime = (dateString, localeString) => {
   const date = new Date(dateString)
   return date.toLocaleDateString(localeString) + ' ' + date.toLocaleTimeString(localeString)
 }
+
+export const formatNumber = (num, decimal = 2) => {
+  return (
+    num
+    .toFixed(decimal) // always two decimal digits
+      .replace('.', ',') // replace decimal point character with ,
+      .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+    //+ ' €'
+  ) // use . as a separator
+}

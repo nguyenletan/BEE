@@ -56,10 +56,25 @@ const GeneralInformation = () => {
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
 
+  const [latestYearForRefurbishmentOrExtension, setLatestYearForRefurbishmentOrExtension] = React.useState(
+    generalBuildingInformation.latestYearForRefurbishmentOrExtension
+      ? `${generalBuildingInformation.latestYearForRefurbishmentOrExtension}/01/01`
+      : null,
+    // new Date("2014-08-18T21:11:54")
+  )
+
   const onHasMajorRefurbishmentOrExtensionsDoneChange = (e) => {
     setGeneralBuildingInformation({
       ...generalBuildingInformation,
       hasMajorRefurbishmentOrExtensionsDone: !generalBuildingInformation.hasMajorRefurbishmentOrExtensionsDone,
+    })
+  }
+
+  const onLatestYearForRefurbishmentOrExtensionChange = (date) => {
+    setLatestYearForRefurbishmentOrExtension(date)
+    setGeneralBuildingInformation({
+      ...generalBuildingInformation,
+      latestYearForRefurbishmentOrExtension: date.getFullYear(),
     })
   }
 
@@ -123,10 +138,7 @@ const GeneralInformation = () => {
   const onInputChange = (name, value) => {
     console.log(name)
     console.log(value)
-    setGeneralBuildingInformation({
-      ...generalBuildingInformation,
-      [name]: value,
-    })
+    setGeneralBuildingInformation({ ...generalBuildingInformation, [name]: value })
   }
 
   useEffect(() => {
@@ -284,7 +296,7 @@ const GeneralInformation = () => {
                   <FormControl className={classes.formControl}>
                     <TextField
                       label="Building Name"
-                      value={generalBuildingInformation?.buildingName}
+                      value={generalBuildingInformation?.buildingName || ''}
                       onChange={(e) => {
                         onChange(e)
                         onInputChange('buildingName', e.target.value)
@@ -325,8 +337,7 @@ const GeneralInformation = () => {
                               onInputChange('buildingOrientedId',
                                 e.target.value)
                             }}
-                            error={!!error}
-                            helperText={error ? error.message : null}>>
+                            error={!!error}>
                       {Orientation.map((o) => (
                         <MenuItem
                           key={o.id}
@@ -358,7 +369,7 @@ const GeneralInformation = () => {
                     <TextField type="text"
                                id="address"
                                label="Address"
-                               value={generalBuildingInformation.address}
+                               value={generalBuildingInformation?.address || ''}
                                onChange={(e) => {
                                  onChange(e)
                                  onInputChange('address', e.target.value)
@@ -397,7 +408,7 @@ const GeneralInformation = () => {
                                 e.target.value)
                             }}
                             error={!!error}
-                            helperText={error ? error.message : null}>
+                    >
                       {SustainabilityRatingScheme.map((o) => (
                         <MenuItem
                           key={o.id}
@@ -429,7 +440,7 @@ const GeneralInformation = () => {
                     <TextField type="text"
                                label="Postal Code"
                                id="postal-code"
-                               value={generalBuildingInformation.postalCode}
+                               value={generalBuildingInformation?.postalCode || ''}
                                onChange={(e) => {
                                  onChange(e)
                                  onInputChange('postalCode',
@@ -466,7 +477,6 @@ const GeneralInformation = () => {
                                 e.target.value)
                             }}
                             error={!!error}
-                            helperText={error ? error.message : null}
                     >
                       {sustainabilityRating.map((o) => (
                         <MenuItem
@@ -499,7 +509,7 @@ const GeneralInformation = () => {
                                id="city-select"
                                aria-describedby="City"
                                label="City"
-                               value={generalBuildingInformation.city}
+                               value={generalBuildingInformation?.city || ''}
                                onChange={(e) => {
                                  onChange(e)
                                  onInputChange('city', e.target.value)
@@ -524,7 +534,7 @@ const GeneralInformation = () => {
                                id="storeys-above-ground"
                                aria-describedby="Storeys Above Ground"
                                label="Storeys Above Ground"
-                               value={generalBuildingInformation.storeysAboveGround}
+                               value={generalBuildingInformation?.storeysAboveGround || ''}
                                onChange={(e) => {
                                  onChange(e)
                                  onInputChange('storeysAboveGround',
@@ -559,7 +569,7 @@ const GeneralInformation = () => {
                                id="state"
                                aria-describedby="State"
                                label="State"
-                               value={generalBuildingInformation.state}
+                               value={generalBuildingInformation?.state || ''}
                                onChange={(e) => {
                                  onChange(e)
                                  onInputChange('state',
@@ -585,7 +595,7 @@ const GeneralInformation = () => {
                                id="storeys-below-ground"
                                aria-describedby="Storeys Below Ground"
                                label="Storeys Below Ground"
-                               value={generalBuildingInformation.storeysBelowGround}
+                               value={generalBuildingInformation?.storeysBelowGround || ''}
                                onChange={(e) => {
                                  onChange(e)
                                  onInputChange('storeysBelowGround',
@@ -628,7 +638,6 @@ const GeneralInformation = () => {
                                 e.target.value)
                             }}
                             error={!!error}
-                            helperText={error ? error.message : null}
                     >
                       {Countries.map((o) => (
                         <MenuItem
@@ -659,7 +668,7 @@ const GeneralInformation = () => {
                              placeholder="Total Floor Area (Internal)"
                              label="Total Floor Area (Internal)"
                              className={classes.valueUnit}
-                             value={generalBuildingInformation.grossInteriorArea}
+                             value={generalBuildingInformation.grossInteriorArea || ''}
                              onChange={(e) => {
                                onChange(e)
                                onInputChange('grossInteriorArea',
@@ -727,7 +736,7 @@ const GeneralInformation = () => {
                                 e.target.value)
                             }}
                             error={!!error}
-                            helperText={error ? error.message : null}>
+                    >
                       {Period.map((o) => (
                         <MenuItem
                           key={o.id}
@@ -758,7 +767,7 @@ const GeneralInformation = () => {
                              placeholder="Net Usable Area"
                              label="Net Usable Area"
                              className={classes.valueUnit}
-                             value={generalBuildingInformation?.netUsableArea}
+                             value={generalBuildingInformation?.netUsableArea || ''}
                              onChange={(e) => {
                                onChange(e)
                                onInputChange('netUsableArea',
@@ -828,7 +837,6 @@ const GeneralInformation = () => {
                                 e.target.value)
                             }}
                             error={!!error}
-                            helperText={error ? error.message : null}
                     >
                       {UseType.map((o) => (
                         <MenuItem
@@ -860,7 +868,7 @@ const GeneralInformation = () => {
                              placeholder="Avg. Internal Floor to Ceiling Height"
                              className={classes.valueUnit}
                              label="Avg. Internal Floor to Ceiling Height"
-                             value={generalBuildingInformation?.avgInternalFloorToCeilingHeight}
+                             value={generalBuildingInformation?.avgInternalFloorToCeilingHeight || ''}
                              onChange={(e) => {
                                onChange(e)
                                onInputChange(
@@ -950,18 +958,17 @@ const GeneralInformation = () => {
                     <FormControl className={classes.formControl}>
                       <label>Latest Year for Refurbishment or Extension</label>
                       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <Grid container justify="flex-start">
+                        <Grid container justifyContent="flex-start">
                           <KeyboardDatePicker
                             maxDate={Date()}
                             variant="inline"
                             openTo="year"
                             views={['year']}
-                            value={generalBuildingInformation.latestYearForRefurbishmentOrExtension}
+                            value={latestYearForRefurbishmentOrExtension}
                             onChange={(date) => {
                               onChange(date)
                               console.log(date)
-                              onInputChange(
-                                'latestYearForRefurbishmentOrExtension', date.getFullYear())
+                              onLatestYearForRefurbishmentOrExtensionChange(date)
                             }}
                             error={!!error}
                             helperText={error ? error.message : null}
