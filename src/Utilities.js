@@ -173,3 +173,9 @@ export const getNextMonthYear = (month, year) => {
     year: tmp.getFullYear()
   }
 }
+
+
+export const printDateTime = (dateString, localeString) => {
+  const date = new Date(dateString)
+  return date.toLocaleDateString(localeString) + ' ' + date.toLocaleTimeString(localeString)
+}

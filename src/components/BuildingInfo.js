@@ -55,7 +55,7 @@ const TypeCol = styled.p`
 `
 
 const BuildingInfo = (props) => {
-  const { name, image, address, useType, gfa, avgOccupancy, storey, buildingInfoLastEdited, constructed, greenBuildingRating } = props
+  const { name, image, address, useType, tfa, storey, buildingInfoLastEdited, constructed, greenBuildingRating } = props
   return (
     <BuildingInfoWrapper className='d-flex justify-content-start flex-wrap'>
       <BuildingImage src={image} />
@@ -68,12 +68,8 @@ const BuildingInfo = (props) => {
             <TypeCol className='mb-0'>{useType}</TypeCol>
           </div>
           <div className='col-12 col-md-4 col-lg-3'>
-            <TypeCol className='mb-1'>GFA</TypeCol>
-            <TypeCol className='mb-0'>{gfa}m2</TypeCol>
-          </div>
-          <div className='col-12 col-md-4 col-lg-3'>
-            <TypeCol className='mb-1'>Avg. Occupancy</TypeCol>
-            <TypeCol className='mb-0'>{avgOccupancy}%</TypeCol>
+            <TypeCol className='mb-1'>Total Floor Area (Internal)</TypeCol>
+            <TypeCol className='mb-0'>{tfa}m2</TypeCol>
           </div>
         </div>
 
@@ -84,7 +80,7 @@ const BuildingInfo = (props) => {
           </div>
           <div className='col-12 col-md-4 col-lg-3'>
             <TypeCol className='mb-1'>Constructed</TypeCol>
-            <TypeCol className='mb-0'>{constructed}m2</TypeCol>
+            <TypeCol className='mb-0'>{constructed}</TypeCol>
           </div>
           <div className='col-12 col-md-4 col-lg-3'>
             <TypeCol className='mb-1'>Green Building Rating</TypeCol>
