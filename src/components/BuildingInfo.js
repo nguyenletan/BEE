@@ -8,9 +8,9 @@ const BuildingInfoWrapper = styled.div`
 `
 
 const BuildingImage = styled.img`
-  width: 320px;
+  width: 330px;
   border-radius: 15px;
-  height: 219px;
+  height: 245px;
   margin-bottom: 30px;
 `
 
@@ -55,7 +55,7 @@ const TypeCol = styled.p`
 `
 
 const BuildingInfo = (props) => {
-  const { name, image, address, useType, tfa, storey, buildingInfoLastEdited, constructed, greenBuildingRating } = props
+  const { name, image, address, useType, tfa, tfaUnit, storey, buildingInfoLastEdited, constructed, greenBuildingRating } = props
   return (
     <BuildingInfoWrapper className='d-flex justify-content-start flex-wrap'>
       <BuildingImage src={image} />
@@ -69,7 +69,11 @@ const BuildingInfo = (props) => {
           </div>
           <div className='col-12 col-md-4 col-lg-3'>
             <TypeCol className='mb-1'>Total Floor Area (Internal)</TypeCol>
-            <TypeCol className='mb-0'>{tfa}m2</TypeCol>
+            <TypeCol className='mb-0'>{tfa} {tfaUnit}</TypeCol>
+          </div>
+          <div className='col-12 col-md-4 col-lg-6'>
+            <TypeCol className='mb-1'>Green Building Rating</TypeCol>
+            <TypeCol className='mb-0'>{greenBuildingRating}</TypeCol>
           </div>
         </div>
 
@@ -82,10 +86,7 @@ const BuildingInfo = (props) => {
             <TypeCol className='mb-1'>Constructed</TypeCol>
             <TypeCol className='mb-0'>{constructed}</TypeCol>
           </div>
-          <div className='col-12 col-md-4 col-lg-3'>
-            <TypeCol className='mb-1'>Green Building Rating</TypeCol>
-            <TypeCol className='mb-0'>{greenBuildingRating}</TypeCol>
-          </div>
+
         </div>
         <BuildingLastEdited className='ms-1'>Last Edited: {buildingInfoLastEdited}</BuildingLastEdited>
       </GeneralInformation>

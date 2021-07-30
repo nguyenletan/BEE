@@ -185,10 +185,7 @@ const Building = () => {
       const idToken = await user.getIdToken()
       const tmp = await getBuildingById(id, idToken)
       console.log(tmp)
-      if (tmp.length > 0) {
-        setBuilding(tmp[0])
-      }
-
+      setBuilding(tmp)
     }
 
     //  eslint-disable-next-line
@@ -207,20 +204,24 @@ const Building = () => {
     <>
       <Header/>
       {building && (
-        building < 3 ? (
+        id < 3 ? (
           <BuildingWrapper>
             <BuildingInfo
               name={building.name}
               image={building.image}
               address={building.address}
               useType={building.useType}
-              gfa={building.gfa}
+              tfa={building.gfa}
+              tfaUnit={'m2'}
               avgOccupancy={building.avgOccupancy}
               storey={building.storey}
               constructed={building.constructed}
               greenBuildingRating={building.greenBuildingRating}
               buildingInfoLastEdited={building.buildingInfoLastEdited}
             />
+
+            <BuildingHistoricalNav/>
+
             <Switch>
               <Route path={`${path}/energy-performance`}>
                 <EnergyPerformance data={building.energyPerformance}/>
@@ -236,9 +237,6 @@ const Building = () => {
               </Route>
               <Redirect to={`${path}/energy-performance`}/>
             </Switch>
-
-            <BuildingHistoricalNav/>
-
           </BuildingWrapper>
 
         ) : (
@@ -250,15 +248,32 @@ const Building = () => {
               findCountryByCountryCode(building.countryCode)?.name + ', ' + building.postCode}
               useType={building.useTypeName}
               tfa={building.grossInteriorArea}
-
+              tfaUnit={building.grossInteriorAreaUnit}
               storey={building.storeysAboveGround + building.storeysBelowGround}
               constructed={building.completionYear}
-              greenBuildingRating={building.sustainabilityRatingSchemeName + ' ' + building.sustainabilityRatingName}
+              greenBuildingRating={building.sustainabilityRatingSchemeName + ' / ' + building.sustainabilityRatingName}
               buildingInfoLastEdited={building.updatedAt
                 ? printDateTime(building.updatedAt, 'en-GB')
                 : printDateTime(building.createdAt, 'en-GB')}
             />
+
             <BuildingHistoricalNav/>
+
+            <Switch>
+              <Route path={`${path}/energy-performance`}>
+                <EnergyPerformance data={building?.energyPerformance}/>
+              </Route>
+              <Route path={`${path}/comparison`}>
+                <Comparison data={{ buildingName: building.name, id: id }}/>
+              </Route>
+              <Route path={`${path}/improve`}>
+                <Improve data={building.energyPerformance}/>
+              </Route>
+              <Route path={`${path}/asset-reliability`}>
+                <AssetReliability data={building.energyPerformance}/>
+              </Route>
+              <Redirect to={`${path}/energy-performance`}/>
+            </Switch>
 
           </BuildingWrapper>
         )
