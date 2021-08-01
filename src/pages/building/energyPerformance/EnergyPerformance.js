@@ -10,10 +10,12 @@ const BreakDownWrapper = styled.div`
 `
 
 const EnergyPerformance = ({ data }) => {
+  console.log(data)
+
   return (
     <>
-      <BuildingHistorical/>
-      {data && (
+      <BuildingHistorical energyConsumptions={data} />
+      {(data && data.breakDownConsumption) && (
         <>
           <BreakDownWrapper className="d-flex row justify-content-center">
             <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
@@ -45,19 +47,19 @@ const EnergyPerformance = ({ data }) => {
           </BreakDownWrapper>
 
           <ElectricalSystemInformation
-            overallCoolingLoad={data.electricalSystemInformation.overallCoolingLoad}
-            overallHeatingLoad={data.electricalSystemInformation.overallHeatingLoad}
-            overallLightingLoad={data.electricalSystemInformation.overallLightingLoad}
-            overallMechVentLoad={data.electricalSystemInformation.overallMechVentLoad}
-            pvSystemInstalledCapacity={data.electricalSystemInformation.pvSystemInstalledCapacity}
+            overallCoolingLoad={data.electricalSystemInformation?.overallCoolingLoad}
+            overallHeatingLoad={data.electricalSystemInformation?.overallHeatingLoad}
+            overallLightingLoad={data.electricalSystemInformation?.overallLightingLoad}
+            overallMechVentLoad={data.electricalSystemInformation?.overallMechVentLoad}
+            pvSystemInstalledCapacity={data.electricalSystemInformation?.pvSystemInstalledCapacity}
           />
 
           <IncidentalGains
-            roof={data.incidentalGains.roof}
-            openings={data.incidentalGains.openings}
-            wall={data.incidentalGains.wall}
-            floor={data.incidentalGains.floor}
-            plugLoads={data.incidentalGains.plugLoads}
+            roof={data.incidentalGains?.roof}
+            openings={data.incidentalGains?.openings}
+            wall={data.incidentalGains?.wall}
+            floor={data.incidentalGains?.floor}
+            plugLoads={data.incidentalGains?.plugLoads}
           />
         </>)}
     </>

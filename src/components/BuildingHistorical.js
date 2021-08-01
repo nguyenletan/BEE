@@ -3,10 +3,11 @@ import { ResponsiveBar } from '@nivo/bar'
 import styled from 'styled-components'
 import redUpImage from '../assets/images/red_up.jpg'
 import greenDownImage from '../assets/images/green_down.jpg'
+import { formatNumber, getMonthName } from '../Utilities'
 
 const SummaryBoxWrapper = styled.div`
   justify-content: flex-start;
-  width: 100%;
+  //width: 100%;
   padding-left: 0;
   padding-right: 0;
   @media (min-width: 1024px) {
@@ -14,7 +15,7 @@ const SummaryBoxWrapper = styled.div`
     padding-right: 15px;
   }
   @media (min-width: 1200px) {
-    width: 80%;
+    //width: 80%;
   }
   @media (min-width: 1400px) {
     flex-direction: column;
@@ -51,14 +52,14 @@ const SummaryBoxValue = styled.p`
 
 const BuildingEnergyUsageWrapper = styled.div`
   background-color: #fafafa;
- 
+
   //margin-right: 30px;
   //margin-bottom: 50px;
 
   padding: 25px 10px 0px 10px;
   height: 491px;
   border-radius: 25px;
-  @media(min-width: 1024px) {
+  @media (min-width: 1024px) {
     padding: 35px 30px 30px 30px;
   }
 `
@@ -79,10 +80,10 @@ const HistoricalComparison = styled.div`
     width: 80%;
     margin: 50px auto 0;
   }
-  @media (min-width: 1920px){
+  @media (min-width: 1920px) {
     width: 70%;
   }
-  
+
   h4 {
     font-size: 1.15rem;
     font-weight: 700;
@@ -128,24 +129,52 @@ const HistoricalComparisonInnerWrapper = styled.div`
 `
 
 const BuildingHistorical = (props) => {
-  const buildingEnergyUsageData = [
-    { month: 'Jan', energyUsage: '590' },
-    { month: 'Feb', energyUsage: '490' },
-    { month: 'Mar', energyUsage: '420' },
-    { month: 'Apr', energyUsage: '420' },
-    { month: 'May', energyUsage: '410' },
-    { month: 'Jun', energyUsage: '375' },
-    { month: 'Jul', energyUsage: '390' },
-    { month: 'Aug', energyUsage: '405' },
-    { month: 'Sep', energyUsage: '420' },
-    { month: 'Oct', energyUsage: '470' },
-    { month: 'Nov', energyUsage: '510' },
-    { month: 'Dec', energyUsage: '575' }
+
+  let buildingEnergyUsageData = [
+    { month: 'Jan', monthlyValue: '590' },
+    { month: 'Feb', monthlyValue: '490' },
+    { month: 'Mar', monthlyValue: '420' },
+    { month: 'Apr', monthlyValue: '420' },
+    { month: 'May', monthlyValue: '410' },
+    { month: 'Jun', monthlyValue: '375' },
+    { month: 'Jul', monthlyValue: '390' },
+    { month: 'Aug', monthlyValue: '405' },
+    { month: 'Sep', monthlyValue: '420' },
+    { month: 'Oct', monthlyValue: '470' },
+    { month: 'Nov', monthlyValue: '510' },
+    { month: 'Dec', monthlyValue: '575' },
   ]
-  const keys = ['energyUsage']
+
+
+  console.log(props.energyConsumptions)
+
+  if (props.energyConsumptions !== null) {
+    buildingEnergyUsageData = props.energyConsumptions.map(x => {
+      return {
+        ...x,
+        month: getMonthName(x.month + 1) + ' ' + x.year,
+      }
+    })
+  }
+
+  const keys = ['monthlyValue']
+
+  const commonProps = {
+    // width: 920,
+    // height: 350,
+    margin: { top: 0, right: 0, bottom: 100, left: 30 },
+    data: buildingEnergyUsageData, // generateCountriesData(keys, { size: 7 }),
+    indexBy: 'month',
+    keys,
+    padding: 0.5,
+    labelTextColor: 'white', // 'inherit:lighter(1.4)',
+    labelSkipWidth: 0,
+    labelSkipHeight: 16,
+    animate: true,
+  }
 
   const annualEnergyConsumption = buildingEnergyUsageData.reduce(function (accumulator, currentValue, currentIndex, array) {
-    return accumulator + parseInt(currentValue.energyUsage)
+    return accumulator + parseInt(currentValue.monthlyValue)
   }, 0)
 
   const annualEnergyCost = annualEnergyConsumption * 0.3043 * 1000
@@ -154,8 +183,9 @@ const BuildingHistorical = (props) => {
   const historicalComparision = {
     sameMonthLastYear: 2.61,
     lastMonth: -1.3,
-    _12MonthPeriod: 8
+    _12MonthPeriod: 8,
   }
+
 
   // const CustomBarComponent = (props) => {
   //   const { x, y, height } = props
@@ -169,86 +199,79 @@ const BuildingHistorical = (props) => {
   //
   // }
 
-  const commonProps = {
-    // width: 920,
-    // height: 350,
-    margin: { top: 0, right: 0, bottom: 100, left: 30 },
-    data: buildingEnergyUsageData, // generateCountriesData(keys, { size: 7 }),
-    indexBy: 'month',
-    keys,
-    padding: 0.46,
-    labelTextColor: 'white', // 'inherit:lighter(1.4)',
-    labelSkipWidth: 0,
-    labelSkipHeight: 16,
-    animate: true
-
-  }
-
   // console.log(generateCountriesData(keys, { size: 7 }))
 
   return (
-    <HistoricalComparisonWrapper className=''>
-      <HistoricalComparisonContainer className='d-flex mt-5 justify-content-start row'>
+    <HistoricalComparisonWrapper className="">
+      <HistoricalComparisonContainer className=" mt-5 row">
 
-        <BuildingEnergyUsageWrapper className='col-12 col-lg-8 col-xl-10 mb-5 mb-lg-0'>
-          <BuildingEnergyUsageChartTitle>Building Energy Usage (MWh)</BuildingEnergyUsageChartTitle>
+        <BuildingEnergyUsageWrapper className="col col-12 col-lg-8 col-xl-9 mb-5 mb-lg-0">
+          <BuildingEnergyUsageChartTitle>Building Energy Usage (KWh)</BuildingEnergyUsageChartTitle>
           <ResponsiveBar
             {...commonProps}
+            data={buildingEnergyUsageData}
             colors={({ id, data }) => {
               return '#87972f'
             }}
             // barComponent={CustomBarComponent}
             tooltip={({ id, value, color }) => (
               <strong style={{ color: '#373637' }}>
-                {id}: {value} MWh/Yr
+                {id}: {value} KWh
               </strong>
             )}
           />
         </BuildingEnergyUsageWrapper>
-        <SummaryBoxWrapper className='d-flex col-12 col-lg-4 col-xl-2 flex-wrap'>
-          <SummaryBox className='flex-shrink-0 mb-3'>
+
+        <SummaryBoxWrapper className="col col-12 col-lg-4 col-xl-3">
+          <SummaryBox className="mb-3">
             <SummaryBoxTitle>Annual Energy Consumption (MWh/Yr)</SummaryBoxTitle>
-            <SummaryBoxValue>{annualEnergyConsumption}</SummaryBoxValue>
+            <SummaryBoxValue>{formatNumber(annualEnergyConsumption, 0)}</SummaryBoxValue>
           </SummaryBox>
-          <SummaryBox className='flex-shrink-0 mb-3'>
+          <SummaryBox className="mb-3">
             <SummaryBoxTitle>Annual Energy Cost ($)</SummaryBoxTitle>
-            <SummaryBoxValue>{annualEnergyCost}</SummaryBoxValue>
+            <SummaryBoxValue>{formatNumber(annualEnergyCost, 0)}</SummaryBoxValue>
           </SummaryBox>
-          <SummaryBox className='flex-shrink-0 mb-3 mb-lg-0'>
+          <SummaryBox className="mb-3 mb-lg-0">
             <SummaryBoxTitle>Annual Carbon Emissions (Tons/Yr)</SummaryBoxTitle>
-            <SummaryBoxValue>{annualCarbonEmissions}</SummaryBoxValue>
+            <SummaryBoxValue>{formatNumber(annualCarbonEmissions)}</SummaryBoxValue>
           </SummaryBox>
         </SummaryBoxWrapper>
 
       </HistoricalComparisonContainer>
 
-      <HistoricalComparison className='d-flex justify-content-around row'>
-        <h4 className='col col-12 col-md-3 mb-4 mb-lg-0 text-center'>Historical<br />Comparison</h4>
+      <HistoricalComparison className="d-flex justify-content-around row">
+        <h4 className="col col-12 col-md-3 mb-4 mb-lg-0 text-center">Historical<br/>Comparison</h4>
         <div
-          className='col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap'
+          className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap"
         >
-          <UpAndDownImg src={historicalComparision.sameMonthLastYear >= 0 ? redUpImage : greenDownImage} />
-          <HistoricalComparisonInnerWrapper className='ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0'>
-            <UpAndDownImgTitle>Same Month<br />Last Year</UpAndDownImgTitle>
-            <UpAndDownImgValue>{historicalComparision.sameMonthLastYear >= 0 ? `+${historicalComparision.sameMonthLastYear}` : `${historicalComparision.sameMonthLastYear}`} MWh</UpAndDownImgValue>
+          <UpAndDownImg src={historicalComparision.sameMonthLastYear >= 0 ? redUpImage : greenDownImage}/>
+          <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
+            <UpAndDownImgTitle>Same Month<br/>Last Year</UpAndDownImgTitle>
+            <UpAndDownImgValue>{historicalComparision.sameMonthLastYear >= 0
+              ? `+${historicalComparision.sameMonthLastYear}`
+              : `${historicalComparision.sameMonthLastYear}`} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
         </div>
         <div
-          className='col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap'
+          className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap"
         >
-          <UpAndDownImg src={historicalComparision.lastMonth >= 0 ? redUpImage : greenDownImage} />
-          <HistoricalComparisonInnerWrapper className='ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0'>
+          <UpAndDownImg src={historicalComparision.lastMonth >= 0 ? redUpImage : greenDownImage}/>
+          <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
             <UpAndDownImgTitle>Last Month</UpAndDownImgTitle>
-            <UpAndDownImgValue>{historicalComparision.lastMonth >= 0 ? `+${historicalComparision.lastMonth}` : `${historicalComparision.lastMonth}`} MWh</UpAndDownImgValue>
+            <UpAndDownImgValue>{historicalComparision.lastMonth >= 0
+              ? `+${historicalComparision.lastMonth}`
+              : `${historicalComparision.lastMonth}`} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
         </div>
         <div
-          className='col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap'
+          className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap"
         >
-          <UpAndDownImg src={historicalComparision._12MonthPeriod >= 0 ? redUpImage : greenDownImage} />
-          <HistoricalComparisonInnerWrapper className='ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0'>
+          <UpAndDownImg src={historicalComparision._12MonthPeriod >= 0 ? redUpImage : greenDownImage}/>
+          <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
             <UpAndDownImgTitle>12 Month Period</UpAndDownImgTitle>
-            <UpAndDownImgValue>{historicalComparision._12MonthPeriod >= 0 ? `+${historicalComparision._12MonthPeriod}` : `${historicalComparision._12MonthPeriod}`} MWh</UpAndDownImgValue>
+            <UpAndDownImgValue>{historicalComparision._12MonthPeriod >= 0
+              ? `+${historicalComparision._12MonthPeriod}`
+              : `${historicalComparision._12MonthPeriod}`} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
         </div>
       </HistoricalComparison>

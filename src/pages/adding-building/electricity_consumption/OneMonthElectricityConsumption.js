@@ -21,17 +21,14 @@ const Subtraction = styled(RemoveIcon)`
 
 const OneMonthElectricityConsumption = ({ data }) => {
   // console.log(data)
-  const [selectedDate, setSelectedDate] = React.useState(
-    `${data.year}/${data.month + 1}/01`
+  const [selectedDate, setSelectedDate] = React.useState(`${data.year}/${data.month + 1}/01`
     // new Date("2014-08-18T21:11:54")
   )
 
-  const [electricityConsumptionList, setElectricityConsumptionList] = useRecoilState(
-    electricityConsumptionListState)
+  const [electricityConsumptionList, setElectricityConsumptionList] = useRecoilState(electricityConsumptionListState)
 
   const onRemoveItem = () => {
-    const index = electricityConsumptionList.findIndex(
-      (listItem) => listItem.id === data.id)
+    const index = electricityConsumptionList.findIndex((listItem) => listItem.id === data.id)
 
     const newList = removeItemAtIndex(electricityConsumptionList, index)
     setElectricityConsumptionList(newList)
@@ -66,7 +63,7 @@ const OneMonthElectricityConsumption = ({ data }) => {
 
       <div className='col-3'>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Grid container justify='flex-start'>
+          <Grid container justifyContent='flex-start'>
             <KeyboardDatePicker
               variant='inline'
               openTo='year'

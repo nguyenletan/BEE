@@ -178,19 +178,20 @@ const Building = () => {
     },
   ]
 
-  const [building, setBuilding] = useState(null)
+  const [generalBuildingInformation, setGeneralBuildingInformation] = useState(null)
+
 
   useEffect(() => {
     async function fetchAPI () {
       const idToken = await user.getIdToken()
       const tmp = await getBuildingById(id, idToken)
       console.log(tmp)
-      setBuilding(tmp)
+      setGeneralBuildingInformation(tmp)
     }
 
     //  eslint-disable-next-line
     if (id < 3) {
-      setBuilding(BuildingInfoDataArray[id - 1])
+      setGeneralBuildingInformation(BuildingInfoDataArray[id - 1])
     } else {
       fetchAPI()
     }
@@ -203,37 +204,37 @@ const Building = () => {
   return (
     <>
       <Header/>
-      {building && (
+      {generalBuildingInformation && (
         id < 3 ? (
           <BuildingWrapper>
             <BuildingInfo
-              name={building.name}
-              image={building.image}
-              address={building.address}
-              useType={building.useType}
-              tfa={building.gfa}
+              name={generalBuildingInformation.name}
+              image={generalBuildingInformation.image}
+              address={generalBuildingInformation.address}
+              useType={generalBuildingInformation.useType}
+              tfa={generalBuildingInformation.gfa}
               tfaUnit={'m2'}
-              avgOccupancy={building.avgOccupancy}
-              storey={building.storey}
-              constructed={building.constructed}
-              greenBuildingRating={building.greenBuildingRating}
-              buildingInfoLastEdited={building.buildingInfoLastEdited}
+              avgOccupancy={generalBuildingInformation.avgOccupancy}
+              storey={generalBuildingInformation.storey}
+              constructed={generalBuildingInformation.constructed}
+              greenBuildingRating={generalBuildingInformation.greenBuildingRating}
+              buildingInfoLastEdited={generalBuildingInformation.buildingInfoLastEdited}
             />
 
             <BuildingHistoricalNav/>
 
             <Switch>
               <Route path={`${path}/energy-performance`}>
-                <EnergyPerformance data={building.energyPerformance}/>
+                <EnergyPerformance data={generalBuildingInformation.energyPerformance}/>
               </Route>
               <Route path={`${path}/comparison`}>
-                <Comparison data={{ buildingName: building.name, id: id }}/>
+                <Comparison data={{ buildingName: generalBuildingInformation.name, id: id }}/>
               </Route>
               <Route path={`${path}/improve`}>
-                <Improve data={building.energyPerformance}/>
+                <Improve data={generalBuildingInformation.energyPerformance}/>
               </Route>
               <Route path={`${path}/asset-reliability`}>
-                <AssetReliability data={building.energyPerformance}/>
+                <AssetReliability data={generalBuildingInformation.energyPerformance}/>
               </Route>
               <Redirect to={`${path}/energy-performance`}/>
             </Switch>
@@ -242,35 +243,35 @@ const Building = () => {
         ) : (
           <BuildingWrapper>
             <BuildingInfo
-              name={building.name}
-              image={building.photo}
-              address={building.streetAddress + ', ' + building.city + ', ' +
-              findCountryByCountryCode(building.countryCode)?.name + ', ' + building.postCode}
-              useType={building.useTypeName}
-              tfa={building.grossInteriorArea}
-              tfaUnit={building.grossInteriorAreaUnit}
-              storey={building.storeysAboveGround + building.storeysBelowGround}
-              constructed={building.completionYear + ' - ' + (building.completionYear + 10)}
-              greenBuildingRating={building.sustainabilityRatingSchemeName + ' - ' + building.sustainabilityRatingName}
-              buildingInfoLastEdited={building.updatedAt
-                ? printDateTime(building.updatedAt, 'en-GB')
-                : printDateTime(building.createdAt, 'en-GB')}
+              name={generalBuildingInformation.prop.name}
+              image={generalBuildingInformation.prop.photo}
+              address={generalBuildingInformation.prop.streetAddress + ', ' + generalBuildingInformation.prop.city + ', ' +
+              findCountryByCountryCode(generalBuildingInformation.prop.countryCode)?.name + ', ' + generalBuildingInformation.prop.postCode}
+              useType={generalBuildingInformation.prop.useTypeName}
+              tfa={generalBuildingInformation.prop.grossInteriorArea}
+              tfaUnit={generalBuildingInformation.prop.grossInteriorAreaUnit}
+              storey={generalBuildingInformation.prop.storeysAboveGround + generalBuildingInformation.prop.storeysBelowGround}
+              constructed={generalBuildingInformation.prop.completionYear + ' - ' + (generalBuildingInformation.prop.completionYear + 10)}
+              greenBuildingRating={generalBuildingInformation.prop.sustainabilityRatingSchemeName + ' - ' + generalBuildingInformation.prop.sustainabilityRatingName}
+              buildingInfoLastEdited={generalBuildingInformation.prop.updatedAt
+                ? printDateTime(generalBuildingInformation.prop.updatedAt, 'en-GB')
+                : printDateTime(generalBuildingInformation.prop.createdAt, 'en-GB')}
             />
 
             <BuildingHistoricalNav/>
 
             <Switch>
               <Route path={`${path}/energy-performance`}>
-                <EnergyPerformance data={building?.energyPerformance}/>
+                <EnergyPerformance data={generalBuildingInformation.electricConsumptions} />
               </Route>
               <Route path={`${path}/comparison`}>
-                <Comparison data={{ buildingName: building.name, id: id }}/>
+                <Comparison data={{ buildingName: generalBuildingInformation.name, id: id }}/>
               </Route>
               <Route path={`${path}/improve`}>
-                <Improve data={building.energyPerformance}/>
+                <Improve data={generalBuildingInformation.energyPerformance}/>
               </Route>
               <Route path={`${path}/asset-reliability`}>
-                <AssetReliability data={building.energyPerformance}/>
+                <AssetReliability data={generalBuildingInformation.energyPerformance}/>
               </Route>
               <Redirect to={`${path}/energy-performance`}/>
             </Switch>

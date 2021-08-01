@@ -65,13 +65,9 @@ export const getBuildingById = async (id, idToken) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`
     },
-    //data: data,
     body: {}
   }).then((response) => {
-    console.log(response.data)
     result = response.data
-    //result = 'Retrieve successfully!'
-    //return response.data
   }).catch(error => {
     if (error.response) {
       // setErrorMsg(error.response.data.message)

@@ -165,6 +165,15 @@ export const replaceItemAtIndex = (arr, index, newValue) => {
   return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)]
 }
 
+export const getPrevMonthYear = (month, year) => {
+  let tmp = new Date(`${year}/${month + 1}/01`)
+  tmp = addMonths(tmp, -1)
+  return {
+    month: tmp.getMonth(),
+    year: tmp.getFullYear()
+  }
+}
+
 export const getNextMonthYear = (month, year) => {
   let tmp = new Date(`${year}/${month + 1}/01`)
   tmp = addMonths(tmp, 1)
@@ -188,4 +197,35 @@ export const formatNumber = (num, decimal = 2) => {
       .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     //+ ' €'
   ) // use . as a separator
+}
+
+export const getMonthName = (month) => {
+  switch (month) {
+    case 1:
+      return 'Jan';
+    case 2:
+      return 'Feb';
+    case 3:
+      return 'Mar';
+    case 4:
+      return 'Apr';
+    case 5:
+      return 'May';
+    case 6:
+      return 'Jun';
+    case 7:
+      return 'Jul';
+    case 8:
+      return 'Aug';
+    case 9:
+      return 'Sep';
+    case 10:
+      return 'Oct';
+    case 11:
+      return 'Nov';
+    case 12:
+      return 'Dec';
+    default:
+      return 'Error';
+  }
 }
