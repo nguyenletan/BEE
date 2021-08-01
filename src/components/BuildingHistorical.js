@@ -147,7 +147,7 @@ const BuildingHistorical = (props) => {
 
   console.log(props.energyConsumptions)
 
-  if (props.energyConsumptions !== null) {
+  if (props.energyConsumptions && props.energyConsumptions.length > 0) {
     buildingEnergyUsageData = props.energyConsumptions.map(x => {
       return {
         ...x,
@@ -184,7 +184,7 @@ const BuildingHistorical = (props) => {
   const annualCarbonEmissions = (annualEnergyConsumption  * 1000) * 0.000208
 
 
-  const historicalComparision = {
+  const historicalComparison = {
     sameMonthLastYear: 2.61,
     lastMonth: -1.3,
     _12MonthPeriod: 8,
@@ -247,34 +247,34 @@ const BuildingHistorical = (props) => {
         <div
           className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap"
         >
-          <UpAndDownImg src={historicalComparision.sameMonthLastYear >= 0 ? redUpImage : greenDownImage}/>
+          <UpAndDownImg src={historicalComparison.sameMonthLastYear >= 0 ? redUpImage : greenDownImage}/>
           <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
             <UpAndDownImgTitle>Same Month<br/>Last Year</UpAndDownImgTitle>
-            <UpAndDownImgValue>{historicalComparision.sameMonthLastYear >= 0
-              ? `+${historicalComparision.sameMonthLastYear}`
-              : `${historicalComparision.sameMonthLastYear}`} MWh</UpAndDownImgValue>
+            <UpAndDownImgValue>{historicalComparison.sameMonthLastYear >= 0
+              ? `+${historicalComparison.sameMonthLastYear}`
+              : `${historicalComparison.sameMonthLastYear}`} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
         </div>
         <div
           className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap"
         >
-          <UpAndDownImg src={historicalComparision.lastMonth >= 0 ? redUpImage : greenDownImage}/>
+          <UpAndDownImg src={historicalComparison.lastMonth >= 0 ? redUpImage : greenDownImage}/>
           <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
             <UpAndDownImgTitle>Last Month</UpAndDownImgTitle>
-            <UpAndDownImgValue>{historicalComparision.lastMonth >= 0
-              ? `+${historicalComparision.lastMonth}`
-              : `${historicalComparision.lastMonth}`} MWh</UpAndDownImgValue>
+            <UpAndDownImgValue>{historicalComparison.lastMonth >= 0
+              ? `+${historicalComparison.lastMonth}`
+              : `${historicalComparison.lastMonth}`} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
         </div>
         <div
           className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap"
         >
-          <UpAndDownImg src={historicalComparision._12MonthPeriod >= 0 ? redUpImage : greenDownImage}/>
+          <UpAndDownImg src={historicalComparison._12MonthPeriod >= 0 ? redUpImage : greenDownImage}/>
           <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
             <UpAndDownImgTitle>12 Month Period</UpAndDownImgTitle>
-            <UpAndDownImgValue>{historicalComparision._12MonthPeriod >= 0
-              ? `+${historicalComparision._12MonthPeriod}`
-              : `${historicalComparision._12MonthPeriod}`} MWh</UpAndDownImgValue>
+            <UpAndDownImgValue>{historicalComparison._12MonthPeriod >= 0
+              ? `+${historicalComparison._12MonthPeriod}`
+              : `${historicalComparison._12MonthPeriod}`} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
         </div>
       </HistoricalComparison>

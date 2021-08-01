@@ -190,13 +190,15 @@ export const printDateTime = (dateString, localeString) => {
 }
 
 export const formatNumber = (num, decimal = 2) => {
-  return (
-    num
-    .toFixed(decimal) // always two decimal digits
-      .replace('.', ',') // replace decimal point character with ,
-      .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
-    //+ ' €'
-  ) // use . as a separator
+  if(num) {
+    return (
+      num.toFixed(decimal) // always two decimal digits
+        .replace('.', ',') // replace decimal point character with ,
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+      //+ ' €'
+    ) // use . as a separator
+  }
+  return 'NA';
 }
 
 export const getMonthName = (month) => {
