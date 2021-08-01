@@ -9,12 +9,12 @@ const BreakDownWrapper = styled.div`
   margin-bottom: 50px;
 `
 
-const EnergyPerformance = ({ data }) => {
+const EnergyPerformance = ({ data, totalCost }) => {
   console.log(data)
 
   return (
     <>
-      <BuildingHistorical energyConsumptions={data} />
+      <BuildingHistorical energyConsumptions={data} totalCost={totalCost} />
       {(data && data.breakDownConsumption) && (
         <>
           <BreakDownWrapper className="d-flex row justify-content-center">

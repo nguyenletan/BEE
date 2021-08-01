@@ -145,13 +145,13 @@ const BuildingHistorical = (props) => {
     { month: 'Dec', monthlyValue: '575' },
   ]
 
-
   console.log(props.energyConsumptions)
 
   if (props.energyConsumptions !== null) {
     buildingEnergyUsageData = props.energyConsumptions.map(x => {
       return {
         ...x,
+        monthlyValue: Math.round((x.monthlyValue / 1000)),
         month: getMonthName(x.month + 1) + ' ' + x.year,
       }
     })
@@ -166,6 +166,8 @@ const BuildingHistorical = (props) => {
     data: buildingEnergyUsageData, // generateCountriesData(keys, { size: 7 }),
     indexBy: 'month',
     keys,
+    borderRadius: '4px',
+    borderColor: { from: 'color', modifiers: [['darker', 2.6]] },
     padding: 0.5,
     labelTextColor: 'white', // 'inherit:lighter(1.4)',
     labelSkipWidth: 0,
@@ -177,15 +179,16 @@ const BuildingHistorical = (props) => {
     return accumulator + parseInt(currentValue.monthlyValue)
   }, 0)
 
-  const annualEnergyCost = annualEnergyConsumption * 0.3043 * 1000
-  const annualCarbonEmissions = annualEnergyConsumption * 0.624
+  const annualEnergyCost = props.totalCost
+
+  const annualCarbonEmissions = (annualEnergyConsumption  * 1000) * 0.000208
+
 
   const historicalComparision = {
     sameMonthLastYear: 2.61,
     lastMonth: -1.3,
     _12MonthPeriod: 8,
   }
-
 
   // const CustomBarComponent = (props) => {
   //   const { x, y, height } = props
@@ -206,7 +209,7 @@ const BuildingHistorical = (props) => {
       <HistoricalComparisonContainer className=" mt-5 row">
 
         <BuildingEnergyUsageWrapper className="col col-12 col-lg-8 col-xl-9 mb-5 mb-lg-0">
-          <BuildingEnergyUsageChartTitle>Building Energy Usage (KWh)</BuildingEnergyUsageChartTitle>
+          <BuildingEnergyUsageChartTitle>Building Energy Usage (MWh)</BuildingEnergyUsageChartTitle>
           <ResponsiveBar
             {...commonProps}
             data={buildingEnergyUsageData}
@@ -216,7 +219,7 @@ const BuildingHistorical = (props) => {
             // barComponent={CustomBarComponent}
             tooltip={({ id, value, color }) => (
               <strong style={{ color: '#373637' }}>
-                {id}: {value} KWh
+                {id}: {value} MWh
               </strong>
             )}
           />
