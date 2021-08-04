@@ -34,6 +34,7 @@ const Ul = styled.ul`
   padding-inline-start: 0;
   font-size: ${props => props.fontSize ? props.fontSize : '0.85rem'};
   margin-bottom: 0;
+  margin-top: 30px;
 `
 
 const Label = styled.label`
@@ -53,14 +54,14 @@ const BreakDown = (props) => {
     isCenteredPercentage,
     marginRight,
     hasDescription,
-    noCenterText
+    noCenterText,
   } = props
 
   const commonProperties = {
-
     margin: { top: 40, right: 20, bottom: 20, left: 20 },
     data: data,
-    animate: true
+    animate: true,
+    activeOuterRadiusOffset: 4,
   }
 
   const chartHeight = hasDescription ? '250px' : '150px'
@@ -76,11 +77,11 @@ const BreakDown = (props) => {
         <text
           x={centerX}
           y={centerY + percentageYPosition}
-          textAnchor='middle'
-          dominantBaseline='central'
+          textAnchor="middle"
+          dominantBaseline="central"
           style={{
             fontSize: valueFontSize ?? '24px',
-            fontWeight: '700'
+            fontWeight: '700',
           }}
         >
           {percentage.toFixed(1)} %
@@ -88,20 +89,20 @@ const BreakDown = (props) => {
         {!noCenterText && <text
           x={centerX}
           y={centerY + 15}
-          textAnchor='middle'
-          dominantBaseline='central'
+          textAnchor="middle"
+          dominantBaseline="central"
           style={{
             fontSize: valueFontSize ?? '24px',
-            fontWeight: '700'
+            fontWeight: '700',
           }}
-                          >
+        >
           Used
         </text>}
       </>
     )
   }
 
-  const list = data.map(x => <li className='d-flex justify-content-between' key={x.id}>
+  const list = data.map(x => <li className="d-flex justify-content-between" key={x.id}>
     <Label fontSize={informationFontSize}>{x.id}:</Label>
     <span fontSize={informationFontSize}>{x.value}%</span>
   </li>)
@@ -113,32 +114,36 @@ const BreakDown = (props) => {
       <ResponsivePieWrapper height={chartHeight}>
         <ResponsivePie
           {...commonProperties}
-          innerRadius={innerRadius ?? 0.60}
+          innerRadius={innerRadius ?? 0.55}
           fit
           startAngle={startAngle ?? -120}
           colors={{ datum: 'data.color' }}
-          tooltipFormat={value => `${value + '%'}`}
-        // radialLabel={LabelComponent}
+          arcLabel={function (e) {return  e.value + '%'}}
           radialLabelsLinkColor={{
-            from: 'color'
+            from: 'color',
           }}
           radialLabelsLinkHorizontalLength={10}
           radialLabelsTextXOffset={3}
           radialLabelsLinkStrokeWidth={2}
           radialLabelsTextColor={{
             from: 'color',
-            modifiers: [['darker', 1.2]]
+            modifiers: [['darker', 1.2]],
           }}
-          enableSliceLabels={false}
+          enableSliceLabels={true}
           enableRadialLabels={enableRadialLabels ?? true}
-          layers={['slices', 'sliceLabels', 'radialLabels', 'legends', isCenteredPercentage === true ? CenteredPercentage : '']}
+          layers={[
+            'arcs',
+            'arcLabels',
+            'arcLinkLabels',
+            'legends',
+            isCenteredPercentage === true ? CenteredPercentage : '']}
         />
       </ResponsivePieWrapper>
       {
-      hasDescription && <Ul>
-        {list}
-                        </Ul>
-    }
+        hasDescription && <Ul>
+          {list}
+        </Ul>
+      }
 
     </BreakDownBlock>
   )

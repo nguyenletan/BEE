@@ -145,12 +145,14 @@ const Building = () => {
           { id: 'lighting', value: 28, color: '#acbf42' },
           { id: 'mechanical ventilation', value: 11, color: '#c1cf74' },
           { id: 'others', value: 8, color: '#d5dfa3' }],
+
         breakDownCost: [
           { id: 'cooling', value: 22, color: '#636c2e' },
           { id: 'heating', value: 12, color: '#87972f' },
           { id: 'lighting', value: 39, color: '#acbf42' },
           { id: 'mechanical ventilation', value: 16, color: '#c1cf74' },
           { id: 'others', value: 10, color: '#d5dfa3' }],
+
         breakDownCO2Emissions: [
           { id: 'cooling', value: 20, color: '#636c2e' },
           { id: 'heating', value: 19, color: '#87972f' },
@@ -225,7 +227,11 @@ const Building = () => {
 
             <Switch>
               <Route path={`${path}/energy-performance`}>
-                <EnergyPerformance data={generalBuildingInformation.energyPerformance}/>
+                <EnergyPerformance data={generalBuildingInformation.energyPerformance}
+                                   breakDownConsumption={BuildingInfoDataArray[id-1].energyPerformance.breakDownConsumption}
+                                   breakDownCost={BuildingInfoDataArray[id-1].energyPerformance.breakDownCost}
+                                   breakDownCO2Emissions={BuildingInfoDataArray[id-1].energyPerformance.breakDownCO2Emissions}
+                />
               </Route>
               <Route path={`${path}/comparison`}>
                 <Comparison data={{ buildingName: generalBuildingInformation.name, id: id }}/>
@@ -256,6 +262,7 @@ const Building = () => {
               buildingInfoLastEdited={generalBuildingInformation.prop.updatedAt
                 ? printDateTime(generalBuildingInformation.prop.updatedAt, 'en-GB')
                 : printDateTime(generalBuildingInformation.prop.createdAt, 'en-GB')}
+              totalOperatingHours={generalBuildingInformation.totalOperatingHours}
             />
 
             <BuildingHistoricalNav/>
@@ -268,6 +275,9 @@ const Building = () => {
                                    annualCarbonEmissions={generalBuildingInformation.annualCarbonEmissions}
                                    lastMonthComparison={generalBuildingInformation.lastMonthComparison}
                                    periodOf12Month={generalBuildingInformation.periodOf12Month}
+                                   breakDownConsumption={BuildingInfoDataArray[0].energyPerformance.breakDownConsumption}
+                                   breakDownCost={BuildingInfoDataArray[0].energyPerformance.breakDownCost}
+                                   breakDownCO2Emissions={BuildingInfoDataArray[0].energyPerformance.breakDownCO2Emissions}
                 />
               </Route>
               <Route path={`${path}/comparison`}>

@@ -1,8 +1,6 @@
 import React from 'react'
 import BuildingHistorical from '../../../components/BuildingHistorical'
 import BreakDown from '../../../components/BreakDown'
-import ElectricalSystemInformation from '../../../components/ElectricalSystemInformation'
-import IncidentalGains from '../../../components/IncidentalGains'
 import styled from 'styled-components'
 
 const BreakDownWrapper = styled.div`
@@ -10,7 +8,7 @@ const BreakDownWrapper = styled.div`
 `
 
 const EnergyPerformance = (props) => {
-  // console.log(electricConsumptions)
+  console.log(props)
 
   const {
     electricConsumptions,
@@ -19,6 +17,10 @@ const EnergyPerformance = (props) => {
     annualCarbonEmissions,
     lastMonthComparison,
     periodOf12Month,
+    breakDownConsumption,
+    breakDownCost,
+    breakDownCO2Emissions,
+    totalOperatingHours
   } = props
 
   return (
@@ -28,55 +30,61 @@ const EnergyPerformance = (props) => {
                           annualConsumption={annualConsumption}
                           annualCarbonEmissions={annualCarbonEmissions}
                           lastMonthComparison={lastMonthComparison}
-                          periodOf12Month={periodOf12Month}/>
+                          periodOf12Month={periodOf12Month}
+                          totalOperatingHours={totalOperatingHours}
+      />
 
-      {(electricConsumptions && electricConsumptions.breakDownConsumption) && (
-        <>
-          <BreakDownWrapper className="d-flex row justify-content-center">
-            <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
-              <BreakDown
-                title="Consumption Breakdown"
-                subTitle="%"
-                hasDescription
-                data={electricConsumptions.breakDownConsumption}
-              />
-            </div>
 
-            <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
-              <BreakDown
-                title="Cost Breakdown"
-                subTitle="%"
-                data={electricConsumptions.breakDownCost}
-                hasDescription
-              />
-            </div>
+      <BreakDownWrapper className="d-flex row justify-content-center">
+        {breakDownConsumption && (
+          <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
+            <BreakDown
+              title="Consumption Breakdown"
+              subTitle="%"
+              hasDescription
+              data={breakDownConsumption}
+            />
+          </div>)}
 
-            <div className="col col-12 col-md-8 col-xl-4">
-              <BreakDown
-                title="CO2 Emissions Breakdown"
-                subTitle="%"
-                data={electricConsumptions.breakDownCO2Emissions}
-                hasDescription
-              />
-            </div>
-          </BreakDownWrapper>
+        {breakDownCost && (
+          <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
+            <BreakDown
+              title="Cost Breakdown"
+              subTitle="%"
+              data={breakDownCost}
+              hasDescription
+            />
+          </div>
+        )}
 
-          <ElectricalSystemInformation
-            overallCoolingLoad={electricConsumptions.electricalSystemInformation?.overallCoolingLoad}
-            overallHeatingLoad={electricConsumptions.electricalSystemInformation?.overallHeatingLoad}
-            overallLightingLoad={electricConsumptions.electricalSystemInformation?.overallLightingLoad}
-            overallMechVentLoad={electricConsumptions.electricalSystemInformation?.overallMechVentLoad}
-            pvSystemInstalledCapacity={electricConsumptions.electricalSystemInformation?.pvSystemInstalledCapacity}
-          />
+        {breakDownCO2Emissions && (
+          <div className="col col-12 col-md-8 col-xl-4">
+            <BreakDown
+              title="CO2 Emissions Breakdown"
+              subTitle="%"
+              data={breakDownCO2Emissions}
+              hasDescription
+            />
+          </div>
+        )}
+      </BreakDownWrapper>
 
-          <IncidentalGains
-            roof={electricConsumptions.incidentalGains?.roof}
-            openings={electricConsumptions.incidentalGains?.openings}
-            wall={electricConsumptions.incidentalGains?.wall}
-            floor={electricConsumptions.incidentalGains?.floor}
-            plugLoads={electricConsumptions.incidentalGains?.plugLoads}
-          />
-        </>)}
+      {/*<ElectricalSystemInformation*/}
+      {/*  overallCoolingLoad={electricConsumptions.electricalSystemInformation?.overallCoolingLoad}*/}
+      {/*  overallHeatingLoad={electricConsumptions.electricalSystemInformation?.overallHeatingLoad}*/}
+      {/*  overallLightingLoad={electricConsumptions.electricalSystemInformation?.overallLightingLoad}*/}
+      {/*  overallMechVentLoad={electricConsumptions.electricalSystemInformation?.overallMechVentLoad}*/}
+      {/*  pvSystemInstalledCapacity={electricConsumptions.electricalSystemInformation?.pvSystemInstalledCapacity}*/}
+      {/*/>*/}
+
+      {/*<IncidentalGains*/}
+      {/*  roof={electricConsumptions.incidentalGains?.roof}*/}
+      {/*  openings={electricConsumptions.incidentalGains?.openings}*/}
+      {/*  wall={electricConsumptions.incidentalGains?.wall}*/}
+      {/*  floor={electricConsumptions.incidentalGains?.floor}*/}
+      {/*  plugLoads={electricConsumptions.incidentalGains?.plugLoads}*/}
+      {/*/>*/}
+
     </>
   )
 }

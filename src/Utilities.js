@@ -190,7 +190,7 @@ export const printDateTime = (dateString, localeString) => {
 }
 
 export const formatNumber = (num, decimal = 2, unit = '') => {
-  if (num) {
+  if (num && typeof num === 'number') {
     return (
       num.toFixed(decimal) // always two decimal digits
         .replace('.', ',') // replace decimal point character with ,

@@ -56,40 +56,58 @@ const TypeCol = styled.p`
 `
 
 const BuildingInfo = (props) => {
-  const { name, image, address, useType, tfa, tfaUnit, storey, buildingInfoLastEdited, constructed, greenBuildingRating } = props
+  const {
+    name,
+    image,
+    address,
+    useType,
+    tfa,
+    tfaUnit,
+    storey,
+    buildingInfoLastEdited,
+    constructed,
+    greenBuildingRating,
+    totalOperatingHours,
+  } = props
+
   return (
-    <BuildingInfoWrapper className='d-flex justify-content-start flex-wrap'>
-      <BuildingImage src={image} />
-      <GeneralInformation className='flex-grow-1'>
+    <BuildingInfoWrapper className="d-flex justify-content-start flex-wrap">
+      <BuildingImage src={image}/>
+      <GeneralInformation className="flex-grow-1">
         <BuildingTitle>{name}</BuildingTitle>
-        <BuildingAddress className='ms-1 mb-2'>{address}</BuildingAddress>
-        <div className='row ms-2 mb-2 w-100'>
-          <div className='col-12 col-md-4 col-lg-3'>
-            <TypeCol className='mb-1'>Use Type</TypeCol>
-            <TypeCol className='mb-0'>{useType}</TypeCol>
+        <BuildingAddress className="ms-1 mb-2">{address}</BuildingAddress>
+        <div className="row ms-2 mb-2 w-100">
+          <div className="col-12 col-md-4 col-lg-3">
+            <TypeCol className="mb-1">Use Type</TypeCol>
+            <TypeCol className="mb-0">{useType}</TypeCol>
           </div>
-          <div className='col-12 col-md-4 col-lg-3'>
-            <TypeCol className='mb-1'>Total Floor Area (Internal)</TypeCol>
-            <TypeCol className='mb-0'>{formatNumber(tfa, 0)} {tfaUnit}</TypeCol>
+          <div className="col-12 col-md-4 col-lg-3">
+            <TypeCol className="mb-1">Total Floor Area (Internal)</TypeCol>
+            <TypeCol className="mb-0">{formatNumber(tfa, 0)} {tfaUnit}</TypeCol>
           </div>
-          <div className='col-12 col-md-4 col-lg-6'>
-            <TypeCol className='mb-1'>Green Building Rating</TypeCol>
-            <TypeCol className='mb-0'>{greenBuildingRating}</TypeCol>
+          <div className="col-12 col-md-4 col-lg-6">
+            <TypeCol className="mb-1">Green Building Rating</TypeCol>
+            <TypeCol className="mb-0">{greenBuildingRating}</TypeCol>
           </div>
         </div>
 
-        <div className='row ms-2 mb-2'>
-          <div className='col-12 col-md-4 col-lg-3'>
-            <TypeCol className='mb-1'>Storey</TypeCol>
-            <TypeCol className='mb-0'>{storey}</TypeCol>
+        <div className="row ms-2 mb-2">
+          <div className="col-12 col-md-4 col-lg-3">
+            <TypeCol className="mb-1">Storey</TypeCol>
+            <TypeCol className="mb-0">{storey}</TypeCol>
           </div>
-          <div className='col-12 col-md-4 col-lg-3'>
-            <TypeCol className='mb-1'>Constructed</TypeCol>
-            <TypeCol className='mb-0'>{constructed}</TypeCol>
+          <div className="col-12 col-md-4 col-lg-3">
+            <TypeCol className="mb-1">Constructed</TypeCol>
+            <TypeCol className="mb-0">{constructed}</TypeCol>
+          </div>
+          <div className="col-12 col-md-4 col-lg-3">
+            <TypeCol className="mb-1">Total operating hours</TypeCol>
+            <TypeCol className="mb-0">{totalOperatingHours?.toFixed(0)}</TypeCol>
           </div>
 
+
         </div>
-        <BuildingLastEdited className='ms-1'>Last Edited: {buildingInfoLastEdited}</BuildingLastEdited>
+        <BuildingLastEdited className="ms-1">Last Edited: {buildingInfoLastEdited}</BuildingLastEdited>
       </GeneralInformation>
     </BuildingInfoWrapper>
   )
@@ -105,7 +123,7 @@ BuildingInfo.propTypes = {
   storey: PropTypes.number,
   constructed: PropTypes.string,
   greenBuildingRating: PropTypes.string,
-  buildingInfoLastEdited: PropTypes.string
+  buildingInfoLastEdited: PropTypes.string,
 }
 
 export default BuildingInfo

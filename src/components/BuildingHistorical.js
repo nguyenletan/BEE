@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { ResponsiveBar } from '@nivo/bar'
 import styled from 'styled-components'
 import _ from 'lodash'
@@ -6,7 +6,6 @@ import _ from 'lodash'
 import redUpImage from '../assets/images/red_up.jpg'
 import greenDownImage from '../assets/images/green_down.jpg'
 import { formatNumber, getMonthName } from '../Utilities'
-
 
 const SummaryBoxWrapper = styled.div`
   justify-content: flex-start;
@@ -132,8 +131,7 @@ const HistoricalComparisonInnerWrapper = styled.div`
 `
 
 const BuildingHistorical = (props) => {
-  const {periodOf12Month, lastMonthComparison} = props;
-
+  const { periodOf12Month, lastMonthComparison } = props
 
   let buildingEnergyUsageData = [
     { month: 'Jan', monthlyValue: '590' },
@@ -158,10 +156,10 @@ const BuildingHistorical = (props) => {
         month: getMonthName(x.month + 1) + ' ' + x.year,
       }
     })
-    console.log(props.energyConsumptions)
   }
 
-  const [sameMonthLastYearComparison, setSameMonthLastYearComparison] = useState(_.tail(buildingEnergyUsageData)?.sameMonthLastYearComparison);
+  const [sameMonthLastYearComparison, setSameMonthLastYearComparison] = useState(
+    _.takeRight(buildingEnergyUsageData, 1)[0]?.sameMonthLastYearComparison)
 
   const keys = ['monthlyValue']
 
@@ -181,18 +179,17 @@ const BuildingHistorical = (props) => {
     animate: true,
     motionConfig: 'wobbly',
     valueScale: { type: 'linear' },
-    indexScale: { type: 'band', round: true }
+    indexScale: { type: 'band', round: true },
   }
 
   const annualEnergyConsumption = props.annualConsumption
   const annualEnergyCost = props.annualCost
   const annualCarbonEmissions = props.annualCarbonEmissions
 
-
   const historicalComparison = {
     sameMonthLastYear: 2.61,
     lastMonth: lastMonthComparison ?? 'Insufficient Data',
-    _12MonthPeriod: periodOf12Month ?? 'Insufficient Data'
+    _12MonthPeriod: periodOf12Month ?? 'Insufficient Data',
   }
 
   // const CustomBarComponent = (props) => {
@@ -210,16 +207,18 @@ const BuildingHistorical = (props) => {
   // console.log(generateCountriesData(keys, { size: 7 }))
 
   const selectMonth = (e) => {
-    console.log(e);
+    console.log(e)
     setSameMonthLastYearComparison(buildingEnergyUsageData[e.index]?.sameMonthLastYearComparison)
   }
 
   return (
     <HistoricalComparisonWrapper className="">
+
       <HistoricalComparisonContainer className=" mt-5 row">
 
         <BuildingEnergyUsageWrapper className="col col-12 col-lg-8 col-xl-9 mb-5 mb-lg-0">
           <BuildingEnergyUsageChartTitle>Building Energy Usage (MWh)</BuildingEnergyUsageChartTitle>
+
           <ResponsiveBar
             {...commonProps}
             colors={({ id, data }) => {
