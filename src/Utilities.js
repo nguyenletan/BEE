@@ -119,7 +119,7 @@ export const getSubSystemIcon = (subSystem) => {
   }
   return {
     imgSrc: imgSrc,
-    width: width
+    width: width,
   }
 }
 
@@ -146,9 +146,10 @@ export const getLatLngFromAddress = async (address) => {
 export const getPlaceDetail = async (placeId) => {
   const googleMapAPIEndPoint = 'https://maps.googleapis.com/maps/api/place/details/json'
   let placeDetail = null
-  const url = googleMapAPIEndPoint + '?place_id=' + placeId + '&fields=name,rating,formatted_phone_number&key=' + process.env.REACT_APP_GOOGLE_API_KEY
+  const url = googleMapAPIEndPoint + '?place_id=' + placeId + '&fields=name,rating,formatted_phone_number&key=' +
+    process.env.REACT_APP_GOOGLE_API_KEY
   await fetch(url, {
-    mode: 'cors'
+    mode: 'cors',
   }).then(response => response.json()).then(data => {
     console.log(data)
     placeDetail = data
@@ -170,7 +171,7 @@ export const getPrevMonthYear = (month, year) => {
   tmp = addMonths(tmp, -1)
   return {
     month: tmp.getMonth(),
-    year: tmp.getFullYear()
+    year: tmp.getFullYear(),
   }
 }
 
@@ -179,55 +180,54 @@ export const getNextMonthYear = (month, year) => {
   tmp = addMonths(tmp, 1)
   return {
     month: tmp.getMonth(),
-    year: tmp.getFullYear()
+    year: tmp.getFullYear(),
   }
 }
-
 
 export const printDateTime = (dateString, localeString) => {
   const date = new Date(dateString)
   return date.toLocaleDateString(localeString) + ' ' + date.toLocaleTimeString(localeString)
 }
 
-export const formatNumber = (num, decimal = 2) => {
-  if(num) {
+export const formatNumber = (num, decimal = 2, unit = '') => {
+  if (num) {
     return (
       num.toFixed(decimal) // always two decimal digits
         .replace('.', ',') // replace decimal point character with ,
         .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
-      //+ ' €'
+      + ' ' + unit
     ) // use . as a separator
   }
-  return 'NA';
+  return '---'
 }
 
 export const getMonthName = (month) => {
   switch (month) {
     case 1:
-      return 'Jan';
+      return 'Jan'
     case 2:
-      return 'Feb';
+      return 'Feb'
     case 3:
-      return 'Mar';
+      return 'Mar'
     case 4:
-      return 'Apr';
+      return 'Apr'
     case 5:
-      return 'May';
+      return 'May'
     case 6:
-      return 'Jun';
+      return 'Jun'
     case 7:
-      return 'Jul';
+      return 'Jul'
     case 8:
-      return 'Aug';
+      return 'Aug'
     case 9:
-      return 'Sep';
+      return 'Sep'
     case 10:
-      return 'Oct';
+      return 'Oct'
     case 11:
-      return 'Nov';
+      return 'Nov'
     case 12:
-      return 'Dec';
+      return 'Dec'
     default:
-      return 'Error';
+      return 'Error'
   }
 }

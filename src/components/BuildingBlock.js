@@ -6,7 +6,7 @@ const BuildingBlock = ({ data }) => {
   return (
     <li>
       <Link to={'/building/' + data.id}>
-        <BuildingImage src={data.photo} alt={data.title} />
+        <BuildingImage className="shadow-lg" src={data.photo} alt={data.title} />
         <Title>{data.title}</Title>
         <Address>{data.address}</Address>
       </Link>

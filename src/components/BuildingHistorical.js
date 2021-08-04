@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { ResponsiveBar } from '@nivo/bar'
 import styled from 'styled-components'
+import _ from 'lodash'
+
 import redUpImage from '../assets/images/red_up.jpg'
 import greenDownImage from '../assets/images/green_down.jpg'
 import { formatNumber, getMonthName } from '../Utilities'
+
 
 const SummaryBoxWrapper = styled.div`
   justify-content: flex-start;
@@ -129,6 +132,8 @@ const HistoricalComparisonInnerWrapper = styled.div`
 `
 
 const BuildingHistorical = (props) => {
+  const {periodOf12Month, lastMonthComparison} = props;
+
 
   let buildingEnergyUsageData = [
     { month: 'Jan', monthlyValue: '590' },
@@ -145,17 +150,18 @@ const BuildingHistorical = (props) => {
     { month: 'Dec', monthlyValue: '575' },
   ]
 
-  console.log(props.energyConsumptions)
-
   if (props.energyConsumptions && props.energyConsumptions.length > 0) {
-    buildingEnergyUsageData = props.energyConsumptions.map(x => {
+    buildingEnergyUsageData = _.reverse(_.take(props.energyConsumptions, 12)).map(x => {
       return {
         ...x,
         monthlyValue: Math.round((x.monthlyValue / 1000)),
         month: getMonthName(x.month + 1) + ' ' + x.year,
       }
     })
+    console.log(props.energyConsumptions)
   }
+
+  const [sameMonthLastYearComparison, setSameMonthLastYearComparison] = useState(_.tail(buildingEnergyUsageData)?.sameMonthLastYearComparison);
 
   const keys = ['monthlyValue']
 
@@ -166,28 +172,27 @@ const BuildingHistorical = (props) => {
     data: buildingEnergyUsageData, // generateCountriesData(keys, { size: 7 }),
     indexBy: 'month',
     keys,
-    borderRadius: '4px',
+    borderRadius: '5px',
     borderColor: { from: 'color', modifiers: [['darker', 2.6]] },
-    padding: 0.5,
+    padding: 0.39,
     labelTextColor: 'white', // 'inherit:lighter(1.4)',
     labelSkipWidth: 0,
     labelSkipHeight: 16,
     animate: true,
+    motionConfig: 'wobbly',
+    valueScale: { type: 'linear' },
+    indexScale: { type: 'band', round: true }
   }
 
-  const annualEnergyConsumption = buildingEnergyUsageData.reduce(function (accumulator, currentValue, currentIndex, array) {
-    return accumulator + parseInt(currentValue.monthlyValue)
-  }, 0)
-
-  const annualEnergyCost = props.totalCost
-
-  const annualCarbonEmissions = (annualEnergyConsumption  * 1000) * 0.000208
+  const annualEnergyConsumption = props.annualConsumption
+  const annualEnergyCost = props.annualCost
+  const annualCarbonEmissions = props.annualCarbonEmissions
 
 
   const historicalComparison = {
     sameMonthLastYear: 2.61,
-    lastMonth: -1.3,
-    _12MonthPeriod: 8,
+    lastMonth: lastMonthComparison ?? 'Insufficient Data',
+    _12MonthPeriod: periodOf12Month ?? 'Insufficient Data'
   }
 
   // const CustomBarComponent = (props) => {
@@ -204,6 +209,11 @@ const BuildingHistorical = (props) => {
 
   // console.log(generateCountriesData(keys, { size: 7 }))
 
+  const selectMonth = (e) => {
+    console.log(e);
+    setSameMonthLastYearComparison(buildingEnergyUsageData[e.index]?.sameMonthLastYearComparison)
+  }
+
   return (
     <HistoricalComparisonWrapper className="">
       <HistoricalComparisonContainer className=" mt-5 row">
@@ -212,15 +222,25 @@ const BuildingHistorical = (props) => {
           <BuildingEnergyUsageChartTitle>Building Energy Usage (MWh)</BuildingEnergyUsageChartTitle>
           <ResponsiveBar
             {...commonProps}
-            data={buildingEnergyUsageData}
             colors={({ id, data }) => {
               return '#87972f'
             }}
+            onClick={selectMonth}
             // barComponent={CustomBarComponent}
-            tooltip={({ id, value, color }) => (
-              <strong style={{ color: '#373637' }}>
-                {id}: {value} MWh
-              </strong>
+            tooltip={({ indexValue, value, color }) => (
+              <div
+                style={{
+                  padding: 12,
+                  color,
+                  fontSize: '13px',
+                  fontWeight: 'normal',
+                  background: '#373637',
+                }}
+              >
+                <span style={{ color: '#CDEAE5' }}>
+                  {indexValue}: {value} MWh
+                </span>
+              </div>
             )}
           />
         </BuildingEnergyUsageWrapper>
@@ -232,7 +252,7 @@ const BuildingHistorical = (props) => {
           </SummaryBox>
           <SummaryBox className="mb-3">
             <SummaryBoxTitle>Annual Energy Cost ($)</SummaryBoxTitle>
-            <SummaryBoxValue>{formatNumber(annualEnergyCost, 0)}</SummaryBoxValue>
+            <SummaryBoxValue>{formatNumber(annualEnergyCost, 0, '$')}</SummaryBoxValue>
           </SummaryBox>
           <SummaryBox className="mb-3 mb-lg-0">
             <SummaryBoxTitle>Annual Carbon Emissions (Tons/Yr)</SummaryBoxTitle>
@@ -247,12 +267,10 @@ const BuildingHistorical = (props) => {
         <div
           className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap"
         >
-          <UpAndDownImg src={historicalComparison.sameMonthLastYear >= 0 ? redUpImage : greenDownImage}/>
+          <UpAndDownImg src={sameMonthLastYearComparison >= 0 ? redUpImage : greenDownImage}/>
           <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
             <UpAndDownImgTitle>Same Month<br/>Last Year</UpAndDownImgTitle>
-            <UpAndDownImgValue>{historicalComparison.sameMonthLastYear >= 0
-              ? `+${historicalComparison.sameMonthLastYear}`
-              : `${historicalComparison.sameMonthLastYear}`} MWh</UpAndDownImgValue>
+            <UpAndDownImgValue>{formatNumber(sameMonthLastYearComparison, 2)} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
         </div>
         <div
@@ -261,9 +279,7 @@ const BuildingHistorical = (props) => {
           <UpAndDownImg src={historicalComparison.lastMonth >= 0 ? redUpImage : greenDownImage}/>
           <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
             <UpAndDownImgTitle>Last Month</UpAndDownImgTitle>
-            <UpAndDownImgValue>{historicalComparison.lastMonth >= 0
-              ? `+${historicalComparison.lastMonth}`
-              : `${historicalComparison.lastMonth}`} MWh</UpAndDownImgValue>
+            <UpAndDownImgValue>{formatNumber(historicalComparison.lastMonth, 2)} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
         </div>
         <div
@@ -272,9 +288,7 @@ const BuildingHistorical = (props) => {
           <UpAndDownImg src={historicalComparison._12MonthPeriod >= 0 ? redUpImage : greenDownImage}/>
           <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
             <UpAndDownImgTitle>12 Month Period</UpAndDownImgTitle>
-            <UpAndDownImgValue>{historicalComparison._12MonthPeriod >= 0
-              ? `+${historicalComparison._12MonthPeriod}`
-              : `${historicalComparison._12MonthPeriod}`} MWh</UpAndDownImgValue>
+            <UpAndDownImgValue>{formatNumber(historicalComparison._12MonthPeriod, 2)} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
         </div>
       </HistoricalComparison>

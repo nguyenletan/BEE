@@ -262,8 +262,13 @@ const Building = () => {
 
             <Switch>
               <Route path={`${path}/energy-performance`}>
-                <EnergyPerformance data={generalBuildingInformation.electricConsumptions}
-                                   totalCost={generalBuildingInformation.totalCost} />
+                <EnergyPerformance electricConsumptions={generalBuildingInformation.electricConsumptions}
+                                   annualCost={generalBuildingInformation.annualCost}
+                                   annualConsumption={generalBuildingInformation.annualConsumption}
+                                   annualCarbonEmissions={generalBuildingInformation.annualCarbonEmissions}
+                                   lastMonthComparison={generalBuildingInformation.lastMonthComparison}
+                                   periodOf12Month={generalBuildingInformation.periodOf12Month}
+                />
               </Route>
               <Route path={`${path}/comparison`}>
                 <Comparison data={{ buildingName: generalBuildingInformation.name, id: id }}/>
