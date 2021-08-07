@@ -189,6 +189,7 @@ const Building = () => {
       const tmp = await getBuildingById(id, idToken)
       console.log(tmp)
       setGeneralBuildingInformation(tmp)
+
     }
 
     //  eslint-disable-next-line
@@ -274,8 +275,10 @@ const Building = () => {
                                    annualConsumption={generalBuildingInformation.annualConsumption}
                                    annualCarbonEmissions={generalBuildingInformation.annualCarbonEmissions}
                                    lastMonthComparison={generalBuildingInformation.lastMonthComparison}
+                                   coolingLoadForSpace={generalBuildingInformation.coolingLoadForSpace}
+                                   heatingLoadForSpace={generalBuildingInformation.heatingLoadForSpace}
                                    periodOf12Month={generalBuildingInformation.periodOf12Month}
-                                   breakDownConsumption={BuildingInfoDataArray[0].energyPerformance.breakDownConsumption}
+                                   breakDownConsumption={null}
                                    breakDownCost={BuildingInfoDataArray[0].energyPerformance.breakDownCost}
                                    breakDownCO2Emissions={BuildingInfoDataArray[0].energyPerformance.breakDownCO2Emissions}
                 />

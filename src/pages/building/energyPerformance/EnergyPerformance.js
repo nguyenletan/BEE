@@ -2,6 +2,8 @@ import React from 'react'
 import BuildingHistorical from '../../../components/BuildingHistorical'
 import BreakDown from '../../../components/BreakDown'
 import styled from 'styled-components'
+import ElectricalSystemInformation from '../../../components/ElectricalSystemInformation'
+import { formatNumber } from '../../../Utilities'
 
 const BreakDownWrapper = styled.div`
   margin-bottom: 50px;
@@ -17,11 +19,21 @@ const EnergyPerformance = (props) => {
     annualCarbonEmissions,
     lastMonthComparison,
     periodOf12Month,
-    breakDownConsumption,
     breakDownCost,
     breakDownCO2Emissions,
-    totalOperatingHours
+    totalOperatingHours,
+    coolingLoadForSpace,
+    heatingLoadForSpace
   } = props
+
+  console.log(heatingLoadForSpace)
+
+  const breakDownConsumption = [
+    { id: 'cooling', value: 30, color: '#636c2e' },
+    { id: 'heating', value: 40, color: '#87972f' },
+    { id: 'lighting', value: 20, color: '#acbf42' },
+    { id: 'mechanical ventilation', value: 6, color: '#c1cf74' },
+    { id: 'others', value: 4, color: '#d5dfa3' }]
 
   return (
     <>
@@ -69,13 +81,13 @@ const EnergyPerformance = (props) => {
         )}
       </BreakDownWrapper>
 
-      {/*<ElectricalSystemInformation*/}
-      {/*  overallCoolingLoad={electricConsumptions.electricalSystemInformation?.overallCoolingLoad}*/}
-      {/*  overallHeatingLoad={electricConsumptions.electricalSystemInformation?.overallHeatingLoad}*/}
-      {/*  overallLightingLoad={electricConsumptions.electricalSystemInformation?.overallLightingLoad}*/}
-      {/*  overallMechVentLoad={electricConsumptions.electricalSystemInformation?.overallMechVentLoad}*/}
-      {/*  pvSystemInstalledCapacity={electricConsumptions.electricalSystemInformation?.pvSystemInstalledCapacity}*/}
-      {/*/>*/}
+      <ElectricalSystemInformation
+        overallCoolingLoad={formatNumber(coolingLoadForSpace?.coolingLoad)}
+        overallHeatingLoad={formatNumber(heatingLoadForSpace?.heatingLoad)}
+        overallLightingLoad={electricConsumptions?.electricalSystemInformation?.overallLightingLoad}
+        overallMechVentLoad={electricConsumptions?.electricalSystemInformation?.overallMechVentLoad}
+        pvSystemInstalledCapacity={electricConsumptions?.electricalSystemInformation?.pvSystemInstalledCapacity}
+      />
 
       {/*<IncidentalGains*/}
       {/*  roof={electricConsumptions.incidentalGains?.roof}*/}
