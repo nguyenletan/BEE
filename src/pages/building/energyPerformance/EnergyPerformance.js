@@ -23,7 +23,8 @@ const EnergyPerformance = (props) => {
     breakDownCO2Emissions,
     totalOperatingHours,
     coolingLoadForSpace,
-    heatingLoadForSpace
+    heatingLoadForSpace,
+    mechanicalVentilationForSpace
   } = props
 
   console.log(heatingLoadForSpace)
@@ -82,9 +83,9 @@ const EnergyPerformance = (props) => {
       </BreakDownWrapper>
 
       <ElectricalSystemInformation
-        overallCoolingLoad={formatNumber(coolingLoadForSpace?.coolingLoad)}
-        overallHeatingLoad={formatNumber(heatingLoadForSpace?.heatingLoad)}
-        overallLightingLoad={electricConsumptions?.electricalSystemInformation?.overallLightingLoad}
+        overallCoolingLoad={formatNumber(coolingLoadForSpace?.coolingLoad, 2)}
+        overallHeatingLoad={formatNumber(heatingLoadForSpace?.heatingLoad, 2)}
+        overallLightingLoad={formatNumber(mechanicalVentilationForSpace?.airVolumeFlowRate, 2)}
         overallMechVentLoad={electricConsumptions?.electricalSystemInformation?.overallMechVentLoad}
         pvSystemInstalledCapacity={electricConsumptions?.electricalSystemInformation?.pvSystemInstalledCapacity}
       />

@@ -277,6 +277,7 @@ const Building = () => {
                                    lastMonthComparison={generalBuildingInformation.lastMonthComparison}
                                    coolingLoadForSpace={generalBuildingInformation.coolingLoadForSpace}
                                    heatingLoadForSpace={generalBuildingInformation.heatingLoadForSpace}
+                                   mechanicalVentilationForSpace={generalBuildingInformation.mechanicalVentilationForSpace}
                                    periodOf12Month={generalBuildingInformation.periodOf12Month}
                                    breakDownConsumption={null}
                                    breakDownCost={BuildingInfoDataArray[0].energyPerformance.breakDownCost}
