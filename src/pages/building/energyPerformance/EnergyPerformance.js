@@ -86,7 +86,7 @@ const EnergyPerformance = (props) => {
         overallCoolingLoad={formatNumber(coolingLoadForSpace?.coolingLoad, 2)}
         overallHeatingLoad={formatNumber(heatingLoadForSpace?.heatingLoad, 2)}
         overallLightingLoad={formatNumber(mechanicalVentilationForSpace?.airVolumeFlowRate, 2)}
-        overallMechVentLoad={electricConsumptions?.electricalSystemInformation?.overallMechVentLoad}
+        overallMechVentLoad={formatNumber(mechanicalVentilationForSpace?.airVolumeFlowRate, 2)}
         pvSystemInstalledCapacity={electricConsumptions?.electricalSystemInformation?.pvSystemInstalledCapacity}
       />
 
