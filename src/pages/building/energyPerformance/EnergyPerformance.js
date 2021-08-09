@@ -10,7 +10,7 @@ const BreakDownWrapper = styled.div`
 `
 
 const EnergyPerformance = (props) => {
-  console.log(props)
+  // console.log(props)
 
   const {
     electricConsumptions,
@@ -24,17 +24,11 @@ const EnergyPerformance = (props) => {
     totalOperatingHours,
     coolingLoadForSpace,
     heatingLoadForSpace,
-    mechanicalVentilationForSpace
+    mechanicalVentilationForSpace,
+    lightingLoadForSpaces,
+    breakDownConsumption
   } = props
 
-  console.log(heatingLoadForSpace)
-
-  const breakDownConsumption = [
-    { id: 'cooling', value: 30, color: '#636c2e' },
-    { id: 'heating', value: 40, color: '#87972f' },
-    { id: 'lighting', value: 20, color: '#acbf42' },
-    { id: 'mechanical ventilation', value: 6, color: '#c1cf74' },
-    { id: 'others', value: 4, color: '#d5dfa3' }]
 
   return (
     <>
@@ -46,7 +40,6 @@ const EnergyPerformance = (props) => {
                           periodOf12Month={periodOf12Month}
                           totalOperatingHours={totalOperatingHours}
       />
-
 
       <BreakDownWrapper className="d-flex row justify-content-center">
         {breakDownConsumption && (
@@ -85,7 +78,7 @@ const EnergyPerformance = (props) => {
       <ElectricalSystemInformation
         overallCoolingLoad={formatNumber(coolingLoadForSpace?.coolingLoad, 2)}
         overallHeatingLoad={formatNumber(heatingLoadForSpace?.heatingLoad, 2)}
-        overallLightingLoad={formatNumber(mechanicalVentilationForSpace?.airVolumeFlowRate, 2)}
+        overallLightingLoad={formatNumber(lightingLoadForSpaces?.lightingLoad, 2)}
         overallMechVentLoad={formatNumber(mechanicalVentilationForSpace?.airVolumeFlowRate, 2)}
         pvSystemInstalledCapacity={electricConsumptions?.electricalSystemInformation?.pvSystemInstalledCapacity}
       />

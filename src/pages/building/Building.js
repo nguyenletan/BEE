@@ -278,8 +278,9 @@ const Building = () => {
                                    coolingLoadForSpace={generalBuildingInformation.coolingLoadForSpace}
                                    heatingLoadForSpace={generalBuildingInformation.heatingLoadForSpace}
                                    mechanicalVentilationForSpace={generalBuildingInformation.mechanicalVentilationForSpace}
+                                   lightingLoadForSpaces={generalBuildingInformation.lightingLoadForSpaces}
                                    periodOf12Month={generalBuildingInformation.periodOf12Month}
-                                   breakDownConsumption={null}
+                                   breakDownConsumption={generalBuildingInformation.breakDownConsumption}
                                    breakDownCost={BuildingInfoDataArray[0].energyPerformance.breakDownCost}
                                    breakDownCO2Emissions={BuildingInfoDataArray[0].energyPerformance.breakDownCO2Emissions}
                 />
