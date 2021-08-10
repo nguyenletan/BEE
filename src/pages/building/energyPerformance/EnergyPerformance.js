@@ -19,14 +19,14 @@ const EnergyPerformance = (props) => {
     annualCarbonEmissions,
     lastMonthComparison,
     periodOf12Month,
-    breakDownCost,
     breakDownCO2Emissions,
     totalOperatingHours,
     coolingLoadForSpace,
     heatingLoadForSpace,
     mechanicalVentilationForSpace,
     lightingLoadForSpaces,
-    breakDownConsumption
+    breakDownConsumption,
+    breakDownCost
   } = props
 
 

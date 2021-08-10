@@ -177,7 +177,7 @@ const BuildingHistorical = (props) => {
     labelSkipWidth: 0,
     labelSkipHeight: 16,
     animate: true,
-    motionConfig: 'wobbly',
+    motionConfig: 'default',
     valueScale: { type: 'linear' },
     indexScale: { type: 'band', round: true },
   }
@@ -250,7 +250,7 @@ const BuildingHistorical = (props) => {
             <SummaryBoxValue>{formatNumber(annualEnergyConsumption, 0)}</SummaryBoxValue>
           </SummaryBox>
           <SummaryBox className="mb-3">
-            <SummaryBoxTitle>Annual Energy Cost ($)</SummaryBoxTitle>
+            <SummaryBoxTitle>Annual Energy Cost ($/Yr)</SummaryBoxTitle>
             <SummaryBoxValue>{formatNumber(annualEnergyCost, 0, '$')}</SummaryBoxValue>
           </SummaryBox>
           <SummaryBox className="mb-3 mb-lg-0">

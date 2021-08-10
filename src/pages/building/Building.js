@@ -281,7 +281,7 @@ const Building = () => {
                                    lightingLoadForSpaces={generalBuildingInformation.lightingLoadForSpaces}
                                    periodOf12Month={generalBuildingInformation.periodOf12Month}
                                    breakDownConsumption={generalBuildingInformation.breakDownConsumption}
-                                   breakDownCost={BuildingInfoDataArray[0].energyPerformance.breakDownCost}
+                                   breakDownCost={generalBuildingInformation.breakDownCost}
                                    breakDownCO2Emissions={BuildingInfoDataArray[0].energyPerformance.breakDownCO2Emissions}
                 />
               </Route>
