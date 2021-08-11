@@ -85,11 +85,11 @@ const EnergyPerformance = (props) => {
       />
 
       <IncidentalGains
-        roof={electricConsumptions.incidentalGains?.roof}
-        openings={electricConsumptions.incidentalGains?.openings}
-        wall={electricConsumptions.incidentalGains?.wall}
-        floor={electricConsumptions.incidentalGains?.floor}
-        plugLoads={electricConsumptions.incidentalGains?.plugLoads}
+        roof={electricConsumptions?.incidentalGains?.roof}
+        openings={electricConsumptions?.incidentalGains?.openings}
+        wall={electricConsumptions?.incidentalGains?.wall}
+        floor={electricConsumptions?.incidentalGains?.floor}
+        plugLoads={electricConsumptions?.incidentalGains?.plugLoads}
       />
 
     </>
