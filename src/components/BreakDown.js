@@ -118,6 +118,19 @@ const BreakDown = (props) => {
           fit
           startAngle={startAngle ?? -120}
           colors={{ datum: 'data.color' }}
+          tooltip={({ datum: { id, value, color } }) => (
+            <div
+              style={{
+                padding: 10,
+                color: '#f9f3f2',
+                background: '#37363785',
+              }}
+            >
+              <strong>
+                {id}: {value} %
+              </strong>
+            </div>
+          )}
           arcLabel={function (e) {return  e.value + '%'}}
           radialLabelsLinkColor={{
             from: 'color',
@@ -125,9 +138,12 @@ const BreakDown = (props) => {
           radialLabelsLinkHorizontalLength={10}
           radialLabelsTextXOffset={3}
           radialLabelsLinkStrokeWidth={2}
+          arcLinkLabelsThickness={3}
+          arcLinkLabelsColor={{ from: 'color' }}
+          arcLabelsTextColor={{ from: 'color', modifiers: [ [ 'brighter', 3 ] ] }}
           radialLabelsTextColor={{
             from: 'color',
-            modifiers: [['darker', 1.2]],
+            modifiers: [['brighter', 1.2]],
           }}
           enableSliceLabels={true}
           enableRadialLabels={enableRadialLabels ?? true}

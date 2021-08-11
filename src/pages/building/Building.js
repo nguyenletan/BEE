@@ -186,7 +186,7 @@ const Building = () => {
     async function fetchAPI () {
       const idToken = await user.getIdToken()
       const tmp = await getBuildingById(id, idToken)
-      console.log(tmp)
+      // console.log(tmp)
       setGeneralBuildingInformation(tmp)
 
     }
