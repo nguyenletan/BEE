@@ -229,9 +229,9 @@ const Building = () => {
             <Switch>
               <Route path={`${path}/energy-performance`}>
                 <EnergyPerformance data={generalBuildingInformation.energyPerformance}
-                                   breakDownConsumption={BuildingInfoDataArray[id-1].energyPerformance.breakDownConsumption}
-                                   breakDownCost={BuildingInfoDataArray[id-1].energyPerformance.breakDownCost}
-                                   breakDownCO2Emissions={BuildingInfoDataArray[id-1].energyPerformance.breakDownCO2Emissions}
+                                   consumptionBreakdown={BuildingInfoDataArray[id-1].energyPerformance.breakDownConsumption}
+                                   costBreakdown={BuildingInfoDataArray[id-1].energyPerformance.breakDownCost}
+                                   co2EmissionsBreakdown={BuildingInfoDataArray[id-1].energyPerformance.breakDownCO2Emissions}
                 />
               </Route>
               <Route path={`${path}/comparison`}>
@@ -275,14 +275,14 @@ const Building = () => {
                                    annualConsumption={generalBuildingInformation.annualConsumption}
                                    annualCarbonEmissions={generalBuildingInformation.annualCarbonEmissions}
                                    lastMonthComparison={generalBuildingInformation.lastMonthComparison}
-                                   coolingLoadForSpace={generalBuildingInformation.coolingLoadForSpace}
-                                   heatingLoadForSpace={generalBuildingInformation.heatingLoadForSpace}
-                                   mechanicalVentilationForSpace={generalBuildingInformation.mechanicalVentilationForSpace}
-                                   lightingLoadForSpaces={generalBuildingInformation.lightingLoadForSpaces}
+                                   annualCoolingSystemConsumption={generalBuildingInformation.annualCoolingSystemConsumption}
+                                   annualHeatingSystemConsumption={generalBuildingInformation.annualHeatingSystemConsumption}
+                                   annualMechanicalVentilationSystemConsumption={generalBuildingInformation.annualMechanicalVentilationSystemConsumption}
+                                   annualLightingConsumption={generalBuildingInformation.annualLightingConsumption}
                                    periodOf12Month={generalBuildingInformation.periodOf12Month}
-                                   breakDownConsumption={generalBuildingInformation.breakDownConsumption}
-                                   breakDownCost={generalBuildingInformation.breakDownCost}
-                                   breakDownCO2Emissions={BuildingInfoDataArray[0].energyPerformance.breakDownCO2Emissions}
+                                   consumptionBreakdown={generalBuildingInformation.consumptionBreakdown}
+                                   costBreakdown={generalBuildingInformation.costBreakdown}
+                                   co2EmissionsBreakdown={generalBuildingInformation.co2EmissionsBreakdown}
                 />
               </Route>
               <Route path={`${path}/comparison`}>

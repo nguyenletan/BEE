@@ -4,8 +4,9 @@ import BreakDown from '../../../components/BreakDown'
 import styled from 'styled-components'
 import ElectricalSystemInformation from '../../../components/ElectricalSystemInformation'
 import { formatNumber } from '../../../Utilities'
+import IncidentalGains from '../../../components/IncidentalGains'
 
-const BreakDownWrapper = styled.div`
+const BreakdownWrapper = styled.div`
   margin-bottom: 50px;
 `
 
@@ -19,14 +20,14 @@ const EnergyPerformance = (props) => {
     annualCarbonEmissions,
     lastMonthComparison,
     periodOf12Month,
-    breakDownCO2Emissions,
     totalOperatingHours,
-    coolingLoadForSpace,
-    heatingLoadForSpace,
-    mechanicalVentilationForSpace,
-    lightingLoadForSpaces,
-    breakDownConsumption,
-    breakDownCost
+    annualCoolingSystemConsumption,
+    annualHeatingSystemConsumption,
+    annualMechanicalVentilationSystemConsumption,
+    annualLightingConsumption,
+    consumptionBreakdown,
+    costBreakdown,
+    co2EmissionsBreakdown
   } = props
 
 
@@ -41,55 +42,55 @@ const EnergyPerformance = (props) => {
                           totalOperatingHours={totalOperatingHours}
       />
 
-      <BreakDownWrapper className="d-flex row justify-content-center">
-        {breakDownConsumption && (
+      <BreakdownWrapper className="d-flex row justify-content-center">
+        {consumptionBreakdown && (
           <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
             <BreakDown
               title="Consumption Breakdown"
               subTitle="%"
               hasDescription
-              data={breakDownConsumption}
+              data={consumptionBreakdown}
             />
           </div>)}
 
-        {breakDownCost && (
+        {costBreakdown && (
           <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
             <BreakDown
               title="Cost Breakdown"
               subTitle="%"
-              data={breakDownCost}
+              data={costBreakdown}
               hasDescription
             />
           </div>
         )}
 
-        {breakDownCO2Emissions && (
+        {co2EmissionsBreakdown && (
           <div className="col col-12 col-md-8 col-xl-4">
             <BreakDown
               title="CO2 Emissions Breakdown"
               subTitle="%"
-              data={breakDownCO2Emissions}
+              data={co2EmissionsBreakdown}
               hasDescription
             />
           </div>
         )}
-      </BreakDownWrapper>
+      </BreakdownWrapper>
 
       <ElectricalSystemInformation
-        overallCoolingLoad={formatNumber(coolingLoadForSpace?.coolingLoad, 2)}
-        overallHeatingLoad={formatNumber(heatingLoadForSpace?.heatingLoad, 2)}
-        overallLightingLoad={formatNumber(lightingLoadForSpaces?.lightingLoad, 2)}
-        overallMechVentLoad={formatNumber(mechanicalVentilationForSpace?.airVolumeFlowRate, 2)}
+        overallCoolingLoad={formatNumber(annualCoolingSystemConsumption?.coolingLoad, 2)}
+        overallHeatingLoad={formatNumber(annualHeatingSystemConsumption?.heatingLoad, 2)}
+        overallLightingLoad={formatNumber(annualLightingConsumption?.lightingLoad, 2)}
+        overallMechVentLoad={formatNumber(annualMechanicalVentilationSystemConsumption?.airVolumeFlowRate, 2)}
         pvSystemInstalledCapacity={electricConsumptions?.electricalSystemInformation?.pvSystemInstalledCapacity}
       />
 
-      {/*<IncidentalGains*/}
-      {/*  roof={electricConsumptions.incidentalGains?.roof}*/}
-      {/*  openings={electricConsumptions.incidentalGains?.openings}*/}
-      {/*  wall={electricConsumptions.incidentalGains?.wall}*/}
-      {/*  floor={electricConsumptions.incidentalGains?.floor}*/}
-      {/*  plugLoads={electricConsumptions.incidentalGains?.plugLoads}*/}
-      {/*/>*/}
+      <IncidentalGains
+        roof={electricConsumptions.incidentalGains?.roof}
+        openings={electricConsumptions.incidentalGains?.openings}
+        wall={electricConsumptions.incidentalGains?.wall}
+        floor={electricConsumptions.incidentalGains?.floor}
+        plugLoads={electricConsumptions.incidentalGains?.plugLoads}
+      />
 
     </>
   )
