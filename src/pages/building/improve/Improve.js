@@ -15,6 +15,13 @@ const BreakDownWrapper = styled.div`
 `
 
 const Improve = (props) => {
+  const {
+    consumptionBreakdown,
+    costBreakdown,
+    co2EmissionsBreakdown
+  } = props
+
+
   const improveData = {
     improvementMeasuresData: [
       {
@@ -197,9 +204,9 @@ const Improve = (props) => {
         }
       ]
   })
-  const [breakDownConsumption, setBreakDownConsumption] = useState([...props.data.breakDownConsumption])
-  const [breakDownCost, setBreakDownCost] = useState([...props.data.breakDownCost])
-  const [breakDownCO2Emissions, setBreakDownCO2Emissions] = useState([...props.data.breakDownCO2Emissions])
+  const [breakDownConsumption, setBreakDownConsumption] = useState([...consumptionBreakdown])
+  const [breakDownCost, setBreakDownCost] = useState([...costBreakdown])
+  const [breakDownCO2Emissions, setBreakDownCO2Emissions] = useState([...co2EmissionsBreakdown])
   const [subSystemPerformance, setSubSystemPerformanceData] = useState({ ...subSystemPerformanceData })
 
   const updateValue = () => {

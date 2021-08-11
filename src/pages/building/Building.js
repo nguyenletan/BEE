@@ -182,7 +182,6 @@ const Building = () => {
 
   const [generalBuildingInformation, setGeneralBuildingInformation] = useState(null)
 
-
   useEffect(() => {
     async function fetchAPI () {
       const idToken = await user.getIdToken()
@@ -229,16 +228,20 @@ const Building = () => {
             <Switch>
               <Route path={`${path}/energy-performance`}>
                 <EnergyPerformance data={generalBuildingInformation.energyPerformance}
-                                   consumptionBreakdown={BuildingInfoDataArray[id-1].energyPerformance.breakDownConsumption}
-                                   costBreakdown={BuildingInfoDataArray[id-1].energyPerformance.breakDownCost}
-                                   co2EmissionsBreakdown={BuildingInfoDataArray[id-1].energyPerformance.breakDownCO2Emissions}
+                                   consumptionBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownConsumption}
+                                   costBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownCost}
+                                   co2EmissionsBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownCO2Emissions}
                 />
               </Route>
               <Route path={`${path}/comparison`}>
                 <Comparison data={{ buildingName: generalBuildingInformation.name, id: id }}/>
               </Route>
               <Route path={`${path}/improve`}>
-                <Improve data={generalBuildingInformation.energyPerformance}/>
+                <Improve
+                  consumptionBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownConsumption}
+                  costBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownCost}
+                  co2EmissionsBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownCO2Emissions}
+                  data={generalBuildingInformation.energyPerformance}/>
               </Route>
               <Route path={`${path}/asset-reliability`}>
                 <AssetReliability data={generalBuildingInformation.energyPerformance}/>
@@ -253,13 +256,17 @@ const Building = () => {
               name={generalBuildingInformation.prop.name}
               image={generalBuildingInformation.prop.photo}
               address={generalBuildingInformation.prop.streetAddress + ', ' + generalBuildingInformation.prop.city + ', ' +
-              findCountryByCountryCode(generalBuildingInformation.prop.countryCode)?.name + ', ' + generalBuildingInformation.prop.postCode}
+              findCountryByCountryCode(generalBuildingInformation.prop.countryCode)?.name + ', ' +
+              generalBuildingInformation.prop.postCode}
               useType={generalBuildingInformation.prop.useTypeName}
               tfa={generalBuildingInformation.prop.grossInteriorArea}
               tfaUnit={generalBuildingInformation.prop.grossInteriorAreaUnit}
-              storey={generalBuildingInformation.prop.storeysAboveGround + generalBuildingInformation.prop.storeysBelowGround}
-              constructed={generalBuildingInformation.prop.completionYear + ' - ' + (generalBuildingInformation.prop.completionYear + 10)}
-              greenBuildingRating={generalBuildingInformation.prop.sustainabilityRatingSchemeName + ' - ' + generalBuildingInformation.prop.sustainabilityRatingName}
+              storey={generalBuildingInformation.prop.storeysAboveGround +
+              generalBuildingInformation.prop.storeysBelowGround}
+              constructed={generalBuildingInformation.prop.completionYear + ' - ' +
+              (generalBuildingInformation.prop.completionYear + 10)}
+              greenBuildingRating={generalBuildingInformation.prop.sustainabilityRatingSchemeName + ' - ' +
+              generalBuildingInformation.prop.sustainabilityRatingName}
               buildingInfoLastEdited={generalBuildingInformation.prop.updatedAt
                 ? printDateTime(generalBuildingInformation.prop.updatedAt, 'en-GB')
                 : printDateTime(generalBuildingInformation.prop.createdAt, 'en-GB')}
@@ -289,7 +296,10 @@ const Building = () => {
                 <Comparison data={{ buildingName: generalBuildingInformation.name, id: id }}/>
               </Route>
               <Route path={`${path}/improve`}>
-                <Improve data={generalBuildingInformation.energyPerformance}/>
+                <Improve consumptionBreakdown={generalBuildingInformation.consumptionBreakdown}
+                         costBreakdown={generalBuildingInformation.costBreakdown}
+                         co2EmissionsBreakdown={generalBuildingInformation.co2EmissionsBreakdown}
+                         data={generalBuildingInformation.energyPerformance}/>
               </Route>
               <Route path={`${path}/asset-reliability`}>
                 <AssetReliability data={generalBuildingInformation.energyPerformance}/>
