@@ -6,7 +6,7 @@ const BreakDownBlock = styled.div`
   background-color: #fafafa;
   border-radius: 20px;
   padding: 30px;
-  margin-right: ${props => props.marginRight ? props.marginRight : '30px'};
+  margin-right: ${props => props.marginRight ? props.marginRight : '0px'};
   width: 100%;
 
 `
@@ -121,17 +121,16 @@ const BreakDown = (props) => {
           tooltip={({ datum: { id, value, color } }) => (
             <div
               style={{
-                padding: 10,
+                padding: 8,
                 color: '#f9f3f2',
+                fontSize: '15px',
                 background: '#37363785',
               }}
             >
-              <strong>
-                {id}: {value} %
-              </strong>
+              {id}: {value} %
             </div>
           )}
-          arcLabel={function (e) {return  e.value + '%'}}
+          arcLabel={function (e) {return e.value + '%'}}
           radialLabelsLinkColor={{
             from: 'color',
           }}
@@ -140,7 +139,7 @@ const BreakDown = (props) => {
           radialLabelsLinkStrokeWidth={2}
           arcLinkLabelsThickness={3}
           arcLinkLabelsColor={{ from: 'color' }}
-          arcLabelsTextColor={{ from: 'color', modifiers: [ [ 'brighter', 3 ] ] }}
+          arcLabelsTextColor={{ from: 'color', modifiers: [['brighter', 3]] }}
           radialLabelsTextColor={{
             from: 'color',
             modifiers: [['brighter', 1.2]],

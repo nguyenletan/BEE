@@ -131,7 +131,7 @@ const HistoricalComparisonInnerWrapper = styled.div`
 `
 
 const BuildingHistorical = (props) => {
-  const { periodOf12Month, lastMonthComparison } = props
+  const { periodOf12Month } = props
 
   let buildingEnergyUsageData = [
     { month: 'Jan', monthlyValue: '590' },
@@ -160,6 +160,10 @@ const BuildingHistorical = (props) => {
 
   const [sameMonthLastYearComparison, setSameMonthLastYearComparison] = useState(
     _.takeRight(buildingEnergyUsageData, 1)[0]?.sameMonthLastYearComparison)
+
+  const [lastMonthComparison, setLastMonthComparison] = useState(
+    _.takeRight(buildingEnergyUsageData, 1)[0]?.lastMonthComparison)
+
 
   const keys = ['monthlyValue']
 
@@ -207,8 +211,9 @@ const BuildingHistorical = (props) => {
   // console.log(generateCountriesData(keys, { size: 7 }))
 
   const selectMonth = (e) => {
-    console.log(e)
+    //console.log(e)
     setSameMonthLastYearComparison(buildingEnergyUsageData[e.index]?.sameMonthLastYearComparison)
+    setLastMonthComparison(buildingEnergyUsageData[e.index]?.lastMonthComparison)
   }
 
   return (
@@ -275,10 +280,10 @@ const BuildingHistorical = (props) => {
         <div
           className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap"
         >
-          <UpAndDownImg src={historicalComparison.lastMonth >= 0 ? redUpImage : greenDownImage}/>
+          <UpAndDownImg src={lastMonthComparison >= 0 ? redUpImage : greenDownImage}/>
           <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
             <UpAndDownImgTitle>Last Month</UpAndDownImgTitle>
-            <UpAndDownImgValue>{formatNumber(historicalComparison.lastMonth, 2)} MWh</UpAndDownImgValue>
+            <UpAndDownImgValue>{formatNumber(lastMonthComparison, 2)} MWh</UpAndDownImgValue>
           </HistoricalComparisonInnerWrapper>
         </div>
         <div

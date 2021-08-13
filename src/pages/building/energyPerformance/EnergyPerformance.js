@@ -25,6 +25,7 @@ const EnergyPerformance = (props) => {
     annualHeatingSystemConsumption,
     annualMechanicalVentilationSystemConsumption,
     annualLightingConsumption,
+    pvSolarSystemLoad,
     consumptionBreakdown,
     costBreakdown,
     co2EmissionsBreakdown
@@ -81,7 +82,7 @@ const EnergyPerformance = (props) => {
         overallHeatingLoad={formatNumber(annualHeatingSystemConsumption?.heatingLoad, 2)}
         overallLightingLoad={formatNumber(annualLightingConsumption?.lightingLoad, 2)}
         overallMechVentLoad={formatNumber(annualMechanicalVentilationSystemConsumption?.airVolumeFlowRate, 2)}
-        pvSystemInstalledCapacity={electricConsumptions?.electricalSystemInformation?.pvSystemInstalledCapacity}
+        pvSystemInstalledCapacity={formatNumber(pvSolarSystemLoad, 2)}
       />
 
       <IncidentalGains

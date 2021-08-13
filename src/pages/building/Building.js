@@ -286,6 +286,7 @@ const Building = () => {
                                    annualHeatingSystemConsumption={generalBuildingInformation.annualHeatingSystemConsumption}
                                    annualMechanicalVentilationSystemConsumption={generalBuildingInformation.annualMechanicalVentilationSystemConsumption}
                                    annualLightingConsumption={generalBuildingInformation.annualLightingConsumption}
+                                   pvSolarSystemLoad={generalBuildingInformation.pvSolarSystemLoad}
                                    periodOf12Month={generalBuildingInformation.periodOf12Month}
                                    consumptionBreakdown={generalBuildingInformation.consumptionBreakdown}
                                    costBreakdown={generalBuildingInformation.costBreakdown}
