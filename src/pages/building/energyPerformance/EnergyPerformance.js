@@ -28,7 +28,8 @@ const EnergyPerformance = (props) => {
     pvSolarSystemLoad,
     consumptionBreakdown,
     costBreakdown,
-    co2EmissionsBreakdown
+    co2EmissionsBreakdown,
+    incidentalGainsOtherInformation
   } = props
 
 
@@ -86,11 +87,11 @@ const EnergyPerformance = (props) => {
       />
 
       <IncidentalGains
-        roof={electricConsumptions?.incidentalGains?.roof}
-        openings={electricConsumptions?.incidentalGains?.openings}
-        wall={electricConsumptions?.incidentalGains?.wall}
-        floor={electricConsumptions?.incidentalGains?.floor}
-        plugLoads={electricConsumptions?.incidentalGains?.plugLoads}
+        roof={incidentalGainsOtherInformation?.roof}
+        openings={incidentalGainsOtherInformation?.openings}
+        wall={incidentalGainsOtherInformation?.wall}
+        floor={incidentalGainsOtherInformation?.floor}
+        // plugLoads={incidentalGainsOtherInformation?.plugLoads}
       />
 
     </>

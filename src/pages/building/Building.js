@@ -291,6 +291,7 @@ const Building = () => {
                                    consumptionBreakdown={generalBuildingInformation.consumptionBreakdown}
                                    costBreakdown={generalBuildingInformation.costBreakdown}
                                    co2EmissionsBreakdown={generalBuildingInformation.co2EmissionsBreakdown}
+                                   incidentalGainsOtherInformation={generalBuildingInformation.incidentalGainsOtherInformation}
                 />
               </Route>
               <Route path={`${path}/comparison`}>

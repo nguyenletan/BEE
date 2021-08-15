@@ -94,13 +94,13 @@ const IncidentalGains = (props) => {
           <IncidentalGainsItemImage src={floorImg} alt='Floor' width='33' />
         </IncidentalGainsItem>
 
-        <IncidentalGainsItem className='d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2'>
-          <div className='me-3'>
-            <IncidentalGainsItemTitle>Plug Loads</IncidentalGainsItemTitle>
-            <IncidentalGainsItemValue>{plugLoads}W/m2</IncidentalGainsItemValue>
-          </div>
-          <IncidentalGainsItemImage src={plugLoadImg} alt='Plug Loads' width='33' />
-        </IncidentalGainsItem>
+        {/*<IncidentalGainsItem className='d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2'>*/}
+        {/*  <div className='me-3'>*/}
+        {/*    <IncidentalGainsItemTitle>Plug Loads</IncidentalGainsItemTitle>*/}
+        {/*    <IncidentalGainsItemValue>{plugLoads}W/m2</IncidentalGainsItemValue>*/}
+        {/*  </div>*/}
+        {/*  <IncidentalGainsItemImage src={plugLoadImg} alt='Plug Loads' width='33' />*/}
+        {/*</IncidentalGainsItem>*/}
 
       </IncidentalGainsList>
     </IncidentalGainsWrapper>

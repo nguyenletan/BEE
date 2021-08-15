@@ -108,7 +108,7 @@ const ElectricalSystemInformation = (props) => {
         >
           <div className='me-3'>
             <ElectricalSystemInformationItemTitle>P.V. System</ElectricalSystemInformationItemTitle>
-            <ElectricalSystemInformationItemValue>{pvSystemInstalledCapacity}W/m2</ElectricalSystemInformationItemValue>
+            <ElectricalSystemInformationItemValue>{pvSystemInstalledCapacity}kWh/y</ElectricalSystemInformationItemValue>
           </div>
           <ElectricalSystemInformationItemImage src={pvSystemImg} width='40' alt='P.V. System' />
         </ElectricalSystemInformationItem>
