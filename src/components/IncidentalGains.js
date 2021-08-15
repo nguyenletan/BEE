@@ -4,7 +4,7 @@ import roofImg from '../assets/images/roof.png'
 import wallImg from '../assets/images/wall.png'
 import floorImg from '../assets/images/floor.png'
 import openingImg from '../assets/images/opening.png'
-import plugLoadImg from '../assets/images/plug-load.png'
+//import plugLoadImg from '../assets/images/plug-load.png'
 
 const IncidentalGainsWrapper = styled.div`
   width: 100%;
@@ -53,7 +53,6 @@ const IncidentalGains = (props) => {
   const {
     roof,
     wall,
-    plugLoads,
     openings,
     floor
   } = props
