@@ -83,7 +83,7 @@ const EnergyPerformance = (props) => {
         overallHeatingLoad={formatNumber(annualHeatingSystemConsumption?.heatingLoad, 2)}
         overallLightingLoad={formatNumber(annualLightingConsumption?.lightingLoad, 2)}
         overallMechVentLoad={formatNumber(annualMechanicalVentilationSystemConsumption?.airVolumeFlowRate, 2)}
-        pvSystemInstalledCapacity={formatNumber(pvSolarSystemLoad, 2)}
+        pvSystemInstalledCapacity={formatNumber(pvSolarSystemLoad / 1000, 2)}
       />
 
       <IncidentalGains
