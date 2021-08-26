@@ -2,7 +2,7 @@ import React from 'react'
 import Progress from './Progress'
 import { Button } from '@material-ui/core'
 import { ArrowBack, ArrowForward, DoneAll, Save } from '@material-ui/icons'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import {
   buildingActivityState,
@@ -15,7 +15,7 @@ import {
   solarPanelSystemListState,
   spaceUsageGFAListState,
 } from '../atoms'
-import { createBuilding } from '../api/BuildidingAPI'
+import { createBuilding, updateBuilding } from '../api/BuildidingAPI'
 import { useAuth } from '../AuthenticateProvider'
 
 const BackNextGroupButton = ({
@@ -27,16 +27,14 @@ const BackNextGroupButton = ({
   isInDoneStep,
   // submitFunc,
 }) => {
-  const generalBuildingInformation = useRecoilValue(
-    generalBuildingInformationState)
+  const generalBuildingInformation = useRecoilValue(generalBuildingInformationState)
 
   const buildingActivity = useRecoilValue(buildingActivityState)
 
   const spaceUsageGFAList = useRecoilValue(spaceUsageGFAListState)
   const lightingSubSystemList = useRecoilValue(lightingSubSystemListState)
   const solarPanelSystemList = useRecoilValue(solarPanelSystemListState)
-  const electricityConsumptionList = useRecoilValue(
-    electricityConsumptionListState)
+  const electricityConsumptionList = useRecoilValue(electricityConsumptionListState)
   const coolingSystem = useRecoilValue(coolingSystemState)
   const heatingSystem = useRecoilValue(heatingSystemState)
   const envelopFacade = useRecoilValue(envelopFacadeState)
@@ -46,6 +44,7 @@ const BackNextGroupButton = ({
   //const [isDisabledSaveButton, setIsDisabledSaveButton] = useState(isDisabledSave || progressValue < 100)
 
   const { user } = useAuth()
+  const { id } = useParams()
 
   const onSave = async (e) => {
     const submitData = {
@@ -60,7 +59,9 @@ const BackNextGroupButton = ({
       envelopFacade: envelopFacade,
     }
     const idToken = await user.getIdToken()
-    const message = await createBuilding(submitData, idToken)
+
+    const message = id ? await updateBuilding(id, submitData, idToken) :  await createBuilding(submitData, idToken)
+
     console.log(message)
     // setSavingMessage(message)
   }

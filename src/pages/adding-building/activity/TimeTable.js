@@ -24,6 +24,7 @@ const Row = ({ data, control, setValue }) => {
     buildingActivityState)
 
   const onChange = (name, value) => {
+    console.log(name);
     const index = buildingActivity.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(buildingActivity, index, {
       ...data,
@@ -42,7 +43,6 @@ const Row = ({ data, control, setValue }) => {
               name={`${data.codeName}Enable`}
               color='primary'
               checked={data.isEnable}
-              id={`day-${data.id}`}
               onChange={() => {
                 onChange('isEnable', !data.isEnable)
               }}
@@ -63,7 +63,6 @@ const Row = ({ data, control, setValue }) => {
               <KeyboardTimePicker
                 variant='inline'
                 margin='normal'
-                id='startTime'
                 label='Start Time'
                 disabled={!data.isEnable}
                 mask='__:__ _M'
@@ -95,7 +94,6 @@ const Row = ({ data, control, setValue }) => {
               <KeyboardTimePicker
                 variant='inline'
                 margin='normal'
-                id='endTime'
                 label='End Time'
                 disabled={!data.isEnable}
                 mask='__:__ _M'

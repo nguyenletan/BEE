@@ -57,6 +57,8 @@ export const electricityConsumptionListState = atom({
 export const generalBuildingInformationState = atom({
   key: 'generalBuildingInformation',
   default: {
+    propId: null,
+    id: null,
     buildingName: null,
     address: null,
     city: null,
@@ -87,7 +89,6 @@ export const generalBuildingInformationState = atom({
 export const coolingSystemState = atom({
   key: 'coolingSystem',
   default: {
-    id: parseInt(_.uniqueId()),
     hasCoolingSystem: false,
     coolingSystemTypeId: null,
     compressorTypeId: null,
@@ -99,7 +100,6 @@ export const coolingSystemState = atom({
 export const heatingSystemState = atom({
   key: 'heatingSystem',
   default: {
-    id: parseInt(_.uniqueId()),
     hasHeatingSystem: false,
     heatingSystemTypeId: null,
     heaterTypeId: null,

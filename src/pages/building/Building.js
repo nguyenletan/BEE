@@ -253,6 +253,8 @@ const Building = () => {
         ) : (
           <BuildingWrapper>
             <BuildingInfo
+              id={id}
+              propId={generalBuildingInformation.prop.propId}
               name={generalBuildingInformation.prop.name}
               image={generalBuildingInformation.prop.photo}
               address={generalBuildingInformation.prop.streetAddress + ', ' + generalBuildingInformation.prop.city + ', ' +

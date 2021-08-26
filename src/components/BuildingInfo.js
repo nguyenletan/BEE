@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { formatNumber } from '../Utilities'
+import { Link } from 'react-router-dom'
 
 const BuildingInfoWrapper = styled.div`
   margin-bottom: 30px;
@@ -57,6 +58,7 @@ const TypeCol = styled.p`
 
 const BuildingInfo = (props) => {
   const {
+    id,
     name,
     image,
     address,
@@ -109,6 +111,10 @@ const BuildingInfo = (props) => {
         </div>
         <BuildingLastEdited className="ms-1">Last Edited: {buildingInfoLastEdited}</BuildingLastEdited>
       </GeneralInformation>
+      <div>
+        <button className="btn btn-sm btn-outline-primary mt-3">
+          <Link to={"/editing-building/" + id + "/general-information"} >Edit</Link></button>
+      </div>
     </BuildingInfoWrapper>
   )
 }

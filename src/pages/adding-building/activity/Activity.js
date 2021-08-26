@@ -10,7 +10,7 @@ import {
   addingBuildingProgressState,
   buildingActivityState
 } from '../../../atoms'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useParams } from 'react-router-dom'
 
 const Form = styled.form`
 
@@ -53,16 +53,20 @@ const Activity = () => {
     shouldUnregister: false
   })
 
+  const { id } = useParams()
+  const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
+  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/electricity-consumption')
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       {isMovingNext &&
-        <Redirect to='/adding-building/electricity-consumption' />}
+        <Redirect to={moveNextUrl} />}
       <div className='d-flex mt-5 mb-4'>
 
         <Title>New Building</Title>
 
         <BackNextGroupButton
-          backLink='/adding-building/general-information'
+          backLink={parentUrl + '/general-information'}
           nextLink='/adding-building/electricity-consumption'
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}

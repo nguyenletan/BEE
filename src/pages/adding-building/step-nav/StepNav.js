@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 
 const UL = styled.ul`
   margin-top: 3rem;
@@ -21,73 +21,77 @@ const UL = styled.ul`
 `
 
 const StepNav = () => {
+
+  const { id } = useParams()
+
+  const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
+
   return (
-    <UL className='nav d-flex justify-content-between'>
-      <li className='nav-item'>
+    <UL className="nav d-flex justify-content-between">
+      {!id && <li className="nav-item">
         <NavLink
-          activeClassName='active' className='nav-link'
-          to='/adding-building/search-building'
+          activeClassName="active" className="nav-link"
+          to={parentUrl + '/search-building'}
         >Search
           Building
         </NavLink>
-      </li>
-      <li className='nav-item'>
+      </li> }
+      <li className="nav-item">
         <NavLink
-          activeClassName='active' className='nav-link'
-          to='/adding-building/general-information'
+          activeClassName="active" className="nav-link"
+          to={parentUrl + '/general-information'}
         >General
           Information
         </NavLink>
       </li>
-      <li className='nav-item'>
+      <li className="nav-item">
         <NavLink
-          activeClassName='active' className='nav-link'
-          to='/adding-building/activity'
+          activeClassName="active" className="nav-link"
+          to={parentUrl + '/activity'}
         >Activity
         </NavLink>
       </li>
-      <li className='nav-item'>
+      <li className="nav-item">
         <NavLink
-          activeClassName='active' className='nav-link'
-          to='/adding-building/electricity-consumption'
-        >Electricity
-          Consumption
+          activeClassName="active" className="nav-link"
+          to={parentUrl + '/electricity-consumption'}
+        >Electricity Consumption
         </NavLink>
       </li>
-      <li className='nav-item'>
+      <li className="nav-item">
         <NavLink
-          activeClassName='active' className='nav-link'
-          to='/adding-building/hvac'
+          activeClassName="active" className="nav-link"
+          to={parentUrl + '/hvac'}
         >HVAC
         </NavLink>
       </li>
-      <li className='nav-item'>
+      <li className="nav-item">
         <NavLink
-          activeClassName='active' className='nav-link'
-          to='/adding-building/lighting'
+          activeClassName="active" className="nav-link"
+          to={parentUrl + '/lighting'}
         >Lighting
         </NavLink>
       </li>
-      <li className='nav-item'>
+      <li className="nav-item">
         <NavLink
-          activeClassName='active' className='nav-link'
-          to='/adding-building/envelope-facade'
+          activeClassName="active" className="nav-link"
+          to={parentUrl + '/envelope-facade'}
         >Envelope &
           Facade
         </NavLink>
       </li>
-      <li className='nav-item'>
+      <li className="nav-item">
         <NavLink
-          activeClassName='active' className='nav-link'
-          to='/adding-building/renewable-energy'
+          activeClassName="active" className="nav-link"
+          to={parentUrl + '/renewable-energy'}
         >Renewable
           Energy
         </NavLink>
       </li>
-      <li className='nav-item'>
+      <li className="nav-item">
         <NavLink
-          activeClassName='active' className='nav-link'
-          to='/adding-building/adding-building-successfully'
+          activeClassName="active" className="nav-link"
+          to={parentUrl + '/adding-building-successfully'}
         >Done
         </NavLink>
       </li>

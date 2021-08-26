@@ -10,7 +10,7 @@ import OneMonthElectricityConsumption from './OneMonthElectricityConsumption'
 
 import { addingBuildingProgressState, electricityConsumptionListState } from '../../../atoms'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useParams } from 'react-router-dom'
 import { getPrevMonthYear } from '../../../Utilities'
 
 const Form = styled.form`
@@ -90,8 +90,6 @@ const ElectricityConsumption = () => {
         electricityConsumptionList[electricityConsumptionList.length - 1].year)
     }
 
-    console.log(nextMonthYear)
-
     setElectricityConsumptionList((oldElectricityConsumptionList) => [
       ...oldElectricityConsumptionList,
       {
@@ -111,15 +109,19 @@ const ElectricityConsumption = () => {
     />,
   )
 
+  const { id } = useParams()
+  const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
+  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/hvac')
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to="/adding-building/hvac"/>}
+      {isMovingNext && <Redirect to={moveNextUrl}/>}
 
       <div className="d-flex mt-5 mb-4">
         <Title>New Building</Title>
 
         <BackNextGroupButton
-          backLink="/adding-building/activity"
+          backLink={parentUrl + "/activity"}
           nextLink="/adding-building/hvac"
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}

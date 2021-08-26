@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Checkbox, Fade, FormControl, FormControlLabel, InputLabel, MenuItem } from '@material-ui/core'
+import { Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem } from '@material-ui/core'
 import Select from '@material-ui/core/Select'
 import CoolingSystemType from '../../../reference-tables/CoolingSystemType'
 import ChillerEnergySourceType from '../../../reference-tables/ChillerEnergySourceType'
 import CompressorType from '../../../reference-tables/CompressorType'
-import { RefrigerantType, AbsorptionChillerRefrigerantType } from '../../../reference-tables/RefrigerantType'
+import { AbsorptionChillerRefrigerantType, RefrigerantType } from '../../../reference-tables/RefrigerantType'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import { makeStyles } from '@material-ui/core/styles'
 import { useRecoilState } from 'recoil'
@@ -21,16 +21,13 @@ const CoolingSystem = ({ control }) => {
 
   const [coolingSystem, setCoolingSystem] = useRecoilState(coolingSystemState)
 
-  const [hasCoolingSystem, setHasCoolingSystem] = React.useState(coolingSystem.hasCoolingSystem)
-
   const [compressorTypeList, setCompressorTypeList] = React.useState(CompressorType)
   //const [absorptionChillerCompressorTypeList, setAbsorptionChillerCompressorTypeList] = React.useState(AbsorptionChillerCompressorType)
   const [chillerEnergySourceTypeList, setChillerEnergySourceTypeList] = React.useState(ChillerEnergySourceType)
   const [refrigerantTypeList, setRefrigerantTypeList] = React.useState(RefrigerantType)
 
   const onHasCoolingSystemChange = () => {
-    setCoolingSystem({ ...coolingSystem, hasCoolingSystem: !hasCoolingSystem })
-    setHasCoolingSystem(!hasCoolingSystem)
+    setCoolingSystem({ ...coolingSystem, hasCoolingSystem: !coolingSystem.hasCoolingSystem })
   }
 
   const onCoolingSystemTypeIdChange = (e) => {
@@ -108,157 +105,156 @@ const CoolingSystem = ({ control }) => {
           <Checkbox
             name="hasCoolingSystem"
             color="primary"
-            checked={hasCoolingSystem}
+            checked={coolingSystem.hasCoolingSystem}
             onChange={onHasCoolingSystemChange}
           />
         }
         label="Yes"
       />
 
-      {hasCoolingSystem && (
-        <Fade in={hasCoolingSystem} timeout={500}>
-          <div className="d-flex flex-column">
+      {coolingSystem.hasCoolingSystem && (
+        <div className="d-flex flex-column">
 
+          <Controller
+            name="coolingSystemTypeId"
+            control={control}
+            render={({
+              field: { onChange, value },
+              fieldState: { error },
+            }) => (
+              <FormControl className={classes.formControl}>
+                <InputLabel id="cooling-system-type-id-label">Cooling System Type</InputLabel>
+                <Select
+                  labelId="cooling-system-type-id-label"
+                  id="cooling-system-type-id-select"
+                  value={coolingSystem.coolingSystemTypeId}
+                  onChange={(e) => {
+                    onChange(e)
+                    onCoolingSystemTypeIdChange(e)
+                  }}
+                  error={!!error}
+                  // helperText={error ? error.message : null}
+                >
+                  {CoolingSystemType.map(item => <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>)}
+                </Select>
+              </FormControl>
+            )}
+            rules={{
+              // required: 'Cooling System Type is required',
+            }}
+          />
+
+          {compressorTypeList && (
             <Controller
-              name="coolingSystemTypeId"
+              name="compressorTypeId"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => (
+
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="compressor-type-label">Compressor
+                    Type
+                  </InputLabel>
+                  <Select
+                    labelId="compressor-type-label"
+                    id="compressor-type-select"
+                    value={coolingSystem.compressorTypeId}
+                    onChange={(e) => {
+                      onChange(e)
+                      onCompressorTypeIdChange(e)
+                    }}
+                    error={!!error}
+                    // helperText={error ? error.message : null}
+                  >
+                    {compressorTypeList.map((o) => (
+                      <MenuItem
+                        key={o.id}
+                        value={o.id}
+                      >
+                        {o.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+              rules={{
+                // required: 'Compressor Type is required',
+              }}
+            />)}
+
+          {refrigerantTypeList && (
+            <Controller
+              name="refrigerantTypeId"
               control={control}
               render={({
                 field: { onChange, value },
                 fieldState: { error },
               }) => (
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="cooling-system-type-id-label">Cooling System Type</InputLabel>
+                  <InputLabel id="refrigerant-type-label">Refrigerant Type</InputLabel>
                   <Select
-                    labelId="cooling-system-type-id-label"
-                    id="cooling-system-type-id-select"
-                    value={coolingSystem.coolingSystemTypeId}
+                    labelId="refrigerant-type-label"
+                    id="refrigerant-type-select"
+                    value={coolingSystem.refrigerantTypeId}
                     onChange={(e) => {
                       onChange(e)
-                      onCoolingSystemTypeIdChange(e)
+                      onRefrigerantTypeIdChange(e)
                     }}
                     error={!!error}
-                    helperText={error ? error.message : null}
+                    // helperText={error ? error.message : null}
                   >
-                    {CoolingSystemType.map(item => <MenuItem value={item.id}>{item.name}</MenuItem>)}
+                    {refrigerantTypeList.map((o) => (
+                      <MenuItem
+                        key={o.id}
+                        value={o.id}
+                      >
+                        {o.name}
+                      </MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
               )}
               rules={{
-                required: 'Cooling System Type is required',
+                // required: 'Refrigerant Type is required',
               }}
-            />
+            />)}
 
-            {compressorTypeList && (
-              <Controller
-                name="compressorTypeId"
-                control={control}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
+          {chillerEnergySourceTypeList && (
+            <Controller
+              name="chillerEnergySourceTypeId"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => (
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="chiller-energy-label">Chiller Energy
+                    Source
+                  </InputLabel>
+                  <Select
+                    labelId="chiller-energy-label"
+                    id="chiller-energy-select"
+                    value={coolingSystem.chillerEnergySourceTypeId}
+                    onChange={(e) => {
+                      onChange(e)
+                      onChillerEnergySourceTypeIdChange(e)
+                    }}
+                    error={!!error}
+                    // helperText={error ? error.message : null}
+                  >
+                    {chillerEnergySourceTypeList.map(
+                      item => <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>)}
+                  </Select>
+                </FormControl>
+              )}
+              rules={{
+                // required: 'ChillerEnergy Source Type is required',
+              }}
+            />)}
+        </div>
 
-                  <FormControl className={classes.formControl}>
-                    <InputLabel id="compressor-type-label">Compressor
-                      Type
-                    </InputLabel>
-                    <Select
-                      labelId="compressor-type-label"
-                      id="compressor-type-select"
-                      value={coolingSystem.compressorTypeId}
-                      onChange={(e) => {
-                        onChange(e)
-                        onCompressorTypeIdChange(e)
-                      }}
-                      error={!!error}
-                      helperText={error ? error.message : null}
-                    >
-                      {compressorTypeList.map((o) => (
-                        <MenuItem
-                          key={o.id}
-                          value={o.id}
-                        >
-                          {o.name}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                )}
-                rules={{
-                  required: 'Compressor Type is required',
-                }}
-              />)}
-
-            {refrigerantTypeList && (
-              <Controller
-                name="refrigerantTypeId"
-                control={control}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <FormControl className={classes.formControl}>
-                    <InputLabel id="refrigerant-type-label">Refrigerant Type</InputLabel>
-                    <Select
-                      labelId="refrigerant-type-label"
-                      id="refrigerant-type-select"
-                      value={coolingSystem.refrigerantTypeId}
-                      onChange={(e) => {
-                        onChange(e)
-                        onRefrigerantTypeIdChange(e)
-                      }}
-                      error={!!error}
-                      helperText={error ? error.message : null}
-                    >
-                      {refrigerantTypeList.map((o) => (
-                        <MenuItem
-                          key={o.id}
-                          value={o.id}
-                        >
-                          {o.name}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                )}
-                rules={{
-                  required: 'Refrigerant Type is required',
-                }}
-              />)}
-
-            {chillerEnergySourceTypeList && (
-              <Controller
-                name="chillerEnergySourceTypeId"
-                control={control}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <FormControl className={classes.formControl}>
-                    <InputLabel id="chiller-energy-label">Chiller Energy
-                      Source
-                    </InputLabel>
-                    <Select
-                      labelId="chiller-energy-label"
-                      id="chiller-energy-select"
-                      value={coolingSystem.chillerEnergySourceTypeId}
-                      onChange={(e) => {
-                        onChange(e)
-                        onChillerEnergySourceTypeIdChange(e)
-                      }}
-                      error={!!error}
-                      helperText={error ? error.message : null}
-                    >
-                      {chillerEnergySourceTypeList.map(
-                        item => <MenuItem value={item.id}>{item.name}</MenuItem>)}
-                    </Select>
-                  </FormControl>
-                )}
-                rules={{
-                  required: 'ChillerEnergy Source Type is required',
-                }}
-              />)}
-          </div>
-        </Fade>
       )}
     </>
   )

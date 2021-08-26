@@ -5,7 +5,7 @@ import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import cameraImg from '../../../assets/images/camera.jpg'
 import { Controller, useForm } from 'react-hook-form'
 import { SustainabilityRatingScheme } from '../../../reference-tables/GreenBuildingRatingSystem'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useParams } from 'react-router-dom'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import StepNav from '../step-nav/StepNav'
 import { Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select, TextField } from '@material-ui/core'
@@ -49,6 +49,8 @@ const Title = styled.h2`
 
 const GeneralInformation = () => {
   //const complexityWeight = 15
+
+
 
   const [generalBuildingInformation, setGeneralBuildingInformation] = useRecoilState(
     generalBuildingInformationState)
@@ -229,7 +231,7 @@ const GeneralInformation = () => {
     //   })
     // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [generalBuildingInformation])
 
   useEffect(() => {
     if (formState.errors) {
@@ -260,17 +262,22 @@ const GeneralInformation = () => {
     setIsMovingNext(true)
   }
 
+  const { id } = useParams()
+  const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
+  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/activity')
+
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to="/adding-building/activity"/>}
+      {isMovingNext && <Redirect to={moveNextUrl}/>}
 
       <div className="d-flex mt-5 mb-4">
 
         <Title>New Building</Title>
 
         <BackNextGroupButton
-          backLink="/adding-building/search-building"
-          nextLink="/adding-building/activity"
+          backLink={parentUrl + "/search-building"}
+          nextLink={"/adding-building/activity"}
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />

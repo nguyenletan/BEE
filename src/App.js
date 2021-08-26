@@ -72,6 +72,7 @@ function App () {
               <Route path='/building' component={Portfolio} exact/>
               <Route path='/building/:id' component={Building} />
               <Route path='/adding-building' component={AddingBuilding} />
+              <Route path='/editing-building/:id' component={AddingBuilding} />
             </Switch>
           </Router>
           <DebugButton />

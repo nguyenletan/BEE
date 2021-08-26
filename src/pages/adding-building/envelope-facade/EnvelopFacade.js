@@ -22,7 +22,7 @@ import {
   addingBuildingProgressState,
   envelopFacadeState
 } from '../../../atoms'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useParams } from 'react-router-dom'
 import RoofType from '../../../reference-tables/RoofType'
 
 const Form = styled.form`
@@ -132,17 +132,21 @@ const EnvelopFacade = () => {
     }
   ]
 
+  const { id } = useParams()
+  const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
+  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/renewable-energy')
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       {isMovingNext &&
-        <Redirect to='/adding-building/renewable-energy' />}
+        <Redirect to={moveNextUrl} />}
 
       <div className='d-flex mt-5 mb-4'>
 
         <Title>New Building</Title>
 
         <BackNextGroupButton
-          backLink='/adding-building/lighting'
+          backLink={parentUrl + '/lighting'}
           nextLink='/adding-building/renewable-energy'
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}

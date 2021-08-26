@@ -103,7 +103,7 @@ const SpaceUsageGFAForm = ({ data }) => {
   }
 
   const onTitleChange = (e) => {
-    // console.log(e.target.value)
+    console.log(e.target.value)
     setTitle(e.target.value)
     const index = spaceUsageGFAList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(spaceUsageGFAList, index, {

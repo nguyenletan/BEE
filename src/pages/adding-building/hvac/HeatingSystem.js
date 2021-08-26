@@ -21,13 +21,10 @@ const HeatingSystem = ({ control }) => {
 
   const [heatingSystem, setHeatingSystem] = useRecoilState(heatingSystemState)
 
-  const [hasHeatingSystem, setHasHeatingSystem] = React.useState(heatingSystem.hasHeatingSystem)
-
   const [energySourceType, setEnergySourceType] = React.useState(HeaterEnergySourceType)
 
   const onHasHeatingSystemChange = () => {
-    setHeatingSystem({ ...heatingSystem, hasHeatingSystem: !hasHeatingSystem })
-    setHasHeatingSystem(!hasHeatingSystem)
+    setHeatingSystem({ ...heatingSystem, hasHeatingSystem: !heatingSystem.hasHeatingSystem })
   }
 
   const onHeatingSystemTypeIdChange = (e) => {
@@ -72,15 +69,14 @@ const HeatingSystem = ({ control }) => {
           <Checkbox
             name="checkedB"
             color="primary"
-            checked={hasHeatingSystem}
+            checked={heatingSystem.hasHeatingSystem}
             onChange={onHasHeatingSystemChange}
           />
         }
         label="Yes"
       />
 
-      {hasHeatingSystem && (
-        <Fade in={hasHeatingSystem} timeout={500}>
+      {heatingSystem.hasHeatingSystem && (
 
           <div className="d-flex flex-column">
 
@@ -102,7 +98,7 @@ const HeatingSystem = ({ control }) => {
                       onHeatingSystemTypeIdChange(e)
                     }}
                     error={!!error}
-                    helperText={error ? error.message : null}
+                    // helperText={error ? error.message : null}
                   >
                     {HeatingSystemType.map((o) => (
                       <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
@@ -110,7 +106,9 @@ const HeatingSystem = ({ control }) => {
                   </Select>
                 </FormControl>
               )}
-              rules={{ required: 'Heating System Type is required' }}
+              rules={{
+                // required: 'Heating System Type is required'
+              }}
             />
 
             <Controller
@@ -131,7 +129,7 @@ const HeatingSystem = ({ control }) => {
                       onHeaterTypeIdChange(e)
                     }}
                     error={!!error}
-                    helperText={error ? error.message : null}
+                    // helperText={error ? error.message : null}
                   >
                     {HeaterType.map((o) => (
                       <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
@@ -139,7 +137,9 @@ const HeatingSystem = ({ control }) => {
                   </Select>
                 </FormControl>
               )}
-              rules={{ required: 'Heater Type is required' }}
+              rules={{
+                // required: 'Heater Type is required'
+              }}
             />
 
             <Controller
@@ -160,7 +160,7 @@ const HeatingSystem = ({ control }) => {
                       onHeaterEnergySourceTypeIdChange(e)
                     }}
                     error={!!error}
-                    helperText={error ? error.message : null}
+                    // helperText={error ? error.message : null}
                   >
                     {energySourceType.map((o) => (
                       <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
@@ -168,10 +168,12 @@ const HeatingSystem = ({ control }) => {
                   </Select>
                 </FormControl>
               )}
-              rules={{ required: 'Heater Energy Source Type is required' }}
+              rules={{
+                // required: 'Heater Energy Source Type is required'
+              }}
             />
           </div>
-        </Fade>
+
       )}
 
     </>

@@ -54,9 +54,8 @@ const SpaceUsageGFA = () => {
     <>
       <Header className='d-flex justify-content-between'>
         <Title>Space Usage and %GFA</Title>
-        <Adding onClick={onAddSpaceUsageGFA} title='Add new item'><i
-          className='bi bi-plus-lg font-weight-bolder'
-                                                                  />
+        <Adding onClick={onAddSpaceUsageGFA} title='Add new item'>
+          <i className='bi bi-plus-lg font-weight-bolder'/>
         </Adding>
       </Header>
       <UL className='row'>

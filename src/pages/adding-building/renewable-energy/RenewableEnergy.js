@@ -10,7 +10,7 @@ import {
 } from '../../../atoms'
 import _ from 'lodash'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useParams } from 'react-router-dom'
 
 const Form = styled.form`
 
@@ -87,16 +87,19 @@ const RenewableEnergy = () => {
     </li>
   )
 
+  const { id } = useParams()
+  const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       {isMovingNext &&
-        <Redirect to='/adding-building/adding-building-successfully' />}
+        <Redirect to={parentUrl + '/adding-building-successfully'} />}
       <div className='d-flex mt-5 mb-4'>
 
         <Title>New Building</Title>
 
         <BackNextGroupButton
-          backLink='/adding-building/envelope-facade'
+          backLink={parentUrl + '/envelope-facade'}
           noNextLink
           progressValue={addingBuildingProgress}
           isDisabledSave={false}

@@ -11,7 +11,7 @@ import _ from 'lodash'
 
 import LightingSubSystem from './LightingSubSystem'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useParams } from 'react-router-dom'
 
 const Form = styled.form`
 
@@ -93,15 +93,19 @@ const Lighting = () => {
     </li>
   )
 
+  const { id } = useParams()
+  const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
+  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/envelope-facade')
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to='/adding-building/envelope-facade' />}
+      {isMovingNext && <Redirect to={moveNextUrl} />}
       <div className='d-flex mt-5 mb-4'>
 
         <Title>New Building</Title>
 
         <BackNextGroupButton
-          backLink='/adding-building/hvac'
+          backLink={parentUrl + '/hvac'}
           nextLink='/adding-building/envelope-facade'
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}

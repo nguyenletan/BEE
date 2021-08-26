@@ -7,7 +7,7 @@ import HeatingSystem from './HeatingSystem'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState } from '../../../atoms'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useParams } from 'react-router-dom'
 
 const Form = styled.form`
 
@@ -49,16 +49,21 @@ const HVAC = () => {
     shouldUnregister: false
   })
 
+  const { id } = useParams()
+  const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
+
+  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/lighting')
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to='/adding-building/lighting' />}
+      {isMovingNext && <Redirect to={moveNextUrl} />}
 
       <div className='d-flex mt-5 mb-4'>
 
         <Title>New Building</Title>
 
         <BackNextGroupButton
-          backLink='/adding-building/electricity-consumption'
+          backLink={parentUrl + '/electricity-consumption'}
           nextLink='/adding-building/lighting'
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}

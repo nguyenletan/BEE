@@ -159,10 +159,9 @@ const SolarPanel = ({ data }) => {
     <Fade in timeout={500}>
       <Paper elevation={3} className='px-4 py-3'>
         <Header>
-          <Title>{data.title}<SpanId>{data.id}</SpanId></Title>
-          <Subtraction title='Remove Item' onClick={onRemoveItem}><i
-            className='bi bi-dash-lg'
-                                                                  />
+          <Title>{data.title}</Title>
+          <Subtraction title='Remove Item' onClick={onRemoveItem}>
+            <i className='bi bi-dash-lg' />
           </Subtraction>
         </Header>
         <Content>
