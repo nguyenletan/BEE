@@ -1,17 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import {
-  Box,
-  Fade,
-  FormControl,
-  Input,
-  InputLabel,
-  MenuItem,
-  Paper,
-  Slider,
-  TextField,
-  Typography
-} from '@material-ui/core'
+import { Box, Fade, FormControl, Input, InputLabel, MenuItem, Paper, Slider, TextField, Typography } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
 import { useRecoilState } from 'recoil'
 import { makeStyles } from '@material-ui/core/styles'
@@ -41,11 +30,11 @@ const Subtraction = styled.span`
 const Content = styled.div`
 
 `
-
-const SpanId = styled.span`
-  color: var(--gray);
-  margin-left: .5em;
-`
+//
+// const SpanId = styled.span`
+//   color: var(--gray);
+//   margin-left: .5em;
+// `
 const SolarPanel = ({ data }) => {
   const classes = makeStyles((theme) => (MaterialFormStyle))()
 
@@ -71,7 +60,7 @@ const SolarPanel = ({ data }) => {
     const index = solarSystemList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(solarSystemList, index, {
       ...data,
-      orientationAngle: newValue
+      orientationAngle: newValue,
     })
 
     setSolarSystemList(newList)
@@ -81,7 +70,7 @@ const SolarPanel = ({ data }) => {
     const index = solarSystemList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(solarSystemList, index, {
       ...data,
-      inclineAngle: newValue
+      inclineAngle: newValue,
     })
 
     setSolarSystemList(newList)
@@ -91,7 +80,7 @@ const SolarPanel = ({ data }) => {
     const index = solarSystemList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(solarSystemList, index, {
       ...data,
-      systemLoss: newValue
+      systemLoss: newValue,
     })
 
     setSolarSystemList(newList)
@@ -125,7 +114,7 @@ const SolarPanel = ({ data }) => {
     const index = solarSystemList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(solarSystemList, index, {
       ...data,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
 
     setSolarSystemList(newList)
@@ -157,31 +146,31 @@ const SolarPanel = ({ data }) => {
   }
   return (
     <Fade in timeout={500}>
-      <Paper elevation={3} className='px-4 py-3'>
+      <Paper elevation={3} className="px-4 py-3">
         <Header>
           <Title>{data.title}</Title>
-          <Subtraction title='Remove Item' onClick={onRemoveItem}>
-            <i className='bi bi-dash-lg' />
+          <Subtraction title="Remove Item" onClick={onRemoveItem}>
+            <i className="bi bi-dash-lg"/>
           </Subtraction>
         </Header>
         <Content>
 
           <FormControl className={classes.formControl}>
             <TextField
-              type='number'
-              label='Installed Capacity (kWp)'
-              name='installedCapacity'
+              type="number"
+              label="Installed Capacity (kWp)"
+              name="installedCapacity"
               value={data.installedCapacity}
               onChange={onChange}
             />
           </FormControl>
 
           <FormControl className={classes.formControl}>
-            <InputLabel id='tracking-type-label'>Tracking Type</InputLabel>
+            <InputLabel id="tracking-type-label">Tracking Type</InputLabel>
             <Select
-              labelId='tracking-type-label'
-              id='tracking-type-select'
-              name='trackingTypeId'
+              labelId="tracking-type-label"
+              id="tracking-type-select"
+              name="trackingTypeId"
               onChange={onChange}
               value={data.trackingTypeId}
             >
@@ -196,9 +185,9 @@ const SolarPanel = ({ data }) => {
             </Select>
           </FormControl>
 
-          {showInclineAngle && <Box component='div' mb={1} mt={2}>
-            <Typography gutterBottom color='primary'>Incline Angle (degrees from horizontal)</Typography>
-            <Grid container spacing={2} alignItems='flex-start'>
+          {showInclineAngle && <Box component="div" mb={1} mt={2}>
+            <Typography gutterBottom color="primary">Incline Angle (degrees from horizontal)</Typography>
+            <Grid container spacing={2} alignItems="flex-start">
               <Grid item xs>
                 <Slider
                   min={0}
@@ -206,43 +195,43 @@ const SolarPanel = ({ data }) => {
                   marks={[
                     {
                       value: 0,
-                      label: 0
+                      label: 0,
                     },
                     {
                       value: 45,
-                      label: 45
+                      label: 45,
                     },
                     {
                       value: 90,
-                      label: 90
+                      label: 90,
                     }]}
                   step={1}
                   value={data.inclineAngle}
                   onChange={handleInclineAngleSliderChange}
-                  valueLabelDisplay='auto'
+                  valueLabelDisplay="auto"
                 />
               </Grid>
               <Grid item>
                 <Input
                   value={data.inclineAngle}
-                  margin='dense'
-                  name='inclineAngle'
+                  margin="dense"
+                  name="inclineAngle"
                   onChange={onChange}
                   onBlur={handleInclineAngleInputBlur}
                   inputProps={{
                     step: 1,
                     min: 0,
                     max: 90,
-                    type: 'number'
+                    type: 'number',
                   }}
                 />
               </Grid>
             </Grid>
           </Box>}
 
-          {showOrientationAngle && <Box component='div' mb={1} mt={2}>
-            <Typography gutterBottom color='primary'>Orientation Angle (degrees from South)</Typography>
-            <Grid container spacing={2} alignItems='flex-start'>
+          {showOrientationAngle && <Box component="div" mb={1} mt={2}>
+            <Typography gutterBottom color="primary">Orientation Angle (degrees from South)</Typography>
+            <Grid container spacing={2} alignItems="flex-start">
               <Grid item xs>
                 <Slider
                   min={-180}
@@ -250,42 +239,42 @@ const SolarPanel = ({ data }) => {
                   marks={[
                     {
                       value: -180,
-                      label: -180
+                      label: -180,
                     },
                     {
                       value: 0,
-                      label: 0
+                      label: 0,
                     },
                     {
                       value: 180,
-                      label: 180
+                      label: 180,
                     }]}
                   step={1}
                   value={data.orientationAngle}
                   onChange={handleOrientationAngleSliderChange}
-                  valueLabelDisplay='auto'
+                  valueLabelDisplay="auto"
                 />
               </Grid>
               <Grid item>
                 <Input
                   value={data.orientationAngle}
-                  margin='dense'
-                  name='orientationAngle'
+                  margin="dense"
+                  name="orientationAngle"
                   onChange={onChange}
                   onBlur={handleOrientationAngleInputBlur}
                   inputProps={{
                     step: 1,
                     min: -180,
                     max: 180,
-                    type: 'number'
+                    type: 'number',
                   }}
                 />
               </Grid>
             </Grid>
           </Box>}
-          <Box component='div' mb={1} mt={2}>
-            <Typography gutterBottom color='primary'>System Loss (%)</Typography>
-            <Grid container spacing={2} alignItems='flex-start'>
+          <Box component="div" mb={1} mt={2}>
+            <Typography gutterBottom color="primary">System Loss (%)</Typography>
+            <Grid container spacing={2} alignItems="flex-start">
               <Grid item xs>
                 <Slider
                   min={0}
@@ -293,35 +282,35 @@ const SolarPanel = ({ data }) => {
                   marks={[
                     {
                       value: 0,
-                      label: 0
+                      label: 0,
                     },
                     {
                       value: 50,
-                      label: 50
+                      label: 50,
                     },
                     {
                       value: 100,
-                      label: 100
-                    }
+                      label: 100,
+                    },
                   ]}
                   step={1}
                   value={data.systemLoss}
                   onChange={handleSystemLossValueSliderChange}
-                  valueLabelDisplay='auto'
+                  valueLabelDisplay="auto"
                 />
               </Grid>
               <Grid item>
                 <Input
                   value={data.systemLoss}
-                  name='systemLoss'
-                  margin='dense'
+                  name="systemLoss"
+                  margin="dense"
                   onChange={onChange}
                   onBlur={handleSetSystemLossValueInputBlur}
                   inputProps={{
                     step: 1,
                     min: 0,
                     max: 100,
-                    type: 'number'
+                    type: 'number',
                   }}
                 />
               </Grid>
@@ -329,11 +318,11 @@ const SolarPanel = ({ data }) => {
           </Box>
 
           <FormControl className={classes.formControl}>
-            <InputLabel id='pv-tech-choice-label'>P.V. Panel Type</InputLabel>
+            <InputLabel id="pv-tech-choice-label">P.V. Panel Type</InputLabel>
             <Select
-              labelId='pv-tech-choice-type-label'
-              id='pv-tech-choice-type-select'
-              name='pvTechChoiceId'
+              labelId="pv-tech-choice-type-label"
+              id="pv-tech-choice-type-select"
+              name="pvTechChoiceId"
               value={data.pvTechChoiceId}
               onChange={onChange}
             >
@@ -344,11 +333,11 @@ const SolarPanel = ({ data }) => {
           </FormControl>
 
           <FormControl className={classes.formControl}>
-            <InputLabel id='mounting-type-label'>Mounting Type</InputLabel>
+            <InputLabel id="mounting-type-label">Mounting Type</InputLabel>
             <Select
-              labelId='mounting-type-label'
-              id='mounting-type-select'
-              name='mountingTypeId'
+              labelId="mounting-type-label"
+              id="mounting-type-select"
+              name="mountingTypeId"
               value={data.mountingTypeId}
               onChange={onChange}
             >

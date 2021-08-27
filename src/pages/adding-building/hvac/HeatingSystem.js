@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Checkbox, Fade, FormControl, FormControlLabel, InputLabel, MenuItem } from '@material-ui/core'
+import { Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem } from '@material-ui/core'
 import Select from '@material-ui/core/Select'
 import { Controller } from 'react-hook-form'
 
@@ -78,101 +78,101 @@ const HeatingSystem = ({ control }) => {
 
       {heatingSystem.hasHeatingSystem && (
 
-          <div className="d-flex flex-column">
+        <div className="d-flex flex-column">
 
-            <Controller
-              name="heatingSystemTypeId"
-              control={control}
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => (
-                <FormControl className={classes.formControl}>
-                  <InputLabel id="heating-system-type-label">Heating System Type</InputLabel>
-                  <Select
-                    labelId="heating-system-type-label"
-                    id="heating-system-type-select"
-                    value={heatingSystem.heatingSystemTypeId}
-                    onChange={(e) => {
-                      onChange(e)
-                      onHeatingSystemTypeIdChange(e)
-                    }}
-                    error={!!error}
-                    // helperText={error ? error.message : null}
-                  >
-                    {HeatingSystemType.map((o) => (
-                      <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              )}
-              rules={{
-                // required: 'Heating System Type is required'
-              }}
-            />
+          <Controller
+            name="heatingSystemTypeId"
+            control={control}
+            render={({
+              field: { onChange, value },
+              fieldState: { error },
+            }) => (
+              <FormControl className={classes.formControl}>
+                <InputLabel id="heating-system-type-label">Heating System Type</InputLabel>
+                <Select
+                  labelId="heating-system-type-label"
+                  id="heating-system-type-select"
+                  value={heatingSystem.heatingSystemTypeId}
+                  onChange={(e) => {
+                    onChange(e)
+                    onHeatingSystemTypeIdChange(e)
+                  }}
+                  error={!!error}
+                  // helperText={error ? error.message : null}
+                >
+                  {HeatingSystemType.map((o) => (
+                    <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
+            rules={{
+              // required: 'Heating System Type is required'
+            }}
+          />
 
-            <Controller
-              name="heaterTypeId"
-              control={control}
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => (
-                <FormControl className={classes.formControl}>
-                  <InputLabel id="heater-type-label">Heater Type</InputLabel>
-                  <Select
-                    labelId="heater-type-label"
-                    id="heater-type-select"
-                    value={heatingSystem.heaterTypeId}
-                    onChange={(e) => {
-                      onChange(e)
-                      onHeaterTypeIdChange(e)
-                    }}
-                    error={!!error}
-                    // helperText={error ? error.message : null}
-                  >
-                    {HeaterType.map((o) => (
-                      <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              )}
-              rules={{
-                // required: 'Heater Type is required'
-              }}
-            />
+          <Controller
+            name="heaterTypeId"
+            control={control}
+            render={({
+              field: { onChange, value },
+              fieldState: { error },
+            }) => (
+              <FormControl className={classes.formControl}>
+                <InputLabel id="heater-type-label">Heater Type</InputLabel>
+                <Select
+                  labelId="heater-type-label"
+                  id="heater-type-select"
+                  value={heatingSystem.heaterTypeId}
+                  onChange={(e) => {
+                    onChange(e)
+                    onHeaterTypeIdChange(e)
+                  }}
+                  error={!!error}
+                  // helperText={error ? error.message : null}
+                >
+                  {HeaterType.map((o) => (
+                    <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
+            rules={{
+              // required: 'Heater Type is required'
+            }}
+          />
 
-            <Controller
-              name="heaterEnergySourceTypeId"
-              control={control}
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => (
-                <FormControl className={classes.formControl}>
-                  <InputLabel id="heater-energy-source-label">Heater Energy Source</InputLabel>
-                  <Select
-                    labelId="heater-energy-source-label"
-                    id="heater-energy-source-select"
-                    value={heatingSystem.heaterEnergySourceTypeId}
-                    onChange={(e) => {
-                      onChange(e)
-                      onHeaterEnergySourceTypeIdChange(e)
-                    }}
-                    error={!!error}
-                    // helperText={error ? error.message : null}
-                  >
-                    {energySourceType.map((o) => (
-                      <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              )}
-              rules={{
-                // required: 'Heater Energy Source Type is required'
-              }}
-            />
-          </div>
+          <Controller
+            name="heaterEnergySourceTypeId"
+            control={control}
+            render={({
+              field: { onChange, value },
+              fieldState: { error },
+            }) => (
+              <FormControl className={classes.formControl}>
+                <InputLabel id="heater-energy-source-label">Heater Energy Source</InputLabel>
+                <Select
+                  labelId="heater-energy-source-label"
+                  id="heater-energy-source-select"
+                  value={heatingSystem.heaterEnergySourceTypeId}
+                  onChange={(e) => {
+                    onChange(e)
+                    onHeaterEnergySourceTypeIdChange(e)
+                  }}
+                  error={!!error}
+                  // helperText={error ? error.message : null}
+                >
+                  {energySourceType.map((o) => (
+                    <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
+            rules={{
+              // required: 'Heater Energy Source Type is required'
+            }}
+          />
+        </div>
 
       )}
 

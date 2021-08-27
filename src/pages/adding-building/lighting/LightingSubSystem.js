@@ -1,13 +1,5 @@
 import React, { useState } from 'react'
-import {
-  Fade,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Paper,
-  Select,
-  TextField
-} from '@material-ui/core'
+import { Fade, FormControl, InputLabel, MenuItem, Paper, Select, TextField } from '@material-ui/core'
 import styled from 'styled-components'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import LightingFittingType from '../../../reference-tables/LightingFittingType'
@@ -34,10 +26,10 @@ const Content = styled.div`
 
 `
 
-const SpanId = styled.span`
-  color: var(--gray);
-  margin-left: .5em;
-`
+// const SpanId = styled.span`
+//   color: var(--gray);
+//   margin-left: .5em;
+// `
 
 const LightingSubSystem = ({ data }) => {
   const classes = makeStyles((theme) => (MaterialFormStyle))()
@@ -55,7 +47,7 @@ const LightingSubSystem = ({ data }) => {
     const index = lightingSubSystemList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(lightingSubSystemList, index, {
       ...data,
-      percentage: e.target.value
+      percentage: e.target.value,
     })
     setLightingSubSystemList(newList)
   }
@@ -66,7 +58,7 @@ const LightingSubSystem = ({ data }) => {
     const index = lightingSubSystemList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(lightingSubSystemList, index, {
       ...data,
-      indoorLightingSystemTypeId: e.target.value
+      indoorLightingSystemTypeId: e.target.value,
     })
     setLightingSubSystemList(newList)
   }
@@ -81,21 +73,21 @@ const LightingSubSystem = ({ data }) => {
 
   return (
     <Fade in timeout={500}>
-      <Paper elevation={3} className='p-3'>
+      <Paper elevation={3} className="p-3">
         <Header>
           <Title>{data.title}</Title>
-          <Subtraction title='Remove Item' onClick={onRemoveItem}>
-            <i className='bi bi-dash-lg' />
+          <Subtraction title="Remove Item" onClick={onRemoveItem}>
+            <i className="bi bi-dash-lg"/>
           </Subtraction>
         </Header>
         <Content>
           <FormControl className={classes.formControl}>
-            <InputLabel id='lighting-fitting-type-label'>Lighting Fitting
+            <InputLabel id="lighting-fitting-type-label">Lighting Fitting
               Type
             </InputLabel>
             <Select
-              labelId='lighting-fitting-type-label'
-              id='lighting-fitting-type-select'
+              labelId="lighting-fitting-type-label"
+              id="lighting-fitting-type-select"
               value={indoorLightingSystemTypeId}
               onChange={onIndoorLightingSystemTypeIdChange}
             >
@@ -111,7 +103,7 @@ const LightingSubSystem = ({ data }) => {
           </FormControl>
           <FormControl className={classes.formControl}>
             <TextField
-              id='percentage' label='% of All Light Fittings' type='number'
+              id="percentage" label="% of All Light Fittings" type="number"
               value={percentage} onChange={onPercentageChange}
             />
           </FormControl>

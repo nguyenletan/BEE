@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 
@@ -45,7 +46,7 @@ const AddingBuilding = () => {
   const setSolarPanelSystemList = useSetRecoilState(solarPanelSystemListState)
   const setAddingBuildingProgressState = useSetRecoilState(addingBuildingProgressState)
 
-  console.log(id)
+  //console.log(id)
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -74,6 +75,7 @@ const AddingBuilding = () => {
     if (id) {
       fetchApi()
     }
+    // eslint-disable-line
   }, [])
 
   return (
