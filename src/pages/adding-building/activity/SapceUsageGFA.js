@@ -9,10 +9,6 @@ const Header = styled.div`
   margin-bottom: 20px;
 `
 
-const Title = styled.span`
-
-
-`
 const Adding = styled.span`
   cursor: pointer;
   color: var(--bs-primary);
@@ -26,7 +22,7 @@ const UL = styled.ul`
   }
 `
 
-const SpaceUsageGFA = () => {
+const SpaceUsageGFA = ({control, setValue}) => {
   const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(spaceUsageGFAListState)
 
   const onAddSpaceUsageGFA = () => {
@@ -34,11 +30,11 @@ const SpaceUsageGFA = () => {
       ...oldSpaceUsageGFAList,
       {
         id: parseInt(_.uniqueId()),
-        title: 'New Usage',
-        typeId: 1,
-        percentage: 0,
-        climateControlId: 1,
-        fanTypeId: 1,
+        title: '',
+        typeId: '',
+        percentage: '',
+        climateControlId: '',
+        fanTypeId: '',
         hasReheatRecovery: false
       }
     ])
@@ -46,14 +42,14 @@ const SpaceUsageGFA = () => {
 
   const lis = spaceUsageGFAList.map(item =>
     <li className='col-12 col-lg-6 mb-4' key={item.id}>
-      <SpaceUsageGFAForm data={item} />
+      <SpaceUsageGFAForm data={item} control={control} setValue={setValue}/>
     </li>
   )
 
   return (
     <>
       <Header className='d-flex justify-content-between'>
-        <Title>Space Usage and %GFA</Title>
+        <h6>Space Usage and %GFA</h6>
         <Adding onClick={onAddSpaceUsageGFA} title='Add new item'>
           <i className='bi bi-plus-lg font-weight-bolder'/>
         </Adding>

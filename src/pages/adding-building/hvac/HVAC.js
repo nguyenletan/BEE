@@ -31,22 +31,15 @@ const HVAC = () => {
     setIsMovingNext(true)
   }
 
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, setValue } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
-    defaultValues: {
-      // buildingName: 'data?.buildingName',
-      // postalCode:data?.postalCode,
-      // address: data?.address,
-      // city: data?.city,
-      // countryCode: data?.countryCode,
-      // state: data?.state
-    },
+    defaultValues: {},
     resolver: undefined,
     context: undefined,
     criteriaMode: 'firstError',
-    shouldFocusError: false,
-    shouldUnregister: false
+    shouldFocusError: true,
+    shouldUnregister: false,
   })
 
   const { id } = useParams()
@@ -56,30 +49,30 @@ const HVAC = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to={moveNextUrl} />}
+      {isMovingNext && <Redirect to={moveNextUrl}/>}
 
-      <div className='d-flex mt-5 mb-4'>
+      <div className="d-flex mt-5 mb-4">
 
         <Title>New Building</Title>
 
         <BackNextGroupButton
           backLink={parentUrl + '/electricity-consumption'}
-          nextLink='/adding-building/lighting'
+          nextLink="/adding-building/lighting"
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
 
       </div>
 
-      <StepNav activePositon={2} />
-      <div className='row'>
+      <StepNav activePositon={2}/>
+      <div className="row">
 
-        <div className='col-12 col-lg-6 col-xxl-5'>
-          <CoolingSystem control={control}/>
+        <div className="col-12 col-lg-6 col-xxl-5">
+          <CoolingSystem control={control} setValue={setValue}/>
         </div>
 
-        <div className='col-12 col-lg-6 col-xxl-5'>
-          <HeatingSystem control={control}/>
+        <div className="col-12 col-lg-6 col-xxl-5">
+          <HeatingSystem control={control} setValue={setValue}/>
         </div>
       </div>
     </Form>

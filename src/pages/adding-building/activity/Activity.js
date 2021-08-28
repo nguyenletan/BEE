@@ -30,12 +30,14 @@ const Activity = () => {
 
   const [isMovingNext, setIsMovingNext] = useState(false)
 
+
   const onSubmit = (data) => {
     // console.log(data)
     // console.log(image)
     // setBuildingActivity(data)
     setAddingBuildingProgressState(45)
     setIsMovingNext(true)
+    console.log(buildingActivity) ;
   }
 
   const {
@@ -87,7 +89,7 @@ const Activity = () => {
           />
         </div>
         <div className='col-6'>
-          <SpaceUsageGFA />
+          <SpaceUsageGFA control={control} setValue={setValue} />
         </div>
       </div>
 

@@ -3,10 +3,7 @@ import StepNav from '../step-nav/StepNav'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
-import {
-  addingBuildingProgressState,
-  lightingSubSystemListState
-} from '../../../atoms'
+import { addingBuildingProgressState, lightingSubSystemListState } from '../../../atoms'
 import _ from 'lodash'
 
 import LightingSubSystem from './LightingSubSystem'
@@ -56,9 +53,9 @@ const Lighting = () => {
       {
         id: parseInt(_.uniqueId()),
         title: 'Fitting ',
-        indoorLightingSystemTypeId: 1,
-        percentage: 0
-      }
+        indoorLightingSystemTypeId: '',
+        percentage: '',
+      },
     ])
   }
 
@@ -68,29 +65,22 @@ const Lighting = () => {
     setIsMovingNext(true)
   }
 
-  const { handleSubmit } = useForm({
+  const { handleSubmit, control, setValue } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
-    defaultValues: {
-      // buildingName: 'data?.buildingName',
-      // postalCode:data?.postalCode,
-      // address: data?.address,
-      // city: data?.city,
-      // countryCode: data?.countryCode,
-      // state: data?.state
-    },
+    defaultValues: {},
     resolver: undefined,
     context: undefined,
     criteriaMode: 'firstError',
-    shouldFocusError: false,
-    shouldUnregister: false
+    shouldFocusError: true,
+    shouldUnregister: false,
   })
 
   const lis = lightingSubSystemList.map(item =>
 
-    <li className='col-12 col-lg-6 mb-4' key={item.id}>
-      <LightingSubSystem data={item} />
-    </li>
+    <li className="col-12 col-lg-6 mb-4" key={item.id}>
+      <LightingSubSystem data={item} control={control} setValue={setValue}/>
+    </li>,
   )
 
   const { id } = useParams()
@@ -99,32 +89,32 @@ const Lighting = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to={moveNextUrl} />}
-      <div className='d-flex mt-5 mb-4'>
+      {isMovingNext && <Redirect to={moveNextUrl}/>}
+      <div className="d-flex mt-5 mb-4">
 
         <Title>New Building</Title>
 
         <BackNextGroupButton
           backLink={parentUrl + '/hvac'}
-          nextLink='/adding-building/envelope-facade'
+          nextLink="/adding-building/envelope-facade"
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
 
       </div>
 
-      <StepNav />
+      <StepNav/>
 
-      <div className='row'>
-        <div className='col-12 col-lg-8'>
-          <Header className='d-flex justify-content-between'>
+      <div className="row">
+        <div className="col-12 col-lg-8">
+          <Header className="d-flex justify-content-between">
             <h6>Lighting Subsystem</h6>
-            <Adding onClick={onAddLightingSubSystemList} title='Add new item'><i
-              className='bi bi-plus-lg font-weight-bolder'
-                                                                              />
+            <Adding onClick={onAddLightingSubSystemList} title="Add new item"><i
+              className="bi bi-plus-lg font-weight-bolder"
+            />
             </Adding>
           </Header>
-          <Ul className='row'>
+          <Ul className="row">
             {lis}
           </Ul>
         </div>

@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem } from '@material-ui/core'
+import { Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem } from '@material-ui/core'
 import Select from '@material-ui/core/Select'
 import CoolingSystemType from '../../../reference-tables/CoolingSystemType'
 import ChillerEnergySourceType from '../../../reference-tables/ChillerEnergySourceType'
@@ -16,7 +16,7 @@ const Title = styled.h4`
   font-size: 1.1rem;
 `
 
-const CoolingSystem = ({ control }) => {
+const CoolingSystem = ({ control, setValue }) => {
   const classes = makeStyles((theme) => (MaterialFormStyle))()
 
   const [coolingSystem, setCoolingSystem] = useRecoilState(coolingSystemState)
@@ -96,6 +96,19 @@ const CoolingSystem = ({ control }) => {
       { ...coolingSystem, chillerEnergySourceTypeId: e.target.value })
   }
 
+  useEffect(() => {
+    setValue(`coolingSystemTypeId`, coolingSystem.coolingSystemTypeId)
+    setValue(`compressorTypeId`, coolingSystem.compressorTypeId)
+    setValue(`refrigerantTypeId`, coolingSystem.refrigerantTypeId)
+    setValue(`chillerEnergySourceTypeId`, coolingSystem.chillerEnergySourceTypeId)
+
+  }, [
+    coolingSystem.chillerEnergySourceTypeId,
+    coolingSystem.compressorTypeId,
+    coolingSystem.coolingSystemTypeId,
+    coolingSystem.refrigerantTypeId,
+    setValue])
+
   return (
     <>
       <Title>Cooling System Installed</Title>
@@ -123,7 +136,8 @@ const CoolingSystem = ({ control }) => {
               fieldState: { error },
             }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel id="cooling-system-type-id-label">Cooling System Type</InputLabel>
+                <InputLabel id="cooling-system-type-id-label"
+                            className={error && 'text-danger'}>Cooling System Type</InputLabel>
                 <Select
                   labelId="cooling-system-type-id-label"
                   id="cooling-system-type-id-select"
@@ -133,14 +147,14 @@ const CoolingSystem = ({ control }) => {
                     onCoolingSystemTypeIdChange(e)
                   }}
                   error={!!error}
-                  // helperText={error ? error.message : null}
                 >
                   {CoolingSystemType.map(item => <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>)}
                 </Select>
+                {error && <FormHelperText className="text-danger">The Cooling System Type is not empty</FormHelperText>}
               </FormControl>
             )}
             rules={{
-              // required: 'Cooling System Type is required',
+              required: 'Cooling System Type is required',
             }}
           />
 
@@ -152,10 +166,9 @@ const CoolingSystem = ({ control }) => {
                 field: { onChange, value },
                 fieldState: { error },
               }) => (
-
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="compressor-type-label">Compressor
-                    Type
+                  <InputLabel id="compressor-type-label" className={error && 'text-danger'}>
+                    Compressor Type
                   </InputLabel>
                   <Select
                     labelId="compressor-type-label"
@@ -177,10 +190,11 @@ const CoolingSystem = ({ control }) => {
                       </MenuItem>
                     ))}
                   </Select>
+                  {error && <FormHelperText className="text-danger">The Compressor Type is required</FormHelperText>}
                 </FormControl>
               )}
               rules={{
-                // required: 'Compressor Type is required',
+                required: 'Compressor Type is required',
               }}
             />)}
 
@@ -193,7 +207,9 @@ const CoolingSystem = ({ control }) => {
                 fieldState: { error },
               }) => (
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="refrigerant-type-label">Refrigerant Type</InputLabel>
+                  <InputLabel id="refrigerant-type-label" className={error && 'text-danger'}>
+                    Refrigerant Type
+                  </InputLabel>
                   <Select
                     labelId="refrigerant-type-label"
                     id="refrigerant-type-select"
@@ -214,10 +230,11 @@ const CoolingSystem = ({ control }) => {
                       </MenuItem>
                     ))}
                   </Select>
+                  {error && <FormHelperText className="text-danger">The Refrigerant Type is required</FormHelperText>}
                 </FormControl>
               )}
               rules={{
-                // required: 'Refrigerant Type is required',
+                required: 'Refrigerant Type is required',
               }}
             />)}
 
@@ -230,8 +247,8 @@ const CoolingSystem = ({ control }) => {
                 fieldState: { error },
               }) => (
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="chiller-energy-label">Chiller Energy
-                    Source
+                  <InputLabel id="chiller-energy-label" className={error && 'text-danger'}>
+                    Chiller Energy Source
                   </InputLabel>
                   <Select
                     labelId="chiller-energy-label"
@@ -247,10 +264,12 @@ const CoolingSystem = ({ control }) => {
                     {chillerEnergySourceTypeList.map(
                       item => <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>)}
                   </Select>
+                  {error &&
+                  <FormHelperText className="text-danger">The ChillerEnergy Source Type is required</FormHelperText>}
                 </FormControl>
               )}
               rules={{
-                // required: 'ChillerEnergy Source Type is required',
+                required: 'ChillerEnergy Source Type is required',
               }}
             />)}
         </div>

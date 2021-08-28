@@ -56,21 +56,18 @@ const ElectricityConsumption = () => {
     setIsMovingNext(true)
   }
 
-  const { handleSubmit } = useForm({
+  const {
+    handleSubmit,
+    control,
+    setValue,
+  } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
-    defaultValues: {
-      // buildingName: 'data?.buildingName',
-      // postalCode:data?.postalCode,
-      // address: data?.address,
-      // city: data?.city,
-      // countryCode: data?.countryCode,
-      // state: data?.state
-    },
+    defaultValues: {},
     resolver: undefined,
     context: undefined,
     criteriaMode: 'firstError',
-    shouldFocusError: false,
+    shouldFocusError: true,
     shouldUnregister: false,
   })
 
@@ -96,8 +93,8 @@ const ElectricityConsumption = () => {
         id: parseInt(_.uniqueId()),
         month: nextMonthYear.month,
         year: nextMonthYear.year,
-        value: 0,
-        cost: 0,
+        value: '',
+        cost: '',
       },
     ])
   }
@@ -106,6 +103,8 @@ const ElectricityConsumption = () => {
     <OneMonthElectricityConsumption
       key={'ElectricityConsumption' + item.id}
       data={item}
+      control={control}
+      setValue={setValue}
     />,
   )
 
@@ -121,7 +120,7 @@ const ElectricityConsumption = () => {
         <Title>New Building</Title>
 
         <BackNextGroupButton
-          backLink={parentUrl + "/activity"}
+          backLink={parentUrl + '/activity'}
           nextLink="/adding-building/hvac"
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}

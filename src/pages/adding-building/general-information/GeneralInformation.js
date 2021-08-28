@@ -50,8 +50,6 @@ const Title = styled.h2`
 const GeneralInformation = () => {
   //const complexityWeight = 15
 
-
-
   const [generalBuildingInformation, setGeneralBuildingInformation] = useRecoilState(
     generalBuildingInformationState)
 
@@ -427,7 +425,9 @@ const GeneralInformation = () => {
                     </Select>
                   </FormControl>
                 )}
-                rules={{ required: 'Sustainability Rating Scheme is required' }}
+                rules={{
+                  //required: 'Sustainability Rating Scheme is required'
+                }}
               />
 
             </div>
@@ -671,9 +671,9 @@ const GeneralInformation = () => {
                 }) => (
                   <TextField type="number"
                              id="gross-interior-area"
-                             aria-describedby="Total Floor Area (Internal)"
-                             placeholder="Total Floor Area (Internal)"
-                             label="Total Floor Area (Internal)"
+                             aria-describedby="Total Floor Area Gross"
+                             placeholder="Total Floor Area Gross "
+                             label="Total Floor Area Gross "
                              className={classes.valueUnit}
                              value={generalBuildingInformation.grossInteriorArea || ''}
                              onChange={(e) => {
@@ -686,8 +686,8 @@ const GeneralInformation = () => {
                   />
                 )}
                 rules={{
-                  min: { value: 0, message: 'The value should be > -1' },
-                  required: 'Total Floor Area is required',
+                  min: { value: 0, message: 'The value should be >= 0' },
+                  required: 'Total Floor Area Gross is required',
                 }}
               />
               <Controller
@@ -770,9 +770,9 @@ const GeneralInformation = () => {
 
                   <TextField type="number"
                              id="net-usable-area"
-                             aria-describedby="Net Usable Area"
-                             placeholder="Net Usable Area"
-                             label="Net Usable Area"
+                             aria-describedby="Total Net Usable Area "
+                             placeholder="Total Net Usable Area"
+                             label="Total Net Usable Area"
                              className={classes.valueUnit}
                              value={generalBuildingInformation?.netUsableArea || ''}
                              onChange={(e) => {
@@ -787,7 +787,7 @@ const GeneralInformation = () => {
                 )}
                 rules={{
                   min: { value: 0, message: 'The value should be > -1' },
-                  required: 'Net Usable Area is required',
+                  required: 'Total Net Usable Area is required',
                 }}
               />
 

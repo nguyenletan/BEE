@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Fade, FormControl, InputLabel, MenuItem, Paper, Select, TextField } from '@material-ui/core'
+import React, { useEffect } from 'react'
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField } from '@material-ui/core'
 import styled from 'styled-components'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import LightingFittingType from '../../../reference-tables/LightingFittingType'
@@ -7,6 +7,7 @@ import { removeItemAtIndex, replaceItemAtIndex } from '../../../Utilities'
 import { useRecoilState } from 'recoil'
 import { lightingSubSystemListState } from '../../../atoms'
 import { makeStyles } from '@material-ui/core/styles'
+import { Controller } from 'react-hook-form'
 
 const Title = styled.h6`
 
@@ -31,18 +32,13 @@ const Content = styled.div`
 //   margin-left: .5em;
 // `
 
-const LightingSubSystem = ({ data }) => {
+const LightingSubSystem = ({ data, control, setValue }) => {
   const classes = makeStyles((theme) => (MaterialFormStyle))()
 
   const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
     lightingSubSystemListState)
 
-  const [indoorLightingSystemTypeId, setIndoorLightingSystemTypeId] = useState(
-    data.indoorLightingSystemTypeId ?? 0)
-  const [percentage, setPercentage] = useState(data.percentage ?? 0)
-
   const onPercentageChange = (e) => {
-    setPercentage(e.target.value)
 
     const index = lightingSubSystemList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(lightingSubSystemList, index, {
@@ -53,7 +49,6 @@ const LightingSubSystem = ({ data }) => {
   }
 
   const onIndoorLightingSystemTypeIdChange = (e) => {
-    setIndoorLightingSystemTypeId(e.target.value)
 
     const index = lightingSubSystemList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(lightingSubSystemList, index, {
@@ -71,45 +66,88 @@ const LightingSubSystem = ({ data }) => {
     setLightingSubSystemList(newList)
   }
 
+  useEffect(() => {
+    setValue(`lighting-fitting-type${data.id}`, data.indoorLightingSystemTypeId)
+    setValue(`percentage-of-all-light-fittings${data.id}`, data.percentage)
+  }, [data.id, data.indoorLightingSystemTypeId, data.percentage, setValue])
+
   return (
-    <Fade in timeout={500}>
-      <Paper elevation={3} className="p-3">
-        <Header>
-          <Title>{data.title}</Title>
-          <Subtraction title="Remove Item" onClick={onRemoveItem}>
-            <i className="bi bi-dash-lg"/>
-          </Subtraction>
-        </Header>
-        <Content>
-          <FormControl className={classes.formControl}>
-            <InputLabel id="lighting-fitting-type-label">Lighting Fitting
-              Type
-            </InputLabel>
-            <Select
-              labelId="lighting-fitting-type-label"
-              id="lighting-fitting-type-select"
-              value={indoorLightingSystemTypeId}
-              onChange={onIndoorLightingSystemTypeIdChange}
-            >
-              {LightingFittingType.map((o) => (
-                <MenuItem
-                  key={o.id}
-                  value={o.id}
-                >
-                  {o.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <TextField
-              id="percentage" label="% of All Light Fittings" type="number"
-              value={percentage} onChange={onPercentageChange}
-            />
-          </FormControl>
-        </Content>
-      </Paper>
-    </Fade>
+    <div elevation={3} className="p-3 card">
+      <Header>
+        <Title>{data.title}</Title>
+        <Subtraction title="Remove Item" onClick={onRemoveItem}>
+          <i className="bi bi-dash-lg"/>
+        </Subtraction>
+      </Header>
+      <Content>
+        <Controller
+          name={`lighting-fitting-type${data.id}`}
+          control={control}
+          setValue={setValue}
+          render={({
+            field: { onChange, value },
+            fieldState: { error },
+          }) => (
+            <FormControl className={classes.formControl}>
+              <InputLabel id={`lighting-fitting-type-label${data.id}`} className={error && 'text-danger'}>Lighting Fitting
+                Type
+              </InputLabel>
+              <Select
+                labelId={`lighting-fitting-type-label${data.id}`}
+                id="lighting-fitting-type-select"
+                value={data.indoorLightingSystemTypeId}
+                error={!!error}
+                onChange={(e) => {
+                  onChange(e)
+                  onIndoorLightingSystemTypeIdChange(e)
+                }}
+              >
+                {LightingFittingType.map((o) => (
+                  <MenuItem
+                    key={o.id}
+                    value={o.id}
+                  >
+                    {o.name}
+                  </MenuItem>
+                ))}
+              </Select>
+              {error && <FormHelperText className="text-danger">The Lighting Fitting Type is not empty</FormHelperText>}
+            </FormControl>
+          )}
+          rules={{
+            required: `The Lighting Fitting Type is not empty`,
+          }}
+        />
+
+        <Controller
+          name={`percentage-of-all-light-fittings${data.id}`}
+          control={control}
+          setValue={setValue}
+          render={({
+            field: { onChange, value },
+            fieldState: { error },
+          }) => (
+            <FormControl className={classes.formControl}>
+              <TextField
+                label={`% of All Light Fittings${data.id}`}
+                type="number"
+                value={data.percentage}
+                onChange={(e) => {
+                  onChange(e)
+                  onPercentageChange(e)
+                }}
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
+            </FormControl>
+          )}
+          rules={{
+            required: `The % of All Light Fittings is not empty`,
+            min: { value: 0, message: 'The value should be >= 0' },
+          }}
+        />
+      </Content>
+    </div>
   )
 }
 

@@ -7,10 +7,10 @@ export const spaceUsageGFAListState = atom({
     {
       id: parseInt(_.uniqueId()),
       title: 'New Usage',
-      typeId: 1,
-      percentage: 1,
-      climateControlId: 1,
-      fanTypeId: 1,
+      typeId: '',
+      percentage: '',
+      climateControlId: '',
+      fanTypeId: '',
       hasReheatRecovery: false,
     }],
 })
@@ -21,8 +21,8 @@ export const lightingSubSystemListState = atom({
     {
       id: parseInt(_.uniqueId()),
       title: 'Fitting ',
-      indoorLightingSystemTypeId: 1,
-      percentage: 0,
+      indoorLightingSystemTypeId: '',
+      percentage: '',
     }],
 })
 
@@ -49,8 +49,8 @@ export const electricityConsumptionListState = atom({
       id: parseInt(_.uniqueId()),
       month: new Date().getMonth(),
       year: new Date().getFullYear(),
-      value: 0,
-      cost: 0,
+      value: '',
+      cost: '',
     }],
 })
 
@@ -90,10 +90,10 @@ export const coolingSystemState = atom({
   key: 'coolingSystem',
   default: {
     hasCoolingSystem: false,
-    coolingSystemTypeId: null,
-    compressorTypeId: null,
-    refrigerantTypeId: null,
-    chillerEnergySourceTypeId: null,
+    coolingSystemTypeId: '',
+    compressorTypeId: '',
+    refrigerantTypeId: '',
+    chillerEnergySourceTypeId: '',
   },
 })
 
@@ -101,9 +101,9 @@ export const heatingSystemState = atom({
   key: 'heatingSystem',
   default: {
     hasHeatingSystem: false,
-    heatingSystemTypeId: null,
-    heaterTypeId: null,
-    heaterEnergySourceTypeId: null,
+    heatingSystemTypeId: '',
+    heaterTypeId: '',
+    heaterEnergySourceTypeId: '',
 
   },
 })

@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem } from '@material-ui/core'
+import { Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem } from '@material-ui/core'
 import Select from '@material-ui/core/Select'
 import { Controller } from 'react-hook-form'
 
@@ -16,7 +16,7 @@ const Title = styled.h4`
   font-size: 1.1rem;
 `
 
-const HeatingSystem = ({ control }) => {
+const HeatingSystem = ({ control, setValue }) => {
   const classes = makeStyles((theme) => (MaterialFormStyle))()
 
   const [heatingSystem, setHeatingSystem] = useRecoilState(heatingSystemState)
@@ -60,6 +60,12 @@ const HeatingSystem = ({ control }) => {
       { ...heatingSystem, heaterEnergySourceTypeId: e.target.value })
   }
 
+  useEffect(() => {
+    setValue(`heatingSystemTypeId`, heatingSystem.heatingSystemTypeId)
+    setValue(`heaterTypeId`, heatingSystem.heaterTypeId)
+    setValue(`heaterEnergySourceTypeId`, heatingSystem.heaterEnergySourceTypeId)
+  }, [heatingSystem.heaterEnergySourceTypeId, heatingSystem.heaterTypeId, heatingSystem.heatingSystemTypeId, setValue])
+
   return (
     <>
       <Title>Heating System Installed</Title>
@@ -88,7 +94,8 @@ const HeatingSystem = ({ control }) => {
               fieldState: { error },
             }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel id="heating-system-type-label">Heating System Type</InputLabel>
+                <InputLabel id="heating-system-type-label" className={error && 'text-danger'}>Heating System
+                  Type</InputLabel>
                 <Select
                   labelId="heating-system-type-label"
                   id="heating-system-type-select"
@@ -104,10 +111,11 @@ const HeatingSystem = ({ control }) => {
                     <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
                   ))}
                 </Select>
+                {error && <FormHelperText className="text-danger">The Heating System Type is not empty</FormHelperText>}
               </FormControl>
             )}
             rules={{
-              // required: 'Heating System Type is required'
+              required: 'Heating System Type is required',
             }}
           />
 
@@ -119,7 +127,7 @@ const HeatingSystem = ({ control }) => {
               fieldState: { error },
             }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel id="heater-type-label">Heater Type</InputLabel>
+                <InputLabel id="heater-type-label" className={error && 'text-danger'}>Heater Type</InputLabel>
                 <Select
                   labelId="heater-type-label"
                   id="heater-type-select"
@@ -135,10 +143,11 @@ const HeatingSystem = ({ control }) => {
                     <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
                   ))}
                 </Select>
+                {error && <FormHelperText className="text-danger">The Heater Type is not empty</FormHelperText>}
               </FormControl>
             )}
             rules={{
-              // required: 'Heater Type is required'
+              required: 'Heater Type is required',
             }}
           />
 
@@ -150,7 +159,8 @@ const HeatingSystem = ({ control }) => {
               fieldState: { error },
             }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel id="heater-energy-source-label">Heater Energy Source</InputLabel>
+                <InputLabel id="heater-energy-source-label" className={error && 'text-danger'}>Heater Energy
+                  Source</InputLabel>
                 <Select
                   labelId="heater-energy-source-label"
                   id="heater-energy-source-select"
@@ -166,16 +176,16 @@ const HeatingSystem = ({ control }) => {
                     <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
                   ))}
                 </Select>
+                {error &&
+                <FormHelperText className="text-danger">The Heater Energy Source Type is not empty</FormHelperText>}
               </FormControl>
             )}
             rules={{
-              // required: 'Heater Energy Source Type is required'
+              required: 'Heater Energy Source Type is required',
             }}
           />
         </div>
-
       )}
-
     </>
   )
 }
