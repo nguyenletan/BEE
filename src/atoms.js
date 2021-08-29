@@ -113,9 +113,9 @@ export const envelopFacadeState = atom({
   default: {
     id: parseInt(_.uniqueId()),
     externalWindowToWallRatio: 0.7,
-    externalRoofInsulationTypeId: 1,
-    externalWallInsulationTypeId: 1,
-    externalWindowInsulationTypeId: 1,
+    externalRoofInsulationTypeId: '',
+    externalWallInsulationTypeId: '',
+    externalWindowInsulationTypeId: '',
     externalGroundFloorInsulationTypeId: 5,
   },
 })
