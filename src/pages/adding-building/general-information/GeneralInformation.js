@@ -715,7 +715,6 @@ const GeneralInformation = () => {
                       <MenuItem value="ft2">ft<sup>2</sup></MenuItem>
                     </Select>
                   </FormControl>
-
                 )}
               />
             </div>
