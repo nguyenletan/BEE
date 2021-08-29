@@ -33,7 +33,7 @@ const Content = styled.div`
 // `
 
 const LightingSubSystem = ({ data, control, setValue }) => {
-  const classes = makeStyles((theme) => (MaterialFormStyle))()
+  const classes = makeStyles(() => (MaterialFormStyle))()
 
   const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
     lightingSubSystemListState)
@@ -72,7 +72,7 @@ const LightingSubSystem = ({ data, control, setValue }) => {
   }, [data.id, data.indoorLightingSystemTypeId, data.percentage, setValue])
 
   return (
-    <div elevation={3} className="p-3 card">
+    <div className="p-3 shadow-sm border rounded">
       <Header>
         <Title>{data.title}</Title>
         <Subtraction title="Remove Item" onClick={onRemoveItem}>
@@ -85,7 +85,7 @@ const LightingSubSystem = ({ data, control, setValue }) => {
           control={control}
           setValue={setValue}
           render={({
-            field: { onChange, value },
+            field: { onChange },
             fieldState: { error },
           }) => (
             <FormControl className={classes.formControl}>
@@ -124,7 +124,7 @@ const LightingSubSystem = ({ data, control, setValue }) => {
           control={control}
           setValue={setValue}
           render={({
-            field: { onChange, value },
+            field: { onChange },
             fieldState: { error },
           }) => (
             <FormControl className={classes.formControl}>

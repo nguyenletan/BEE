@@ -17,7 +17,7 @@ const Title = styled.h4`
 `
 
 const CoolingSystem = ({ control, setValue }) => {
-  const classes = makeStyles((theme) => (MaterialFormStyle))()
+  const classes = makeStyles(() => (MaterialFormStyle))()
 
   const [coolingSystem, setCoolingSystem] = useRecoilState(coolingSystemState)
 
@@ -132,12 +132,13 @@ const CoolingSystem = ({ control, setValue }) => {
             name="coolingSystemTypeId"
             control={control}
             render={({
-              field: { onChange, value },
+              field: { onChange },
               fieldState: { error },
             }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel id="cooling-system-type-id-label"
-                            className={error && 'text-danger'}>Cooling System Type</InputLabel>
+                <InputLabel id="cooling-system-type-id-label" className={error && 'text-danger'}>
+                  Cooling System Type
+                </InputLabel>
                 <Select
                   labelId="cooling-system-type-id-label"
                   id="cooling-system-type-id-select"
@@ -163,7 +164,7 @@ const CoolingSystem = ({ control, setValue }) => {
               name="compressorTypeId"
               control={control}
               render={({
-                field: { onChange, value },
+                field: { onChange },
                 fieldState: { error },
               }) => (
                 <FormControl className={classes.formControl}>
@@ -179,7 +180,6 @@ const CoolingSystem = ({ control, setValue }) => {
                       onCompressorTypeIdChange(e)
                     }}
                     error={!!error}
-                    // helperText={error ? error.message : null}
                   >
                     {compressorTypeList.map((o) => (
                       <MenuItem
@@ -203,7 +203,7 @@ const CoolingSystem = ({ control, setValue }) => {
               name="refrigerantTypeId"
               control={control}
               render={({
-                field: { onChange, value },
+                field: { onChange },
                 fieldState: { error },
               }) => (
                 <FormControl className={classes.formControl}>
@@ -219,7 +219,6 @@ const CoolingSystem = ({ control, setValue }) => {
                       onRefrigerantTypeIdChange(e)
                     }}
                     error={!!error}
-                    // helperText={error ? error.message : null}
                   >
                     {refrigerantTypeList.map((o) => (
                       <MenuItem
@@ -243,7 +242,7 @@ const CoolingSystem = ({ control, setValue }) => {
               name="chillerEnergySourceTypeId"
               control={control}
               render={({
-                field: { onChange, value },
+                field: { onChange },
                 fieldState: { error },
               }) => (
                 <FormControl className={classes.formControl}>
@@ -259,7 +258,6 @@ const CoolingSystem = ({ control, setValue }) => {
                       onChillerEnergySourceTypeIdChange(e)
                     }}
                     error={!!error}
-                    // helperText={error ? error.message : null}
                   >
                     {chillerEnergySourceTypeList.map(
                       item => <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>)}

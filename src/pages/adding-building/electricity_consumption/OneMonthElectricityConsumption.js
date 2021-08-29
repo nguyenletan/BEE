@@ -48,7 +48,7 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
     setElectricityConsumptionList(newList)
   }
 
-  const onChange = (e) => {
+  const handleChange = (e) => {
     const index = electricityConsumptionList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(electricityConsumptionList, index, {
       ...data,
@@ -73,7 +73,7 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
           control={control}
           setValue={setValue}
           render={({
-            field: { value },
+            field: { onChange },
             fieldState: { error },
           }) => (
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -87,9 +87,7 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
                   helperText={error ? error.message : null}
                   onChange={(date) => {
                     onDateChange(date)
-                    setValue(`date${data.id}`, data, {
-                      shouldValidate: true,
-                    })
+                    onChange(date)
                   }}
                 />
               </Grid>
@@ -107,23 +105,20 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
         control={control}
         setValue={setValue}
         render={({
-          field: { value },
+          field: { onChange },
           fieldState: { error },
         }) => (
           <div className="col-3">
             <Input
               type="number"
               onChange={(e) => {
+                handleChange(e)
                 onChange(e)
-                setValue(`cost${data.id}`, data, {
-                  shouldValidate: true,
-                })
               }}
               value={data.cost}
               name="cost"
               placeholder="Cost"
               error={!!error}
-              helperText={error ? error.message : null}
             />
             {error && <FormHelperText className="text-danger">This field is not empty and >= 0</FormHelperText>}
           </div>
@@ -140,7 +135,7 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
         control={control}
         setValue={setValue}
         render={({
-          field: { value },
+          field: { onChange },
           fieldState: { error },
         }) => (
           <div className="col-3">
@@ -148,13 +143,10 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
               type="number"
               name="value"
               onChange={(e) => {
+                handleChange(e)
                 onChange(e)
-                setValue(`value${data.id}`, data, {
-                  shouldValidate: true,
-                })
               }}
               error={!!error}
-              helperText={error ? error.message : null}
               value={data.value}
               placeholder="Value"
             />

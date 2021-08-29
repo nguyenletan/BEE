@@ -4,10 +4,7 @@ import StepNav from '../step-nav/StepNav'
 import { useForm } from 'react-hook-form'
 import SolarPanel from './SolarPanel'
 import { useRecoilState } from 'recoil'
-import {
-  addingBuildingProgressState,
-  solarPanelSystemListState
-} from '../../../atoms'
+import { addingBuildingProgressState, solarPanelSystemListState } from '../../../atoms'
 import _ from 'lodash'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { Redirect, useParams } from 'react-router-dom'
@@ -51,40 +48,39 @@ const RenewableEnergy = () => {
       {
         id: _.uniqueId(),
         title: 'System',
-        installedCapacity: 0,
-        trackingTypeId: 0,
-        inclineAngel: 0,
+        installedCapacity: '',
+        trackingTypeId: '',
+        inclineAngle: 0,
         orientationAngle: 0,
         systemLoss: 14,
-        pvTechChoiceId: 0,
-        mountingTypeId: 0
-      }
+        pvTechChoiceId: '',
+        mountingTypeId: '',
+      },
     ])
   }
 
-  const onSubmit = (data) => {
+  const onSubmit = () => {
     // console.log(data)
     setAddingBuildingProgressState(100)
     setIsMovingNext(true)
   }
 
-  const { handleSubmit } = useForm({
+  const { handleSubmit, control, setValue } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
-    defaultValues: {
-    },
+    defaultValues: {},
     resolver: undefined,
     context: undefined,
     criteriaMode: 'firstError',
     shouldFocusError: false,
-    shouldUnregister: false
+    shouldUnregister: false,
   })
 
   const lis = solarSystemList.map(item =>
 
-    <li className='col-12 col-lg-6 mb-4' key={item.id}>
-      <SolarPanel data={item} />
-    </li>
+    <li className="col-12 col-lg-6 mb-4" key={item.id}>
+      <SolarPanel data={item} control={control} setValue={setValue}/>
+    </li>,
   )
 
   const { id } = useParams()
@@ -93,8 +89,8 @@ const RenewableEnergy = () => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       {isMovingNext &&
-        <Redirect to={parentUrl + '/adding-building-successfully'} />}
-      <div className='d-flex mt-5 mb-4'>
+      <Redirect to={parentUrl + '/adding-building-successfully'}/>}
+      <div className="d-flex mt-5 mb-4">
 
         <Title>New Building</Title>
 
@@ -107,17 +103,17 @@ const RenewableEnergy = () => {
 
       </div>
 
-      <StepNav />
+      <StepNav/>
 
-      <div className='row'>
-        <div className='col-12 col-lg-8'>
-          <Header className='d-flex justify-content-between'>
+      <div className="row">
+        <div className="col-12 col-lg-8">
+          <Header className="d-flex justify-content-between">
             <h6>Solar P.V. System</h6>
-            <Adding title='Add new item' onClick={onAddSolarSystemList}>
-              <i className='bi bi-plus-lg font-weight-bolder' />
+            <Adding title="Add new item" onClick={onAddSolarSystemList}>
+              <i className="bi bi-plus-lg font-weight-bolder"/>
             </Adding>
           </Header>
-          <Ul className='row'>{lis}</Ul>
+          <Ul className="row">{lis}</Ul>
         </div>
       </div>
     </Form>

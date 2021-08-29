@@ -17,7 +17,7 @@ const Title = styled.h4`
 `
 
 const HeatingSystem = ({ control, setValue }) => {
-  const classes = makeStyles((theme) => (MaterialFormStyle))()
+  const classes = makeStyles(() => (MaterialFormStyle))()
 
   const [heatingSystem, setHeatingSystem] = useRecoilState(heatingSystemState)
 
@@ -90,12 +90,13 @@ const HeatingSystem = ({ control, setValue }) => {
             name="heatingSystemTypeId"
             control={control}
             render={({
-              field: { onChange, value },
+              field: { onChange },
               fieldState: { error },
             }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel id="heating-system-type-label" className={error && 'text-danger'}>Heating System
-                  Type</InputLabel>
+                <InputLabel id="heating-system-type-label" className={error && 'text-danger'}>
+                  Heating System Type
+                </InputLabel>
                 <Select
                   labelId="heating-system-type-label"
                   id="heating-system-type-select"
@@ -105,7 +106,6 @@ const HeatingSystem = ({ control, setValue }) => {
                     onHeatingSystemTypeIdChange(e)
                   }}
                   error={!!error}
-                  // helperText={error ? error.message : null}
                 >
                   {HeatingSystemType.map((o) => (
                     <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
@@ -123,11 +123,13 @@ const HeatingSystem = ({ control, setValue }) => {
             name="heaterTypeId"
             control={control}
             render={({
-              field: { onChange, value },
+              field: { onChange },
               fieldState: { error },
             }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel id="heater-type-label" className={error && 'text-danger'}>Heater Type</InputLabel>
+                <InputLabel id="heater-type-label" className={error && 'text-danger'}>
+                  Heater Type
+                </InputLabel>
                 <Select
                   labelId="heater-type-label"
                   id="heater-type-select"
@@ -137,7 +139,6 @@ const HeatingSystem = ({ control, setValue }) => {
                     onHeaterTypeIdChange(e)
                   }}
                   error={!!error}
-                  // helperText={error ? error.message : null}
                 >
                   {HeaterType.map((o) => (
                     <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
@@ -155,12 +156,13 @@ const HeatingSystem = ({ control, setValue }) => {
             name="heaterEnergySourceTypeId"
             control={control}
             render={({
-              field: { onChange, value },
+              field: { onChange },
               fieldState: { error },
             }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel id="heater-energy-source-label" className={error && 'text-danger'}>Heater Energy
-                  Source</InputLabel>
+                <InputLabel id="heater-energy-source-label" className={error && 'text-danger'}>
+                  Heater Energy Source
+                </InputLabel>
                 <Select
                   labelId="heater-energy-source-label"
                   id="heater-energy-source-select"
@@ -170,7 +172,6 @@ const HeatingSystem = ({ control, setValue }) => {
                     onHeaterEnergySourceTypeIdChange(e)
                   }}
                   error={!!error}
-                  // helperText={error ? error.message : null}
                 >
                   {energySourceType.map((o) => (
                     <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>

@@ -8,7 +8,7 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 import { Controller, useForm } from 'react-hook-form'
 
 import Countries, { findCountryByCountryCode } from '../../../reference-tables/Country'
-import { Button, FormControl, InputLabel, NativeSelect, Paper, TextField } from '@material-ui/core'
+import { Button, FormControl, InputLabel, NativeSelect, TextField } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
@@ -44,7 +44,7 @@ const SearchBuilding = () => {
     opacity: 0.8,
   }
 
-  const classes = makeStyles((theme) => (MaterialFormStyle))()
+  const classes = makeStyles(() => (MaterialFormStyle))()
 
   const [searchValue, setSearchValue] = useState('')
 
@@ -58,34 +58,15 @@ const SearchBuilding = () => {
   const [isShowTheMap, setIsShowTheMap] = useState(false)
 
   const setValueToForm = (information) => {
-    setValue('address', information?.address, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('city', information?.city, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('state', information?.state, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('countryCode', information?.countryCode, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('postalCode', information?.postalCode, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('buildingName', information?.buildingName, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
+    setValue('address', information?.address)
+    setValue('city', information?.city)
+    setValue('state', information?.state)
+    setValue('countryCode', information?.countryCode)
+    setValue('postalCode', information?.postalCode)
+    setValue('buildingName', information?.buildingName)
   }
 
   const onSearch = async () => {
-    console.log(searchValue)
     const result = await getLatLngFromAddress(searchValue?.value?.description)
 
     let information = {
@@ -153,24 +134,18 @@ const SearchBuilding = () => {
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     defaultValues: {
-      // buildingName: 'data?.buildingName',
-      // postalCode:data?.postalCode,
-      // address: data?.address,
-      // city: data?.city,
-      // countryCode: data?.countryCode,
-      // state: data?.state
     },
     resolver: undefined,
     context: undefined,
     criteriaMode: 'firstError',
-    shouldFocusError: false,
+    shouldFocusError: true,
     shouldUnregister: false,
     spaceUsageGFA: [{}],
   })
 
   const onSubmit = (data) => {
-    console.log(data)
-    console.log(generalBuildingInformation)
+    // console.log(data)
+    // console.log(generalBuildingInformation)
     setGeneralBuildingInformation({ ...generalBuildingInformation, ...data })
     setAddingBuildingProgressState(5)
     setIsMovingNext(true)
@@ -178,7 +153,6 @@ const SearchBuilding = () => {
 
   return (
     <>
-
       {isMovingNext && <Redirect to="/adding-building/general-information"/>}
 
       <div className="d-flex mt-5 mb-4">
@@ -201,8 +175,8 @@ const SearchBuilding = () => {
           <div className="row">
 
             <div className="form-group col-12 col-lg-12 ms-0">
-              <label htmlFor="building-name">Enter Building Name or
-                Address</label>
+              <label htmlFor="building-name">
+                Enter Building Name or Address</label>
               <div className="d-flex">
                 <div className="w-75 me-1">
                   <GooglePlacesAutocomplete
@@ -233,7 +207,7 @@ const SearchBuilding = () => {
           <div className="row mt-3 mb-5">
             <div className="col-12 col-lg-12">
 
-              <Paper elevation={3}>
+              <div className="shadow-sm rounded">
                 {/*<LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>*/}
                 <GoogleMap mapContainerStyle={mapStyles} zoom={18}
                            center={generalBuildingInformation.location}>
@@ -249,7 +223,7 @@ const SearchBuilding = () => {
                   </Marker>
                 </GoogleMap>
                 {/*</LoadScript>*/}
-              </Paper>
+              </div>
             </div>
           </div>
           }

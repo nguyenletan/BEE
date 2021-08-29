@@ -52,7 +52,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
   const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(
     spaceUsageGFAListState)
 
-  const classes = makeStyles((theme) => (MaterialFormStyle))()
+  const classes = makeStyles(() => (MaterialFormStyle))()
 
   const onRemoveItem = () => {
     const index = spaceUsageGFAList.findIndex(
@@ -127,7 +127,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
     setSpaceUsageGFAList(newList)
   }
 
-  const onHasReheatRecoveryChange = (e) => {
+  const onHasReheatRecoveryChange = () => {
     // console.log(e.target.value)
 
     const index = spaceUsageGFAList.findIndex((o) => o.id === data.id)
@@ -152,14 +152,14 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
   }, [data.id, percentage, setValue, spaceUsageType, title])
 
   return (
-    <Wrapper className="shadow-sm rounded-2 border">
+    <Wrapper className="shadow-sm rounded border">
       <Header>
         <Controller
           name={`title${data.id}`}
           control={control}
           setValue={setValue}
           render={({
-            field: { value },
+            field: { onChange },
             fieldState: { error },
           }) => (
             <FormControl className={classes.mediumFormControl}>
@@ -168,9 +168,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                          value={title}
                          onChange={(e) => {
                            onTitleChange(e)
-                           setValue(`title${data.id}`, e.target.value, {
-                             shouldValidate: true,
-                           })
+                           onChange(e)
                          }}
                          error={!!error}
                          helperText={error ? error.message : null}/>
@@ -191,7 +189,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
           control={control}
           setValue={setValue}
           render={({
-            field: { value },
+            field: { onChange },
             fieldState: { error },
           }) => (
             <FormControl className={classes.formControl}>
@@ -200,12 +198,10 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
               <Select
                 labelId={`space-usage-type-label${data.id}`}
                 error={!!error}
-                value={spaceUsageType ?? ''}
+                value={spaceUsageType}
                 onChange={(e) => {
                   onSpaceUsageTypeChange(e)
-                  setValue(`space-usage-type${data.id}`, e.target.value, {
-                    shouldValidate: true,
-                  })
+                  onChange(e)
                 }}
               >
                 {SpaceUsageType.map((o) => (
@@ -230,7 +226,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
           control={control}
           setValue={setValue}
           render={({
-            field: { value },
+            field: { onChange },
             fieldState: { error },
           }) => (
             <FormControl className={classes.formControl}>
@@ -242,9 +238,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                          helperText={error ? error.message : null}
                          onChange={(e) => {
                            onPercentageChange(e)
-                           setValue(`percentage-of-GFA${data.id}`, e.target.value, {
-                             shouldValidate: true,
-                           })
+                           onChange(e)
                          }}/>
             </FormControl>
           )}
@@ -259,21 +253,20 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
           control={control}
           setValue={setValue}
           render={({
-            field: { value },
+            field: { onChange },
             fieldState: { error },
           }) => (
             <FormControl className={classes.formControl}>
-              <InputLabel id={`climate-control-label${data.id}`} className={error && 'text-danger'}>Climate
-                Control</InputLabel>
+              <InputLabel id={`climate-control-label${data.id}`} className={error && 'text-danger'}>
+                Climate Control
+              </InputLabel>
               <Select
                 labelId={`climate-control-label${data.id}`}
                 value={climateControl ?? ''}
                 error={!!error}
                 onChange={(e) => {
                   onClimateControlChange(e)
-                  setValue(`climate-control-select${data.id}`, e.target.value, {
-                    shouldValidate: true,
-                  })
+                  onChange(e)
                 }}
               >
                 {ClimateControlType.map((o) => (
@@ -296,7 +289,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                 control={control}
                 setValue={setValue}
                 render={({
-                  field: { value },
+                  field: { onChange },
                   fieldState: { error },
                 }) => (
                   <FormControl className={classes.formControl}>
@@ -307,9 +300,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                       error={!!error}
                       onChange={(e) => {
                         onFanTypeChange(e)
-                        setValue(`fan-type-select${data.id}`, e.target.value, {
-                          shouldValidate: true,
-                        })
+                        onChange(e)
                       }}
                     >
                       {FanType.map((o) => (

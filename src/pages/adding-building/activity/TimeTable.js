@@ -25,7 +25,7 @@ const Row = ({ data, control, setValue }) => {
     setValue(`${data.codeName}EndTime`, data.endTime)
   }, [data.codeName, data.endTime, data.startTime, setValue])
 
-  const onChange = (name, value) => {
+  const handleChange = (name, value) => {
     // console.log(name)
     const index = buildingActivity.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(buildingActivity, index, {
@@ -46,7 +46,7 @@ const Row = ({ data, control, setValue }) => {
               color="primary"
               checked={data.isEnable}
               onChange={() => {
-                onChange('isEnable', !data.isEnable)
+                handleChange('isEnable', !data.isEnable)
               }}
             />
           }
@@ -61,7 +61,7 @@ const Row = ({ data, control, setValue }) => {
           control={control}
           setValue={setValue}
           render={({
-            field: { value },
+            field: { onChange },
             fieldState: { error },
           }) => (
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -79,8 +79,8 @@ const Row = ({ data, control, setValue }) => {
                 error={!!error}
                 helperText={error ? error.message : null}
                 onChange={(date) => {
-                  onChange('startTime', date)
-                  setValue(`${data.codeName}StartTime`, date, { shouldValidate: true })
+                  handleChange('startTime', date)
+                  onChange(date)
                 }}
               />
             </MuiPickersUtilsProvider>
@@ -97,7 +97,7 @@ const Row = ({ data, control, setValue }) => {
           control={control}
           setValue={setValue}
           render={({
-            field: { value },
+            field: { onChange },
             fieldState: { error },
           }) => (
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -111,8 +111,8 @@ const Row = ({ data, control, setValue }) => {
                 error={!!error}
                 helperText={error ? error.message : null}
                 onChange={(date) => {
-                  onChange('endTime', date)
-                  setValue(`${data.codeName}EndTime`, date, { shouldValidate: true })
+                  handleChange('endTime', date)
+                  onChange(date)
                 }}
                 autoOk
                 fullWidth
@@ -127,8 +127,7 @@ const Row = ({ data, control, setValue }) => {
   )
 }
 
-const TimeTable = ({ data, control, setValue, getValues, register }) => {
-  // console.log(data?.saturdayEndTime !== null)
+const TimeTable = ({ control, setValue }) => {
   const buildingActivity = useRecoilValue(buildingActivityState)
 
   const rows = buildingActivity.map(t => (

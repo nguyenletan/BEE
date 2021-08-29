@@ -8,7 +8,16 @@ import { SustainabilityRatingScheme } from '../../../reference-tables/GreenBuild
 import { Redirect, useParams } from 'react-router-dom'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import StepNav from '../step-nav/StepNav'
-import { Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select, TextField } from '@material-ui/core'
+import {
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from '@material-ui/core'
 import Countries from '../../../reference-tables/Country'
 import UseType from '../../../reference-tables/UseType'
 import { useRecoilState } from 'recoil'
@@ -20,9 +29,6 @@ import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/picker
 import DateFnsUtils from '@date-io/date-fns'
 import Grid from '@material-ui/core/Grid'
 
-const Form = styled.form`
-
-`
 
 const UploadImage = styled.div`
   width: 400px;
@@ -63,7 +69,7 @@ const GeneralInformation = () => {
     // new Date("2014-08-18T21:11:54")
   )
 
-  const onHasMajorRefurbishmentOrExtensionsDoneChange = (e) => {
+  const onHasMajorRefurbishmentOrExtensionsDoneChange = () => {
     setGeneralBuildingInformation({
       ...generalBuildingInformation,
       hasMajorRefurbishmentOrExtensionsDone: !generalBuildingInformation.hasMajorRefurbishmentOrExtensionsDone,
@@ -78,30 +84,26 @@ const GeneralInformation = () => {
     })
   }
 
-  const classes = makeStyles((theme) => (MaterialFormStyle))()
+  const classes = makeStyles(() => (MaterialFormStyle))()
 
   const [isMovingNext, setIsMovingNext] = useState(false)
-
-  //const [image, setImage] = useState({ preview: cameraImg, raw: '' })
 
   const {
     control,
     handleSubmit,
     setValue,
-    formState,
   } = useForm({
     mode: 'onBlur',
     reValidateMode: 'onChange',
     resolver: undefined,
     context: undefined,
     criteriaMode: 'firstError',
-    shouldFocusError: false,
+    shouldFocusError: true,
     shouldUnregister: false,
   })
 
   const handleChangeBuildingPhoto = (e) => {
     e.preventDefault()
-    console.log(e)
     //const formData = new FormData()
     //formData.append('image', image.raw)
 
@@ -117,11 +119,6 @@ const GeneralInformation = () => {
         // .replace('data:image/jpg;base64,', '')
         // .replace('data:image/jpeg;base64,', '');
 
-        console.log(base64Image)
-        // setValue('buildingPhoto', base64Image, {
-        //   shouldDirty: true,
-        // })
-
         // setImage({
         //   preview: URL.createObjectURL(e.target.files[0]),
         //   raw: base64Image,
@@ -136,114 +133,33 @@ const GeneralInformation = () => {
   }
 
   const onInputChange = (name, value) => {
-    console.log(name)
-    console.log(value)
     setGeneralBuildingInformation({ ...generalBuildingInformation, [name]: value })
   }
 
   useEffect(() => {
-
-    setValue('address', generalBuildingInformation?.address, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('city', generalBuildingInformation?.city, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('state', generalBuildingInformation?.state, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('countryCode', generalBuildingInformation?.countryCode, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    console.log(generalBuildingInformation?.postalCode)
-    setValue('postalCode', generalBuildingInformation?.postalCode, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('buildingName', generalBuildingInformation?.buildingName, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('constructionPeriodValue',
-      generalBuildingInformation?.constructionPeriodValue, {
-        shouldValidate: true,
-        shouldDirty: true,
-      })
-    setValue('useTypeId', generalBuildingInformation?.useTypeId, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('buildingOrientedId',
-      generalBuildingInformation?.buildingOrientedId, {
-        shouldValidate: true,
-        shouldDirty: true,
-      })
-    setValue('sustainabilityRatingSchemeId',
-      generalBuildingInformation?.sustainabilityRatingSchemeId, {
-        shouldValidate: true,
-        shouldDirty: true,
-      })
-    setValue('sustainabilityRatingId',
-      generalBuildingInformation?.sustainabilityRatingId, {
-        shouldValidate: true,
-        shouldDirty: true,
-      })
-    setValue('storeysAboveGround',
-      generalBuildingInformation?.storeysAboveGround, {
-        shouldValidate: true,
-        shouldDirty: true,
-      })
-    setValue('storeysBelowGround',
-      generalBuildingInformation?.storeysBelowGround, {
-        shouldValidate: true,
-        shouldDirty: true,
-      })
-    setValue('grossInteriorArea', generalBuildingInformation?.grossInteriorArea,
-      {
-        shouldValidate: true,
-        shouldDirty: true,
-      })
-    setValue('netUsableArea', generalBuildingInformation?.netUsableArea, {
-      shouldValidate: true,
-      shouldDirty: true,
-    })
-    setValue('avgInternalFloorToCeilingHeight',
-      generalBuildingInformation?.avgInternalFloorToCeilingHeight, {
-        shouldValidate: true,
-        shouldDirty: true,
-      })
-    setValue('buildingPhoto',
-      generalBuildingInformation?.buildingPhoto, {
-        shouldValidate: true,
-        shouldDirty: true,
-      })
-
-    // if (generalBuildingInformation?.buildingPhoto) {
-    //   setImage({
-    //     raw: generalBuildingInformation?.buildingPhoto,
-    //     preview: generalBuildingInformation?.buildingPhoto,
-    //   })
-    // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [generalBuildingInformation])
-
-  useEffect(() => {
-    if (formState.errors) {
-      // do the your logic here
-    }
-  }, [formState])
+    setValue('address', generalBuildingInformation?.address)
+    setValue('city', generalBuildingInformation?.city)
+    setValue('state', generalBuildingInformation?.state)
+    setValue('countryCode', generalBuildingInformation?.countryCode)
+    setValue('postalCode', generalBuildingInformation?.postalCode)
+    setValue('buildingName', generalBuildingInformation?.buildingName)
+    setValue('constructionPeriodValue', generalBuildingInformation?.constructionPeriodValue)
+    setValue('useTypeId', generalBuildingInformation?.useTypeId)
+    setValue('buildingOrientedId', generalBuildingInformation?.buildingOrientedId)
+    // setValue('sustainabilityRatingSchemeId', generalBuildingInformation?.sustainabilityRatingSchemeId)
+    // setValue('sustainabilityRatingId', generalBuildingInformation?.sustainabilityRatingId)
+    setValue('storeysAboveGround', generalBuildingInformation?.storeysAboveGround)
+    setValue('storeysBelowGround', generalBuildingInformation?.storeysBelowGround)
+    setValue('grossInteriorArea', generalBuildingInformation?.grossInteriorArea)
+    setValue('netUsableArea', generalBuildingInformation?.netUsableArea)
+    setValue('avgInternalFloorToCeilingHeight', generalBuildingInformation?.avgInternalFloorToCeilingHeight)
+    setValue('latestYearForRefurbishmentOrExtension', generalBuildingInformation?.latestYearForRefurbishmentOrExtension)
+    setValue('buildingPhoto', generalBuildingInformation?.buildingPhoto)
+  }, [generalBuildingInformation, setValue])
 
   useEffect(() => {
     if (generalBuildingInformation !== null &&
       generalBuildingInformation?.sustainabilityRatingSchemeId !== null) {
-      console.log(generalBuildingInformation?.sustainabilityRatingSchemeId)
-      console.log(SustainabilityRatingScheme.filter(
-        item => item.id.toString() ===
-          generalBuildingInformation?.sustainabilityRatingSchemeId?.toString())[0]?.ratingLevels)
 
       setSustainabilityRating(SustainabilityRatingScheme.filter(
         item => item.id.toString() ===
@@ -254,19 +170,21 @@ const GeneralInformation = () => {
   const [sustainabilityRating, setSustainabilityRating] = useState(
     SustainabilityRatingScheme[0].ratingLevels)
 
-  const onSubmit = (data) => {
-    //setGeneralBuildingInformation({ ...generalBuildingInformation, ...data })
-    setAddingBuildingProgressState(25)
-    setIsMovingNext(true)
-  }
 
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
   const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/activity')
 
+  const onSubmit = () => {
+    //setGeneralBuildingInformation({ ...generalBuildingInformation, ...data })
+    if(!id) {
+      setAddingBuildingProgressState(25)
+    }
+    setIsMovingNext(true)
+  }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       {isMovingNext && <Redirect to={moveNextUrl}/>}
 
       <div className="d-flex mt-5 mb-4">
@@ -274,8 +192,8 @@ const GeneralInformation = () => {
         <Title>New Building</Title>
 
         <BackNextGroupButton
-          backLink={parentUrl + "/search-building"}
-          nextLink={"/adding-building/activity"}
+          backLink={parentUrl + '/search-building'}
+          nextLink={'/adding-building/activity'}
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
@@ -295,13 +213,13 @@ const GeneralInformation = () => {
                 name="buildingName"
                 control={control}
                 render={({
-                  field: { onChange, value },
+                  field: { onChange },
                   fieldState: { error },
                 }) => (
                   <FormControl className={classes.formControl}>
                     <TextField
                       label="Building Name"
-                      value={generalBuildingInformation?.buildingName || ''}
+                      value={generalBuildingInformation?.buildingName}
                       onChange={(e) => {
                         onChange(e)
                         onInputChange('buildingName', e.target.value)
@@ -327,16 +245,15 @@ const GeneralInformation = () => {
                 name="buildingOrientedId"
                 control={control}
                 render={({
-                  field: { onChange, value },
+                  field: { onChange },
                   fieldState: { error },
                 }) => (
                   <FormControl className={classes.formControl}>
-                    <InputLabel id="building-orientation-label">Building
-                      Orientation</InputLabel>
+                    <InputLabel id="building-orientation-label" className={error && 'text-danger'}>
+                      Building Orientation
+                    </InputLabel>
                     <Select labelId="building-orientation-label"
-                            value={generalBuildingInformation?.buildingOrientedId
-                              ? generalBuildingInformation?.buildingOrientedId
-                              : ''}
+                            value={generalBuildingInformation?.buildingOrientedId}
                             onChange={(e) => {
                               onChange(e)
                               onInputChange('buildingOrientedId',
@@ -352,9 +269,10 @@ const GeneralInformation = () => {
                         </MenuItem>
                       ))}
                     </Select>
+                    {error && <FormHelperText className="text-danger">The Building Orientation is required</FormHelperText>}
                   </FormControl>
                 )}
-                rules={{ required: 'Building Orientation is required' }}
+                rules={{ required: 'The Building Orientation is required' }}
               />
 
             </div>
@@ -367,14 +285,14 @@ const GeneralInformation = () => {
                 name="address"
                 control={control}
                 render={({
-                  field: { onChange, value },
+                  field: { onChange },
                   fieldState: { error },
                 }) => (
                   <FormControl className={classes.formControl}>
                     <TextField type="text"
                                id="address"
                                label="Address"
-                               value={generalBuildingInformation?.address || ''}
+                               value={generalBuildingInformation?.address}
                                onChange={(e) => {
                                  onChange(e)
                                  onInputChange('address', e.target.value)
@@ -395,24 +313,20 @@ const GeneralInformation = () => {
                 name="sustainabilityRatingSchemeId"
                 control={control}
                 render={({
-                  field: { onChange, value },
-                  fieldState: { error },
+                  field: { onChange },
                 }) => (
                   <FormControl className={classes.formControl}>
                     <InputLabel id="sustainability-rating-scheme-label">Sustainability
                       Rating Scheme</InputLabel>
                     <Select id="sustainability-rating-scheme"
                             labelId="sustainability-rating-scheme-label"
-                            value={generalBuildingInformation?.sustainabilityRatingSchemeId
-                              ? generalBuildingInformation?.sustainabilityRatingSchemeId
-                              : ''}
+                            value={generalBuildingInformation?.sustainabilityRatingSchemeId || ''}
                             onChange={(e) => {
                               onChange(e)
                               onInputChange(
                                 'sustainabilityRatingSchemeId',
                                 e.target.value)
                             }}
-                            error={!!error}
                     >
                       {SustainabilityRatingScheme.map((o) => (
                         <MenuItem
@@ -425,13 +339,8 @@ const GeneralInformation = () => {
                     </Select>
                   </FormControl>
                 )}
-                rules={{
-                  //required: 'Sustainability Rating Scheme is required'
-                }}
               />
-
             </div>
-
           </div>
 
           <div className="row">
@@ -440,14 +349,14 @@ const GeneralInformation = () => {
                 name="postalCode"
                 control={control}
                 render={({
-                  field: { onChange, value },
+                  field: { onChange },
                   fieldState: { error },
                 }) => (
                   <FormControl className={classes.formControl}>
                     <TextField type="text"
                                label="Postal Code"
                                id="postal-code"
-                               value={generalBuildingInformation?.postalCode || ''}
+                               value={generalBuildingInformation?.postalCode}
                                onChange={(e) => {
                                  onChange(e)
                                  onInputChange('postalCode',
@@ -467,23 +376,19 @@ const GeneralInformation = () => {
                 name="sustainabilityRatingId"
                 control={control}
                 render={({
-                  field: { onChange, value },
-                  fieldState: { error },
+                  field: { onChange },
                 }) => (
                   <FormControl className={classes.formControl}>
-                    <InputLabel id="sustainability-rating-label">Sustainability
-                      Rating</InputLabel>
+                    <InputLabel id="sustainability-rating-label">
+                      Sustainability Rating</InputLabel>
                     <Select id="sustainability-rating-select"
                             labelId="sustainability-rating-label"
-                            value={generalBuildingInformation?.sustainabilityRatingId
-                              ? generalBuildingInformation?.sustainabilityRatingId
-                              : ''}
+                            value={generalBuildingInformation?.sustainabilityRatingId || ''}
                             onChange={(e) => {
                               onChange(e)
                               onInputChange('sustainabilityRatingId',
                                 e.target.value)
                             }}
-                            error={!!error}
                     >
                       {sustainabilityRating.map((o) => (
                         <MenuItem
@@ -508,21 +413,18 @@ const GeneralInformation = () => {
                 name="city"
                 control={control}
                 render={({
-                  field: { onChange, value },
-                  fieldState: { error },
+                  field: { onChange },
                 }) => (
                   <FormControl className={classes.formControl}>
                     <TextField type="text"
                                id="city-select"
                                aria-describedby="City"
                                label="City"
-                               value={generalBuildingInformation?.city || ''}
+                               value={generalBuildingInformation?.city}
                                onChange={(e) => {
                                  onChange(e)
                                  onInputChange('city', e.target.value)
                                }}
-                               error={!!error}
-                               helperText={error ? error.message : null}
                     />
                   </FormControl>
                 )}
@@ -533,7 +435,7 @@ const GeneralInformation = () => {
                 name="storeysAboveGround"
                 control={control}
                 render={({
-                  field: { onChange, value },
+                  field: { onChange },
                   fieldState: { error },
                 }) => (
                   <FormControl className={classes.formControl}>
@@ -541,7 +443,7 @@ const GeneralInformation = () => {
                                id="storeys-above-ground"
                                aria-describedby="Storeys Above Ground"
                                label="Storeys Above Ground"
-                               value={generalBuildingInformation?.storeysAboveGround || ''}
+                               value={generalBuildingInformation?.storeysAboveGround}
                                onChange={(e) => {
                                  onChange(e)
                                  onInputChange('storeysAboveGround',
@@ -568,7 +470,7 @@ const GeneralInformation = () => {
                 name="state"
                 control={control}
                 render={({
-                  field: { onChange, value },
+                  field: { onChange },
                   fieldState: { error },
                 }) => (
                   <FormControl className={classes.formControl}>
@@ -576,7 +478,7 @@ const GeneralInformation = () => {
                                id="state"
                                aria-describedby="State"
                                label="State"
-                               value={generalBuildingInformation?.state || ''}
+                               value={generalBuildingInformation?.state}
                                onChange={(e) => {
                                  onChange(e)
                                  onInputChange('state',
@@ -594,7 +496,7 @@ const GeneralInformation = () => {
                 name="storeysBelowGround"
                 control={control}
                 render={({
-                  field: { onChange, value },
+                  field: { onChange },
                   fieldState: { error },
                 }) => (
                   <FormControl className={classes.formControl}>
@@ -602,7 +504,7 @@ const GeneralInformation = () => {
                                id="storeys-below-ground"
                                aria-describedby="Storeys Below Ground"
                                label="Storeys Below Ground"
-                               value={generalBuildingInformation?.storeysBelowGround || ''}
+                               value={generalBuildingInformation?.storeysBelowGround}
                                onChange={(e) => {
                                  onChange(e)
                                  onInputChange('storeysBelowGround',
@@ -628,17 +530,16 @@ const GeneralInformation = () => {
                 name="countryCode"
                 control={control}
                 render={({
-                  field: { onChange, value },
+                  field: { onChange },
                   fieldState: { error },
                 }) => (
                   <FormControl className={classes.formControl}>
-                    <InputLabel
-                      id="country-code-label">Country</InputLabel>
+                    <InputLabel className={error && 'text-danger'} id="country-code-label">
+                      Country
+                    </InputLabel>
                     <Select id="country-code"
                             labelId="country-code-label"
-                            value={generalBuildingInformation?.countryCode
-                              ? generalBuildingInformation?.countryCode
-                              : null}
+                            value={generalBuildingInformation?.countryCode}
                             onChange={(e) => {
                               onChange(e)
                               onInputChange('countryCode',
@@ -655,9 +556,10 @@ const GeneralInformation = () => {
                         </MenuItem>
                       ))}
                     </Select>
+                    {error && <FormHelperText className="text-danger">The Country Code is required</FormHelperText>}
                   </FormControl>
                 )}
-                rules={{ required: 'Country Code is required' }}
+                rules={{ required: 'The Country Code is required' }}
               />
             </div>
             <div
@@ -666,7 +568,7 @@ const GeneralInformation = () => {
                 name="grossInteriorArea"
                 control={control}
                 render={({
-                  field: { onChange, value },
+                  field: { onChange },
                   fieldState: { error },
                 }) => (
                   <TextField type="number"
@@ -675,7 +577,7 @@ const GeneralInformation = () => {
                              placeholder="Total Floor Area Gross "
                              label="Total Floor Area Gross "
                              className={classes.valueUnit}
-                             value={generalBuildingInformation.grossInteriorArea || ''}
+                             value={generalBuildingInformation.grossInteriorArea}
                              onChange={(e) => {
                                onChange(e)
                                onInputChange('grossInteriorArea',
@@ -694,8 +596,7 @@ const GeneralInformation = () => {
                 name="grossInteriorAreaUnit"
                 control={control}
                 render={({
-                  field: { onChange, value },
-                  fieldState: { error },
+                  field: { onChange },
                 }) => (
                   <FormControl className={classes.smallFormControl}>
                     <InputLabel id="gross-interior-area-unit-label"/>
@@ -726,17 +627,16 @@ const GeneralInformation = () => {
                 name="constructionPeriodValue"
                 control={control}
                 render={({
-                  field: { onChange, value },
+                  field: { onChange },
                   fieldState: { error },
                 }) => (
                   <FormControl className={classes.formControl}>
-                    <InputLabel id="construction-period-label">Construction
-                      Period</InputLabel>
+                    <InputLabel id="construction-period-label" className={error && 'text-danger'}>
+                      Construction Period
+                    </InputLabel>
                     <Select id="construction-period"
                             label="construction-period-label"
-                            value={generalBuildingInformation?.constructionPeriodValue
-                              ? generalBuildingInformation?.constructionPeriodValue
-                              : ''}
+                            value={generalBuildingInformation?.constructionPeriodValue}
                             onChange={(e) => {
                               onChange(e)
                               onInputChange('constructionPeriodValue',
@@ -747,15 +647,16 @@ const GeneralInformation = () => {
                       {Period.map((o) => (
                         <MenuItem
                           key={o.id}
-                          value={o.value} Period
+                          value={o.value}
                         >
                           {o.name}
                         </MenuItem>
                       ))}
                     </Select>
+                    {error && <FormHelperText className="text-danger">The Construction Period is required</FormHelperText>}
                   </FormControl>
                 )}
-                rules={{ required: 'Construction Period is required' }}
+                rules={{ required: 'The Construction Period is required' }}
               />
             </div>
             <div
@@ -764,7 +665,7 @@ const GeneralInformation = () => {
                 name="netUsableArea"
                 control={control}
                 render={({
-                  field: { onChange, value },
+                  field: { onChange },
                   fieldState: { error },
                 }) => (
 
@@ -774,7 +675,7 @@ const GeneralInformation = () => {
                              placeholder="Total Net Usable Area"
                              label="Total Net Usable Area"
                              className={classes.valueUnit}
-                             value={generalBuildingInformation?.netUsableArea || ''}
+                             value={generalBuildingInformation?.netUsableArea}
                              onChange={(e) => {
                                onChange(e)
                                onInputChange('netUsableArea',
@@ -787,7 +688,7 @@ const GeneralInformation = () => {
                 )}
                 rules={{
                   min: { value: 0, message: 'The value should be > -1' },
-                  required: 'Total Net Usable Area is required',
+                  required: 'The Total Net Usable Area is required',
                 }}
               />
 
@@ -795,8 +696,7 @@ const GeneralInformation = () => {
                 name="netUsableAreaUnit"
                 control={control}
                 render={({
-                  field: { onChange, value },
-                  fieldState: { error },
+                  field: { onChange },
                 }) => (
 
                   <FormControl className={classes.smallFormControl}>
@@ -828,16 +728,16 @@ const GeneralInformation = () => {
                 name="useTypeId"
                 control={control}
                 render={({
-                  field: { onChange, value },
+                  field: { onChange },
                   fieldState: { error },
                 }) => (
                   <FormControl className={classes.formControl}>
-                    <InputLabel id="use-type-label">Use Type</InputLabel>
+                    <InputLabel id="use-type-label" className={error && 'text-danger'}>
+                      Use Type
+                    </InputLabel>
                     <Select id="use-type"
                             labelId="use-type-label"
-                            value={generalBuildingInformation?.useTypeId
-                              ? generalBuildingInformation?.useTypeId
-                              : ''}
+                            value={generalBuildingInformation?.useTypeId}
                             onChange={(e) => {
                               onChange(e)
                               onInputChange('useTypeId',
@@ -854,9 +754,10 @@ const GeneralInformation = () => {
                         </MenuItem>
                       ))}
                     </Select>
+                    {error && <FormHelperText className="text-danger">The Use Type is required</FormHelperText>}
                   </FormControl>
                 )}
-                rules={{ required: 'Use Type is required' }}
+                rules={{ required: 'The Use Type is required' }}
               />
             </div>
             <div
@@ -865,7 +766,7 @@ const GeneralInformation = () => {
                 name="avgInternalFloorToCeilingHeight"
                 control={control}
                 render={({
-                  field: { onChange, value },
+                  field: { onChange },
                   fieldState: { error },
                 }) => (
 
@@ -895,8 +796,7 @@ const GeneralInformation = () => {
                 name="avgInternalFloorToCeilingHeightUnit"
                 control={control}
                 render={({
-                  field: { onChange, value },
-                  fieldState: { error },
+                  field: { onChange }
                 }) => (
 
                   <FormControl className={classes.smallFormControl}>
@@ -930,8 +830,7 @@ const GeneralInformation = () => {
                 name="hasMajorRefurbishmentOrExtensionsDone"
                 control={control}
                 render={({
-                  field: { onChange, value },
-                  fieldState: { error },
+                  field: { onChange }
                 }) => (
                   <div className="form-group">
                     <label className="form-label d-block mb-0">Has Major Refurbishment or Extensions Done?</label>
@@ -959,11 +858,11 @@ const GeneralInformation = () => {
                   name="latestYearForRefurbishmentOrExtension"
                   control={control}
                   render={({
-                    field: { onChange, value },
+                    field: { onChange },
                     fieldState: { error },
                   }) => (
                     <FormControl className={classes.formControl}>
-                      <label>Latest Year for Refurbishment or Extension</label>
+                      <label className={error && 'text-danger'}>Latest Year for Refurbishment or Extension</label>
                       <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <Grid container justifyContent="flex-start">
                           <KeyboardDatePicker
@@ -974,7 +873,6 @@ const GeneralInformation = () => {
                             value={latestYearForRefurbishmentOrExtension}
                             onChange={(date) => {
                               onChange(date)
-                              console.log(date)
                               onLatestYearForRefurbishmentOrExtensionChange(date)
                             }}
                             error={!!error}
@@ -1013,11 +911,10 @@ const GeneralInformation = () => {
             name="buildingPhoto"
             control={control}
             render={({
-              field: { onChange, value },
+              field: { onChange },
             }) => (
               <input
                 type="hidden"
-                id="upload-button"
                 className="d-none"
                 value={generalBuildingInformation.buildingPhoto}
                 onChange={(e) => {
@@ -1034,7 +931,7 @@ const GeneralInformation = () => {
       </div>
 
 
-    </Form>
+    </form>
   )
 }
 

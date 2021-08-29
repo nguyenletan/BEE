@@ -192,6 +192,7 @@ const EnvelopFacade = () => {
                 <Select
                   id="external-roof-type-select"
                   labelId="external-roof-type-label"
+                  error={!!error}
                   name="externalRoofInsulationTypeId"
                   onChange={(e) => {
                     onChange(e)
@@ -236,6 +237,7 @@ const EnvelopFacade = () => {
                     onChange(e)
                     handleChange(e)
                   }}
+                  error={!!error}
                   value={envelopFacade.externalWindowInsulationTypeId}
                 >
                   {ExternalWindowType.map((o) => (
