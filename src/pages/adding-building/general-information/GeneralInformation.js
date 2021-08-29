@@ -173,7 +173,7 @@ const GeneralInformation = () => {
 
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
-  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/activity')
+  const moveNextUrl = parentUrl + (id ? '/activity' : '/activity')
 
   const onSubmit = () => {
     //setGeneralBuildingInformation({ ...generalBuildingInformation, ...data })
