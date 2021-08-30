@@ -59,9 +59,9 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
   }
 
   useEffect(() => {
-    setValue(`date${data.id}`, selectedDate)
-    setValue(`cost${data.id}`, data.cost)
-    setValue(`value${data.id}`, data.value)
+    setValue(`date${data.id}`, selectedDate, {shouldValidate: true})
+    setValue(`cost${data.id}`, data.cost, {shouldValidate: true})
+    setValue(`value${data.id}`, data.value, {shouldValidate: true})
   }, [data.cost, data.id, data.value, selectedDate, setValue])
 
   return (

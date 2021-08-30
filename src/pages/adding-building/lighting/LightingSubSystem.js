@@ -67,8 +67,8 @@ const LightingSubSystem = ({ data, control, setValue }) => {
   }
 
   useEffect(() => {
-    setValue(`lighting-fitting-type${data.id}`, data.indoorLightingSystemTypeId)
-    setValue(`percentage-of-all-light-fittings${data.id}`, data.percentage)
+    setValue(`lighting-fitting-type${data.id}`, data.indoorLightingSystemTypeId, {shouldValidate: true})
+    setValue(`percentage-of-all-light-fittings${data.id}`, data.percentage, {shouldValidate: true})
   }, [data.id, data.indoorLightingSystemTypeId, data.percentage, setValue])
 
   return (

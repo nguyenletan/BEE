@@ -97,10 +97,10 @@ const CoolingSystem = ({ control, setValue }) => {
   }
 
   useEffect(() => {
-    setValue(`coolingSystemTypeId`, coolingSystem.coolingSystemTypeId)
-    setValue(`compressorTypeId`, coolingSystem.compressorTypeId)
-    setValue(`refrigerantTypeId`, coolingSystem.refrigerantTypeId)
-    setValue(`chillerEnergySourceTypeId`, coolingSystem.chillerEnergySourceTypeId)
+    setValue(`coolingSystemTypeId`, coolingSystem.coolingSystemTypeId, {shouldValidate: true})
+    setValue(`compressorTypeId`, coolingSystem.compressorTypeId, {shouldValidate: true})
+    setValue(`refrigerantTypeId`, coolingSystem.refrigerantTypeId, {shouldValidate: true})
+    setValue(`chillerEnergySourceTypeId`, coolingSystem.chillerEnergySourceTypeId, {shouldValidate: true})
 
   }, [
     coolingSystem.chillerEnergySourceTypeId,
