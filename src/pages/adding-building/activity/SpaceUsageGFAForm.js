@@ -142,14 +142,12 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
   }
 
   useEffect(() => {
-    setValue(`title${data.id}`, title)
-    setValue(`space-usage-type${data.id}`, spaceUsageType)
-    setValue(`percentage-of-GFA${data.id}`, percentage)
-    setValue(`climate-control-select${data.id}`, percentage)
-    setValue(`fan-type-select${data.id}`, percentage)
-    setValue(`fan-type-select${data.id}`, percentage)
-
-  }, [data.id, percentage, setValue, spaceUsageType, title])
+    setValue(`title${data.id}`, title, {shouldValidate: true})
+    setValue(`space-usage-type${data.id}`, spaceUsageType, {shouldValidate: true})
+    setValue(`percentage-of-GFA${data.id}`, percentage, {shouldValidate: true})
+    setValue(`climate-control-select${data.id}`, climateControl, {shouldValidate: true})
+    setValue(`fan-type-select${data.id}`, fanTypeId, {shouldValidate: true})
+  }, [climateControl, data.id, fanTypeId, percentage, setValue, spaceUsageType, title])
 
   return (
     <Wrapper className="shadow-sm rounded border">
@@ -262,7 +260,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
               </InputLabel>
               <Select
                 labelId={`climate-control-label${data.id}`}
-                value={climateControl ?? ''}
+                value={climateControl}
                 error={!!error}
                 onChange={(e) => {
                   onClimateControlChange(e)
@@ -296,7 +294,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                     <InputLabel id={`fan-type-label${data.id}`} className={error && 'text-danger'}>Fan Type</InputLabel>
                     <Select
                       labelId={`fan-type-label${data.id}`}
-                      value={fanTypeId ?? ''}
+                      value={fanTypeId}
                       error={!!error}
                       onChange={(e) => {
                         onFanTypeChange(e)

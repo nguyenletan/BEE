@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import StepNav from '../step-nav/StepNav'
 import styled from 'styled-components'
-import { useForm } from 'react-hook-form'
-import { useRecoilState } from 'recoil'
-import { addingBuildingProgressState, lightingSubSystemListState } from '../../../atoms'
+import { Controller, useForm } from 'react-hook-form'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import {
+  addingBuildingProgressState,
+  lightingSubSystemListState, totalPercentageOfLightingSubSystemListState,
+} from '../../../atoms'
 import _ from 'lodash'
 
 import LightingSubSystem from './LightingSubSystem'
@@ -45,6 +48,8 @@ const Lighting = () => {
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
 
+  const totalPercentageOfLightingSubSystemList = useRecoilValue(totalPercentageOfLightingSubSystemListState)
+
   const [isMovingNext, setIsMovingNext] = useState(false)
 
   const onAddLightingSubSystemList = () => {
@@ -59,7 +64,7 @@ const Lighting = () => {
     ])
   }
 
-  const onSubmit = (data) => {
+  const onSubmit = () => {
     // console.log(data)
     setAddingBuildingProgressState(75)
     setIsMovingNext(true)
@@ -114,6 +119,30 @@ const Lighting = () => {
             />
             </Adding>
           </Header>
+          <p>Total light fitting usage: {totalPercentageOfLightingSubSystemList}%</p>
+          <Controller
+            name={`total`}
+            control={control}
+            setValue={setValue}
+            render={({
+              field: { onChange }
+            }) => (
+              <>
+                <input
+                  type="hidden"
+                  onChange={onChange}
+                  value={totalPercentageOfLightingSubSystemList}/>
+                {totalPercentageOfLightingSubSystemList !== 100 && <p className="text-danger">
+                  Total light fitting usage ({totalPercentageOfLightingSubSystemList}%) should be 100% (All space usage added together)</p>}
+              </>
+            )}
+            rules={{
+              validate: () => {
+                return totalPercentageOfLightingSubSystemList === 100
+              }
+            }}
+          />
+
           <Ul className="row">
             {lis}
           </Ul>

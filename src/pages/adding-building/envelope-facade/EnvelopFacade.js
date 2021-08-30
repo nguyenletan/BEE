@@ -64,8 +64,8 @@ const EnvelopFacade = () => {
   }
 
   useEffect(() => {
-    setValue(`externalRoofInsulationTypeId`, envelopFacade.externalRoofInsulationTypeId)
-    setValue(`externalWindowInsulationTypeId`, envelopFacade.externalWindowInsulationTypeId)
+    setValue(`externalRoofInsulationTypeId`, envelopFacade.externalRoofInsulationTypeId, {shouldValidate: true})
+    setValue(`externalWindowInsulationTypeId`, envelopFacade.externalWindowInsulationTypeId, {shouldValidate: true})
   }, [envelopFacade.externalRoofInsulationTypeId, envelopFacade.externalWindowInsulationTypeId, setValue])
 
   const marks = [

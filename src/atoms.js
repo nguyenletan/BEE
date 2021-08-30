@@ -1,4 +1,4 @@
-import { atom } from 'recoil'
+import { atom, selector } from 'recoil'
 import _ from 'lodash'
 
 export const spaceUsageGFAListState = atom({
@@ -15,6 +15,19 @@ export const spaceUsageGFAListState = atom({
     }],
 })
 
+export const totalPercentageOfSpaceUsageGFAListState = selector({
+  key: 'totalPercentageOfSpaceUsageGFAList',
+  get: ({ get }) => {
+    const spaceUsageGFAList = get(spaceUsageGFAListState)
+    return _.sumBy(spaceUsageGFAList, (item) => {
+      if (item && typeof item.percentage === 'number') {
+        return item.percentage
+      }
+      return 0
+    })
+  },
+})
+
 export const lightingSubSystemListState = atom({
   key: 'lightingSubSystemList',
   default: [
@@ -26,6 +39,19 @@ export const lightingSubSystemListState = atom({
     }],
 })
 
+export const totalPercentageOfLightingSubSystemListState = selector({
+  key: 'totalPercentageOfLightingSubSystemList',
+  get: ({ get }) => {
+    const lightingSubSystemList = get(lightingSubSystemListState)
+    return _.sumBy(lightingSubSystemList, (item) => {
+      if (item && typeof +item.percentage === 'number') {
+        return +item.percentage
+      }
+      return 0
+    })
+  },
+})
+
 export const solarPanelSystemListState = atom({
   key: 'solarPanelSystemList',
   default: [
@@ -35,7 +61,9 @@ export const solarPanelSystemListState = atom({
       installedCapacity: '',
       trackingTypeId: '',
       inclineAngle: 0,
+      unknownInclineAngle: false,
       orientationAngle: 0,
+      unknownOrientationAngle: false,
       systemLoss: 14,
       pvTechChoiceId: '',
       mountingTypeId: '',
@@ -82,7 +110,7 @@ export const generalBuildingInformationState = atom({
     useTypeId: '',
     buildingPhoto: null,
     hasMajorRefurbishmentOrExtensionsDone: false,
-    latestYearForRefurbishmentOrExtension: null
+    latestYearForRefurbishmentOrExtension: null,
   },
 })
 

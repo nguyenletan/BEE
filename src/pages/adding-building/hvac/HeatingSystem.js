@@ -61,9 +61,9 @@ const HeatingSystem = ({ control, setValue }) => {
   }
 
   useEffect(() => {
-    setValue(`heatingSystemTypeId`, heatingSystem.heatingSystemTypeId)
-    setValue(`heaterTypeId`, heatingSystem.heaterTypeId)
-    setValue(`heaterEnergySourceTypeId`, heatingSystem.heaterEnergySourceTypeId)
+    setValue(`heatingSystemTypeId`, heatingSystem.heatingSystemTypeId, {shouldValidate: true})
+    setValue(`heaterTypeId`, heatingSystem.heaterTypeId, {shouldValidate: true})
+    setValue(`heaterEnergySourceTypeId`, heatingSystem.heaterEnergySourceTypeId, {shouldValidate: true})
   }, [heatingSystem.heaterEnergySourceTypeId, heatingSystem.heaterTypeId, heatingSystem.heatingSystemTypeId, setValue])
 
   return (

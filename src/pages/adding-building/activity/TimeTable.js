@@ -21,8 +21,8 @@ const Row = ({ data, control, setValue }) => {
     buildingActivityState)
 
   useEffect(() => {
-    setValue(`${data.codeName}StartTime`, data.startTime)
-    setValue(`${data.codeName}EndTime`, data.endTime)
+    setValue(`${data.codeName}StartTime`, data.startTime, {shouldValidate: true})
+    setValue(`${data.codeName}EndTime`, data.endTime, {shouldValidate: true})
   }, [data.codeName, data.endTime, data.startTime, setValue])
 
   const handleChange = (name, value) => {

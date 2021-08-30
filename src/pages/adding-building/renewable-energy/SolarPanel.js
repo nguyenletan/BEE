@@ -2,7 +2,9 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import {
   Box,
+  Checkbox,
   FormControl,
+  FormControlLabel,
   FormHelperText,
   Input,
   InputLabel,
@@ -52,7 +54,9 @@ const SolarPanel = ({ data, control, setValue }) => {
     solarPanelSystemListState)
 
   const [showInclineAngle, setShowInclineAngle] = React.useState(false)
+  const [showInclineAngleSlider, setShowInclineAngleSlider] = React.useState(true)
   const [showOrientationAngle, setShowOrientationAngle] = React.useState(false)
+  const [showOrientationAngleSlider, setShowOrientationAngleSlider] = React.useState(true)
 
   const handleInclineAngleSliderChange = (event, newValue) => {
     setInclineAngleValue(newValue)
@@ -130,6 +134,46 @@ const SolarPanel = ({ data, control, setValue }) => {
     setSolarSystemList(newList)
   }
 
+  const handleCheckBoxChange = (name, value) => {
+    const index = solarSystemList.findIndex((o) => o.id === data.id)
+    let newList
+    if (value === true) {
+      if (name === 'unknownOrientationAngle') {
+        setShowOrientationAngleSlider(false)
+        newList = replaceItemAtIndex(solarSystemList, index, {
+          ...data,
+          'orientationAngle': null,
+          [name]: value,
+        })
+      } else if (name === 'unknownInclineAngle') {
+        setShowInclineAngleSlider(false)
+        newList = replaceItemAtIndex(solarSystemList, index, {
+          ...data,
+          'inclineAngle': null,
+          [name]: value,
+        })
+      }
+    } else {
+      if (name === 'unknownOrientationAngle') {
+        setShowOrientationAngleSlider(true)
+        newList = replaceItemAtIndex(solarSystemList, index, {
+          ...data,
+          'orientationAngle': 0,
+          [name]: value,
+        })
+      } else if (name === 'unknownInclineAngle') {
+        newList = replaceItemAtIndex(solarSystemList, index, {
+          ...data,
+          'inclineAngle': 0,
+          [name]: value,
+        })
+        setShowInclineAngleSlider(true)
+      }
+    }
+
+    setSolarSystemList(newList)
+  }
+
   useEffect(() => {
     if (data.trackingTypeId === 1) {
       setShowInclineAngle(true)
@@ -148,10 +192,10 @@ const SolarPanel = ({ data, control, setValue }) => {
   }, [data.trackingTypeId])
 
   useEffect(() => {
-    setValue(`installedCapacity${data.id}`, data.installedCapacity)
-    setValue(`trackingTypeId${data.id}`, data.trackingTypeId)
-    setValue(`pv-tech-choice-label${data.id}`, data.pvTechChoiceId)
-    setValue(`mountingTypeId${data.id}`, data.mountingTypeId)
+    setValue(`installedCapacity${data.id}`, data.installedCapacity, {shouldValidate: true})
+    setValue(`trackingTypeId${data.id}`, data.trackingTypeId, {shouldValidate: true})
+    setValue(`pv-tech-choice-label${data.id}`, data.pvTechChoiceId, {shouldValidate: true})
+    setValue(`mountingTypeId${data.id}`, data.mountingTypeId, {shouldValidate: true})
   }, [data.id, data.installedCapacity, data.mountingTypeId, data.pvTechChoiceId, data.trackingTypeId, setValue])
 
   const onRemoveItem = () => {
@@ -238,93 +282,127 @@ const SolarPanel = ({ data, control, setValue }) => {
           }}
         />
 
-        {showInclineAngle && <Box component="div" mb={1} mt={2}>
-          <Typography gutterBottom color="primary">Incline Angle (degrees from horizontal)</Typography>
-          <Grid container spacing={2} alignItems="flex-start">
-            <Grid item xs>
-              <Slider
-                min={0}
-                max={90}
-                marks={[
-                  {
-                    value: 0,
-                    label: 0,
-                  },
-                  {
-                    value: 45,
-                    label: 45,
-                  },
-                  {
-                    value: 90,
-                    label: 90,
-                  }]}
-                step={1}
-                value={data.inclineAngle}
-                onChange={handleInclineAngleSliderChange}
-                valueLabelDisplay="auto"
-              />
-            </Grid>
-            <Grid item>
-              <Input
-                value={data.inclineAngle}
-                margin="dense"
-                name="inclineAngle"
-                onChange={handleChange}
-                onBlur={handleInclineAngleInputBlur}
-                inputProps={{
-                  step: 1,
-                  min: 0,
-                  max: 90,
-                  type: 'number',
-                }}
-              />
-            </Grid>
-          </Grid>
-        </Box>}
+        {showInclineAngle && (
+          <>
+            <FormControlLabel
+              className="text-primary"
+              control={
+                <Checkbox
+                  name={`unknownInclineAngle`}
+                  color="primary"
+                  checked={data.unknownInclineAngle}
+                  onChange={() => {
+                    handleCheckBoxChange('unknownInclineAngle', !data.unknownInclineAngle)
+                  }}
+                />
+              }
+              label="Unknown Incline Angle"
+            />
+            {showInclineAngleSlider && <Box component="div" mb={1} mt={2}>
+              <Typography gutterBottom color="primary">Incline Angle (degrees from horizontal)</Typography>
+              <Grid container spacing={2} alignItems="flex-start">
+                <Grid item xs>
+                  <Slider
+                    min={0}
+                    max={90}
+                    marks={[
+                      {
+                        value: 0,
+                        label: 0,
+                      },
+                      {
+                        value: 45,
+                        label: 45,
+                      },
+                      {
+                        value: 90,
+                        label: 90,
+                      }]}
+                    step={1}
+                    value={data.inclineAngle}
+                    onChange={handleInclineAngleSliderChange}
+                    valueLabelDisplay="auto"
+                  />
+                </Grid>
+                <Grid item>
+                  <Input
+                    value={data.inclineAngle}
+                    margin="dense"
+                    name="inclineAngle"
+                    onChange={handleChange}
+                    onBlur={handleInclineAngleInputBlur}
+                    inputProps={{
+                      step: 1,
+                      min: 0,
+                      max: 90,
+                      type: 'number',
+                    }}
+                  />
+                </Grid>
+              </Grid>
+            </Box>}
+          </>)}
 
-        {showOrientationAngle && <Box component="div" mb={1} mt={2}>
-          <Typography gutterBottom color="primary">Orientation Angle (degrees from South)</Typography>
-          <Grid container spacing={2} alignItems="flex-start">
-            <Grid item xs>
-              <Slider
-                min={-180}
-                max={180}
-                marks={[
-                  {
-                    value: -180,
-                    label: -180,
-                  },
-                  {
-                    value: 0,
-                    label: 0,
-                  },
-                  {
-                    value: 180,
-                    label: 180,
-                  }]}
-                step={1}
-                value={data.orientationAngle}
-                onChange={handleOrientationAngleSliderChange}
-                valueLabelDisplay="auto"
-              />
-            </Grid>
-            <Grid item>
-              <Input
-                value={data.orientationAngle}
-                margin="dense"
-                name="orientationAngle"
-                onChange={handleChange}
-                onBlur={handleOrientationAngleInputBlur}
-                inputProps={{
-                  step: 1,
-                  min: -180,
-                  max: 180,
-                  type: 'number',
-                }}
-              />
-            </Grid>
-          </Grid>
-        </Box>}
+        {showOrientationAngle && (
+          <>
+            <FormControlLabel
+              className="text-primary"
+              control={
+                <Checkbox
+                  name={`unknownOrientationAngle`}
+                  color="primary"
+                  checked={data.unknownOrientationAngle}
+                  onChange={() => {
+                    handleCheckBoxChange('unknownOrientationAngle', !data.unknownOrientationAngle)
+                  }}
+                />
+              }
+              label="Unknown Orientation Angle"
+            />
+            {showOrientationAngleSlider && <Box component="div" mb={1} mt={2}>
+              <Typography gutterBottom color="primary">Orientation Angle (degrees from South)</Typography>
+              <Grid container spacing={2} alignItems="flex-start">
+                <Grid item xs>
+                  <Slider
+                    min={-180}
+                    max={180}
+                    marks={[
+                      {
+                        value: -180,
+                        label: -180,
+                      },
+                      {
+                        value: 0,
+                        label: 0,
+                      },
+                      {
+                        value: 180,
+                        label: 180,
+                      }]}
+                    step={1}
+                    value={data.orientationAngle}
+                    onChange={handleOrientationAngleSliderChange}
+                    valueLabelDisplay="auto"
+                  />
+                </Grid>
+                <Grid item>
+                  <Input
+                    value={data.orientationAngle}
+                    margin="dense"
+                    name="orientationAngle"
+                    onChange={handleChange}
+                    onBlur={handleOrientationAngleInputBlur}
+                    inputProps={{
+                      step: 1,
+                      min: -180,
+                      max: 180,
+                      type: 'number',
+                    }}
+                  />
+                </Grid>
+              </Grid>
+            </Box>}
+          </>)}
 
         <Box component="div" mb={1} mt={2}>
           <Typography gutterBottom color="primary">System Loss (%)</Typography>
