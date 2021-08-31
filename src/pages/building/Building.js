@@ -28,6 +28,7 @@ const BuildingWrapper = styled.div`
 const Building = () => {
   const { id } = useParams()
   const { user } = useAuth()
+  const [isLoading, setIsLoading] = useState(false)
 
   const BuildingInfoDataArray = [
     {
@@ -184,11 +185,12 @@ const Building = () => {
 
   useEffect(() => {
     async function fetchAPI () {
+      setIsLoading(true)
       const idToken = await user.getIdToken()
       const tmp = await getBuildingById(id, idToken)
       // console.log(tmp)
       setGeneralBuildingInformation(tmp)
-
+      setIsLoading(false)
     }
 
     //  eslint-disable-next-line
@@ -206,115 +208,155 @@ const Building = () => {
   return (
     <>
       <Header/>
-      {generalBuildingInformation && (
-        id < 3 ? (
-          <BuildingWrapper>
-            <BuildingInfo
-              name={generalBuildingInformation.name}
-              image={generalBuildingInformation.image}
-              address={generalBuildingInformation.address}
-              useType={generalBuildingInformation.useType}
-              tfa={generalBuildingInformation.gfa}
-              tfaUnit={'m2'}
-              avgOccupancy={generalBuildingInformation.avgOccupancy}
-              storey={generalBuildingInformation.storey}
-              constructed={generalBuildingInformation.constructed}
-              greenBuildingRating={generalBuildingInformation.greenBuildingRating}
-              buildingInfoLastEdited={generalBuildingInformation.buildingInfoLastEdited}
-            />
+      {isLoading ? (
+        <BuildingWrapper>
+          <div className="d-flex justify-content-start flex-wrap">
+            <h2 className="skeleton-box skeleton-square-box2"/>
+            <div>
+              <p className="skeleton-box skeleton-header-box"/>
+              <p className="skeleton-box skeleton-line-box"/>
+              <p className="skeleton-box skeleton-line-box"/>
 
-            <BuildingHistoricalNav/>
+              <p className="skeleton-box skeleton-line-box2"/>
+              <p className="skeleton-box skeleton-line-box2"/>
 
-            <Switch>
-              <Route path={`${path}/energy-performance`}>
-                <EnergyPerformance data={generalBuildingInformation.energyPerformance}
-                                   consumptionBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownConsumption}
-                                   costBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownCost}
-                                   co2EmissionsBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownCO2Emissions}
+              <p className="skeleton-box skeleton-line-box3"/>
+              <p className="skeleton-box skeleton-line-box3"/>
+            </div>
+          </div>
+          <div className="d-flex justify-content-start flex-wrap mt-4">
+            <p className="skeleton-box skeleton-header-box"/>
+            <p className="skeleton-box skeleton-header-box"/>
+            <p className="skeleton-box skeleton-header-box"/>
+            <p className="skeleton-box skeleton-header-box"/>
+            <p className="skeleton-box skeleton-header-box"/>
+          </div>
+          <div className="d-flex justify-content-start flex-wrap mt-3">
+            <p className="skeleton-box skeleton-line-box3"/>
+            <p className="skeleton-box skeleton-line-box3"/>
+            <p className="skeleton-box skeleton-line-box4"/>
+            <p className="skeleton-box skeleton-line-box4"/>
+            <p className="skeleton-box skeleton-line-box4"/>
+            <p className="skeleton-box skeleton-line-box4"/>
+            <p className="skeleton-box skeleton-line-box4"/>
+          </div>
+        </BuildingWrapper>) : (
+        <>
+          {generalBuildingInformation && (
+            id < 3 ? (
+              <BuildingWrapper>
+                <BuildingInfo
+                  name={generalBuildingInformation.name}
+                  image={generalBuildingInformation.image}
+                  address={generalBuildingInformation.address}
+                  useType={generalBuildingInformation.useType}
+                  tfa={generalBuildingInformation.gfa}
+                  tfaUnit={'m2'}
+                  avgOccupancy={generalBuildingInformation.avgOccupancy}
+                  storey={generalBuildingInformation.storey}
+                  constructed={generalBuildingInformation.constructed}
+                  greenBuildingRating={generalBuildingInformation.greenBuildingRating}
+                  buildingInfoLastEdited={generalBuildingInformation.buildingInfoLastEdited}
                 />
-              </Route>
-              <Route path={`${path}/comparison`}>
-                <Comparison data={{ buildingName: generalBuildingInformation.name, id: id }}/>
-              </Route>
-              <Route path={`${path}/improve`}>
-                <Improve
-                  consumptionBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownConsumption}
-                  costBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownCost}
-                  co2EmissionsBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownCO2Emissions}
-                  data={generalBuildingInformation.energyPerformance}/>
-              </Route>
-              <Route path={`${path}/asset-reliability`}>
-                <AssetReliability data={generalBuildingInformation.energyPerformance}/>
-              </Route>
-              <Redirect to={`${path}/energy-performance`}/>
-            </Switch>
-          </BuildingWrapper>
 
-        ) : (
-          <BuildingWrapper>
-            <BuildingInfo
-              id={id}
-              propId={generalBuildingInformation.prop.propId}
-              name={generalBuildingInformation.prop.name}
-              image={generalBuildingInformation.prop.photo}
-              address={generalBuildingInformation.prop.streetAddress + ', ' + generalBuildingInformation.prop.city + ', ' +
-              findCountryByCountryCode(generalBuildingInformation.prop.countryCode)?.name + ', ' +
-              generalBuildingInformation.prop.postCode}
-              useType={generalBuildingInformation.prop.useTypeName}
-              tfa={generalBuildingInformation.prop.grossInteriorArea}
-              tfaUnit={generalBuildingInformation.prop.grossInteriorAreaUnit}
-              storey={generalBuildingInformation.prop.storeysAboveGround +
-              generalBuildingInformation.prop.storeysBelowGround}
-              constructed={generalBuildingInformation.prop.completionYear + ' - ' +
-              (generalBuildingInformation.prop.completionYear + 10)}
-              greenBuildingRating={generalBuildingInformation.prop.sustainabilityRatingSchemeName + ' - ' +
-              generalBuildingInformation.prop.sustainabilityRatingName}
-              buildingInfoLastEdited={generalBuildingInformation.prop.updatedAt
-                ? printDateTime(generalBuildingInformation.prop.updatedAt, 'en-GB')
-                : printDateTime(generalBuildingInformation.prop.createdAt, 'en-GB')}
-              totalOperatingHours={generalBuildingInformation.totalOperatingHours}
-            />
+                <BuildingHistoricalNav/>
 
-            <BuildingHistoricalNav/>
+                <Switch>
+                  <Route path={`${path}/energy-performance`}>
+                    <EnergyPerformance data={generalBuildingInformation.energyPerformance}
+                                       consumptionBreakdown={BuildingInfoDataArray[id -
+                                       1].energyPerformance.breakDownConsumption}
+                                       costBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownCost}
+                                       co2EmissionsBreakdown={BuildingInfoDataArray[id -
+                                       1].energyPerformance.breakDownCO2Emissions}
+                    />
+                  </Route>
+                  <Route path={`${path}/comparison`}>
+                    <Comparison data={{ buildingName: generalBuildingInformation.name, id: id }}/>
+                  </Route>
+                  <Route path={`${path}/improve`}>
+                    <Improve
+                      consumptionBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownConsumption}
+                      costBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownCost}
+                      co2EmissionsBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownCO2Emissions}
+                      data={generalBuildingInformation.energyPerformance}/>
+                  </Route>
+                  <Route path={`${path}/asset-reliability`}>
+                    <AssetReliability data={generalBuildingInformation.energyPerformance}/>
+                  </Route>
+                  <Redirect to={`${path}/energy-performance`}/>
+                </Switch>
+              </BuildingWrapper>
 
-            <Switch>
-              <Route path={`${path}/energy-performance`}>
-                <EnergyPerformance electricConsumptions={generalBuildingInformation.electricConsumptions}
-                                   annualCost={generalBuildingInformation.annualCost}
-                                   annualConsumption={generalBuildingInformation.annualConsumption}
-                                   annualCarbonEmissions={generalBuildingInformation.annualCarbonEmissions}
-                                   lastMonthComparison={generalBuildingInformation.lastMonthComparison}
-                                   annualCoolingSystemConsumption={generalBuildingInformation.annualCoolingSystemConsumption}
-                                   annualHeatingSystemConsumption={generalBuildingInformation.annualHeatingSystemConsumption}
-                                   annualMechanicalVentilationSystemConsumption={generalBuildingInformation.annualMechanicalVentilationSystemConsumption}
-                                   annualLightingConsumption={generalBuildingInformation.annualLightingConsumption}
-                                   pvSolarSystemLoad={generalBuildingInformation.pvSolarSystemLoad}
-                                   periodOf12Month={generalBuildingInformation.periodOf12Month}
-                                   consumptionBreakdown={generalBuildingInformation.consumptionBreakdown}
-                                   costBreakdown={generalBuildingInformation.costBreakdown}
-                                   co2EmissionsBreakdown={generalBuildingInformation.co2EmissionsBreakdown}
-                                   incidentalGainsOtherInformation={generalBuildingInformation.incidentalGainsOtherInformation}
+            ) : (
+
+              <BuildingWrapper>
+
+                <BuildingInfo
+                  id={id}
+                  propId={generalBuildingInformation.prop.propId}
+                  name={generalBuildingInformation.prop.name}
+                  image={generalBuildingInformation.prop.photo}
+                  address={generalBuildingInformation.prop.streetAddress + ', ' + generalBuildingInformation.prop.city +
+                  ', ' +
+                  findCountryByCountryCode(generalBuildingInformation.prop.countryCode)?.name + ', ' +
+                  generalBuildingInformation.prop.postCode}
+                  useType={generalBuildingInformation.prop.useTypeName}
+                  tfa={generalBuildingInformation.prop.grossInteriorArea}
+                  tfaUnit={generalBuildingInformation.prop.grossInteriorAreaUnit}
+                  storey={generalBuildingInformation.prop.storeysAboveGround +
+                  generalBuildingInformation.prop.storeysBelowGround}
+                  constructed={generalBuildingInformation.prop.completionYear + ' - ' +
+                  (generalBuildingInformation.prop.completionYear + 10)}
+                  greenBuildingRating={generalBuildingInformation.prop.sustainabilityRatingSchemeName + ' - ' +
+                  generalBuildingInformation.prop.sustainabilityRatingName}
+                  buildingInfoLastEdited={generalBuildingInformation.prop.updatedAt
+                    ? printDateTime(generalBuildingInformation.prop.updatedAt, 'en-GB')
+                    : printDateTime(generalBuildingInformation.prop.createdAt, 'en-GB')}
+                  totalOperatingHours={generalBuildingInformation.totalOperatingHours}
                 />
-              </Route>
-              <Route path={`${path}/comparison`}>
-                <Comparison data={{ buildingName: generalBuildingInformation.name, id: id }}/>
-              </Route>
-              <Route path={`${path}/improve`}>
-                <Improve consumptionBreakdown={generalBuildingInformation.consumptionBreakdown}
-                         costBreakdown={generalBuildingInformation.costBreakdown}
-                         co2EmissionsBreakdown={generalBuildingInformation.co2EmissionsBreakdown}
-                         data={generalBuildingInformation.energyPerformance}/>
-              </Route>
-              <Route path={`${path}/asset-reliability`}>
-                <AssetReliability data={generalBuildingInformation.energyPerformance}/>
-              </Route>
-              <Redirect to={`${path}/energy-performance`}/>
-            </Switch>
 
-          </BuildingWrapper>
-        )
+                <BuildingHistoricalNav/>
 
-      )}
+                <Switch>
+                  <Route path={`${path}/energy-performance`}>
+                    <EnergyPerformance electricConsumptions={generalBuildingInformation.electricConsumptions}
+                                       annualCost={generalBuildingInformation.annualCost}
+                                       annualConsumption={generalBuildingInformation.annualConsumption}
+                                       annualCarbonEmissions={generalBuildingInformation.annualCarbonEmissions}
+                                       lastMonthComparison={generalBuildingInformation.lastMonthComparison}
+                                       annualCoolingSystemConsumption={generalBuildingInformation.annualCoolingSystemConsumption}
+                                       annualHeatingSystemConsumption={generalBuildingInformation.annualHeatingSystemConsumption}
+                                       annualMechanicalVentilationSystemConsumption={generalBuildingInformation.annualMechanicalVentilationSystemConsumption}
+                                       annualLightingConsumption={generalBuildingInformation.annualLightingConsumption}
+                                       pvSolarSystemLoad={generalBuildingInformation.pvSolarSystemLoad}
+                                       periodOf12Month={generalBuildingInformation.periodOf12Month}
+                                       consumptionBreakdown={generalBuildingInformation.consumptionBreakdown}
+                                       costBreakdown={generalBuildingInformation.costBreakdown}
+                                       co2EmissionsBreakdown={generalBuildingInformation.co2EmissionsBreakdown}
+                                       incidentalGainsOtherInformation={generalBuildingInformation.incidentalGainsOtherInformation}
+                    />
+                  </Route>
+                  <Route path={`${path}/comparison`}>
+                    <Comparison data={{ buildingName: generalBuildingInformation.name, id: id }}/>
+                  </Route>
+                  <Route path={`${path}/improve`}>
+                    <Improve consumptionBreakdown={generalBuildingInformation.consumptionBreakdown}
+                             costBreakdown={generalBuildingInformation.costBreakdown}
+                             co2EmissionsBreakdown={generalBuildingInformation.co2EmissionsBreakdown}
+                             data={generalBuildingInformation.energyPerformance}/>
+                  </Route>
+                  <Route path={`${path}/asset-reliability`}>
+                    <AssetReliability data={generalBuildingInformation.energyPerformance}/>
+                  </Route>
+                  <Redirect to={`${path}/energy-performance`}/>
+                </Switch>
+
+              </BuildingWrapper>
+            )
+
+          )}
+        </>)}
     </>
   )
 }

@@ -2,3 +2,87 @@
     min-width: 100%;
     margin-bottom: 24px;
 }
+
+.skeleton-box {
+    position: relative;
+    overflow: hidden;
+    background-color: #5F528318;
+}
+
+.skeleton-box::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0,
+            rgba(255, 255, 255, 0.2) 20%,
+            rgba(255, 255, 255, 0.5) 60%,
+            rgba(255, 255, 255, 0.7) 80%,
+            rgba(255, 255, 255, 0)
+    );
+    animation: shimmer 3s infinite;
+    content: '';
+}
+
+.skeleton-square-box {
+    width: 270px;
+    height: 150px;
+    margin-right: 50px;
+    border-radius: 12px;
+}
+
+.skeleton-square-box2 {
+    width: 330px;
+    height: 245px;
+    margin-right: 35px;
+    border-radius: 12px;
+}
+
+.skeleton-header-box {
+    width: 200px;
+    height: 3rem;
+    margin-right: 30px;
+    border-radius: 8px;
+}
+
+.skeleton-line-box {
+    width: 200px;
+    height: 1rem;
+    margin-right: 50px;
+    margin-top: 1rem;
+    border-radius: 6px;
+}
+
+
+.skeleton-line-box2 {
+    width: 270px;
+    height: 1rem;
+    margin-right: 50px;
+    margin-top: 1rem;
+    border-radius: 6px;
+}
+
+.skeleton-line-box3 {
+    width: 400px;
+    height: 1rem;
+    margin-right: 20px;
+    margin-top: 0.5rem;
+    border-radius: 6px;
+}
+.skeleton-line-box4 {
+    width: 85%;
+    height: 1rem;
+    margin-right: 20px;
+    margin-top: 0.5rem;
+    border-radius: 6px;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
