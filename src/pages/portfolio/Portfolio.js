@@ -94,16 +94,19 @@ const Portfolio = () => {
         {isLoading ? (
             <div className="d-flex justify-content-center justify-content-md-start flex-wrap">
               <div>
+                {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
                 <h2 className="skeleton-box skeleton-square-box shadow-sm"/>
                 <p className="skeleton-box skeleton-line-box"/>
                 <p className="skeleton-box skeleton-line-box2"/>
               </div>
               <div>
+                {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
                 <h2 className="skeleton-box skeleton-square-box shadow-sm"/>
                 <p className="skeleton-box skeleton-line-box"/>
                 <p className="skeleton-box skeleton-line-box2 "/>
               </div>
               <div>
+                {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
                 <h2 className="skeleton-box skeleton-square-box shadow-sm"/>
                 <p className="skeleton-box skeleton-line-box "/>
                 <p className="skeleton-box skeleton-line-box2 "/>

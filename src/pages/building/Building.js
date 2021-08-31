@@ -211,6 +211,7 @@ const Building = () => {
       {isLoading ? (
         <BuildingWrapper>
           <div className="d-flex justify-content-start flex-wrap">
+            {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
             <h2 className="skeleton-box skeleton-square-box2"/>
             <div>
               <p className="skeleton-box skeleton-header-box"/>
