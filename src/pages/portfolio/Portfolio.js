@@ -49,11 +49,15 @@ const Portfolio = () => {
 
   const [buildings, setBuildings] = useState([])
 
+  const [isLoading, setIsLoading] = useState(false)
+
   useEffect(() => {
     async function fetchMyAPI () {
+      setIsLoading(true)
       const idToken = await user.getIdToken()
       const tmp = await getAllBuilding(idToken)
       setBuildings(tmp)
+      setIsLoading(false)
     }
 
     //  eslint-disable-next-line
@@ -87,7 +91,28 @@ const Portfolio = () => {
           {blocks}
         </BuildingBlocks>
 
-        <BuildingListBlocks buildings={buildings}/>
+        {isLoading ? (
+            <div className="d-flex justify-content-center justify-content-md-start flex-wrap">
+              <div>
+                {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
+                <h2 className="skeleton-box skeleton-square-box shadow-sm"/>
+                <p className="skeleton-box skeleton-line-box"/>
+                <p className="skeleton-box skeleton-line-box2"/>
+              </div>
+              <div>
+                {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
+                <h2 className="skeleton-box skeleton-square-box shadow-sm"/>
+                <p className="skeleton-box skeleton-line-box"/>
+                <p className="skeleton-box skeleton-line-box2 "/>
+              </div>
+              <div>
+                {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
+                <h2 className="skeleton-box skeleton-square-box shadow-sm"/>
+                <p className="skeleton-box skeleton-line-box "/>
+                <p className="skeleton-box skeleton-line-box2 "/>
+              </div>
+            </div>) :
+          <BuildingListBlocks buildings={buildings}/>}
 
       </PortfolioWrapper>
 
