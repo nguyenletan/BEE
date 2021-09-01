@@ -140,11 +140,11 @@ const DrillDownDonutChart = (props) => {
           textAnchor="middle"
           dominantBaseline="central"
           style={{
-            fontSize: valueFontSize ?? '17px',
+            fontSize: valueFontSize ?? '16px',
             stroke: dataSource[0].color ?? '#5F5283'
           }}
         >
-          ventilation
+          Ventilation
         </text>
       </>
     }
@@ -155,7 +155,7 @@ const DrillDownDonutChart = (props) => {
         textAnchor="middle"
         dominantBaseline="central"
         style={{
-          fontSize: valueFontSize ?? '14px',
+          fontSize: valueFontSize ?? '18px',
           textTransform: 'capitalize',
           stroke: dataSource[0].color ?? '#5F5283'
         }}
