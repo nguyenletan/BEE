@@ -1,10 +1,10 @@
 import React from 'react'
 import BuildingHistorical from '../../../components/BuildingHistorical'
-import BreakDown from '../../../components/BreakDown'
 import styled from 'styled-components'
 import ElectricalSystemInformation from '../../../components/ElectricalSystemInformation'
 import { formatNumber } from '../../../Utilities'
 import IncidentalGains from '../../../components/IncidentalGains'
+import DrillDownDonutChart from '../../../components/DrillDownDonutChart'
 
 const BreakdownWrapper = styled.div`
   margin-bottom: 50px;
@@ -47,7 +47,7 @@ const EnergyPerformance = (props) => {
       <BreakdownWrapper className="d-flex row justify-content-center">
         {consumptionBreakdown && (
           <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
-            <BreakDown
+            <DrillDownDonutChart
               title="Consumption Breakdown"
               subTitle="%"
               hasDescription
@@ -57,7 +57,7 @@ const EnergyPerformance = (props) => {
 
         {costBreakdown && (
           <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
-            <BreakDown
+            <DrillDownDonutChart
               title="Cost Breakdown"
               subTitle="%"
               data={costBreakdown}
@@ -68,7 +68,7 @@ const EnergyPerformance = (props) => {
 
         {co2EmissionsBreakdown && (
           <div className="col col-12 col-md-8 col-xl-4">
-            <BreakDown
+            <DrillDownDonutChart
               title="CO2 Emissions Breakdown"
               subTitle="%"
               data={co2EmissionsBreakdown}
