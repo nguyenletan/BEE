@@ -52,9 +52,11 @@ const EditIconWrapper = styled.span`
   color: var(--bs-primary);
   font-size: 16px;
   cursor: pointer;
+
   :hover {
     text-decoration: underline;
   }
+
   vertical-align: text-bottom;
   display: flex;
   align-items: flex-end;
@@ -120,7 +122,7 @@ const Obsolescence = () => {
 
   const Popup = () => {
     return (
-      <Modal show={show} onHide={handleClose} size='sm'>
+      <Modal show={show} onHide={handleClose} size="sm">
 
         <Modal.Body>
           <PopupTitle>Functional Obsolescence & New Replacement</PopupTitle>
@@ -128,35 +130,35 @@ const Obsolescence = () => {
             <PopupCategoryTitle>Technological</PopupCategoryTitle>
             <PopupCategorySubTitle>Due to asset age, critical spare parts may not be easily available</PopupCategorySubTitle>
             <ParameterList>
-              <ParameterItem key='ParameterItem1'>
-                <div className='custom-control custom-checkbox'>
+              <ParameterItem key="ParameterItem1">
+                <div className="custom-control custom-checkbox">
                   <input
-                    type='checkbox' className='custom-control-input'
+                    type="checkbox" className="custom-control-input"
                     id={'checkbox_subsystem_' + 1} defaultChecked
                   />
-                  <label className='custom-control-label' htmlFor={'checkbox_subsystem_' + 1}>
+                  <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + 1}>
                     Critical Spare parts no longer available
                   </label>
                 </div>
               </ParameterItem>
-              <ParameterItem key='ParameterItem2'>
-                <div className='custom-control custom-checkbox'>
+              <ParameterItem key="ParameterItem2">
+                <div className="custom-control custom-checkbox">
                   <input
-                    type='checkbox' className='custom-control-input'
+                    type="checkbox" className="custom-control-input"
                     id={'checkbox_subsystem_' + 2} defaultChecked
                   />
-                  <label className='custom-control-label' htmlFor={'checkbox_subsystem_' + 2}>
+                  <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + 2}>
                     Critical Spare parts delivery takes too long
                   </label>
                 </div>
               </ParameterItem>
-              <ParameterItem key='ParameterItem3'>
-                <div className='custom-control custom-checkbox'>
+              <ParameterItem key="ParameterItem3">
+                <div className="custom-control custom-checkbox">
                   <input
-                    type='checkbox' className='custom-control-input'
+                    type="checkbox" className="custom-control-input"
                     id={'checkbox_subsystem_' + 3} defaultChecked
                   />
-                  <label className='custom-control-label' htmlFor={'checkbox_subsystem_' + 3}>
+                  <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + 3}>
                     Repair often cannot be done in resonate time
                   </label>
                 </div>
@@ -168,24 +170,24 @@ const Obsolescence = () => {
             <PopupCategoryTitle>Economic</PopupCategoryTitle>
             <PopupCategorySubTitle>Operating cost has increased significantly</PopupCategorySubTitle>
             <ParameterList>
-              <ParameterItem key='ParameterItem4'>
-                <div className='custom-control custom-checkbox'>
+              <ParameterItem key="ParameterItem4">
+                <div className="custom-control custom-checkbox">
                   <input
-                    type='checkbox' className='custom-control-input'
+                    type="checkbox" className="custom-control-input"
                     id={'checkbox_subsystem_' + 4} defaultChecked={false}
                   />
-                  <label className='custom-control-label' htmlFor={'checkbox_subsystem_' + 4}>
+                  <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + 4}>
                     Maintenance cost has increased significantly
                   </label>
                 </div>
               </ParameterItem>
-              <ParameterItem key='ParameterItem5'>
-                <div className='custom-control custom-checkbox'>
+              <ParameterItem key="ParameterItem5">
+                <div className="custom-control custom-checkbox">
                   <input
-                    type='checkbox' className='custom-control-input'
+                    type="checkbox" className="custom-control-input"
                     id={'checkbox_subsystem_' + 5} defaultChecked={false}
                   />
-                  <label className='custom-control-label' htmlFor={'checkbox_subsystem_' + 5}>
+                  <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + 5}>
                     Energy usage and cost has increased significantly
                   </label>
                 </div>
@@ -197,13 +199,13 @@ const Obsolescence = () => {
             <PopupCategoryTitle>Statutory</PopupCategoryTitle>
             <PopupCategorySubTitle>Asset performance not meet requirement</PopupCategorySubTitle>
             <ParameterList>
-              <ParameterItem key='ParameterItem6'>
-                <div className='custom-control custom-checkbox'>
+              <ParameterItem key="ParameterItem6">
+                <div className="custom-control custom-checkbox">
                   <input
-                    type='checkbox' className='custom-control-input'
+                    type="checkbox" className="custom-control-input"
                     id={'checkbox_subsystem_' + 6} defaultChecked
                   />
-                  <label className='custom-control-label' htmlFor={'checkbox_subsystem_' + 6}>
+                  <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + 6}>
                     Energy efficiency does not meet requirement
                   </label>
                 </div>
@@ -215,35 +217,35 @@ const Obsolescence = () => {
             <PopupCategoryTitle>Functional</PopupCategoryTitle>
             <PopupCategorySubTitle>Asset functionality has decreased significantly</PopupCategorySubTitle>
             <ParameterList>
-              <ParameterItem key='ParameterItem7'>
-                <div className='custom-control custom-checkbox'>
+              <ParameterItem key="ParameterItem7">
+                <div className="custom-control custom-checkbox">
                   <input
-                    type='checkbox' className='custom-control-input'
+                    type="checkbox" className="custom-control-input"
                     id={'checkbox_subsystem_' + 7} defaultChecked
                   />
-                  <label className='custom-control-label' htmlFor={'checkbox_subsystem_' + 7}>
+                  <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + 7}>
                     Asset not able to meet the demanded load
                   </label>
                 </div>
               </ParameterItem>
-              <ParameterItem key='ParameterItem8'>
-                <div className='custom-control custom-checkbox'>
+              <ParameterItem key="ParameterItem8">
+                <div className="custom-control custom-checkbox">
                   <input
-                    type='checkbox' className='custom-control-input'
+                    type="checkbox" className="custom-control-input"
                     id={'checkbox_subsystem_' + 8} defaultChecked
                   />
-                  <label className='custom-control-label' htmlFor={'checkbox_subsystem_' + 8}>
+                  <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + 8}>
                     Asset failure rate is increasing significantly
                   </label>
                 </div>
               </ParameterItem>
-              <ParameterItem key='ParameterItem9'>
-                <div className='custom-control custom-checkbox'>
+              <ParameterItem key="ParameterItem9">
+                <div className="custom-control custom-checkbox">
                   <input
-                    type='checkbox' className='custom-control-input'
+                    type="checkbox" className="custom-control-input"
                     id={'checkbox_subsystem_' + 9} defaultChecked
                   />
-                  <label className='custom-control-label' htmlFor={'checkbox_subsystem_' + 9}>
+                  <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + 9}>
                     Asset time to repair is increasing significantly
                   </label>
                 </div>
@@ -254,13 +256,13 @@ const Obsolescence = () => {
           <PopupCategory>
             <PopupCategoryTitle>Aesthetic</PopupCategoryTitle>
             <PopupCategorySubTitle>Asset has negative impact on reputation</PopupCategorySubTitle>
-            <ParameterItem key='ParameterItem10'>
-              <div className='custom-control custom-checkbox'>
+            <ParameterItem key="ParameterItem10">
+              <div className="custom-control custom-checkbox">
                 <input
-                  type='checkbox' className='custom-control-input'
+                  type="checkbox" className="custom-control-input"
                   id={'checkbox_subsystem_' + 10} defaultChecked={false}
                 />
-                <label className='custom-control-label' htmlFor={'checkbox_subsystem_' + 10}>
+                <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + 10}>
                   Asset operation has negative impact to reputation
                 </label>
               </div>
@@ -275,62 +277,65 @@ const Obsolescence = () => {
     <Wrapper>
       <Title>Functional Obsolescence & New Replacement</Title>
 
-      <div className='row'>
-        <div className='col-6'>
-          <p className='mb-2 d-block' style={{ marginTop: '-3px', fontSize: '.9rem' }}>Estimated New Replacement Value</p>
-          <RowItem className='d-flex justify-content-between'>
-            <div className='me-3 d-flex flex-column' style={{ width: '40%' }}>
+      <div className="row">
+        <div className="col-6">
+          <p className="mb-2 d-block" style={{ marginTop: '-3px', fontSize: '.9rem' }}>Estimated New Replacement Value</p>
+          <RowItem className="d-flex justify-content-between">
+            <div className="me-3 d-flex flex-column" style={{ width: '40%' }}>
               <RowItemTitle>Replacement Value ($)</RowItemTitle>
               <RowItemValue>1,350,000</RowItemValue>
             </div>
-            <div className='me-0'><Calculator>+</Calculator></div>
-            <div className='d-flex flex-column'>
+            <div className="me-0"><Calculator>+</Calculator></div>
+            <div className="d-flex flex-column">
               <RowItemTitle>Local Labour & Other Cost</RowItemTitle>
               <RowItemValue>14 ~ 25%</RowItemValue>
             </div>
           </RowItem>
-          <p className='mb-2 d-block' style={{ marginTop: '-3px', fontSize: '.9rem' }}>Estimated Maintenance Cost</p>
-          <RowItem className='row'>
-            <div className='col-6'>
+          <p className="mb-2 d-block" style={{ marginTop: '-3px', fontSize: '.9rem' }}>Estimated Maintenance Cost</p>
+          <RowItem className="row">
+            <div className="col-6">
               <RowItemTitle>Annual Maintenance Savings ($)</RowItemTitle>
               <RowItemValue>50,000</RowItemValue>
             </div>
-            <div className='col-6'>
+            <div className="col-6">
               <RowItemTitle style={{ paddingBottom: '.85rem' }}>Warranty Period (Yr)</RowItemTitle>
               <RowItemValue>1</RowItemValue>
             </div>
           </RowItem>
 
         </div>
-        <div className='col-6'>
-          <RowItem className='row' style={{ marginBottom: '3.3rem' }}>
-            <div className='col-6'>
+        <div className="col-6">
+          <RowItem className="row" style={{ marginBottom: '3.3rem' }}>
+            <div className="col-6">
               <RowItemTitle>Annual Energy Savings (MWh/Yr)</RowItemTitle>
               <RowItemValue>13.3</RowItemValue>
             </div>
-            <div className='col-6'>
+            <div className="col-6">
               <RowItemTitle>Annual Energy Cost Savings ($1000/Yr)</RowItemTitle>
               <RowItemValue>13.3</RowItemValue>
             </div>
           </RowItem>
 
-          <RowItem className='row'>
-            <div className='col-6'>
+          <RowItem className="row">
+            <div className="col-6">
               <RowItemTitle>Simple Payback (Yrs)</RowItemTitle>
               <RowItemValue>7</RowItemValue>
             </div>
-            <div className='col-6'>
+            <div className="col-6">
               <RowItemTitle>Internal Rate of Return (%)</RowItemTitle>
               <RowItemValue>22</RowItemValue>
             </div>
           </RowItem>
         </div>
       </div>
-      <RowItem className='row ms-1 mt-3'>
-        <AddingButton className='btn btn-sm btn-primary'>+ Add to Improvement Measures</AddingButton>
-        <EditIconWrapper onClick={handleShow}><EditIcon className='bi bi-pencil-square' />Edit</EditIconWrapper>
+      <RowItem className="row mt-3">
+        <div className="d-flex justify-content-start">
+          <AddingButton className="btn btn-sm btn-primary">+ Add to Improvement Measures</AddingButton>
+          <EditIconWrapper className="" onClick={handleShow}><EditIcon
+            className="bi bi-pencil-square"/>Edit</EditIconWrapper>
+        </div>
       </RowItem>
-      <Popup />
+      <Popup/>
     </Wrapper>
 
   )
