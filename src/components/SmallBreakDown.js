@@ -104,7 +104,7 @@ const SmallBreakDown = (props) => {
 
   const list = data.map(x => <li className='d-flex justify-content-between' key={x.id}>
     <Label fontSize={informationFontSize}>{x.id}:</Label>
-    <span fontSize={informationFontSize}>{x.value}%</span>
+    <span>{x.value}%</span>
   </li>)
 
   return (
@@ -132,14 +132,15 @@ const SmallBreakDown = (props) => {
           }}
           enableSliceLabels={false}
           enableRadialLabels={enableRadialLabels ?? true}
-          layers={['slices', 'sliceLabels', 'radialLabels', 'legends', isCenteredPercentage === true ? CenteredPercentage : '']}
+          layers={[
+            'arcs',
+            'legends',
+            isCenteredPercentage === true ? CenteredPercentage : '']}
+
+          //layers={['slices', 'sliceLabels', 'radialLabels', 'legends', isCenteredPercentage === true ? CenteredPercentage : '']}
         />
       </ResponsivePieWrapper>
-      {
-      hasDescription && <Ul>
-        {list}
-                        </Ul>
-    }
+      { hasDescription && <Ul>{list}</Ul> }
 
     </BreakDownBlock>
   )

@@ -50,7 +50,7 @@ function DebugButton () {
     }
   }, [])
 
-  return <button onClick={onClick} className='-visually-hidden'>Dump State</button>
+  return <button onClick={onClick} className='visually-hidden'>Dump State</button>
 }
 
 function App () {

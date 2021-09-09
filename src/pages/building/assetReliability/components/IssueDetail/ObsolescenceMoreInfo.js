@@ -119,7 +119,7 @@ const ObsolescenceMoreInfo = () => {
             title='Annual Energy Savings (MWh)'
             startAngle={-0}
             data={data.annualEnergySavings}
-            innerRadius={0.88}
+            innerRadius={0.82}
             isCenteredPercentage
             marginRight='0px'
             valueFontSize='18px'
@@ -132,7 +132,7 @@ const ObsolescenceMoreInfo = () => {
             title='Annual Energy Cost Savings ($1000)'
             startAngle={-0}
             data={data.annualEnergyCostSavings}
-            innerRadius={0.88}
+            innerRadius={0.82}
             isCenteredPercentage
             marginRight='0px'
             valueFontSize='18px'
@@ -145,7 +145,7 @@ const ObsolescenceMoreInfo = () => {
             title='Annual CO2 Emissions Avoided (Tons/yr)'
             startAngle={-0}
             data={data.annualCO2EmissionsAvoided}
-            innerRadius={0.88}
+            innerRadius={0.82}
             isCenteredPercentage
             marginRight='0px'
             valueFontSize='18px'
@@ -158,7 +158,7 @@ const ObsolescenceMoreInfo = () => {
             title='Current Efficiency'
             startAngle={-0}
             data={data.currentEfficiency}
-            innerRadius={0.88}
+            innerRadius={0.82}
             isCenteredPercentage
             marginRight='0px'
             valueFontSize='18px'
@@ -171,7 +171,7 @@ const ObsolescenceMoreInfo = () => {
             title='New Efficiency'
             startAngle={-0}
             data={data.newEfficiency}
-            innerRadius={0.88}
+            innerRadius={0.82}
             isCenteredPercentage
             marginRight='0px'
             valueFontSize='18px'
@@ -184,7 +184,7 @@ const ObsolescenceMoreInfo = () => {
             title='Annual Maintenance Cost Savings ($1000/Yr)'
             startAngle={-0}
             data={data.annualMaintenanceCostSavings}
-            innerRadius={0.88}
+            innerRadius={0.82}
             isCenteredPercentage
             marginRight='0px'
             valueFontSize='18px'
