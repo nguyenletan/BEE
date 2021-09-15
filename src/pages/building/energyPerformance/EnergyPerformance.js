@@ -5,6 +5,7 @@ import ElectricalSystemInformation from '../../../components/ElectricalSystemInf
 import { formatNumber } from '../../../Utilities'
 import IncidentalGains from '../../../components/IncidentalGains'
 import DrillDownDonutChart from '../../../components/DrillDownDonutChart'
+import DrillDownDonutChart3Lv from '../../../components/DrillDownDonutChart3Lv'
 
 const BreakdownWrapper = styled.div`
   margin-bottom: 50px;
@@ -47,7 +48,7 @@ const EnergyPerformance = (props) => {
       <BreakdownWrapper className="d-flex row justify-content-center">
         {consumptionBreakdown && (
           <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
-            <DrillDownDonutChart
+            <DrillDownDonutChart3Lv
               title="Consumption Breakdown"
               subTitle="%"
               hasDescription

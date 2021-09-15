@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { ResponsiveBar } from '@nivo/bar'
 import styled from 'styled-components'
 import _ from 'lodash'
-
+import moment from 'moment'
+import { formatNumber, getMonthName} from '../Utilities'
+import { EuiDatePicker, EuiDatePickerRange, EuiSelect } from '@elastic/eui'
 import redUpImage from '../assets/images/red_up.jpg'
 import greenDownImage from '../assets/images/green_down.jpg'
-import { formatNumber, getMonthName } from '../Utilities'
 
 const SummaryBoxWrapper = styled.div`
   justify-content: flex-start;
@@ -133,6 +134,14 @@ const HistoricalComparisonInnerWrapper = styled.div`
 const BuildingHistorical = (props) => {
   const { periodOf12Month } = props
 
+  const minDate = moment().subtract(2, 'y')
+  const maxDate = moment()
+  const [startDate, setStartDate] = useState(minDate)
+  const [endDate, setEndDate] = useState(maxDate)
+
+  const isInvalid =
+    startDate > endDate || startDate < minDate || endDate > maxDate
+
   let buildingEnergyUsageData = [
     { month: 'Jan', monthlyValue: '590' },
     { month: 'Feb', monthlyValue: '490' },
@@ -163,7 +172,6 @@ const BuildingHistorical = (props) => {
 
   const [lastMonthComparison, setLastMonthComparison] = useState(
     _.takeRight(buildingEnergyUsageData, 1)[0]?.lastMonthComparison)
-
 
   const keys = ['monthlyValue']
 
@@ -219,10 +227,60 @@ const BuildingHistorical = (props) => {
   return (
     <HistoricalComparisonWrapper className="">
 
+      <div className="my-5 row">
+        <div className="col col-8 d-flex justify-content-between">
+          <EuiSelect
+            prepend="Type:"
+            fullWidth={false}
+            options={[
+              { value: 'year', text: 'year' },
+              { value: 'quarter', text: 'quarter' },
+              { value: 'month', text: 'month' },
+              { value: 'week', text: 'week' },
+              { value: 'day', text: 'day' }]}/>
+        </div>
+
+
+        <div className="col col-4">
+
+          <EuiDatePickerRange
+            startDateControl={
+              <EuiDatePicker
+                selected={startDate}
+                onChange={setStartDate}
+                startDate={startDate}
+                endDate={endDate}
+                minDate={minDate}
+                maxDate={endDate}
+                isInvalid={isInvalid}
+                aria-label="Start date"
+              />
+            }
+            endDateControl={
+              <EuiDatePicker
+                selected={endDate}
+                onChange={setEndDate}
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate}
+                maxDate={maxDate}
+                isInvalid={isInvalid}
+                aria-label="End date"
+              />
+            }
+          />
+
+        </div>
+      </div>
+
       <HistoricalComparisonContainer className=" mt-5 row">
 
+
         <BuildingEnergyUsageWrapper className="col col-12 col-lg-8 col-xl-9 mb-5 mb-lg-0">
-          <BuildingEnergyUsageChartTitle>Building Energy Usage (MWh)</BuildingEnergyUsageChartTitle>
+          <div className="row">
+            <BuildingEnergyUsageChartTitle className="col col-3">Building Energy Usage (MWh)</BuildingEnergyUsageChartTitle>
+
+          </div>
 
           <ResponsiveBar
             {...commonProps}
@@ -241,9 +299,9 @@ const BuildingHistorical = (props) => {
                   background: '#373637',
                 }}
               >
-                <span style={{ color: '#CDEAE5' }}>
-                  {indexValue}: {value} MWh
-                </span>
+              <span style={{ color: '#CDEAE5' }}>
+            {indexValue}: {value} MWh
+              </span>
               </div>
             )}
           />
@@ -300,6 +358,7 @@ const BuildingHistorical = (props) => {
   )
 }
 
-BuildingHistorical.propTypes = {}
+BuildingHistorical.propTypes =
+  {}
 
 export default BuildingHistorical
