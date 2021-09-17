@@ -33,7 +33,7 @@ const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy }) => {
   // ]
 
   const commonProperties = {
-    margin: { top: 0, right: 0, bottom: 100, left: 30 },
+    margin: { top: 0, right: 0, bottom: 60, left: 20 },
     sliceTooltip: ({ slice }) => {
       console.log(slice)
       return (
@@ -59,14 +59,14 @@ const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy }) => {
       )
     },
     enableArea:true,
-    areaOpacity:0.07,
+    areaOpacity:0.08,
     colors: { scheme: 'category10' },
     data: datasource,
     animate: true,
     axisBottom: false,
     enableSlices: false,
     useMesh: true,
-    enableGridX: groupBy === 'week',
+    enableGridX: false,
     enablePoints: groupBy === 'week',
     isInteractive: true,
   }
