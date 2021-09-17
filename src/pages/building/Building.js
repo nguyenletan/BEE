@@ -344,8 +344,8 @@ const Building = () => {
 
                 <BuildingHistoricalNav/>
 
-                <div className="my-5 d-flex">
-                  <div className="d-flex justify-content-between align-content-end">
+                <div className="my-5 d-flex justify-content-between">
+                  <div className="d-flex justify-content-start align-content-end">
                     <Label className="">Type</Label>
                     <EuiSelect
                       fullWidth={false}
@@ -360,7 +360,7 @@ const Building = () => {
                   </div>
 
 
-                  <div className="ms-3">
+                  <div className="ms-3 d-flex">
 
                     <EuiDatePickerRange
 
@@ -387,12 +387,13 @@ const Building = () => {
                         />
                       }
                     />
+                    <div className="ms-3 d-flex">
+                      <button className="btn btn-primary" onClick={handleApply}>Apply</button>
+                    </div>
 
                   </div>
 
-                  <div className="ms-3 d-flex">
-                    <button className="btn btn-primary" onClick={handleApply}>Apply</button>
-                  </div>
+
                 </div>
 
                 <Switch>
