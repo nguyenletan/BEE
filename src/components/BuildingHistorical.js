@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { ResponsiveBar } from '@nivo/bar'
 import styled from 'styled-components'
 import _ from 'lodash'
-
+import { formatNumber, getMonthName } from '../Utilities'
 import redUpImage from '../assets/images/red_up.jpg'
 import greenDownImage from '../assets/images/green_down.jpg'
-import { formatNumber, getMonthName } from '../Utilities'
+import EnergyConsumptionLineChartForGroupByDayOrWeek from './EnergyConsumptionLineChartForGroupByDayOrWeek'
 
 const SummaryBoxWrapper = styled.div`
   justify-content: flex-start;
@@ -48,7 +48,7 @@ const SummaryBoxTitle = styled.p`
 
 const SummaryBoxValue = styled.p`
   color: var(--bs-primary);
-  font-size: 28px;
+  font-size: 36px;
   margin-bottom: 0;
 `
 
@@ -134,18 +134,18 @@ const BuildingHistorical = (props) => {
   const { periodOf12Month } = props
 
   let buildingEnergyUsageData = [
-    { month: 'Jan', monthlyValue: '590' },
-    { month: 'Feb', monthlyValue: '490' },
-    { month: 'Mar', monthlyValue: '420' },
-    { month: 'Apr', monthlyValue: '420' },
-    { month: 'May', monthlyValue: '410' },
-    { month: 'Jun', monthlyValue: '375' },
-    { month: 'Jul', monthlyValue: '390' },
-    { month: 'Aug', monthlyValue: '405' },
-    { month: 'Sep', monthlyValue: '420' },
-    { month: 'Oct', monthlyValue: '470' },
-    { month: 'Nov', monthlyValue: '510' },
-    { month: 'Dec', monthlyValue: '575' },
+    { label: 'Jan', value: '590' },
+    { label: 'Feb', value: '490' },
+    { label: 'Mar', value: '420' },
+    { label: 'Apr', value: '420' },
+    { label: 'May', value: '410' },
+    { label: 'Jun', value: '375' },
+    { label: 'Jul', value: '390' },
+    { label: 'Aug', value: '405' },
+    { label: 'Sep', value: '420' },
+    { label: 'Oct', value: '470' },
+    { label: 'Nov', value: '510' },
+    { label: 'Dec', value: '575' },
   ]
 
   if (props.energyConsumptions && props.energyConsumptions.length > 0) {
@@ -164,15 +164,46 @@ const BuildingHistorical = (props) => {
   const [lastMonthComparison, setLastMonthComparison] = useState(
     _.takeRight(buildingEnergyUsageData, 1)[0]?.lastMonthComparison)
 
+  const selectMonth = (e) => {
+    //console.log(e)
+    setSameMonthLastYearComparison(buildingEnergyUsageData[e.index]?.sameMonthLastYearComparison)
+    setLastMonthComparison(buildingEnergyUsageData[e.index]?.lastMonthComparison)
+  }
 
-  const keys = ['monthlyValue']
+  const keys = ['value']
+  //useEffect(() => (),[props.energyPerformanceGroupBy])
+  let datasource = buildingEnergyUsageData
+  console.log(props.electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth)
+  console.log(props.energyPerformanceGroupBy)
+
+  if (props.electricConsumptionsFromHistorizedLogs) {
+
+    switch (props.energyPerformanceGroupBy) {
+      case 'year':
+        datasource = props.electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear
+        break
+      case 'quarter':
+        datasource = props.electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter
+        break
+      case 'week':
+        datasource = props.electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByWeek
+        break
+      case 'day':
+        datasource = props.electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay
+        break
+      case 'month':
+      default:
+        datasource = props.electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth
+        break
+    }
+  }
 
   const commonProps = {
     // width: 920,
     // height: 350,
     margin: { top: 0, right: 0, bottom: 100, left: 30 },
-    data: buildingEnergyUsageData, // generateCountriesData(keys, { size: 7 }),
-    indexBy: 'month',
+    data: datasource, // generateCountriesData(keys, { size: 7 }),
+    indexBy: 'label',
     keys,
     borderRadius: '5px',
     borderColor: { from: 'color', modifiers: [['darker', 2.6]] },
@@ -210,20 +241,19 @@ const BuildingHistorical = (props) => {
 
   // console.log(generateCountriesData(keys, { size: 7 }))
 
-  const selectMonth = (e) => {
-    //console.log(e)
-    setSameMonthLastYearComparison(buildingEnergyUsageData[e.index]?.sameMonthLastYearComparison)
-    setLastMonthComparison(buildingEnergyUsageData[e.index]?.lastMonthComparison)
-  }
-
   return (
     <HistoricalComparisonWrapper className="">
-
       <HistoricalComparisonContainer className=" mt-5 row">
 
         <BuildingEnergyUsageWrapper className="col col-12 col-lg-8 col-xl-9 mb-5 mb-lg-0">
+
           <BuildingEnergyUsageChartTitle>Building Energy Usage (MWh)</BuildingEnergyUsageChartTitle>
 
+          {(props.energyPerformanceGroupBy === 'week' || props.energyPerformanceGroupBy === 'day') &&
+          <EnergyConsumptionLineChartForGroupByDayOrWeek data={datasource} groupBy={props.energyPerformanceGroupBy}/>}
+
+          {(props.energyPerformanceGroupBy === 'year' || props.energyPerformanceGroupBy === 'quarter' ||
+            props.energyPerformanceGroupBy === 'month') &&
           <ResponsiveBar
             {...commonProps}
             colors={({ id, data }) => {
@@ -241,12 +271,12 @@ const BuildingHistorical = (props) => {
                   background: '#373637',
                 }}
               >
-                <span style={{ color: '#CDEAE5' }}>
-                  {indexValue}: {value} MWh
-                </span>
+              <span style={{ color: '#CDEAE5' }}>
+            {indexValue}: {value} MWh
+              </span>
               </div>
             )}
-          />
+          />}
         </BuildingEnergyUsageWrapper>
 
         <SummaryBoxWrapper className="col col-12 col-lg-4 col-xl-3">
@@ -300,6 +330,7 @@ const BuildingHistorical = (props) => {
   )
 }
 
-BuildingHistorical.propTypes = {}
+BuildingHistorical.propTypes =
+  {}
 
 export default BuildingHistorical

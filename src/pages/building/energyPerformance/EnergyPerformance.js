@@ -5,6 +5,7 @@ import ElectricalSystemInformation from '../../../components/ElectricalSystemInf
 import { formatNumber } from '../../../Utilities'
 import IncidentalGains from '../../../components/IncidentalGains'
 import DrillDownDonutChart from '../../../components/DrillDownDonutChart'
+import DrillDownDonutChart3Lv from '../../../components/DrillDownDonutChart3Lv'
 
 const BreakdownWrapper = styled.div`
   margin-bottom: 50px;
@@ -15,6 +16,8 @@ const EnergyPerformance = (props) => {
 
   const {
     electricConsumptions,
+    electricConsumptionsFromHistorizedLogs,
+    energyPerformanceGroupBy,
     annualCost,
     annualConsumption,
     annualCarbonEmissions,
@@ -29,13 +32,14 @@ const EnergyPerformance = (props) => {
     consumptionBreakdown,
     costBreakdown,
     co2EmissionsBreakdown,
-    incidentalGainsOtherInformation
+    incidentalGainsOtherInformation,
   } = props
-
 
   return (
     <>
       <BuildingHistorical energyConsumptions={electricConsumptions}
+                          electricConsumptionsFromHistorizedLogs={electricConsumptionsFromHistorizedLogs}
+                          energyPerformanceGroupBy={energyPerformanceGroupBy}
                           annualCost={annualCost}
                           annualConsumption={annualConsumption}
                           annualCarbonEmissions={annualCarbonEmissions}
@@ -47,7 +51,7 @@ const EnergyPerformance = (props) => {
       <BreakdownWrapper className="d-flex row justify-content-center">
         {consumptionBreakdown && (
           <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
-            <DrillDownDonutChart
+            <DrillDownDonutChart3Lv
               title="Consumption Breakdown"
               subTitle="%"
               hasDescription

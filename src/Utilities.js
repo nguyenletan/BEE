@@ -49,6 +49,28 @@ export const getPotentialColor = (type) => {
   }
 }
 
+export const getColorPattern = (lv) => {
+  if (lv === 0) {
+    return ['#636c2e', '#87972f', '#acbf42', '#c1cf74', '#d5dfa3']
+  }
+
+  // return ['#064E3B', '#065F46', '#047857', '#059669', '#10B981', '#34D399', '#6EE7B7', '#A7F3D0', '#D1FAE5', '#ECFDF5']
+
+  return [
+    '#3D511B',
+    '#95C34A',
+    '#4A6321',
+    '#A7CD69',
+    '#567426',
+    '#B9D787',
+    '#63852C',
+    '#CBE1A6',
+    '#7DA838',
+    '#D4E7B5',
+    '#DDECC5']
+
+}
+
 export const getLikelihoodTitle = (value) => {
   switch (value) {
     case 1:
@@ -199,6 +221,22 @@ export const formatNumber = (num, decimal = 2, unit = '') => {
     ) // use . as a separator
   }
   return '---'
+}
+
+export const years = (from, to) => {
+  const result = []
+  for (let i = to; i >= from; i--) {
+    result.push(i)
+  }
+  return result
+}
+
+export const quarters = () => {
+  return ['Q1', 'Q2', 'Q3', 'Q4']
+}
+
+export const months = () => {
+  return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 }
 
 export const getMonthName = (month) => {

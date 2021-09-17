@@ -16,6 +16,8 @@ import { getBuildingById } from '../../api/BuildidingAPI'
 import { useAuth } from '../../AuthenticateProvider'
 import { findCountryByCountryCode } from '../../reference-tables/Country'
 import { printDateTime } from '../../Utilities'
+import moment from 'moment'
+import { EuiDatePicker, EuiDatePickerRange, EuiSelect } from '@elastic/eui'
 
 const BuildingWrapper = styled.div`
 
@@ -25,10 +27,28 @@ const BuildingWrapper = styled.div`
   }
 `
 
+const Label = styled.label`
+  line-height: 40px;
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 10px;
+`
+
 const Building = () => {
   const { id } = useParams()
   const { user } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
+  const [startDate, setStartDate] = useState(moment().subtract(1, 'y'))
+  const [endDate, setEndDate] = useState(moment())
+  const [groupBy, setGroupBy] = useState('month')
+
+  const isInvalid =
+    startDate > endDate || endDate > moment()
+
+  const handleGroupByChange = (e) => {
+    setGroupBy(e.target.value)
+  }
+
 
   const BuildingInfoDataArray = [
     {
@@ -183,21 +203,26 @@ const Building = () => {
 
   const [generalBuildingInformation, setGeneralBuildingInformation] = useState(null)
 
-  useEffect(() => {
-    async function fetchAPI () {
-      setIsLoading(true)
-      const idToken = await user.getIdToken()
-      const tmp = await getBuildingById(id, idToken)
-      // console.log(tmp)
-      setGeneralBuildingInformation(tmp)
-      setIsLoading(false)
-    }
+  const getBuildingInfo = async () => {
+    setIsLoading(true)
+    const idToken = await user.getIdToken()
+    const tmp = await getBuildingById(id, startDate.format('YYYY-MM-DD'), endDate.format('YYYY-MM-DD'), idToken)
+    // console.log(tmp)
+    setGeneralBuildingInformation(tmp)
+    setIsLoading(false)
+  }
 
+
+  const handleApply = () => {
+    getBuildingInfo().then()
+  }
+
+  useEffect(() => {
     //  eslint-disable-next-line
     if (id < 3) {
       setGeneralBuildingInformation(BuildingInfoDataArray[id - 1])
     } else {
-      fetchAPI()
+      getBuildingInfo().then();
     }
     //  eslint-disable-next-line
   }, [])
@@ -319,9 +344,62 @@ const Building = () => {
 
                 <BuildingHistoricalNav/>
 
+                <div className="my-5 d-flex">
+                  <div className="d-flex justify-content-between align-content-end">
+                    <Label className="">Type</Label>
+                    <EuiSelect
+                      fullWidth={false}
+                      value={groupBy}
+                      onChange={handleGroupByChange}
+                      options={[
+                        { value: 'year', text: 'Year' },
+                        { value: 'quarter', text: 'Quarter' },
+                        { value: 'month', text: 'Month' },
+                        { value: 'week', text: 'Week' },
+                        { value: 'day', text: 'Day' }]}/>
+                  </div>
+
+
+                  <div className="ms-3">
+
+                    <EuiDatePickerRange
+
+                      startDateControl={
+                        <EuiDatePicker
+                          selected={startDate}
+                          onChange={setStartDate}
+                          startDate={startDate}
+                          endDate={endDate}
+                          maxDate={endDate}
+                          isInvalid={isInvalid}
+                          aria-label="Start date"
+                        />
+                      }
+                      endDateControl={
+                        <EuiDatePicker
+                          selected={endDate}
+                          onChange={setEndDate}
+                          startDate={startDate}
+                          endDate={endDate}
+                          minDate={startDate}
+                          isInvalid={isInvalid}
+                          aria-label="End date"
+                        />
+                      }
+                    />
+
+                  </div>
+
+                  <div className="ms-3 d-flex">
+                    <button className="btn btn-primary" onClick={handleApply}>Apply</button>
+                  </div>
+                </div>
+
                 <Switch>
                   <Route path={`${path}/energy-performance`}>
                     <EnergyPerformance electricConsumptions={generalBuildingInformation.electricConsumptions}
+                                       electricConsumptionsFromHistorizedLogs={generalBuildingInformation.electricConsumptionsFromHistorizedLogs}
+                                       energyPerformanceGroupBy={groupBy}
                                        annualCost={generalBuildingInformation.annualCost}
                                        annualConsumption={generalBuildingInformation.annualConsumption}
                                        annualCarbonEmissions={generalBuildingInformation.annualCarbonEmissions}
