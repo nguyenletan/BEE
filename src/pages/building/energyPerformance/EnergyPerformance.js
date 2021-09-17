@@ -16,6 +16,8 @@ const EnergyPerformance = (props) => {
 
   const {
     electricConsumptions,
+    electricConsumptionsFromHistorizedLogs,
+    energyPerformanceGroupBy,
     annualCost,
     annualConsumption,
     annualCarbonEmissions,
@@ -30,13 +32,14 @@ const EnergyPerformance = (props) => {
     consumptionBreakdown,
     costBreakdown,
     co2EmissionsBreakdown,
-    incidentalGainsOtherInformation
+    incidentalGainsOtherInformation,
   } = props
-
 
   return (
     <>
       <BuildingHistorical energyConsumptions={electricConsumptions}
+                          electricConsumptionsFromHistorizedLogs={electricConsumptionsFromHistorizedLogs}
+                          energyPerformanceGroupBy={energyPerformanceGroupBy}
                           annualCost={annualCost}
                           annualConsumption={annualConsumption}
                           annualCarbonEmissions={annualCarbonEmissions}

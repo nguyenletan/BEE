@@ -11,10 +11,10 @@ export const createBuilding = async (data, idToken) => {
     url: process.env.REACT_APP_BACKEND_API + '/buildings/',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${idToken}`
+      Authorization: `Bearer ${idToken}`,
     },
     data: data,
-    body: {}
+    body: {},
   }).then((response) => {
     console.log(response)
     // result = response
@@ -37,10 +37,10 @@ export const updateBuilding = async (id, data, idToken) => {
     url: process.env.REACT_APP_BACKEND_API + '/buildings/edit/' + id,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${idToken}`
+      Authorization: `Bearer ${idToken}`,
     },
     data: data,
-    body: {}
+    body: {},
   }).then((response) => {
     console.log(response)
     // result = response
@@ -62,10 +62,10 @@ export const getAllBuilding = async (idToken) => {
     url: process.env.REACT_APP_BACKEND_API + '/buildings/',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${idToken}`
+      Authorization: `Bearer ${idToken}`,
     },
     //data: data,
-    body: {}
+    body: {},
   }).then((response) => {
     console.log(response.data)
     result = response.data
@@ -81,17 +81,16 @@ export const getAllBuilding = async (idToken) => {
   return result
 }
 
-
-export const getBuildingById = async (id, idToken) => {
+export const getBuildingById = async (id, startDay, endDay, idToken) => {
   let result
   await axios({
     method: 'get',
-    url: process.env.REACT_APP_BACKEND_API + '/buildings/' + id,
+    url: `${process.env.REACT_APP_BACKEND_API}/buildings/${id}/${startDay}/${endDay}`,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${idToken}`
+      Authorization: `Bearer ${idToken}`,
     },
-    body: {}
+    body: {},
   }).then((response) => {
     result = response.data
   }).catch(error => {
@@ -111,9 +110,9 @@ export const getBuildingByIdForEditing = async (id, idToken) => {
     url: process.env.REACT_APP_BACKEND_API + '/buildings/edit/' + id,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${idToken}`
+      Authorization: `Bearer ${idToken}`,
     },
-    body: {}
+    body: {},
   }).then((response) => {
     result = response.data
   }).catch(error => {
