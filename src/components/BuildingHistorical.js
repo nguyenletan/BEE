@@ -423,7 +423,7 @@ const BuildingHistorical = (props) => {
           </SummaryBox>
           <SummaryBox className="mb-3">
             <SummaryBoxTitle>Total Energy Cost ($)</SummaryBoxTitle>
-            <SummaryBoxValue>{formatNumber(totalEnergyCost, 0, '$')}</SummaryBoxValue>
+            <SummaryBoxValue>{formatNumber(totalEnergyCost, 0)}</SummaryBoxValue>
           </SummaryBox>
           <SummaryBox className="mb-3 mb-lg-0">
             <SummaryBoxTitle>Total Carbon Emissions (Tons)</SummaryBoxTitle>
