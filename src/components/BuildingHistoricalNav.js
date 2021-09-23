@@ -34,7 +34,7 @@ const BuildingHistoricalNav = () => {
   const { url } = useRouteMatch()
   return (
     <SubNav className='nav nav-pills flex-column flex-sm-row'>
-      <NavLink activeClassName='active' className='flex-sm-fill text-sm-center nav-link' to={url + '/energy-performance'}>Energy
+      <NavLink activeClassName='active' className='flex-sm-fill text-sm-center nav-link' to={url + '/energy-performance'}>
         Performance<i className='bi bi-caret-down-fill' />
       </NavLink>
       <NavLink
