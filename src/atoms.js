@@ -218,6 +218,11 @@ export const buildingActivityState = atom({
   ],
 })
 
+export const energyPerformanceGroupByState = atom({
+  key: 'energyPerformanceGroupBy',
+  default: 'month',
+})
+
 export const addingBuildingProgressState = atom({
   key: 'addingBuildingProgress',
   default: 0,

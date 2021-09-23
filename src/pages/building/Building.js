@@ -18,6 +18,7 @@ import { findCountryByCountryCode } from '../../reference-tables/Country'
 import { printDateTime } from '../../Utilities'
 import moment from 'moment'
 import { EuiDatePicker, EuiDatePickerRange, EuiSelect } from '@elastic/eui'
+import BuildingSkeleton from '../../components/BuildingSkeleton'
 
 const BuildingWrapper = styled.div`
 
@@ -235,87 +236,10 @@ const Building = () => {
       <Header/>
       {isLoading ? (
         <BuildingWrapper>
-          <div className="d-flex justify-content-start flex-wrap">
-            {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
-            <h2 className="skeleton-box skeleton-square-box2"/>
-            <div>
-              <p className="skeleton-box skeleton-header-box"/>
-              <p className="skeleton-box skeleton-line-box"/>
-              <p className="skeleton-box skeleton-line-box"/>
-
-              <p className="skeleton-box skeleton-line-box2"/>
-              <p className="skeleton-box skeleton-line-box2"/>
-
-              <p className="skeleton-box skeleton-line-box3"/>
-              <p className="skeleton-box skeleton-line-box3"/>
-            </div>
-          </div>
-          <div className="d-flex justify-content-start flex-wrap mt-4">
-            <p className="skeleton-box skeleton-header-box"/>
-            <p className="skeleton-box skeleton-header-box"/>
-            <p className="skeleton-box skeleton-header-box"/>
-            <p className="skeleton-box skeleton-header-box"/>
-            <p className="skeleton-box skeleton-header-box"/>
-          </div>
-          <div className="d-flex justify-content-start flex-wrap mt-3">
-            <p className="skeleton-box skeleton-line-box3"/>
-            <p className="skeleton-box skeleton-line-box3"/>
-            <p className="skeleton-box skeleton-line-box4"/>
-            <p className="skeleton-box skeleton-line-box4"/>
-            <p className="skeleton-box skeleton-line-box4"/>
-            <p className="skeleton-box skeleton-line-box4"/>
-            <p className="skeleton-box skeleton-line-box4"/>
-          </div>
+          <BuildingSkeleton />
         </BuildingWrapper>) : (
         <>
           {generalBuildingInformation && (
-            id < 3 ? (
-              <BuildingWrapper>
-                <BuildingInfo
-                  name={generalBuildingInformation.name}
-                  image={generalBuildingInformation.image}
-                  address={generalBuildingInformation.address}
-                  useType={generalBuildingInformation.useType}
-                  tfa={generalBuildingInformation.gfa}
-                  tfaUnit={'m2'}
-                  avgOccupancy={generalBuildingInformation.avgOccupancy}
-                  storey={generalBuildingInformation.storey}
-                  constructed={generalBuildingInformation.constructed}
-                  greenBuildingRating={generalBuildingInformation.greenBuildingRating}
-                  buildingInfoLastEdited={generalBuildingInformation.buildingInfoLastEdited}
-                />
-
-                <BuildingHistoricalNav/>
-
-                <Switch>
-                  <Route path={`${path}/energy-performance`}>
-                    <EnergyPerformance data={generalBuildingInformation.energyPerformance}
-                                       consumptionBreakdown={BuildingInfoDataArray[id -
-                                       1].energyPerformance.breakDownConsumption}
-                                       costBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownCost}
-                                       co2EmissionsBreakdown={BuildingInfoDataArray[id -
-                                       1].energyPerformance.breakDownCO2Emissions}
-                    />
-                  </Route>
-                  <Route path={`${path}/comparison`}>
-                    <Comparison data={{ buildingName: generalBuildingInformation.name, id: id }}/>
-                  </Route>
-                  <Route path={`${path}/improve`}>
-                    <Improve
-                      consumptionBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownConsumption}
-                      costBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownCost}
-                      co2EmissionsBreakdown={BuildingInfoDataArray[id - 1].energyPerformance.breakDownCO2Emissions}
-                      data={generalBuildingInformation.energyPerformance}/>
-                  </Route>
-                  <Route path={`${path}/asset-reliability`}>
-                    <AssetReliability data={generalBuildingInformation.energyPerformance}/>
-                  </Route>
-                  <Redirect to={`${path}/energy-performance`}/>
-                </Switch>
-              </BuildingWrapper>
-
-            ) : (
-
               <BuildingWrapper>
 
                 <BuildingInfo
@@ -372,6 +296,7 @@ const Building = () => {
                           endDate={endDate}
                           maxDate={endDate}
                           isInvalid={isInvalid}
+                          dateFormat="DD/MM/YYYY"
                           aria-label="Start date"
                         />
                       }
@@ -382,6 +307,7 @@ const Building = () => {
                           startDate={startDate}
                           endDate={endDate}
                           minDate={startDate}
+                          dateFormat="DD/MM/YYYY"
                           isInvalid={isInvalid}
                           aria-label="End date"
                         />
@@ -390,17 +316,17 @@ const Building = () => {
                     <div className="ms-3 d-flex">
                       <button className="btn btn-primary" onClick={handleApply}>Apply</button>
                     </div>
-
                   </div>
-
-
                 </div>
 
                 <Switch>
                   <Route path={`${path}/energy-performance`}>
                     <EnergyPerformance electricConsumptions={generalBuildingInformation.electricConsumptions}
                                        electricConsumptionsFromHistorizedLogs={generalBuildingInformation.electricConsumptionsFromHistorizedLogs}
+                                       prev12MonthsElectricityConsumptionsFromHistorizedLogs={generalBuildingInformation.prev12MonthsElectricityConsumptionsFromHistorizedLogs}
+                                       prev24MonthsElectricityConsumptionsFromHistorizedLogs={generalBuildingInformation.prev24MonthsElectricityConsumptionsFromHistorizedLogs}
                                        energyPerformanceGroupBy={groupBy}
+                                       overallEnergyConsumptionInformation={generalBuildingInformation.overallEnergyConsumptionInformation}
                                        annualCost={generalBuildingInformation.annualCost}
                                        annualConsumption={generalBuildingInformation.annualConsumption}
                                        annualCarbonEmissions={generalBuildingInformation.annualCarbonEmissions}
@@ -433,9 +359,7 @@ const Building = () => {
                 </Switch>
 
               </BuildingWrapper>
-            )
-
-          )}
+            )}
         </>)}
     </>
   )

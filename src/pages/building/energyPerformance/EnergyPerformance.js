@@ -15,8 +15,11 @@ const EnergyPerformance = (props) => {
   // console.log(props)
 
   const {
+    overallEnergyConsumptionInformation,
     electricConsumptions,
     electricConsumptionsFromHistorizedLogs,
+    prev12MonthsElectricityConsumptionsFromHistorizedLogs,
+    prev24MonthsElectricityConsumptionsFromHistorizedLogs,
     energyPerformanceGroupBy,
     annualCost,
     annualConsumption,
@@ -39,7 +42,10 @@ const EnergyPerformance = (props) => {
     <>
       <BuildingHistorical energyConsumptions={electricConsumptions}
                           electricConsumptionsFromHistorizedLogs={electricConsumptionsFromHistorizedLogs}
+                          prev12MonthsElectricityConsumptionsFromHistorizedLogs={prev12MonthsElectricityConsumptionsFromHistorizedLogs}
+                          prev24MonthsElectricityConsumptionsFromHistorizedLogs={prev24MonthsElectricityConsumptionsFromHistorizedLogs}
                           energyPerformanceGroupBy={energyPerformanceGroupBy}
+                          overallEnergyConsumptionInformation={overallEnergyConsumptionInformation}
                           annualCost={annualCost}
                           annualConsumption={annualConsumption}
                           annualCarbonEmissions={annualCarbonEmissions}

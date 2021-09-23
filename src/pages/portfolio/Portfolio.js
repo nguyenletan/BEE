@@ -1,34 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Header from '../../components/Header'
-import buildingImage1 from '../../assets/images/building1.jpg'
-import buildingImage2 from '../../assets/images/building2.jpg'
-import buildingImage3 from '../../assets/images/building3.jpg'
 import BuildingBlock from '../../components/BuildingBlock'
 import { AddBuildingText, AddingIcon, BuildingBlocks, Description, PortfolioWrapper } from './PortfolioStyle'
 import { Link } from 'react-router-dom'
 import { getAllBuilding } from '../../api/BuildidingAPI'
 import { useAuth } from '../../AuthenticateProvider'
 
-const buildingData = [
-  {
-    id: 1,
-    title: 'Design Excellent Center',
-    address: '555 Lefty Road, Rungapore 256969',
-    photo: buildingImage1,
-  },
-  {
-    id: 2,
-    title: 'Hill Bay Central Bank',
-    address: '21 Hill Bay Boulevard, Rungapore 784398',
-    photo: buildingImage2,
-  }, {
-    id: 3,
-    title: 'People Square Middle',
-    address: 'People Square Middle, 18 Plus Street, Rungapore 239475',
-    photo: buildingImage3,
-  },
-]
 
 const BuildingListBlocks = ({ buildings }) => {
 
@@ -65,9 +43,6 @@ const Portfolio = () => {
     //  eslint-disable-next-line
   }, [])
 
-  const blocks = buildingData.map(data => {
-    return <BuildingBlock data={data} key={data.id}/>
-  })
 
   return (
     <>
@@ -86,11 +61,6 @@ const Portfolio = () => {
             </Link>
           </div>
         </div>
-
-        <BuildingBlocks className="d-flex justify-content-center justify-content-md-start flex-wrap">
-          {blocks}
-        </BuildingBlocks>
-
         {isLoading ? (
             <div className="d-flex justify-content-center justify-content-md-start flex-wrap">
               <div>

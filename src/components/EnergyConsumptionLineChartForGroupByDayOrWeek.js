@@ -14,7 +14,7 @@ const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy }) => {
           x: d.label,
           y: d.value,
         }
-      })
+      }),
     }
   })
 
@@ -34,6 +34,30 @@ const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy }) => {
 
   const commonProperties = {
     margin: { top: 0, right: 0, bottom: 60, left: 20 },
+    legends: [
+      {
+        dataFrom: 'keys',
+        anchor: 'top-right',
+        direction: 'row',
+        justify: false,
+        translateX: 50,
+        translateY: -70,
+        itemsSpacing: 2,
+        itemWidth: 100,
+        itemHeight: 20,
+        itemDirection: 'left-to-right',
+        itemOpacity: 0.85,
+        symbolSize: 20,
+        effects: [
+          {
+            on: 'hover',
+            style: {
+              itemOpacity: 1,
+            },
+          },
+        ],
+      },
+    ],
     sliceTooltip: ({ slice }) => {
       console.log(slice)
       return (
@@ -52,20 +76,20 @@ const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy }) => {
                 padding: '3px 0',
               }}
             >
-              <strong>{point.data.xFormatted}: </strong> {point.data.yFormatted}
+              <strong>{point.data.xFormatted}: </strong> {point.data.yFormatted} mWh
             </div>
           ))}
         </div>
       )
     },
-    enableArea:true,
-    areaOpacity:0.08,
+    enableArea: true,
+    areaOpacity: 0.07,
     colors: { scheme: 'category10' },
     data: datasource,
     animate: true,
     axisBottom: false,
-    enableSlices: false,
-    useMesh: true,
+    enableSlices: 'x',
+    useMesh: false,
     enableGridX: false,
     enablePoints: groupBy === 'week',
     isInteractive: true,

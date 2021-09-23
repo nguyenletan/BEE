@@ -4,8 +4,8 @@ import lightingImg from './assets/images/lighting.svg'
 import heatingImg from './assets/images/heating.svg'
 import wallImg from './assets/images/wall.svg'
 import mechVentImg from './assets/images/mechanical-ventilation.svg'
-
 import { addMonths } from 'date-fns'
+
 
 export const getCurrentColor = (type) => {
   switch (type) {
@@ -268,4 +268,182 @@ export const getMonthName = (month) => {
     default:
       return 'Error'
   }
+}
+
+export const calculateSameThingLastYear = (
+  value,
+  index,
+  prev12MonthsElectricityConsumptionsFromHistorizedLogs,
+  electricConsumptionsFromHistorizedLogs,
+  energyPerformanceGroupBy) => {
+
+  // console.log(energyPerformanceGroupBy)
+  // console.log(index)
+  // console.log(electricConsumptionsFromHistorizedLogs)
+  // console.log(prev12MonthsElectricityConsumptionsFromHistorizedLogs)
+
+  switch (energyPerformanceGroupBy) {
+    case 'year':
+      if (index >= 1) {
+        return value - electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[index - 1].value
+      } else {
+        return value - prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[index].value
+      }
+    case 'quarter':
+      if (index >= 4) {
+        return value - electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter[index - 4].value
+      } else {
+        return value - prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter[index].value
+      }
+    case 'month':
+    default:
+      if (index >= 12) {
+        return value - electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth[index - 12].value
+      } else {
+        return value - prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth[index].value
+      }
+  }
+
+}
+
+// Year: Average of previous 2 years
+export const calculateSameThingLastPeriod = (
+  value,
+  index,
+  prev12MonthsElectricityConsumptionsFromHistorizedLogs,
+  electricConsumptionsFromHistorizedLogs,
+  energyPerformanceGroupBy) => {
+
+  switch (energyPerformanceGroupBy) {
+    case 'year':
+      if (index >= 2) {
+        return value - (electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[index - 1].value +
+          electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[index - 2].value) / 2
+      } else {
+        if (index >= 1) {
+          return value - (electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[index - 1].value +
+            prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear.length -
+            1].value) / 2
+        } else {
+          return value - (
+            prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear.length -
+            1].value +
+            prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear.length -
+            2].value) / 2
+        }
+      }
+    case 'quarter':
+      if (index > 0) {
+        return value - electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter[index - 1].value
+      } else {
+        return value -
+          prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter[prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter.length -
+          1].value
+      }
+    case 'month':
+    default:
+      if (index > 0) {
+        return value - electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth[index - 1].value
+      } else {
+        return value -
+          prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth[prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth.length -
+          1].value
+      }
+  }
+
+}
+
+// Year: Average of previous 3 years
+export const calculate12MonthPeriod = (
+  value,
+  index,
+  prev24MonthsElectricityConsumptionsFromHistorizedLogs,
+  prev12MonthsElectricityConsumptionsFromHistorizedLogs,
+  electricConsumptionsFromHistorizedLogs,
+  energyPerformanceGroupBy) => {
+
+  let mergeArray, idx
+
+  switch (energyPerformanceGroupBy) {
+    case 'year':
+
+      // mergeArray = [
+      //   ...prev24MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear,
+      //   ...prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear,
+      //   ...electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear]
+      //
+      // const groupByYear = Object.entries(_.groupBy(mergeArray, 'year'))
+      //
+      // console.log(groupByYear)
+      // return 0
+      if (index >= 3) {
+        return value - (electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[index - 1].value +
+          electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[index - 2].value +
+          electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[index - 2].value
+        ) / 3
+      } else {
+        if (index >= 2) {
+          return value - (electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[index - 1].value +
+            electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[index - 2].value +
+            prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear.length -
+            1].value) / 3
+        } else {
+          if(index >= 1) {
+            return value - (electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[index - 1].value +
+              prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear.length -
+              1].value +
+              prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear.length -
+              -2].value) / 3
+          }
+          return value - (
+            prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear.length -
+            1].value +
+            prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear.length -
+            2].value +
+            prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear.length -
+            3].value) / 3
+        }
+      }
+    case 'quarter':
+       mergeArray = [
+        ...prev24MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter,
+        ...prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter,
+        ...electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter]
+       idx = index +
+        prev24MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter.length +
+        prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter.length
+
+      let sumCurrent4Quarter = 0
+      for(let i = idx; i > idx - 4 && i >= 0; i--) {
+        sumCurrent4Quarter += mergeArray[i].value
+      }
+      let sumPrev4Month = 0
+      for(let i = idx; i > idx - 8 && i >= 0; i--){
+        sumPrev4Month += mergeArray[i].value
+      }
+      return sumCurrent4Quarter - sumPrev4Month;
+
+    case 'month':
+    default:
+       mergeArray = [
+        ...prev24MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth,
+        ...prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth,
+        ...electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth]
+       idx = index +
+        prev24MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth.length +
+        prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth.length
+
+      let sumCurrent12Month = 0
+      for(let i = idx; i > idx - 12 && i >= 0; i--) {
+        sumCurrent12Month += mergeArray[i].value
+      }
+
+      let sumPrev12Month = 0
+      for(let i = idx; i > idx - 24 && i >= 0; i--){
+        sumPrev12Month += mergeArray[i].value
+      }
+      return sumCurrent12Month - sumPrev12Month;
+
+  }
+
 }
