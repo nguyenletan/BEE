@@ -5,6 +5,8 @@ import BreakDown from '../../../components/BreakDown'
 import SubSystemPerformance from '../comparision/components/SubSystemPerformance'
 import ImprovementMeasures from '../comparision/components/ImprovementMeasures'
 import PayBack from '../comparision/components/PayBack'
+import { useSetRecoilState } from 'recoil'
+import { isDisplayPerformanceFilterState } from '../../../atoms'
 
 const ImproveWrapper = styled.div`
   margin-bottom: 40px;
@@ -20,6 +22,9 @@ const Improve = (props) => {
     costBreakdown,
     co2EmissionsBreakdown
   } = props
+
+  const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
+  setIsDisplayPerformanceFilter(false)
 
 
   const improveData = {

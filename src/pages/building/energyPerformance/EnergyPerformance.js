@@ -6,6 +6,8 @@ import { formatNumber } from '../../../Utilities'
 import IncidentalGains from '../../../components/IncidentalGains'
 import DrillDownDonutChart from '../../../components/DrillDownDonutChart'
 import DrillDownDonutChart3Lv from '../../../components/DrillDownDonutChart3Lv'
+import { useSetRecoilState } from 'recoil'
+import { isDisplayPerformanceFilterState } from '../../../atoms'
 
 const BreakdownWrapper = styled.div`
   margin-bottom: 50px;
@@ -37,6 +39,9 @@ const EnergyPerformance = (props) => {
     co2EmissionsBreakdown,
     incidentalGainsOtherInformation,
   } = props
+
+  const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
+  setIsDisplayPerformanceFilter(true)
 
   return (
     <>

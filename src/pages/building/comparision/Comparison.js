@@ -6,6 +6,8 @@ import FacilityEnvelopeElementsComparison from './components/FacilityEnvelopeEle
 import SubSystemComparison from './components/SubSystemComparison'
 // import PerformanceComparison from './components/PerformanceComparison'
 import PerformanceComparison2 from './components/PerformanceComparison2'
+import { useSetRecoilState } from 'recoil'
+import { isDisplayPerformanceFilterState } from '../../../atoms'
 
 const ComparisonWrapper = styled.div`
   margin-bottom: 50px;
@@ -59,6 +61,9 @@ const Comparison = ({ data }) => {
     ],
     keys: ['Minimum_Requirement', 'Current_Performance', 'Potential_Best_In_Class']
   }
+
+  const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
+  setIsDisplayPerformanceFilter(false)
 
   return (
     <ComparisonWrapper>
