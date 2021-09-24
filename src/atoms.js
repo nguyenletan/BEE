@@ -227,3 +227,8 @@ export const addingBuildingProgressState = atom({
   key: 'addingBuildingProgress',
   default: 0,
 })
+
+export const isDisplayPerformanceFilterState = atom({
+  key: 'isDisplayPerformanceFilter',
+  default: true
+})

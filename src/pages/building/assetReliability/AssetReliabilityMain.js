@@ -7,12 +7,18 @@ import MaintenanceBudget from './components/MaintenanceBudget'
 import MaintenanceBudgetBySubSystem from './components/MaintenanceBudgetBySubSystem'
 
 import styled from 'styled-components'
+import { useSetRecoilState } from 'recoil'
+import { isDisplayPerformanceFilterState } from '../../../atoms'
 
 const TheSecondWrapper = styled.div`
   margin-bottom: 50px;
 `
 
 const AssetReliabilityMain = ({ data }) => {
+
+  const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
+  setIsDisplayPerformanceFilter(true)
+
   return (
     <>
 

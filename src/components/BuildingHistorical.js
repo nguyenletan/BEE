@@ -256,7 +256,6 @@ const BuildingHistorical = (props) => {
 
   const selectBar = (e) => {
     if(barData[e.index].isUnselected === false) {
-      console.log('isSelected')
       const newBarData = barData.map(x => {
         return {
           ...x,
@@ -270,6 +269,8 @@ const BuildingHistorical = (props) => {
       setTotalEnergyCost(e.data.value * 0.23 * 1000)
       setTotalCarbonEmissions(e.data.value * 0.000208 * 1000)
     } else {
+      console.log(e)
+      console.log(energyPerformanceGroupBy)
       const newBarData = barData.map((x, index) => {
         return {
           ...x,
@@ -291,6 +292,8 @@ const BuildingHistorical = (props) => {
       setTotalEnergyConsumption(e.data.value)
       setTotalEnergyCost(e.data.value * 0.23 * 1000)
       setTotalCarbonEmissions(e.data.value * 0.000208 * 1000)
+
+
     }
 
     // switch (energyPerformanceGroupBy) {
