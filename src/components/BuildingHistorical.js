@@ -12,6 +12,11 @@ import {
 import redUpImage from '../assets/images/red_up.jpg'
 import greenDownImage from '../assets/images/green_down.jpg'
 import EnergyConsumptionLineChartForGroupByDayOrWeek from './EnergyConsumptionLineChartForGroupByDayOrWeek'
+import { getBreakdownByTime } from '../api/BuildidingAPI'
+import { useParams } from 'react-router-dom'
+import { useAuth } from '../AuthenticateProvider'
+import { breakdownState } from '../atoms'
+import { useSetRecoilState } from 'recoil'
 
 
 //Performance please - Reason since we are looking at the Energy, CO2, and Building U-Value and Energy Cost ($) it would be more appropriate.
@@ -153,20 +158,12 @@ const BuildingHistorical = (props) => {
     prev24MonthsElectricityConsumptionsFromHistorizedLogs,
     periodOf12Month,
   } = props
-  let buildingEnergyUsageData = [
-    { label: 'Jan', value: '590' },
-    { label: 'Feb', value: '490' },
-    { label: 'Mar', value: '420' },
-    { label: 'Apr', value: '420' },
-    { label: 'May', value: '410' },
-    { label: 'Jun', value: '375' },
-    { label: 'Jul', value: '390' },
-    { label: 'Aug', value: '405' },
-    { label: 'Sep', value: '420' },
-    { label: 'Oct', value: '470' },
-    { label: 'Nov', value: '510' },
-    { label: 'Dec', value: '575' },
-  ]
+
+  const { id } = useParams()
+
+  const { user } = useAuth()
+
+  let buildingEnergyUsageData = []
 
   if (props.energyConsumptions && props.energyConsumptions.length > 0) {
     buildingEnergyUsageData = _.reverse(_.take(props.energyConsumptions, 12)).map(x => {
@@ -178,17 +175,12 @@ const BuildingHistorical = (props) => {
     })
   }
 
-  // const [sameMonthLastYearComparison, setSameMonthLastYearComparison] = useState(
-  //   _.takeRight(buildingEnergyUsageData, 1)[0]?.sameMonthLastYearComparison)
-
   const [the1stHistoricalComparison, setThe1stHistoricalComparison] = useState()
 
   const [the2ndHistoricalComparison, setThe2ndHistoricalComparison] = useState()
 
   const [the3rdHistoricalComparison, setThe3rdHistoricalComparison] = useState()
 
-
-  //useState(_.takeRight(buildingEnergyUsageData, 1)[0]?.lastMonthComparison)
 
   let datasource = buildingEnergyUsageData
 
@@ -200,6 +192,8 @@ const BuildingHistorical = (props) => {
   const [totalEnergyConsumption, setTotalEnergyConsumption] = useState(overallEnergyConsumptionInformation?.totalEnergyConsumption)
   const [totalEnergyCost, setTotalEnergyCost] = useState(overallEnergyConsumptionInformation?.totalEnergyCost)
   const [totalCarbonEmissions, setTotalCarbonEmissions] = useState(overallEnergyConsumptionInformation?.totalCarbonEmissions)
+
+  const setBreakdownState = useSetRecoilState(breakdownState)
 
 
   useEffect(() => {
@@ -254,7 +248,7 @@ const BuildingHistorical = (props) => {
 
   }, [energyPerformanceGroupBy, electricConsumptionsFromHistorizedLogs])
 
-  const selectBar = (e) => {
+  const selectBar = async (e) => {
     if(barData[e.index].isUnselected === false) {
       const newBarData = barData.map(x => {
         return {
@@ -265,9 +259,9 @@ const BuildingHistorical = (props) => {
       setBarData([...newBarData])
       setThe1stHistoricalComparison(null)
       setThe2ndHistoricalComparison(null)
-      setTotalEnergyConsumption(e.data.value)
-      setTotalEnergyCost(e.data.value * 0.23 * 1000)
-      setTotalCarbonEmissions(e.data.value * 0.000208 * 1000)
+      setTotalEnergyConsumption(overallEnergyConsumptionInformation?.totalEnergyConsumption)
+      setTotalEnergyCost(overallEnergyConsumptionInformation?.totalEnergyCost)
+      setTotalCarbonEmissions(overallEnergyConsumptionInformation?.totalCarbonEmissions)
     } else {
       console.log(e)
       console.log(energyPerformanceGroupBy)
@@ -293,6 +287,27 @@ const BuildingHistorical = (props) => {
       setTotalEnergyCost(e.data.value * 0.23 * 1000)
       setTotalCarbonEmissions(e.data.value * 0.000208 * 1000)
 
+      const idToken = await user.getIdToken()
+      let breakdown
+      switch (energyPerformanceGroupBy) {
+        case 'year':
+          breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, '00', '00')
+          break;
+        case 'quarter':
+          breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.month, '00')
+          break;
+        // case 'week':
+        //   await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.week, '00')
+        //   break;
+        case 'day':
+          breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.month, e.data.day)
+          break;
+        case 'month':
+        default:
+          breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.month, '01')
+          break
+      }
+      setBreakdownState({...breakdown})
 
     }
 
