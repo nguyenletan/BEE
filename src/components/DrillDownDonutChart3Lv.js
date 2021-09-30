@@ -1,7 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ResponsivePie } from '@nivo/pie'
-import { getColorPattern } from '../Utilities'
+import { formatNumber, getColorPattern } from '../Utilities'
+import {
+  breakDownLevelState, breakdownState,
+  consumptionBreakdownState,
+  isBreakDownDrillDownState,
+  selectedSubBreakdownState,
+} from '../atoms'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 
 const BreakDownBlock = styled.div`
   background-color: #fafafa;
@@ -29,6 +36,7 @@ const BreakDownSubTitle = styled.p`
   font-weight: 600;
   margin-bottom: 0;
 `
+
 const Ul = styled.ul`
   list-style-type: none;
   margin-block-start: 0;
@@ -69,10 +77,16 @@ const DrillDownDonutChart3Lv = (props) => {
   } = props
 
   const [dataSource, setDataSource] = useState(data)
-  const [prevDataSource, setPrevDataSource] = useState(null)
-  const [isDrillDown, setIsDrillDown] = useState(false)
-  const [level, setLevel] = useState(0)
-  const [selectedSubBreakdown, setSelectedSubBreakdown] = useState(null)
+  const [selectedSubBreakdown, setSelectedSubBreakdown] = useRecoilState(selectedSubBreakdownState)
+  const [isBreakDownDrillDown, setIsBreakDownDrillDown] = useRecoilState(isBreakDownDrillDownState)
+  const [breakDownLevel, setBreakDownLevel] = useRecoilState(breakDownLevelState)
+  const breakdownSt = useRecoilValue(breakdownState)
+  const setConsumptionBreakdownSt =  useSetRecoilState(consumptionBreakdownState)
+
+  useEffect(() => {
+    console.log('DrillDownDonutChart3Lv changed')
+    setDataSource(data)
+  }, [data])
 
   const commonProperties = {
     margin: { top: 40, right: 20, bottom: 20, left: 20 },
@@ -171,32 +185,36 @@ const DrillDownDonutChart3Lv = (props) => {
 
   const handleClick = (e) => {
     if (e.data?.subBreakdown) {
-      if (level === 1) {
-        setPrevDataSource(data.filter(d => d.id === selectedSubBreakdown)[0].subBreakdown)
-      }
-      setLevel(level + 1)
-      setSelectedSubBreakdown(e.id)
-      setDataSource(e.data.subBreakdown)
-      setIsDrillDown(true)
+      setBreakDownLevel(breakDownLevel + 1)
+      setSelectedSubBreakdown([...e.id])
+      setIsBreakDownDrillDown(true)
+      setConsumptionBreakdownSt(e.data.subBreakdown)
     }
-
   }
 
   const handleBackBtn = () => {
-    if (level === 1) {
-      setSelectedSubBreakdown(null)
-      setDataSource(data)
-      setIsDrillDown(false)
+    setSelectedSubBreakdown(null)
+    setIsBreakDownDrillDown(false)
+    setBreakDownLevel(0)
+    setConsumptionBreakdownSt(breakdownSt.consumptionBreakdown)
+
+  }
+
+  const getValue = (value, title)=> {
+    if(title === 'Consumption Breakdown') {
+      return formatNumber(value / 1000, 2, 'MWh')
     } else {
-      setDataSource([...prevDataSource])
-      setPrevDataSource(null)
+      if (title === 'Cost Breakdown') {
+        return formatNumber(value * 0.23, 2, '$')
+      } else {
+        return formatNumber(value * 0.000208, 2, 'Ton')
+      }
     }
-    setLevel(level - 1)
   }
 
   const list = dataSource.map(x => <li className="d-flex justify-content-between" key={x.id}>
     <Label fontSize={informationFontSize}>{x.id}:</Label>
-    <Value fontSize={informationFontSize}>{x.value}%</Value>
+    <Value fontSize={informationFontSize}>{getValue(x.consumption, title) }</Value>
   </li>)
 
   return (
@@ -207,8 +225,8 @@ const DrillDownDonutChart3Lv = (props) => {
           {subTitle ?? (<BreakDownSubTitle>{subTitle}</BreakDownSubTitle>)}
         </div>
         <div>
-          {isDrillDown &&
-          <button className="btn btn-sm btn-outline-primary" onClick={handleBackBtn}>Back</button>}
+          {isBreakDownDrillDown === true &&
+          <button className="btn btn-sm btn-outline-primary" onClick={handleBackBtn}>Reset</button>}
         </div>
       </div>
       <ResponsivePieWrapper height={chartHeight}>
@@ -217,7 +235,7 @@ const DrillDownDonutChart3Lv = (props) => {
           innerRadius={innerRadius ?? 0.55}
           fit
           startAngle={startAngle ?? -120}
-          colors={getColorPattern(isDrillDown ? 1 : 0)}
+          colors={getColorPattern(isBreakDownDrillDown ? 1 : 0)}
           tooltip={({ datum: { id, value, color } }) => (
             <div
               style={{

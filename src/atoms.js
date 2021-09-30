@@ -230,5 +230,30 @@ export const addingBuildingProgressState = atom({
 
 export const isDisplayPerformanceFilterState = atom({
   key: 'isDisplayPerformanceFilter',
-  default: true
+  default: true,
+})
+
+export const breakdownState = atom({
+  key: 'breakdown',
+  default: null,
+})
+
+export const consumptionBreakdownState = atom({
+  key: 'consumptionBreakdown',
+  default: null,
+})
+
+export const isBreakDownDrillDownState = atom({
+  key: 'isBreakDownDrillDown',
+  default: false,
+})
+
+export const breakDownLevelState = atom({
+  key: 'breakDownLevelState',
+  default: 0,
+})
+
+export const selectedSubBreakdownState = atom({
+  key: 'selectedSubBreakdown',
+  default: null
 })
