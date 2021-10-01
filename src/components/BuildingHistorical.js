@@ -15,8 +15,8 @@ import EnergyConsumptionLineChartForGroupByDayOrWeek from './EnergyConsumptionLi
 import { getBreakdownByTime } from '../api/BuildidingAPI'
 import { useParams } from 'react-router-dom'
 import { useAuth } from '../AuthenticateProvider'
-import { breakdownState } from '../atoms'
-import { useSetRecoilState } from 'recoil'
+import { breakdownState, originalConsumptionBreakdownState } from '../atoms'
+import { useRecoilState, useRecoilValue } from 'recoil'
 
 
 //Performance please - Reason since we are looking at the Energy, CO2, and Building U-Value and Energy Cost ($) it would be more appropriate.
@@ -76,7 +76,7 @@ const BuildingEnergyUsageWrapper = styled.div`
   //margin-right: 30px;
   //margin-bottom: 50px;
 
-  padding: 25px 10px 0px 10px;
+  padding: 25px 10px 0 10px;
   height: 491px;
   border-radius: 25px;
   @media (min-width: 1024px) {
@@ -157,7 +157,11 @@ const BuildingHistorical = (props) => {
     prev12MonthsElectricityConsumptionsFromHistorizedLogs,
     prev24MonthsElectricityConsumptionsFromHistorizedLogs,
     periodOf12Month,
+    consumptionBreakdown
   } = props
+
+  console.log('consumptionBreakdown')
+  console.log(consumptionBreakdown)
 
   const { id } = useParams()
 
@@ -193,7 +197,8 @@ const BuildingHistorical = (props) => {
   const [totalEnergyCost, setTotalEnergyCost] = useState(overallEnergyConsumptionInformation?.totalEnergyCost)
   const [totalCarbonEmissions, setTotalCarbonEmissions] = useState(overallEnergyConsumptionInformation?.totalCarbonEmissions)
 
-  const setBreakdownState = useSetRecoilState(breakdownState)
+  const [breakdown, setBreakdown] = useRecoilState(breakdownState)
+  const originalConsumptionBreakdown = useRecoilValue(originalConsumptionBreakdownState)
 
 
   useEffect(() => {
@@ -249,7 +254,7 @@ const BuildingHistorical = (props) => {
   }, [energyPerformanceGroupBy, electricConsumptionsFromHistorizedLogs])
 
   const selectBar = async (e) => {
-    if(barData[e.index].isUnselected === false) {
+    if(barData[e.index].isUnselected === false) { // deselected a bar
       const newBarData = barData.map(x => {
         return {
           ...x,
@@ -262,7 +267,8 @@ const BuildingHistorical = (props) => {
       setTotalEnergyConsumption(overallEnergyConsumptionInformation?.totalEnergyConsumption)
       setTotalEnergyCost(overallEnergyConsumptionInformation?.totalEnergyCost)
       setTotalCarbonEmissions(overallEnergyConsumptionInformation?.totalCarbonEmissions)
-    } else {
+      setBreakdown({...breakdown, ...{consumptionBreakdown: originalConsumptionBreakdown}})
+    } else { // select a bar
       console.log(e)
       console.log(energyPerformanceGroupBy)
       const newBarData = barData.map((x, index) => {
@@ -307,7 +313,7 @@ const BuildingHistorical = (props) => {
           breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.month, '01')
           break
       }
-      setBreakdownState({...breakdown})
+      setBreakdown({...breakdown})
 
     }
 
