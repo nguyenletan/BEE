@@ -233,6 +233,11 @@ export const isDisplayPerformanceFilterState = atom({
   default: true,
 })
 
+export const originalConsumptionBreakdownState = atom({
+  key: 'originalConsumptionBreakdown',
+  default: null,
+})
+
 export const breakdownState = atom({
   key: 'breakdown',
   default: null,

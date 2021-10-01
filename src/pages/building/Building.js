@@ -19,8 +19,8 @@ import { printDateTime } from '../../Utilities'
 import moment from 'moment'
 import { EuiDatePicker, EuiDatePickerRange, EuiSelect } from '@elastic/eui'
 import BuildingSkeleton from '../../components/BuildingSkeleton'
-import { isDisplayPerformanceFilterState } from '../../atoms'
-import { useRecoilValue } from 'recoil'
+import { isDisplayPerformanceFilterState, originalConsumptionBreakdownState } from '../../atoms'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 const BuildingWrapper = styled.div`
 
@@ -206,12 +206,15 @@ const Building = () => {
   const [generalBuildingInformation, setGeneralBuildingInformation] = useState(null)
 
   const isDisplayPerformanceFilter = useRecoilValue(isDisplayPerformanceFilterState)
+  const setOriginalConsumptionBreakdown = useSetRecoilState(originalConsumptionBreakdownState)
 
   const getBuildingInfo = async () => {
     setIsLoading(true)
     const idToken = await user.getIdToken()
     const tmp = await getBuildingById(id, startDate.format('YYYY-MM-DD'), endDate.format('YYYY-MM-DD'), idToken)
-    // console.log(tmp)
+    console.log('getBuildingById:')
+    console.log(tmp)
+    setOriginalConsumptionBreakdown([...tmp?.consumptionBreakdown])
     setGeneralBuildingInformation(tmp)
     setIsLoading(false)
   }

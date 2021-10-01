@@ -21,11 +21,13 @@ const BreakDown = (props) => {
 
   const setBreakDownLevel = useSetRecoilState(breakDownLevelState)
   const setIsBreakDownDrillDown = useSetRecoilState(isBreakDownDrillDownState)
-  const  setSelectedSubBreakdown =  useSetRecoilState(selectedSubBreakdownState)
+  const setSelectedSubBreakdown =  useSetRecoilState(selectedSubBreakdownState)
   const [consumptionBreakdownSt, setConsumptionBreakdownSt] =  useRecoilState(consumptionBreakdownState)
 
   useEffect(() => {
     console.log('breakdown changed')
+    console.log('consumptionBreakdown')
+    console.log(consumptionBreakdown)
     setConsumptionBreakdownSt(consumptionBreakdown)
 
     setSelectedSubBreakdown(null)

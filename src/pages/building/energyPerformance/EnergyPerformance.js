@@ -42,6 +42,7 @@ const EnergyPerformance = (props) => {
                           prev24MonthsElectricityConsumptionsFromHistorizedLogs={prev24MonthsElectricityConsumptionsFromHistorizedLogs}
                           energyPerformanceGroupBy={energyPerformanceGroupBy}
                           overallEnergyConsumptionInformation={overallEnergyConsumptionInformation}
+                          consumptionBreakdown={breakdownRecoilState?.consumptionBreakdown}
       />
 
       <BreakDown
