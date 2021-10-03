@@ -4,8 +4,7 @@ import lightingImg from './assets/images/lighting.svg'
 import heatingImg from './assets/images/heating.svg'
 import wallImg from './assets/images/wall.svg'
 import mechVentImg from './assets/images/mechanical-ventilation.svg'
-import { addMonths } from 'date-fns'
-
+import { addMonths, lastDayOfMonth, lastDayOfQuarter, startOfQuarter } from 'date-fns'
 
 export const getCurrentColor = (type) => {
   switch (type) {
@@ -270,18 +269,120 @@ export const getMonthName = (month) => {
   }
 }
 
+export const shortMonthOptions = () => {
+  return [
+    {
+      value: 1,
+      text: 'Jan',
+    },
+    {
+      value: 2,
+      text: 'Feb',
+    },
+    {
+      value: 3,
+      text: 'Mar',
+    },
+    {
+      value: 4,
+      text: 'Apr',
+    },
+    {
+      value: 5,
+      text: 'May',
+    },
+    {
+      value: 6,
+      text: 'Jun',
+    },
+    {
+      value: 7,
+      text: 'Jul',
+    },
+    {
+      value: 8,
+      text: 'Aug',
+    },
+    {
+      value: 8,
+      text: 'Sep',
+    },
+    {
+      value: 10,
+      text: 'Oct',
+    },
+    {
+      value: 11,
+      text: 'Nov',
+    },
+    {
+      value: 12,
+      text: 'Dec',
+    },
+  ]
+}
+
+export const quarterOptions = () => {
+  return [
+    {
+      value: 1,
+      text: 'Q1',
+    },
+    {
+      value: 2,
+      text: 'Q2',
+    },
+    {
+      value: 3,
+      text: 'Q3',
+    },
+    {
+      value: 4,
+      text: 'Q4',
+    },
+  ]
+}
+
+export const selectStartYear = (year) => {
+  return new Date(year + '-01-01')
+}
+
+export const selectEndYear = (year) => {
+  return new Date(year + '-12-31')
+}
+
+export const selectStartQuarter = (year, quarter) => {
+  console.log(quarter)
+  const month = quarter * 3
+  return startOfQuarter(
+    new Date(year + '-' + month + '-01'),
+  )
+}
+
+export const selectEndQuarter = (year, quarter) => {
+  const month = quarter * 3
+
+  return lastDayOfQuarter(
+    new Date(year + '-' + month + '-01'),
+  )
+}
+
+export const selectStartMonth = (year, month) => {
+  return new Date(year + '-' + month + '-01')
+}
+
+export const selectEndMonth = (year, month) => {
+  return lastDayOfMonth(
+    new Date(year + '-' + month + '-01'),
+  )
+}
+
 export const calculateSameThingLastYear = (
   value,
   index,
   prev12MonthsElectricityConsumptionsFromHistorizedLogs,
   electricConsumptionsFromHistorizedLogs,
   energyPerformanceGroupBy) => {
-
-  // console.log(energyPerformanceGroupBy)
-  // console.log(index)
-  // console.log(electricConsumptionsFromHistorizedLogs)
-  // console.log(prev12MonthsElectricityConsumptionsFromHistorizedLogs)
-
   switch (energyPerformanceGroupBy) {
     case 'year':
       if (index >= 1) {
@@ -388,7 +489,7 @@ export const calculate12MonthPeriod = (
             prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear.length -
             1].value) / 3
         } else {
-          if(index >= 1) {
+          if (index >= 1) {
             return value - (electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[index - 1].value +
               prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear.length -
               1].value +
@@ -405,44 +506,44 @@ export const calculate12MonthPeriod = (
         }
       }
     case 'quarter':
-       mergeArray = [
+      mergeArray = [
         ...prev24MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter,
         ...prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter,
         ...electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter]
-       idx = index +
+      idx = index +
         prev24MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter.length +
         prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter.length
 
       let sumCurrent4Quarter = 0
-      for(let i = idx; i > idx - 4 && i >= 0; i--) {
+      for (let i = idx; i > idx - 4 && i >= 0; i--) {
         sumCurrent4Quarter += mergeArray[i].value
       }
       let sumPrev4Month = 0
-      for(let i = idx; i > idx - 8 && i >= 0; i--){
+      for (let i = idx; i > idx - 8 && i >= 0; i--) {
         sumPrev4Month += mergeArray[i].value
       }
-      return sumCurrent4Quarter - sumPrev4Month;
+      return sumCurrent4Quarter - sumPrev4Month
 
     case 'month':
     default:
-       mergeArray = [
+      mergeArray = [
         ...prev24MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth,
         ...prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth,
         ...electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth]
-       idx = index +
+      idx = index +
         prev24MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth.length +
         prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth.length
 
       let sumCurrent12Month = 0
-      for(let i = idx; i > idx - 12 && i >= 0; i--) {
+      for (let i = idx; i > idx - 12 && i >= 0; i--) {
         sumCurrent12Month += mergeArray[i].value
       }
 
       let sumPrev12Month = 0
-      for(let i = idx; i > idx - 24 && i >= 0; i--){
+      for (let i = idx; i > idx - 24 && i >= 0; i--) {
         sumPrev12Month += mergeArray[i].value
       }
-      return sumCurrent12Month - sumPrev12Month;
+      return sumCurrent12Month - sumPrev12Month
 
   }
 

@@ -25,11 +25,7 @@ const BreakDown = (props) => {
   const [consumptionBreakdownSt, setConsumptionBreakdownSt] =  useRecoilState(consumptionBreakdownState)
 
   useEffect(() => {
-    console.log('breakdown changed')
-    console.log('consumptionBreakdown')
-    console.log(consumptionBreakdown)
     setConsumptionBreakdownSt(consumptionBreakdown)
-
     setSelectedSubBreakdown(null)
     setBreakDownLevel(0)
     setIsBreakDownDrillDown(false)

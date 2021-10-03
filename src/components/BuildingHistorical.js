@@ -156,12 +156,8 @@ const BuildingHistorical = (props) => {
     overallEnergyConsumptionInformation,
     prev12MonthsElectricityConsumptionsFromHistorizedLogs,
     prev24MonthsElectricityConsumptionsFromHistorizedLogs,
-    periodOf12Month,
-    consumptionBreakdown
+    periodOf12Month
   } = props
-
-  console.log('consumptionBreakdown')
-  console.log(consumptionBreakdown)
 
   const { id } = useParams()
 
@@ -269,8 +265,6 @@ const BuildingHistorical = (props) => {
       setTotalCarbonEmissions(overallEnergyConsumptionInformation?.totalCarbonEmissions)
       setBreakdown({...breakdown, ...{consumptionBreakdown: originalConsumptionBreakdown}})
     } else { // select a bar
-      console.log(e)
-      console.log(energyPerformanceGroupBy)
       const newBarData = barData.map((x, index) => {
         return {
           ...x,
