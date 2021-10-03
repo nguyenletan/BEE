@@ -15,9 +15,19 @@ import AssetReliability from './assetReliability/AssetReliability'
 import { getBuildingById } from '../../api/BuildidingAPI'
 import { useAuth } from '../../AuthenticateProvider'
 import { findCountryByCountryCode } from '../../reference-tables/Country'
-import { printDateTime } from '../../Utilities'
+import {
+  printDateTime,
+  quarterOptions,
+  selectEndMonth,
+  selectEndQuarter,
+  selectEndYear,
+  selectStartMonth,
+  selectStartQuarter,
+  selectStartYear,
+  shortMonthOptions,
+} from '../../Utilities'
 import moment from 'moment'
-import { EuiDatePicker, EuiDatePickerRange, EuiSelect } from '@elastic/eui'
+import { EuiDatePicker, EuiDatePickerRange, EuiFieldNumber, EuiSelect } from '@elastic/eui'
 import BuildingSkeleton from '../../components/BuildingSkeleton'
 import { isDisplayPerformanceFilterState, originalConsumptionBreakdownState } from '../../atoms'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
@@ -30,23 +40,62 @@ const BuildingWrapper = styled.div`
   }
 `
 
+const FilterWrapper = styled.div`
+  width: 100%
+`
+
+const GroupBy = styled.div`
+  .euiFormControlLayout {
+    max-width: 100px;
+  }
+`
+
 const Label = styled.label`
-  line-height: 40px;
+  line-height: 30px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   margin-right: 10px;
+`
+
+const StartLabel = styled.label`
+  line-height: 30px;
+  font-weight: bold;
+  font-size: 16px;
+  margin-right: 10px;
+`
+
+const EndLabel = styled.label`
+  line-height: 30px;
+  font-weight: bold;
+  font-size: 16px;
+  margin-right: 10px;
+  margin-left: 20px;
+`
+const ErrorMsg = styled.span`
+  margin-left: 20px;
+  color: red;
+  font-weight: bold;
+  line-height: 32px;
 `
 
 const Building = () => {
   const { id } = useParams()
   const { user } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
+  const [startTime, setStartTime] = useState(moment().subtract(1, 'y'))
+  const [endTime, setEndTime] = useState(moment())
   const [startDate, setStartDate] = useState(moment().subtract(1, 'y'))
   const [endDate, setEndDate] = useState(moment())
-  const [groupBy, setGroupBy] = useState('month')
+  const [startMonth, setStartMonth] = useState(moment().month() + 1)
+  const [startQuarter, setStartQuarter] = useState(moment().quarter())
+  const [startYear, setStartYear] = useState(moment().year())
 
-  const isInvalid =
-    startDate > endDate || endDate > moment()
+  const [endMonth, setEndMonth] = useState(moment().month() + 1)
+  const [endQuarter, setEndQuarter] = useState(moment().quarter())
+  const [endYear, setEndYear] = useState(moment().year())
+  const [groupBy, setGroupBy] = useState('month')
+  const [energyPerformanceGroupBy, setEnergyPerformanceGroupBy] = useState('month')
+  const [isInValid, setIsInValid] = useState(false)
 
   const handleGroupByChange = (e) => {
     setGroupBy(e.target.value)
@@ -204,19 +253,21 @@ const Building = () => {
   ]
 
   const [generalBuildingInformation, setGeneralBuildingInformation] = useState(null)
-
   const isDisplayPerformanceFilter = useRecoilValue(isDisplayPerformanceFilterState)
   const setOriginalConsumptionBreakdown = useSetRecoilState(originalConsumptionBreakdownState)
 
   const getBuildingInfo = async () => {
-    setIsLoading(true)
+
     const idToken = await user.getIdToken()
-    const tmp = await getBuildingById(id, startDate.format('YYYY-MM-DD'), endDate.format('YYYY-MM-DD'), idToken)
-    console.log('getBuildingById:')
-    console.log(tmp)
-    setOriginalConsumptionBreakdown([...tmp?.consumptionBreakdown])
-    setGeneralBuildingInformation(tmp)
-    setIsLoading(false)
+    if (!isInValid) {
+      setIsLoading(false)
+      const tmp = await getBuildingById(id, moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'),
+        idToken)
+      setOriginalConsumptionBreakdown([...tmp?.consumptionBreakdown])
+      setEnergyPerformanceGroupBy(groupBy)
+      setGeneralBuildingInformation(tmp)
+      setIsLoading(false)
+    }
   }
 
   const handleApply = () => {
@@ -224,7 +275,6 @@ const Building = () => {
   }
 
   useEffect(() => {
-    //  eslint-disable-next-line
     if (id < 3) {
       setGeneralBuildingInformation(BuildingInfoDataArray[id - 1])
     } else {
@@ -232,6 +282,36 @@ const Building = () => {
     }
     //  eslint-disable-next-line
   }, [])
+
+  useEffect(() => {
+    let _startTime = startDate
+    let _endTime = endDate
+    switch (groupBy) {
+      case 'year':
+        _startTime = selectStartYear(startYear)
+        _endTime = selectEndYear(endYear)
+        break
+      case 'quarter':
+        _startTime = selectStartQuarter(startYear, startQuarter)
+        _endTime = selectEndQuarter(endYear, endQuarter)
+        break
+      case 'month':
+        _startTime = selectStartMonth(startYear, startMonth)
+        _endTime = selectEndMonth(endYear, endMonth)
+        break
+      case 'day':
+      default:
+        break
+    }
+    setStartTime(_startTime)
+    setEndTime(_endTime)
+    if (_startTime > _endTime) {
+      setIsInValid(true)
+    } else {
+      setIsInValid(false)
+    }
+    //  eslint-disable-next-line
+  }, [startMonth, startYear, startDate, startQuarter, endMonth, endYear, endDate, endQuarter, groupBy])
 
   //const BuildingInfoData = id < 3 ? BuildingInfoDataArray[id - 1] : null
 
@@ -275,10 +355,11 @@ const Building = () => {
               <BuildingHistoricalNav/>
 
               {isDisplayPerformanceFilter && (
-                <div className="my-5 d-flex justify-content-between">
-                  <div className="d-flex justify-content-start align-content-end">
+                <FilterWrapper className="my-5 d-block justify-content-between ">
+                  <GroupBy className="d-flex justify-content-start align-content-end mb-3">
                     <Label className="">Type</Label>
                     <EuiSelect
+                      compressed
                       fullWidth={false}
                       value={groupBy}
                       onChange={handleGroupByChange}
@@ -286,45 +367,146 @@ const Building = () => {
                         { value: 'year', text: 'Year' },
                         { value: 'quarter', text: 'Quarter' },
                         { value: 'month', text: 'Month' },
-                        { value: 'week', text: 'Week' },
+                        // { value: 'week', text: 'Week' },
                         { value: 'day', text: 'Day' }]}/>
-                  </div>
 
+                    {isInValid && <ErrorMsg>Start date should be greater than End date</ErrorMsg>}
+                  </GroupBy>
 
-                  <div className="ms-3 d-flex">
-
-                    <EuiDatePickerRange
-
-                      startDateControl={
-                        <EuiDatePicker
-                          selected={startDate}
-                          onChange={setStartDate}
-                          startDate={startDate}
-                          endDate={endDate}
-                          maxDate={endDate}
-                          isInvalid={isInvalid}
-                          dateFormat="DD/MM/YYYY"
-                          aria-label="Start date"
+                  <div className="d-flex mb-2">
+                    {groupBy === 'month' && (
+                      <div className="d-flex">
+                        <StartLabel className="">Start</StartLabel>
+                        <EuiSelect
+                          compressed
+                          fullWidth={false}
+                          value={startMonth}
+                          onChange={(e) => setStartMonth(e.target.value)}
+                          options={shortMonthOptions()}
                         />
-                      }
-                      endDateControl={
-                        <EuiDatePicker
-                          selected={endDate}
-                          onChange={setEndDate}
-                          startDate={startDate}
-                          endDate={endDate}
-                          minDate={startDate}
-                          dateFormat="DD/MM/YYYY"
-                          isInvalid={isInvalid}
-                          aria-label="End date"
+                        <EuiFieldNumber
+                          compressed
+                          placeholder="Start Year"
+                          value={startYear}
+                          onChange={(e) => setStartYear(e.target.value)}
+                          max={moment().year()}
+                          min={1960}
                         />
-                      }
-                    />
+
+                        <EndLabel className="">End</EndLabel>
+                        <EuiSelect
+                          compressed
+                          fullWidth={false}
+                          onChange={(e) => setEndMonth(e.target.value)}
+                          value={endMonth}
+                          options={shortMonthOptions()}
+                        />
+                        <EuiFieldNumber
+                          compressed
+                          placeholder="End Year"
+                          value={endYear}
+                          onChange={(e) => setEndYear(e.target.value)}
+                          max={moment().year()}
+                          min={1960}
+                        />
+                      </div>
+                    )}
+
+                    {groupBy === 'quarter' && (
+                      <div className="d-flex">
+                        <StartLabel className="">Start</StartLabel>
+                        <EuiSelect
+                          compressed
+                          fullWidth={false}
+                          value={startQuarter}
+                          onChange={(e) => setStartQuarter(e.target.value)}
+                          options={quarterOptions()}
+                        />
+                        <EuiFieldNumber
+                          compressed
+                          placeholder="Start Year"
+                          value={startYear}
+                          onChange={(e) => setStartYear(e.target.value)}
+                          max={moment().year()}
+                          min={1960}
+                        />
+
+                        <EndLabel className="">End</EndLabel>
+                        <EuiSelect
+                          compressed
+                          fullWidth={false}
+                          value={endQuarter}
+                          onChange={(e) => setEndQuarter(e.target.value)}
+                          options={quarterOptions()}
+                        />
+                        <EuiFieldNumber
+                          compressed
+                          placeholder="End Year"
+                          value={endYear}
+                          onChange={(e) => setEndYear(e.target.value)}
+                          max={moment().year()}
+                          min={1960}
+                        />
+                      </div>
+                    )}
+
+                    {groupBy === 'year' && (
+                      <div className="d-flex">
+                        <StartLabel className="">Start</StartLabel>
+                        <EuiFieldNumber
+                          compressed
+                          placeholder="Start Year"
+                          onChange={(e) => setStartYear(e.target.value)}
+                          value={startYear}
+                          max={moment().year()}
+                          min={1960}
+                        />
+                        <EndLabel className="">End</EndLabel>
+                        <EuiFieldNumber
+                          compressed
+                          placeholder="End Year"
+                          onChange={(e) => setEndYear(e.target.value)}
+                          value={endYear}
+                          max={moment().year()}
+                          min={1960}
+                        />
+                      </div>
+                    )}
+
+                    {groupBy === 'day' && (
+                      <EuiDatePickerRange
+                        startDateControl={
+                          <EuiDatePicker
+                            selected={startDate}
+                            onChange={setStartDate}
+                            startDate={startDate}
+                            endDate={endDate}
+                            maxDate={endDate}
+                            isInvalid={startDate > endDate}
+                            dateFormat="DD/MM/YYYY"
+                            aria-label="Start date"
+                          />
+                        }
+                        endDateControl={
+                          <EuiDatePicker
+                            selected={endDate}
+                            onChange={setEndDate}
+                            startDate={startDate}
+                            endDate={endDate}
+                            minDate={startDate}
+                            dateFormat="DD/MM/YYYY"
+                            isInvalid={startDate > endDate}
+                            aria-label="End date"
+                          />
+                        }
+                      />)}
                     <div className="ms-3 d-flex">
-                      <button className="btn btn-primary" onClick={handleApply}>Apply</button>
+                      <button disabled={isInValid} className="btn btn-primary" onClick={handleApply}>Apply</button>
                     </div>
                   </div>
-                </div>)}
+
+
+                </FilterWrapper>)}
 
               <Switch>
                 <Route path={`${path}/energy-performance`}>
@@ -332,7 +514,7 @@ const Building = () => {
                                      electricConsumptionsFromHistorizedLogs={generalBuildingInformation.electricConsumptionsFromHistorizedLogs}
                                      prev12MonthsElectricityConsumptionsFromHistorizedLogs={generalBuildingInformation.prev12MonthsElectricityConsumptionsFromHistorizedLogs}
                                      prev24MonthsElectricityConsumptionsFromHistorizedLogs={generalBuildingInformation.prev24MonthsElectricityConsumptionsFromHistorizedLogs}
-                                     energyPerformanceGroupBy={groupBy}
+                                     energyPerformanceGroupBy={energyPerformanceGroupBy}
                                      overallEnergyConsumptionInformation={generalBuildingInformation.overallEnergyConsumptionInformation}
                                      annualCost={generalBuildingInformation.annualCost}
                                      annualConsumption={generalBuildingInformation.annualConsumption}
