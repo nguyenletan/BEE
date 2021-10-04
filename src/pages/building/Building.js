@@ -31,6 +31,7 @@ import { EuiDatePicker, EuiDatePickerRange, EuiFieldNumber, EuiSelect } from '@e
 import BuildingSkeleton from '../../components/BuildingSkeleton'
 import { isDisplayPerformanceFilterState, originalConsumptionBreakdownState } from '../../atoms'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
+import ChartType from './components/ChartType'
 
 const BuildingWrapper = styled.div`
 
@@ -50,18 +51,12 @@ const GroupBy = styled.div`
   }
 `
 
-const Label = styled.label`
-  line-height: 30px;
-  font-weight: bold;
-  font-size: 16px;
-  margin-right: 10px;
-`
-
 const StartLabel = styled.label`
   line-height: 30px;
   font-weight: bold;
   font-size: 16px;
   margin-right: 10px;
+  margin-left: 0.5rem;
 `
 
 const EndLabel = styled.label`
@@ -74,8 +69,8 @@ const EndLabel = styled.label`
 const ErrorMsg = styled.span`
   margin-left: 20px;
   color: red;
-  font-weight: bold;
-  line-height: 32px;
+  font-weight: 500;
+  line-height: 28px;
 `
 
 const Building = () => {
@@ -97,8 +92,8 @@ const Building = () => {
   const [energyPerformanceGroupBy, setEnergyPerformanceGroupBy] = useState('month')
   const [isInValid, setIsInValid] = useState(false)
 
-  const handleGroupByChange = (e) => {
-    setGroupBy(e.target.value)
+  const handleGroupByChange = (group) => {
+    setGroupBy(group)
   }
 
   const BuildingInfoDataArray = [
@@ -260,7 +255,7 @@ const Building = () => {
 
     const idToken = await user.getIdToken()
     if (!isInValid) {
-      setIsLoading(false)
+      setIsLoading(true)
       const tmp = await getBuildingById(id, moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'),
         idToken)
       setOriginalConsumptionBreakdown([...tmp?.consumptionBreakdown])
@@ -356,21 +351,10 @@ const Building = () => {
 
               {isDisplayPerformanceFilter && (
                 <FilterWrapper className="my-5 d-block justify-content-between ">
-                  <GroupBy className="d-flex justify-content-start align-content-end mb-3">
-                    <Label className="">Type</Label>
-                    <EuiSelect
-                      compressed
-                      fullWidth={false}
-                      value={groupBy}
-                      onChange={handleGroupByChange}
-                      options={[
-                        { value: 'year', text: 'Year' },
-                        { value: 'quarter', text: 'Quarter' },
-                        { value: 'month', text: 'Month' },
-                        // { value: 'week', text: 'Week' },
-                        { value: 'day', text: 'Day' }]}/>
+                  <GroupBy className="d-flex justify-content-start align-content-end mb-2">
+                    <ChartType type={groupBy} onChange={handleGroupByChange}/>
 
-                    {isInValid && <ErrorMsg>Start date should be greater than End date</ErrorMsg>}
+                    <div>{isInValid && <ErrorMsg>Start date should be greater than End date</ErrorMsg>}</div>
                   </GroupBy>
 
                   <div className="d-flex mb-2">
