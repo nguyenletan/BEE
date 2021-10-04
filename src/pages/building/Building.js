@@ -47,7 +47,7 @@ const FilterWrapper = styled.div`
 
 const GroupBy = styled.div`
   .euiFormControlLayout {
-    max-width: 100px;
+    max-width: 200px;
   }
 `
 
@@ -358,6 +358,7 @@ const Building = () => {
                   </GroupBy>
 
                   <div className="d-flex mb-2">
+
                     {groupBy === 'month' && (
                       <div className="d-flex">
                         <StartLabel className="">Start</StartLabel>
@@ -488,8 +489,6 @@ const Building = () => {
                       <button disabled={isInValid} className="btn btn-primary" onClick={handleApply}>Apply</button>
                     </div>
                   </div>
-
-
                 </FilterWrapper>)}
 
               <Switch>

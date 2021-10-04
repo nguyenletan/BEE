@@ -103,7 +103,7 @@ const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy }) => {
         type: 'linear',
         stacked: false,
       }}
-      curve="natural"
+      // curve="natural"
     />
   )
 

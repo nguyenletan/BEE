@@ -9,15 +9,13 @@ import {
   formatNumber,
   getMonthName,
 } from '../Utilities'
-import redUpImage from '../assets/images/red_up.jpg'
-import greenDownImage from '../assets/images/green_down.jpg'
 import EnergyConsumptionLineChartForGroupByDayOrWeek from './EnergyConsumptionLineChartForGroupByDayOrWeek'
 import { getBreakdownByTime } from '../api/BuildidingAPI'
 import { useParams } from 'react-router-dom'
 import { useAuth } from '../AuthenticateProvider'
 import { breakdownState, originalConsumptionBreakdownState } from '../atoms'
 import { useRecoilState, useRecoilValue } from 'recoil'
-
+import HistoricalComparison from '../pages/building/components/HistoricalComparison'
 
 //Performance please - Reason since we are looking at the Energy, CO2, and Building U-Value and Energy Cost ($) it would be more appropriate.
 // Thanks this is related to the Energy Performance, Comparison, Improve, Asset Reliability section of the Application -
@@ -91,43 +89,6 @@ const BuildingEnergyUsageChartTitle = styled.h3`
   color: var(--dark);
 `
 
-const HistoricalComparison = styled.div`
-  background-color: #fafafa;
-  border-radius: 15px;
-  margin-top: 30px;
-  padding: 30px;
-  @media (min-width: 1440px) {
-    width: 80%;
-    margin: 50px auto 0;
-  }
-  @media (min-width: 1920px) {
-    width: 70%;
-  }
-
-  h4 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin: auto 0;
-  }
-`
-
-const UpAndDownImg = styled.img`
-
-  width: 60px;
-  height: 60px;
-`
-
-const UpAndDownImgTitle = styled.h5`
-
-  font-size: 0.8rem;
-  margin-bottom: 2px;
-`
-
-const UpAndDownImgValue = styled.span`
-  font-weight: 700;
-  font-size: 1.1rem;
-`
-
 const HistoricalComparisonContainer = styled.div`
   flex-wrap: wrap;
   @media (min-width: 1400px) {
@@ -135,17 +96,10 @@ const HistoricalComparisonContainer = styled.div`
   }
 `
 
-const HistoricalComparisonWrapper = styled.div`
+const Wrapper = styled.div`
   margin-bottom: 50px;
   margin-left: 15px;
   margin-right: 15px;
-`
-
-const HistoricalComparisonInnerWrapper = styled.div`
-  width: 108px;
-  @media (min-width: 768px) {
-    width: auto;
-  }
 `
 
 const BuildingHistorical = (props) => {
@@ -156,7 +110,6 @@ const BuildingHistorical = (props) => {
     overallEnergyConsumptionInformation,
     prev12MonthsElectricityConsumptionsFromHistorizedLogs,
     prev24MonthsElectricityConsumptionsFromHistorizedLogs,
-    periodOf12Month
   } = props
 
   const { id } = useParams()
@@ -181,7 +134,6 @@ const BuildingHistorical = (props) => {
 
   const [the3rdHistoricalComparison, setThe3rdHistoricalComparison] = useState()
 
-
   let datasource = buildingEnergyUsageData
 
   const [barData, setBarData] = useState([])
@@ -189,13 +141,13 @@ const BuildingHistorical = (props) => {
   const [enableLabel, setEnableLabel] = useState(true)
   const [axisBottom, setAxisBottom] = useState({})
 
-  const [totalEnergyConsumption, setTotalEnergyConsumption] = useState(overallEnergyConsumptionInformation?.totalEnergyConsumption)
+  const [totalEnergyConsumption, setTotalEnergyConsumption] = useState(
+    overallEnergyConsumptionInformation?.totalEnergyConsumption)
   const [totalEnergyCost, setTotalEnergyCost] = useState(overallEnergyConsumptionInformation?.totalEnergyCost)
   const [totalCarbonEmissions, setTotalCarbonEmissions] = useState(overallEnergyConsumptionInformation?.totalCarbonEmissions)
 
   const [breakdown, setBreakdown] = useRecoilState(breakdownState)
   const originalConsumptionBreakdown = useRecoilValue(originalConsumptionBreakdownState)
-
 
   useEffect(() => {
     if (electricConsumptionsFromHistorizedLogs &&
@@ -250,7 +202,7 @@ const BuildingHistorical = (props) => {
   }, [energyPerformanceGroupBy, electricConsumptionsFromHistorizedLogs])
 
   const selectBar = async (e) => {
-    if(barData[e.index].isUnselected === false) { // deselected a bar
+    if (barData[e.index].isUnselected === false) { // deselected a bar
       const newBarData = barData.map(x => {
         return {
           ...x,
@@ -263,7 +215,7 @@ const BuildingHistorical = (props) => {
       setTotalEnergyConsumption(overallEnergyConsumptionInformation?.totalEnergyConsumption)
       setTotalEnergyCost(overallEnergyConsumptionInformation?.totalEnergyCost)
       setTotalCarbonEmissions(overallEnergyConsumptionInformation?.totalCarbonEmissions)
-      setBreakdown({...breakdown, ...{consumptionBreakdown: originalConsumptionBreakdown}})
+      setBreakdown({ ...breakdown, ...{ consumptionBreakdown: originalConsumptionBreakdown } })
     } else { // select a bar
       const newBarData = barData.map((x, index) => {
         return {
@@ -280,8 +232,10 @@ const BuildingHistorical = (props) => {
         calculateSameThingLastPeriod(e.value, e.index, prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
           electricConsumptionsFromHistorizedLogs.overall, energyPerformanceGroupBy))
 
-      setThe3rdHistoricalComparison(calculate12MonthPeriod(e.value, e.index, prev24MonthsElectricityConsumptionsFromHistorizedLogs.overall, prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
-        electricConsumptionsFromHistorizedLogs.overall, energyPerformanceGroupBy))
+      setThe3rdHistoricalComparison(
+        calculate12MonthPeriod(e.value, e.index, prev24MonthsElectricityConsumptionsFromHistorizedLogs.overall,
+          prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
+          electricConsumptionsFromHistorizedLogs.overall, energyPerformanceGroupBy))
 
       setTotalEnergyConsumption(e.data.value)
       setTotalEnergyCost(e.data.value * 0.23 * 1000)
@@ -292,22 +246,25 @@ const BuildingHistorical = (props) => {
       switch (energyPerformanceGroupBy) {
         case 'year':
           breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, '00', '00')
-          break;
+          break
         case 'quarter':
-          breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.month, '00')
-          break;
+          breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.quarter, '00')
+          break
         // case 'week':
         //   await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.week, '00')
         //   break;
         case 'day':
           breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.month, e.data.day)
-          break;
+          break
         case 'month':
         default:
           breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.month, '01')
           break
       }
-      setBreakdown({...breakdown})
+
+      console.log('breakdown after click')
+      console.log(breakdown)
+      setBreakdown({ ...breakdown })
 
     }
 
@@ -330,7 +287,6 @@ const BuildingHistorical = (props) => {
     //     barData[e.index].cooling = electricConsumptionsFromHistorizedLogs.coolingSystem.electricConsumptionGroupByMonth[e.index].value
     //     break
     // }
-
 
     //setSameMonthLastYearComparison(buildingEnergyUsageData[e.index]?.sameMonthLastYearComparison)
     //setLastMonthComparison(buildingEnergyUsageData[e.index]?.lastMonthComparison)
@@ -380,12 +336,6 @@ const BuildingHistorical = (props) => {
     },
   }
 
-  const historicalComparison = {
-    sameMonthLastYear: 2.61,
-    lastMonth: the2ndHistoricalComparison ?? 'Insufficient Data',
-    _12MonthPeriod: periodOf12Month ?? 'Insufficient Data',
-  }
-
   // const CustomBarComponent = (props) => {
   //   const { x, y, height } = props
   //
@@ -399,7 +349,7 @@ const BuildingHistorical = (props) => {
   // }
 
   return (
-    <HistoricalComparisonWrapper className="">
+    <Wrapper className="">
       <HistoricalComparisonContainer className=" mt-5 row">
 
         <BuildingEnergyUsageWrapper className="col col-12 col-lg-8 col-xl-9 mb-5 mb-lg-0">
@@ -451,37 +401,12 @@ const BuildingHistorical = (props) => {
 
       </HistoricalComparisonContainer>
 
-      <HistoricalComparison className="d-flex justify-content-around row">
-        <h4 className="col col-12 col-md-3 mb-4 mb-lg-0 text-center">Historical<br/>Comparison</h4>
-        <div
-          className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap"
-        >
-          <UpAndDownImg src={the1stHistoricalComparison >= 0 ? redUpImage : greenDownImage}/>
-          <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
-            <UpAndDownImgTitle>Same Month<br/>Last Year</UpAndDownImgTitle>
-            <UpAndDownImgValue>{formatNumber(the1stHistoricalComparison, 2)} MWh</UpAndDownImgValue>
-          </HistoricalComparisonInnerWrapper>
-        </div>
-        <div
-          className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap"
-        >
-          <UpAndDownImg src={the2ndHistoricalComparison >= 0 ? redUpImage : greenDownImage}/>
-          <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
-            <UpAndDownImgTitle>Last Month</UpAndDownImgTitle>
-            <UpAndDownImgValue>{formatNumber(the2ndHistoricalComparison, 2)} MWh</UpAndDownImgValue>
-          </HistoricalComparisonInnerWrapper>
-        </div>
-        <div
-          className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap"
-        >
-          <UpAndDownImg src={historicalComparison._12MonthPeriod >= 0 ? redUpImage : greenDownImage}/>
-          <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
-            <UpAndDownImgTitle>12 Month Period</UpAndDownImgTitle>
-            <UpAndDownImgValue>{formatNumber(the3rdHistoricalComparison, 2)} MWh</UpAndDownImgValue>
-          </HistoricalComparisonInnerWrapper>
-        </div>
-      </HistoricalComparison>
-    </HistoricalComparisonWrapper>
+      <HistoricalComparison
+        groupBy={energyPerformanceGroupBy}
+        the1stHistoricalComparison={the1stHistoricalComparison}
+        the2ndHistoricalComparison={the2ndHistoricalComparison}
+        the3rdHistoricalComparison={the3rdHistoricalComparison}/>
+    </Wrapper>
   )
 }
 
