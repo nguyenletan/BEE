@@ -1,8 +1,9 @@
 import React from 'react'
 import { ResponsiveLine } from '@nivo/line'
 import _ from 'lodash'
+import moment from 'moment'
 
-const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy }) => {
+const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy, onSelectDay }) => {
 
   const groupByYear = Object.entries(_.groupBy(data, 'year'))
 
@@ -59,7 +60,7 @@ const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy }) => {
       },
     ],
     sliceTooltip: ({ slice }) => {
-      console.log(slice)
+      // console.log(slice)
       return (
         <div
           style={{
@@ -88,22 +89,29 @@ const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy }) => {
     data: datasource,
     animate: true,
     axisBottom: false,
-    enableSlices: 'x',
-    useMesh: false,
+    enableSlices: false,
+    useMesh: true,
     enableGridX: false,
     enablePoints: groupBy === 'week',
     isInteractive: true,
+  }
+
+  const onSelectLine = (point, event) => {
+    console.log(point)
+    // console.log(event)
+    onSelectDay(moment(point.data.x, "DD/MM/YYYY").toDate(), point.data.y, point.index)
   }
 
   return (
     <ResponsiveLine
       {...commonProperties}
       data={datasource}
+      onClick={onSelectLine}
       yScale={{
         type: 'linear',
         stacked: false,
       }}
-      curve="natural"
+      // curve="natural"
     />
   )
 

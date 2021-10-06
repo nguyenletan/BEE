@@ -34,7 +34,7 @@ const ChartType = ({onChange, type}) => {
       <span onClick={() => onClick('year')} className={type==='year' ? 'active' : ''}>Year</span>
       <span onClick={() => onClick('quarter')} className={type==='quarter' ? 'active' : ''}>Quarter</span>
       <span onClick={() => onClick('month')} className={type==='month' ? 'active' : ''}>Month</span>
-      <span onClick={() => onClick('week')} className={type==='week' ? 'active' : ''}>Week</span>
+      {/*<span onClick={() => onClick('week')} className={type==='week' ? 'active' : ''}>Week</span>*/}
       <span onClick={() => onClick('day')} className={type==='day' ? 'active' : ''}>Day</span>
     </Wrapper>
   )
