@@ -9,6 +9,9 @@ import {
   selectedSubBreakdownState,
 } from '../atoms'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { ContextMenu, ContextMenuTrigger } from 'react-contextmenu'
+import { MenuItem } from './HeaderStyle'
+
 
 const BreakDownBlock = styled.div`
   background-color: #fafafa;
@@ -184,11 +187,16 @@ const DrillDownDonutChart3Lv = (props) => {
   }
 
   const handleClick = (e) => {
+
     if (e.data?.subBreakdown) {
       setBreakDownLevel(breakDownLevel + 1)
-      setSelectedSubBreakdown([...e.id])
+      setSelectedSubBreakdown(e.id)
       setIsBreakDownDrillDown(true)
       setConsumptionBreakdownSt(e.data.subBreakdown)
+    } else {
+      if(breakDownLevel === 2) {
+
+      }
     }
   }
 
@@ -229,7 +237,15 @@ const DrillDownDonutChart3Lv = (props) => {
           <button className="btn btn-sm btn-outline-primary" onClick={handleBackBtn}>Reset</button>}
         </div>
       </div>
-      <ResponsivePieWrapper height={chartHeight}>
+
+
+      <ContextMenu id="contextmenu">
+        <MenuItem data={{copy: 'MI50'}} >
+          <span className="ps-3">Asset Reliability</span>
+        </MenuItem>
+      </ContextMenu>
+      <ContextMenuTrigger id="contextmenu">
+        <ResponsivePieWrapper height={chartHeight}>
         <ResponsivePie
           {...commonProperties}
           innerRadius={innerRadius ?? 0.55}
@@ -274,6 +290,7 @@ const DrillDownDonutChart3Lv = (props) => {
             isCenteredPercentage === true ? CenteredPercentage : '']}
         />
       </ResponsivePieWrapper>
+      </ContextMenuTrigger>
       {
         hasDescription && <Ul>
           {list}

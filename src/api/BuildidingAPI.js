@@ -125,12 +125,12 @@ export const getBuildingByIdForEditing = async (id, idToken) => {
   return result
 }
 
-export const getBreakdownByTime = async (idToken, id, type, firstDayParam, seconDayParam, thirdDayParama) => {
+export const getBreakdownByTime = async (idToken, id, type, firstParam, secondParam, thirdParam) => {
   let result
   await axios({
     method: 'get',
-    url: process.env.REACT_APP_BACKEND_API + '/buildings/get-breakdown/' + id + '/' + type + '/' + firstDayParam + '/' +
-      seconDayParam + '/' + thirdDayParama,
+    url: process.env.REACT_APP_BACKEND_API + '/buildings/get-breakdown/' + id + '/' + type + '/' + firstParam + '/' +
+      secondParam + '/' + thirdParam,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,

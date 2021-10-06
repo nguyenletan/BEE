@@ -3,7 +3,7 @@ import { ResponsiveBar } from '@nivo/bar'
 import styled from 'styled-components'
 import _ from 'lodash'
 import {
-  calculate12MonthPeriod,
+  calculate12MonthPeriod, calculateAverageSameDayInLast4Week, calculateDayLastWeek, calculatePrevDay,
   calculateSameThingLastPeriod,
   calculateSameThingLastYear,
   formatNumber,
@@ -16,6 +16,7 @@ import { useAuth } from '../AuthenticateProvider'
 import { breakdownState, originalConsumptionBreakdownState } from '../atoms'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import HistoricalComparison from '../pages/building/components/HistoricalComparison'
+import "../style/context-menu.css"
 
 //Performance please - Reason since we are looking at the Energy, CO2, and Building U-Value and Energy Cost ($) it would be more appropriate.
 // Thanks this is related to the Energy Performance, Comparison, Improve, Asset Reliability section of the Application -
@@ -261,9 +262,6 @@ const BuildingHistorical = (props) => {
           breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.month, '01')
           break
       }
-
-      console.log('breakdown after click')
-      console.log(breakdown)
       setBreakdown({ ...breakdown })
 
     }
@@ -291,6 +289,35 @@ const BuildingHistorical = (props) => {
     //setSameMonthLastYearComparison(buildingEnergyUsageData[e.index]?.sameMonthLastYearComparison)
     //setLastMonthComparison(buildingEnergyUsageData[e.index]?.lastMonthComparison)
 
+  }
+
+  const selectLine = async (day, value, index) => {
+    const idToken = await user.getIdToken()
+    let breakdown
+    switch (energyPerformanceGroupBy) {
+      case 'day':
+        setTotalEnergyConsumption(value)
+
+        setThe1stHistoricalComparison(
+          calculatePrevDay(value, index, prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
+            electricConsumptionsFromHistorizedLogs.overall))
+
+        setThe2ndHistoricalComparison(
+          calculateDayLastWeek(value, index, prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
+            electricConsumptionsFromHistorizedLogs.overall))
+
+        setThe3rdHistoricalComparison(
+          calculateAverageSameDayInLast4Week(value, index, prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
+            electricConsumptionsFromHistorizedLogs.overall))
+
+        setTotalEnergyCost(value * 0.23 * 1000)
+        setTotalCarbonEmissions(value * 0.000208 * 1000)
+        breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, day.getFullYear(), day.getMonth() + 1, day.getDate())
+        setBreakdown({ ...breakdown })
+        break
+      default:
+        break
+    }
   }
 
   let keys = ['value', 'cooling']
@@ -328,7 +355,6 @@ const BuildingHistorical = (props) => {
     // colors: { scheme: 'category10' },
     //colors: { datum: 'data.color' },
     colors: ({ id, data }) => {
-      //console.log(data)
       if (data.isUnselected === true) {
         return '#d5dfa3'
       }
@@ -357,7 +383,7 @@ const BuildingHistorical = (props) => {
           <BuildingEnergyUsageChartTitle>Building Energy Usage (MWh)</BuildingEnergyUsageChartTitle>
 
           {(props.energyPerformanceGroupBy === 'week' || props.energyPerformanceGroupBy === 'day') &&
-          <EnergyConsumptionLineChartForGroupByDayOrWeek data={barData} groupBy={props.energyPerformanceGroupBy}/>}
+          <EnergyConsumptionLineChartForGroupByDayOrWeek onSelectDay={selectLine} data={barData} groupBy={props.energyPerformanceGroupBy}/>}
 
           {(props.energyPerformanceGroupBy === 'year' || props.energyPerformanceGroupBy === 'quarter' ||
             props.energyPerformanceGroupBy === 'month') &&
