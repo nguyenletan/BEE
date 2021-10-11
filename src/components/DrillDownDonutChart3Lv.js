@@ -9,8 +9,10 @@ import {
   selectedSubBreakdownState,
 } from '../atoms'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
-import { ContextMenu, ContextMenuTrigger } from 'react-contextmenu'
-import { MenuItem } from './HeaderStyle'
+import { Menu, Item, useContextMenu } from 'react-contexify'
+import 'react-contexify/dist/ReactContexify.css';
+import { Link, useParams, useRouteMatch } from 'react-router-dom'
+
 
 
 const BreakDownBlock = styled.div`
@@ -85,6 +87,7 @@ const DrillDownDonutChart3Lv = (props) => {
   const [breakDownLevel, setBreakDownLevel] = useRecoilState(breakDownLevelState)
   const breakdownSt = useRecoilValue(breakdownState)
   const setConsumptionBreakdownSt =  useSetRecoilState(consumptionBreakdownState)
+  const [selectedBreakdownItemMenuItem, setSelectedBreakdownItemMenuItem] = useState()
 
   useEffect(() => {
     console.log('DrillDownDonutChart3Lv changed')
@@ -101,6 +104,9 @@ const DrillDownDonutChart3Lv = (props) => {
   }
 
   const chartHeight = hasDescription ? '250px' : '150px'
+
+  const { url } = useRouteMatch()
+  const { id } = useParams()
 
   const CenteredPercentage = ({ dataWithArc, centerX, centerY }) => {
     const total = dataWithArc[0].value + dataWithArc[1].value
@@ -186,16 +192,21 @@ const DrillDownDonutChart3Lv = (props) => {
     )
   }
 
-  const handleClick = (e) => {
-
-    if (e.data?.subBreakdown) {
+  const handleClick = (node, event) => {
+    if (node.data?.subBreakdown) {
       setBreakDownLevel(breakDownLevel + 1)
-      setSelectedSubBreakdown(e.id)
+      setSelectedSubBreakdown(node.id)
       setIsBreakDownDrillDown(true)
-      setConsumptionBreakdownSt(e.data.subBreakdown)
+      setConsumptionBreakdownSt(node.data.subBreakdown)
     } else {
       if(breakDownLevel === 2) {
-
+        console.log(node)
+        setSelectedBreakdownItemMenuItem({name: node.label, id: node.label})
+        show(event, {
+          props: {
+            key: 'value'
+          }
+        })
       }
     }
   }
@@ -207,6 +218,16 @@ const DrillDownDonutChart3Lv = (props) => {
     setConsumptionBreakdownSt(breakdownSt.consumptionBreakdown)
 
   }
+
+  const { show } = useContextMenu({
+    id: 'MENU_ID',
+  });
+
+  const handleMenuItemClick = ({ event, props }) => {
+
+    console.log(event,props);
+  }
+
 
   const getValue = (value, title)=> {
     if(title === 'Consumption Breakdown') {
@@ -238,13 +259,15 @@ const DrillDownDonutChart3Lv = (props) => {
         </div>
       </div>
 
+      <Menu id='MENU_ID'>
+        {selectedBreakdownItemMenuItem &&
+        <Item onClick={handleMenuItemClick}>
+          <Link to={`/building/${id}/equipment-asset-reliability/0`}>
+            Go to Asset Reliability - {selectedBreakdownItemMenuItem?.name}
+          </Link>
+        </Item>}
 
-      <ContextMenu id="contextmenu">
-        <MenuItem data={{copy: 'MI50'}} >
-          <span className="ps-3">Asset Reliability</span>
-        </MenuItem>
-      </ContextMenu>
-      <ContextMenuTrigger id="contextmenu">
+      </Menu>
         <ResponsivePieWrapper height={chartHeight}>
         <ResponsivePie
           {...commonProperties}
@@ -290,7 +313,6 @@ const DrillDownDonutChart3Lv = (props) => {
             isCenteredPercentage === true ? CenteredPercentage : '']}
         />
       </ResponsivePieWrapper>
-      </ContextMenuTrigger>
       {
         hasDescription && <Ul>
           {list}

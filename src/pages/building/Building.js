@@ -32,6 +32,7 @@ import BuildingSkeleton from '../../components/BuildingSkeleton'
 import { isDisplayPerformanceFilterState, originalConsumptionBreakdownState } from '../../atoms'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import ChartType from './components/ChartType'
+import EquipmentAssetReliability from './equipment-asset-reliability/EquipmentAssetReliability'
 
 const BuildingWrapper = styled.div`
 
@@ -523,6 +524,9 @@ const Building = () => {
                            costBreakdown={generalBuildingInformation.costBreakdown}
                            co2EmissionsBreakdown={generalBuildingInformation.co2EmissionsBreakdown}
                            data={generalBuildingInformation.energyPerformance}/>
+                </Route>
+                <Route path={`${path}/equipment-asset-reliability/:id`}>
+                  <EquipmentAssetReliability />
                 </Route>
                 <Route path={`${path}/asset-reliability`}>
                   <AssetReliability data={generalBuildingInformation.energyPerformance}/>

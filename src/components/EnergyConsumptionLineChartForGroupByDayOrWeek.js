@@ -4,6 +4,7 @@ import _ from 'lodash'
 import moment from 'moment'
 
 const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy, onSelectDay }) => {
+  console.log(data)
 
   const groupByYear = Object.entries(_.groupBy(data, 'year'))
 
@@ -92,12 +93,15 @@ const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy, onSelect
     enableSlices: false,
     useMesh: true,
     enableGridX: false,
-    enablePoints: groupBy === 'week',
+    enablePoints: groupBy === 'week' || data?.length < 100,
+    pointSize: 10,
+    // pointBorderWidth: 2,
+    // pointBorderColor:{ from: 'serieColor' },
+    // pointColor: { theme: 'background' },
     isInteractive: true,
   }
 
   const onSelectLine = (point, event) => {
-    console.log(point)
     // console.log(event)
     onSelectDay(moment(point.data.x, "DD/MM/YYYY").toDate(), point.data.y, point.index)
   }

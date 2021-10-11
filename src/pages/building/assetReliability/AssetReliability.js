@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import AssetReliabilityMain from './AssetReliabilityMain'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import IssueDetail from './IssueDetail'
+import { useSetRecoilState } from 'recoil'
+import { isDisplayPerformanceFilterState } from '../../../atoms'
 
 const AssetReliabilityWrapper = styled.div`
   margin-bottom: 50px;
@@ -175,7 +177,8 @@ const AssetReliability = () => {
   }
 
   const { path } = useRouteMatch()
-
+  const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
+  setIsDisplayPerformanceFilter(false)
   return (
     <AssetReliabilityWrapper>
 
