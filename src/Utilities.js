@@ -615,3 +615,11 @@ export const calculate12MonthPeriod = (
   }
 
 }
+
+export const formatDate = (date) => {
+  return moment(date).format('D MMM YYYY')
+}
+
+export const getTheTimeDifference = (datetime1, datetime2, measurement='days') => {
+  return moment(datetime1).diff(datetime2, measurement)
+}
