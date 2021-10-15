@@ -11,7 +11,7 @@ import {
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { Menu, Item, useContextMenu } from 'react-contexify'
 import 'react-contexify/dist/ReactContexify.css';
-import { Link, useParams, useRouteMatch } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 
 
@@ -88,9 +88,11 @@ const DrillDownDonutChart3Lv = (props) => {
   const breakdownSt = useRecoilValue(breakdownState)
   const setConsumptionBreakdownSt =  useSetRecoilState(consumptionBreakdownState)
   const [selectedBreakdownItemMenuItem, setSelectedBreakdownItemMenuItem] = useState()
+  const [equipmentId, setEquipmentId] = useState()
 
   useEffect(() => {
-    console.log('DrillDownDonutChart3Lv changed')
+    // console.log('DrillDownDonutChart3Lv changed')
+    // console.log(data)
     setDataSource(data)
   }, [data])
 
@@ -105,7 +107,6 @@ const DrillDownDonutChart3Lv = (props) => {
 
   const chartHeight = hasDescription ? '250px' : '150px'
 
-  const { url } = useRouteMatch()
   const { id } = useParams()
 
   const CenteredPercentage = ({ dataWithArc, centerX, centerY }) => {
@@ -201,6 +202,7 @@ const DrillDownDonutChart3Lv = (props) => {
     } else {
       if(breakDownLevel === 2) {
         console.log(node)
+        setEquipmentId(node?.data.equipmentId)
         setSelectedBreakdownItemMenuItem({name: node.label, id: node.label})
         show(event, {
           props: {
@@ -224,8 +226,9 @@ const DrillDownDonutChart3Lv = (props) => {
   });
 
   const handleMenuItemClick = ({ event, props }) => {
+    console.log('event.data');
+    console.log(event.data);
 
-    console.log(event,props);
   }
 
 
@@ -262,7 +265,7 @@ const DrillDownDonutChart3Lv = (props) => {
       <Menu id='MENU_ID'>
         {selectedBreakdownItemMenuItem &&
         <Item onClick={handleMenuItemClick}>
-          <Link to={`/building/${id}/equipment-asset-reliability/0`}>
+          <Link to={`/building/${id}/equipment-asset-reliability/${equipmentId}`}>
             Go to Asset Reliability - {selectedBreakdownItemMenuItem?.name}
           </Link>
         </Item>}

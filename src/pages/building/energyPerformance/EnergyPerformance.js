@@ -31,6 +31,8 @@ const EnergyPerformance = (props) => {
   setIsDisplayPerformanceFilter(true)
 
   useEffect(() => {
+    console.log('consumptionBreakdown');
+    console.log(consumptionBreakdown);
     setBreakdownRecoilState({consumptionBreakdown: consumptionBreakdown})
   }, [consumptionBreakdown, setBreakdownRecoilState])
 
