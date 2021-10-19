@@ -1,5 +1,6 @@
 import { atom, selector } from 'recoil'
 import _ from 'lodash'
+import moment from 'moment'
 
 export const spaceUsageGFAListState = atom({
   key: 'spaceUsageGFA',
@@ -261,4 +262,15 @@ export const breakDownLevelState = atom({
 export const selectedSubBreakdownState = atom({
   key: 'selectedSubBreakdown',
   default: null
+})
+
+
+export const energyPerformanceStartTimeState = atom({
+  key: 'energyPerformanceStartTime',
+  default: moment().subtract(1, 'y')
+})
+
+export const energyPerformanceEndTimeState = atom({
+  key: 'energyPerformancEndTime',
+  default: moment()
 })
