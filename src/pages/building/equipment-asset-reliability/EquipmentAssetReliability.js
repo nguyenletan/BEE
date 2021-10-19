@@ -1,8 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useSetRecoilState } from 'recoil'
-import { isDisplayPerformanceFilterState } from '../../../atoms'
+import moment from 'moment'
+import { useSetRecoilState, useRecoilValue } from 'recoil'
+import {
+  energyPerformanceEndTimeState,
+  energyPerformanceStartTimeState,
+  isDisplayPerformanceFilterState,
+} from '../../../atoms'
 import chillerPhoto from '../../../assets/images/equipment/Chiller.webp'
 import AlertChart from './components/AlertChart'
 import EnergyConsumption from './components/EnergyConsumption'
@@ -12,7 +17,6 @@ import { useParams } from 'react-router-dom'
 import { useAuth } from '../../../AuthenticateProvider'
 import { getEquipmentById } from '../../../api/EquipmentAPI'
 import { formatDate, formatNumber, getTheTimeDifference } from '../../../Utilities'
-
 
 const Wrapper = styled.div`
   margin-top: 30px;
@@ -65,8 +69,8 @@ const AlertWrapper = styled.div`
 
 const Row2ColsGrid = styled.div`
   display: grid;
-  grid-template-columns: minmax(770px, 3fr) minmax(220px, 1fr);
-  grid-gap: 30px;
+  grid-template-columns: minmax(700px, 3fr) minmax(218px, 1fr);
+  grid-gap: 25px;
   margin-top: 20px;
   margin-bottom: 20px;
 `
@@ -104,15 +108,24 @@ const TotalCostBreakDownWrapper = styled.div`
 
 const Nav = styled.nav`
   margin-bottom: 50px;
+
+  li {
+    text-transform: capitalize;
+  }
 `
-const EquipmentAssetReliability = ({ subSystemName, equipmentTypeName, equipmentName }) => {
+const EquipmentAssetReliability = () => {
   const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
   const [equipment, setEquipment] = useState()
   setIsDisplayPerformanceFilter(false)
   const { equipmentId } = useParams()
+
   const { user } = useAuth()
 
-  console.log(equipmentId)
+  const [subSystemName, setSubSystemName] = useState('')
+
+  const startTime = useRecoilValue(energyPerformanceStartTimeState)
+
+  const endTime = useRecoilValue(energyPerformanceEndTimeState)
 
   const getEquipmentInfo = async () => {
 
@@ -120,12 +133,19 @@ const EquipmentAssetReliability = ({ subSystemName, equipmentTypeName, equipment
     // moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'),
     const tmp = await getEquipmentById(equipmentId, idToken)
     setEquipment(tmp)
+    const _subSystemName = tmp.coolingSystemId
+                            ? 'Cooling' : tmp.equipment.heatingSystemId
+                                ? 'Heating' : tmp.equipment.mechanicalVentilationSystemId
+                                  ? 'Mechanical Ventilation' : ''
 
+    //const _subSystemId = tmp.coolingSystemId || tmp.equipment.heatingSystemId || tmp.equipment.mechanicalVentilationSystemId
+
+    setSubSystemName(_subSystemName)
   }
 
   useEffect(() => {
     getEquipmentInfo()
-    
+
   }, [])
 
   return (
@@ -134,9 +154,9 @@ const EquipmentAssetReliability = ({ subSystemName, equipmentTypeName, equipment
         <>
           <Nav aria-label="breadcrumb">
             <ol className="breadcrumb">
-              <li className="breadcrumb-item">equipment</li>
-              <li className="breadcrumb-item">Cooling</li>
-              <li className="breadcrumb-item">Chiller</li>
+              <li className="breadcrumb-item">Equipment</li>
+              <li className="breadcrumb-item">{subSystemName}</li>
+              <li className="breadcrumb-item">{equipment?.R_EquipmentTypes?.name}</li>
               <li className="breadcrumb-item active text-primary" aria-current="page">{equipment.dis}</li>
             </ol>
           </Nav>
@@ -156,44 +176,48 @@ const EquipmentAssetReliability = ({ subSystemName, equipmentTypeName, equipment
 
                   <EquipmentDetailInformationCol>
                     <span>Installed</span>
-                    <EquipmentDetailInformationRowValue>{formatDate(equipment.EquipmentDetail[0].installDate)}</EquipmentDetailInformationRowValue>
+                    <EquipmentDetailInformationRowValue>{formatDate(
+                      equipment.EquipmentDetail[0]?.installDate)}</EquipmentDetailInformationRowValue>
                   </EquipmentDetailInformationCol>
 
                   <EquipmentDetailInformationCol>
                     <span>Capacity (kWh)</span>
-                    <EquipmentDetailInformationRowValue>{equipment.EquipmentDetail[0].capacity}</EquipmentDetailInformationRowValue>
+                    <EquipmentDetailInformationRowValue>{equipment.EquipmentDetail[0]?.capacity}</EquipmentDetailInformationRowValue>
                   </EquipmentDetailInformationCol>
 
                   {/*row 2*/}
                   <EquipmentDetailInformationCol>
                     <span>Model</span>
-                    <EquipmentDetailInformationRowValue>{equipment.EquipmentDetail[0].model}</EquipmentDetailInformationRowValue>
+                    <EquipmentDetailInformationRowValue>{equipment.EquipmentDetail[0]?.model}</EquipmentDetailInformationRowValue>
                   </EquipmentDetailInformationCol>
 
                   <EquipmentDetailInformationCol>
                     <span>Commissioned</span>
-                    <EquipmentDetailInformationRowValue>{formatDate(equipment.EquipmentDetail[0].commissioned)}</EquipmentDetailInformationRowValue>
+                    <EquipmentDetailInformationRowValue>{formatDate(
+                      equipment.EquipmentDetail[0]?.commissioned)}</EquipmentDetailInformationRowValue>
                   </EquipmentDetailInformationCol>
 
                   <EquipmentDetailInformationCol>
                     <span>Initial Value ($)</span>
-                    <EquipmentDetailInformationRowValue>{formatNumber(equipment.EquipmentDetail[0].initialAssetCost, 0)}</EquipmentDetailInformationRowValue>
+                    <EquipmentDetailInformationRowValue>{formatNumber(equipment.EquipmentDetail[0]?.initialAssetCost,
+                      0)}</EquipmentDetailInformationRowValue>
                   </EquipmentDetailInformationCol>
 
                   {/*row 3*/}
                   <EquipmentDetailInformationCol>
                     <span>Manufacturer</span>
-                    <EquipmentDetailInformationRowValue>{equipment.EquipmentDetail[0].manufacturer}</EquipmentDetailInformationRowValue>
+                    <EquipmentDetailInformationRowValue>{equipment.EquipmentDetail[0]?.manufacturer}</EquipmentDetailInformationRowValue>
                   </EquipmentDetailInformationCol>
 
                   <EquipmentDetailInformationCol>
                     <span>Age (Years)</span>
-                    <EquipmentDetailInformationRowValue>{getTheTimeDifference(new Date(), equipment.EquipmentDetail[0].installDate, 'years')}</EquipmentDetailInformationRowValue>
+                    <EquipmentDetailInformationRowValue>{getTheTimeDifference(new Date(),
+                      equipment.EquipmentDetail[0].installDate, 'years')}</EquipmentDetailInformationRowValue>
                   </EquipmentDetailInformationCol>
 
                   <EquipmentDetailInformationCol>
                     <span>Depreciation Mode</span>
-                    <EquipmentDetailInformationRowValue>{equipment.EquipmentDetail[0].depreciationMode}</EquipmentDetailInformationRowValue>
+                    <EquipmentDetailInformationRowValue>{equipment.EquipmentDetail[0]?.depreciationMode}</EquipmentDetailInformationRowValue>
                   </EquipmentDetailInformationCol>
 
                   {/*row 4*/}
@@ -204,7 +228,7 @@ const EquipmentAssetReliability = ({ subSystemName, equipmentTypeName, equipment
 
                   <EquipmentDetailInformationCol>
                     <span>Expected Life (Years)</span>
-                    <EquipmentDetailInformationRowValue>{equipment.EquipmentDetail[0].estimatedUsefulLife}</EquipmentDetailInformationRowValue>
+                    <EquipmentDetailInformationRowValue>{equipment.EquipmentDetail[0]?.estimatedUsefulLife}</EquipmentDetailInformationRowValue>
                   </EquipmentDetailInformationCol>
 
                 </EquipmentDetailInformation>
@@ -217,14 +241,20 @@ const EquipmentAssetReliability = ({ subSystemName, equipmentTypeName, equipment
               <AlertChart/>
             </AlertWrapper>
           </Row2ColsGrid>
-
           <Row3ColsGrid>
             <EnergyConsumptionWrapper>
-              <EnergyConsumption/>
+              <EnergyConsumption equipmentId={equipmentId}
+                                 startDate={moment(startTime).format('YYYY-MM-DD')}
+                                 endDate={moment(endTime).format('YYYY-MM-DD')}/>
             </EnergyConsumptionWrapper>
 
             <EnergyConsumptionPercentageWrapper>
-              <EnergyConsumptionPercentage/>
+              <EnergyConsumptionPercentage equipmentId={equipmentId}
+                                           equipmentTypeId={equipment?.R_EquipmentTypes?.id}
+                                           subSystemId={equipment.coolingSystemId || equipment.heatingSystemId || equipment.mechanicalVentilationSystemId}
+                                           buildingId={equipment?.Property?.buildingId}
+                                           startDate={moment(startTime).format('YYYY-MM-DD')}
+                                           endDate={moment(endTime).format('YYYY-MM-DD')}/>
             </EnergyConsumptionPercentageWrapper>
 
             <TotalCostBreakDownWrapper>

@@ -1,6 +1,9 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import PercentagePieChart from './PercentagePieChart'
+import { getEnergyConsumptionPercentage } from '../../../../api/EquipmentAPI'
+import { useAuth } from '../../../../AuthenticateProvider'
 
 const Wrapper = styled.div`
 
@@ -18,80 +21,102 @@ const Label = styled.label`
   font-size: 1rem;
 `
 
-const EnergyConsumptionPercentage = () => {
+const EnergyConsumptionPercentage = (props) => {
 
-  const data = {
-    equipmentGroup: [
+  const {
+    equipmentId, equipmentTypeId, subSystemId, buildingId, startDate, endDate,
+  } = props
+
+  const { user } = useAuth()
+
+  const [equipmentGroup, setEquipmentGroup] = useState()
+  const [subSystem, setSubSystem] = useState()
+  const [building, setBuilding] = useState()
+
+  const convertRawDataToChartData = (tmp) => {
+    const _equipmentGroup = [
       {
-        id: 'used',
-        label: 'Used',
-        value: 23685,
-        color: '#87972f',
-        remaining: 77691,
+        id: 'equipment',
+        label: 'Equipment',
+        value: +tmp.percentageOfEquipmentType.toFixed(0),
+        color: '#87972f'
       },
       {
         id: 'remaining',
-        label: 'Remaining',
-        value: 77691,
-        color: '#ecedef',
-        remaining: 77691,
+        label: 'remaining',
+        value: 100 - (+tmp.percentageOfEquipmentType.toFixed(0)),
+        color: '#ecedef'
       },
-    ],
-    subSystem: [
-      {
-        id: 'used',
-        label: 'Used',
-        value: 8850,
-        color: '#87972f',
-        remaining: 77691,
-      },
-      {
-        id: 'remaining',
-        label: 'Remaining',
-        value: 77691,
-        color: '#ecedef',
-        remaining: 77691,
-      },
-    ],
-    building: [
-      {
-        id: 'used',
-        label: 'Used',
-        value: 31850,
-        color: '#87972f',
-        remaining: 77691,
-      },
-      {
-        id: 'remaining',
-        label: 'Remaining',
-        value: 77691,
-        color: '#ecedef',
-        remaining: 77691,
-      },
-    ],
+    ]
+    setEquipmentGroup(_equipmentGroup)
+
+    const _subSystem = [
+        {
+          id: 'equipment',
+          label: 'equipment',
+          value: +tmp.percentageOfSubSystem.toFixed(0),
+          color: '#87972f',
+
+        },
+        {
+          id: 'remaining',
+          label: 'Remaining',
+          value:  100 - (+tmp.percentageOfSubSystem.toFixed(0)),
+          color: '#ecedef'
+        },
+      ]
+    setSubSystem(_subSystem)
+
+    const _building = [
+        {
+          id: 'building',
+          label: 'Building',
+          value: +tmp.percentageOfBuilding.toFixed(0),
+          color: '#87972f',
+          remaining: 77691,
+        },
+        {
+          id: 'remaining',
+          label: 'Remaining',
+          value: 100 - (+tmp.percentageOfBuilding.toFixed(0)),
+          color: '#ecedef',
+          remaining: 77691,
+        },
+      ]
+    setBuilding(_building)
   }
+
+  const getEnergyConsumptionPercentageInfo = async () => {
+    const idToken = await user.getIdToken()
+    // moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'),
+    const tmp = await getEnergyConsumptionPercentage(equipmentId, equipmentTypeId, subSystemId, buildingId, startDate,
+      endDate, idToken)
+    console.log(tmp)
+    convertRawDataToChartData(tmp[0])
+
+  }
+
+  useEffect(() => {
+    getEnergyConsumptionPercentageInfo()
+  }, [equipmentId, equipmentTypeId, subSystemId, buildingId, startDate, endDate])
+
+
   return (
     <Wrapper>
       <h5 className="mb-5">Energy Consumption %</h5>
       <Row>
         <Label>of Equipment Group</Label>
-        <PercentagePieChart
-          data={data.equipmentGroup}
-        />
+        {equipmentGroup && <PercentagePieChart data={equipmentGroup} />}
       </Row>
 
       <Row>
         <Label>of Sub-system</Label>
-        <PercentagePieChart
-          data={data.subSystem}
-        />
+        {subSystem && <PercentagePieChart data={subSystem} />}
       </Row>
 
       <Row>
         <Label>of Building</Label>
-        <PercentagePieChart
-          data={data.building}
-        />
+        {building && <PercentagePieChart data={building} />}
       </Row>
     </Wrapper>
   )

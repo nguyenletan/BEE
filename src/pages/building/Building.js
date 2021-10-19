@@ -29,8 +29,13 @@ import {
 import moment from 'moment'
 import { EuiDatePicker, EuiDatePickerRange, EuiFieldNumber, EuiSelect } from '@elastic/eui'
 import BuildingSkeleton from '../../components/BuildingSkeleton'
-import { isDisplayPerformanceFilterState, originalConsumptionBreakdownState } from '../../atoms'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import {
+  energyPerformanceEndTimeState,
+  energyPerformanceStartTimeState,
+  isDisplayPerformanceFilterState,
+  originalConsumptionBreakdownState,
+} from '../../atoms'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import ChartType from './components/ChartType'
 import EquipmentAssetReliability from './equipment-asset-reliability/EquipmentAssetReliability'
 
@@ -78,8 +83,10 @@ const Building = () => {
   const { id } = useParams()
   const { user } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
-  const [startTime, setStartTime] = useState(moment().subtract(1, 'y'))
-  const [endTime, setEndTime] = useState(moment())
+  // const [startTime, setStartTime] = useState(moment().subtract(1, 'y'))
+  const  [startTime, setStartTime] = useRecoilState(energyPerformanceStartTimeState)
+  // const [endTime, setEndTime] = useState(moment())
+  const  [endTime, setEndTime] = useRecoilState(energyPerformanceEndTimeState)
   const [startDate, setStartDate] = useState(moment().subtract(1, 'y'))
   const [endDate, setEndDate] = useState(moment())
   const [startMonth, setStartMonth] = useState(moment().month() + 1)
@@ -526,7 +533,7 @@ const Building = () => {
                            co2EmissionsBreakdown={generalBuildingInformation.consumptionBreakdown}
                            data={generalBuildingInformation.consumptionBreakdown}/>
                 </Route>
-                <Route path={`${path}/equipment-asset-reliability/:equipmentId`}>
+                <Route path={`${path}/equipment-asset-reliability/:equipmentId/:subBreakdownName`}>
                   <EquipmentAssetReliability />
                 </Route>
                 <Route path={`${path}/asset-reliability`}>

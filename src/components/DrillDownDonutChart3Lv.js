@@ -265,7 +265,7 @@ const DrillDownDonutChart3Lv = (props) => {
       <Menu id='MENU_ID'>
         {selectedBreakdownItemMenuItem &&
         <Item onClick={handleMenuItemClick}>
-          <Link to={`/building/${id}/equipment-asset-reliability/${equipmentId}`}>
+          <Link to={`/building/${id}/equipment-asset-reliability/${equipmentId}/${selectedSubBreakdown}`}>
             Go to Asset Reliability - {selectedBreakdownItemMenuItem?.name}
           </Link>
         </Item>}
