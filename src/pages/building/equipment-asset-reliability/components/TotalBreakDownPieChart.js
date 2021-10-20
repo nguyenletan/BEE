@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ResponsivePie } from '@nivo/pie'
+import { formatNumber } from '../../../../Utilities'
 
 const BreakDownBlock = styled.div`
   background-color: #fafafa;
@@ -39,6 +40,11 @@ const Ul = styled.ul`
 
 const Label = styled.label`
   text-transform: capitalize;
+  font-size: 1.1rem;
+`
+
+const Value = styled.label`
+  font-size: 1.1rem;
 `
 
 const TotalBreakDownPieChart = (props) => {
@@ -104,7 +110,7 @@ const TotalBreakDownPieChart = (props) => {
 
   const list = data.map(x => <li className="d-flex justify-content-between" key={x.id}>
     <Label fontSize={informationFontSize}>{x.id}:</Label>
-    <span fontSize={informationFontSize}>{x.value}</span>
+    <Value fontSize={informationFontSize}>${formatNumber(x.pureValue, 0)}</Value>
   </li>)
 
   return (
@@ -127,10 +133,10 @@ const TotalBreakDownPieChart = (props) => {
                 background: '#37363785',
               }}
             >
-              {id}: {value}
+              {id}: {value} %
             </div>
           )}
-          arcLabel={function (e) {return e.value}}
+          arcLabel={function (e) {return e.value + '%'}}
           radialLabelsLinkColor={{
             from: 'color',
           }}
@@ -148,7 +154,7 @@ const TotalBreakDownPieChart = (props) => {
           enableRadialLabels={enableRadialLabels ?? true}
           layers={[
             'arcs',
-            //'arcLabels',
+            'arcLabels',
             'arcLinkLabels',
             'legends',
             isCenteredPercentage === true ? CenteredPercentage : '']}
