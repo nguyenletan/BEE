@@ -17,6 +17,10 @@ import { useParams } from 'react-router-dom'
 import { useAuth } from '../../../AuthenticateProvider'
 import { getEquipmentById } from '../../../api/EquipmentAPI'
 import { formatDate, formatNumber, getTheTimeDifference } from '../../../Utilities'
+import MaintenanceCostReplacementValue from './components/MaintenanceCostReplacementValue'
+import Cost from './components/Cost'
+import Reliability from './components/Reliability'
+import Depreciation from './components/Depreciation'
 
 const Wrapper = styled.div`
   margin-top: 30px;
@@ -83,6 +87,14 @@ const Row3ColsGrid = styled.div`
   margin-bottom: 20px;
 `
 
+const Row2EqualColsGrid = styled.div`
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);
+  grid-gap: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`
+
 const EquipmentPhoto = styled.img`
   width: 300px;
   border-radius: 20px;
@@ -113,6 +125,29 @@ const Nav = styled.nav`
     text-transform: capitalize;
   }
 `
+const MaintenanceCostReplacementValueWrapper = styled.div`
+  background-color: #fafafa;
+  border-radius: 20px;
+  padding: 30px;
+`
+
+const CostWrapper = styled.div`
+  background-color: #fafafa;
+  border-radius: 20px;
+  padding: 30px;
+`
+const DepreciationWrapper = styled.div`
+  background-color: #fafafa;
+  border-radius: 20px;
+  padding: 30px;
+`
+
+const ReliabiltyWrapper = styled.div`
+  background-color: #fafafa;
+  border-radius: 20px;
+  padding: 30px;
+`
+
 const EquipmentAssetReliability = () => {
   const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
   const [equipment, setEquipment] = useState()
@@ -261,6 +296,24 @@ const EquipmentAssetReliability = () => {
               <TotalCostBreakDown/>
             </TotalCostBreakDownWrapper>
           </Row3ColsGrid>
+
+          <Row2EqualColsGrid>
+            <MaintenanceCostReplacementValueWrapper>
+              <MaintenanceCostReplacementValue />
+            </MaintenanceCostReplacementValueWrapper>
+            <CostWrapper>
+              <Cost />
+            </CostWrapper>
+          </Row2EqualColsGrid>
+
+          <Row2EqualColsGrid>
+            <ReliabiltyWrapper>
+              <Reliability />
+            </ReliabiltyWrapper>
+            <DepreciationWrapper>
+              <Depreciation />
+            </DepreciationWrapper>
+          </Row2EqualColsGrid>
         </>
       )}
     </Wrapper>
