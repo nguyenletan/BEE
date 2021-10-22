@@ -88,19 +88,11 @@ const ProjectedPeakDemand = () => {
       tickSize: 5,
       tickPadding: 5,
       tickRotation: 0,
-      legend: 'Asset Value $',
+      legend: 'KWh',
       legendOffset: -60,
       legendPosition: 'middle',
     },
-    axisBottom: {
-      orient: 'bottom',
-      tickSize: 5,
-      tickPadding: 5,
-      tickRotation: 0,
-      legend: 'Year',
-      legendOffset: 36,
-      legendPosition: 'middle',
-    },
+
     layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends', Line],
 
   }
