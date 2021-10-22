@@ -21,6 +21,10 @@ import MaintenanceCostReplacementValue from './components/MaintenanceCostReplace
 import Cost from './components/Cost'
 import Reliability from './components/Reliability'
 import Depreciation from './components/Depreciation'
+import PotentialIssueList from './components/PotentialIssueList'
+import AssetPartsServiceSourcing from './components/AssetPartsServiceSourcing'
+import MaintenanceRegime from './components/MaintenanceRegime'
+import ProjectedPeakDemand from './components/ProjectedPeakDemand'
 
 const Wrapper = styled.div`
   margin-top: 30px;
@@ -142,7 +146,30 @@ const DepreciationWrapper = styled.div`
   padding: 30px;
 `
 
-const ReliabiltyWrapper = styled.div`
+const ReliabilityWrapper = styled.div`
+  background-color: #fafafa;
+  border-radius: 20px;
+  padding: 30px;
+`
+
+const PotentialIssuesListWrapper = styled.div`
+  background-color: #fafafa;
+  border-radius: 20px;
+  padding: 30px;
+`
+
+const AssetPartsServiceSourcingWrapper = styled.div`
+  background-color: #fafafa;
+  border-radius: 20px;
+  padding: 30px;
+`
+const MaintenanceRegimeWrapper =styled.div`
+  background-color: #fafafa;
+  border-radius: 20px;
+  padding: 30px;
+`
+
+const ProjectedPeakDemandWrapper = styled.div`
   background-color: #fafafa;
   border-radius: 20px;
   padding: 30px;
@@ -307,13 +334,31 @@ const EquipmentAssetReliability = () => {
           </Row2EqualColsGrid>
 
           <Row2EqualColsGrid>
-            <ReliabiltyWrapper>
+            <ReliabilityWrapper>
               <Reliability />
-            </ReliabiltyWrapper>
+            </ReliabilityWrapper>
             <DepreciationWrapper>
               <Depreciation />
             </DepreciationWrapper>
           </Row2EqualColsGrid>
+
+          <Row2ColsGrid>
+            <PotentialIssuesListWrapper>
+              <PotentialIssueList/>
+            </PotentialIssuesListWrapper>
+            <AssetPartsServiceSourcingWrapper>
+              <AssetPartsServiceSourcing/>
+            </AssetPartsServiceSourcingWrapper>
+          </Row2ColsGrid>
+
+          <Row2ColsGrid>
+            <ProjectedPeakDemandWrapper>
+              <ProjectedPeakDemand />
+            </ProjectedPeakDemandWrapper>
+            <MaintenanceRegimeWrapper>
+              <MaintenanceRegime />
+            </MaintenanceRegimeWrapper>
+          </Row2ColsGrid>
         </>
       )}
     </Wrapper>

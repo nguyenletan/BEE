@@ -1,6 +1,7 @@
 import React from 'react'
 import { ResponsiveLine } from '@nivo/line'
 import styled from 'styled-components'
+import { line } from 'd3-shape'
 
 const Wrapper = styled.div`
 
@@ -11,27 +12,33 @@ const ChartWrapper = styled.div`
 `
 
 const Depreciation = () => {
-
+  const currentAge = 16
   let depreciationData = [
     {
       id: 'Book Value',
       //hard code or dummy data
       data: [
-        { x: 2007, y: 500000 },
-        { x: 2008, y: 420000 },
-        { x: 2009, y: 350000 },
-        { x: 2010, y: 300000 },
-        { x: 2011, y: 220000 },
-        { x: 2012, y: 230000 },
-        { x: 2013, y: 170000 },
-        { x: 2014, y: 174000 },
-        { x: 2015, y: 160000 },
-        { x: 2016, y: 152000 },
-        { x: 2017, y: 137000 },
-        { x: 2018, y: 127000 },
-        { x: 2019, y: 117200 },
-        { x: 2020, y: 107500 },
-        { x: 2021, y: 97000 },
+        { x: 0, y: 500000 },
+        { x: 1, y: 470000 },
+        { x: 2, y: 450000 },
+        { x: 3, y: 420000 },
+        { x: 4, y: 380000 },
+        { x: 5, y: 350000 },
+        { x: 6, y: 320000 },
+        { x: 7, y: 310000 },
+        { x: 8, y: 280000 },
+        { x: 9, y: 260000 },
+        { x: 10, y: 250000 },
+        { x: 11, y: 220000 },
+        { x: 12, y: 210000 },
+        { x: 13, y: 200000 },
+        { x: 14, y: 180000 },
+        { x: 15, y: 190000 },
+        { x: 16, y: 150000 },
+        { x: 17, y: 120000 },
+        { x: 18, y: 110000 },
+        { x: 19, y: 100000 },
+        { x: 20, y: 80000 },
 
       ],
     },
@@ -39,24 +46,54 @@ const Depreciation = () => {
       id: 'Condition Value',
       //hard code or dummy data
       data: [
-        { x: 2007, y: 500000 },
-        { x: 2008, y: 450000 },
-        { x: 2009, y: 425000 },
-        { x: 2010, y: 430000 },
-        { x: 2011, y: 372000 },
-        { x: 2012, y: 352000 },
-        { x: 2013, y: 337000 },
-        { x: 2014, y: 307000 },
-        { x: 2015, y: 260000 },
-        { x: 2016, y: 192000 },
-        { x: 2017, y: 140700 },
-        { x: 2018, y: 137000 },
-        { x: 2019, y: 127200 },
-        { x: 2020, y: 125000 },
-        { x: 2021, y: 102700 },
+        { x: 0, y: 550000 },
+        { x: 1, y: 520000 },
+        { x: 2, y: 500000 },
+        { x: 3, y: 450000 },
+        { x: 4, y: 425000 },
+        { x: 5, y: 415000 },
+        { x: 6, y: 413000 },
+        { x: 7, y: 403000 },
+        { x: 8, y: 392000 },
+        { x: 9, y: 372000 },
+        { x: 10, y: 352000 },
+        { x: 11, y: 322000 },
+        { x: 12, y: 302000 },
+        { x: 13, y: 312000 },
+        { x: 14, y: 292000 },
+        { x: 15, y: 282000 },
+        { x: 16, y: 252000 },
+        { x: 17, y: 250000 },
+        { x: 18, y: 220000 },
+        { x: 19, y: 182000 },
+        { x: 20, y: 132000 },
       ],
     },
   ]
+
+  const Line = ({ series, innerHeight, margin }) => {
+    let data0
+    for (let i = 0; i < series[0]?.data.length; i++) {
+      console.log(series[0]?.data[i].data.x)
+      if (series[0]?.data[i].data.x >= currentAge) {
+        data0 = series[0]?.data[i]
+        break
+      }
+    }
+
+    const x = data0?.position?.x
+
+    return (
+      <>
+        <text x={x - 40} y="-5" className="small">Current Age</text>
+        <line
+          x1={x} y1={0} x2={x} y2={innerHeight} stroke="#87972f" strokeDasharray="3"
+          strokeWidth={1}
+        />
+        {/*<line x1="300" y1="10" x2="300" y2="285" stroke="#87972f" strokeDasharray="2" strokeWidth={1}/>*/}
+      </>
+    )
+  }
 
   const commonProperties = {
     margin: { top: 30, right: 10, bottom: 35, left: 55 },
@@ -86,7 +123,7 @@ const Depreciation = () => {
     ],
     data: depreciationData,
     animate: true,
-    colors: ['#3D511B','#87972f'],
+    colors: ['#3D511B', '#87972f'],
     enableSlices: 'x',
     enableGridX: false,
     enableGridY: true,
@@ -115,13 +152,13 @@ const Depreciation = () => {
       legendOffset: 36,
       legendPosition: 'middle',
     },
-    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends'],
+    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends', Line],
 
   }
 
   return (
     <Wrapper>
-      <h5>Reliability (Hours)</h5>
+      <h5>Depreciation</h5>
       <ChartWrapper>
         <ResponsiveLine
           {...commonProperties}
