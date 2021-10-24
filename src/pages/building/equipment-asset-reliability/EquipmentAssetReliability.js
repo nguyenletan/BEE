@@ -285,7 +285,7 @@ const EquipmentAssetReliability = () => {
                   {/*row 4*/}
                   <EquipmentDetailInformationCol>
                     <span>Location</span>
-                    <EquipmentDetailInformationRowValue>Plant-RM-01</EquipmentDetailInformationRowValue>
+                    <EquipmentDetailInformationRowValue>{equipment.EquipmentDetail[0]?.location}</EquipmentDetailInformationRowValue>
                   </EquipmentDetailInformationCol>
 
                   <EquipmentDetailInformationCol>
