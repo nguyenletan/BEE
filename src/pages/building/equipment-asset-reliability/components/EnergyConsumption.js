@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ResponsiveLine } from '@nivo/line'
-import { useAuth } from '../../../../AuthenticateProvider'
-import { getEnergyConsumptionEquipmentByIdAndDatePeriod } from '../../../../api/EquipmentAPI'
 import _ from 'lodash'
+import { useAuth } from 'AuthenticateProvider'
+import { getEquipmentByIdAndGroupByYear } from 'api/EquipmentAPI'
 
 const Wrapper = styled.div`
 
@@ -16,9 +16,11 @@ const ChartWrapper = styled.div`
 
 const EnergyConsumption = (props) => {
 
-  const { equipmentId, startDate, endDate } = props
+  const { equipmentId } = props
   const { user } = useAuth()
   const [data, setData] = useState([])
+  const [minValue, setMinValue] = useState(0)
+  const [maxValue, setMaxValue] = useState(0)
   // let data = [
   //   {
   //     id: 'Energy Consumption',
@@ -36,47 +38,52 @@ const EnergyConsumption = (props) => {
   // ]
 
   const convertRawDataToChartData = (rawData) => {
-    console.log(rawData)
-    const groupByYear = Object.entries(_.groupBy(rawData, 'year'))
-    console.log(groupByYear)
-    setData(groupByYear.map(g => {
-      return {
-        id: g[0],
-        data: g[1].map(d => {
+    setMinValue(_.minBy(rawData, 'sum').sum / 1.01)
+    setMaxValue(_.maxBy(rawData, 'sum').sum * 1.01)
+    const dataSource = [
+      {
+        id: 'energy consumption',
+        data: rawData.map(d => {
           return {
-            x: d.day,
+            x: d.year,
             y: +d.sum.toFixed(2),
           }
         }),
-      }
-    }))
+      }]
+    setData(dataSource)
   }
 
-  const getEnergyConsumptionEquipmentByIdAndDatePeriodInfo = async () => {
+  const getEquipmentByIdAndGroupByYearInfo = async () => {
     const idToken = await user.getIdToken()
     // moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'),
-    const tmp = await getEnergyConsumptionEquipmentByIdAndDatePeriod(equipmentId, startDate, endDate, idToken)
+    const tmp = await getEquipmentByIdAndGroupByYear(equipmentId, idToken)
     convertRawDataToChartData(tmp)
   }
 
   useEffect(() => {
-    getEnergyConsumptionEquipmentByIdAndDatePeriodInfo()
+    getEquipmentByIdAndGroupByYearInfo()
     //TS
-  }, [equipmentId, startDate, endDate])
+  }, [equipmentId])
 
-  /*const commonProperties = {
-    margin: { top: 30, right: 10, bottom: 35, left: 55 },
+  const commonProperties = {
+    margin: { top: 0, right: 0, bottom: 0, left: 40 },
     data,
     animate: true,
     colors: ['#87972f'],
     enableSlices: 'x',
     enableGridX: false,
     enableGridY: true,
-    enablePoints: false,
-    lineWidth: 3,
+    enablePoints: true,
+    lineWidth: 2,
+    pointBorderWidth: 5,
+    pointBorderColor: { from: 'serieColor' },
+    pointColor: { theme: 'background' },
+    isInteractive: true,
     yScale: {
       type: 'linear',
       stacked: false,
+      min: minValue,
+      max: maxValue,
     },
     curve: 'linear',
     axisLeft: {
@@ -85,7 +92,7 @@ const EnergyConsumption = (props) => {
       tickPadding: 5,
       tickRotation: 0,
       legend: 'mWh',
-      legendOffset: -45,
+      legendOffset: -55,
       legendPosition: 'middle',
     },
     axisBottom: {
@@ -99,77 +106,6 @@ const EnergyConsumption = (props) => {
     },
     layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends'],
 
-  }*/
-
-  const commonProperties = {
-    margin: { top: 0, right: 0, bottom: 0, left: 20 },
-    legends: [
-      {
-        dataFrom: 'keys',
-        anchor: 'top-right',
-        direction: 'row',
-        justify: false,
-        translateX: 50,
-        translateY: -40,
-        itemsSpacing: 2,
-        itemWidth: 100,
-        itemHeight: 20,
-        itemDirection: 'left-to-right',
-        itemOpacity: 0.85,
-        symbolSize: 20,
-        effects: [
-          {
-            on: 'hover',
-            style: {
-              itemOpacity: 1,
-            },
-          },
-        ],
-      },
-    ],
-    sliceTooltip: ({ slice }) => {
-      // console.log(slice)
-      return (
-        <div
-          style={{
-            background: 'white',
-            padding: '9px 12px',
-            border: '1px solid #ccc',
-          }}
-        >
-          {slice.points.map(point => (
-            <div
-              key={point.id}
-              style={{
-                color: point.serieColor,
-                padding: '3px 0',
-              }}
-            >
-              <strong>{point.data.xFormatted}: </strong> {point.data.yFormatted} mWh
-            </div>
-          ))}
-        </div>
-      )
-    },
-    enableArea: true,
-    areaOpacity: 0.07,
-    colors: { scheme: 'category10' },
-    data: data,
-    animate: true,
-    axisBottom: false,
-    enableSlices: false,
-    useMesh: true,
-    enableGridX: false,
-    enablePoints: false,
-    pointSize: 10,
-    yScale: {
-      type: 'linear',
-        stacked: false,
-      },
-    // pointBorderWidth: 2,
-    // pointBorderColor:{ from: 'serieColor' },
-    // pointColor: { theme: 'background' },
-    isInteractive: true,
   }
 
   return (

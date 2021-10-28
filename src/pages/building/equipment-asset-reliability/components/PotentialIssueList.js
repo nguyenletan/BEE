@@ -10,7 +10,7 @@ const PotentialIssueList =() => {
   return (
     <Wrapper>
       <h5>List of Potential Issues</h5>
-      <table className="table table-striped">
+      <table className="table ">
         <thead>
         <tr>
           <th scope="col">Similar Historical Fault</th>

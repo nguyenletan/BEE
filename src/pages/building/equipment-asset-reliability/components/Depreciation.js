@@ -27,18 +27,18 @@ const Depreciation = () => {
         { x: 6, y: 320000 },
         { x: 7, y: 310000 },
         { x: 8, y: 280000 },
-        { x: 9, y: 260000 },
-        { x: 10, y: 250000 },
-        { x: 11, y: 220000 },
-        { x: 12, y: 210000 },
-        { x: 13, y: 200000 },
-        { x: 14, y: 180000 },
-        { x: 15, y: 190000 },
-        { x: 16, y: 150000 },
-        { x: 17, y: 120000 },
-        { x: 18, y: 110000 },
-        { x: 19, y: 100000 },
-        { x: 20, y: 80000 },
+        { x: 9, y: 160000 },
+        { x: 10, y: 125000 },
+        { x: 11, y: 92000 },
+        { x: 12, y: 81000 },
+        { x: 13, y: 72000 },
+        { x: 14, y: 58000 },
+        { x: 15, y: 29000 },
+        { x: 16, y: 15000 },
+        { x: 17, y: 8000 },
+        { x: 18, y: 4000 },
+        { x: 19, y: 1000 },
+        { x: 20, y: 0 },
 
       ],
     },
@@ -61,15 +61,80 @@ const Depreciation = () => {
         { x: 12, y: 302000 },
         { x: 13, y: 312000 },
         { x: 14, y: 292000 },
-        { x: 15, y: 282000 },
-        { x: 16, y: 252000 },
-        { x: 17, y: 250000 },
-        { x: 18, y: 220000 },
-        { x: 19, y: 182000 },
-        { x: 20, y: 132000 },
+        { x: 15, y: 188200 },
+        { x: 16, y: 125200 },
+        { x: 17, y: 85000 },
+        { x: 18, y: 22000 },
+        { x: 19, y: 18200 },
+        { x: 20, y: 0 },
       ],
     },
   ]
+
+  const style = {
+    dashed: {
+      strokeDasharray: '12, 6',
+      strokeWidth: 3
+    },
+    default: {
+      strokeWidth: 3
+    }
+  }
+
+
+  const DashedLine = ({ series, lineGenerator, xScale, yScale }) => {
+    return series.map(({ id, data, color }) => {
+        if (id === 'Condition Value') {
+          const data1 = data.filter(d => d.data.x <= 16)
+          const data2 = data.filter(d => d.data.x >= 16)
+
+          return (
+            <>
+              <path
+                key={id}
+                d={lineGenerator(
+                  data1.map(d => ({
+                    x: xScale(d.data.x),
+                    y: yScale(d.data.y)
+                  }))
+                )}
+                fill='none'
+                stroke={color}
+                style={style.default}
+              />
+              <path
+                key={id}
+                d={lineGenerator(
+                  data2.map(d => ({
+                    x: xScale(d.data.x),
+                    y: yScale(d.data.y)
+                  }))
+                )}
+                fill='none'
+                stroke={color}
+                style={style.dashed}
+              />
+            </>
+          )
+        } else {
+          return (
+            <path
+              key={id}
+              d={lineGenerator(
+                data.map(d => ({
+                  x: xScale(d.data.x),
+                  y: yScale(d.data.y)
+                }))
+              )}
+              fill='none'
+              stroke={color}
+              style={style.default}
+            />
+          )
+        }
+      }
+    )
+  }
 
   const Line = ({ series, innerHeight, margin }) => {
     let data0
@@ -152,7 +217,7 @@ const Depreciation = () => {
       legendOffset: 36,
       legendPosition: 'middle',
     },
-    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends', Line],
+    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair',  'points', 'slices', 'mesh', 'legends', Line, DashedLine],
 
   }
 

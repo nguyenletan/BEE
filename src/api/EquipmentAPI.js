@@ -22,6 +22,51 @@ export const getEquipmentById = async (id, idToken) => {
   return result
 }
 
+export const getEquipmentByIdAndGroupByYear = async (id, idToken) => {
+  let result
+  await axios({
+    method: 'get',
+    url: `${process.env.REACT_APP_BACKEND_API}/equipments/getEnergyConsumptionByIdAndGroupByYear/${id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${idToken}`,
+    },
+    body: {},
+  }).then((response) => {
+    result = response.data
+  }).catch(error => {
+    if (error.response) {
+      // setErrorMsg(error.response.data.message)
+      result = error.response.data.message
+    }
+  })
+
+  return result
+}
+
+export const getProjectPeakDemand = async (id, numberOfNextDays, idToken) => {
+  let result
+  await axios({
+    method: 'get',
+    url: `${process.env.REACT_APP_BACKEND_API}/equipments/getProjectPeakDemand/${id}/${numberOfNextDays}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${idToken}`,
+    },
+    body: {},
+  }).then((response) => {
+    result = response.data
+  }).catch(error => {
+    if (error.response) {
+      // setErrorMsg(error.response.data.message)
+      result = error.response.data.message
+    }
+  })
+
+  return result
+}
+
+
 export const getEnergyConsumptionEquipmentByIdAndDatePeriod = async (id, startDate, endDate, idToken) => {
   let result
   await axios({

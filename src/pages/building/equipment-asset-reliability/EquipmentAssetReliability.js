@@ -2,21 +2,21 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
-import { useSetRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import {
   energyPerformanceEndTimeState,
   energyPerformanceStartTimeState,
   isDisplayPerformanceFilterState,
-} from '../../../atoms'
-import chillerPhoto from '../../../assets/images/equipment/Chiller.webp'
+} from 'atoms'
+
 import AlertChart from './components/AlertChart'
 import EnergyConsumption from './components/EnergyConsumption'
 import EnergyConsumptionPercentage from './components/EnergyConsumptionPercentage'
 import TotalCostBreakDown from './components/TotalCostBreakDown'
 import { useParams } from 'react-router-dom'
-import { useAuth } from '../../../AuthenticateProvider'
-import { getEquipmentById } from '../../../api/EquipmentAPI'
-import { formatDate, formatNumber, getTheTimeDifference } from '../../../Utilities'
+import { useAuth } from 'AuthenticateProvider'
+import { getEquipmentById } from 'api/EquipmentAPI'
+import { formatDate, formatNumber, getTheTimeDifference } from 'Utilities'
 import MaintenanceCostReplacementValue from './components/MaintenanceCostReplacementValue'
 import Cost from './components/Cost'
 import Reliability from './components/Reliability'
@@ -163,7 +163,7 @@ const AssetPartsServiceSourcingWrapper = styled.div`
   border-radius: 20px;
   padding: 30px;
 `
-const MaintenanceRegimeWrapper =styled.div`
+const MaintenanceRegimeWrapper = styled.div`
   background-color: #fafafa;
   border-radius: 20px;
   padding: 30px;
@@ -195,10 +195,11 @@ const EquipmentAssetReliability = () => {
     // moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'),
     const tmp = await getEquipmentById(equipmentId, idToken)
     setEquipment(tmp)
+    console.log(tmp)
     const _subSystemName = tmp.coolingSystemId
-                            ? 'Cooling' : tmp.equipment.heatingSystemId
-                                ? 'Heating' : tmp.equipment.mechanicalVentilationSystemId
-                                  ? 'Mechanical Ventilation' : ''
+      ? 'Cooling' : tmp.heatingSystemId
+        ? 'Heating' : tmp.mechanicalVentilationSystemId
+          ? 'Mechanical Ventilation' : ''
 
     //const _subSystemId = tmp.coolingSystemId || tmp.equipment.heatingSystemId || tmp.equipment.mechanicalVentilationSystemId
 
@@ -227,7 +228,7 @@ const EquipmentAssetReliability = () => {
               <h3>Equipment Details</h3>
               <EquipmentDetailContent>
                 <div>
-                  <EquipmentPhoto src={chillerPhoto} alt="Chiller "/>
+                  <EquipmentPhoto src={equipment.EquipmentDetail[0]?.imageUrl} alt="Chiller "/>
                 </div>
                 <EquipmentDetailInformation>
                   {/*row 1*/}
@@ -313,7 +314,8 @@ const EquipmentAssetReliability = () => {
             <EnergyConsumptionPercentageWrapper>
               <EnergyConsumptionPercentage equipmentId={equipmentId}
                                            equipmentTypeId={equipment?.R_EquipmentTypes?.id}
-                                           subSystemId={equipment.coolingSystemId || equipment.heatingSystemId || equipment.mechanicalVentilationSystemId}
+                                           subSystemId={equipment.coolingSystemId || equipment.heatingSystemId ||
+                                           equipment.mechanicalVentilationSystemId}
                                            buildingId={equipment?.Property?.buildingId}
                                            startDate={moment(startTime).format('YYYY-MM-DD')}
                                            endDate={moment(endTime).format('YYYY-MM-DD')}/>
@@ -326,19 +328,19 @@ const EquipmentAssetReliability = () => {
 
           <Row2EqualColsGrid>
             <MaintenanceCostReplacementValueWrapper>
-              <MaintenanceCostReplacementValue />
+              <MaintenanceCostReplacementValue/>
             </MaintenanceCostReplacementValueWrapper>
             <CostWrapper>
-              <Cost />
+              <Cost/>
             </CostWrapper>
           </Row2EqualColsGrid>
 
           <Row2EqualColsGrid>
             <ReliabilityWrapper>
-              <Reliability />
+              <Reliability/>
             </ReliabilityWrapper>
             <DepreciationWrapper>
-              <Depreciation />
+              <Depreciation/>
             </DepreciationWrapper>
           </Row2EqualColsGrid>
 
@@ -353,10 +355,10 @@ const EquipmentAssetReliability = () => {
 
           <Row2ColsGrid>
             <ProjectedPeakDemandWrapper>
-              <ProjectedPeakDemand />
+              <ProjectedPeakDemand equipmentId={equipmentId} />
             </ProjectedPeakDemandWrapper>
             <MaintenanceRegimeWrapper>
-              <MaintenanceRegime />
+              <MaintenanceRegime/>
             </MaintenanceRegimeWrapper>
           </Row2ColsGrid>
         </>
