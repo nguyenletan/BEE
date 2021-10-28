@@ -90,7 +90,7 @@ const Cost = () => {
         direction: 'row',
         justify: false,
         translateX: 20,
-        translateY: -55,
+        translateY: -50,
         itemsSpacing: 2,
         itemWidth: 100,
         itemHeight: 20,
@@ -126,7 +126,7 @@ const Cost = () => {
       tickPadding: 5,
       tickRotation: 0,
       legend: '%',
-      legendOffset: -45,
+      legendOffset: -65,
       legendPosition: 'middle',
     },
     axisBottom: {
