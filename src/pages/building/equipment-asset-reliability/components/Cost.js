@@ -89,7 +89,7 @@ const Cost = () => {
         anchor: 'top-right',
         direction: 'row',
         justify: false,
-        translateX: 10,
+        translateX: 20,
         translateY: -55,
         itemsSpacing: 2,
         itemWidth: 100,
