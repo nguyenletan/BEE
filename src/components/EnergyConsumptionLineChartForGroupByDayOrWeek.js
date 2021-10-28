@@ -4,7 +4,6 @@ import _ from 'lodash'
 import moment from 'moment'
 
 const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy, onSelectDay }) => {
-  console.log(data)
 
   const groupByYear = Object.entries(_.groupBy(data, 'year'))
 

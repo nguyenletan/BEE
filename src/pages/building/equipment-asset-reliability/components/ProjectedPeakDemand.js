@@ -1,7 +1,11 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import { ResponsiveLine } from '@nivo/line'
 import styled from 'styled-components'
 import { line } from 'd3-shape'
+import { getProjectPeakDemand } from 'api/EquipmentAPI'
+import { useAuth } from 'AuthenticateProvider'
+import { getMonthName } from 'Utilities'
 
 const Wrapper = styled.div`
 
@@ -11,32 +15,44 @@ const ChartWrapper = styled.div`
   height: 350px;
 `
 
-const ProjectedPeakDemand = () => {
+const ProjectedPeakDemand = (props) => {
   // const points = {
   //   '07-Oct': 2,
   //    '14-Oct': 1,
   //   '21-Oct': 1
   // }
-  let depreciationData = [
-    {
-      id: 'Book Value',
-      //hard code or dummy data
-      data: [
-        { x: 'Jan 2020', y: 10100 },
-        { x: 'Feb 2020', y: 15000 },
-        { x: 'Mar 2020', y: 22000 },
-        { x: 'Apr 2020', y: 27000 },
-        { x: 'May 2020', y: 29500 },
-        { x: 'Jun 2020', y: 32000 },
-        { x: 'Jul 2020', y: 31200 },
-        { x: 'Aug 2020', y: 32300 },
-        { x: 'Sep 2020', y: 32800 },
-        { x: 'Oct 2020', y: 35000 },
-        { x: 'Nov 2020', y: 37000 },
-        { x: 'Dec 2020', y: 45000 },
-      ],
-    }
-  ]
+
+
+  const { equipmentId } = props
+  const { user } = useAuth()
+  const [depreciationData, setDepreciationData] = useState([])
+
+
+  const convertRawDataToChartData = (rawData) => {
+    const dataSource = [
+      {
+        id: 'ProjectPeakDemand',
+        data: rawData.map(d => {
+          return {
+            x: getMonthName(d.month) + ' ' + d.day,
+            y: +d.average.toFixed(2),
+          }
+        }),
+      }]
+    setDepreciationData(dataSource)
+  }
+
+  const getProjectPeakDemandInfo =  async () => {
+    const idToken = await user.getIdToken()
+    // moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'),
+    const tmp = await getProjectPeakDemand(equipmentId, 14, idToken)
+    convertRawDataToChartData(tmp)
+  }
+
+  useEffect(() => {
+    getProjectPeakDemandInfo()
+    //TS
+  }, [equipmentId])
 
   const Line = ({ series, innerHeight, margin }) => {
     // let data0
@@ -73,11 +89,17 @@ const ProjectedPeakDemand = () => {
     data: depreciationData,
     animate: true,
     colors: ['#87972f'],
-    enableSlices: 'x',
+    enableSlices: false,
     enableGridX: false,
     enableGridY: true,
-    enablePoints: false,
-    lineWidth: 3,
+    enablePoints: true,
+    pointBorderWidth: 4,
+    pointBorderColor: { from: 'serieColor' },
+    pointColor: { theme: 'background' },
+    isInteractive: true,
+    useMesh: true,
+
+    lineWidth: 2,
     yScale: {
       type: 'linear',
       stacked: false,
