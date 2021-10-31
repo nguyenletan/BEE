@@ -128,12 +128,10 @@ const ProjectedPeakDemand = (props) => {
     setNumberOfNextDays(e.target.value)
     let tmp = [...filterData]
     tmp[0].data= []
-    // tmp[0].data.push(deepClone(depreciationData[0].data[0]))
     for(let i = 0; i <= e.target.value; i++) {
       tmp[0].data.push(deepClone(depreciationData[0].data[i]))
     }
     setFilterData([...tmp])
-    console.log(depreciationData)
   };
 
 

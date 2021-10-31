@@ -6,7 +6,7 @@ import { AddBuildingText, AddingIcon, BuildingBlocks, Description, PortfolioWrap
 import { Link } from 'react-router-dom'
 import { getAllBuilding } from '../../api/BuildidingAPI'
 import { useAuth } from '../../AuthenticateProvider'
-
+import { useTranslation } from 'react-i18next';
 
 const BuildingListBlocks = ({ buildings }) => {
 
@@ -22,7 +22,7 @@ const BuildingListBlocks = ({ buildings }) => {
 }
 
 const Portfolio = () => {
-
+  const { t } = useTranslation();
   const { user } = useAuth()
 
   const [buildings, setBuildings] = useState([])
@@ -50,20 +50,18 @@ const Portfolio = () => {
       <PortfolioWrapper className="container-fluid container-md">
 
         <div className="d-flex justify-content-between">
-          <Description className="">Please select a building to see it’s energy performance and asset
-            health
-          </Description>
+          <Description className="">{t('Please select a building to see it’s energy performance and asset health')}</Description>
 
           <div>
             <Link to="/adding-building">
-              <AddBuildingText className="text-primary font-weight-bold">Add building</AddBuildingText>
+              <AddBuildingText className="text-primary font-weight-bold">{t('Add building')}</AddBuildingText>
               <AddingIcon className="bi bi-plus-circle-fill"/>
             </Link>
           </div>
         </div>
         {isLoading ? (
             <div className="d-flex justify-content-center justify-content-md-start flex-wrap">
-              <div>
+              <div>t
                 {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
                 <h2 className="skeleton-box skeleton-square-box shadow-sm"/>
                 <p className="skeleton-box skeleton-line-box"/>

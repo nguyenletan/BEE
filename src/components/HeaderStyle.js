@@ -103,6 +103,13 @@ export const SignOutButton = styled.button`
 
 `
 
+export const LangWrapper = styled.div`
+  width: 72px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 0.95rem;
+`
+
 export const SearchMenu = styled.div`
   margin: auto 30px auto auto;
   @media (max-width: 768px) {
