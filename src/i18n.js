@@ -34,12 +34,19 @@ i18n
       },
       de: {
         translation: {
-          'Please select a building to see it’s energy performance and asset health': 'Bitte wählen Sie ein Gebäude aus, um dessen Energieeffizienz und Anlagenzustand zu sehen',
-          'Add building': 'Gebäude hinzufügen',
-          'Building': 'Building',
-          'Message': 'Mitteilungen',
-          'Setting': 'Einstellungen',
-          'Logout': 'Ausloggen'
+          buildingPage: {
+
+            'Please select a building to see it’s energy performance and asset health': 'Bitte wählen Sie ein Gebäude aus, um dessen Energieeffizienz und Anlagenzustand zu sehen',
+            'Add building': 'Gebäude hinzufügen',
+            'Building': 'Gebäude',
+            'Message': 'Mitteilungen',
+            'Setting': 'Einstellungen',
+            'Logout': 'Ausloggen'
+          },
+          equipmentPage: {
+            'english': 'germany'
+          }
+
         }
       }
       // en: { translation: en },
