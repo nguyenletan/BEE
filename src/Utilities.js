@@ -623,3 +623,7 @@ export const formatDate = (date) => {
 export const getTheTimeDifference = (datetime1, datetime2, measurement='days') => {
   return moment(datetime1).diff(datetime2, measurement)
 }
+
+export const deepClone = (source) => {
+  return JSON.parse(JSON.stringify(source))
+}
