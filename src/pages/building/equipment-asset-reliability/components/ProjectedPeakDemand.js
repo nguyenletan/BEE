@@ -5,7 +5,8 @@ import styled from 'styled-components'
 import { line } from 'd3-shape'
 import { getProjectPeakDemand } from 'api/EquipmentAPI'
 import { useAuth } from 'AuthenticateProvider'
-import { getMonthName } from 'Utilities'
+import { deepClone, getMonthName } from 'Utilities'
+import { EuiRange } from '@elastic/eui'
 
 const Wrapper = styled.div`
 
@@ -15,17 +16,22 @@ const ChartWrapper = styled.div`
   height: 350px;
 `
 
-const ProjectedPeakDemand = (props) => {
-  // const points = {
-  //   '07-Oct': 2,
-  //    '14-Oct': 1,
-  //   '21-Oct': 1
-  // }
+const NumberOfDaysWrapper = styled.div`
+  width: 400px;
+`
 
+const NumberOfDaysLabel = styled.div`
+  width: 150px;
+  font-size: 0.9rem;
+`
+
+const ProjectedPeakDemand = (props) => {
 
   const { equipmentId } = props
   const { user } = useAuth()
   const [depreciationData, setDepreciationData] = useState([])
+  const [filterData, setFilterData] = useState([])
+  const [numberOfNextDays, setNumberOfNextDays] = useState(14)
 
 
   const convertRawDataToChartData = (rawData) => {
@@ -39,7 +45,8 @@ const ProjectedPeakDemand = (props) => {
           }
         }),
       }]
-    setDepreciationData(dataSource)
+    setDepreciationData([...dataSource])
+    setFilterData(deepClone(dataSource))
   }
 
   const getProjectPeakDemandInfo =  async () => {
@@ -85,20 +92,19 @@ const ProjectedPeakDemand = (props) => {
   }
 
   const commonProperties = {
-    margin: { top: 30, right: 10, bottom: 35, left: 55 },
-    data: depreciationData,
+    margin: { top: 30, right: 20, bottom: 25, left: 40 },
+    data: filterData,
     animate: true,
     colors: ['#87972f'],
     enableSlices: false,
     enableGridX: false,
     enableGridY: true,
     enablePoints: true,
-    pointBorderWidth: 4,
+    pointBorderWidth: 5,
     pointBorderColor: { from: 'serieColor' },
     pointColor: { theme: 'background' },
     isInteractive: true,
     useMesh: true,
-
     lineWidth: 2,
     yScale: {
       type: 'linear',
@@ -111,17 +117,43 @@ const ProjectedPeakDemand = (props) => {
       tickPadding: 5,
       tickRotation: 0,
       legend: 'KWh',
-      legendOffset: -60,
+      legendOffset: -40,
       legendPosition: 'middle',
     },
 
     layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends', Line],
-
   }
+
+  const onChange = (e) => {
+    setNumberOfNextDays(e.target.value)
+    let tmp = [...filterData]
+    tmp[0].data= []
+    for(let i = 0; i <= e.target.value; i++) {
+      tmp[0].data.push(deepClone(depreciationData[0].data[i]))
+    }
+    setFilterData([...tmp])
+  };
+
 
   return (
     <Wrapper>
-      <h5>Projected Peak Demand (kW)</h5>
+      <div className="d-flex justify-content-between mb-5">
+        <h5>Projected Peak Demand (kW)</h5>
+        <NumberOfDaysWrapper className="d-flex justify-content-between">
+          <NumberOfDaysLabel for="number-of-next-days">Number of days: </NumberOfDaysLabel>
+          <EuiRange
+            id="number-of-next-days"
+            min={1}
+            max={14}
+            step={1}
+            showTicks
+            value={numberOfNextDays}
+            onChange={onChange}
+            showRange
+            aria-label="Number of Next Days"
+          />
+        </NumberOfDaysWrapper>
+      </div>
       <ChartWrapper>
         <ResponsiveLine
           {...commonProperties}
