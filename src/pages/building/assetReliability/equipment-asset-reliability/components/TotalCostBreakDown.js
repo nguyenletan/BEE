@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import TotalBreakDownPieChart from './TotalBreakDownPieChart'
+import TotalBreakDownPieChart from 'pages/building/assetReliability/equipment-asset-reliability/components/TotalBreakDownPieChart'
 
 const Wrapper = styled.div`
 

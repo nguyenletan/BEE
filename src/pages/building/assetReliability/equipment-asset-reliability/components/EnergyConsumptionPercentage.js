@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import PercentagePieChart from './PercentagePieChart'
-import { getEnergyConsumptionPercentage } from '../../../../api/EquipmentAPI'
-import { useAuth } from '../../../../AuthenticateProvider'
+import PercentagePieChart from 'pages/building/assetReliability/equipment-asset-reliability/components/PercentagePieChart'
+import { getEnergyConsumptionPercentage } from 'api/EquipmentAPI'
+import { useAuth } from 'AuthenticateProvider'
 
 const Wrapper = styled.div`
 

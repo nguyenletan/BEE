@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ResponsivePie } from '@nivo/pie'
-import { formatNumber, getColorPattern } from '../Utilities'
+import { formatNumber, getColorPattern } from 'Utilities'
 import {
   breakDownLevelState, breakdownState,
   consumptionBreakdownState,
   isBreakDownDrillDownState,
   selectedSubBreakdownState,
-} from '../atoms'
+} from 'atoms'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { Menu, Item, useContextMenu } from 'react-contexify'
 import 'react-contexify/dist/ReactContexify.css';
@@ -265,7 +265,7 @@ const DrillDownDonutChart3Lv = (props) => {
       <Menu id='MENU_ID'>
         {selectedBreakdownItemMenuItem &&
         <Item onClick={handleMenuItemClick}>
-          <Link to={`/building/${id}/equipment-asset-reliability/${equipmentId}/${selectedSubBreakdown}`}>
+          <Link to={`/building/${id}/asset-reliability/equipment/${equipmentId}/${selectedSubBreakdown}`}>
             Go to Asset Reliability - {selectedBreakdownItemMenuItem?.name}
           </Link>
         </Item>}
