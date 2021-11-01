@@ -37,7 +37,7 @@ import {
 } from '../../atoms'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import ChartType from './components/ChartType'
-import EquipmentAssetReliability from './equipment-asset-reliability/EquipmentAssetReliability'
+import EquipmentAssetReliability from './assetReliability/equipment-asset-reliability/EquipmentAssetReliability'
 
 const BuildingWrapper = styled.div`
 

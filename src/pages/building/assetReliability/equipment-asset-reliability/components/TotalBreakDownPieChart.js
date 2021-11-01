@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ResponsivePie } from '@nivo/pie'
-import { formatNumber } from '../../../../Utilities'
+import { formatNumber } from 'Utilities'
 
 const BreakDownBlock = styled.div`
   background-color: #fafafa;

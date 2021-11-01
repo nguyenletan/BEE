@@ -8,27 +8,41 @@ import {
   energyPerformanceStartTimeState,
   isDisplayPerformanceFilterState,
 } from 'atoms'
-
-import AlertChart from './components/AlertChart'
-import EnergyConsumption from './components/EnergyConsumption'
-import EnergyConsumptionPercentage from './components/EnergyConsumptionPercentage'
-import TotalCostBreakDown from './components/TotalCostBreakDown'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
+import { useHistory } from 'react-router-dom'
+import AlertChart from 'pages/building/assetReliability/equipment-asset-reliability/components/AlertChart'
+import EnergyConsumption from 'pages/building/assetReliability/equipment-asset-reliability/components/EnergyConsumption'
+import EnergyConsumptionPercentage from 'pages/building/assetReliability/equipment-asset-reliability/components/EnergyConsumptionPercentage'
+import TotalCostBreakDown from 'pages/building/assetReliability/equipment-asset-reliability/components/TotalCostBreakDown'
 import { useAuth } from 'AuthenticateProvider'
 import { getEquipmentById } from 'api/EquipmentAPI'
 import { formatDate, formatNumber, getTheTimeDifference } from 'Utilities'
-import MaintenanceCostReplacementValue from './components/MaintenanceCostReplacementValue'
-import Cost from './components/Cost'
-import Reliability from './components/Reliability'
-import Depreciation from './components/Depreciation'
-import PotentialIssueList from './components/PotentialIssueList'
-import AssetPartsServiceSourcing from './components/AssetPartsServiceSourcing'
-import MaintenanceRegime from './components/MaintenanceRegime'
-import ProjectedPeakDemand from './components/ProjectedPeakDemand'
+import MaintenanceCostReplacementValue from 'pages/building/assetReliability/equipment-asset-reliability/components/MaintenanceCostReplacementValue'
+import Cost from 'pages/building/assetReliability/equipment-asset-reliability/components/Cost'
+import Reliability from 'pages/building/assetReliability/equipment-asset-reliability/components/Reliability'
+import Depreciation from 'pages/building/assetReliability/equipment-asset-reliability/components/Depreciation'
+import PotentialIssueList from 'pages/building/assetReliability/equipment-asset-reliability/components/PotentialIssueList'
+import AssetPartsServiceSourcing from 'pages/building/assetReliability/equipment-asset-reliability/components/AssetPartsServiceSourcing'
+import MaintenanceRegime from 'pages/building/assetReliability/equipment-asset-reliability/components/MaintenanceRegime'
+import ProjectedPeakDemand from 'pages/building/assetReliability/equipment-asset-reliability/components/ProjectedPeakDemand'
+import { ArrowLeft } from 'react-bootstrap-icons'
 
 const Wrapper = styled.div`
   margin-top: 30px;
   margin-bottom: 30px;
+`
+
+
+const BreadcrumbItem = styled.li`
+  line-height: 28px;
+  cursor: pointer;
+  margin-right: .3rem;
+`
+
+const BreadcrumbItemActive = styled.li`
+  line-height: 28px;
+  font-weight: 700;
+  color: var(--bs-primary);
 `
 
 const EquipmentDetailWrapper = styled.div`
@@ -180,7 +194,7 @@ const EquipmentAssetReliability = () => {
   const [equipment, setEquipment] = useState()
   setIsDisplayPerformanceFilter(false)
   const { equipmentId } = useParams()
-
+  const history = useHistory()
   const { user } = useAuth()
 
   const [subSystemName, setSubSystemName] = useState('')
@@ -215,12 +229,14 @@ const EquipmentAssetReliability = () => {
     <Wrapper>
       {equipment && (
         <>
+
           <Nav aria-label="breadcrumb">
             <ol className="breadcrumb">
-              <li className="breadcrumb-item">Equipment</li>
-              <li className="breadcrumb-item">{subSystemName}</li>
-              <li className="breadcrumb-item">{equipment?.R_EquipmentTypes?.name}</li>
-              <li className="breadcrumb-item active text-primary" aria-current="page">{equipment.dis}</li>
+              <BreadcrumbItem onClick={() => history.goBack()}><ArrowLeft color="#87972f" size={28}/></BreadcrumbItem>
+              <BreadcrumbItem className="breadcrumb-item">Equipment</BreadcrumbItem>
+              <BreadcrumbItem className="breadcrumb-item">{subSystemName}</BreadcrumbItem>
+              <BreadcrumbItem className="breadcrumb-item">{equipment?.R_EquipmentTypes?.name}</BreadcrumbItem>
+              <BreadcrumbItemActive className="breadcrumb-item active text-primary font-bold" aria-current="page">{equipment.dis}</BreadcrumbItemActive>
             </ol>
           </Nav>
           <Row2ColsGrid>

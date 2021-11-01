@@ -7,6 +7,7 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import IssueDetail from './IssueDetail'
 import { useSetRecoilState } from 'recoil'
 import { isDisplayPerformanceFilterState } from '../../../atoms'
+import EquipmentAssetReliability from 'pages/building/assetReliability/equipment-asset-reliability/EquipmentAssetReliability'
 
 const AssetReliabilityWrapper = styled.div`
   margin-bottom: 50px;
@@ -188,6 +189,9 @@ const AssetReliability = () => {
         </Route>
         <Route path={`${path}/issue/:id`}>
           <IssueDetail data={data.listOfPotentialFaults} />
+        </Route>
+        <Route path={`${path}/equipment/:equipmentId/:subBreakdownName`}>
+          <EquipmentAssetReliability />
         </Route>
       </Switch>
 
