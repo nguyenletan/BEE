@@ -21,7 +21,8 @@ const PotentialIssueTable = styled.table`
   }
   
   tbody {
-    border-top-width: 1px !important;
+    border-top: 2px solid #eaeaea !important;
+    border-bottom: 2px solid #eaeaea !important;
   }
 
   tbody tr {
