@@ -22,20 +22,27 @@ const AlertBlock = styled.div`
   background-color: ${props => props.backgroundColor || '#879637'};
   border-radius: 13px;
   color: white;
-  width: 140px;
+  width: 70px;
   height: 58px;
   display: flex;
+  font-size: 28px;
+  font-weight: 500;
   justify-content: center;
   align-items: center;
   margin-left: 20px;
+  border: solid 3px transparent;
+  &.empty {
+    border-color: #e7ead5;
+    background-color: #fff;
+  }
 `
 
 const AlertChart = () => {
   const colors = {
-    low: ['#879637', '#d8debf'],
-    medium: ['#ECB75F', '#f7e7cb'],
-    high: ['#D94545', '#f2c4c3'],
-    critical: ['#7045D9', '#d1c3f2'],
+    low: ['#879637', '#ffffff'],
+    medium: ['#ECB75F', '#fffff'],
+    high: ['#D94545', '#ffffff'],
+    critical: ['#7045D9', '#ffffff'],
   }
 
   const data = {
@@ -51,25 +58,33 @@ const AlertChart = () => {
       <AlertContent>
         <AlertRow>
           <span>Critical</span>
-          <AlertBlock backgroundColor={data.critical > 0 ? colors['critical'][0] : colors['critical'][1]}>
+          <AlertBlock
+            className={data.critical === 0 ? 'empty': ''}
+            backgroundColor={data.critical > 0 ? colors['critical'][0] : colors['critical'][1]}>
             {data.critical > 0 ? data.critical : ''}
           </AlertBlock>
         </AlertRow>
         <AlertRow>
           <span>High</span>
-          <AlertBlock backgroundColor={data.high > 0 ? colors['high'][0] : colors['high'][1]}>
+          <AlertBlock
+            className={data.high === 0 ? 'empty': ''}
+            backgroundColor={data.high > 0 ? colors['high'][0] : colors['high'][1]}>
             {data.high > 0 ? data.high : ''}
           </AlertBlock>
         </AlertRow>
         <AlertRow>
           <span>Medium</span>
-          <AlertBlock backgroundColor={data.medium > 0 ? colors['medium'][0] : colors['medium'][1]}>
+          <AlertBlock
+            className={data.medium === 0 ? 'empty': ''}
+            backgroundColor={data.medium > 0 ? colors['medium'][0] : colors['medium'][1]}>
             {data.medium > 0 ? data.medium : ''}
           </AlertBlock>
         </AlertRow>
         <AlertRow>
           <span>Low</span>
-          <AlertBlock backgroundColor={data.low > 0 ? colors['low'][0] : colors['low'][1]}>
+          <AlertBlock
+            className={data.low === 0 ? 'empty': ''}
+            backgroundColor={data.low > 0 ? colors['low'][0] : colors['low'][1]}>
             {data.low > 0 ? data.low : ''}
           </AlertBlock>
         </AlertRow>

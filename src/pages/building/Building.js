@@ -12,9 +12,9 @@ import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom'
 import Comparison from './comparision/Comparison'
 import Improve from './improve/Improve'
 import AssetReliability from './assetReliability/AssetReliability'
-import { getBuildingById } from '../../api/BuildidingAPI'
-import { useAuth } from '../../AuthenticateProvider'
-import { findCountryByCountryCode } from '../../reference-tables/Country'
+import { getBuildingById } from 'api/BuildidingAPI'
+import { useAuth } from 'AuthenticateProvider'
+import { findCountryByCountryCode } from 'reference-tables/Country'
 import {
   printDateTime,
   quarterOptions,
@@ -25,7 +25,7 @@ import {
   selectStartQuarter,
   selectStartYear,
   shortMonthOptions,
-} from '../../Utilities'
+} from 'Utilities'
 import moment from 'moment'
 import { EuiDatePicker, EuiDatePickerRange, EuiFieldNumber, EuiSelect } from '@elastic/eui'
 import BuildingSkeleton from '../../components/BuildingSkeleton'
@@ -34,10 +34,9 @@ import {
   energyPerformanceStartTimeState,
   isDisplayPerformanceFilterState,
   originalConsumptionBreakdownState,
-} from '../../atoms'
+} from 'atoms'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import ChartType from './components/ChartType'
-import EquipmentAssetReliability from './assetReliability/equipment-asset-reliability/EquipmentAssetReliability'
 
 const BuildingWrapper = styled.div`
 
@@ -533,9 +532,9 @@ const Building = () => {
                            co2EmissionsBreakdown={generalBuildingInformation.consumptionBreakdown}
                            data={generalBuildingInformation.consumptionBreakdown}/>
                 </Route>
-                <Route path={`${path}/equipment-asset-reliability/:equipmentId/:subBreakdownName`}>
-                  <EquipmentAssetReliability />
-                </Route>
+                {/*<Route path={`${path}/equipment-asset-reliability/:equipmentId/:subBreakdownName`}>*/}
+                {/*  <EquipmentAssetReliability />*/}
+                {/*</Route>*/}
                 <Route path={`${path}/asset-reliability`}>
                   <AssetReliability data={generalBuildingInformation.energyPerformance}/>
                 </Route>
