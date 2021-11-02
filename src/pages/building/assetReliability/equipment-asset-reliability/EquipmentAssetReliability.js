@@ -100,7 +100,7 @@ const Row2ColsGrid = styled.div`
 const Row3ColsGrid = styled.div`
   display: grid;
   grid-template-columns: minmax(300px, 2fr) minmax(150px, 1fr) minmax(150px, 1fr);
-  grid-gap: 30px;
+  grid-gap: 25px;
   margin-top: 20px;
   margin-bottom: 20px;
 `
@@ -108,7 +108,7 @@ const Row3ColsGrid = styled.div`
 const Row2EqualColsGrid = styled.div`
   display: grid;
   grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);
-  grid-gap: 30px;
+  grid-gap: 25px;
   margin-top: 20px;
   margin-bottom: 20px;
 `

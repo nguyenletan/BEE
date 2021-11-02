@@ -125,7 +125,7 @@ const Cost = () => {
       tickSize: 5,
       tickPadding: 5,
       tickRotation: 0,
-      legend: '%',
+      legend: '$',
       legendOffset: -65,
       legendPosition: 'middle',
     },

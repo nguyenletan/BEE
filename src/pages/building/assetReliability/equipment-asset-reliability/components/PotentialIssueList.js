@@ -4,13 +4,44 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
 
 `
+const PotentialIssueTable = styled.table`
+  border-top: none;
 
+  th {
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: none !important;
+    vertical-align: middle !important;
+    text-align: left;
+  }
+
+  thead tr {
+
+    border-bottom: 1px solid #eaeaea;
+  }
+  
+  tbody {
+    border-top-width: 1px !important;
+  }
+
+  tbody tr {
+    line-height: 72px;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  td {
+    text-transform: capitalize;
+    border: none;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+`
 
 const PotentialIssueList =() => {
   return (
     <Wrapper>
       <h5>List of Potential Issues</h5>
-      <table className="table ">
+      <PotentialIssueTable className="table ">
         <thead>
         <tr>
           <th scope="col">Similar Historical Fault</th>
@@ -43,7 +74,7 @@ const PotentialIssueList =() => {
           <td><button className="btn btn-primary btn-sm">INFO</button></td>
         </tr>
         </tbody>
-      </table>
+      </PotentialIssueTable>
     </Wrapper>
   )
 }
