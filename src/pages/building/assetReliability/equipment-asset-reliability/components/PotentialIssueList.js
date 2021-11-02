@@ -26,7 +26,7 @@ const PotentialIssueTable = styled.table`
   }
 
   tbody tr {
-    line-height: 72px;
+    line-height: 77px;
     border-bottom: 1px solid #eaeaea;
   }
 
@@ -35,6 +35,16 @@ const PotentialIssueTable = styled.table`
     border: none;
     text-align: left;
     font-size: 0.9rem;
+  }
+`
+
+const InfoButton = styled.button`
+  border-radius: 20px;
+  padding-left: 18px;
+  padding-right: 18px;
+  text-transform: uppercase;
+  a {
+    color: white !important;
   }
 `
 
@@ -55,24 +65,24 @@ const PotentialIssueList =() => {
         <tbody>
         <tr>
           <th scope="row">Refrigerant Leak</th>
-          <td>6 Days</td>
+          <td>6 Days | 07 Oct</td>
           <td>1 Day</td>
           <td>1 day</td>
-          <td><button className="btn btn-primary btn-sm">INFO</button></td>
+          <td><InfoButton className="btn btn-primary btn-sm">INFO</InfoButton></td>
         </tr>
         <tr>
           <th scope="row">Worn Compressor</th>
-          <td>5 Days</td>
+          <td>5 Days | 11 Nov</td>
           <td>In Inventory</td>
           <td>2 days</td>
-          <td><button className="btn btn-primary btn-sm">INFO</button></td>
+          <td><InfoButton className="btn btn-primary btn-sm">INFO</InfoButton></td>
         </tr>
         <tr>
           <th scope="row">Evaporator Fouling</th>
-          <td>5 Days</td>
+          <td>5 Days | 13 Nov</td>
           <td>NA</td>
           <td>1 day</td>
-          <td><button className="btn btn-primary btn-sm">INFO</button></td>
+          <td><InfoButton className="btn btn-primary btn-sm">INFO</InfoButton></td>
         </tr>
         </tbody>
       </PotentialIssueTable>
