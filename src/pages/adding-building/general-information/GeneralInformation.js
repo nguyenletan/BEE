@@ -28,7 +28,6 @@ import Period from '../../../reference-tables/Period'
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
 import Grid from '@material-ui/core/Grid'
-import { useTranslation } from 'react-i18next'
 
 
 const UploadImage = styled.div`
@@ -88,8 +87,6 @@ const GeneralInformation = () => {
   const classes = makeStyles(() => (MaterialFormStyle))()
 
   const [isMovingNext, setIsMovingNext] = useState(false)
-
-  const { i18n } = useTranslation();
 
   const {
     control,
