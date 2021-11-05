@@ -79,8 +79,16 @@ const SearchBuilding = () => {
       postalCode: '',
       location: result?.results[0]?.geometry?.location,
       formatted_address: result?.results[0]?.formatted_address,
+      streetNumber: result?.results[0]?.formatted_address,
+      // address_components: result?.results[0]?.address_components,
     }
     for (let item of result?.results[0]?.address_components) {
+      if(item.types.includes('street_number')) {
+        information.streetNumber = item.long_name
+      }
+      if(item.types.includes('route')) {
+        information.streetName = item.long_name
+      }
       if (item.types.includes('street_number') ||
         item.types.includes('route')) {
         information.address += item.long_name + ' '

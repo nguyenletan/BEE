@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { formatNumber } from '../Utilities'
+import { formatNumber } from 'Utilities'
 import { Link } from 'react-router-dom'
+import { findCountryNameByCountryCode } from 'reference-tables/Country'
+
+import { useTranslation } from 'react-i18next'
 
 const BuildingInfoWrapper = styled.div`
   margin-bottom: 30px;
@@ -10,16 +13,23 @@ const BuildingInfoWrapper = styled.div`
 `
 
 const BuildingImage = styled.img`
-  width: 330px;
+  width: 370px;
   border-radius: 15px;
-  height: 245px;
-  margin-bottom: 30px;
+  height: 288px;
+  object-fit: cover;
+  margin-top: 6px;
 `
 
 const GeneralInformation = styled.section`
+  font-size: 1.1rem;
+  margin-bottom: 15px;
   @media (min-width: 1024px) {
     padding-left: 10px;
   }
+`
+
+const Label = styled.label`
+  color: var(--darkgray);
 `
 
 const BuildingTitle = styled.h2`
@@ -28,24 +38,11 @@ const BuildingTitle = styled.h2`
   font-weight: 700;
   padding-left: 0px;
   width: 100%;
-
-
+  
   @media (min-width: 1024px) {
     padding-left: 15px;
     padding-bottom: .5em;
   }
-`
-
-const BuildingAddress = styled.p`
-  padding-left: 15px;
-  width: 100%;
-  @media (min-width: 1024px) {
-  }
-`
-
-const BuildingLastEdited = styled.p`
-  color: var(--gray);
-  padding-left: 15px;
 `
 
 const TypeCol = styled.p`
@@ -61,59 +58,98 @@ const BuildingInfo = (props) => {
     id,
     name,
     image,
-    address,
+    streetNumber,
+    streetName,
+    city,
+    state,
+    countryCode,
+    postCode,
     useType,
     tfa,
     tfaUnit,
     storey,
     buildingInfoLastEdited,
+    email,
     constructed,
     greenBuildingRating,
     totalOperatingHours,
   } = props
+
+  const { t, i18n } = useTranslation('generalBuildingInformation');
+  const [countryName, setCountryName] = useState()
+
+  useEffect(()=> {
+    setCountryName(findCountryNameByCountryCode(countryCode, i18n.language))
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countryCode, i18n.language])
 
   return (
     <BuildingInfoWrapper className="d-flex justify-content-start flex-wrap">
       <BuildingImage src={image}/>
       <GeneralInformation className="flex-grow-1">
         <BuildingTitle>{name}</BuildingTitle>
-        <BuildingAddress className="ms-1 mb-2">{address}</BuildingAddress>
-        <div className="row ms-2 mb-2 w-100">
+
+        <div className="row ms-2 mb-4 w-100">
           <div className="col-12 col-md-4 col-lg-3">
-            <TypeCol className="mb-1">Use Type</TypeCol>
+            <TypeCol className="mb-1"><Label>{t('Street Number')}.</Label> {streetNumber}</TypeCol>
+            <TypeCol className="mb-0"><Label>State.</Label> {state}</TypeCol>
+          </div>
+          <div className="col-12 col-md-4 col-lg-3">
+            <TypeCol className="mb-1"><Label>{t('Street')}.</Label> {streetName} </TypeCol>
+            <TypeCol className="mb-0"><Label>{t('Post Code')}.</Label> {postCode}</TypeCol>
+          </div>
+          <div className="col-12 col-md-4 col-lg-6">
+            <TypeCol className="mb-1"><Label>{t('City')}.</Label> {city}</TypeCol>
+            <TypeCol className="mb-0"><Label>{t('Country')}.</Label> {countryName}</TypeCol>
+          </div>
+        </div>
+
+        <div className="row ms-2 mb-1 w-100">
+          <div className="col-12 col-md-4 col-lg-3">
+            <TypeCol className="mb-1"><Label>{t('Use Type')}</Label></TypeCol>
             <TypeCol className="mb-0">{useType}</TypeCol>
           </div>
           <div className="col-12 col-md-4 col-lg-3">
-            <TypeCol className="mb-1">Total Floor Area (Internal)</TypeCol>
+            <TypeCol className="mb-1"><Label>{t('Total Floor Area (Internal)')}</Label></TypeCol>
             <TypeCol className="mb-0">{formatNumber(tfa, 0)} {tfaUnit}</TypeCol>
           </div>
           <div className="col-12 col-md-4 col-lg-6">
-            <TypeCol className="mb-1">Green Building Rating</TypeCol>
+            <TypeCol className="mb-1"><Label>{t('Green Building Rating')}</Label></TypeCol>
             <TypeCol className="mb-0">{greenBuildingRating}</TypeCol>
           </div>
         </div>
 
-        <div className="row ms-2 mb-2">
+        <div className="row ms-2 mb-4 w-100">
           <div className="col-12 col-md-4 col-lg-3">
-            <TypeCol className="mb-1">Storey</TypeCol>
+            <TypeCol className="mb-1"><Label>{t('Storey')}</Label></TypeCol>
             <TypeCol className="mb-0">{storey}</TypeCol>
           </div>
           <div className="col-12 col-md-4 col-lg-3">
-            <TypeCol className="mb-1">Constructed</TypeCol>
+            <TypeCol className="mb-1"><Label>{t('Constructed')}</Label></TypeCol>
             <TypeCol className="mb-0">{constructed}</TypeCol>
           </div>
           <div className="col-12 col-md-4 col-lg-3">
-            <TypeCol className="mb-1">Total operating hours</TypeCol>
+            <TypeCol className="mb-1"><Label>{t('Total operating hours')}</Label></TypeCol>
             <TypeCol className="mb-0">{totalOperatingHours?.toFixed(0)}</TypeCol>
           </div>
-
-
         </div>
-        <BuildingLastEdited className="ms-1">Last Edited: {buildingInfoLastEdited}</BuildingLastEdited>
+
+        <div className="row ms-2 w-100">
+          <div className="col-12 col-md-4 col-lg-3">
+            <TypeCol className="mb-1"><Label>{t('Last Edited')}:</Label></TypeCol>
+            <TypeCol className="mb-0">{buildingInfoLastEdited}</TypeCol>
+          </div>
+          <div className="col-12 col-md-4 col-lg-3">
+            <TypeCol className="mb-1"><Label>{t('Edited by')}:</Label></TypeCol>
+            <TypeCol className="mb-0">{email}</TypeCol>
+          </div>
+        </div>
+
       </GeneralInformation>
       <div>
         <button className="btn btn-sm btn-outline-primary mt-3">
-          <Link to={"/editing-building/" + id + "/general-information"} >Edit</Link></button>
+          <Link to={"/editing-building/" + id + "/general-information"} >{t('Edit')}</Link></button>
       </div>
     </BuildingInfoWrapper>
   )

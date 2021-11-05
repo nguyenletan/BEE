@@ -336,10 +336,16 @@ const Building = () => {
                 propId={generalBuildingInformation.prop.propId}
                 name={generalBuildingInformation.prop.name}
                 image={generalBuildingInformation.prop.photo}
+                streetNumber={generalBuildingInformation.prop.streetNumber}
+                streetName={generalBuildingInformation.prop.streetName}
                 address={generalBuildingInformation.prop.streetAddress + ', ' + generalBuildingInformation.prop.city +
                 ', ' +
                 findCountryByCountryCode(generalBuildingInformation.prop.countryCode)?.name + ', ' +
                 generalBuildingInformation.prop.postCode}
+                city={generalBuildingInformation.prop.city}
+                state={generalBuildingInformation.prop.state}
+                postCode={generalBuildingInformation.prop.postCode}
+                countryCode={generalBuildingInformation.prop.countryCode}
                 useType={generalBuildingInformation.prop.useTypeName}
                 tfa={generalBuildingInformation.prop.grossInteriorArea}
                 tfaUnit={generalBuildingInformation.prop.grossInteriorAreaUnit}
@@ -349,6 +355,7 @@ const Building = () => {
                 (generalBuildingInformation.prop.completionYear + 10)}
                 greenBuildingRating={generalBuildingInformation.prop.sustainabilityRatingSchemeName + ' - ' +
                 generalBuildingInformation.prop.sustainabilityRatingName}
+                email={generalBuildingInformation.prop.email}
                 buildingInfoLastEdited={generalBuildingInformation.prop.updatedAt
                   ? printDateTime(generalBuildingInformation.prop.updatedAt, 'en-GB')
                   : printDateTime(generalBuildingInformation.prop.createdAt, 'en-GB')}

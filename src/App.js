@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { useAuth } from './AuthenticateProvider'
+import { useAuth } from 'AuthenticateProvider'
 import FirebaseAuth from './FirebaseAuthenticate'
 import { createTheme , ThemeProvider } from '@material-ui/core/styles'
 // import Login from './pages/login/Login';

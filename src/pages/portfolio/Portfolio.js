@@ -4,14 +4,14 @@ import Header from '../../components/Header'
 import BuildingBlock from '../../components/BuildingBlock'
 import { AddBuildingText, AddingIcon, BuildingBlocks, Description, PortfolioWrapper } from './PortfolioStyle'
 import { Link } from 'react-router-dom'
-import { getAllBuilding } from '../../api/BuildidingAPI'
-import { useAuth } from '../../AuthenticateProvider'
-import { useTranslation } from 'react-i18next';
+import { getAllBuilding } from 'api/BuildidingAPI'
+import { useAuth } from 'AuthenticateProvider'
+import { useTranslation  } from 'react-i18next';
 
 const BuildingListBlocks = ({ buildings }) => {
 
   const buildingList = buildings?.map(b => {
-    return <BuildingBlock key={b.id} data={{ address: b.streetAddress, photo: b.photo, id: b.id, title: b.name }}/>
+    return <BuildingBlock key={b.id} data={{ streetNumber: b.streetNumber, streetName: b.streetName, photo: b.photo, id: b.id, title: b.name }}/>
   })
 
   return (
@@ -22,7 +22,7 @@ const BuildingListBlocks = ({ buildings }) => {
 }
 
 const Portfolio = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('portfolio');
   const { user } = useAuth()
 
   const [buildings, setBuildings] = useState([])
