@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { useAuth } from '../AuthenticateProvider'
+import { useAuth } from 'AuthenticateProvider'
 import {
   SearchIcon,
   SearchInput,
@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next'
 const Header = () => {
   const { logout } = useAuth()
 
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation('common')
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng).then(() => {

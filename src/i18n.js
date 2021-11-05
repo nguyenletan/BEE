@@ -1,9 +1,14 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import LanguageDetector from 'i18next-browser-languagedetector'
 
-// import en from './locales/en.json';
-// import de from './locales/de.json';
+import PortfolioEN from "locales/en/Portfolio.json"
+import PortfolioDE from "locales/de/Portfolio.json"
+import CommonEN from 'locales/en/Common.json'
+import CommonDE from 'locales/de/Common.json'
+import GeneralBuildingInformationEN from 'locales/en/GeneralBuildingInformation.json'
+import GeneralBuildingInformationDE from 'locales/de/GeneralBuildingInformation.json'
+
 
 i18n
   // detect user language
@@ -22,36 +27,16 @@ i18n
     },
     resources: {
       en: {
-        translation: {
-          'Please select a building to see it’s energy performance and asset health': 'Please select a building to see it’s energy performance and asset health',
-          'Add building': 'Add building',
-          'Building': 'Building',
-          'Message': 'Message',
-          'Setting': 'Setting',
-          'Logout': 'Logout'
-
-        }
+        common: CommonEN,
+        generalBuildingInformation: GeneralBuildingInformationEN,
+        portfolio: PortfolioEN,
       },
       de: {
-        translation: {
-          buildingPage: {
+        common: CommonDE,
+        portfolio: PortfolioDE,
+        generalBuildingInformation: GeneralBuildingInformationDE,
+      },
+    },
+  })
 
-            'Please select a building to see it’s energy performance and asset health': 'Bitte wählen Sie ein Gebäude aus, um dessen Energieeffizienz und Anlagenzustand zu sehen',
-            'Add building': 'Gebäude hinzufügen',
-            'Building': 'Gebäude',
-            'Message': 'Mitteilungen',
-            'Setting': 'Einstellungen',
-            'Logout': 'Ausloggen'
-          },
-          equipmentPage: {
-            'english': 'germany'
-          }
-
-        }
-      }
-      // en: { translation: en },
-      // fr: { translation: de }
-    }
-  });
-
-export default i18n;
+export default i18n

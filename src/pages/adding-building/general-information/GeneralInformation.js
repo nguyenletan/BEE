@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import cameraImg from '../../../assets/images/camera.jpg'
 import { Controller, useForm } from 'react-hook-form'
-import { SustainabilityRatingScheme } from '../../../reference-tables/GreenBuildingRatingSystem'
+import { SustainabilityRatingScheme } from 'reference-tables/GreenBuildingRatingSystem'
 import { Redirect, useParams } from 'react-router-dom'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import StepNav from '../step-nav/StepNav'
@@ -21,13 +21,14 @@ import {
 import Countries from '../../../reference-tables/Country'
 import UseType from '../../../reference-tables/UseType'
 import { useRecoilState } from 'recoil'
-import { addingBuildingProgressState, generalBuildingInformationState } from '../../../atoms'
+import { addingBuildingProgressState, generalBuildingInformationState } from 'atoms'
 import { makeStyles } from '@material-ui/core/styles'
 import Orientation from '../../../reference-tables/Orientation'
 import Period from '../../../reference-tables/Period'
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
 import Grid from '@material-ui/core/Grid'
+import { useTranslation } from 'react-i18next'
 
 
 const UploadImage = styled.div`
@@ -88,6 +89,8 @@ const GeneralInformation = () => {
 
   const [isMovingNext, setIsMovingNext] = useState(false)
 
+  const { i18n } = useTranslation();
+
   const {
     control,
     handleSubmit,
@@ -138,6 +141,8 @@ const GeneralInformation = () => {
 
   useEffect(() => {
     setValue('address', generalBuildingInformation?.address, {shouldValidate: true})
+    setValue('streetName', generalBuildingInformation?.streetName, {shouldValidate: true})
+    setValue('streetNumber', generalBuildingInformation?.streetNumber, {shouldValidate: true})
     setValue('city', generalBuildingInformation?.city, {shouldValidate: true})
     setValue('state', generalBuildingInformation?.state, {shouldValidate: true})
     setValue('countryCode', generalBuildingInformation?.countryCode, {shouldValidate: true})
@@ -276,6 +281,68 @@ const GeneralInformation = () => {
               />
 
             </div>
+          </div>
+
+          <div className="row">
+            <div className="col-12 col-lg-6">
+
+              <Controller
+                name="street-number"
+                control={control}
+                render={({
+                  field: { onChange },
+                  fieldState: { error },
+                }) => (
+                  <FormControl className={classes.formControl}>
+                    <TextField type="text"
+                               id="street-number"
+                               label="Street Number"
+                               value={generalBuildingInformation?.streetNumber}
+                               onChange={(e) => {
+                                 onChange(e)
+                                 onInputChange('streetNumber', e.target.value)
+                               }}
+                               error={!!error}
+                               helperText={error ? error.message : null}
+                    />
+                  </FormControl>
+                )}
+                rules={{ required: 'Street Number is required' }}
+              />
+
+            </div>
+
+          </div>
+
+          <div className="row">
+            <div className="col-12 col-lg-6">
+
+              <Controller
+                name="street-name"
+                control={control}
+                render={({
+                  field: { onChange },
+                  fieldState: { error },
+                }) => (
+                  <FormControl className={classes.formControl}>
+                    <TextField type="text"
+                               id="street-name"
+                               label="Street Name"
+                               value={generalBuildingInformation?.streetName}
+                               onChange={(e) => {
+                                 onChange(e)
+                                 onInputChange('streetName', e.target.value)
+                               }}
+                               error={!!error}
+                               helperText={error ? error.message : null}
+                    />
+                  </FormControl>
+                )}
+                rules={{ required: 'Street Name is required' }}
+              />
+
+            </div>
+
           </div>
 
           <div className="row">
