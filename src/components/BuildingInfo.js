@@ -92,7 +92,7 @@ const BuildingInfo = (props) => {
 
         <div className="row ms-2 mb-4 w-100">
           <div className="col-12 col-md-4 col-lg-3">
-            <TypeCol className="mb-1"><Label>{t('Street Number')}.</Label> {streetNumber}</TypeCol>
+            <TypeCol className="mb-1"><Label>{t('Building No')}.</Label> {streetNumber}</TypeCol>
             <TypeCol className="mb-0"><Label>State.</Label> {state}</TypeCol>
           </div>
           <div className="col-12 col-md-4 col-lg-3">

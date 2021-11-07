@@ -49,8 +49,8 @@ const BuildingHistoricalNav = () => {
         to={url + '/improve'}
       >{t('Improve')}
       </NavLink>
-      <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to={url + '/asset-reliability'}>Asset
-        {t('Reliability')}
+      <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to={url + '/asset-reliability'}>
+        {t('Asset Reliability')}
       </NavLink>
     </SubNav>
   )

@@ -1,0 +1,56 @@
+{
+  "_comment1": "//Timeperiod Selection",
+  "Year": "Jahr",
+  "Quarter": "Quartal",
+  "Month": "Monat",
+  "Day": "Tag",
+  "Start": "Anfang",
+  "End": "Ende",
+  "Apply": "Anwenden",
+  "Start date should be greater than End date": "Das Startdatum sollte größer als das Enddatum sein",
+
+  "_comment2:":  "//Building Energy Usage Chart",
+  "Building Energy Usage (MWh)": "Gebäudeenergieverbrauch (MWh)",
+  "Total Energy Consumption (MWh)": "Gesamtenergieverbrauch (MWh)",
+  "Total Energy Cost ($)": "Gesamtenergiekosten (€)",
+  "Total Carbon Emissions (Tons)": "Gesamte CO2 Emissionen (Tonnen)",
+  "Value": "Wert",
+
+  "_comment3": "//Historical Comparison Chart",
+  "Historical": "Historischer",
+  "Comparison": "Vergleich",
+  "Same Month": "Im selben Monat",
+  "Last Year": "letztes Jahr",
+  "Last Month": "Lezten Monat",
+  "Previous 12 Month Period": "12 Monate Laufzeit",
+
+  "_comment4" : "//Comsumption Breakdown MWh Chart  //Cost Breakdown $ Chart   //CO2 Emissions Breakdown Ton Chart",
+  "Consumption Breakdown": "Verbrauchsaufschlüsselung",
+  "Cost Breakdown": "Kostenaufschlüsselung",
+  "CO2 Emissions Breakdown": "CO2-Emissionen",
+  "Ton" : "Tonne",
+  "Cooling": "Kühlung",
+  "Heating": "Heizung",
+  "Lighting": "Beleuchtung",
+  "Mechanical Ventilation": "Lüftung",
+  "Others": "Sonstiges",
+
+  "Cooling Ton": "Kühlung Tonne",
+  "Heating Ton": "Heizung Tonne",
+  "Lighting Ton": "Beleuchtung Tonne",
+  "Mechanical Ventilation Ton": "Lüftung Tonne",
+  "Others Ton": "Sonstiges Tonne",
+
+  "_comment5" : "////Electrical System Information",
+  "Electrical System Information": "Informationen zur elektr. Leistung",
+  "Cooling Load": "Kühllast",
+  "Heating Load": "Heizlast",
+
+  "P.V. System": "Erneuerbare Energien",
+
+  "_comment6" : "//Incidental Gains & Other Information",
+  "Roof": "Dach",
+  "Wall": "Wände",
+  "Openings": "Öffnungen",
+  "Floor": "Bodenplatte"
+}

@@ -8,6 +8,8 @@ import CommonEN from 'locales/en/Common.json'
 import CommonDE from 'locales/de/Common.json'
 import GeneralBuildingInformationEN from 'locales/en/GeneralBuildingInformation.json'
 import GeneralBuildingInformationDE from 'locales/de/GeneralBuildingInformation.json'
+import BuildingPerformanceDE from 'locales/de/BuildingPerformance.json'
+import BuildingPerformanceEN from 'locales/en/BuildingPerformance.json'
 
 
 i18n
@@ -30,11 +32,13 @@ i18n
         common: CommonEN,
         generalBuildingInformation: GeneralBuildingInformationEN,
         portfolio: PortfolioEN,
+        buildingPerformance: BuildingPerformanceEN
       },
       de: {
         common: CommonDE,
         portfolio: PortfolioDE,
         generalBuildingInformation: GeneralBuildingInformationDE,
+        buildingPerformance: BuildingPerformanceDE
       },
     },
   })

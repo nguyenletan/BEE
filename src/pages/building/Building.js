@@ -37,6 +37,7 @@ import {
 } from 'atoms'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import ChartType from './components/ChartType'
+import { useTranslation } from 'react-i18next'
 
 const BuildingWrapper = styled.div`
 
@@ -318,6 +319,8 @@ const Building = () => {
 
   //const BuildingInfoData = id < 3 ? BuildingInfoDataArray[id - 1] : null
 
+  const { t } = useTranslation('buildingPerformance');
+
   const { path } = useRouteMatch()
 
   return (
@@ -369,14 +372,14 @@ const Building = () => {
                   <GroupBy className="d-flex justify-content-start align-content-end mb-2">
                     <ChartType type={groupBy} onChange={handleGroupByChange}/>
 
-                    <div>{isInValid && <ErrorMsg>Start date should be greater than End date</ErrorMsg>}</div>
+                    <div>{isInValid && <ErrorMsg>{t('Start date should be greater than End date')}</ErrorMsg>}</div>
                   </GroupBy>
 
                   <div className="d-flex mb-2">
 
                     {groupBy === 'month' && (
                       <div className="d-flex">
-                        <StartLabel className="">Start</StartLabel>
+                        <StartLabel className="">{t('Start')}</StartLabel>
                         <EuiSelect
                           compressed
                           fullWidth={false}
@@ -393,7 +396,7 @@ const Building = () => {
                           min={1960}
                         />
 
-                        <EndLabel className="">End</EndLabel>
+                        <EndLabel className="">{t('Start')}</EndLabel>
                         <EuiSelect
                           compressed
                           fullWidth={false}
@@ -414,7 +417,7 @@ const Building = () => {
 
                     {groupBy === 'quarter' && (
                       <div className="d-flex">
-                        <StartLabel className="">Start</StartLabel>
+                        <StartLabel className="">{t('Start')}</StartLabel>
                         <EuiSelect
                           compressed
                           fullWidth={false}
@@ -431,7 +434,7 @@ const Building = () => {
                           min={1960}
                         />
 
-                        <EndLabel className="">End</EndLabel>
+                        <EndLabel className="">{t('End')}</EndLabel>
                         <EuiSelect
                           compressed
                           fullWidth={false}
@@ -452,7 +455,7 @@ const Building = () => {
 
                     {groupBy === 'year' && (
                       <div className="d-flex">
-                        <StartLabel className="">Start</StartLabel>
+                        <StartLabel className="">{t('Start')}</StartLabel>
                         <EuiFieldNumber
                           compressed
                           placeholder="Start Year"
@@ -461,7 +464,7 @@ const Building = () => {
                           max={moment().year()}
                           min={1960}
                         />
-                        <EndLabel className="">End</EndLabel>
+                        <EndLabel className="">{t('End')}</EndLabel>
                         <EuiFieldNumber
                           compressed
                           placeholder="End Year"
@@ -501,7 +504,7 @@ const Building = () => {
                         }
                       />)}
                     <div className="ms-3 d-flex">
-                      <button disabled={isInValid} className="btn btn-primary" onClick={handleApply}>Apply</button>
+                      <button disabled={isInValid} className="btn btn-primary" onClick={handleApply}>{t('Apply')}</button>
                     </div>
                   </div>
                 </FilterWrapper>)}

@@ -7,7 +7,8 @@ import {
   consumptionBreakdownState,
   isBreakDownDrillDownState,
   selectedSubBreakdownState,
-} from '../../../../atoms'
+} from 'atoms'
+import { useTranslation } from 'react-i18next'
 
 const BreakdownWrapper = styled.div`
   margin-bottom: 50px;
@@ -18,6 +19,8 @@ const BreakDown = (props) => {
   const {
     consumptionBreakdown,
   } = props
+
+  const { t } = useTranslation('buildingPerformance')
 
   const setBreakDownLevel = useSetRecoilState(breakDownLevelState)
   const setIsBreakDownDrillDown = useSetRecoilState(isBreakDownDrillDownState)
@@ -36,7 +39,7 @@ const BreakDown = (props) => {
       {consumptionBreakdownSt && (
         <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
           <DrillDownDonutChart3Lv
-            title="Consumption Breakdown"
+            title={t("Consumption Breakdown")}
             subTitle="MWh"
             hasDescription
             data={consumptionBreakdownSt}
@@ -47,7 +50,7 @@ const BreakDown = (props) => {
       {consumptionBreakdownSt && (
         <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
           <DrillDownDonutChart3Lv
-            title="Cost Breakdown"
+            title={t("Cost Breakdown")}
             subTitle="$"
             data={consumptionBreakdownSt}
             hasDescription
@@ -58,8 +61,8 @@ const BreakDown = (props) => {
       {consumptionBreakdownSt && (
         <div className="col col-12 col-md-8 col-xl-4">
           <DrillDownDonutChart3Lv
-            title="CO2 Emissions Breakdown"
-            subTitle="Ton"
+            title={t("CO2 Emissions Breakdown")}
+            subTitle={t("Ton")}
             data={consumptionBreakdownSt}
             hasDescription
           />

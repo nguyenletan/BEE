@@ -1,6 +1,6 @@
 {
   "Edit": "Bearbeiten",
-  "Street Number": "Hs-Nr",
+  "Building No": "Hs-Nr",
   "Street": "Str",
   "City": "St",
   "State": "Bundesland",
@@ -13,5 +13,9 @@
   "Constructed": "Erbaut",
   "Total operating hours": "Jährliche Betriebszeiten",
   "Last Edited": "Zuletzt bearbeitet",
-  "Edited by": "Bearbeitet von"
+  "Edited by": "Bearbeitet von",
+
+
+  "Year": "Jahr",
+  "Quarter": "Quartal"
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 const Wrapper = styled.div`
   margin-bottom: 1rem;
@@ -29,13 +30,16 @@ const ChartType = ({onChange, type}) => {
     onChange(value)
   }
 
+
+  const { t } = useTranslation('buildingPerformance');
+
   return (
     <Wrapper className="d-flex">
-      <span onClick={() => onClick('year')} className={type==='year' ? 'active' : ''}>Year</span>
-      <span onClick={() => onClick('quarter')} className={type==='quarter' ? 'active' : ''}>Quarter</span>
-      <span onClick={() => onClick('month')} className={type==='month' ? 'active' : ''}>Month</span>
+      <span onClick={() => onClick('year')} className={type==='year' ? 'active' : ''}>{t('Year')}</span>
+      <span onClick={() => onClick('quarter')} className={type==='quarter' ? 'active' : ''}>{t('Quarter')}</span>
+      <span onClick={() => onClick('month')} className={type==='month' ? 'active' : ''}>{t('Month')}</span>
       {/*<span onClick={() => onClick('week')} className={type==='week' ? 'active' : ''}>Week</span>*/}
-      <span onClick={() => onClick('day')} className={type==='day' ? 'active' : ''}>Day</span>
+      <span onClick={() => onClick('day')} className={type==='day' ? 'active' : ''}>{t('Day')}</span>
     </Wrapper>
   )
 }

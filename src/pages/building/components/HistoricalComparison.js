@@ -3,6 +3,7 @@ import greenDownImage from '../../../assets/images/green_down.jpg'
 import { formatNumber } from '../../../Utilities'
 import React from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 const Wrapper = styled.div`
   background-color: #fafafa;
@@ -55,25 +56,27 @@ const HistoricalComparison = ({
   the3rdHistoricalComparison,
 }) => {
 
-  let the1stText = 'Same Month<br/>Last Year'
-  let the2ndText = 'Last Month'
-  let the3rdText = 'Previous 12 Month Period '
+  const { t } = useTranslation('buildingPerformance')
+
+  let the1stText = t('Same Month') + '<br/>' + t('Last Year')
+  let the2ndText = t('Last Month')
+  let the3rdText = t('Previous 12 Month Period')
 
   switch (groupBy) {
     case 'year':
-      the1stText = 'Previous Year'
-      the2ndText = 'Average of previous 2 Years'
-      the3rdText = 'Average of previous 3 Years'
+      the1stText = t('Previous Year')
+      the2ndText = t('Average of previous 2 Years')
+      the3rdText = t('Average of previous 3 Years')
       break
     case 'quarter':
-      the1stText = 'Quarter Last Year'
-      the2ndText = 'Previous Quarter'
-      the3rdText = 'Previous 4 Quarter Period '
+      the1stText = t('Quarter Last Year')
+      the2ndText = t('Previous Quarter')
+      the3rdText = t('Previous 4 Quarter Period')
       break
     case 'day':
-      the1stText = 'Day Last Week'
-      the2ndText = 'Previous Day'
-      the3rdText = 'Day in Last 4 Weeks '
+      the1stText = t('Day Last Week')
+      the2ndText = t('Previous Day')
+      the3rdText = t('Day in Last 4 Weeks')
       break
     case 'month':
     default:
@@ -82,7 +85,7 @@ const HistoricalComparison = ({
 
   return (
     <Wrapper className="d-flex justify-content-around row">
-      <h4 className="col col-12 col-md-3 mb-4 mb-lg-0 text-center">Historical<br/>Comparison</h4>
+      <h4 className="col col-12 col-md-3 mb-4 mb-lg-0 text-center">{t('Historical')} <br/> {t('Comparison')}</h4>
       <div
         className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap"
       >
