@@ -5,6 +5,7 @@ import heatingLoadImg from '../assets/images/heating-load.png'
 import lightingLoadImg from '../assets/images/lighting-load.png'
 import mechVentLoadImg from '../assets/images/mech-vent-load.png'
 import pvSystemImg from '../assets/images/pv-system.png'
+import { useTranslation } from 'react-i18next'
 
 const ElectricalSystemInformationWrapper = styled.div`
   width: 100%;
@@ -58,16 +59,18 @@ const ElectricalSystemInformation = (props) => {
     pvSystemInstalledCapacity
   } = props
 
+  const { t } = useTranslation('buildingPerformance')
+
   return (
     <ElectricalSystemInformationWrapper>
-      <ElectricalSystemInformationTitle>Electrical System Information</ElectricalSystemInformationTitle>
+      <ElectricalSystemInformationTitle>{t('Electrical System Information')}</ElectricalSystemInformationTitle>
       <ElectricalSystemInformationList className='d-flex justify-content-start row'>
 
         <ElectricalSystemInformationItem
           className='d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2'
         >
           <div className='me-3'>
-            <ElectricalSystemInformationItemTitle>Cooling Load</ElectricalSystemInformationItemTitle>
+            <ElectricalSystemInformationItemTitle>{t('Cooling Load')}</ElectricalSystemInformationItemTitle>
             <ElectricalSystemInformationItemValue>{overallCoolingLoad}W/m2</ElectricalSystemInformationItemValue>
           </div>
           <ElectricalSystemInformationItemImage src={coolingLoadImg} alt='Cooling Loading' width='33' />
@@ -77,7 +80,7 @@ const ElectricalSystemInformation = (props) => {
           className='d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2'
         >
           <div className='me-3'>
-            <ElectricalSystemInformationItemTitle>Heating Load</ElectricalSystemInformationItemTitle>
+            <ElectricalSystemInformationItemTitle>{t('Heating Load')}</ElectricalSystemInformationItemTitle>
             <ElectricalSystemInformationItemValue>{overallHeatingLoad}W/m2</ElectricalSystemInformationItemValue>
           </div>
           <ElectricalSystemInformationItemImage src={heatingLoadImg} width='20' alt='Heating Loading' />
@@ -87,7 +90,7 @@ const ElectricalSystemInformation = (props) => {
           className='d-flex col col-6 col-lg-2  mb-3 mb-lg-0 justify-content-start align-items-center me-2'
         >
           <div className='me-3'>
-            <ElectricalSystemInformationItemTitle>Lighting Load</ElectricalSystemInformationItemTitle>
+            <ElectricalSystemInformationItemTitle>{t('Lighting')}</ElectricalSystemInformationItemTitle>
             <ElectricalSystemInformationItemValue>{overallLightingLoad}W/m2</ElectricalSystemInformationItemValue>
           </div>
           <ElectricalSystemInformationItemImage src={lightingLoadImg} alt='Lighting Loading' width='23' />
@@ -97,7 +100,7 @@ const ElectricalSystemInformation = (props) => {
           className='d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2'
         >
           <div className='me-1'>
-            <ElectricalSystemInformationItemTitle>Mech. Vent. Load</ElectricalSystemInformationItemTitle>
+            <ElectricalSystemInformationItemTitle>{t('Mechanical Ventilation')}</ElectricalSystemInformationItemTitle>
             <ElectricalSystemInformationItemValue>{overallMechVentLoad}W/m2</ElectricalSystemInformationItemValue>
           </div>
           <ElectricalSystemInformationItemImage src={mechVentLoadImg} width='36' alt='Mech. Vent. Load' />
@@ -107,7 +110,7 @@ const ElectricalSystemInformation = (props) => {
           className='d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2'
         >
           <div className='me-3'>
-            <ElectricalSystemInformationItemTitle>P.V. System</ElectricalSystemInformationItemTitle>
+            <ElectricalSystemInformationItemTitle>{t('P.V. System')}</ElectricalSystemInformationItemTitle>
             <ElectricalSystemInformationItemValue>{pvSystemInstalledCapacity}MWh/y</ElectricalSystemInformationItemValue>
           </div>
           <ElectricalSystemInformationItemImage src={pvSystemImg} width='40' alt='P.V. System' />
