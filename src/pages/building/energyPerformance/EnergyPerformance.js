@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react'
 import BuildingHistorical from '../../../components/BuildingHistorical'
 import ElectricalSystemInformation from '../../../components/ElectricalSystemInformation'
-import { formatNumber } from '../../../Utilities'
+import { formatNumber } from 'Utilities'
 import IncidentalGains from '../../../components/IncidentalGains'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import { breakdownState, isDisplayPerformanceFilterState } from '../../../atoms'
+import { breakdownState, isDisplayPerformanceFilterState } from 'atoms'
 import BreakDown from './components/BreakDown'
 
 const EnergyPerformance = (props) => {
-  // console.log(props)
-
   const {
     overallEnergyConsumptionInformation,
     electricConsumptions,
@@ -31,8 +29,6 @@ const EnergyPerformance = (props) => {
   setIsDisplayPerformanceFilter(true)
 
   useEffect(() => {
-    console.log('consumptionBreakdown');
-    console.log(consumptionBreakdown);
     setBreakdownRecoilState({consumptionBreakdown: consumptionBreakdown})
   }, [consumptionBreakdown, setBreakdownRecoilState])
 

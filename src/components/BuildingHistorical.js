@@ -17,6 +17,7 @@ import { breakdownState, originalConsumptionBreakdownState } from '../atoms'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import HistoricalComparison from '../pages/building/components/HistoricalComparison'
 import "../style/context-menu.css"
+import { useTranslation } from 'react-i18next'
 
 //Performance please - Reason since we are looking at the Energy, CO2, and Building U-Value and Energy Cost ($) it would be more appropriate.
 // Thanks this is related to the Energy Performance, Comparison, Improve, Asset Reliability section of the Application -
@@ -116,6 +117,8 @@ const BuildingHistorical = (props) => {
   const { id } = useParams()
 
   const { user } = useAuth()
+
+  const { t } = useTranslation('buildingPerformance')
 
   let buildingEnergyUsageData = []
 
@@ -362,25 +365,13 @@ const BuildingHistorical = (props) => {
     },
   }
 
-  // const CustomBarComponent = (props) => {
-  //   const { x, y, height } = props
-  //
-  //   const translateValue = `translate(${x + 23}, ${y})`
-  //   const translateValue2 = `translate(0, ${height - 10})`
-  //   return <g transform={translateValue}>
-  //     <rect width={13} height={height} rx="7" ry="7" fill="#87972f"  stroke="#87972f"/>
-  //     <rect width={13} height={10} fill="#87972f" stroke="#87972f" transform={translateValue2}/>
-  //   </g>
-  //
-  // }
-
   return (
     <Wrapper className="">
       <HistoricalComparisonContainer className=" mt-5 row">
 
         <BuildingEnergyUsageWrapper className="col col-12 col-lg-8 col-xl-9 mb-5 mb-lg-0">
 
-          <BuildingEnergyUsageChartTitle>Building Energy Usage (MWh)</BuildingEnergyUsageChartTitle>
+          <BuildingEnergyUsageChartTitle>{t('Building Energy Usage (MWh)')}</BuildingEnergyUsageChartTitle>
 
           {(props.energyPerformanceGroupBy === 'week' || props.energyPerformanceGroupBy === 'day') &&
           <EnergyConsumptionLineChartForGroupByDayOrWeek onSelectDay={selectLine} data={barData} groupBy={props.energyPerformanceGroupBy}/>}
@@ -404,7 +395,7 @@ const BuildingHistorical = (props) => {
                 }}
               >
                 {indexValue} <br/>
-                {id}: <b>{value}</b>
+                {t('Value')}: <b>{value}</b>
               </div>
             )}
           />}
@@ -412,15 +403,15 @@ const BuildingHistorical = (props) => {
 
         <SummaryBoxWrapper className="col col-12 col-lg-4 col-xl-3">
           <SummaryBox className="mb-3">
-            <SummaryBoxTitle>Total Energy Consumption (MWh)</SummaryBoxTitle>
+            <SummaryBoxTitle>{t('Total Energy Consumption (MWh)')}</SummaryBoxTitle>
             <SummaryBoxValue>{formatNumber(totalEnergyConsumption, 2)}</SummaryBoxValue>
           </SummaryBox>
           <SummaryBox className="mb-3">
-            <SummaryBoxTitle>Total Energy Cost ($)</SummaryBoxTitle>
+            <SummaryBoxTitle>{t('Total Energy Cost ($)')}</SummaryBoxTitle>
             <SummaryBoxValue>{formatNumber(totalEnergyCost, 0)}</SummaryBoxValue>
           </SummaryBox>
           <SummaryBox className="mb-3 mb-lg-0">
-            <SummaryBoxTitle>Total Carbon Emissions (Tons)</SummaryBoxTitle>
+            <SummaryBoxTitle>{t('Total Carbon Emissions (Tons)')}</SummaryBoxTitle>
             <SummaryBoxValue>{formatNumber(totalCarbonEmissions)}</SummaryBoxValue>
           </SummaryBox>
         </SummaryBoxWrapper>

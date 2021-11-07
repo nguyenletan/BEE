@@ -1,0 +1,56 @@
+{
+  "_comment1": "//Timeperiod Selection",
+  "Year": "Year",
+  "Quarter": "Quarter",
+  "Month": "Month",
+  "Day": "Day",
+  "Start": "Start",
+  "End": "End",
+  "Apply": "Apply",
+  "Start date should be greater than End date": "Start date should be greater than End date",
+
+  "_comment2:":  "//Building Energy Usage Chart",
+  "Building Energy Usage (MWh)": "Building Energy Usage (MWh)",
+  "Total Energy Consumption (MWh)": "Total Energy Consumption (MWh)",
+  "Total Energy Cost ($)": "Total Energy Cost ($)",
+  "Total Carbon Emissions (Tons)": "Total Carbon Emissions (Tons)",
+  "Value": "Value",
+
+  "_comment3": "//Historical Comparison Chart",
+  "Historical": "Historical",
+  "Comparison": "Comparison",
+  "Same Month": "Same Month",
+  "Last Year": "Last Year",
+  "Last Month": "Last Month",
+  "Previous 12 Month Period": "Previous 12 Month Period",
+
+  "_comment4" : "//Comsumption Breakdown MWh Chart  //Cost Breakdown $ Chart   //CO2 Emissions Breakdown Ton Chart",
+  "Consumption Breakdown": "Consumption Breakdown",
+  "Cost Breakdown": "Cost Breakdown",
+  "CO2 Emissions Breakdown": "CO2 Emissions Breakdown",
+  "Ton": "Ton",
+  "Cooling": "Cooling",
+  "Heating": "Heating",
+  "Lighting": "Lighting",
+  "Mechanical Ventilation": "Mechanical Ventilation",
+  "Others": "Others",
+
+  "Cooling Ton": "Cooling Ton",
+  "Heating Ton": "Heating Ton",
+  "Lighting Ton": "Lighting Ton",
+  "Mechanical Ventilation Ton": "Mechanical Ventilation Ton",
+  "Others Ton": "Others Ton",
+
+  "_comment5" : "////Electrical System Information",
+  "Electrical System Information": "Electrical System Information",
+  "Cooling Load": "Cooling Load",
+  "Heating Load": "Heating Load",
+
+  "P.V. System": "P.V. System",
+
+  "_comment6" : "//Incidental Gains & Other Information",
+  "Roof": "Roof",
+  "Wall": "Wall",
+  "Openings": "Openings",
+  "Floor": "Floor"
+}
