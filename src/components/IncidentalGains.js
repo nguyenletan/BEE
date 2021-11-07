@@ -4,6 +4,7 @@ import roofImg from '../assets/images/roof.png'
 import wallImg from '../assets/images/wall.png'
 import floorImg from '../assets/images/floor.png'
 import openingImg from '../assets/images/opening.png'
+import { useTranslation } from 'react-i18next'
 //import plugLoadImg from '../assets/images/plug-load.png'
 
 const IncidentalGainsWrapper = styled.div`
@@ -56,14 +57,17 @@ const IncidentalGains = (props) => {
     openings,
     floor
   } = props
+
+  const { t } = useTranslation('buildingPerformance')
+
   return (
     <IncidentalGainsWrapper>
-      <IncidentalGainsTitle>Incidental Gains & Other Information</IncidentalGainsTitle>
+      <IncidentalGainsTitle>{t('Incidental Gains & Other Information')}</IncidentalGainsTitle>
       <IncidentalGainsList className='d-flex justify-content-start row'>
 
         <IncidentalGainsItem className='d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2'>
           <div className='me-1'>
-            <IncidentalGainsItemTitle>Roof</IncidentalGainsItemTitle>
+            <IncidentalGainsItemTitle>{t('Roof')}</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{roof}W/m2</IncidentalGainsItemValue>
           </div>
           <IncidentalGainsItemImage src={roofImg} alt='Roof' width='33' />
@@ -71,7 +75,7 @@ const IncidentalGains = (props) => {
 
         <IncidentalGainsItem className='d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2'>
           <div className='me-3'>
-            <IncidentalGainsItemTitle>Wall</IncidentalGainsItemTitle>
+            <IncidentalGainsItemTitle>{t('Wall')}</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{wall}W/m2</IncidentalGainsItemValue>
           </div>
           <IncidentalGainsItemImage src={wallImg} alt='Wall' width='33' />
@@ -79,7 +83,7 @@ const IncidentalGains = (props) => {
 
         <IncidentalGainsItem className='d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2'>
           <div className='me-3'>
-            <IncidentalGainsItemTitle>Openings</IncidentalGainsItemTitle>
+            <IncidentalGainsItemTitle>{t('Openings')}</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{openings}W/m2</IncidentalGainsItemValue>
           </div>
           <IncidentalGainsItemImage src={openingImg} alt='Openings' width='33' />
@@ -87,7 +91,7 @@ const IncidentalGains = (props) => {
 
         <IncidentalGainsItem className='d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2'>
           <div className='me-3'>
-            <IncidentalGainsItemTitle>Floor</IncidentalGainsItemTitle>
+            <IncidentalGainsItemTitle>{t('Floor')}</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{floor}W/m2</IncidentalGainsItemValue>
           </div>
           <IncidentalGainsItemImage src={floorImg} alt='Floor' width='33' />
