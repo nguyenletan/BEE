@@ -1,5 +1,5 @@
 {
-  "_comment1": "//Timeperiod Selection",
+  "_part1": "//Timeperiod Selection",
   "Year": "Jahr",
   "Quarter": "Quartal",
   "Month": "Monat",
@@ -12,7 +12,7 @@
   "_comment2:":  "//Building Energy Usage Chart",
   "Building Energy Usage (MWh)": "Gebäudeenergieverbrauch (MWh)",
   "Total Energy Consumption (MWh)": "Gesamtenergieverbrauch (MWh)",
-  "Total Energy Cost ($)": "Gesamtenergiekosten (€)",
+  "Total Energy Cost ($)": "Gesamtenergiekosten ($)",
   "Total Carbon Emissions (Tons)": "Gesamte CO2 Emissionen (Tonnen)",
   "Value": "Wert",
 
@@ -53,5 +53,14 @@
   "Roof": "Dach",
   "Wall": "Wände",
   "Openings": "Öffnungen",
-  "Floor": "Bodenplatte"
+  "Floor": "Bodenplatte",
+
+  "cooling": "kühlung",
+  "heating": "heizung",
+  "lighting": "beleuchtung",
+  "mechanical ventilation": "lüftung",
+  "others": "slonstiges",
+  "Reset": "zurücksetzen",
+  "Go to Asset Reliability": "Gehen Sie zu Anlagenzuverlässigkeit",
+  "Mechanical Ventilation Fan": "Mechanischer Ventilator"
 }

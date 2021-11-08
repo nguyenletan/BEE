@@ -7,13 +7,14 @@ import SubSystemComparison from './components/SubSystemComparison'
 // import PerformanceComparison from './components/PerformanceComparison'
 import PerformanceComparison2 from './components/PerformanceComparison2'
 import { useSetRecoilState } from 'recoil'
-import { isDisplayPerformanceFilterState } from '../../../atoms'
-
+import { isDisplayPerformanceFilterState } from 'atoms'
 const ComparisonWrapper = styled.div`
   margin-bottom: 50px;
 `
 
 const Comparison = ({ data }) => {
+
+
   const subSystemPerformanceData = {
     data: [
       {

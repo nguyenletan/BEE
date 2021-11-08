@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ResponsiveRadar } from '@nivo/radar'
 
@@ -11,6 +11,8 @@ import {
   mechVentSVG,
   renewableSVG
 } from '../../../../SvgConstants'
+import { useTranslation } from 'react-i18next'
+import { deepClone } from 'Utilities'
 
 const SubSystemPerformanceTitle = styled.h3`
   font-size: 1.15rem;
@@ -36,18 +38,35 @@ const SubSystemPerformanceWrapper = styled.div`
 `
 
 const SubSystemPerformance = ({ data }) => {
+  const { i18n } = useTranslation('comparison');
+
+  const [dataSource, setDataSource] = useState()
+
+  useEffect(() => {
+    const tmp = deepClone(data)
+    //
+    // for(let item of tmp) {
+    //   item.name = t(item.name)
+    // }
+
+    setDataSource(tmp)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, i18n.language])
+
   const commonProperties = {
     // width: 400,
     // height: 350,
     margin: { top: 120, right: 0, bottom: 100, left: 0 },
-    ...data,
+    ...dataSource,
     indexBy: 'name',
     animate: true
   }
 
+
   // const curveOptions = ['linearClosed', 'basisClosed', 'catmullRomClosed', 'cardinalClosed']
 
   const LabelComponent = (props) => {
+
     const { id, anchor, angle } = props
     let texts = ''
     let iconSVG = ''
