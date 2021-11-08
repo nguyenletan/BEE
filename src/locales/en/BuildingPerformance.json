@@ -53,5 +53,15 @@
   "Roof": "Roof",
   "Wall": "Wall",
   "Openings": "Openings",
-  "Floor": "Floor"
+  "Floor": "Floor",
+
+
+  "cooling": "cooling",
+  "heating": "heating",
+  "lighting": "lighting",
+  "mechanical ventilation": "mechanical ventilation",
+  "others": "others",
+  "reset": "Reset",
+  "Go to Asset Reliability": "Go to Asset Reliability",
+  "Mechanical Ventilation Fan": "Mechanical Ventilation Fan"
 }

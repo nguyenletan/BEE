@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ResponsivePie } from '@nivo/pie'
-import { formatNumber, getColorPattern } from 'Utilities'
+import { deepClone, formatNumber, getColorPattern } from 'Utilities'
 import {
   breakDownLevelState, breakdownState,
   consumptionBreakdownState,
@@ -12,6 +12,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { Menu, Item, useContextMenu } from 'react-contexify'
 import 'react-contexify/dist/ReactContexify.css';
 import { Link, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 
 
@@ -90,11 +91,16 @@ const DrillDownDonutChart3Lv = (props) => {
   const [selectedBreakdownItemMenuItem, setSelectedBreakdownItemMenuItem] = useState()
   const [equipmentId, setEquipmentId] = useState()
 
+  const { t, i18n } = useTranslation('buildingPerformance');
+
   useEffect(() => {
-    // console.log('DrillDownDonutChart3Lv changed')
-    // console.log(data)
-    setDataSource(data)
-  }, [data])
+    const tmp = deepClone(data)
+    for(let item of tmp) {
+      item.id = t(item.id)
+    }
+    setDataSource(tmp)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, i18n.language])
 
   const commonProperties = {
     margin: { top: 40, right: 20, bottom: 20, left: 20 },
@@ -139,7 +145,7 @@ const DrillDownDonutChart3Lv = (props) => {
             fontWeight: '700',
           }}
         >
-          Used
+          t('Used')
         </text>}
       </>
     )
@@ -201,7 +207,6 @@ const DrillDownDonutChart3Lv = (props) => {
       setConsumptionBreakdownSt(node.data.subBreakdown)
     } else {
       if(breakDownLevel === 2) {
-        console.log(node)
         setEquipmentId(node?.data.equipmentId)
         setSelectedBreakdownItemMenuItem({name: node.label, id: node.label})
         show(event, {
@@ -225,21 +230,14 @@ const DrillDownDonutChart3Lv = (props) => {
     id: 'MENU_ID',
   });
 
-  const handleMenuItemClick = ({ event, props }) => {
-    console.log('event.data');
-    console.log(event.data);
-
-  }
-
-
   const getValue = (value, title)=> {
-    if(title === 'Consumption Breakdown') {
+    if(title === t('Consumption Breakdown')) {
       return formatNumber(value / 1000, 2, 'MWh')
     } else {
-      if (title === 'Cost Breakdown') {
+      if (title === t('Cost Breakdown')) {
         return formatNumber(value * 0.23, 2, '$')
       } else {
-        return formatNumber(value * 0.000208, 2, 'Ton')
+        return formatNumber(value * 0.000208, 2, t('Ton'))
       }
     }
   }
@@ -253,20 +251,20 @@ const DrillDownDonutChart3Lv = (props) => {
     <BreakDownBlock marginRight={marginRight}>
       <div className="d-flex justify-content-between">
         <div>
-          <BreakDownTitle>{title}</BreakDownTitle>
-          {subTitle ?? (<BreakDownSubTitle>{subTitle}</BreakDownSubTitle>)}
+          <BreakDownTitle>{t(title)}</BreakDownTitle>
+          {subTitle ?? (<BreakDownSubTitle>{t(subTitle)}</BreakDownSubTitle>)}
         </div>
         <div>
           {isBreakDownDrillDown === true &&
-          <button className="btn btn-sm btn-outline-primary" onClick={handleBackBtn}>Reset</button>}
+          <button className="btn btn-sm btn-outline-primary" onClick={handleBackBtn}>{t('Reset')}</button>}
         </div>
       </div>
 
       <Menu id='MENU_ID'>
         {selectedBreakdownItemMenuItem &&
-        <Item onClick={handleMenuItemClick}>
+        <Item>
           <Link to={`/building/${id}/asset-reliability/equipment/${equipmentId}/${selectedSubBreakdown}`}>
-            Go to Asset Reliability - {selectedBreakdownItemMenuItem?.name}
+            {t('Go to Asset Reliability')} - {selectedBreakdownItemMenuItem?.name}
           </Link>
         </Item>}
 
