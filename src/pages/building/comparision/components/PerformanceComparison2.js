@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ResponsiveLine } from '@nivo/line'
 import { Container, FormCheck, Modal } from 'react-bootstrap'
@@ -12,6 +12,8 @@ import heatingImg from '../../../../assets/images/heating.svg'
 import mechVentImg from '../../../../assets/images/mechanical-ventilation.svg'
 import renewableImg from '../../../../assets/images/renewable.svg'
 import plugloadImg from '../../../../assets/images/plugload.svg'
+import { useTranslation } from 'react-i18next'
+import { deepClone } from 'Utilities'
 
 const ChartHeader = styled.div`
   margin-left: 20px;
@@ -35,12 +37,12 @@ const PerformanceComparisonWrapper = styled.div`
   border-radius: 15px;
   background-color: #fafafa;
   padding: 10px;
-  @media(min-width: 768px){
+  @media (min-width: 768px) {
     padding: 20px;
   }
   margin-top: 40px;
   margin-bottom: 40px;
-  height: max(500px, 100vw/4);
+  height: max(500px, 100vw / 4);
   min-width: 100%;
 `
 
@@ -97,143 +99,149 @@ const CancelBtn = styled.button`
   padding-right: 20px;
 `
 
-const PerformanceComparison2 = () => {
+const PerformanceComparison2 = (effect, deps) => {
+
+  const { t, i18n } = useTranslation('comparison')
+
   const data = [
     {
       id: 'Design Excellent Center',
       data: [
         {
           x: 'Cooling',
-          y: '5'
+          y: '5',
         },
         {
           x: 'Heating',
-          y: '5'
+          y: '5',
         },
         {
           x: 'Lighting',
-          y: '3'
+          y: '3',
         },
         {
           x: 'Mechanical Ventilation',
-          y: '4'
+          y: '4',
         },
         {
           x: 'Roof',
-          y: '5'
+          y: '5',
         },
         {
           x: 'Wall',
-          y: '4'
+          y: '4',
         },
         {
           x: 'Openings',
-          y: '5'
+          y: '5',
         },
         {
           x: 'Floor',
-          y: '3'
+          y: '3',
         },
         {
           x: 'Renewable',
-          y: '3'
+          y: '3',
         },
         {
           x: 'Plug Loads',
-          y: '3'
-        }
-      ]
+          y: '3',
+        },
+      ],
     },
     {
       id: 'Hill Bay Central Bank Center',
-      data: [{
-        x: 'Cooling',
-        y: '6'
-      },
-      {
-        x: 'Heating',
-        y: '6'
-      },
-      {
-        x: 'Lighting',
-        y: '5'
-      },
-      {
-        x: 'Mechanical Ventilation',
-        y: '5'
-      },
-      {
-        x: 'Roof',
-        y: '3'
-      },
-      {
-        x: 'Wall',
-        y: '3'
-      },
-      {
-        x: 'Openings',
-        y: '4'
-      },
-      {
-        x: 'Floor',
-        y: '5'
-      },
-      {
-        x: 'Renewable',
-        y: '4'
-      },
-      {
-        x: 'Plug Loads',
-        y: '2'
-      }
-      ]
+      data: [
+        {
+          x: 'Cooling',
+          y: '6',
+        },
+        {
+          x: 'Heating',
+          y: '6',
+        },
+        {
+          x: 'Lighting',
+          y: '5',
+        },
+        {
+          x: 'Mechanical Ventilation',
+          y: '5',
+        },
+        {
+          x: 'Roof',
+          y: '3',
+        },
+        {
+          x: 'Wall',
+          y: '3',
+        },
+        {
+          x: 'Openings',
+          y: '4',
+        },
+        {
+          x: 'Floor',
+          y: '5',
+        },
+        {
+          x: 'Renewable',
+          y: '4',
+        },
+        {
+          x: 'Plug Loads',
+          y: '2',
+        },
+      ],
     },
     {
       id: 'F+E Campus',
-      data: [{
-        x: 'Cooling',
-        y: '4'
+      data: [
+        {
+          x: 'Cooling',
+          y: '4',
 
-      },
-      {
-        x: 'Heating',
-        y: '5'
-      },
-      {
-        x: 'Lighting',
-        y: '4'
-      },
-      {
-        x: 'Mechanical Ventilation',
-        y: '5'
-      },
-      {
-        x: 'Roof',
-        y: '4'
-      },
-      {
-        x: 'Wall',
-        y: '4'
-      },
-      {
-        x: 'Openings',
-        y: '5'
-      },
-      {
-        x: 'Floor',
-        y: '3'
-      },
-      {
-        x: 'Renewable',
-        y: '6'
-      },
-      {
-        x: 'Plug Loads',
-        y: '6'
-      }
-      ]
-    }
+        },
+        {
+          x: 'Heating',
+          y: '5',
+        },
+        {
+          x: 'Lighting',
+          y: '4',
+        },
+        {
+          x: 'Mechanical Ventilation',
+          y: '5',
+        },
+        {
+          x: 'Roof',
+          y: '4',
+        },
+        {
+          x: 'Wall',
+          y: '4',
+        },
+        {
+          x: 'Openings',
+          y: '5',
+        },
+        {
+          x: 'Floor',
+          y: '3',
+        },
+        {
+          x: 'Renewable',
+          y: '6',
+        },
+        {
+          x: 'Plug Loads',
+          y: '6',
+        },
+      ],
+    },
   ]
+
 
   const otherMonitoredEquipments = [
     'Photocopy Printers',
@@ -241,18 +249,33 @@ const PerformanceComparison2 = () => {
     'Water Heaters',
     'Water Cooler',
     'Server Rack',
-    'Add additional equipment'
+    'Add additional equipment',
   ]
 
   const commonProperties = {
     margin: { top: 0, right: 20, bottom: 100, left: 20 },
-    animate: true
+    animate: true,
     // height: 350
     // enableSlices: 'x',
   }
 
   const [show, setShow] = useState(false)
-  const [chartData, setChartData] = useState(data)
+  const [chartData, setChartData] = useState(deepClone(data))
+
+
+  useEffect(() => {
+    const tmp = deepClone(data)
+    for(let item of tmp) {
+      item.id = t(item.id)
+      for(let j of item.data) {
+        j.x = t(j.x)
+      }
+    }
+    console.log(tmp)
+    setChartData(tmp)
+    console.log('change')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i18n.language])
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -336,7 +359,7 @@ const PerformanceComparison2 = () => {
       return (
         <ParameterItem key={item.id}>
           <FormCheck
-            type='checkbox' id={'checkbox_building_' + index} label={item.id} onChange={onSelectBuilding}
+            type="checkbox" id={'checkbox_building_' + index} label={item.id} onChange={onSelectBuilding}
             value={item.id} defaultChecked
           />
         </ParameterItem>
@@ -345,14 +368,14 @@ const PerformanceComparison2 = () => {
 
     const subSystemItems = data[0].data.map((item, index) => {
       return (
-        <ParameterItem key={item.id} className='sub-systems'>
-          <div className='custom-control custom-checkbox'>
+        <ParameterItem key={item.id} className="sub-systems">
+          <div className="custom-control custom-checkbox">
             <input
-              onChange={onSelectSubSystem} type='checkbox' className='custom-control-input'
+              onChange={onSelectSubSystem} type="checkbox" className="custom-control-input"
               id={'checkbox_subsystem_' + index} value={item.x} defaultChecked
             />
-            <label className='custom-control-label' htmlFor={'checkbox_subsystem_' + index}>
-              <ParameterItemIcon src={getIcon(item.x)} alt={item.x} title={item.x} />
+            <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + index}>
+              <ParameterItemIcon src={getIcon(item.x)} alt={item.x} title={item.x}/>
               {item.x}
             </label>
           </div>
@@ -363,13 +386,13 @@ const PerformanceComparison2 = () => {
     const otherMonitoredEquipmentItems = otherMonitoredEquipments.map((item, index) => {
       return (
         <ParameterItem key={item.id}>
-          <div className='custom-control custom-checkbox'>
+          <div className="custom-control custom-checkbox">
             <input
-              type='checkbox' className='custom-control-input'
+              type="checkbox" className="custom-control-input"
               id={'checkbox_otherMonitoredEquipments_' + index}
             />
             <label
-              className='custom-control-label'
+              className="custom-control-label"
               htmlFor={'checkbox_otherMonitoredEquipments_' + index}
             >{item}
             </label>
@@ -379,9 +402,9 @@ const PerformanceComparison2 = () => {
     })
 
     return (
-      <Modal show={show} onHide={handleClose} size='sm'>
+      <Modal show={show} onHide={handleClose} size="sm">
         <Modal.Body>
-          <Container className='mt-4'>
+          <Container className="mt-4">
             <PopupTitle>Comparison Parameters</PopupTitle>
             <PopupCategory>
               <PopupCategoryTitle>Building</PopupCategoryTitle>
@@ -404,13 +427,13 @@ const PerformanceComparison2 = () => {
               </ParameterList>
             </PopupCategory>
 
-            <div className='d-flex justify-content-center mb-2 mt-5'>
+            <div className="d-flex justify-content-center mb-2 mt-5">
               <UpdateBtn
-                className='btn btn-primary btn-sm'
+                className="btn btn-primary btn-sm"
                 onClick={() => onUpdate(selectedBuildings, selectedSubSystems)}
               >Update
               </UpdateBtn>
-              <CancelBtn className='btn btn-outline-primary btn-sm' onClick={handleClose}>Cancel</CancelBtn>
+              <CancelBtn className="btn btn-outline-primary btn-sm" onClick={handleClose}>Cancel</CancelBtn>
             </div>
           </Container>
         </Modal.Body>
@@ -420,80 +443,82 @@ const PerformanceComparison2 = () => {
 
   return (
     <PerformanceComparisonWrapper>
-      <ChartHeader className='d-flex justify-content-between mb-5 flex-wrap'>
-        <PerformanceComparisonTitle className='mb-2 mb-md-0'>Sub - System Performance</PerformanceComparisonTitle>
+      <ChartHeader className="d-flex justify-content-between mb-5 flex-wrap">
+        <PerformanceComparisonTitle className="mb-2 mb-md-0">{t('Sub-System Performance')}</PerformanceComparisonTitle>
 
         <EditConfigurationButton
-          type='button'
+          type="button"
           onClick={onClick}
-          className='btn btn-primary btn-sm'
-        >Edit Comparison
+          className="btn btn-primary btn-sm"
+        >{t('Edit Comparison')}
         </EditConfigurationButton>
 
       </ChartHeader>
 
       <ResponsiveLine
         {...commonProperties}
-        curve='monotoneX'
+        curve="monotoneX"
         data={chartData}
         useMesh={false}
         enableSlices={false}
         enablePoint
         pointSize={12}
-        pointColor='#fff'
+        pointColor="#fff"
         pointBorderWidth={1}
         enableGridX={false}
         lineWidth={1}
         yScale={
-                      {
-                        type: 'linear',
-                        min: 1,
-                        max: 7
-                      }
-                    }
+          {
+            type: 'linear',
+            min: 1,
+            max: 7,
+          }
+        }
         axisLeft={
-                      {
-                        tickValues: [1, 2, 3, 4, 5, 6, 7],
-                        format: value => {
-                          const labels = ['G', 'F', 'E', 'D', 'C', 'B', 'A']
-                          return labels[value - 1]
-                        }
-                      }
-                    }
+          {
+            tickValues: [1, 2, 3, 4, 5, 6, 7],
+            format: value => {
+              const labels = ['G', 'F', 'E', 'D', 'C', 'B', 'A']
+              return labels[value - 1]
+            },
+          }
+        }
         pointBorderColor={
-                      { from: 'serieColor' }
-}
+          { from: 'serieColor' }
+        }
         xScale={
-                      { type: 'point' }
-}
+          { type: 'point' }
+        }
         colors={
-                      ['#87972F', '#636c2e', '#c1cf74']
-}
+          ['#87972F', '#636c2e', '#c1cf74']
+        }
         legends={
-                      [{
-                        anchor: 'top',
-                        direction: 'row',
-                        justify: false,
-                        translateX: 0,
-                        translateY: -35,
-                        itemWidth: 200,
-                        itemHeight: 20,
-                        itemsSpacing: 4,
-                        symbolSize: 20,
-                        symbolShape: 'circle',
-                        itemDirection: 'left-to-right',
-                        itemTextColor: '#777',
-                        effects: [{
-                          on: 'hover',
-                          style: {
-                            itemBackground: 'rgba(0, 0, 0, .03)',
-                            itemOpacity: 1
-                          }
-                        }]
-                      }]
-                    }
+          [
+            {
+              anchor: 'top',
+              direction: 'row',
+              justify: false,
+              translateX: 0,
+              translateY: -35,
+              itemWidth: 200,
+              itemHeight: 20,
+              itemsSpacing: 4,
+              symbolSize: 20,
+              symbolShape: 'circle',
+              itemDirection: 'left-to-right',
+              itemTextColor: '#777',
+              effects: [
+                {
+                  on: 'hover',
+                  style: {
+                    itemBackground: 'rgba(0, 0, 0, .03)',
+                    itemOpacity: 1,
+                  },
+                }],
+            }]
+        }
       />
-      <Popup />
+      <Popup/>
     </PerformanceComparisonWrapper>
   )
 }
