@@ -12,6 +12,8 @@ import BuildingPerformanceDE from 'locales/de/BuildingPerformance.json'
 import BuildingPerformanceEN from 'locales/en/BuildingPerformance.json'
 import ComparisonEN from 'locales/en/Comparison.json'
 import ComparisonDE from 'locales/de/Comparison.json'
+// import ComparisonInfoPopupDE from 'locales/de/ComparisonInfoPopup.json'
+// import ComparisonInfoPopupEN from 'locales/en/ComparisonInfoPopup.json'
 
 
 i18n
@@ -35,14 +37,17 @@ i18n
         generalBuildingInformation: GeneralBuildingInformationEN,
         portfolio: PortfolioEN,
         buildingPerformance: BuildingPerformanceEN,
-        comparison: ComparisonEN
+        comparison: ComparisonEN,
+        //comparisonInfoPopup: ComparisonInfoPopupEN,
+
       },
       de: {
         common: CommonDE,
         portfolio: PortfolioDE,
         generalBuildingInformation: GeneralBuildingInformationDE,
         buildingPerformance: BuildingPerformanceDE,
-        comparison: ComparisonDE
+        comparison: ComparisonDE,
+        //comparisonInfoPopup: ComparisonInfoPopupDE,
       },
     },
   })

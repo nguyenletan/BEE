@@ -7,6 +7,7 @@ import openingsImg from '../../../../assets/images/opening.png'
 import floorImg from '../../../../assets/images/floor.png'
 import { getCurrentColor } from '../../../../Utilities'
 import EnergySquare from './EnergySquare'
+import { useTranslation } from 'react-i18next'
 
 const FacilityEnvelopeElementsComparisonTitle = styled.h3`
   font-size: 1.15rem;
@@ -105,6 +106,8 @@ const CloseBtn = styled.button`
 `
 
 const FacilityEnvelopeElementsComparison = () => {
+
+
   const facilityEnvelopeComparisonData = {
     roof: {
       current: 'C',
@@ -166,6 +169,7 @@ const FacilityEnvelopeElementsComparison = () => {
 
   const [show, setShow] = useState(false)
   const [popUpProps, setPopupProps] = useState({})
+  const { t } = useTranslation('comparison')
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -191,6 +195,8 @@ const FacilityEnvelopeElementsComparison = () => {
       potentialBestInClassSecondMetricValue,
       supplementaryText
     } = props?.data
+
+
 
     let icon = ''
     switch (type) {
@@ -287,14 +293,12 @@ const FacilityEnvelopeElementsComparison = () => {
 
   return (
     <FacilityEnvelopeElementsComparisonWrapper>
-      <FacilityEnvelopeElementsComparisonTitle>Facility Envelope Elements
-        Comparison
-      </FacilityEnvelopeElementsComparisonTitle>
+      <FacilityEnvelopeElementsComparisonTitle>{t('Facility Envelope Elements Comparison')}</FacilityEnvelopeElementsComparisonTitle>
 
       <HeadRow className='row'>
         <ListHeader className='col-4' />
-        <ListHeader className='col-4'>Current <span className='text-primary'>Energy</span> Performance</ListHeader>
-        <ListHeader className='col-4'>Potential<br />Best-in-class</ListHeader>
+        <ListHeader className='col-4'>{t('Current Energy Performance')}</ListHeader>
+        <ListHeader className='col-4'>{t('Potential')}<br />{t('Best-In-Class')}</ListHeader>
       </HeadRow>
 
       <ItemRow
@@ -317,7 +321,7 @@ const FacilityEnvelopeElementsComparison = () => {
       >
         <ListItem className='col-4'>
           <ItemImg src={roofImg} alt='Roof' />
-          <ItemImgSubTitle>Roof</ItemImgSubTitle>
+          <ItemImgSubTitle>{t('Roof')}</ItemImgSubTitle>
         </ListItem>
         <ListItem className='col-4'><EnergySquare
           color={getCurrentColor(facilityEnvelopeComparisonData.roof.current)}
@@ -351,7 +355,7 @@ const FacilityEnvelopeElementsComparison = () => {
       >
         <ListItem className='col-4'>
           <ItemImg src={wallImg} alt='Wall' />
-          <ItemImgSubTitle>Wall</ItemImgSubTitle>
+          <ItemImgSubTitle>{t('Wall')}</ItemImgSubTitle>
         </ListItem>
         <ListItem className='col-4'><EnergySquare
           color={getCurrentColor(facilityEnvelopeComparisonData.wall.current)}
@@ -385,7 +389,7 @@ const FacilityEnvelopeElementsComparison = () => {
       >
         <ListItem className='col-4'>
           <ItemImg src={openingsImg} alt='openings' />
-          <ItemImgSubTitle>Openings</ItemImgSubTitle>
+          <ItemImgSubTitle>{t('Openings')}</ItemImgSubTitle>
         </ListItem>
         <ListItem className='col-4'>
           <EnergySquare
@@ -421,7 +425,7 @@ const FacilityEnvelopeElementsComparison = () => {
       >
         <ListItem className='col-4'>
           <ItemImg src={floorImg} alt='floor' />
-          <ItemImgSubTitle>floor</ItemImgSubTitle>
+          <ItemImgSubTitle>{t('Floor')}</ItemImgSubTitle>
         </ListItem>
         <ListItem className='col-4'><EnergySquare
           color={getCurrentColor(facilityEnvelopeComparisonData.floor.current)}

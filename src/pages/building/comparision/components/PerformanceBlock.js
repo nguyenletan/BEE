@@ -1,6 +1,7 @@
 import React from 'react'
 import BarBlock from './BarBlock'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 const PerformanceBlockWrapper = styled.div`
   margin-top: 50px;
@@ -75,18 +76,20 @@ const BarChart = styled.div`
 `
 
 const PerformanceBlock = ({ data }) => {
+  const { t } = useTranslation('comparison');
+
   return (
     <PerformanceBlockWrapper className='justify-content-center justify-content-xl-start row'>
       <PerformanceBlockInner className='col col-12 col-xl-6 mb-5 mb-xl-0'>
         <BarWrapper className='d-flex'>
           <BarChart>
-            <BarHeader>Building Energy Performance</BarHeader>
+            <BarHeader>{t('Building Energy Performance')}</BarHeader>
             <div className='d-flex'>
               <Hr />
               <BarBlock width='85px' backgroundColor='#478D58' text='A' />
             </div>
             <div className='d-flex '>
-              <BarTitle marginTop='-12px'>Most Efficient</BarTitle>
+              <BarTitle marginTop='-12px'>{t('Most Efficient')}</BarTitle>
               <BarBlock width='108px' backgroundColor='#63AE62' text='B' />
             </div>
 
@@ -95,7 +98,7 @@ const PerformanceBlock = ({ data }) => {
               <BarBlock width='126px' backgroundColor='#AACC72' text='C' />
             </div>
             <div className='d-flex '>
-              <BarTitle>Average Performance</BarTitle>
+              <BarTitle>{t('Average Performance')}</BarTitle>
               <BarBlock width='149px' backgroundColor='#F0EA6F' text='D' />
             </div>
 
@@ -104,7 +107,7 @@ const PerformanceBlock = ({ data }) => {
               <BarBlock width='172px' backgroundColor='#ecb75f' text='E' />
             </div>
             <div className='d-flex '>
-              <BarTitle marginTop='10px'>Least Efficient</BarTitle>
+              <BarTitle marginTop='10px'>{t('Least Efficient')}</BarTitle>
               <BarBlock width='200px' backgroundColor='#df7f4f' text='F' />
             </div>
             <div className='d-flex'>
@@ -114,8 +117,8 @@ const PerformanceBlock = ({ data }) => {
           </BarChart>
           <BarIndicator>
             <BarIndicatorHeader className='row'>
-              <div className='col-6'>Current</div>
-              <div className='col-6'>Potential<br />Best-In-Class</div>
+              <div className='col-6'>{t('Current')}</div>
+              <div className='col-6'>{t('Potential')}<br />{t('Best-In-Class')}</div>
             </BarIndicatorHeader>
 
             <BarIndicatorBody>
@@ -147,13 +150,13 @@ const PerformanceBlock = ({ data }) => {
         <BarWrapper className='d-flex'>
 
           <BarChart>
-            <BarHeader>CO2 Emissions Performance</BarHeader>
+            <BarHeader>{t('CO2 Emissions Performance')}</BarHeader>
             <div className='d-flex'>
               <Hr />
               <BarBlock width='85px' backgroundColor='#93d2f0' text='A' />
             </div>
             <div className='d-flex '>
-              <BarTitle marginTop='-12px'>Most Efficient</BarTitle>
+              <BarTitle marginTop='-12px'>{t('Most Efficient')}</BarTitle>
               <BarBlock width='108px' backgroundColor='#63bcf2' text='B' />
             </div>
 
@@ -162,7 +165,7 @@ const PerformanceBlock = ({ data }) => {
               <BarBlock width='126px' backgroundColor='#52a8d9' text='C' />
             </div>
             <div className='d-flex '>
-              <BarTitle>Average Performance</BarTitle>
+              <BarTitle>{t('Average Performance')}</BarTitle>
               <BarBlock width='149px' backgroundColor='#3c82c6' text='D' />
             </div>
 
@@ -171,7 +174,7 @@ const PerformanceBlock = ({ data }) => {
               <BarBlock width='172px' backgroundColor='#c4c4c4' text='E' />
             </div>
             <div className='d-flex '>
-              <BarTitle marginTop='10px'>Least Efficient</BarTitle>
+              <BarTitle marginTop='10px'>{t('Least Efficient')}</BarTitle>
               <BarBlock width='200px' backgroundColor='#a9a9a9' text='F' />
             </div>
             <div className='d-flex'>
@@ -181,8 +184,8 @@ const PerformanceBlock = ({ data }) => {
           </BarChart>
           <BarIndicator>
             <BarIndicatorHeader className='row'>
-              <div className='col-6'>Current</div>
-              <div className='col-6'>Potential<br />Best-In-Class</div>
+              <div className='col-6'>{t('Current')}</div>
+              <div className='col-6'>{t('Potential')}<br />{t('Best-In-Class')}</div>
             </BarIndicatorHeader>
 
             <BarIndicatorBody>

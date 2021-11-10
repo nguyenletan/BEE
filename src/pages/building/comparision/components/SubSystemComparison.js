@@ -13,6 +13,7 @@ import wallImg from '../../../../assets/images/wall.png'
 import openingsImg from '../../../../assets/images/opening.png'
 import floorImg from '../../../../assets/images/floor.png'
 import { Container, Modal } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 
 const SubSystemComparisonTitle = styled.h3`
   font-size: 1.15rem;
@@ -118,6 +119,9 @@ const CloseBtn = styled.button`
 `
 
 const SubSystemComparison = () => {
+
+  const { t } = useTranslation('comparison');
+
   const subSystemComparisonData = {
     cooling: {
       currentEnergyPerformance: 'C',
@@ -178,6 +182,7 @@ const SubSystemComparison = () => {
       CO2Emissions,
       supplementaryText
     } = props?.data
+
 
     let icon = ''
     switch (type) {
@@ -335,15 +340,15 @@ const SubSystemComparison = () => {
 
   return (
     <SubSystemComparisonWrapper>
-      <SubSystemComparisonTitle>Sub-System Comparison</SubSystemComparisonTitle>
+      <SubSystemComparisonTitle>{t('Sub-System Comparison')}</SubSystemComparisonTitle>
 
       <HeadRow className='row'>
         <ListHeader className='col-2' />
-        <ListHeader className='col-2'>Current <span className='text-primary'>Energy</span> Performance</ListHeader>
-        <ListHeader className='col-2'>Potential<br />Best-in-class</ListHeader>
+        <ListHeader className='col-2'>{t('Current Energy Performance')}</ListHeader>
+        <ListHeader className='col-2'>{t('Potential')}<br />{t('Best-In-Class')}</ListHeader>
 
-        <ListHeader className='col-2'>Current <span className='text-primary'>C02</span> Performance</ListHeader>
-        <ListHeader className='col-2'>Potential<br />Best-in-class</ListHeader>
+        <ListHeader className='col-2'>{t('Current C02 Performance')}</ListHeader>
+        <ListHeader className='col-2'>{t('Potential')}<br />{t('Best-In-Class')}</ListHeader>
       </HeadRow>
 
       <ItemRow
@@ -371,7 +376,7 @@ const SubSystemComparison = () => {
       >
         <ListItem className='col-2'>
           <ItemImg src={coolingImg} alt='cooling' height='45px' />
-          <ItemImgSubTitle>Cooling</ItemImgSubTitle>
+          <ItemImgSubTitle>{t('Cooling')}</ItemImgSubTitle>
         </ListItem>
         <ListItem className='col-2'><EnergySquare
           color={getCurrentColor(subSystemComparisonData.cooling.currentEnergyPerformance)}
@@ -421,7 +426,7 @@ const SubSystemComparison = () => {
       >
         <ListItem className='col-2'>
           <ItemImg src={heatingImg} alt='heating' height='45px' />
-          <ItemImgSubTitle>Heating</ItemImgSubTitle>
+          <ItemImgSubTitle>{t('Heating')}</ItemImgSubTitle>
         </ListItem>
         <ListItem className='col-2'><EnergySquare
           color={getCurrentColor(subSystemComparisonData.heating.currentEnergyPerformance)}
@@ -471,7 +476,7 @@ const SubSystemComparison = () => {
       >
         <ListItem className='col-2'>
           <ItemImg src={lightingImg} alt='lighting' height='45px' />
-          <ItemImgSubTitle>Lighting</ItemImgSubTitle>
+          <ItemImgSubTitle>{t('Lighting')}</ItemImgSubTitle>
         </ListItem>
         <ListItem className='col-2'><EnergySquare
           color={getCurrentColor(subSystemComparisonData.lighting.currentEnergyPerformance)}
@@ -521,7 +526,7 @@ const SubSystemComparison = () => {
       >
         <ListItem className='col-2'>
           <ItemImg src={mechVentImg} alt='Mechanical Ventilation' height='45px' />
-          <ItemImgSubTitle>Mech. Vent.</ItemImgSubTitle>
+          <ItemImgSubTitle>{t('Mechanical Ventilation')}</ItemImgSubTitle>
         </ListItem>
         <ListItem className='col-2'><EnergySquare
           color={getCurrentColor(subSystemComparisonData.mechanicalVentilation.currentEnergyPerformance)}
@@ -571,7 +576,7 @@ const SubSystemComparison = () => {
       >
         <ListItem className='col-2'>
           <ItemImg src={renewableImg} alt='Renewable' height='45px' />
-          <ItemImgSubTitle>Renewable</ItemImgSubTitle>
+          <ItemImgSubTitle>{t('Renewable')}</ItemImgSubTitle>
         </ListItem>
         <ListItem className='col-2'><EnergySquare
           color={getCurrentColor(subSystemComparisonData.renewable.currentEnergyPerformance)}
@@ -619,7 +624,7 @@ const SubSystemComparison = () => {
       >
         <ListItem className='col-2'>
           <ItemImg src={plugLoadsImg} alt='Plug Loads' height='45px' />
-          <ItemImgSubTitle>Plug Loads</ItemImgSubTitle>
+          <ItemImgSubTitle>{t('Plug Loads')}</ItemImgSubTitle>
         </ListItem>
         <ListItem className='col-2'><EnergySquare
           color={getCurrentColor(subSystemComparisonData.plugLoads.currentEnergyPerformance)}
