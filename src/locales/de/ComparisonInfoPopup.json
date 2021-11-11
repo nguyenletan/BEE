@@ -1,10 +1,77 @@
 {
   "_comment1": "//Detail Pop-Up",
   "Current Energy Performance": "Aktuelle Energieeffizienz",
-  "Potential Best-In-Class": "Potenzielle Energieeffizienz",
-  "Window Glazing Type": "Fensterverglasungstyp",
+  "Potential Best-In-Class": "Potenzielle",
+  "Best-In-Class": "Energieeffizienz",
   "U-Value (W/m2K)": "U-Wert (W/m2K)",
+
+  "Roof Insulation Type": "Dachisolierungstyp",
+  "Wall Insulation Type" : "Wanddämmungstyp",
+  "Window Glazing Type": "Fensterverglasungstyp",
+  "Single Glazed Window": "Einfach verglastes Fenster",
+  "Double Glazed": "Doppelglasiert",
+  "Floor Insulation Type": "Bodenisolierungstyp",
+  "Solid Ground Floor": "Solid Erdgeschoss",
+
+  "Concrete Slab - Uninsulated": "Betonplatte - Ungedämmt",
+  "Concrete Slab - Insulated": "Betonplatte - Isoliert",
   "Shading Coefficient": "Beschattungskoeffizient (b-Faktor)",
-  "Decreasing the U-Value of the windows in turn reduces heating and cooling loads.": "Eine Reduzierung des U-Wertes der Fenster verringert wiederum Heiz- und Kühllasten."
-  "Close": "Schließen"
+  "Solid Ground Floor w/ Edge Insulation": "Solid Erdgeschoss mit Randdämmung",
+
+
+  "Reinforced Concrete Wall": "Stahlbetonwand",
+  "Precast Concrete Wall": "Betonfertigteilwand",
+
+
+  "Decreasing the U-Value of the windows in turn reduces heating and cooling loads": "Eine Reduzierung des U-Wertes der Fenster verringert wiederum Heiz- und Kühllasten",
+  "Decreasing the U-Value of the roof insulation in turn reduces heating and cooling loads": "Eine Reduzierung des U-Wertes der dach verringert wiederum Heiz- und Kühllasten",
+  "Decreasing the U-Value of the wall insulation in turn reduces heating and cooling loads": "Eine Reduzierung des U-Wertes der ưände verringert wiederum Heiz- und Kühllasten",
+  "Decreasing the U-Value of the floor insulation in turn reduces heating and cooling loads": "Eine Reduzierung des U-Wertes der bodenplatte verringert wiederum Heiz- und Kühllasten",
+
+
+  "Current CO2 Emission": "Aktueller CO2-Ausstoß",
+  "Energy Performance": " Energieeffizienz",
+  "C02 Emission": "CO2-Ausstoß",
+  "Boiler/Heater Type": "Boiler/Heizungstyp",
+  "Natural Gas Boiler": "Erdgaskessel",
+  "Air Source Heat Pump": "Luft-Quellen-Wärmepumpe",
+  "Efficiency %": "Effizienz %",
+  "Improving the Boiler/Heater energy efficiency reduces the energy consumption of the heating system": "Verbesserung der Energieeffizienz von Boiler/Heizung reduziert den Energieverbrauch des Heizsystems",
+
+  "Light Fitting Type": "Lichtarmaturentyp",
+  "Fluorescent T5 Tube": "Leuchtstoffröhre T5",
+  "Annual CO2 Emissions (Tons/Yr)": "Jährliche CO2-Emissionen (Tonnen/Jahr)",
+  "Improving the light fitting efficacy reduces the energy consumption of the lighting system": "Verbesserung der Lichtausbeute reduziert den Energieverbrauch des Beleuchtungssystems",
+  "Fan Type": "Lüftertyp",
+  "Fixed Speed Fan": "Lüfter mit fester Geschwindigkeit",
+  "Variable Speed Drive Fan": "Lüfter mit variabler Geschwindigkeit",
+
+  "Improving the fan energy efficiency reduces the energy consumption of the mechanical ventilation system":"Die Verbesserung der Energieeffizienz des Ventilators reduziert den Energieverbrauch der mechanischen Lüftungsanlage",
+  "Solar Panel Capacity Installed": "Solarmodul-Kapazität installiert",
+  "No Solar Panel System": "Kein Solarpanel-System",
+  "Solar Panel":"Sonnenkollektor",
+  "Capacity kWp": "Kapazität kWp",
+
+  "Improving the solar panel capacity reduces the energy consumption of the building from the grid": "Die Verbesserung der Solarmodulkapazität reduziert den Energieverbrauch des Gebäudes aus dem Netz",
+  "Plug Load": "Steckerlast",
+  "NA": "Nicht verfügbar",
+  "Smart Plugs": "Smart Plugs",
+  "Energy Usage kWh": "Energieverbrauch kWh",
+  "Managing the plug loads and switching them off when not in use reduces the energy consumption": "Das Verwalten der Steckerlasten und das Abschalten bei Nichtgebrauch reduziert den Energieverbrauch",
+
+
+
+
+
+  "Close": "Schließen",
+
+  "cooling":"kühlung",
+  "heating":"heizung",
+  "lighting":"beleuchtung",
+  "mechanical Ventilation":"mechanische lüftung",
+  "roof":"dach",
+  "wall":"ưände",
+  "openings":"öffnungen",
+  "floor":"bodenplatte",
+  "Performance": "Energieeffizienz"
 }

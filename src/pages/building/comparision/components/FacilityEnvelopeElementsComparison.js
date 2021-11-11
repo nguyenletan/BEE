@@ -5,7 +5,7 @@ import roofImg from '../../../../assets/images/roof.png'
 import wallImg from '../../../../assets/images/wall.png'
 import openingsImg from '../../../../assets/images/opening.png'
 import floorImg from '../../../../assets/images/floor.png'
-import { getCurrentColor } from '../../../../Utilities'
+import { getCurrentColor } from 'Utilities'
 import EnergySquare from './EnergySquare'
 import { useTranslation } from 'react-i18next'
 
@@ -57,7 +57,7 @@ const ItemRow = styled.div`
   transition: box-shadow 100ms ease-in-out;
 
   &:hover {
-    box-shadow: 0px 0px 5px 1px #ddd;
+    box-shadow: 0 0 5px 1px #ddd;
   }
 `
 
@@ -169,7 +169,7 @@ const FacilityEnvelopeElementsComparison = () => {
 
   const [show, setShow] = useState(false)
   const [popUpProps, setPopupProps] = useState({})
-  const { t } = useTranslation('comparison')
+  const { t } = useTranslation(['comparison', 'comparisonInfoPopup'])
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -195,7 +195,8 @@ const FacilityEnvelopeElementsComparison = () => {
       potentialBestInClassSecondMetricValue,
       supplementaryText
     } = props?.data
-
+    const { t } = useTranslation(['comparisonInfoPopup'])
+    console.log(type)
 
 
     let icon = ''
@@ -222,15 +223,15 @@ const FacilityEnvelopeElementsComparison = () => {
           <Container className='mt-4'>
             <div className='d-flex justify-content-center'>
               <PopupIcon src={icon} alt='roof' title='roof' />
-              <PopupTitle>{type} Performance</PopupTitle>
+              <PopupTitle>{t(type)} {t('Performance')}</PopupTitle>
             </div>
             <ComparisonTable>
               <div className='row mt-3'>
                 <div className='col-6 text-center'>
-                  Current Energy Performance
+                  {t('Current Energy Performance')}
                 </div>
                 <div className='col-6 text-center'>
-                  Potential<br />Best-In-Class
+                  {t('Potential')}<br />{t('Best-In-Class')}
                 </div>
               </div>
 
@@ -251,39 +252,39 @@ const FacilityEnvelopeElementsComparison = () => {
 
               <div className='row mt-3'>
                 <div className='col-6 text-center flex-column'>
-                  <FirstLine>{fittingLabel}</FirstLine>
-                  <SecondLine>{currentFittingName}</SecondLine>
+                  <FirstLine>{t(fittingLabel)}</FirstLine>
+                  <SecondLine>{t(currentFittingName)}</SecondLine>
                 </div>
                 <div className='col-6 text-center'>
-                  <FirstLine>{fittingLabel}</FirstLine>
-                  <SecondLine>{potentialBestInClassFittingName}</SecondLine>
+                  <FirstLine>{t(fittingLabel)}</FirstLine>
+                  <SecondLine>{t(potentialBestInClassFittingName)}</SecondLine>
                 </div>
               </div>
 
               <div className='row mt-3'>
                 <div className='col-6 text-center'>
-                  <FirstLine>{firstMetricLabel}</FirstLine>
+                  <FirstLine>{t(firstMetricLabel)}</FirstLine>
                   <SecondLine>{currentFirstMetricValue}</SecondLine>
                 </div>
                 <div className='col-6 text-center'>
-                  <FirstLine>{firstMetricLabel}</FirstLine>
+                  <FirstLine>{t(firstMetricLabel)}</FirstLine>
                   <SecondLine>{potentialBestInClassFirstMetricValue}</SecondLine>
                 </div>
               </div>
 
               <div className='row mt-3'>
                 <div className='col-6 text-center'>
-                  <FirstLine>{secondMetricLabel}</FirstLine>
+                  <FirstLine>{t(secondMetricLabel)}</FirstLine>
                   <SecondLine>{currentSecondMetricValue}</SecondLine>
                 </div>
                 <div className='col-6 text-center'>
-                  <FirstLine>{secondMetricLabel}</FirstLine>
+                  <FirstLine>{t(secondMetricLabel)}</FirstLine>
                   <SecondLine>{potentialBestInClassSecondMetricValue}</SecondLine>
                 </div>
               </div>
             </ComparisonTable>
 
-            <PopupDescription>{supplementaryText}.</PopupDescription>
+            <PopupDescription>{t(supplementaryText)}.</PopupDescription>
             <CloseBtn className='btn btn-outline-primary btn-sm mb-3' onClick={handleClose}>Close</CloseBtn>
           </Container>
         </Modal.Body>
@@ -310,7 +311,7 @@ const FacilityEnvelopeElementsComparison = () => {
           fittingLabel: 'Roof Insulation Type',
           currentFittingName: 'Concrete Slab - Uninsulated',
           potentialBestInClassFittingName: 'Concrete Slab - Insulated',
-          firstMetricLabel: 'U-Value W/m2K',
+          firstMetricLabel: 'U-Value (W/m2K)',
           currentFirstMetricValue: '1.7',
           potentialBestInClassFirstMetricValue: '0.9',
           secondMetricLabel: '',
@@ -344,7 +345,7 @@ const FacilityEnvelopeElementsComparison = () => {
           fittingLabel: 'Wall Insulation Type',
           currentFittingName: 'Reinforced Concrete Wall',
           potentialBestInClassFittingName: 'Precast Concrete Wall',
-          firstMetricLabel: 'U-Value W/m2K',
+          firstMetricLabel: 'U-Value (W/m2K)',
           currentFirstMetricValue: '3.02',
           potentialBestInClassFirstMetricValue: '1.07',
           secondMetricLabel: '',
@@ -378,7 +379,7 @@ const FacilityEnvelopeElementsComparison = () => {
           fittingLabel: 'Window Glazing Type',
           currentFittingName: 'Single Glazed Window',
           potentialBestInClassFittingName: 'Double Glazed',
-          firstMetricLabel: 'U-Value W/m2K',
+          firstMetricLabel: 'U-Value (W/m2K)',
           currentFirstMetricValue: '1.53',
           potentialBestInClassFirstMetricValue: '0.87',
           secondMetricLabel: 'Shading Coefficient',
@@ -414,7 +415,7 @@ const FacilityEnvelopeElementsComparison = () => {
           fittingLabel: 'Floor Insulation Type',
           currentFittingName: 'Solid Ground Floor',
           potentialBestInClassFittingName: 'Solid Ground Floor w/ Edge Insulation',
-          firstMetricLabel: 'U-Value W/m2K',
+          firstMetricLabel: 'U-Value (W/m2K)',
           currentFirstMetricValue: '0.15',
           potentialBestInClassFirstMetricValue: '0.07',
           secondMetricLabel: '',
