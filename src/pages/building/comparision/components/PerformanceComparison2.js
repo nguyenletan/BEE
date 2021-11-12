@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ResponsiveLine } from '@nivo/line'
-import { Container, FormCheck, Modal } from 'react-bootstrap'
+import { Container, Modal } from 'react-bootstrap'
 import roofImg from '../../../../assets/images/roof.svg'
 import wallImg from '../../../../assets/images/wall.svg'
 import openingsImg from '../../../../assets/images/openings.svg'
@@ -99,7 +99,7 @@ const CancelBtn = styled.button`
   padding-right: 20px;
 `
 
-const PerformanceComparison2 = (effect, deps) => {
+const PerformanceComparison2 = () => {
 
   const { t, i18n } = useTranslation('comparison')
 
@@ -271,9 +271,7 @@ const PerformanceComparison2 = (effect, deps) => {
         j.x = t(j.x)
       }
     }
-    console.log(tmp)
     setChartData(tmp)
-    console.log('change')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [i18n.language])
 
@@ -293,7 +291,7 @@ const PerformanceComparison2 = (effect, deps) => {
     setChartData(arr)
   }
 
-  const onClick = (e) => {
+  const onClick = () => {
     handleShow()
   }
 
@@ -336,6 +334,8 @@ const PerformanceComparison2 = (effect, deps) => {
 
   const Popup = () => {
     // const selectedBuildings = [];
+    const { t } = useTranslation('comparisonParametersPopup')
+
     let selectedBuildings = data.map(d => d.id)
     let selectedSubSystems = data[0].data.map(d => d.x)
 
@@ -358,10 +358,18 @@ const PerformanceComparison2 = (effect, deps) => {
     const buildingItems = data.map((item, index) => {
       return (
         <ParameterItem key={item.id}>
-          <FormCheck
-            type="checkbox" id={'checkbox_building_' + index} label={item.id} onChange={onSelectBuilding}
-            value={item.id} defaultChecked
-          />
+          {/*<FormCheck*/}
+          {/*  type="checkbox" id={'checkbox_building_' + index} label={item.id} onChange={onSelectBuilding}*/}
+          {/*  value={item.id} defaultChecked*/}
+          {/*/>*/}
+          <div className="custom-control custom-checkbox">
+            <input
+              onChange={onSelectBuilding} type="checkbox" className="custom-control-input me-1"
+              id={'checkbox_building_' + index} value={item.id} defaultChecked />
+            <label className="custom-control-label" htmlFor={'checkbox_building_' + index}>
+              {t(item.id)}
+            </label>
+          </div>
         </ParameterItem>
       )
     })
@@ -371,12 +379,12 @@ const PerformanceComparison2 = (effect, deps) => {
         <ParameterItem key={item.id} className="sub-systems">
           <div className="custom-control custom-checkbox">
             <input
-              onChange={onSelectSubSystem} type="checkbox" className="custom-control-input"
+              onChange={onSelectSubSystem} type="checkbox" className="custom-control-input me-1"
               id={'checkbox_subsystem_' + index} value={item.x} defaultChecked
             />
             <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + index}>
               <ParameterItemIcon src={getIcon(item.x)} alt={item.x} title={item.x}/>
-              {item.x}
+              {t(item.x)}
             </label>
           </div>
         </ParameterItem>
@@ -388,13 +396,13 @@ const PerformanceComparison2 = (effect, deps) => {
         <ParameterItem key={item.id}>
           <div className="custom-control custom-checkbox">
             <input
-              type="checkbox" className="custom-control-input"
+              type="checkbox" className="custom-control-input me-1"
               id={'checkbox_otherMonitoredEquipments_' + index}
             />
             <label
               className="custom-control-label"
               htmlFor={'checkbox_otherMonitoredEquipments_' + index}
-            >{item}
+            >{t(item)}
             </label>
           </div>
         </ParameterItem>
@@ -405,23 +413,23 @@ const PerformanceComparison2 = (effect, deps) => {
       <Modal show={show} onHide={handleClose} size="sm">
         <Modal.Body>
           <Container className="mt-4">
-            <PopupTitle>Comparison Parameters</PopupTitle>
+            <PopupTitle>{t('Comparison Parameters')}</PopupTitle>
             <PopupCategory>
-              <PopupCategoryTitle>Building</PopupCategoryTitle>
+              <PopupCategoryTitle>{t('Building')}</PopupCategoryTitle>
               <ParameterList>
                 {buildingItems}
               </ParameterList>
             </PopupCategory>
 
             <PopupCategory>
-              <PopupCategoryTitle>Sub-Systems</PopupCategoryTitle>
+              <PopupCategoryTitle>{t('Sub-Systems')}</PopupCategoryTitle>
               <ParameterList>
                 {subSystemItems}
               </ParameterList>
             </PopupCategory>
 
             <PopupCategory>
-              <PopupCategoryTitle>Other Monitored Equipment</PopupCategoryTitle>
+              <PopupCategoryTitle>{t('Other Monitored Equipment')}</PopupCategoryTitle>
               <ParameterList>
                 {otherMonitoredEquipmentItems}
               </ParameterList>
@@ -431,9 +439,9 @@ const PerformanceComparison2 = (effect, deps) => {
               <UpdateBtn
                 className="btn btn-primary btn-sm"
                 onClick={() => onUpdate(selectedBuildings, selectedSubSystems)}
-              >Update
+              >{t('Update')}
               </UpdateBtn>
-              <CancelBtn className="btn btn-outline-primary btn-sm" onClick={handleClose}>Cancel</CancelBtn>
+              <CancelBtn className="btn btn-outline-primary btn-sm" onClick={handleClose}>{t('Cancel')}</CancelBtn>
             </div>
           </Container>
         </Modal.Body>

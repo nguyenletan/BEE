@@ -349,7 +349,7 @@ const SubSystemComparison = () => {
         <ListHeader className='col-2'>{t('Current Energy Performance')}</ListHeader>
         <ListHeader className='col-2'>{t('Potential')}<br />{t('Best-In-Class')}</ListHeader>
 
-        <ListHeader className='col-2'>{t('Current C02 Performance')}</ListHeader>
+        <ListHeader className='col-2'>{t('Current CO2 Performance')}</ListHeader>
         <ListHeader className='col-2'>{t('Potential')}<br />{t('Best-In-Class')}</ListHeader>
       </HeadRow>
 

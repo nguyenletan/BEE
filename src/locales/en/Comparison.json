@@ -3,7 +3,7 @@
   "Building Energy Performance": "Building Energy Peformance",
   "Current": "Current",
   "Potential": "Potential",
-  "Best-in-Class": "Best-in-Class",
+  "Best-In-Class": "Best-in-Class",
   "Most Efficient": "Most Efficient",
   "Average Performance": "Average Performance",
   "Least Efficient": "Least Efficient",
@@ -25,6 +25,9 @@
   "Insulation ": "Insulation",
   "Envelope Performance": "Envelope Performance",
   "Efficiency": "Efficiency",
+  "Lighting Efficacy": "Lighting Efficacy",
+  "Envelope": "Envelope",
+  "Renewables Usage": "Renewables Usage",
 
   "_comment4": "//Facility Envelope Elements Comparison Chart",
   "Facility Envelope Elements Comparison": "Facility Envelope Elements Comparison",

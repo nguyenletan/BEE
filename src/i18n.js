@@ -14,6 +14,8 @@ import ComparisonEN from 'locales/en/Comparison.json'
 import ComparisonDE from 'locales/de/Comparison.json'
 import ComparisonInfoPopupDE from 'locales/de/ComparisonInfoPopup.json'
 import ComparisonInfoPopupEN from 'locales/en/ComparisonInfoPopup.json'
+import ComparisonParametersPopupEN from 'locales/en/ComparisonParametersPopup.json'
+import ComparisonParametersPopupDE from 'locales/de/ComparisonParametersPopup.json'
 
 
 i18n
@@ -39,7 +41,7 @@ i18n
         buildingPerformance: BuildingPerformanceEN,
         comparison: ComparisonEN,
         comparisonInfoPopup: ComparisonInfoPopupEN,
-
+        comparisonParametersPopup: ComparisonParametersPopupEN
       },
       de: {
         common: CommonDE,
@@ -48,6 +50,7 @@ i18n
         buildingPerformance: BuildingPerformanceDE,
         comparison: ComparisonDE,
         comparisonInfoPopup: ComparisonInfoPopupDE,
+        comparisonParametersPopup: ComparisonParametersPopupDE
       },
     },
   })

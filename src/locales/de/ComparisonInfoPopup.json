@@ -59,6 +59,7 @@
   "Energy Usage kWh": "Energieverbrauch kWh",
   "Managing the plug loads and switching them off when not in use reduces the energy consumption": "Das Verwalten der Steckerlasten und das Abschalten bei Nichtgebrauch reduziert den Energieverbrauch",
 
+  "Performance": "Performance",
 
 
 
@@ -72,6 +73,5 @@
   "roof":"dach",
   "wall":"ưände",
   "openings":"öffnungen",
-  "floor":"bodenplatte",
-  "Performance": "Energieeffizienz"
+  "floor":"bodenplatte"
 }
