@@ -6,7 +6,7 @@ import lightingImg from '../../../../assets/images/lighting-load.png'
 import renewableImg from '../../../../assets/images/pv-system.png'
 import mechVentImg from '../../../../assets/images/mech-vent-load.png'
 import plugLoadsImg from '../../../../assets/images/plug-load.png'
-import { getCurrentColor, getPotentialColor } from '../../../../Utilities'
+import { getCurrentColor, getPotentialColor } from 'Utilities'
 import EnergySquare from './EnergySquare'
 import roofImg from '../../../../assets/images/roof.png'
 import wallImg from '../../../../assets/images/wall.png'
@@ -14,6 +14,7 @@ import openingsImg from '../../../../assets/images/opening.png'
 import floorImg from '../../../../assets/images/floor.png'
 import { Container, Modal } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
+import { plugLoadsSvg } from 'SVGImage'
 
 const SubSystemComparisonTitle = styled.h3`
   font-size: 1.15rem;
@@ -56,7 +57,7 @@ const ItemRow = styled.div`
   transition: box-shadow 100ms ease-in-out;
 
   &:hover {
-    box-shadow: 0px 0px 5px 1px #ddd;
+    box-shadow: 0 0 5px 1px #ddd;
   }
 `
 
@@ -120,7 +121,7 @@ const CloseBtn = styled.button`
 
 const SubSystemComparison = () => {
 
-  const { t } = useTranslation('comparison');
+  const { t } = useTranslation(['comparison', 'comparisonInfoPopup']);
 
   const subSystemComparisonData = {
     cooling: {
@@ -182,7 +183,7 @@ const SubSystemComparison = () => {
       CO2Emissions,
       supplementaryText
     } = props?.data
-
+    const { t } = useTranslation('comparisonInfoPopup')
 
     let icon = ''
     switch (type) {
@@ -226,18 +227,19 @@ const SubSystemComparison = () => {
           <Container className='mt-4'>
             <div className='d-flex justify-content-center'>
               <PopupIcon src={icon} alt='roof' title='roof' />
-              <PopupTitle>{type} Performance</PopupTitle>
+              <PopupTitle>{t(type)} {t('Performance')}</PopupTitle>
             </div>
             <div className='row'>
               <div className='col col-12 col-md-6'>
-                <PopupSubtitle>Energy Performance</PopupSubtitle>
+                <PopupSubtitle>{t('Energy Performance')}</PopupSubtitle>
+
                 <ComparisonTable>
                   <div className='row mt-3'>
                     <div className='col-6 text-center'>
-                      Current Energy Performance
+                      {t('Current Energy Performance')}
                     </div>
                     <div className='col-6 text-center'>
-                      Potential<br />Best-In-Class
+                      {t('Potential')}<br />{t('Best-In-Class')}
                     </div>
                   </div>
 
@@ -258,36 +260,36 @@ const SubSystemComparison = () => {
 
                   <div className='row mt-3'>
                     <div className='col-6 text-center flex-column'>
-                      <FirstLine>{fittingLabel}</FirstLine>
-                      <SecondLine>{currentFittingName}</SecondLine>
+                      <FirstLine>{t(fittingLabel)}</FirstLine>
+                      <SecondLine>{t(currentFittingName)}</SecondLine>
                     </div>
                     <div className='col-6 text-center'>
-                      <FirstLine>{fittingLabel}</FirstLine>
-                      <SecondLine>{potentialBestInClassFittingName}</SecondLine>
+                      <FirstLine>{t(fittingLabel)}</FirstLine>
+                      <SecondLine>{t(potentialBestInClassFittingName)}</SecondLine>
                     </div>
                   </div>
 
                   <div className='row mt-3'>
                     <div className='col-6 text-center'>
-                      <FirstLine>{energyPerformance?.firstMetricLabel}</FirstLine>
+                      <FirstLine>{t(energyPerformance?.firstMetricLabel)}</FirstLine>
                       <SecondLine>{energyPerformance?.currentFirstMetricValue}</SecondLine>
                     </div>
                     <div className='col-6 text-center'>
-                      <FirstLine>{energyPerformance?.firstMetricLabel}</FirstLine>
+                      <FirstLine>{t(energyPerformance?.firstMetricLabel)}</FirstLine>
                       <SecondLine>{energyPerformance?.potentialBestInClassFirstMetricValue}</SecondLine>
                     </div>
                   </div>
                 </ComparisonTable>
               </div>
               <div className='col col-12 col-md-6'>
-                <PopupSubtitle>C02 Emission</PopupSubtitle>
+                <PopupSubtitle>{t('C02 Emission')}</PopupSubtitle>
                 <ComparisonTable>
                   <div className='row mt-3'>
                     <div className='col-6 text-center'>
-                      Current CO2 Emission
+                      {t('Current CO2 Emission')}
                     </div>
                     <div className='col-6 text-center'>
-                      Potential<br />Best-In-Class
+                      {t('Potential')}<br />{t('Best-In-Class')}
                     </div>
                   </div>
 
@@ -308,30 +310,30 @@ const SubSystemComparison = () => {
 
                   <div className='row mt-3'>
                     <div className='col-6 text-center flex-column'>
-                      <FirstLine>{fittingLabel}</FirstLine>
-                      <SecondLine>{currentFittingName}</SecondLine>
+                      <FirstLine>{t(fittingLabel)}</FirstLine>
+                      <SecondLine>{t(currentFittingName)}</SecondLine>
                     </div>
                     <div className='col-6 text-center'>
-                      <FirstLine>{fittingLabel}</FirstLine>
-                      <SecondLine>{potentialBestInClassFittingName}</SecondLine>
+                      <FirstLine>{t(fittingLabel)}</FirstLine>
+                      <SecondLine>{t(potentialBestInClassFittingName)}</SecondLine>
                     </div>
                   </div>
 
                   <div className='row mt-3'>
                     <div className='col-6 text-center'>
-                      <FirstLine>{CO2Emissions?.firstMetricLabel}</FirstLine>
+                      <FirstLine>{t(CO2Emissions?.firstMetricLabel)}</FirstLine>
                       <SecondLine>{CO2Emissions?.currentFirstMetricValue}</SecondLine>
                     </div>
                     <div className='col-6 text-center'>
-                      <FirstLine>{CO2Emissions?.firstMetricLabel}</FirstLine>
+                      <FirstLine>{t(CO2Emissions?.firstMetricLabel)}</FirstLine>
                       <SecondLine>{CO2Emissions?.potentialBestInClassFirstMetricValue}</SecondLine>
                     </div>
                   </div>
                 </ComparisonTable>
               </div>
             </div>
-            <PopupDescription>{supplementaryText}.</PopupDescription>
-            <CloseBtn className='btn btn-outline-primary btn-sm mb-3' onClick={handleClose}>Close</CloseBtn>
+            <PopupDescription>{t(supplementaryText)}.</PopupDescription>
+            <CloseBtn className='btn btn-outline-primary btn-sm mb-3' onClick={handleClose}>{t('Close')}</CloseBtn>
           </Container>
         </Modal.Body>
       </Modal>
@@ -347,7 +349,7 @@ const SubSystemComparison = () => {
         <ListHeader className='col-2'>{t('Current Energy Performance')}</ListHeader>
         <ListHeader className='col-2'>{t('Potential')}<br />{t('Best-In-Class')}</ListHeader>
 
-        <ListHeader className='col-2'>{t('Current C02 Performance')}</ListHeader>
+        <ListHeader className='col-2'>{t('Current CO2 Performance')}</ListHeader>
         <ListHeader className='col-2'>{t('Potential')}<br />{t('Best-In-Class')}</ListHeader>
       </HeadRow>
 
@@ -623,7 +625,8 @@ const SubSystemComparison = () => {
         })}
       >
         <ListItem className='col-2'>
-          <ItemImg src={plugLoadsImg} alt='Plug Loads' height='45px' />
+          {/*<ItemImg src={plugLoadsSvg()} alt='Plug Loads' height='45px' />*/}
+          {plugLoadsSvg()}
           <ItemImgSubTitle>{t('Plug Loads')}</ItemImgSubTitle>
         </ListItem>
         <ListItem className='col-2'><EnergySquare

@@ -22,6 +22,10 @@
   "Insulation ":"Isolierung",
   "Envelope Performance":"Einsatz erneuerbarer Energien",
   "Efficiency": "",
+  "Envelope": "Umschlag",
+  "Renewables Usage": "Nutzung erneuerbarer Energien",
+
+  "Lighting Efficacy": "Lichtausbeute",
 
   "_comment4":"//Facility Envelope Elements Comparison Chart",
   "Facility Envelope Elements Comparison":"Bewertung der Gebäudehülle",

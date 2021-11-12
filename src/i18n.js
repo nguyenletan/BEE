@@ -12,8 +12,10 @@ import BuildingPerformanceDE from 'locales/de/BuildingPerformance.json'
 import BuildingPerformanceEN from 'locales/en/BuildingPerformance.json'
 import ComparisonEN from 'locales/en/Comparison.json'
 import ComparisonDE from 'locales/de/Comparison.json'
-// import ComparisonInfoPopupDE from 'locales/de/ComparisonInfoPopup.json'
-// import ComparisonInfoPopupEN from 'locales/en/ComparisonInfoPopup.json'
+import ComparisonInfoPopupDE from 'locales/de/ComparisonInfoPopup.json'
+import ComparisonInfoPopupEN from 'locales/en/ComparisonInfoPopup.json'
+import ComparisonParametersPopupEN from 'locales/en/ComparisonParametersPopup.json'
+import ComparisonParametersPopupDE from 'locales/de/ComparisonParametersPopup.json'
 
 
 i18n
@@ -38,8 +40,8 @@ i18n
         portfolio: PortfolioEN,
         buildingPerformance: BuildingPerformanceEN,
         comparison: ComparisonEN,
-        //comparisonInfoPopup: ComparisonInfoPopupEN,
-
+        comparisonInfoPopup: ComparisonInfoPopupEN,
+        comparisonParametersPopup: ComparisonParametersPopupEN
       },
       de: {
         common: CommonDE,
@@ -47,7 +49,8 @@ i18n
         generalBuildingInformation: GeneralBuildingInformationDE,
         buildingPerformance: BuildingPerformanceDE,
         comparison: ComparisonDE,
-        //comparisonInfoPopup: ComparisonInfoPopupDE,
+        comparisonInfoPopup: ComparisonInfoPopupDE,
+        comparisonParametersPopup: ComparisonParametersPopupDE
       },
     },
   })

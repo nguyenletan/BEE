@@ -1,10 +1,70 @@
 {
   "_comment1": "//Detail Pop-Up",
   "Current Energy Performance": "Current Energy Performance",
-  "Potential Best-In-Class": "Potential Best-In-Class",
+  "Potential": "Potential",
+  "Best-In-Class": "Best-In-Class",
   "Window Glazing Type": "Window Glazing Type",
   "U-Value (W/m2K)": "U-Value (W/m2K)",
   "Shading Coefficient": "Shading Coefficient",
-  "Decreasing the U-Value of the windows in turn reduces heating and cooling loads.": "Decreasing the U-Value of the windows in turn reduces heating and cooling loads.",
-  "Close": "Close"
+  "Decreasing the U-Value of the windows in turn reduces heating and cooling loads.": "Decreasing the U-Value of the windows in turn reduces heating and cooling loads",
+
+
+  "Roof Insulation Type": "Roof Insulation Type",
+  "Wall Insulation Type" : "Wall Insulation Type",
+  "Single Glazed Window": "Single Glazed Window",
+  "Double Glazed": "Doppelglasiert",
+  "Floor Insulation Type": "Floor Insulation Type",
+  "Solid Ground Floor": "Solid Ground Floor",
+
+  "Concrete Slab - Uninsulated": "Concrete Slab - Uninsulated",
+  "Concrete Slab - Insulated": "Concrete Slab - Insulated",
+  "Solid Ground Floor w/ Edge Insulation": "Solid Ground Floor w/ Edge Insulation",
+
+
+  "Reinforced Concrete Wall": "Reinforced Concrete Wall",
+  "Precast Concrete Wall": "Precast Concrete Wall",
+
+
+  "Decreasing the U-Value of the windows in turn reduces heating and cooling loads": "Decreasing the U-Value of the windows in turn reduces heating and cooling loads",
+  "Decreasing the U-Value of the roof insulation in turn reduces heating and cooling loads": "Decreasing the U-Value of the roof insulation in turn reduces heating and cooling loads",
+  "Decreasing the U-Value of the wall insulation in turn reduces heating and cooling loads": "Decreasing the U-Value of the wall insulation in turn reduces heating and cooling loads",
+  "Decreasing the U-Value of the floor insulation in turn reduces heating and cooling loads": "Decreasing the U-Value of the floor insulation in turn reduces heating and cooling loads",
+
+
+  "Current CO2 Emission": "Current CO2 Emission",
+  "Energy Performance": " Energy Performance",
+  "C02 Emission": "C02 Emission",
+  "Boiler/Heater Type": "Boiler/Heater Type",
+  "Natural Gas Boiler": "Natural Gas Boiler",
+  "Air Source Heat Pump": "Air Source Heat Pump",
+  "Efficiency %": "Efficiency %",
+  "Improving the Boiler/Heater energy efficiency reduces the energy consumption of the heating system": "Improving the Boiler/Heater energy efficiency reduces the energy consumption of the heating system",
+
+  "Light Fitting Type": "Light Fitting Type",
+  "Fluorescent T5 Tube": "Fluorescent T5 Tube",
+  "Annual CO2 Emissions (Tons/Yr)": "Annual CO2 Emissions (Tons/Yr)",
+  "Improving the light fitting efficacy reduces the energy consumption of the lighting system": "Improving the light fitting efficacy reduces the energy consumption of the lighting system",
+  "Fan Type": "Fan Type",
+  "Fixed Speed Fan": "Fixed Speed Fan",
+  "Variable Speed Drive Fan": "Variable Speed Drive Fan",
+
+  "Improving the fan energy efficiency reduces the energy consumption of the mechanical ventilation system":"Improving the fan energy efficiency reduces the energy consumption of the mechanical ventilation system",
+  "Solar Panel Capacity Installed": "Solar Panel Capacity Installed",
+  "No Solar Panel System": "No Solar Panel System\"",
+  "Solar Panel":"Solar Panel",
+  "Capacity kWp": "Capacity kWp",
+
+  "Improving the solar panel capacity reduces the energy consumption of the building from the grid": "Improving the solar panel capacity reduces the energy consumption of the building from the grid",
+  "Plug Load": "Plug Load",
+  "NA": "NA",
+  "Smart Plugs": "Smart Plugs",
+  "Energy Usage kWh": "Energy Usage kWh",
+  "Managing the plug loads and switching them off when not in use reduces the energy consumption": "Managing the plug loads and switching them off when not in use reduces the energy consumption",
+
+
+  "Close": "Close",
+  "roof":"Dach",
+  "wall":"Wände",
+  "openings":"Öffnungen",
+  "floor":"Bodenplatte"
 }

@@ -3,10 +3,11 @@
   "Building Energy Performance": "Building Energy Peformance",
   "Current": "Current",
   "Potential": "Potential",
-  "Best-in-Class": "Best-in-Class",
+  "Best-In-Class": "Best-in-Class",
   "Most Efficient": "Most Efficient",
   "Average Performance": "Average Performance",
   "Least Efficient": "Least Efficient",
+
   "_comment2": "//CO2 Emissions Performance Chart",
   "CO2 Emissions Performance": "CO2 Emissions Performance",
   "_comment3": "//Sub-System Peformance Chart",
@@ -24,6 +25,10 @@
   "Insulation ": "Insulation",
   "Envelope Performance": "Envelope Performance",
   "Efficiency": "Efficiency",
+  "Lighting Efficacy": "Lighting Efficacy",
+  "Envelope": "Envelope",
+  "Renewables Usage": "Renewables Usage",
+
   "_comment4": "//Facility Envelope Elements Comparison Chart",
   "Facility Envelope Elements Comparison": "Facility Envelope Elements Comparison",
   "Current Energy Performance": "Current Energy Performance",
@@ -32,10 +37,12 @@
   "Openings": "Openings",
   "Floor": "Floor",
   "Performance": "Performance",
+
   "_comment5": "//Sub-System Comparison Chart",
   "Sub-System Comparison": "Sub-System Comparison",
   "Current CO2 Performance": "Current CO2 Performance",
   "Potential CO2 Best in Class": "Potential CO2 Best in Class",
+
   "_comment6": "//Sub-System Performance Chart",
   "Sub-System Performance": "Sub-System Performance",
   "Design Excellent Center": "Design Excellent Center",
