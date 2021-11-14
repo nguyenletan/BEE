@@ -1,6 +1,7 @@
 import React from 'react'
 import BarBlock from './BarBlock'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 const BuildingEnergyPerformanceWrapper = styled.div`
 
@@ -47,27 +48,30 @@ const IndicatorText = styled.span`
 `
 
 const CO2EmissionsPerformance = ({ improved }) => {
+
+  const { t } = useTranslation('improvement')
+
   const Indicator = ({ text, backgroundColor, type }) => (
     improved === text && <>
       <BarBlock
         width='53px' backgroundColor={backgroundColor} text={text} isArrow textAlign='center'
         marginLeft='7px'
       />
-      <IndicatorText>{type}</IndicatorText>
-                         </>
+      <IndicatorText>{t(type)}</IndicatorText>
+    </>
   )
   return (
     <BuildingEnergyPerformanceWrapper className='d-flex justify-content-between'>
       <BarWrapper className='d-flex'>
         <BarChart>
-          <BarHeader>CO2 Emissions<br />Performance</BarHeader>
+          <BarHeader>{t('CO2 Emissions')}<br />{t('_Performance')}</BarHeader>
           <div className='d-flex'>
             <Hr />
             <BarBlock width='36px' backgroundColor='#93d2f0' text='A' textAlign='center' paddingRight='0' />
             <Indicator text='A' backgroundColor='#93d2f0' type='Improved' />
           </div>
           <div className='d-flex '>
-            <BarTitle marginTop='-12px'>Most Efficient</BarTitle>
+            <BarTitle marginTop='-12px'>{t('Most Efficient')}</BarTitle>
             <BarBlock width='36px' backgroundColor='#63bcf2' textAlign='center' text='B' paddingRight='0' />
             <Indicator text='B' backgroundColor='#63bcf2' type='Improved' />
           </div>
@@ -78,13 +82,13 @@ const CO2EmissionsPerformance = ({ improved }) => {
             <Indicator text='C' backgroundColor='#52a8d9' type='Improved' />
           </div>
           <div className='d-flex '>
-            <BarTitle>Average Performance</BarTitle>
+            <BarTitle>{t('Average Performance')}</BarTitle>
             <BarBlock width='36px' backgroundColor='#3c82c6' textAlign='center' text='D' paddingRight='0' />
             <BarBlock
               width='53px' backgroundColor='#3c82c6' text='D' isArrow textAlign='center'
               marginLeft='7px'
             />
-            <IndicatorText>Current</IndicatorText>
+            <IndicatorText>{t('Current')}</IndicatorText>
             <Indicator text='D' backgroundColor='#3c82c6' type='Improved' />
           </div>
 
@@ -94,7 +98,7 @@ const CO2EmissionsPerformance = ({ improved }) => {
             <Indicator text='E' backgroundColor='#c4c4c4' type='Improved' />
           </div>
           <div className='d-flex '>
-            <BarTitle marginTop='10px'>Least Efficient</BarTitle>
+            <BarTitle marginTop='10px'>{t('Least Efficient')}</BarTitle>
             <BarBlock width='36px' backgroundColor='#a9a9a9' textAlign='center' text='F' paddingRight='0' />
             <Indicator text='F' backgroundColor='#a9a9a9' type='Improved' />
           </div>

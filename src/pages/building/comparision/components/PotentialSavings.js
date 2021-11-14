@@ -1,7 +1,10 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import BuildingEnergyPerformance from './BuildingEnergyPerformance'
 import CO2EmissionsPerformance from './CO2EmissionsPerformance'
+import { useTranslation } from 'react-i18next'
+import { deepClone } from 'Utilities'
 
 const PotentialSavingsWrapper = styled.div`
   margin-bottom: 40px;
@@ -38,8 +41,23 @@ const PotentialSavingItemValue = styled.h4`
 `
 
 const PotentialSavings = ({ data }) => {
-  const PotentialSavingItems = data.saving.map(item => (
-    <PotentialSavingItem key={item.title} className='d-flex flex-column'>
+  const { t, i18n } = useTranslation('improvement')
+
+  const [dataSource, setDataScource] = useState(data)
+
+  useEffect(()=> {
+    const tmp = deepClone(data)
+
+    for(let item of tmp.saving) {
+      item.title = t(item.title)
+      item.unit = t(item.unit)
+    }
+
+    setDataScource(tmp)
+  }, [i18n.language, data])
+
+  const PotentialSavingItems = dataSource.saving.map(item => (
+    <PotentialSavingItem key={t(item.title)} className='d-flex flex-column'>
       <PotentialSavingItemTitle>{item.title} ({item.unit})</PotentialSavingItemTitle>
       <PotentialSavingItemValue>{item.value}</PotentialSavingItemValue>
     </PotentialSavingItem>))
@@ -47,7 +65,7 @@ const PotentialSavings = ({ data }) => {
   return (
     <PotentialSavingsWrapper className='row'>
       <div className='col-5'>
-        <PotentialSavingsTitle>Potential Savings</PotentialSavingsTitle>
+        <PotentialSavingsTitle>{t('Potential Savings')}</PotentialSavingsTitle>
         <div className='d-flex justify-content-between flex-wrap'>
           {PotentialSavingItems}
         </div>
