@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ResponsivePie } from '@nivo/pie'
+import { useTranslation } from 'react-i18next'
+import { deepClone } from 'Utilities'
 
 const BreakDownBlock = styled.div`
   background-color: #fafafa;
@@ -17,7 +19,7 @@ const ResponsivePieWrapper = styled.div`
 `
 
 const BreakDownTitle = styled.h4`
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 0;
 `
@@ -57,9 +59,22 @@ const BreakDown = (props) => {
     noCenterText,
   } = props
 
+  const { t, i18n } = useTranslation(['buildingPerformance', 'improvement'])
+
+  const [dataSource, setDataSource] = useState(data)
+
+  useEffect(() => {
+    const tmp = deepClone(data)
+    for (let item of tmp) {
+      item.id = t(item.id, { ns: 'buildingPerformance' })
+    }
+    setDataSource(tmp)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, i18n.language])
+
   const commonProperties = {
     margin: { top: 40, right: 20, bottom: 20, left: 20 },
-    data: data,
+    data: dataSource,
     animate: true,
     activeOuterRadiusOffset: 4,
   }
@@ -96,21 +111,21 @@ const BreakDown = (props) => {
             fontWeight: '700',
           }}
         >
-          Used
+          {t('Used', { ns: 'buildingPerformance' })}
         </text>}
       </>
     )
   }
 
   const list = data.map(x => <li className="d-flex justify-content-between" key={x.id}>
-    <Label fontSize={informationFontSize}>{x.id}:</Label>
-    <span fontSize={informationFontSize}>{x.value}%</span>
+    <Label style={{ fontSize: informationFontSize }}>{t(x.id, {ns: 'buildingPerformance'})}:</Label>
+    <span style={{ fontSize: informationFontSize }}>{x.value}</span>
   </li>)
 
   return (
     <BreakDownBlock marginRight={marginRight}>
-      <BreakDownTitle>{title}</BreakDownTitle>
-      {subTitle ?? (<BreakDownSubTitle>{subTitle}</BreakDownSubTitle>)}
+      <BreakDownTitle>{t(title, {ns: 'improvement'})}</BreakDownTitle>
+      <BreakDownSubTitle>{t(subTitle, {ns: 'improvement'})}</BreakDownSubTitle>
       <ResponsivePieWrapper height={chartHeight}>
         <ResponsivePie
           {...commonProperties}
@@ -128,6 +143,7 @@ const BreakDown = (props) => {
               }}
             >
               {id}: {value} %
+              {/*{t(subTitle, {ns: "improvement"})}*/}
             </div>
           )}
           arcLabel={function (e) {return e.value + '%'}}

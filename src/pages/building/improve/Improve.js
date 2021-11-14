@@ -6,7 +6,7 @@ import SubSystemPerformance from '../comparision/components/SubSystemPerformance
 import ImprovementMeasures from '../comparision/components/ImprovementMeasures'
 import PayBack from '../comparision/components/PayBack'
 import { useSetRecoilState } from 'recoil'
-import { isDisplayPerformanceFilterState } from '../../../atoms'
+import { isDisplayPerformanceFilterState } from 'atoms'
 
 const ImproveWrapper = styled.div`
   margin-bottom: 40px;
@@ -351,25 +351,36 @@ const Improve = (props) => {
 
       <PotentialSavings data={potentialSavingsData} />
 
-      <BreakDownWrapper className='d-flex'>
-        <BreakDown
-          title='Energy Savings Breakdown'
-          subTitle='%'
-          data={breakDownConsumption}
-          hasDescription
-        />
-        <BreakDown
-          title='Cost Savings Breakdown'
-          subTitle='%'
-          data={breakDownCost}
-          hasDescription
-        />
-        <BreakDown
-          title='CO2 Emissions Avoided'
-          subTitle='%'
-          data={breakDownCO2Emissions}
-          hasDescription
-        />
+      <BreakDownWrapper className='d-flex row justify-content-center'>
+        <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
+          <BreakDown
+            title='Energy Savings'
+            subTitle='MWH/Yr'
+            data={breakDownConsumption}
+            informationFontSize="16px"
+            hasDescription
+          />
+        </div>
+
+        <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
+          <BreakDown
+            title='Energy Cost Savings'
+            subTitle='$/Yr'
+            data={breakDownCost}
+            informationFontSize="16px"
+            hasDescription
+          />
+        </div>
+
+        <div className="col col-12 col-md-8 col-xl-4">
+          <BreakDown
+            title='CO2 Emissions Avoided'
+            subTitle='Tons/Yr'
+            data={breakDownCO2Emissions}
+            hasDescription
+            informationFontSize="16px"
+          />
+        </div>
       </BreakDownWrapper>
 
       <div className='row mb-5'>
