@@ -1,7 +1,10 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ScatterPlot } from '@nivo/scatterplot'
-import { coolingSVG, heatingSVG, lightingSVG, openingsSVG, wallSVG } from '../../../../SvgConstants'
+import { coolingSVG, heatingSVG, lightingSVG, openingsSVG, wallSVG } from 'SvgConstants'
+import { useTranslation } from 'react-i18next'
+import { deepClone } from 'Utilities'
 
 const PayBackWrapper = styled.div`
   background-color: #fafafa;
@@ -15,9 +18,11 @@ const PayBackTitle = styled.h4`
 `
 
 const PayBack = ({ data }) => {
+  const { t, i18n } = useTranslation('improvement')
+
   const payBackData = data.map(item => {
     return {
-      id: item.measures,
+      id: t(item.measures),
       data: [{
         x: item.internalRateOfReturn,
         y: item.paybackPeriod,
@@ -25,6 +30,19 @@ const PayBack = ({ data }) => {
       }]
     }
   })
+
+  const [dataSource, setDataSource] = useState(payBackData)
+
+  useEffect(() => {
+    const tmp = deepClone(dataSource)
+
+    for (let item of tmp) {
+      item.id = t(item.id)
+    }
+    setDataSource(tmp)
+
+  }, [i18n.language, data])
+
 
   const commonProps = {
     width: 790,
@@ -36,15 +54,15 @@ const PayBack = ({ data }) => {
     yFormat: d => `${d} Yr`,
     axisBottom: {
       format: d => `${d} %`,
-      legend: 'Internal Rate of Return (%)',
+      legend: t('Internal Rate of Return (%)'),
       legendOffset: 40
     },
     axisLeft: {
       format: d => `${d} Yr`,
-      legend: 'Simple Payback (Yr)',
+      legend: t('Simple Payback (Yr)'),
       legendOffset: -50
     },
-    data: payBackData
+    data: dataSource
   }
 
   const CustomNode = ({
@@ -90,7 +108,7 @@ const PayBack = ({ data }) => {
 
   return (
     <PayBackWrapper>
-      <PayBackTitle>Payback</PayBackTitle>
+      <PayBackTitle>{t('Payback')}</PayBackTitle>
       <ScatterPlot
         {...commonProps}
         colors={{ scheme: 'set2' }}
