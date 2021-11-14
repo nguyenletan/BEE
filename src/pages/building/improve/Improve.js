@@ -7,6 +7,7 @@ import ImprovementMeasures from '../comparision/components/ImprovementMeasures'
 import PayBack from '../comparision/components/PayBack'
 import { useSetRecoilState } from 'recoil'
 import { isDisplayPerformanceFilterState } from 'atoms'
+import { useTranslation } from 'react-i18next'
 
 const ImproveWrapper = styled.div`
   margin-bottom: 40px;
@@ -122,53 +123,107 @@ const Improve = (props) => {
     ]
   }
 
-  const subSystemPerformanceData = {
+  const subSystemPerformanceDataEN = {
     data: [
       {
         name: 'Energy Usage Intensity',
-        Minimum_Requirement: 46,
-        Current_Performance: 53,
-        Potential_Best_In_Class: 76
+        'Minimum Requirement': 46,
+        'Current Performance': 53,
+        'Potential Best In Class': 76,
       },
       {
         name: 'Cooling Efficiency',
-        Minimum_Requirement: 30,
-        Current_Performance: 28,
-        Potential_Best_In_Class: 70
+        'Minimum Requirement': 30,
+        'Current Performance': 28,
+        'Potential Best In Class': 70,
       },
       {
         name: 'Heating Efficiency',
-        Minimum_Requirement: 40,
-        Current_Performance: 53,
-        Potential_Best_In_Class: 76
+        'Minimum Requirement': 40,
+        'Current Performance': 53,
+        'Potential Best In Class': 76,
       },
       {
         name: 'Lighting Efficacy',
-        Minimum_Requirement: 40,
-        Current_Performance: 38,
-        Potential_Best_In_Class: 76
+        'Minimum Requirement': 40,
+        'Current Performance': 38,
+        'Potential Best In Class': 76,
       },
       {
         name: 'Mechanical Ventilation Efficiency',
-        Minimum_Requirement: 49,
-        Current_Performance: 51,
-        Potential_Best_In_Class: 68
+        'Minimum Requirement': 49,
+        'Current Performance': 51,
+        'Potential Best In Class': 68,
       },
       {
         name: 'Envelope Performance',
-        Minimum_Requirement: 20,
-        Current_Performance: 72,
-        Potential_Best_In_Class: 76
+        'Minimum Requirement': 20,
+        'Current Performance': 72,
+        'Potential Best In Class': 76,
       },
       {
         name: 'Renewables Usage',
-        Minimum_Requirement: 19,
-        Current_Performance: 53,
-        Potential_Best_In_Class: 64
-      }
+        'Minimum Requirement': 19,
+        'Current Performance': 53,
+        'Potential Best In Class': 64,
+      },
     ],
-    keys: ['Minimum_Requirement', 'Current_Performance', 'Potential_Best_In_Class']
+    keys: ['Potential Best In Class', 'Current Performance', 'Minimum Requirement'],
+    indexBy: ['name'],
   }
+
+  const subSystemPerformanceDataDE = {
+    data: [
+      {
+        name: 'Energy Usage Intensity',
+        'Gesetzl. Mindest-anforderungen': 46,
+        'Aktuell': 53,
+        'Optimal': 76,
+      },
+      {
+        name: 'Cooling Efficiency',
+        'Gesetzl. Mindest-anforderungen': 30,
+        'Aktuell': 28,
+        'Optimal': 70,
+      },
+      {
+        name: 'Heating Efficiency',
+        'Gesetzl. Mindest-anforderungen': 40,
+        'Aktuell': 53,
+        'Optimal': 76,
+      },
+      {
+        name: 'Lighting Efficacy',
+        'Gesetzl. Mindest-anforderungen': 40,
+        'Aktuell': 38,
+        'Optimal': 76,
+      },
+      {
+        name: 'Mechanical Ventilation Efficiency',
+        'Gesetzl. Mindest-anforderungen': 49,
+        'Aktuell': 51,
+        'Optimal': 68,
+      },
+      {
+        name: 'Envelope Performance',
+        'Gesetzl. Mindest-anforderungen': 20,
+        'Aktuell': 72,
+        'Optimal': 76,
+      },
+      {
+        name: 'Renewables Usage',
+        'Gesetzl. Mindest-anforderungen': 19,
+        'Aktuell': 53,
+        'Optimal': 64,
+      },
+    ],
+    keys: ['Aktuell', 'Optimal', 'Gesetzl. Mindest-anforderungen'],
+    indexBy: ['name'],
+  }
+
+  //const [subSystemPerformanceData, setSubSystemPerformanceData] = useState(subSystemPerformanceDataEN)
+
+  const { i18n } = useTranslation('comparison')
 
   // const [data, setData] = useState(improveData)
   const [popupResult, setResult] = useState()
@@ -212,7 +267,17 @@ const Improve = (props) => {
   const [breakDownConsumption, setBreakDownConsumption] = useState([...consumptionBreakdown])
   const [breakDownCost, setBreakDownCost] = useState([...costBreakdown])
   const [breakDownCO2Emissions, setBreakDownCO2Emissions] = useState([...co2EmissionsBreakdown])
-  const [subSystemPerformance, setSubSystemPerformanceData] = useState({ ...subSystemPerformanceData })
+  const [subSystemPerformance, setSubSystemPerformanceData] = useState({ ...subSystemPerformanceDataEN })
+
+  useEffect(() => {
+    if (i18n.language === 'en') {
+      setSubSystemPerformanceData(subSystemPerformanceDataEN)
+    } else {
+      setSubSystemPerformanceData(subSystemPerformanceDataDE)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i18n.language])
+
 
   const updateValue = () => {
     let investmentCost = 0
