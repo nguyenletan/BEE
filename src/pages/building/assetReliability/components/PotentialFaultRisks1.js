@@ -9,6 +9,7 @@ import lightingImg from '../../../../assets/images/lighting.svg'
 import heatingImg from '../../../../assets/images/heating.svg'
 import wallImg from '../../../../assets/images/wall.svg'
 import mechanicalImg from '../../../../assets/images/mechanical-ventilation.svg'
+import { useTranslation } from 'react-i18next'
 
 const PotentialFaultRiskWrapper = styled.div`
   background-color: #fafafa;
@@ -96,6 +97,8 @@ const PotentialFaultRisks = ({ data }) => {
   const [showMsgModal, setShowMsgModal] = useState(false)
   const [showListFaultRisksModal, setShowListFaultRisksModal] = useState(false)
   const [listFaultRisksModalProps, setListFaultRisksModalProps] = useState({})
+
+  const { t } = useTranslation('assetReliability')
 
   const MsgModal = () => {
     return (
@@ -360,18 +363,18 @@ const PotentialFaultRisks = ({ data }) => {
   return (
     <PotentialFaultRiskWrapper className='mb-4'>
 
-      <PotentialFaultRiskTitle>Potential Fault Risks</PotentialFaultRiskTitle>
-      <PotentialFaultRiskSubTopTitle>Impact</PotentialFaultRiskSubTopTitle>
+      <PotentialFaultRiskTitle>{t('Potential Fault Risks')}</PotentialFaultRiskTitle>
+      <PotentialFaultRiskSubTopTitle>{t('Impact')}</PotentialFaultRiskSubTopTitle>
       <div className='d-flex'>
-        <PotentialFaultRiskSubLeftTitle><h4>Likelihood</h4></PotentialFaultRiskSubLeftTitle>
+        <PotentialFaultRiskSubLeftTitle><h4>{t('Likelihood')}</h4></PotentialFaultRiskSubLeftTitle>
         <div>
           <PotentialFaultRiskRow className='row'>
             <PotentialFaultRiskBlock key='empty' isIndexCol height={40} value='' />
-            <PotentialFaultRiskBlock key='Negligible' isHeader value='Negligible' />
-            <PotentialFaultRiskBlock key='Minor' isHeader value='Minor' />
-            <PotentialFaultRiskBlock key='Moderate' isHeader value='Moderate' />
-            <PotentialFaultRiskBlock key='Major' isHeader value='Major' />
-            <PotentialFaultRiskBlock key='Critical' isHeader value='Critical' />
+            <PotentialFaultRiskBlock key='Negligible' isHeader value={t('Negligible')} />
+            <PotentialFaultRiskBlock key='Minor' isHeader value={t('Minor')} />
+            <PotentialFaultRiskBlock key='Moderate' isHeader value={t('Moderate')} />
+            <PotentialFaultRiskBlock key='Major' isHeader value={t('Major')} />
+            <PotentialFaultRiskBlock key='Critical' isHeader value={t('Critical')} />
           </PotentialFaultRiskRow>
           {rows}
         </div>

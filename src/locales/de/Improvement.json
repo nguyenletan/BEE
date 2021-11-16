@@ -56,14 +56,16 @@
 
   "_comment9": "//Improvement Measures Chart",
   "Improvement Measures": "Verbesserungsmaßnahmen",
-  "Measures": "Maßnahme",
-  "Investment Cost ($)": "Investitionskosten (€)",
-  "Energy Savings": "Energieeinsparungen",
-  "MWH/Yr": "MWH/Jr",
-  "Energy Cost Savings": "Energiekosten-einsparungen",
-  "$/Yr": "€/Jr",
-  "PAYBACK PERIOD(YR)": "Amortisationszeit(Jahr)",
-  "CO2 Emissions Avoided": "Jährlich vermiedene CO2-Emissionen",
+  "MEASURES": "MASSNAHME",
+  "INVESTMENT COST": "INVESTITIONSKOSTEN",
+  "$": "€",
+  "ENERGY SAVINGS": "ENERGIEEINSPARUNGEN",
+  "MWH/YR": "MWH/JR",
+  "ENERGY COST SAVINGS": "ENERGIEKOSTEN-EINSPARUNGEN",
+  "$/YR": "€/JR",
+  "PAYBACK PERIOD": "AMORTISATIONSZEIT",
+  "YR": "JAHR",
+  "CO2 EMISSIONS AVOIDED": "JÄHRLICH VERMIEDENE CO2-EMISSIONEN",
   "Tons/Yr": "Tonnen/Jahr",
   "Chiller Unit Replacement": "Austausch der Kälteanlage",
   "Double Glaze Low-E Windows": "Doppelverglaste Low-E-Fenster",
@@ -76,5 +78,6 @@
   "Electric Air Source Heat Pump (Boiler Replacement)": "Elektrische Luftwärmepumpe (Kesselaustausch)",
   "Install Heating Central Time Control": "Heizungszentrale Zeitsteuerung installieren",
 
-  "Info": "INFO"
+
+  "Info": "Info"
 }

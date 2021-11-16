@@ -9,7 +9,8 @@ import {
   lightingSVG,
   mechVentSVG,
   renewableSVG
-} from '../../../../SvgConstants'
+} from 'SvgConstants'
+import { useTranslation } from 'react-i18next'
 
 const CurrentSubSystemHealthWrapper = styled.div`
   border-radius: 20px;
@@ -38,6 +39,8 @@ const CurrentSubSystemHealthList = styled.ul`
 `
 
 const CurrentSubSystemHealth = ({ data }) => {
+  const { t } = useTranslation('assetReliability')
+
   const LabelComponent = (props) => {
     const { id, anchor, angle } = props
     let texts = ''
@@ -53,7 +56,7 @@ const CurrentSubSystemHealth = ({ data }) => {
             <text
               y={50} x={0}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >{id}
+            >{t(id)}
             </text>
           </>
         )
@@ -67,7 +70,7 @@ const CurrentSubSystemHealth = ({ data }) => {
             <text
               y={50} x={-6}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >{id}
+            >{t(id)}
             </text>
           </>
         )
@@ -81,12 +84,12 @@ const CurrentSubSystemHealth = ({ data }) => {
             <text
               y={50} x={-13}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >Mechanical
+            >{t('Mechanical')}
             </text>
             <text
               y={66} x={-6}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >Ventilation
+            >{t('Ventilation')}
             </text>
           </>
         )
@@ -100,12 +103,12 @@ const CurrentSubSystemHealth = ({ data }) => {
             <text
               y={50} x={-13}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >Lighting
+            >{t('Lighting')}
             </text>
             <text
               y={66} x={-13}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >Efficacy
+            >{t('Efficacy')}
             </text>
           </>
         )
@@ -119,12 +122,12 @@ const CurrentSubSystemHealth = ({ data }) => {
             <text
               y={50} x={-13}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >Mechanical
+            >{t('Mechanical')}
             </text>
             <text
               y={66} x={-40}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >Ventilation Efficiency
+            >{t('Ventilation Efficiency')}
             </text>
           </>
         )
@@ -138,12 +141,12 @@ const CurrentSubSystemHealth = ({ data }) => {
             <text
               y={50} x={0}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >Envelope
+            >{t('Envelope')}
             </text>
             <text
               y={66} x={-10}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >Performance
+            >{t('Performance')}
             </text>
           </>
         )
@@ -157,12 +160,12 @@ const CurrentSubSystemHealth = ({ data }) => {
             <text
               y={50} x={-10}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >Envelope
+            >{t('Envelope')}
             </text>
             <text
               y={66} x={-30}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >Performance
+            >{t('Performance')}
             </text>
           </>
         )
@@ -202,12 +205,12 @@ const CurrentSubSystemHealth = ({ data }) => {
   }
 
   const list = data.data.map(item => (
-    <li><label>{item.name}:</label> <span>{item.value}</span></li>
+    <li><label>{t(item.name)}:</label> <span>{item.value}</span></li>
   ))
 
   return (
     <CurrentSubSystemHealthWrapper className='mb-4'>
-      <CurrentSubSystemHealthTitle>Current Sub-System Health</CurrentSubSystemHealthTitle>
+      <CurrentSubSystemHealthTitle>{t('Current Sub-System Health')}</CurrentSubSystemHealthTitle>
       <Radar {...commonProperties} colors={['#87972f']} />
       <CurrentSubSystemHealthList>
         {list}

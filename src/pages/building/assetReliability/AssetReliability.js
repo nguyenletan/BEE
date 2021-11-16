@@ -6,7 +6,7 @@ import AssetReliabilityMain from './AssetReliabilityMain'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import IssueDetail from './IssueDetail'
 import { useSetRecoilState } from 'recoil'
-import { isDisplayPerformanceFilterState } from '../../../atoms'
+import { isDisplayPerformanceFilterState } from 'atoms'
 import EquipmentAssetReliability from 'pages/building/assetReliability/equipment-asset-reliability/EquipmentAssetReliability'
 
 const AssetReliabilityWrapper = styled.div`

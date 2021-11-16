@@ -18,6 +18,10 @@ import ComparisonParametersPopupEN from 'locales/en/ComparisonParametersPopup.js
 import ComparisonParametersPopupDE from 'locales/de/ComparisonParametersPopup.json'
 import ImprovementDE from 'locales/de/Improvement.json'
 import ImprovementEN from 'locales/en/Improvement.json'
+import ImprovementDetailPopupEN from 'locales/en/ImprovementDetailPopup.json'
+import ImprovementDetailPopupDE from 'locales/de/ImprovementDetailPopup.json'
+import AssetReliabilityDE from 'locales/de/AssetReliability.json'
+import AssetReliabilityEN from 'locales/en/AssetReliability.json'
 
 
 i18n
@@ -44,7 +48,9 @@ i18n
         comparison: ComparisonEN,
         comparisonInfoPopup: ComparisonInfoPopupEN,
         comparisonParametersPopup: ComparisonParametersPopupEN,
-        improvement: ImprovementEN
+        improvement: ImprovementEN,
+        ImprovementDetailPopup: ImprovementDetailPopupEN,
+        assetReliability: AssetReliabilityEN
       },
       de: {
         common: CommonDE,
@@ -54,7 +60,9 @@ i18n
         comparison: ComparisonDE,
         comparisonInfoPopup: ComparisonInfoPopupDE,
         comparisonParametersPopup: ComparisonParametersPopupDE,
-        improvement: ImprovementDE
+        improvement: ImprovementDE,
+        ImprovementDetailPopup: ImprovementDetailPopupDE,
+        assetReliability: AssetReliabilityDE
       },
     },
   })
