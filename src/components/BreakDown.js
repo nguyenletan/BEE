@@ -57,6 +57,7 @@ const BreakDown = (props) => {
     marginRight,
     hasDescription,
     noCenterText,
+    hasArcLabels
   } = props
 
   const { t, i18n } = useTranslation(['buildingPerformance', 'improvement'])
@@ -164,7 +165,7 @@ const BreakDown = (props) => {
           enableRadialLabels={enableRadialLabels ?? true}
           layers={[
             'arcs',
-            'arcLabels',
+            hasArcLabels !== false ? 'arcLabels' : '',
             'arcLinkLabels',
             'legends',
             isCenteredPercentage === true ? CenteredPercentage : '']}

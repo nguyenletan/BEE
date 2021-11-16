@@ -7,6 +7,7 @@ import heatingImg from '../../../../assets/images/heating.svg'
 import wallImg from '../../../../assets/images/wall.svg'
 import mechVentImg from '../../../../assets/images/mechanical-ventilation.svg'
 import { Link, useRouteMatch } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const ImprovementMeasuresWrapper = styled.div`
   padding: 20px;
@@ -83,7 +84,7 @@ const InfoButton = styled.button`
 
 const PotentialFaultList = ({ data }) => {
   const { url } = useRouteMatch()
-
+  const { t } = useTranslation('assetReliability')
   const rows = data.map(item => {
     let imgSrc
     let width
@@ -119,13 +120,13 @@ const PotentialFaultList = ({ data }) => {
     }
     return (
       <tr key={item.asset}>
-        <FirstTd><ImageWrapper><Image src={imgSrc} alt={item.subSystem} width={width} /></ImageWrapper>{item.subSystem}
+        <FirstTd><ImageWrapper><Image src={imgSrc} alt={item.subSystem} width={width} /></ImageWrapper>{t(item.subSystem)}
         </FirstTd>
-        <td width='18%'>{item.asset}</td>
-        <td width='12%'>{item.fault}</td>
+        <td width='18%'>{t(item.asset)}</td>
+        <td width='12%'>{t(item.fault)}</td>
         <td width='12%'>{item.potentialDownTime}</td>
         <td width='12%'>{item.sparePartsLeadTime}</td>
-        <td width='12%'>{item.estimatedTimeToFailure}</td>
+        <td width='15%'>{item.estimatedTimeToFailure}</td>
         <td width='10%'>
           <InfoButton className='btn btn-primary btn-sm'><Link to={url + '/issue/' + item.id}>Info</Link></InfoButton>
         </td>
@@ -135,17 +136,17 @@ const PotentialFaultList = ({ data }) => {
 
   return (
     <ImprovementMeasuresWrapper>
-      <ImprovementMeasuresTitle>Improvement Measures</ImprovementMeasuresTitle>
+      <ImprovementMeasuresTitle>{t('Improvement Measures')}</ImprovementMeasuresTitle>
       <ImprovementMeasuresTable className='table'>
         <thead>
           <tr>
-            <FirstTh>Sub-System</FirstTh>
-            <th width='18%'>Asset</th>
-            <th width='12%'>Fault</th>
-            <th width='12%'>Potential<br />downtime</th>
-            <th width='12%'>Spare Parts<br />Lead Time</th>
-            <th width='12%'>Estimated Time<br />To Failure</th>
-            <th width='10%'>Details</th>
+            <FirstTh>{t('Sub-System')}</FirstTh>
+            <th width='18%'>{t('Asset')}</th>
+            <th width='12%'>{t('Fault')}</th>
+            <th width='12%'>{t('Potential Downtime')}</th>
+            <th width='12%'>{t('Spare Parts Lead Time')}</th>
+            <th width='15%'>{t('Estimated Time To Failure')}</th>
+            <th width='10%'></th>
           </tr>
         </thead>
       </ImprovementMeasuresTable>
