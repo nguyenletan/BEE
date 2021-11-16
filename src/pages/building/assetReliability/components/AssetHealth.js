@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ResponsiveLine } from '@nivo/line'
 
 import coolingImg from '../../../../assets/images/cooling.svg'
 import heatingImg from '../../../../assets/images/heating.svg'
 import mechVenImg from '../../../../assets/images/mechanical-ventilation.svg'
+import { useTranslation } from 'react-i18next'
+import { deepClone } from 'Utilities'
 
 const AssetHealthTitle = styled.h3`
   font-size: 1.15rem;
@@ -586,7 +589,10 @@ const AssetHealth = () => {
       }
   }
 
+  const { t, i18n } = useTranslation('assetReliability')
+
   const [selectedData, selectData] = useState(data.cooling)
+
 
   const commonProperties = {
 
@@ -597,26 +603,53 @@ const AssetHealth = () => {
     // enableSlices: 'x',
   }
 
+
+
+  useEffect(() => {
+    const tmp = deepClone(selectedData)
+
+    for(let item of tmp.data) {
+      item.id = t(item.id)
+      for(let item2 of item.data) {
+        item2.x = t(item2.x)
+      }
+    }
+    selectData(tmp)
+  }, [i18n.language])
+
   const onSelect = (e) => {
+    let tmp = []
+
     switch (e) {
       case 'cooling':
-        selectData(data.cooling)
+        tmp = deepClone(data.cooling)
+
+
         break
       case 'heating':
-        selectData(data.heating)
+        tmp = deepClone(data.heating)
         break
       case 'mechanical ventilation':
-        selectData(data.mechanicalVentilation)
+        tmp = deepClone(data.mechanicalVentilation)
         break
       default:
         break
     }
+
+    for(let item of tmp.data) {
+      item.id = t(item.id)
+      for(let item2 of item.data) {
+        item2.x = t(item2.x)
+        console.log(item2.x)
+      }
+    }
+    selectData(tmp)
   }
 
   return (
     <AssetHealthWrapper>
       <div className='d-flex'>
-        <AssetHealthTitle>Asset Health</AssetHealthTitle>
+        <AssetHealthTitle>{t('Asset Health')}</AssetHealthTitle>
 
         <AssetHealthOptions className='d-flex'>
 
@@ -624,7 +657,7 @@ const AssetHealth = () => {
             className={selectedData.name === 'cooling' ? 'active' : ''}
             onClick={() => onSelect('cooling')}
           >
-            <AssetHealthOptionIcons src={coolingImg} />Cooling
+            <AssetHealthOptionIcons src={coolingImg} />{t('Cooling')}
           </AssetHealthOptionItem>
 
           <AssetHealthOptionItem
@@ -632,7 +665,7 @@ const AssetHealth = () => {
             onClick={() => onSelect('heating')}
           ><AssetHealthOptionIcons
             src={heatingImg}
-          />Heating
+          />{t('Heating')}
           </AssetHealthOptionItem>
 
           <AssetHealthOptionItem
@@ -640,8 +673,7 @@ const AssetHealth = () => {
             onClick={() => onSelect('mechanical ventilation')}
           ><AssetHealthOptionIcons
             src={mechVenImg}
-          />Mechanical
-          Ventilation
+          />{t('Mechanical Ventilation')}
           </AssetHealthOptionItem>
 
         </AssetHealthOptions>
@@ -649,10 +681,10 @@ const AssetHealth = () => {
 
       <div className='d-flex justify-content-end'>
         <AssetHealthTimeLineOptions>
-          <AssetHealthTimeLineOptionItem className='active'>this year</AssetHealthTimeLineOptionItem>
-          <AssetHealthTimeLineOptionItem>this month</AssetHealthTimeLineOptionItem>
-          <AssetHealthTimeLineOptionItem>this week</AssetHealthTimeLineOptionItem>
-          <AssetHealthTimeLineOptionItem>today</AssetHealthTimeLineOptionItem>
+          <AssetHealthTimeLineOptionItem className='active'>{t('This Year')}</AssetHealthTimeLineOptionItem>
+          <AssetHealthTimeLineOptionItem>{t('This Month')}</AssetHealthTimeLineOptionItem>
+          <AssetHealthTimeLineOptionItem>{t('This Week')}</AssetHealthTimeLineOptionItem>
+          <AssetHealthTimeLineOptionItem>{t('Today')}</AssetHealthTimeLineOptionItem>
         </AssetHealthTimeLineOptions>
       </div>
 
@@ -689,7 +721,7 @@ const AssetHealth = () => {
             justify: false,
             translateX: 0,
             translateY: -35,
-            itemWidth: 150,
+            itemWidth: 220,
             itemHeight: 20,
             itemsSpacing: 0,
             symbolSize: 10,
