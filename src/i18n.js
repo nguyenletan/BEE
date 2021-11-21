@@ -22,6 +22,8 @@ import ImprovementDetailPopupEN from 'locales/en/ImprovementDetailPopup.json'
 import ImprovementDetailPopupDE from 'locales/de/ImprovementDetailPopup.json'
 import AssetReliabilityDE from 'locales/de/AssetReliability.json'
 import AssetReliabilityEN from 'locales/en/AssetReliability.json'
+import EquipmentAssetReliabilityEN from 'locales/en/EquipmentAssetReliability.json'
+import EquipmentAssetReliabilityDE from 'locales/de/EquipmentAssetReliability.json'
 
 
 i18n
@@ -50,7 +52,8 @@ i18n
         comparisonParametersPopup: ComparisonParametersPopupEN,
         improvement: ImprovementEN,
         ImprovementDetailPopup: ImprovementDetailPopupEN,
-        assetReliability: AssetReliabilityEN
+        assetReliability: AssetReliabilityEN,
+        equipmentAssetReliability: EquipmentAssetReliabilityEN
       },
       de: {
         common: CommonDE,
@@ -62,7 +65,8 @@ i18n
         comparisonParametersPopup: ComparisonParametersPopupDE,
         improvement: ImprovementDE,
         ImprovementDetailPopup: ImprovementDetailPopupDE,
-        assetReliability: AssetReliabilityDE
+        assetReliability: AssetReliabilityDE,
+        equipmentAssetReliability: EquipmentAssetReliabilityDE
       },
     },
   })

@@ -36,7 +36,7 @@ const HeaderBlock = styled.div`
 `
 
 const IndexBlock = styled.div`
-  width: 51px;
+  width: 100px;
   color: #707070;
   height: ${props => props.height ? props.height : '58px'};
   background-color: transparent;

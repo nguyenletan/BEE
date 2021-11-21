@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 const Wrapper = styled.div`
 
@@ -23,20 +24,23 @@ const Value = styled.span`
 `
 
 const AssetPartsServiceSourcing = () => {
+
+  const { t } = useTranslation('equipmentAssetReliability')
+
   return (
     <Wrapper>
-      <h5>Asset, Parts & Service Sourcing</h5>
+      <h5>{t('Asset, Parts & Service Sourcing')}</h5>
       <Content>
-        <Label>Projected Sourcing Required</Label>
+        <Label>{t('Projected Sourcing Required')}</Label>
         <Value>2</Value>
-        <Label>Max Lead Time</Label>
-        <Value>2 Days</Value>
-        <Label>Total Cost ($)</Label>
+        <Label>{t('Max Lead Time')}</Label>
+        <Value>{t('2 Days')}</Value>
+        <Label>{t('Total Cost ($)')}</Label>
         <Value>340</Value>
-        <Label>Potential Replacement Options</Label>
-        <Value>Yes</Value>
+        <Label>{t('Potential Replacement Options')}</Label>
+        <Value>{t('Yes')}</Value>
       </Content>
-      <button className="btn btn-primary btn-sm float-end">Details</button>
+      <button className="btn btn-primary btn-sm float-end">{t('Details')}</button>
     </Wrapper>
   )
 

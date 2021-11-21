@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import PercentagePieChart from 'pages/building/assetReliability/equipment-asset-reliability/components/PercentagePieChart'
 import { getEnergyConsumptionPercentage } from 'api/EquipmentAPI'
 import { useAuth } from 'AuthenticateProvider'
+import { useTranslation } from 'react-i18next'
 
 const Wrapper = styled.div`
 
@@ -27,6 +28,8 @@ const EnergyConsumptionPercentage = (props) => {
     equipmentId, equipmentTypeId, subSystemId, buildingId, startDate, endDate,
   } = props
 
+  const { t } = useTranslation('equipmentAssetReliability')
+
   const { user } = useAuth()
 
   const [equipmentGroup, setEquipmentGroup] = useState()
@@ -38,13 +41,13 @@ const EnergyConsumptionPercentage = (props) => {
       {
         id: 'equipment',
         label: 'Equipment',
-        value: +tmp.percentageOfEquipmentType.toFixed(0),
+        value: +tmp?.percentageOfEquipmentType?.toFixed(0),
         color: '#87972f'
       },
       {
         id: 'remaining',
         label: 'remaining',
-        value: 100 - (+tmp.percentageOfEquipmentType.toFixed(0)),
+        value: 100 - (+tmp?.percentageOfEquipmentType?.toFixed(0)),
         color: '#ecedef'
       },
     ]
@@ -54,14 +57,14 @@ const EnergyConsumptionPercentage = (props) => {
         {
           id: 'equipment',
           label: 'equipment',
-          value: +tmp.percentageOfSubSystem.toFixed(0),
+          value: +tmp?.percentageOfSubSystem?.toFixed(0),
           color: '#87972f',
 
         },
         {
           id: 'remaining',
           label: 'Remaining',
-          value:  100 - (+tmp.percentageOfSubSystem.toFixed(0)),
+          value:  100 - (+tmp?.percentageOfSubSystem?.toFixed(0)),
           color: '#ecedef'
         },
       ]
@@ -71,14 +74,14 @@ const EnergyConsumptionPercentage = (props) => {
         {
           id: 'building',
           label: 'Building',
-          value: +tmp.percentageOfBuilding.toFixed(0),
+          value: +tmp?.percentageOfBuilding?.toFixed(0),
           color: '#87972f',
           remaining: 77691,
         },
         {
           id: 'remaining',
           label: 'Remaining',
-          value: 100 - (+tmp.percentageOfBuilding.toFixed(0)),
+          value: 100 - (+tmp?.percentageOfBuilding?.toFixed(0)),
           color: '#ecedef',
           remaining: 77691,
         },
@@ -86,12 +89,29 @@ const EnergyConsumptionPercentage = (props) => {
     setBuilding(_building)
   }
 
+  // useEffect(() => {
+  //   const _equipmentGroup = deepClone(equipmentGroup)
+  //   _equipmentGroup[0].id = t(_equipmentGroup[0].id)
+  //   _equipmentGroup[1].id = t(_equipmentGroup[1].id)
+  //   //setEquipmentGroup(_equipmentGroup)
+  //
+  //   const _subSystem = deepClone(subSystem)
+  //   _subSystem[0].id = t(_subSystem[0].id)
+  //   _subSystem[1].id = t(_subSystem[1].id)
+  //  // setSubSystem(_subSystem)
+  //
+  //   const _building = deepClone(building)
+  //   _building[0].id = t(_building[0].id)
+  //   _building[1].id = t(_building[1].id)
+  //   //setBuilding(_building)
+  //
+  // }, [i18n.language])
+
   const getEnergyConsumptionPercentageInfo = async () => {
     const idToken = await user.getIdToken()
     // moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'),
     const tmp = await getEnergyConsumptionPercentage(equipmentId, equipmentTypeId, subSystemId, buildingId, startDate,
       endDate, idToken)
-    console.log(tmp)
     convertRawDataToChartData(tmp[0])
 
   }
@@ -105,17 +125,17 @@ const EnergyConsumptionPercentage = (props) => {
     <Wrapper>
       <h5 className="mb-5">Energy Consumption %</h5>
       <Row>
-        <Label>of Equipment Group</Label>
+        <Label>{t('of Equipment Group')}</Label>
         {equipmentGroup && <PercentagePieChart data={equipmentGroup} />}
       </Row>
 
       <Row>
-        <Label>of Sub-system</Label>
+        <Label>{t('of Sub-system')}</Label>
         {subSystem && <PercentagePieChart data={subSystem} />}
       </Row>
 
       <Row>
-        <Label>of Building</Label>
+        <Label>{t('of Building')}</Label>
         {building && <PercentagePieChart data={building} />}
       </Row>
     </Wrapper>

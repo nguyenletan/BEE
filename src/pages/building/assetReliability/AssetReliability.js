@@ -9,6 +9,7 @@ import { useSetRecoilState } from 'recoil'
 import { isDisplayPerformanceFilterState } from 'atoms'
 import EquipmentAssetReliability from 'pages/building/assetReliability/equipment-asset-reliability/EquipmentAssetReliability'
 
+
 const AssetReliabilityWrapper = styled.div`
   margin-bottom: 50px;
 `
@@ -99,14 +100,14 @@ const AssetReliability = () => {
         name: 'Cooling',
         value: 55
       },
-      {
-        name: 'Heating',
-        value: 95
-      },
-      {
-        name: 'Mechanical Ventilation',
-        value: 71
-      }
+        {
+          name: 'Heating',
+          value: 95
+        },
+        {
+          name: 'Mechanical Ventilation',
+          value: 71
+        }
       ],
       keys: ['value']
     },
@@ -126,7 +127,7 @@ const AssetReliability = () => {
         remaining: 77691
       }
     ],
-    maintenanceBudgetBySubSystem: [
+    maintenanceBudgetBySubSystemEN: [
       {
         id: 0,
         subSystem: 'cooling',
@@ -154,13 +155,15 @@ const AssetReliability = () => {
         used: 5900,
         accrued: 900,
         allocated: 7200
-      }, {
+      },
+      {
         id: 4,
         subSystem: 'facility envelope',
         used: 4000,
         accrued: 5900,
         allocated: 4300
-      }, {
+      },
+      {
         id: 5,
         subSystem: 'renewables',
         used: 1800,
@@ -174,12 +177,66 @@ const AssetReliability = () => {
         accrued: 300,
         allocated: 3100
       }
+    ],
+    maintenanceBudgetBySubSystemDE: [
+      {
+        id: 0,
+        subSystem: 'kühlung',
+        verwendet: 5000,
+        erwachsen: 1300,
+        zugewiesen: 7300
+      },
+      {
+        id: 1,
+        subSystem: 'heizung',
+        verwendet: 3000,
+        erwachsen: 5100,
+        zugewiesen: 6500
+      },
+      {
+        id: 2,
+        subSystem: 'beleuchtung',
+        verwendet: 3100,
+        erwachsen: 200,
+        zugewiesen: 4300
+      },
+      {
+        id: 3,
+        subSystem: 'mechanische lüftung',
+        verwendet: 5900,
+        erwachsen: 900,
+        zugewiesen: 7200
+      },
+      {
+        id: 4,
+        subSystem: 'dach- und fach',
+        verwendet: 4000,
+        erwachsen: 5900,
+        zugewiesen: 4300
+      },
+      {
+        id: 5,
+        subSystem: 'erneuerbare energie',
+        verwendet: 1800,
+        erwachsen: 500,
+        zugewiesen: 3100
+      },
+      {
+        id: 6,
+        subSystem: 'sonstige elektr. systeme',
+        verwendet: 2100,
+        erwachsen: 300,
+        zugewiesen: 3100
+      }
     ]
   }
 
   const { path } = useRouteMatch()
   const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
+
   setIsDisplayPerformanceFilter(false)
+
+
   return (
     <AssetReliabilityWrapper>
 

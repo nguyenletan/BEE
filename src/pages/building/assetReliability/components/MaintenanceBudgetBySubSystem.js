@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { Fragment, useState, useEffect } from 'react'
 import { line } from 'd3-shape'
 import styled from 'styled-components'
 // import { monotoneX } from 'd3-shape/src/curve/monotone'
@@ -11,7 +12,8 @@ import {
   mechVentSVG,
   plugLoadSVG,
   renewableSVG
-} from '../../../../SvgConstants'
+} from 'SvgConstants'
+import { useTranslation } from 'react-i18next'
 
 const lineColor = '#636c2e'
 
@@ -58,13 +60,31 @@ const ResponsiveBarWrapper = styled.div`
 
 const MaintenanceBudgetBySubSystem = ({ data }) => {
   const keys = ['used', 'accrued']
+  const keysEN = ['used', 'accrued']
+  const keysDE = ['verwendet', 'erwachsen']
+
+
+  const [chartKeys, setChartKey] = useState(keys)
+  const { t, i18n } = useTranslation('assetReliability')
+
+
+  useEffect(() => {
+
+    if(i18n.language === 'en') {
+      setChartKey(keysEN)
+    } else {
+      setChartKey(keysDE)
+    }
+
+  }, [i18n.language])
+
 
   const commonProps = {
 
     margin: { top: 0, right: 0, bottom: 0, left: 20 },
     data: data,
     indexBy: 'id',
-    keys,
+    keys: chartKeys,
     padding: 0.75,
     enableLabel: false,
     groupMode: 'stacked'
@@ -73,15 +93,15 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
   const Line = ({ bars, xScale, yScale }) => {
     const lineGenerator = line()
       .x(bar => {
-        if (bar.data.id !== 'used') { return null }
+        if (bar.data.id !== t('used')) { return null }
 
         return xScale(bar.data.index) + bar.width / 2
       })
       .y(bar => {
-        if (bar.data.id !== 'used') { return null }
+        if (bar.data.id !== t('used')) { return null }
 
-        return yScale(bar.data.data.allocated)
-      })// .curve(monotoneX)
+        return yScale(bar.data.data[t('allocated')])
+      })//.curve(monotoneX)
 
     const pathString = lineGenerator(bars).replaceAll('L0,0', '')
 
@@ -98,14 +118,14 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
 
         {
           bars.map(bar => {
-            if (bar.data.id !== 'accrued') { return null }
+            if (bar.data.id !== t('accrued')) { return null }
             return (
               <>
                 {/* <text x={xScale(bar.data.index) + bar.width / 2} y={yScale(bar.data.data.allocated)}></text> */}
                 <circle
                   key={bar.key}
                   cx={xScale(bar.data.index) + bar.width / 2}
-                  cy={yScale(bar.data.data.allocated)}
+                  cy={yScale(bar.data.data[t('allocated')])}
                   r={4}
                   fill='white'
                   stroke={lineColor}
@@ -127,15 +147,16 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
     const icon = (subSystem) => {
       let imgX = 0
       let imgY = 0
+
       switch (subSystem) {
-        case 'cooling':
+        case t('cooling'):
           return (
             <g transform={`translate(${imgX}, ${imgY})`}>
               {coolingSVG()}
             </g>
           )
 
-        case 'heating':
+        case t('heating'):
           imgX = 10
           return (
             <g transform={`translate(${imgX}, ${imgY})`}>
@@ -143,22 +164,21 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
             </g>
           )
 
-        case 'mechanical ventilation':
+        case t('mechanical ventilation'):
           return (
             <g transform={`translate(${imgX}, ${imgY})`}>
               {mechVentSVG()}
             </g>
           )
 
-        case 'lighting':
+        case t('lighting'):
           imgX = 6
           return (
             <g transform={`translate(${imgX}, ${imgY})`}>
               {lightingSVG()}
             </g>
           )
-
-        case 'facility envelope':
+        case t('facility envelope'):
           imgX = -8
           return (
             <g transform={`translate(${imgX}, ${imgY})`}>
@@ -166,7 +186,7 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
             </g>
           )
 
-        case 'renewables':
+        case t('renewables'):
           imgX = -5
           return (
             <g transform={`translate(${imgX}, ${imgY})`}>
@@ -174,7 +194,7 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
             </g>
           )
 
-        case 'others':
+        case t('others'):
           imgX = 3
           imgY = 3
           return (
@@ -210,7 +230,7 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
 
   return (
     <MaintenanceBudgetBySubSystemWrapper>
-      <MaintenanceBudgetBySubSystemTitle>Maintenance Budget By Sub-System</MaintenanceBudgetBySubSystemTitle>
+      <MaintenanceBudgetBySubSystemTitle>{t('Maintenance Budget By Sub-System')}</MaintenanceBudgetBySubSystemTitle>
       <ResponsiveBarWrapper>
         <ResponsiveBar
           {...commonProps}
@@ -225,9 +245,9 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
         />
       </ResponsiveBarWrapper>
       <Legend className='d-flex justify-content-center'>
-        <li><LegendBox backgroundColor='#87972f' />Used</li>
-        <li><LegendBox backgroundColor='#d3dca1' />Accrued</li>
-        <li><LegendBox backgroundColor='#636c2e' height='3px' weight='20px' borderRadius='20%' verticleAlign='middle' />Allocated
+        <li><LegendBox backgroundColor='#87972f' />{t('Used')}</li>
+        <li><LegendBox backgroundColor='#d3dca1' />{t('Accrued')}</li>
+        <li><LegendBox backgroundColor='#636c2e' height='3px' weight='20px' borderRadius='20%' verticleAlign='middle' />{t('Allocated')}
         </li>
       </Legend>
 
