@@ -10,7 +10,7 @@ import {
   lightingSVG,
   mechVentSVG,
   renewableSVG,
-} from '../../../../SvgConstants'
+} from 'SvgConstants'
 import { useTranslation } from 'react-i18next'
 import { deepClone } from 'Utilities'
 
@@ -38,7 +38,7 @@ const SubSystemPerformanceWrapper = styled.div`
 `
 
 const SubSystemPerformance = ({ data }) => {
-  const { t, i18n } = useTranslation('comparison')
+  const { t, i18n } = useTranslation('improvement')
 
   const [dataSource, setDataSource] = useState()
 
@@ -71,6 +71,7 @@ const SubSystemPerformance = ({ data }) => {
     let iconSVG = ''
     let translateX = anchor === 'end' ? -50 : anchor === 'middle' ? -20 : -10
     let translateY = angle < 0 ? -60 : -30
+    console.log(id)
     switch (id) {
       case t('Energy Usage Intensity'):
         iconSVG = energySVG()
@@ -130,7 +131,7 @@ const SubSystemPerformance = ({ data }) => {
         translateX = -15
         translateY = -40
         break
-      case t('Lighting Efficacy'):
+      case t('Lighting Efficiency'):
         iconSVG = lightingSVG()
         texts = (
           <>

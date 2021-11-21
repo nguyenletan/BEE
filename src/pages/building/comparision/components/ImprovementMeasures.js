@@ -314,7 +314,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
         <Modal.Header>
           <Container className='mt-0'>
             <div className='d-flex justify-content-between align-items-center'>
-              <PopupTitle>{t('Improvement Measure')}</PopupTitle>
+              <PopupTitle>{t('Improvement Measures')}</PopupTitle>
               <HeaderGroupButton>
                 <HeaderButton
                   className='me-4' onClick={() => {
@@ -367,7 +367,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
                     }}
                   />
                   <Message className='d-flex justify-content-end mt-2'>
-                    <span>{'0 <= Value <= 100 '}</span>
+                    <span>{'0 <='} {t('Value')} {'<= 100'}</span>
                   </Message>
                 </div>
               </RangeWrapper>
@@ -386,13 +386,13 @@ const ImprovementMeasures = ({ data, setResult }) => {
             </Row>
             <Row>
               <Col xs={8} sm={4} className='col'>{t('Annual Energy Cost Savings')}</Col>
-              <Col xs={4} sm={2} className='col col-value'>{t('$')}{detailValue.energyCostSavings} / {t('yr')}</Col>
+              <Col xs={4} sm={2} className='col col-value'>{t('$')}{detailValue.energyCostSavings} / {t('Yr')}</Col>
               <Col xs={8} sm={4} className='col'>{t('Simple Payback')}</Col>
-              <Col xs={4} sm={2} className='col col-value'>{detailValue.paybackPeriod} {t('yr')}</Col>
+              <Col xs={4} sm={2} className='col col-value'>{detailValue.paybackPeriod} {t('Yr')}</Col>
             </Row>
             <Row>
               <Col xs={8} sm={4} className='col'>{t('Annual CO2 Emissions Avoided')}</Col>
-              <Col xs={4} sm={2} className='col col-value'>{detailValue.co2EmissionsAvoided} {t('Tons/yr')}</Col>
+              <Col xs={4} sm={2} className='col col-value'>{detailValue.co2EmissionsAvoided} {t('Tons/Yr')}</Col>
               <Col xs={8} sm={4} className='col'>{t('Internal Rate of Return')}</Col>
               <Col xs={4} sm={2} className='col col-value'>{detailValue.internalRateOfReturn} %</Col>
             </Row>
