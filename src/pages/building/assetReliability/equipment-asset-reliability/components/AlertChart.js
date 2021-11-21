@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 const Wrapper = styled.div`
 
@@ -38,6 +39,8 @@ const AlertBlock = styled.div`
 `
 
 const AlertChart = () => {
+  const { t } = useTranslation('equipmentAssetReliability')
+
   const colors = {
     low: ['#879637', '#ffffff'],
     medium: ['#ECB75F', '#fffff'],
@@ -54,10 +57,10 @@ const AlertChart = () => {
 
   return (
     <Wrapper>
-      <h3>Alerts</h3>
+      <h3>{t('Alerts')}</h3>
       <AlertContent>
         <AlertRow>
-          <span>Critical</span>
+          <span>{t('Critical')}</span>
           <AlertBlock
             className={data.critical === 0 ? 'empty': ''}
             backgroundColor={data.critical > 0 ? colors['critical'][0] : colors['critical'][1]}>
@@ -65,7 +68,7 @@ const AlertChart = () => {
           </AlertBlock>
         </AlertRow>
         <AlertRow>
-          <span>High</span>
+          <span>{t('High')}</span>
           <AlertBlock
             className={data.high === 0 ? 'empty': ''}
             backgroundColor={data.high > 0 ? colors['high'][0] : colors['high'][1]}>
@@ -73,7 +76,7 @@ const AlertChart = () => {
           </AlertBlock>
         </AlertRow>
         <AlertRow>
-          <span>Medium</span>
+          <span>{t('Medium')}</span>
           <AlertBlock
             className={data.medium === 0 ? 'empty': ''}
             backgroundColor={data.medium > 0 ? colors['medium'][0] : colors['medium'][1]}>
@@ -81,7 +84,7 @@ const AlertChart = () => {
           </AlertBlock>
         </AlertRow>
         <AlertRow>
-          <span>Low</span>
+          <span>{t('Low')}</span>
           <AlertBlock
             className={data.low === 0 ? 'empty': ''}
             backgroundColor={data.low > 0 ? colors['low'][0] : colors['low'][1]}>

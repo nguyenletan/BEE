@@ -1,7 +1,10 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import { ResponsiveLine } from '@nivo/line'
 import styled from 'styled-components'
 import { line } from 'd3-shape'
+import { useTranslation } from 'react-i18next'
+import { deepClone } from 'Utilities'
 
 const Wrapper = styled.div`
 
@@ -68,6 +71,20 @@ const Depreciation = () => {
       ],
     },
   ]
+
+  const { t, i18n } = useTranslation('equipmentAssetReliability')
+
+  const [data, setData] = useState(depreciationData)
+
+  useEffect(() => {
+    const tmp = deepClone(depreciationData)
+    for(let item of tmp) {
+      item.id = t(item.id)
+    }
+
+    setData(tmp)
+
+  }, [i18n.language])
 
   const style = {
     dashed: {
@@ -137,7 +154,7 @@ const Depreciation = () => {
   const Line = ({ series, innerHeight, margin }) => {
     let data0
     for (let i = 0; i < series[0]?.data.length; i++) {
-      console.log(series[0]?.data[i].data.x)
+      //console.log(series[0]?.data[i].data.x)
       if (series[0]?.data[i].data.x >= currentAge) {
         data0 = series[0]?.data[i]
         break
@@ -148,7 +165,7 @@ const Depreciation = () => {
 
     return (
       <>
-        <text x={x - 40} y="-5" className="small">Current Age</text>
+        <text x={x - 40} y="-5" className="small">{t('Current Age')}</text>
         <line
           x1={x} y1={0} x2={x} y2={innerHeight} stroke="#87972f" strokeDasharray="3"
           strokeWidth={1}
@@ -184,7 +201,7 @@ const Depreciation = () => {
         ],
       },
     ],
-    data: depreciationData,
+    data: data,
     animate: true,
     colors: ['#3D511B', '#87972f'],
     enableSlices: 'x',
@@ -202,7 +219,7 @@ const Depreciation = () => {
       tickSize: 5,
       tickPadding: 5,
       tickRotation: 0,
-      legend: 'Asset Value $',
+      legend: t('Asset Value $'),
       legendOffset: -60,
       legendPosition: 'middle',
     },
@@ -211,7 +228,7 @@ const Depreciation = () => {
       tickSize: 5,
       tickPadding: 5,
       tickRotation: 0,
-      legend: 'Year',
+      legend: t('Year'),
       legendOffset: 36,
       legendPosition: 'middle',
     },
@@ -221,7 +238,7 @@ const Depreciation = () => {
 
   return (
     <Wrapper>
-      <h5>Depreciation</h5>
+      <h5>{t('Depreciation')}</h5>
       <ChartWrapper>
         <ResponsiveLine
           {...commonProperties}

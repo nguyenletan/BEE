@@ -105,7 +105,7 @@ const PotentialFaultRisks = ({ data }) => {
       <Modal show={showMsgModal} onHide={() => setShowMsgModal(false)} size='md'>
 
         <Modal.Body>
-          <div className='text-center text-warning'>No Fault Risk on this cell</div>
+          <div className='text-center text-warning'>{t('No Fault Risk on this cell')}</div>
         </Modal.Body>
       </Modal>
     )
@@ -234,15 +234,15 @@ const PotentialFaultRisks = ({ data }) => {
         <tr key={item.measures}>
           <FirstTd width='21%'>
             <ImageWrapper><Image src={imgSrc} alt={item.measures} width={width} /></ImageWrapper>
-            {item.subSystem}
+            {t(item.subSystem)}
           </FirstTd>
-          <td width='15%'>{item.fault}</td>
-          <td width='19%'>{item.asset}</td>
+          <td width='15%'>{t(item.fault)}</td>
+          <td width='15%'>{t(item.asset)}</td>
           <td width='12%'>{item.potentialDownTime}</td>
           <td width='12%'>{item.sparePartsLeadTime}</td>
           <td width='12%'>{item.estimatedTimeToFailure}</td>
           <td>
-            <InfoButton className='btn btn-primary btn-sm'>Info</InfoButton>
+            <InfoButton className='btn btn-primary btn-sm'>{t('Info')}</InfoButton>
           </td>
         </tr>
       )
@@ -253,10 +253,10 @@ const PotentialFaultRisks = ({ data }) => {
         <Modal.Header>
           <Container className='mt-0'>
             <div className='d-flex justify-content-between align-items-center'>
-              <Header>Potential Fault</Header>
+              <Header>{t('Potential Fault')}</Header>
               <HeaderGroupButton>
                 <HeaderButton className='' onClick={() => { setShowListFaultRisksModal(false) }}>
-                  <XIcon size={24} className='me-0' /><span>Close</span>
+                  <XIcon size={24} className='me-0' /><span>{t('Close')}</span>
                 </HeaderButton>
               </HeaderGroupButton>
             </div>
@@ -266,19 +266,19 @@ const PotentialFaultRisks = ({ data }) => {
         <Modal.Body>
           <Container className='mt-4'>
             <TypeListWrapper className='d-flex'>
-              <TypeItem>Likelihood - <strong>{props.data?.likelihoodTitle}</strong></TypeItem>
-              <TypeItem>Impact - <strong>{props.data?.impactTitle}</strong></TypeItem>
+              <TypeItem>{t('Likelihood')} - <strong>{t(props.data?.likelihoodTitle)}</strong></TypeItem>
+              <TypeItem>{t('Impact')} - <strong>{t(props.data?.impactTitle)}</strong></TypeItem>
             </TypeListWrapper>
             <ImprovementMeasuresTable className='table'>
               <thead>
                 <tr>
-                  <FirstTh width='21%'>System</FirstTh>
-                  <th width='15%'>Fault</th>
-                  <th width='19%'>Asset</th>
-                  <th width='12%'>Potential<br />Downtime (Days)</th>
-                  <th width='12%'>Spare Parts Lead <br />Time (Days)</th>
-                  <th width='12%'>Estimated Time <br />to Failure Days</th>
-                  <th>Details</th>
+                  <FirstTh width='21%'>{t('System')}</FirstTh>
+                  <th width='15%'>{t('Fault')}</th>
+                  <th width='15%'>{t('Asset')}</th>
+                  <th width='12%'>{t('Potential Downtime')} ({t('Days')})</th>
+                  <th width='12%'>{t('Spare Parts Lead Time')} ({t('Days')})</th>
+                  <th width='12%'>{t('Estimated Time to Failure')} ({t('Days')})</th>
+                  <th>{t('Details')}</th>
                 </tr>
               </thead>
             </ImprovementMeasuresTable>
@@ -354,7 +354,7 @@ const PotentialFaultRisks = ({ data }) => {
 
     return (
       <PotentialFaultRiskRow className='row' key={idx}>
-        <PotentialFaultRiskBlock key={indexRowTitle} isIndexCol value={indexRowTitle} />
+        <PotentialFaultRiskBlock key={indexRowTitle} isIndexCol value={t(indexRowTitle)} />
         {cols}
       </PotentialFaultRiskRow>
     )

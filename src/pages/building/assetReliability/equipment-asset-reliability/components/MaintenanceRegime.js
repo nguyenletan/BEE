@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 const Wrapper = styled.div`
 
@@ -23,18 +24,20 @@ const Value = styled.span`
 `
 
 const MaintenanceRegime = () => {
+  const { t } = useTranslation('equipmentAssetReliability')
+
   return (
     <Wrapper>
-      <h5>Maintenance Regime</h5>
+      <h5>{t('Maintenance Regime')}</h5>
       <Content>
-        <Label>Recurring Tasks Scheduled</Label>
+        <Label>{t('Recurring Tasks Scheduled')}</Label>
         <Value>6</Value>
-        <Label>Upcoming Tasks in 2 Weeks</Label>
-        <Value>2 Days</Value>
-        <Label>Tasks Missed in Past 2 Weeks</Label>
+        <Label>{t('Upcoming Tasks in 2 Weeks')}</Label>
+        <Value>{t('2 Days')}</Value>
+        <Label>{t('Tasks Missed in Past 2 Weeks')}</Label>
         <Value>1</Value>
       </Content>
-      <button className="btn btn-primary btn-sm float-end">Details</button>
+      <button className="btn btn-primary btn-sm float-end">{t('Details')}</button>
     </Wrapper>
   )
 

@@ -5,6 +5,8 @@ import { ResponsiveLine } from '@nivo/line'
 import _ from 'lodash'
 import { useAuth } from 'AuthenticateProvider'
 import { getEquipmentByIdAndGroupByYear } from 'api/EquipmentAPI'
+import { useTranslation } from 'react-i18next'
+import { deepClone } from 'Utilities'
 
 const Wrapper = styled.div`
 
@@ -15,6 +17,8 @@ const ChartWrapper = styled.div`
 `
 
 const EnergyConsumption = (props) => {
+
+  const { t, i18n } = useTranslation('equipmentAssetReliability')
 
   const { equipmentId } = props
   const { user } = useAuth()
@@ -42,7 +46,7 @@ const EnergyConsumption = (props) => {
     setMaxValue(_.maxBy(rawData, 'sum').sum * 1.01)
     const dataSource = [
       {
-        id: 'energy consumption',
+        id: 'Energy Consumption',
         data: rawData.map(d => {
           return {
             x: d.year,
@@ -61,12 +65,23 @@ const EnergyConsumption = (props) => {
   }
 
   useEffect(() => {
+    const tmp = deepClone(data)
+    for(let item of tmp) {
+      item.id = t(item.id)
+    }
+
+    setData(tmp)
+
+    //TS
+  }, [i18n.language])
+
+  useEffect(() => {
     getEquipmentByIdAndGroupByYearInfo()
     //TS
   }, [equipmentId])
 
   const commonProperties = {
-    margin: { top: 0, right: 0, bottom: 0, left: 40 },
+    margin: { top: 10, right: 0, bottom: 25, left: 40 },
     data,
     animate: true,
     colors: ['#87972f'],
@@ -100,7 +115,7 @@ const EnergyConsumption = (props) => {
       tickSize: 5,
       tickPadding: 5,
       tickRotation: 0,
-      legend: 'Year',
+      legend: t('Year'),
       legendOffset: 36,
       legendPosition: 'middle',
     },
@@ -110,7 +125,7 @@ const EnergyConsumption = (props) => {
 
   return (
     <Wrapper>
-      <h5>Energy Consumption (mWh)</h5>
+      <h5>{t('Energy Consumption (mWh)')}</h5>
       <ChartWrapper>
         <ResponsiveLine
           {...commonProperties}

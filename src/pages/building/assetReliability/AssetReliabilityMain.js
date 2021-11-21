@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useState, useEffect} from 'react'
 import AssetHealth from './components/AssetHealth'
 import PotentialFaultRisks from './components/PotentialFaultRisks1'
 import CurrentSubSystemHealth from './components/CurrentSubSystemHealth'
@@ -9,6 +10,7 @@ import MaintenanceBudgetBySubSystem from './components/MaintenanceBudgetBySubSys
 import styled from 'styled-components'
 import { useSetRecoilState } from 'recoil'
 import { isDisplayPerformanceFilterState } from 'atoms'
+import { useTranslation } from 'react-i18next'
 
 const TheSecondWrapper = styled.div`
   margin-bottom: 50px;
@@ -18,6 +20,20 @@ const AssetReliabilityMain = ({ data }) => {
 
   const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
   setIsDisplayPerformanceFilter(false)
+
+  const { i18n } = useTranslation('assetReliability')
+
+
+  const [maintenanceBudgetBySubSystem, setMaintenanceBudgetBySubSystem] = useState(data.maintenanceBudgetBySubSystemEN)
+
+  useEffect(() => {
+    if(i18n.language === 'en') {
+      setMaintenanceBudgetBySubSystem(data.maintenanceBudgetBySubSystemEN)
+    } else {
+      setMaintenanceBudgetBySubSystem(data.maintenanceBudgetBySubSystemDE)
+    }
+
+  }, [i18n.language])
 
   return (
     <>
@@ -36,7 +52,7 @@ const AssetReliabilityMain = ({ data }) => {
           <MaintenanceBudget data={data.maintenanceBudget} />
         </div>
         <div className='col-12 col-xl-8 mb-4'>
-          <MaintenanceBudgetBySubSystem data={data.maintenanceBudgetBySubSystem} />
+          <MaintenanceBudgetBySubSystem data={maintenanceBudgetBySubSystem} />
         </div>
       </div>
     </>

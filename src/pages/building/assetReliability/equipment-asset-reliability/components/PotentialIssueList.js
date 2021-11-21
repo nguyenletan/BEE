@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 const Wrapper = styled.div`
 
@@ -49,40 +50,42 @@ const InfoButton = styled.button`
 `
 
 const PotentialIssueList =() => {
+  const { t } = useTranslation('equipmentAssetReliability')
+
   return (
     <Wrapper>
-      <h5>List of Potential Issues</h5>
+      <h5>{t('List of Potential Issues')}</h5>
       <PotentialIssueTable className="table ">
         <thead>
         <tr>
-          <th scope="col">Similar Historical Fault</th>
-          <th scope="col">May Exceed Threshold In</th>
-          <th scope="col">Average Parts Lead Time</th>
-          <th scope="col">Average Time to Repair</th>
-          <th scope="col">Details</th>
+          <th scope="col">{t('Similar Historical Fault')}</th>
+          <th scope="col">{t('May Exceed Threshold In')}</th>
+          <th scope="col">{t('Average Parts Lead Time')}</th>
+          <th scope="col">{t('Average Time to Repair')}</th>
+          <th scope="col">{t('Details')}</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-          <th scope="row">Refrigerant Leak</th>
-          <td>6 Days | 07 Oct</td>
-          <td>1 Day</td>
-          <td>1 day</td>
-          <td><InfoButton className="btn btn-primary btn-sm">INFO</InfoButton></td>
+          <th scope="row">{t('Refrigerant Leak')}</th>
+          <td>{t('6 Days | 13-Oct')}</td>
+          <td>{t('1 Day')}</td>
+          <td>{t('1 Day')}</td>
+          <td><InfoButton className="btn btn-primary btn-sm">{t('INFO')}</InfoButton></td>
         </tr>
         <tr>
-          <th scope="row">Worn Compressor</th>
-          <td>5 Days | 11 Nov</td>
-          <td>In Inventory</td>
-          <td>2 days</td>
-          <td><InfoButton className="btn btn-primary btn-sm">INFO</InfoButton></td>
+          <th scope="row">{t('Worn Compressor')}</th>
+          <td>{t('5 Days | 12-Oct')}</td>
+          <td>{t('In Inventory')}</td>
+          <td>{t('2 Days')}</td>
+          <td><InfoButton className="btn btn-primary btn-sm">{t('INFO')}</InfoButton></td>
         </tr>
         <tr>
-          <th scope="row">Evaporator Fouling</th>
-          <td>5 Days | 13 Nov</td>
-          <td>NA</td>
-          <td>1 day</td>
-          <td><InfoButton className="btn btn-primary btn-sm">INFO</InfoButton></td>
+          <th scope="row">{t('Evaporator Fouling')}</th>
+          <td>{t('6 Days | 13-Oct')}</td>
+          <td>{t('NA')}</td>
+          <td>{t('1 Day')}</td>
+          <td><InfoButton className="btn btn-primary btn-sm">{t('INFO')}</InfoButton></td>
         </tr>
         </tbody>
       </PotentialIssueTable>

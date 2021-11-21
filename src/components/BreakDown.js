@@ -104,11 +104,11 @@ const BreakDown = (props) => {
         </text>
         {!noCenterText && <text
           x={centerX}
-          y={centerY + 15}
+          y={centerY + 10}
           textAnchor="middle"
           dominantBaseline="central"
           style={{
-            fontSize: valueFontSize ?? '24px',
+            fontSize: valueFontSize ?? '20px',
             fontWeight: '700',
           }}
         >
@@ -143,7 +143,7 @@ const BreakDown = (props) => {
                 background: '#37363785',
               }}
             >
-              {id}: {value} %
+              {id}: {value}
               {/*{t(subTitle, {ns: "improvement"})}*/}
             </div>
           )}

@@ -7,6 +7,7 @@ import { getProjectPeakDemand } from 'api/EquipmentAPI'
 import { useAuth } from 'AuthenticateProvider'
 import { deepClone, getMonthName } from 'Utilities'
 import { EuiRange } from '@elastic/eui'
+import { useTranslation } from 'react-i18next'
 
 const Wrapper = styled.div`
 
@@ -32,7 +33,7 @@ const ProjectedPeakDemand = (props) => {
   const [depreciationData, setDepreciationData] = useState([])
   const [filterData, setFilterData] = useState([])
   const [numberOfNextDays, setNumberOfNextDays] = useState(14)
-
+  const { t, i18n } = useTranslation(['equipmentAssetReliability', 'common'])
 
   const convertRawDataToChartData = (rawData) => {
     const dataSource = [
@@ -40,7 +41,7 @@ const ProjectedPeakDemand = (props) => {
         id: 'ProjectPeakDemand',
         data: rawData.map(d => {
           return {
-            x: getMonthName(d.month) + ' ' + d.day,
+            x: t(getMonthName(d.month), {ns: "common"}) + ' ' + d.day,
             y: +d.average.toFixed(2),
           }
         }),
@@ -59,7 +60,7 @@ const ProjectedPeakDemand = (props) => {
   useEffect(() => {
     getProjectPeakDemandInfo()
     //TS
-  }, [equipmentId])
+  }, [equipmentId, i18n.language])
 
   const Line = ({ series, innerHeight, margin }) => {
     // let data0
@@ -76,9 +77,9 @@ const ProjectedPeakDemand = (props) => {
     return (
       <>
         {/*<text x={x - 40} y="-5" className="small">Current Age</text>*/}
-        <text x={260} y="-5" className="small" strokeWidth={1} stroke="#87972f">2 Potential Issues</text>
-        <text x={460} y="-5" className="small" strokeWidth={1} stroke="#87972f">1 Potential Issue</text>
-        <text x={660} y="-5" className="small" strokeWidth={1} stroke="#87972f">1 Potential Issue</text>
+        <text x={260} y="-5" className="small" strokeWidth={1} stroke="#87972f">{t('2 Potential Problems')}</text>
+        <text x={460} y="-5" className="small" strokeWidth={1} stroke="#87972f">{t('1 Potential Problems')}</text>
+        <text x={660} y="-5" className="small" strokeWidth={1} stroke="#87972f">{t('1 Potential Problems')}</text>
         {/*<line*/}
         {/*  x1={x} y1={0} x2={x} y2={innerHeight} stroke="#87972f" strokeDasharray="3"*/}
         {/*  strokeWidth={1}*/}
@@ -138,9 +139,9 @@ const ProjectedPeakDemand = (props) => {
   return (
     <Wrapper>
       <div className="d-flex justify-content-between mb-5">
-        <h5>Projected Peak Demand (kW)</h5>
+        <h5>{t('Projected Peak Demand (kW)')}</h5>
         <NumberOfDaysWrapper className="d-flex justify-content-between">
-          <NumberOfDaysLabel for="number-of-next-days">Number of days: </NumberOfDaysLabel>
+          <NumberOfDaysLabel for="number-of-next-days">{t('Number of days')}: </NumberOfDaysLabel>
           <EuiRange
             id="number-of-next-days"
             min={1}
