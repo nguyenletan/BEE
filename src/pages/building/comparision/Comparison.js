@@ -14,7 +14,7 @@ const ComparisonWrapper = styled.div`
   margin-bottom: 50px;
 `
 
-const Comparison = ({ data }) => {
+const Comparison = () => {
 
   const { i18n } = useTranslation('comparison')
 
@@ -39,7 +39,7 @@ const Comparison = ({ data }) => {
         'Potential Best In Class': 76,
       },
       {
-        name: 'Lighting Efficacy',
+        name: 'Lighting Efficiency',
         'Minimum Requirement': 40,
         'Current Performance': 38,
         'Potential Best In Class': 76,
@@ -70,43 +70,43 @@ const Comparison = ({ data }) => {
   const subSystemPerformanceDataDE = {
     data: [
       {
-        name: 'Energy Usage Intensity',
+        name: 'Elektr. Energiebedarf',
         'Gesetzl. Mindest-anforderungen': 46,
         'Aktuell': 53,
         'Optimal': 76,
       },
       {
-        name: 'Cooling Efficiency',
+        name: 'Kühllast',
         'Gesetzl. Mindest-anforderungen': 30,
         'Aktuell': 28,
         'Optimal': 70,
       },
       {
-        name: 'Heating Efficiency',
+        name: 'Heizlast',
         'Gesetzl. Mindest-anforderungen': 40,
         'Aktuell': 53,
         'Optimal': 76,
       },
       {
-        name: 'Lighting Efficacy',
+        name: 'Beleuchtungs-effizienz',
         'Gesetzl. Mindest-anforderungen': 40,
         'Aktuell': 38,
         'Optimal': 76,
       },
       {
-        name: 'Mechanical Ventilation Efficiency',
+        name: 'Effizienz der Lüftungsanlagen',
         'Gesetzl. Mindest-anforderungen': 49,
         'Aktuell': 51,
         'Optimal': 68,
       },
       {
-        name: 'Envelope Performance',
+        name: 'Isolierung',
         'Gesetzl. Mindest-anforderungen': 20,
         'Aktuell': 72,
         'Optimal': 76,
       },
       {
-        name: 'Renewables Usage',
+        name: 'Einsatz erneuerbarer Energien',
         'Gesetzl. Mindest-anforderungen': 19,
         'Aktuell': 53,
         'Optimal': 64,
