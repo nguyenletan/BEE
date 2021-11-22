@@ -177,7 +177,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
             required: t(`The Title is not empty`),
           }}
         />
-        <Subtraction onClick={onRemoveItem} title="Remove Item"><i
+        <Subtraction onClick={onRemoveItem} title={t("Remove Item")}><i
           className="bi bi-dash-lg"
         />
         </Subtraction>
@@ -212,11 +212,11 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                   </MenuItem>
                 ))}
               </Select>
-              {error && <FormHelperText className="text-danger">{t('The Space Usage Type is not empty')}</FormHelperText>}
+              {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
             </FormControl>
           )}
           rules={{
-            required: t(`The Space Usage Type is not empty`),
+            required: t(`This field is required`),
           }}
         />
 
@@ -242,7 +242,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
             </FormControl>
           )}
           rules={{
-            required: t('% of Total Floor Area (Internal) is not empty'),
+            required: t('This field is required'),
             min: { value: 0, message: t('The value should be >= 0') },
           }}
         />
@@ -272,11 +272,11 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                   <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
                 ))}
               </Select>
-              {error && <FormHelperText className="text-danger">{t('The Climate Control is not empty')}</FormHelperText>}
+              {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
             </FormControl>
           )}
           rules={{
-            required: t(`The Climate Control is not empty`),
+            required: t(`This field is required`),
           }}
         />
 
@@ -312,7 +312,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                         </MenuItem>
                       ))}
                     </Select>
-                    {error && <FormHelperText className="text-danger">{t('The Fan Type is not empty')}</FormHelperText>}
+                    {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
                   </FormControl>
                 )}
                 rules={{
