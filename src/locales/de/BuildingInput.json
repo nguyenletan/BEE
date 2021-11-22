@@ -79,11 +79,18 @@
 
   "_comment7": "//Space Usage and %GFA",
   "Space usage and %GFA":"Flächennutzung in % BGF",
+  "Title": "Titel",
   "Usage 1":"Nutzung 1",
   "% of GFA":"% BGF Anteil",
+  "Space Usage Type": "Raumnutzungstyp",
+  "% of Total Floor Area (Internal)":"% Bruttogrundfläche (Inter)",
   "Climate Control":"Klimatisierung",
+  "Fan Type": "Lüftertyp",
+  "Has Heat Recovery?": "Hat Wärmerückgewinnung?",
   "Total Space Usage": "Die Gesamtplatznutzung",
   "should be 100% (All space usage added together)": "sollte 100% betragen (Gesamte Platznutzung zusammengezählt)",
+  "Remove Item": "Gegenstand entfernen",
+  "Add new item": "Gegenstand entfernen",
 
   "_comment8": "//Total % of GFA",
   "Total % of GFA":"% BGF Gesamt"
