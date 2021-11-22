@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavLink, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const UL = styled.ul`
   margin-top: 3rem;
@@ -24,6 +25,8 @@ const StepNav = () => {
 
   const { id } = useParams()
 
+  const { t } = useTranslation('buildingInput')
+
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
 
   return (
@@ -32,67 +35,63 @@ const StepNav = () => {
         <NavLink
           activeClassName="active" className="nav-link"
           to={parentUrl + '/search-building'}
-        >Search
-          Building
+        >{t('Search Building')}
         </NavLink>
       </li> }
       <li className="nav-item">
         <NavLink
           activeClassName="active" className="nav-link"
           to={parentUrl + '/general-information'}
-        >General
-          Information
+        >{t('General Information')}
         </NavLink>
       </li>
       <li className="nav-item">
         <NavLink
           activeClassName="active" className="nav-link"
           to={parentUrl + '/activity'}
-        >Activity
+        >{t('Activity')}
         </NavLink>
       </li>
       <li className="nav-item">
         <NavLink
           activeClassName="active" className="nav-link"
           to={parentUrl + '/electricity-consumption'}
-        >Electricity Consumption
+        >{t('Electricity Consumption')}
         </NavLink>
       </li>
       <li className="nav-item">
         <NavLink
           activeClassName="active" className="nav-link"
           to={parentUrl + '/hvac'}
-        >HVAC
+        >{t('HVAC')}
         </NavLink>
       </li>
       <li className="nav-item">
         <NavLink
           activeClassName="active" className="nav-link"
           to={parentUrl + '/lighting'}
-        >Lighting
+        >{t('Lighting')}
         </NavLink>
       </li>
       <li className="nav-item">
         <NavLink
           activeClassName="active" className="nav-link"
           to={parentUrl + '/envelope-facade'}
-        >Envelope &
-          Facade
+        >{t('Envelope & Facade')}
         </NavLink>
       </li>
       <li className="nav-item">
         <NavLink
           activeClassName="active" className="nav-link"
           to={parentUrl + '/renewable-energy'}
-        >Renewable
-          Energy
+        >{t('Renewable Energy')}
         </NavLink>
       </li>
       <li className="nav-item">
         <NavLink
           activeClassName="active" className="nav-link"
           to={parentUrl + '/adding-building-successfully'}
-        >Done
+        >{t('Done')}
         </NavLink>
       </li>
     </UL>

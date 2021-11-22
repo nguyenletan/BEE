@@ -8,6 +8,7 @@ import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState } from '../../../atoms'
 import { Redirect, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const Title = styled.h2`
   color: var(--bs-primary);
@@ -25,6 +26,8 @@ const Activity = () => {
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
   const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/electricity-consumption')
+
+  const { t } = useTranslation('buildingInput')
 
   const onSubmit = () => {
     if (!id) {
@@ -52,7 +55,7 @@ const Activity = () => {
       <Redirect to={moveNextUrl}/>}
       <div className="d-flex mt-5 mb-4">
 
-        <Title>New Building</Title>
+        <Title>{t('New Building')}</Title>
 
         <BackNextGroupButton
           backLink={parentUrl + '/general-information'}

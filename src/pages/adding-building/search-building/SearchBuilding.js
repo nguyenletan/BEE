@@ -16,6 +16,7 @@ import StepNav from '../step-nav/StepNav'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState, generalBuildingInformationState } from '../../../atoms'
+import { useTranslation } from 'react-i18next'
 
 const Title = styled.h2`
   color: var(--bs-primary);
@@ -44,6 +45,8 @@ const SearchBuilding = () => {
     opacity: 0.8,
   }
 
+  const { t } = useTranslation('buildingInput')
+
   const classes = makeStyles(() => (MaterialFormStyle))()
 
   const [searchValue, setSearchValue] = useState('')
@@ -58,6 +61,8 @@ const SearchBuilding = () => {
   const [isShowTheMap, setIsShowTheMap] = useState(false)
 
   const setValueToForm = (information) => {
+    setValue('streetNumber', information?.streetNumber)
+    setValue('streetName', information?.streetName)
     setValue('address', information?.address)
     setValue('city', information?.city)
     setValue('state', information?.state)
@@ -68,6 +73,8 @@ const SearchBuilding = () => {
 
   const onSearch = async () => {
     const result = await getLatLngFromAddress(searchValue?.value?.description)
+
+    console.log(result)
 
     let information = {
       buildingName: searchValue?.value?.structured_formatting?.main_text,
@@ -165,7 +172,7 @@ const SearchBuilding = () => {
 
       <div className="d-flex mt-5 mb-4">
 
-        <Title>Search Online</Title>
+        <Title>{t('Search Online')}</Title>
 
         <BackNextGroupButton
           noNextLink={true}
@@ -184,7 +191,7 @@ const SearchBuilding = () => {
 
             <div className="form-group col-12 col-lg-12 ms-0">
               <label htmlFor="building-name">
-                Enter Building Name or Address</label>
+                {t('Enter Building Name or Address')}</label>
               <div className="d-flex">
                 <div className="w-75 me-1">
                   <GooglePlacesAutocomplete
@@ -197,13 +204,13 @@ const SearchBuilding = () => {
                       isClearable: true,
                       searchValue,
                       onChange: setSearchValue,
-                      placeholder: 'Building name or Address',
+                      placeholder: t('Building Name or Address'),
 
                     }}
                   />
                 </div>
                 <Button variant="contained" color="primary" onClick={onSearch}>
-                  Search
+                  {t('Search')}
                 </Button>
 
               </div>
@@ -242,10 +249,10 @@ const SearchBuilding = () => {
 
           <form onSubmit={handleSubmit(onSubmit)}>
 
-            <h5 className="text-primary">Is the information correct?</h5>
+            <h5 className="text-primary">{t('Is the information correct?')}</h5>
 
             <Button type="submit" variant="contained"
-                    color="primary" className="mb-3 mt-2">Yes</Button>
+                    color="primary" className="mb-3 mt-2">{t('Yes')}</Button>
 
             <FormControl className={classes.formControl}>
               <Controller
@@ -256,7 +263,45 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
-                    label="Building Name"
+                    label={t("Building Name")}
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                  />
+                )}
+              />
+            </FormControl>
+
+            <FormControl className={classes.formControl}>
+              <Controller
+                name="streetNumber"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <TextField
+                    label={t("Building Number")}
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                  />
+                )}
+              />
+            </FormControl>
+
+            <FormControl className={classes.formControl}>
+              <Controller
+                name="streetName"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <TextField
+                    label={t("Street Name")}
                     value={value}
                     onChange={onChange}
                     error={!!error}
@@ -275,7 +320,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
-                    label="Address"
+                    label={t("Address")}
                     aria-describedby="Address"
                     value={value}
                     onChange={onChange}
@@ -295,7 +340,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
-                    label="Postal Code"
+                    label={t("Post Code")}
                     aria-describedby="Postal Code"
                     value={value}
                     onChange={onChange}
@@ -316,7 +361,7 @@ const SearchBuilding = () => {
                 }) => (
                   <TextField
                     aria-describedby="City"
-                    label="City"
+                    label={t("City")}
                     value={value}
                     onChange={onChange}
                     error={!!error}
@@ -336,7 +381,7 @@ const SearchBuilding = () => {
                 }) => (
                   <TextField
                     aria-describedby="State"
-                    label="State"
+                    label={t("State")}
                     value={value}
                     onChange={onChange}
                     error={!!error}
@@ -351,7 +396,7 @@ const SearchBuilding = () => {
               control={control}
               render={({ field }) => (
                 <FormControl className={classes.formControl}>
-                  <InputLabel id="country-label">Country</InputLabel>
+                  <InputLabel id="country-label">{t('Country')}</InputLabel>
                   <NativeSelect
                     labelId="country-label"
                     name="countryCode"
