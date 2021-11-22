@@ -19,6 +19,7 @@ import {
 import SpaceUsageType from '../../../reference-tables/SpaceUsageType'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import { makeStyles } from '@material-ui/core/styles'
+import { useTranslation } from 'react-i18next'
 
 const Wrapper = styled.div`
   padding: 1em;
@@ -45,7 +46,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
   const [percentage, setPercentage] = useState(data.percentage ?? 0)
   const [fanTypeId, selectFanTypeId] = useState(data.fanTypeId ?? 0)
   const [hasReheatRecovery, setHasReheatRecovery] = useState(data.hasReheatRecovery ?? false)
-
+  const { t } = useTranslation('buildingInput')
   const [isShowFanTypeAndHeatRecovery, setIsShowFanTypeAndHeatRecovery] = useState(
     data.climateControlId === 4)
 
@@ -142,11 +143,11 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
   }
 
   useEffect(() => {
-    setValue(`title${data.id}`, title, {shouldValidate: true})
-    setValue(`space-usage-type${data.id}`, spaceUsageType, {shouldValidate: true})
-    setValue(`percentage-of-GFA${data.id}`, percentage, {shouldValidate: true})
-    setValue(`climate-control-select${data.id}`, climateControl, {shouldValidate: true})
-    setValue(`fan-type-select${data.id}`, fanTypeId, {shouldValidate: true})
+    setValue(`title${data.id}`, title, { shouldValidate: true })
+    setValue(`space-usage-type${data.id}`, spaceUsageType, { shouldValidate: true })
+    setValue(`percentage-of-GFA${data.id}`, percentage, { shouldValidate: true })
+    setValue(`climate-control-select${data.id}`, climateControl, { shouldValidate: true })
+    setValue(`fan-type-select${data.id}`, fanTypeId, { shouldValidate: true })
   }, [climateControl, data.id, fanTypeId, percentage, setValue, spaceUsageType, title])
 
   return (
@@ -161,7 +162,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
             fieldState: { error },
           }) => (
             <FormControl className={classes.mediumFormControl}>
-              <TextField label="Title"
+              <TextField label={t('Title')}
                          type="text"
                          value={title}
                          onChange={(e) => {
@@ -173,7 +174,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
             </FormControl>
           )}
           rules={{
-            required: `The Title is not empty`,
+            required: t(`The Title is not empty`),
           }}
         />
         <Subtraction onClick={onRemoveItem} title="Remove Item"><i
@@ -191,8 +192,8 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
             fieldState: { error },
           }) => (
             <FormControl className={classes.formControl}>
-              <InputLabel id={`space-usage-type-label${data.id}`} className={error && 'text-danger'}>Space Usage
-                Type</InputLabel>
+              <InputLabel id={`space-usage-type-label${data.id}`} className={error && 'text-danger'}>{t(
+                'Space Usage Type')}</InputLabel>
               <Select
                 labelId={`space-usage-type-label${data.id}`}
                 error={!!error}
@@ -211,11 +212,11 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                   </MenuItem>
                 ))}
               </Select>
-              {error && <FormHelperText className="text-danger">The Space Usage Type is not empty</FormHelperText>}
+              {error && <FormHelperText className="text-danger">{t('The Space Usage Type is not empty')}</FormHelperText>}
             </FormControl>
           )}
           rules={{
-            required: `The Space Usage Type is not empty`,
+            required: t(`The Space Usage Type is not empty`),
           }}
         />
 
@@ -229,7 +230,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
           }) => (
             <FormControl className={classes.formControl}>
               <TextField min={0} max={100}
-                         label="% of Total Floor Area (Internal)"
+                         label={t('% of Total Floor Area (Internal)')}
                          type="number"
                          value={percentage}
                          error={!!error}
@@ -241,8 +242,8 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
             </FormControl>
           )}
           rules={{
-            required: `% of Total Floor Area (Internal) is not empty`,
-            min: { value: 0, message: 'The value should be >= 0' },
+            required: t('% of Total Floor Area (Internal) is not empty'),
+            min: { value: 0, message: t('The value should be >= 0') },
           }}
         />
 
@@ -256,7 +257,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
           }) => (
             <FormControl className={classes.formControl}>
               <InputLabel id={`climate-control-label${data.id}`} className={error && 'text-danger'}>
-                Climate Control
+                {t('Climate Control')}
               </InputLabel>
               <Select
                 labelId={`climate-control-label${data.id}`}
@@ -271,11 +272,11 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                   <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
                 ))}
               </Select>
-              {error && <FormHelperText className="text-danger">The Climate Control is not empty</FormHelperText>}
+              {error && <FormHelperText className="text-danger">{t('The Climate Control is not empty')}</FormHelperText>}
             </FormControl>
           )}
           rules={{
-            required: `The Climate Control is not empty`,
+            required: t(`The Climate Control is not empty`),
           }}
         />
 
@@ -291,7 +292,8 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                   fieldState: { error },
                 }) => (
                   <FormControl className={classes.formControl}>
-                    <InputLabel id={`fan-type-label${data.id}`} className={error && 'text-danger'}>Fan Type</InputLabel>
+                    <InputLabel id={`fan-type-label${data.id}`} className={error && 'text-danger'}>{t(
+                      'Fan Type')}</InputLabel>
                     <Select
                       labelId={`fan-type-label${data.id}`}
                       value={fanTypeId}
@@ -310,16 +312,15 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                         </MenuItem>
                       ))}
                     </Select>
-                    {error && <FormHelperText className="text-danger">The Fan Type is not empty</FormHelperText>}
+                    {error && <FormHelperText className="text-danger">{t('The Fan Type is not empty')}</FormHelperText>}
                   </FormControl>
                 )}
                 rules={{
-                  required: `The Fan Type is not empty`,
+                  required: t(`The Fan Type is not empty`),
                 }}
               />
               <div className="form-group">
-                <label className="form-label d-block mb-0">Has Heat
-                  Recovery?
+                <label className="form-label d-block mb-0">{t('Has Heat Recovery?')}
                 </label>
                 <FormControlLabel
                   control={
@@ -330,7 +331,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                       color="primary"
                     />
                   }
-                  label="Yes"
+                  label={t('Yes')}
                 />
               </div>
             </>)

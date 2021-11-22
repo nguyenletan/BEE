@@ -7,6 +7,7 @@ import { buildingActivityState } from '../../../atoms'
 import { replaceItemAtIndex } from '../../../Utilities'
 import { KeyboardTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
+import { useTranslation } from 'react-i18next'
 
 const Header = styled.div`
   margin-bottom: 20px;
@@ -19,7 +20,7 @@ const Content = styled.div`
 const Row = ({ data, control, setValue }) => {
   const [buildingActivity, setBuildingActivity] = useRecoilState(
     buildingActivityState)
-
+  const { t } = useTranslation('buildingInput')
   useEffect(() => {
     setValue(`${data.codeName}StartTime`, data.startTime, {shouldValidate: true})
     setValue(`${data.codeName}EndTime`, data.endTime, {shouldValidate: true})
@@ -50,7 +51,7 @@ const Row = ({ data, control, setValue }) => {
               }}
             />
           }
-          label={data.name}
+          label={t(data.name)}
         />
 
       </div>
@@ -68,7 +69,7 @@ const Row = ({ data, control, setValue }) => {
               <KeyboardTimePicker
                 variant="inline"
                 margin="normal"
-                label="Start Time"
+                label={t("Start Time")}
                 disabled={!data.isEnable}
                 mask="__:__ _M"
                 autoOk
@@ -104,7 +105,7 @@ const Row = ({ data, control, setValue }) => {
               <KeyboardTimePicker
                 variant="inline"
                 margin="normal"
-                label="End Time"
+                label={t("End Time")}
                 disabled={!data.isEnable}
                 mask="__:__ _M"
                 value={data.isEnable ? data.endTime : null}
@@ -130,6 +131,7 @@ const Row = ({ data, control, setValue }) => {
 const TimeTable = ({ control, setValue }) => {
   const buildingActivity = useRecoilValue(buildingActivityState)
 
+  const { t } = useTranslation('buildingInput')
   const rows = buildingActivity.map(t => (
     <Row
       key={`${t.name}_${t.id}`} data={t} control={control}
@@ -140,13 +142,13 @@ const TimeTable = ({ control, setValue }) => {
     <>
       <Header className="row">
         <div className="col-4">
-          Operates on
+          {t('Operates on')}
         </div>
         <div className="col-4">
-          Start (HH:MM)
+          {t('Start (HH:MM)')}
         </div>
         <div className="col-4">
-          End (HH:MM)
+          {t('End (HH:MM)')}
         </div>
       </Header>
       <Content className="">

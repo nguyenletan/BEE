@@ -24,6 +24,8 @@ import AssetReliabilityDE from 'locales/de/AssetReliability.json'
 import AssetReliabilityEN from 'locales/en/AssetReliability.json'
 import EquipmentAssetReliabilityEN from 'locales/en/EquipmentAssetReliability.json'
 import EquipmentAssetReliabilityDE from 'locales/de/EquipmentAssetReliability.json'
+import BuildingInputDE from 'locales/de/BuildingInput.json'
+import BuildingInputEN from 'locales/en/BuildingInput.json'
 
 
 i18n
@@ -53,7 +55,8 @@ i18n
         improvement: ImprovementEN,
         ImprovementDetailPopup: ImprovementDetailPopupEN,
         assetReliability: AssetReliabilityEN,
-        equipmentAssetReliability: EquipmentAssetReliabilityEN
+        equipmentAssetReliability: EquipmentAssetReliabilityEN,
+        buildingInput: BuildingInputEN
       },
       de: {
         common: CommonDE,
@@ -66,7 +69,8 @@ i18n
         improvement: ImprovementDE,
         ImprovementDetailPopup: ImprovementDetailPopupDE,
         assetReliability: AssetReliabilityDE,
-        equipmentAssetReliability: EquipmentAssetReliabilityDE
+        equipmentAssetReliability: EquipmentAssetReliabilityDE,
+        buildingInput: BuildingInputDE
       },
     },
   })

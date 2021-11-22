@@ -5,6 +5,7 @@ import SpaceUsageGFAForm from './SpaceUsageGFAForm'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { spaceUsageGFAListState, totalPercentageOfSpaceUsageGFAListState } from '../../../atoms'
 import _ from 'lodash'
+import { useTranslation } from 'react-i18next'
 
 const Header = styled.div`
   margin-bottom: 20px;
@@ -27,7 +28,7 @@ const UL = styled.ul`
 const SpaceUsageGFA = ({ control, setValue}) => {
   const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(spaceUsageGFAListState)
   const totalPercentageOfSpaceUsageGFAList = useRecoilValue(totalPercentageOfSpaceUsageGFAListState)
-
+  const { t } = useTranslation('buildingInput')
   const onAddSpaceUsageGFA = () => {
     setSpaceUsageGFAList((oldSpaceUsageGFAList) => [
       ...oldSpaceUsageGFAList,
@@ -52,8 +53,8 @@ const SpaceUsageGFA = ({ control, setValue}) => {
   return (
     <>
       <Header className="d-flex justify-content-between">
-        <h6>Space Usage and %GFA</h6>
-        <Adding onClick={onAddSpaceUsageGFA} title="Add new item">
+        <h6>{t('Space usage and %GFA')}</h6>
+        <Adding onClick={onAddSpaceUsageGFA} title={t("Add new item")}>
           <i className="bi bi-plus-lg font-weight-bolder"/>
         </Adding>
       </Header>
@@ -69,7 +70,7 @@ const SpaceUsageGFA = ({ control, setValue}) => {
               type="hidden"
               onChange={onChange}
               value={totalPercentageOfSpaceUsageGFAList}/>
-            {totalPercentageOfSpaceUsageGFAList !== 100 && <p className="text-danger">Total Space Usage ({totalPercentageOfSpaceUsageGFAList}%) should be 100% (All space usage added together)</p>}
+            {totalPercentageOfSpaceUsageGFAList !== 100 && <p className="text-danger">{t('Total Space Usage')} ({totalPercentageOfSpaceUsageGFAList}%) {t('should be 100% (All space usage added together)')})</p>}
           </>
         )}
         rules={{
