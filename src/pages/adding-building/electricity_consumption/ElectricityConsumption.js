@@ -12,6 +12,7 @@ import { addingBuildingProgressState, electricityConsumptionListState } from '..
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { Redirect, useParams } from 'react-router-dom'
 import { getPrevMonthYear } from '../../../Utilities'
+import { useTranslation } from 'react-i18next'
 
 const Form = styled.form`
 
@@ -47,7 +48,7 @@ const Adding = styled(AddIcon)`
 const ElectricityConsumption = () => {
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
-
+  const { t } = useTranslation('buildingInput')
   const [isMovingNext, setIsMovingNext] = useState(false)
 
   const onSubmit = (data) => {
@@ -117,7 +118,7 @@ const ElectricityConsumption = () => {
       {isMovingNext && <Redirect to={moveNextUrl}/>}
 
       <div className="d-flex mt-5 mb-4">
-        <Title>New Building</Title>
+        <Title>{t('New Building')}</Title>
 
         <BackNextGroupButton
           backLink={parentUrl + '/activity'}
@@ -132,17 +133,17 @@ const ElectricityConsumption = () => {
       <div className="">
         <Header className="row">
           <div className="col-3">
-            Month / Year
+            {t('Month / Year')}
           </div>
           <div className="col-3">
-            Cost <span>($)</span>
+            {t('Cost ($)')}
           </div>
           <div className="col-3">
-            Consumption <span>(kWh)</span>
+            {t('Consumption (kWh)')}
           </div>
           <div className="col-3">
             <Adding
-              titleAccess="Add new item" fontSize="large"
+              titleAccess={t("Add new item")} fontSize="large"
               onClick={onAddElectricityConsumption}
             />
           </div>

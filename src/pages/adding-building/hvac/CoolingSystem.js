@@ -5,12 +5,13 @@ import Select from '@material-ui/core/Select'
 import CoolingSystemType from '../../../reference-tables/CoolingSystemType'
 import ChillerEnergySourceType from '../../../reference-tables/ChillerEnergySourceType'
 import CompressorType from '../../../reference-tables/CompressorType'
-import { AbsorptionChillerRefrigerantType, RefrigerantType } from '../../../reference-tables/RefrigerantType'
+import { AbsorptionChillerRefrigerantType, RefrigerantType } from 'reference-tables/RefrigerantType'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import { makeStyles } from '@material-ui/core/styles'
 import { useRecoilState } from 'recoil'
-import { coolingSystemState } from '../../../atoms'
+import { coolingSystemState } from 'atoms'
 import { Controller } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 const Title = styled.h4`
   font-size: 1.1rem;
@@ -18,7 +19,7 @@ const Title = styled.h4`
 
 const CoolingSystem = ({ control, setValue }) => {
   const classes = makeStyles(() => (MaterialFormStyle))()
-
+  const { t } = useTranslation('buildingInput')
   const [coolingSystem, setCoolingSystem] = useRecoilState(coolingSystemState)
 
   const [compressorTypeList, setCompressorTypeList] = React.useState(CompressorType)
@@ -111,7 +112,7 @@ const CoolingSystem = ({ control, setValue }) => {
 
   return (
     <>
-      <Title>Cooling System Installed</Title>
+      <Title>{t('Cooling System Installed')}</Title>
       <FormControlLabel
         className="mb-3"
         control={
@@ -122,7 +123,7 @@ const CoolingSystem = ({ control, setValue }) => {
             onChange={onHasCoolingSystemChange}
           />
         }
-        label="Yes"
+        label={t("Yes")}
       />
 
       {coolingSystem.hasCoolingSystem && (
@@ -137,7 +138,7 @@ const CoolingSystem = ({ control, setValue }) => {
             }) => (
               <FormControl className={classes.formControl}>
                 <InputLabel id="cooling-system-type-id-label" className={error && 'text-danger'}>
-                  Cooling System Type
+                  {t('Cooling System Type')}
                 </InputLabel>
                 <Select
                   labelId="cooling-system-type-id-label"
@@ -151,11 +152,11 @@ const CoolingSystem = ({ control, setValue }) => {
                 >
                   {CoolingSystemType.map(item => <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>)}
                 </Select>
-                {error && <FormHelperText className="text-danger">The Cooling System Type is not empty</FormHelperText>}
+                {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
               </FormControl>
             )}
             rules={{
-              required: 'Cooling System Type is required',
+              required: t('This field is required'),
             }}
           />
 
@@ -169,7 +170,7 @@ const CoolingSystem = ({ control, setValue }) => {
               }) => (
                 <FormControl className={classes.formControl}>
                   <InputLabel id="compressor-type-label" className={error && 'text-danger'}>
-                    Compressor Type
+                    {t('Compressor Type')}
                   </InputLabel>
                   <Select
                     labelId="compressor-type-label"
@@ -190,11 +191,11 @@ const CoolingSystem = ({ control, setValue }) => {
                       </MenuItem>
                     ))}
                   </Select>
-                  {error && <FormHelperText className="text-danger">The Compressor Type is required</FormHelperText>}
+                  {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
                 </FormControl>
               )}
               rules={{
-                required: 'Compressor Type is required',
+                required: t('This field is required'),
               }}
             />)}
 
@@ -208,7 +209,7 @@ const CoolingSystem = ({ control, setValue }) => {
               }) => (
                 <FormControl className={classes.formControl}>
                   <InputLabel id="refrigerant-type-label" className={error && 'text-danger'}>
-                    Refrigerant Type
+                    {t('Refrigerant Type')}
                   </InputLabel>
                   <Select
                     labelId="refrigerant-type-label"
@@ -229,11 +230,11 @@ const CoolingSystem = ({ control, setValue }) => {
                       </MenuItem>
                     ))}
                   </Select>
-                  {error && <FormHelperText className="text-danger">The Refrigerant Type is required</FormHelperText>}
+                  {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
                 </FormControl>
               )}
               rules={{
-                required: 'Refrigerant Type is required',
+                required: t('This field is required'),
               }}
             />)}
 
@@ -247,7 +248,7 @@ const CoolingSystem = ({ control, setValue }) => {
               }) => (
                 <FormControl className={classes.formControl}>
                   <InputLabel id="chiller-energy-label" className={error && 'text-danger'}>
-                    Chiller Energy Source
+                    {t('Chiller Energy Source')}
                   </InputLabel>
                   <Select
                     labelId="chiller-energy-label"
@@ -263,11 +264,11 @@ const CoolingSystem = ({ control, setValue }) => {
                       item => <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>)}
                   </Select>
                   {error &&
-                  <FormHelperText className="text-danger">The ChillerEnergy Source Type is required</FormHelperText>}
+                  <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
                 </FormControl>
               )}
               rules={{
-                required: 'ChillerEnergy Source Type is required',
+                required: t('This field is required'),
               }}
             />)}
         </div>

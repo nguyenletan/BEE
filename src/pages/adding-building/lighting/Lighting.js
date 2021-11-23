@@ -6,12 +6,13 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   addingBuildingProgressState,
   lightingSubSystemListState, totalPercentageOfLightingSubSystemListState,
-} from '../../../atoms'
+} from 'atoms'
 import _ from 'lodash'
 
 import LightingSubSystem from './LightingSubSystem'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { Redirect, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const Form = styled.form`
 
@@ -47,6 +48,8 @@ const Lighting = () => {
 
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
+
+  const { t } = useTranslation('buildingInput')
 
   const totalPercentageOfLightingSubSystemList = useRecoilValue(totalPercentageOfLightingSubSystemListState)
 
@@ -97,7 +100,7 @@ const Lighting = () => {
       {isMovingNext && <Redirect to={moveNextUrl}/>}
       <div className="d-flex mt-5 mb-4">
 
-        <Title>New Building</Title>
+        <Title>{t('New Building')}</Title>
 
         <BackNextGroupButton
           backLink={parentUrl + '/hvac'}
@@ -113,13 +116,13 @@ const Lighting = () => {
       <div className="row">
         <div className="col-12 col-lg-8">
           <Header className="d-flex justify-content-between">
-            <h6>Lighting Subsystem</h6>
-            <Adding onClick={onAddLightingSubSystemList} title="Add new item"><i
+            <h6>{t('Lighting Subsystem')}</h6>
+            <Adding onClick={onAddLightingSubSystemList} title={t("Add new item")}><i
               className="bi bi-plus-lg font-weight-bolder"
             />
             </Adding>
           </Header>
-          <p>Total light fitting usage: {totalPercentageOfLightingSubSystemList}%</p>
+          <p>{t('Total light fitting usage')}: {totalPercentageOfLightingSubSystemList}%</p>
           <Controller
             name={`total`}
             control={control}
@@ -133,7 +136,7 @@ const Lighting = () => {
                   onChange={onChange}
                   value={totalPercentageOfLightingSubSystemList}/>
                 {totalPercentageOfLightingSubSystemList !== 100 && <p className="text-danger">
-                  Total light fitting usage ({totalPercentageOfLightingSubSystemList}%) should be 100% (All space usage added together)</p>}
+                  {t('Total light fitting usage')} ({totalPercentageOfLightingSubSystemList}%) {t('should be 100% (All space usage added together)')}</p>}
               </>
             )}
             rules={{

@@ -8,6 +8,7 @@ import { useRecoilState } from 'recoil'
 import { lightingSubSystemListState } from '../../../atoms'
 import { makeStyles } from '@material-ui/core/styles'
 import { Controller } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 const Title = styled.h6`
 
@@ -34,7 +35,7 @@ const Content = styled.div`
 
 const LightingSubSystem = ({ data, control, setValue }) => {
   const classes = makeStyles(() => (MaterialFormStyle))()
-
+  const { t } = useTranslation('buildingInput')
   const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
     lightingSubSystemListState)
 
@@ -75,7 +76,7 @@ const LightingSubSystem = ({ data, control, setValue }) => {
     <div className="p-3 shadow-sm border rounded">
       <Header>
         <Title>{data.title}</Title>
-        <Subtraction title="Remove Item" onClick={onRemoveItem}>
+        <Subtraction title={t("Remove Item")} onClick={onRemoveItem}>
           <i className="bi bi-dash-lg"/>
         </Subtraction>
       </Header>
@@ -89,8 +90,8 @@ const LightingSubSystem = ({ data, control, setValue }) => {
             fieldState: { error },
           }) => (
             <FormControl className={classes.formControl}>
-              <InputLabel id={`lighting-fitting-type-label${data.id}`} className={error && 'text-danger'}>Lighting Fitting
-                Type
+              <InputLabel id={`lighting-fitting-type-label${data.id}`} className={error && 'text-danger'}>
+                {t('Light Fitting Type')}
               </InputLabel>
               <Select
                 labelId={`lighting-fitting-type-label${data.id}`}
@@ -111,11 +112,11 @@ const LightingSubSystem = ({ data, control, setValue }) => {
                   </MenuItem>
                 ))}
               </Select>
-              {error && <FormHelperText className="text-danger">The Lighting Fitting Type is not empty</FormHelperText>}
+              {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
             </FormControl>
           )}
           rules={{
-            required: `The Lighting Fitting Type is not empty`,
+            required: t(`This field is required`),
           }}
         />
 
@@ -129,7 +130,7 @@ const LightingSubSystem = ({ data, control, setValue }) => {
           }) => (
             <FormControl className={classes.formControl}>
               <TextField
-                label={`% of All Light Fittings${data.id}`}
+                label={t('% of All Light Fittings') + '' + data.id}
                 type="number"
                 value={data.percentage}
                 onChange={(e) => {
@@ -142,8 +143,8 @@ const LightingSubSystem = ({ data, control, setValue }) => {
             </FormControl>
           )}
           rules={{
-            required: `The % of All Light Fittings is not empty`,
-            min: { value: 0, message: 'The value should be >= 0' },
+            required: t(`This field is required`),
+            min: { value: 0, message: t('The value should be >= 0') },
           }}
         />
       </Content>

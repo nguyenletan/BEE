@@ -5,7 +5,7 @@ const LightingFittingType = [
   },
   {
     id: 2,
-    name: 'Compact Fluorescent Lamb'
+    name: 'Compact Fluorescent Lamp'
   },
   {
     id: 3,

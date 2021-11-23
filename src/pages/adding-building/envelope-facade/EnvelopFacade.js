@@ -12,6 +12,7 @@ import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState, envelopFacadeState } from '../../../atoms'
 import { Redirect, useParams } from 'react-router-dom'
 import RoofType from '../../../reference-tables/RoofType'
+import { useTranslation } from 'react-i18next'
 
 const Title = styled.h2`
   color: var(--bs-primary);
@@ -21,7 +22,7 @@ const Title = styled.h2`
 
 const EnvelopFacade = () => {
   const classes = makeStyles(() => (MaterialFormStyle))()
-
+  const { t } = useTranslation('buildingInput')
   const [envelopFacade, setEnvelopFacade] = useRecoilState(envelopFacadeState)
 
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
@@ -126,7 +127,7 @@ const EnvelopFacade = () => {
 
       <div className="d-flex mt-5 mb-4">
 
-        <Title>New Building</Title>
+        <Title>{t('New Building')}</Title>
 
         <BackNextGroupButton
           backLink={parentUrl + '/lighting'}
@@ -143,7 +144,7 @@ const EnvelopFacade = () => {
         <div className="col-12 col-lg-6 col-xxl-4">
           <Box component="div" mb={3}>
             <Typography gutterBottom>
-              External Window to Wall Ratio
+              {t('External Window to Wall Ratio')}
             </Typography>
             <Grid container spacing={2} alignItems="flex-start">
 
@@ -188,7 +189,7 @@ const EnvelopFacade = () => {
               fieldState: { error },
             }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel id="external-roof-type-label" className={error && 'text-danger'}>Roof Type</InputLabel>
+                <InputLabel id="external-roof-type-label" className={error && 'text-danger'}>{t('Roof Type')}</InputLabel>
                 <Select
                   id="external-roof-type-select"
                   labelId="external-roof-type-label"
@@ -210,11 +211,11 @@ const EnvelopFacade = () => {
                   ))}
 
                 </Select>
-                {error && <FormHelperText className="text-danger">The Roof Type is required</FormHelperText>}
+                {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
               </FormControl>
             )}
             rules={{
-              required: `The Roof Type is required`,
+              required: t(`This field is required`),
             }}
           />
           <Controller
@@ -227,7 +228,7 @@ const EnvelopFacade = () => {
             }) => (
               <FormControl className={classes.formControl}>
                 <InputLabel id="external-window-type-label" className={error && 'text-danger'}>
-                  External Window Insulation Type
+                  {t('External Window Insulation Type')}
                 </InputLabel>
                 <Select
                   id="external-window-type-select"
@@ -250,11 +251,11 @@ const EnvelopFacade = () => {
                   ))}
                 </Select>
                 {error &&
-                <FormHelperText className="text-danger">The External Window Insulation Type is required</FormHelperText>}
+                <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
               </FormControl>
             )}
             rules={{
-              required: `The External Window Insulation Type is required`,
+              required: t(`This field is required`),
             }}
           />
         </div>

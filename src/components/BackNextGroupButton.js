@@ -14,9 +14,10 @@ import {
   lightingSubSystemListState,
   solarPanelSystemListState,
   spaceUsageGFAListState,
-} from '../atoms'
-import { createBuilding, updateBuilding } from '../api/BuildidingAPI'
-import { useAuth } from '../AuthenticateProvider'
+} from 'atoms'
+import { createBuilding, updateBuilding } from 'api/BuildidingAPI'
+import { useAuth } from 'AuthenticateProvider'
+import { useTranslation } from 'react-i18next'
 
 const BackNextGroupButton = ({
   backLink,
@@ -45,6 +46,7 @@ const BackNextGroupButton = ({
 
   const { user } = useAuth()
   const { id } = useParams()
+  const { t } = useTranslation('buildingInput')
 
   const onSave = async (e) => {
     const submitData = {
@@ -62,7 +64,7 @@ const BackNextGroupButton = ({
 
     const message = id ? await updateBuilding(id, submitData, idToken) :  await createBuilding(submitData, idToken)
 
-    console.log(message)
+
     // setSavingMessage(message)
   }
 
@@ -79,14 +81,14 @@ const BackNextGroupButton = ({
                 variant="contained"
                 color="default"
                 className="me-2"
-              >Back
+              >{t('Back')}
               </Button>
             </Link>}
             <Link to="/building">
               <Button
                 endIcon={<DoneAll/>} variant="contained" color="primary"
                 className="me-2"
-              >Done
+              >{t('Done')}
               </Button>
             </Link>
           </div>) : (
@@ -103,7 +105,7 @@ const BackNextGroupButton = ({
               variant="contained"
               disabled={isDisabledSave}
               color="primary" className="me-5"
-            >Save
+            >{t('Save')}
             </Button>
 
             {backLink && <Link to={backLink}>
@@ -111,7 +113,7 @@ const BackNextGroupButton = ({
                 startIcon={<ArrowBack/>} variant="contained"
                 color="default"
                 className="me-2"
-              >Back
+              >{t('Back')}
               </Button>
             </Link>}
 
@@ -119,7 +121,7 @@ const BackNextGroupButton = ({
             <Button
               type="submit" endIcon={<ArrowForward/>} variant="contained"
               color="primary"
-            >Next
+            >{t('Next')}
             </Button>}
 
           </div>

@@ -11,6 +11,7 @@ import { Controller } from 'react-hook-form'
 import { electricityConsumptionListState } from '../../../atoms'
 import { removeItemAtIndex, replaceItemAtIndex } from '../../../Utilities'
 import { FormHelperText } from '@material-ui/core'
+import { useTranslation } from 'react-i18next'
 
 const Subtraction = styled(RemoveIcon)`
   cursor: pointer;
@@ -18,11 +19,11 @@ const Subtraction = styled(RemoveIcon)`
 `
 
 const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
-  // console.log(data)
+
   const [selectedDate, setSelectedDate] = React.useState(`${data.year}/${data.month + 1}/01`,
     // new Date("2014-08-18T21:11:54")
   )
-
+  const { t } = useTranslation('buildingInput')
   const [electricityConsumptionList, setElectricityConsumptionList] = useRecoilState(electricityConsumptionListState)
 
   const onRemoveItem = () => {
@@ -35,8 +36,7 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
   }
 
   const onDateChange = (date) => {
-    /// console.log(date)
-    // console.log(date.getFullYear())
+
     setSelectedDate(date)
     const index = electricityConsumptionList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(electricityConsumptionList, index, {
@@ -94,7 +94,7 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
             </MuiPickersUtilsProvider>
           )}
           rules={{
-            required: `This field is not empty`,
+            required: t(`This field is not empty`)
           }}
         />
       </div>
@@ -117,15 +117,15 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
               }}
               value={data.cost}
               name="cost"
-              placeholder="Cost"
+              placeholder={t("Cost")}
               error={!!error}
             />
-            {error && <FormHelperText className="text-danger">This field is not empty and >= 0</FormHelperText>}
+            {error && <FormHelperText className="text-danger">{t('This field is not empty and >= 0')}</FormHelperText>}
           </div>
         )}
         rules={{
-          required: `This field is not empty`,
-          min: { value: 0, message: 'The value should be >= 0' },
+          required: t(`This field is not empty`),
+          min: { value: 0, message: t('The value should be >= 0') },
         }}
       />
 
@@ -148,21 +148,21 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
               }}
               error={!!error}
               value={data.value}
-              placeholder="Value"
+              placeholder={t("Value")}
             />
-            {error && <FormHelperText className="text-danger">This field is not empty and >= 0</FormHelperText>}
+            {error && <FormHelperText className="text-danger">{t('This field is not empty and >= 0')}</FormHelperText>}
           </div>
         )}
         rules={{
-          required: `This field is not empty`,
-          min: { value: 0, message: 'The value should be >= 0' },
+          required: t(`This field is not empty`),
+          min: { value: 0, message: t('The value should be >= 0') },
         }}
       />
 
 
       <div className="col-3">
         <Subtraction
-          titleAccess="Remove Item" onClick={onRemoveItem}
+          titleAccess={t("Remove Item")} onClick={onRemoveItem}
           fontSize="large"
         />
       </div>

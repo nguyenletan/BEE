@@ -6,7 +6,8 @@ import Typography from '@material-ui/core/Typography'
 
 import BusinessRoundedIcon from '@material-ui/icons/BusinessRounded'
 import { useRecoilState } from 'recoil'
-import { addingBuildingProgressState } from '../../atoms'
+import { addingBuildingProgressState } from 'atoms'
+import { useTranslation } from 'react-i18next'
 
 
 
@@ -17,7 +18,7 @@ const Icon = styled(BusinessRoundedIcon)`
 
 const AddingBuildingSuccessfully = () => {
   const [addingBuildingProgress] = useRecoilState(addingBuildingProgressState)
-
+  const { t } = useTranslation('buildingInput')
   return (
     <div>
       <div className='d-flex mt-5 mb-5'>
@@ -36,7 +37,7 @@ const AddingBuildingSuccessfully = () => {
       <div className='text-center mt-5 pt-5'>
         <Icon color="primary" />
         <Typography variant='h3' gutterBottom className='text-center' color="primary">
-          The building was successfully created!
+          {t('The building was successfully created')}!
         </Typography>
       </div>
     </div>
