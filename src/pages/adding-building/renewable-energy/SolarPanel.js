@@ -19,11 +19,12 @@ import { makeStyles } from '@material-ui/core/styles'
 import Select from '@material-ui/core/Select'
 import { Controller } from 'react-hook-form'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
-import { removeItemAtIndex, replaceItemAtIndex } from '../../../Utilities'
-import { solarPanelSystemListState } from '../../../atoms'
+import { removeItemAtIndex, replaceItemAtIndex } from 'Utilities'
+import { solarPanelSystemListState } from 'atoms'
 import TrackingType from '../../../reference-tables/TrackingType'
 import MountingType from '../../../reference-tables/MountingType'
 import PVPanelType from '../../../reference-tables/PVPanelType'
+import { useTranslation } from 'react-i18next'
 
 const Title = styled.h6`
 
@@ -49,9 +50,8 @@ const Content = styled.div`
 // `
 const SolarPanel = ({ data, control, setValue }) => {
   const classes = makeStyles(() => (MaterialFormStyle))()
-
-  const [solarSystemList, setSolarSystemList] = useRecoilState(
-    solarPanelSystemListState)
+  const { t } = useTranslation('buildingInput')
+  const [solarSystemList, setSolarSystemList] = useRecoilState(solarPanelSystemListState)
 
   const [showInclineAngle, setShowInclineAngle] = React.useState(false)
   const [showInclineAngleSlider, setShowInclineAngleSlider] = React.useState(true)
@@ -209,8 +209,8 @@ const SolarPanel = ({ data, control, setValue }) => {
 
     <div className="px-4 py-3 border rounded shadow-sm">
       <Header>
-        <Title>{data.title}</Title>
-        <Subtraction title="Remove Item" onClick={onRemoveItem}>
+        <Title>{t(data.title)}</Title>
+        <Subtraction title={t("Remove Item")} onClick={onRemoveItem}>
           <i className="bi bi-dash-lg"/>
         </Subtraction>
       </Header>
@@ -227,7 +227,7 @@ const SolarPanel = ({ data, control, setValue }) => {
             <FormControl className={classes.formControl}>
               <TextField
                 type="number"
-                label="Installed Capacity (kWp)"
+                label={t("Installed Capacity (kWp)")}
                 name={`installedCapacity`}
                 value={data.installedCapacity}
                 onChange={(e) => {
@@ -240,8 +240,8 @@ const SolarPanel = ({ data, control, setValue }) => {
             </FormControl>
           )}
           rules={{
-            required: `The Installed Capacity is required`,
-            min: { value: 0, message: 'The value should be >= 0' },
+            required: t(`This field is required`),
+            min: { value: 0, message: t('The value should be >= 0') },
           }}
         />
 
@@ -254,7 +254,7 @@ const SolarPanel = ({ data, control, setValue }) => {
             fieldState: { error },
           }) => (
             <FormControl className={classes.formControl}>
-              <InputLabel id={`tracking-type-label${data.id}`} className={error && 'text-danger'}>Tracking Type</InputLabel>
+              <InputLabel id={`tracking-type-label${data.id}`} className={error && 'text-danger'}>{t('Tracking Type')}</InputLabel>
               <Select
                 labelId={`tracking-type-label${data.id}`}
                 name="trackingTypeId"
@@ -274,11 +274,11 @@ const SolarPanel = ({ data, control, setValue }) => {
                   </MenuItem>
                 ))}
               </Select>
-              {error && <FormHelperText className="text-danger">The Tracking Type is required</FormHelperText>}
+              {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
             </FormControl>
           )}
           rules={{
-            required: `The Tracking Type is required`,
+            required: t(`This field is required`),
           }}
         />
 
@@ -296,10 +296,10 @@ const SolarPanel = ({ data, control, setValue }) => {
                   }}
                 />
               }
-              label="Unknown Incline Angle"
+              label={t("Unknown Incline Angle")}
             />
             {showInclineAngleSlider && <Box component="div" mb={1} mt={2}>
-              <Typography gutterBottom color="primary">Incline Angle (degrees from horizontal)</Typography>
+              <Typography gutterBottom color="primary">{t('Incline Angle (degrees from horizontal)')}</Typography>
               <Grid container spacing={2} alignItems="flex-start">
                 <Grid item xs>
                   <Slider
@@ -357,10 +357,10 @@ const SolarPanel = ({ data, control, setValue }) => {
                   }}
                 />
               }
-              label="Unknown Orientation Angle"
+              label={t("Unknown Orientation Angle")}
             />
             {showOrientationAngleSlider && <Box component="div" mb={1} mt={2}>
-              <Typography gutterBottom color="primary">Orientation Angle (degrees from South)</Typography>
+              <Typography gutterBottom color="primary">{t('Orientation Angle (degrees from South)')}</Typography>
               <Grid container spacing={2} alignItems="flex-start">
                 <Grid item xs>
                   <Slider
@@ -405,7 +405,7 @@ const SolarPanel = ({ data, control, setValue }) => {
           </>)}
 
         <Box component="div" mb={1} mt={2}>
-          <Typography gutterBottom color="primary">System Loss (%)</Typography>
+          <Typography gutterBottom color="primary">{t('System Loss (%)')}</Typography>
           <Grid container spacing={2} alignItems="flex-start">
             <Grid item xs>
               <Slider
@@ -459,7 +459,7 @@ const SolarPanel = ({ data, control, setValue }) => {
           }) => (
             <FormControl className={classes.formControl}>
               <InputLabel id={`pv-tech-choice-label${data.id}`} className={error && 'text-danger'}>
-                P.V. Panel Type
+                {t('P.V. Panel Type')}
               </InputLabel>
               <Select
                 labelId={`pv-tech-choice-label${data.id}`}
@@ -475,11 +475,11 @@ const SolarPanel = ({ data, control, setValue }) => {
                   <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
                 ))}
               </Select>
-              {error && <FormHelperText className="text-danger">The Tracking Type is required</FormHelperText>}
+              {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
             </FormControl>
           )}
           rules={{
-            required: `The P.V. Panel Type is required`,
+            required: t(`This field is required`),
           }}
         />
 
@@ -493,7 +493,7 @@ const SolarPanel = ({ data, control, setValue }) => {
           }) => (
             <FormControl className={classes.formControl}>
               <InputLabel id={`mounting-type-label${data.id}`} className={error && 'text-danger'}>
-                Mounting Type
+                {t('Mounting Type')}
               </InputLabel>
               <Select
                 labelId={`mounting-type-label${data.id}`}
@@ -513,11 +513,11 @@ const SolarPanel = ({ data, control, setValue }) => {
                   </MenuItem>
                 ))}
               </Select>
-              {error && <FormHelperText className="text-danger">The Mounting Type is required</FormHelperText>}
+              {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
             </FormControl>
           )}
           rules={{
-            required: `The Mounting Type is required`,
+            required: `This field is required`,
           }}
         />
       </Content>

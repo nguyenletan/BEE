@@ -8,6 +8,7 @@ import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState } from '../../../atoms'
 import { Redirect, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const Form = styled.form`
 
@@ -24,6 +25,7 @@ const HVAC = () => {
     addingBuildingProgressState)
 
   const [isMovingNext, setIsMovingNext] = useState(false)
+  const { t } = useTranslation('buildingInput')
 
   const onSubmit = (data) => {
     // console.log(data)
@@ -53,7 +55,7 @@ const HVAC = () => {
 
       <div className="d-flex mt-5 mb-4">
 
-        <Title>New Building</Title>
+        <Title>{t('New Building')}</Title>
 
         <BackNextGroupButton
           backLink={parentUrl + '/electricity-consumption'}

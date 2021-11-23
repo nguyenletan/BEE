@@ -5,6 +5,7 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import { withStyles } from '@material-ui/core'
+import { useTranslation } from 'react-i18next'
 
 const BeeLinearProgress = withStyles((theme) => ({
   root: {
@@ -32,13 +33,14 @@ const textStyles = makeStyles({
 
 function LinearProgressWithLabel (props) {
   const classes = textStyles()
+  const { t } = useTranslation('buildingInput')
   return (
     <Box display='flex' alignItems='center'>
       <Box width='100%' mr={1} className='position-relative'>
         <BeeLinearProgress variant='determinate' {...props} />
         <Typography variant='body2' color='textSecondary' className={classes.root}>{`${Math.round(
           props.value
-        )}% Complete`}
+        )}% `}{t('Complete')}
         </Typography>
       </Box>
     </Box>
@@ -61,7 +63,6 @@ const useStyles = makeStyles({
 
 const Progress = ({ value }) => {
   const classes = useStyles()
-
   // React.useEffect(() => {
   //   const timer = setInterval(() => {
   //     setProgress(

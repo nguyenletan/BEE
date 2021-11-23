@@ -93,5 +93,52 @@
   "Add new item": "Gegenstand entfernen",
 
   "_comment8": "//Total % of GFA",
-  "Total % of GFA":"% BGF Gesamt"
+  "Total % of GFA":"% BGF Gesamt",
+
+  "_comment9":"//New Building Input - Electricity Consumption",
+  "Month / Year":"Monat / Jahr",
+  "Cost ($)":"Kosten (€)",
+  "Consumption (kWh)":"Verbrauch (kWh)",
+  "Cost": "Kosten",
+  "Value": "Wert",
+  "This field is not empty and >= 0": "Dieses Feld ist nicht leer und >= 0",
+
+  "_comment10":"//New Building Input - HVAC",
+  "Cooling System Installed" :"Klimaanlage installiert ?",
+  "Heating System Installed":"Heizungsanlage installiert",
+  "Cooling System Type":"Klimatisierungstyp",
+  "Heating System Type":"Heizungssystem",
+  "Compressor Type":"Kompressortyp",
+  "Heater Type":"Wärmeerzeugungsart",
+  "Refrigerant Type":"Kältemitteltyp",
+  "Heater Energy Source":"Energieart Heizung",
+  "Chiller Energy Source":"Energieversorgung des Kühlers",
+
+
+  "_comment11":"//New Building Input - Lighting",
+  "Lighting Subsystem":"Beleuchtungs-Subsysteme",
+  "Total light fitting usage":"Anteil an Gesamtinstallation",
+  "Fitting":"System",
+  "Light Fitting Type":"Leuchtmitteltyp",
+  "% of All Light Fittings":"% Anteil aller Leuchtmittel",
+
+  "_comment12":"//New Building Input - Envelope & Facade",
+  "External Window to Wall Ratio":"Fensterflächenanteil",
+  "Roof Insulation Type":"Dachisolierungsart",
+  "External Window Insulation Type":"Verglasungstyp",
+
+  "_comment13":"//New Building Input - Renewable Energy",
+  "P.V. System 1":"Photovoltaikanlage 1",
+  "Installed Capacity (kWp)":"Installierte Leistung (kWp)",
+  "Tracking Type":"Art des Nachführsystems",
+  "Unknown Incline Angle":"Unbekannter Neigungswinkel",
+  "Incline Angle (degrees from horizontal)":"Neigungswinkel (Grad von der Horizontalen)",
+  "Unknown Orientation Angle":"Unbekannter Ausrichtungswinkel",
+  "Orientation Angle (degrees from South)":"Ausrichtungswinkel (Grad von Süden)",
+  "System Loss (%)":"Systemverlust (%)",
+  "P.V. Panel Type":"PV Plattenart",
+  "Mounting Type":"Befestigungsart",
+
+  "_comment14":"//New Building - Done",
+  "The building was successfully created":"Das Gebäude wurde erfolgreich erstellt"
 }

@@ -4,10 +4,11 @@ import StepNav from '../step-nav/StepNav'
 import { useForm } from 'react-hook-form'
 import SolarPanel from './SolarPanel'
 import { useRecoilState } from 'recoil'
-import { addingBuildingProgressState, solarPanelSystemListState } from '../../../atoms'
+import { addingBuildingProgressState, solarPanelSystemListState } from 'atoms'
 import _ from 'lodash'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { Redirect, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const Form = styled.form`
 
@@ -41,6 +42,8 @@ const RenewableEnergy = () => {
     addingBuildingProgressState)
 
   const [isMovingNext, setIsMovingNext] = useState(false)
+
+  const { t } = useTranslation('buildingInput')
 
   const onAddSolarSystemList = () => {
     setSolarSystemList((oldList) => [
@@ -92,7 +95,7 @@ const RenewableEnergy = () => {
       <Redirect to={parentUrl + '/adding-building-successfully'}/>}
       <div className="d-flex mt-5 mb-4">
 
-        <Title>New Building</Title>
+        <Title>{t('New Building')}</Title>
 
         <BackNextGroupButton
           backLink={parentUrl + '/envelope-facade'}
@@ -109,7 +112,7 @@ const RenewableEnergy = () => {
         <div className="col-12 col-lg-8">
           <Header className="d-flex justify-content-between">
             <h6>Solar P.V. System</h6>
-            <Adding title="Add new item" onClick={onAddSolarSystemList}>
+            <Adding title={t("Add new item")} onClick={onAddSolarSystemList}>
               <i className="bi bi-plus-lg font-weight-bolder"/>
             </Adding>
           </Header>

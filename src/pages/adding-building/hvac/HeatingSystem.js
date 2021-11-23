@@ -11,6 +11,7 @@ import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import { makeStyles } from '@material-ui/core/styles'
 import { useRecoilState } from 'recoil'
 import { heatingSystemState } from '../../../atoms'
+import { useTranslation } from 'react-i18next'
 
 const Title = styled.h4`
   font-size: 1.1rem;
@@ -18,7 +19,7 @@ const Title = styled.h4`
 
 const HeatingSystem = ({ control, setValue }) => {
   const classes = makeStyles(() => (MaterialFormStyle))()
-
+  const { t } = useTranslation('buildingInput')
   const [heatingSystem, setHeatingSystem] = useRecoilState(heatingSystemState)
 
   const [energySourceType, setEnergySourceType] = React.useState(HeaterEnergySourceType)
@@ -61,14 +62,14 @@ const HeatingSystem = ({ control, setValue }) => {
   }
 
   useEffect(() => {
-    setValue(`heatingSystemTypeId`, heatingSystem.heatingSystemTypeId, {shouldValidate: true})
-    setValue(`heaterTypeId`, heatingSystem.heaterTypeId, {shouldValidate: true})
-    setValue(`heaterEnergySourceTypeId`, heatingSystem.heaterEnergySourceTypeId, {shouldValidate: true})
+    setValue(`heatingSystemTypeId`, heatingSystem.heatingSystemTypeId, { shouldValidate: true })
+    setValue(`heaterTypeId`, heatingSystem.heaterTypeId, { shouldValidate: true })
+    setValue(`heaterEnergySourceTypeId`, heatingSystem.heaterEnergySourceTypeId, { shouldValidate: true })
   }, [heatingSystem.heaterEnergySourceTypeId, heatingSystem.heaterTypeId, heatingSystem.heatingSystemTypeId, setValue])
 
   return (
     <>
-      <Title>Heating System Installed</Title>
+      <Title>{t('Heating System Installed')}</Title>
       <FormControlLabel
         className="mb-3"
         control={
@@ -79,7 +80,7 @@ const HeatingSystem = ({ control, setValue }) => {
             onChange={onHasHeatingSystemChange}
           />
         }
-        label="Yes"
+        label={t('Yes')}
       />
 
       {heatingSystem.hasHeatingSystem && (
@@ -95,7 +96,7 @@ const HeatingSystem = ({ control, setValue }) => {
             }) => (
               <FormControl className={classes.formControl}>
                 <InputLabel id="heating-system-type-label" className={error && 'text-danger'}>
-                  Heating System Type
+                  {t('Heating System Type')}
                 </InputLabel>
                 <Select
                   labelId="heating-system-type-label"
@@ -111,11 +112,11 @@ const HeatingSystem = ({ control, setValue }) => {
                     <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
                   ))}
                 </Select>
-                {error && <FormHelperText className="text-danger">The Heating System Type is not empty</FormHelperText>}
+                {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
               </FormControl>
             )}
             rules={{
-              required: 'Heating System Type is required',
+              required: t('This field is required'),
             }}
           />
 
@@ -128,7 +129,7 @@ const HeatingSystem = ({ control, setValue }) => {
             }) => (
               <FormControl className={classes.formControl}>
                 <InputLabel id="heater-type-label" className={error && 'text-danger'}>
-                  Heater Type
+                  {t('Heater Type')}
                 </InputLabel>
                 <Select
                   labelId="heater-type-label"
@@ -144,11 +145,11 @@ const HeatingSystem = ({ control, setValue }) => {
                     <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
                   ))}
                 </Select>
-                {error && <FormHelperText className="text-danger">The Heater Type is not empty</FormHelperText>}
+                {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
               </FormControl>
             )}
             rules={{
-              required: 'Heater Type is required',
+              required: t('This field is required'),
             }}
           />
 
@@ -161,7 +162,7 @@ const HeatingSystem = ({ control, setValue }) => {
             }) => (
               <FormControl className={classes.formControl}>
                 <InputLabel id="heater-energy-source-label" className={error && 'text-danger'}>
-                  Heater Energy Source
+                  {t('Heater Energy Source')}
                 </InputLabel>
                 <Select
                   labelId="heater-energy-source-label"
@@ -178,11 +179,11 @@ const HeatingSystem = ({ control, setValue }) => {
                   ))}
                 </Select>
                 {error &&
-                <FormHelperText className="text-danger">The Heater Energy Source Type is not empty</FormHelperText>}
+                <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
               </FormControl>
             )}
             rules={{
-              required: 'Heater Energy Source Type is required',
+              required: t('Heater Energy Source Type is required'),
             }}
           />
         </div>
