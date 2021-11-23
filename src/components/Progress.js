@@ -63,7 +63,6 @@ const useStyles = makeStyles({
 
 const Progress = ({ value }) => {
   const classes = useStyles()
-  const { t } = useTranslation('buildingInput')
   // React.useEffect(() => {
   //   const timer = setInterval(() => {
   //     setProgress(
