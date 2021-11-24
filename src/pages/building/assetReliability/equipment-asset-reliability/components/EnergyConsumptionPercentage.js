@@ -123,7 +123,7 @@ const EnergyConsumptionPercentage = (props) => {
 
   return (
     <Wrapper>
-      <h5 className="mb-5">Energy Consumption %</h5>
+      <h5 className="mb-5">{t('Energy Consumption')} %</h5>
       <Row>
         <Label>{t('of Equipment Group')}</Label>
         {equipmentGroup && <PercentagePieChart data={equipmentGroup} />}

@@ -58,7 +58,7 @@ const PotentialIssueList =() => {
       <PotentialIssueTable className="table ">
         <thead>
         <tr>
-          <th scope="col">{t('Similar Historical Fault')}</th>
+          <th scope="col">{t('Potential Issue Identified')}</th>
           <th scope="col">{t('May Exceed Threshold In')}</th>
           <th scope="col">{t('Average Parts Lead Time')}</th>
           <th scope="col">{t('Average Time to Repair')}</th>

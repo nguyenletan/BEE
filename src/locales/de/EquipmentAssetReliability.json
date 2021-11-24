@@ -70,7 +70,7 @@
   "_comment11":"//List of Potential Issues",
   "List of Potential Issues":"Liste potentieller Probleme",
   "Potential Issue Identified":"Potentielles Problem identifiziert",
-  "May Exceed Threshold in":"Schwellwert erreicht in",
+  "May Exceed Threshold In":"Schwellwert erreicht in",
   "Average Parts Lead Time":"Durchschnittl. Vorlaufzeit Eratzteilbeschaffung",
   "Average Time to Repair":"Durchschnittliche Reparaturzeit",
   "Details":"Detail",
@@ -106,5 +106,6 @@
   "Recurring Tasks Scheduled":"Wiederkehrende Aufgaben geplant",
   "Upcoming Tasks in 2 Weeks":"Anstehende Aufgaben in 2 Wochen",
   "Tasks Missed in Past 2 Weeks":"In den letzten 2 Wochen verpasste Aufgaben"
+
 
 }

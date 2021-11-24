@@ -71,7 +71,7 @@ const SubSystemPerformance = ({ data }) => {
     let iconSVG = ''
     let translateX = anchor === 'end' ? -50 : anchor === 'middle' ? -20 : -10
     let translateY = angle < 0 ? -60 : -30
-    console.log(id)
+
     switch (id) {
       case t('Energy Usage Intensity'):
         iconSVG = energySVG()
@@ -181,7 +181,7 @@ const SubSystemPerformance = ({ data }) => {
             <text
               y={66} x={-10}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Performance')}
+            >{t('_Performance')}
             </text>
           </>
         )
@@ -193,14 +193,14 @@ const SubSystemPerformance = ({ data }) => {
         texts = (
           <>
             <text
-              y={50} x={-10}
+              y={50} x={-20}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Envelope')}
+            >{t('Renewables')}
             </text>
             <text
-              y={66} x={-30}
+              y={66} x={0}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Performance')}
+            >{t('Usage')}
             </text>
           </>
         )
