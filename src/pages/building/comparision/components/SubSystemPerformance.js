@@ -143,7 +143,7 @@ const SubSystemPerformance = ({ data }) => {
             <text
               y={66} x={-13}
               style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Efficacy')}
+            >{t('Efficiency')}
             </text>
           </>
         )
