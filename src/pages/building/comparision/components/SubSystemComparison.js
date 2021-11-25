@@ -208,13 +208,13 @@ const SubSystemComparison = () => {
       case 'lighting':
         icon = lightingImg
         break
-      case 'mechanicalVentilation':
+      case 'mechanical ventilation':
         icon = mechVentImg
         break
       case 'renewable':
         icon = renewableImg
         break
-      case 'plugLoads':
+      case 'plug loads':
         icon = plugLoadsImg
         break
       default:
@@ -505,7 +505,7 @@ const SubSystemComparison = () => {
 
       <ItemRow
         className='row' onClick={() => openPopup({
-          type: 'mechanicalVentilation',
+          type: 'mechanical ventilation',
           fittingLabel: 'Solar Panel Capacity Installed',
           currentFittingName: 'No Solar Panel System',
           potentialBestInClassFittingName: 'Solar Panel',
@@ -605,7 +605,7 @@ const SubSystemComparison = () => {
 
       <ItemRow
         className='row' onClick={() => openPopup({
-          type: 'plugLoads',
+          type: 'plug loads',
           fittingLabel: 'Roof Insulation Type',
           currentFittingName: 'Concrete Slab - Uninsulated',
           energyPerformance: {

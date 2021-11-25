@@ -53,13 +53,15 @@
   "Capacity kWp": "Kapazität kWp",
 
   "Improving the solar panel capacity reduces the energy consumption of the building from the grid": "Die Verbesserung der Solarmodulkapazität reduziert den Energieverbrauch des Gebäudes aus dem Netz",
-  "Plug Load": "Steckerlast",
+  "Plug Loads": "Steckerlast",
+  "plug loads": "Steckerlast",
+  "mechanical ventilation":"Mechanische Lüftung",
   "NA": "Nicht verfügbar",
   "Smart Plugs": "Smart Plugs",
   "Energy Usage kWh": "Energieverbrauch kWh",
   "Managing the plug loads and switching them off when not in use reduces the energy consumption": "Das Verwalten der Steckerlasten und das Abschalten bei Nichtgebrauch reduziert den Energieverbrauch",
 
-  "Performance": "Performance",
+  "Performance": "Effizienz",
 
 
 

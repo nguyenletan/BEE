@@ -124,7 +124,7 @@
 
   "_comment12":"//New Building Input - Envelope & Facade",
   "External Window to Wall Ratio":"Fensterflächenanteil",
-  "Roof Insulation Type":"Dachisolierungsart",
+  "Roof Type": "Dachart",
   "External Window Insulation Type":"Verglasungstyp",
 
   "_comment13":"//New Building Input - Renewable Energy",

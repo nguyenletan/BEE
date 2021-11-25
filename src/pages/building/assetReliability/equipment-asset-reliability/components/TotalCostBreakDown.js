@@ -45,19 +45,20 @@ const TotalCostBreakDown = () => {
       pureValue:  400000
     },
     {
-      id: 'Instandhaltung',
-      label: 'Maintenance',
-      value: 23,
-      color: '#acbf42',
-      pureValue: 230000
-    },
-    {
       id: 'Ersatzteile',
       label: 'Parts',
       value: 27,
       color: '#d5dfa3',
       pureValue: 270000
     },
+    {
+      id: 'Instandhaltung',
+      label: 'Maintenance',
+      value: 23,
+      color: '#acbf42',
+      pureValue: 230000
+    },
+
   ]
 
   const [data, setData] = useState(dataEN)
@@ -76,11 +77,12 @@ const TotalCostBreakDown = () => {
 
       <TotalBreakDownPieChart
         title=""
-        startAngle={-0}
+        startAngle={-100}
         data={data}
         innerRadius={0.55}
         marginRight="0px"
         hasDescription
+
       />
     </Wrapper>
   )

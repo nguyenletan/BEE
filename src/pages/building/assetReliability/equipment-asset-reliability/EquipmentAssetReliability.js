@@ -272,7 +272,7 @@ const EquipmentAssetReliability = () => {
                   </EquipmentDetailInformationCol>
 
                   <EquipmentDetailInformationCol>
-                    <span>Commissioned</span>
+                    <span>{t('Commissioned')}</span>
                     <EquipmentDetailInformationRowValue>{formatDate(
                       equipment?.EquipmentDetail[0]?.commissioned)}</EquipmentDetailInformationRowValue>
                   </EquipmentDetailInformationCol>

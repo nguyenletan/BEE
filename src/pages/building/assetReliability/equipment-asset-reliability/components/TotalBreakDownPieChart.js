@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { ResponsivePie } from '@nivo/pie'
 import { formatNumber } from 'Utilities'
+import { useTranslation } from 'react-i18next'
 
 const BreakDownBlock = styled.div`
   background-color: #fafafa;
@@ -63,6 +64,8 @@ const TotalBreakDownPieChart = (props) => {
     noCenterText,
   } = props
 
+  const { t } = useTranslation('common')
+
   const commonProperties = {
     margin: { top: 40, right: 20, bottom: 20, left: 20 },
     data: data,
@@ -102,7 +105,7 @@ const TotalBreakDownPieChart = (props) => {
             fontWeight: '700',
           }}
         >
-          Used
+          {t('Used')}
         </text>}
       </>
     )

@@ -75,7 +75,7 @@ const LightingSubSystem = ({ data, control, setValue }) => {
   return (
     <div className="p-3 shadow-sm border rounded">
       <Header>
-        <Title>{data.title}</Title>
+        <Title>{t(data.title)}</Title>
         <Subtraction title={t("Remove Item")} onClick={onRemoveItem}>
           <i className="bi bi-dash-lg"/>
         </Subtraction>
