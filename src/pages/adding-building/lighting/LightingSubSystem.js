@@ -35,7 +35,7 @@ const Content = styled.div`
 
 const LightingSubSystem = ({ data, control, setValue }) => {
   const classes = makeStyles(() => (MaterialFormStyle))()
-  const { t } = useTranslation('buildingInput')
+  const { t } = useTranslation(['buildingInput', 'common'])
   const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
     lightingSubSystemListState)
 
@@ -108,7 +108,7 @@ const LightingSubSystem = ({ data, control, setValue }) => {
                     key={o.id}
                     value={o.id}
                   >
-                    {o.name}
+                    {t(o.name,{ns: 'common'})}
                   </MenuItem>
                 ))}
               </Select>

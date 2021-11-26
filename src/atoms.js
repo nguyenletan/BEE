@@ -34,7 +34,7 @@ export const lightingSubSystemListState = atom({
   default: [
     {
       id: parseInt(_.uniqueId()),
-      title: 'Fitting ',
+      title: 'Fitting',
       indoorLightingSystemTypeId: '',
       percentage: '',
     }],

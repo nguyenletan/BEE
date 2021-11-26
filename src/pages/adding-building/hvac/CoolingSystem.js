@@ -19,7 +19,7 @@ const Title = styled.h4`
 
 const CoolingSystem = ({ control, setValue }) => {
   const classes = makeStyles(() => (MaterialFormStyle))()
-  const { t } = useTranslation('buildingInput')
+  const { t } = useTranslation(['buildingInput', 'common'])
   const [coolingSystem, setCoolingSystem] = useRecoilState(coolingSystemState)
 
   const [compressorTypeList, setCompressorTypeList] = React.useState(CompressorType)
