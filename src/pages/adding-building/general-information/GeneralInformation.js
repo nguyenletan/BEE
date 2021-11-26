@@ -161,7 +161,7 @@ const GeneralInformation = () => {
     setValue('buildingPhoto', generalBuildingInformation?.buildingPhoto)
   }, [generalBuildingInformation, setValue])
 
-  const { t } = useTranslation('buildingInput')
+  const { t } = useTranslation(['buildingInput', 'common'])
 
   useEffect(() => {
     if (generalBuildingInformation !== null &&
@@ -270,7 +270,7 @@ const GeneralInformation = () => {
                           key={o.id}
                           value={o.id}
                         >
-                          {o.name}
+                          {t(o.name, {ns: "common"})}
                         </MenuItem>
                       ))}
                     </Select>
@@ -721,7 +721,7 @@ const GeneralInformation = () => {
                           key={o.id}
                           value={o.id}
                         >
-                          {o.name}
+                          {t(o.name, {ns: 'common'})}
                         </MenuItem>
                       ))}
                     </Select>

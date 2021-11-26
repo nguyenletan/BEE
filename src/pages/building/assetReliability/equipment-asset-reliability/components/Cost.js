@@ -174,7 +174,7 @@ const Cost = () => {
         translateX: 20,
         translateY: -50,
         itemsSpacing: 2,
-        itemWidth: 100,
+        itemWidth: 140,
         itemHeight: 20,
         itemDirection: 'left-to-right',
         itemOpacity: 0.85,

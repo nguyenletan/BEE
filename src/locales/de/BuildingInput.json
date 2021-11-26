@@ -78,6 +78,7 @@
   "Public Holiday":"Feiertag",
 
   "_comment7": "//Space Usage and %GFA",
+  "New Usage" :"Neue Nutzung",
   "Space usage and %GFA":"Flächennutzung in % BGF",
   "Title": "Titel",
   "Usage 1":"Nutzung 1",
@@ -124,11 +125,12 @@
 
   "_comment12":"//New Building Input - Envelope & Facade",
   "External Window to Wall Ratio":"Fensterflächenanteil",
-  "Roof Insulation Type":"Dachisolierungsart",
+  "Roof Type": "Dachart",
   "External Window Insulation Type":"Verglasungstyp",
 
   "_comment13":"//New Building Input - Renewable Energy",
   "P.V. System 1":"Photovoltaikanlage 1",
+  "Solar P.V. System": "Solar-PV System",
   "Installed Capacity (kWp)":"Installierte Leistung (kWp)",
   "Tracking Type":"Art des Nachführsystems",
   "Unknown Incline Angle":"Unbekannter Neigungswinkel",
@@ -140,5 +142,8 @@
   "Mounting Type":"Befestigungsart",
 
   "_comment14":"//New Building - Done",
-  "The building was successfully created":"Das Gebäude wurde erfolgreich erstellt"
+  "The building was successfully created":"Das Gebäude wurde erfolgreich erstellt",
+
+  "Back": "Zurück",
+  "Next": "Nächste"
 }

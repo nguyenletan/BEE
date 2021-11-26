@@ -46,7 +46,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
   const [percentage, setPercentage] = useState(data.percentage ?? 0)
   const [fanTypeId, selectFanTypeId] = useState(data.fanTypeId ?? 0)
   const [hasReheatRecovery, setHasReheatRecovery] = useState(data.hasReheatRecovery ?? false)
-  const { t } = useTranslation('buildingInput')
+  const { t } = useTranslation(['buildingInput', 'common'])
   const [isShowFanTypeAndHeatRecovery, setIsShowFanTypeAndHeatRecovery] = useState(
     data.climateControlId === 4)
 
@@ -164,7 +164,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
             <FormControl className={classes.mediumFormControl}>
               <TextField label={t('Title')}
                          type="text"
-                         value={title}
+                         value={t(title)}
                          onChange={(e) => {
                            onTitleChange(e)
                            onChange(e)
@@ -208,7 +208,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                     key={o.id}
                     value={o.id}
                   >
-                    {o.name}
+                    {t(o.name, {ns: 'common'})}
                   </MenuItem>
                 ))}
               </Select>
@@ -269,7 +269,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                 }}
               >
                 {ClimateControlType.map((o) => (
-                  <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
+                  <MenuItem key={o.id} value={o.id}>{t(o.name, {ns: 'common'})}</MenuItem>
                 ))}
               </Select>
               {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
@@ -308,7 +308,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                           key={o.id}
                           value={o.id}
                         >
-                          {o.name}
+                          {t(o.name, {ns: 'common'})}
                         </MenuItem>
                       ))}
                     </Select>

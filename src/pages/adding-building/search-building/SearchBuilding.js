@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { getLatLngFromAddress } from '../../../Utilities'
+import { getLatLngFromAddress } from 'Utilities'
 import { GoogleMap, Marker, OverlayView } from '@react-google-maps/api'
 import { Redirect } from 'react-router-dom'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
@@ -15,7 +15,7 @@ import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import StepNav from '../step-nav/StepNav'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
-import { addingBuildingProgressState, generalBuildingInformationState } from '../../../atoms'
+import { addingBuildingProgressState, generalBuildingInformationState } from 'atoms'
 import { useTranslation } from 'react-i18next'
 
 const Title = styled.h2`

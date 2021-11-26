@@ -20,6 +20,7 @@
   "Location":"Standort",
   "Expected Life (Years)":"Erwartete Lebensdauer (Jahre)",
   "Maintenance & Sensor Logs":"Wartungs- und Sensorprotokolle",
+  "Straight Line": "Gerade Linie",
 
   "_comment3":"//Alerts Chart",
   "Alerts":"Warnungen",

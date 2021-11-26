@@ -22,7 +22,7 @@ const Title = styled.h2`
 
 const EnvelopFacade = () => {
   const classes = makeStyles(() => (MaterialFormStyle))()
-  const { t } = useTranslation('buildingInput')
+  const { t } = useTranslation(['buildingInput', 'common'])
   const [envelopFacade, setEnvelopFacade] = useRecoilState(envelopFacadeState)
 
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
@@ -206,10 +206,9 @@ const EnvelopFacade = () => {
                       key={o.id}
                       value={o.id}
                     >
-                      {o.name}
+                      {t(o.name, {ns: "common"})}
                     </MenuItem>
                   ))}
-
                 </Select>
                 {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
               </FormControl>

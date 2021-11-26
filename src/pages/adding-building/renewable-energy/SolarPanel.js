@@ -50,7 +50,7 @@ const Content = styled.div`
 // `
 const SolarPanel = ({ data, control, setValue }) => {
   const classes = makeStyles(() => (MaterialFormStyle))()
-  const { t } = useTranslation('buildingInput')
+  const { t } = useTranslation(['buildingInput', 'common'])
   const [solarSystemList, setSolarSystemList] = useRecoilState(solarPanelSystemListState)
 
   const [showInclineAngle, setShowInclineAngle] = React.useState(false)
@@ -509,7 +509,7 @@ const SolarPanel = ({ data, control, setValue }) => {
                     key={o.id}
                     value={o.id}
                   >
-                    {o.name}
+                    {t(o.name, {ns: 'common'})}
                   </MenuItem>
                 ))}
               </Select>
