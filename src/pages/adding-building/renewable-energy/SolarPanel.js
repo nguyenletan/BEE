@@ -270,7 +270,7 @@ const SolarPanel = ({ data, control, setValue }) => {
                     key={o.id}
                     value={o.id}
                   >
-                    {o.name}
+                    {t(o.name, {ns: 'common'})}
                   </MenuItem>
                 ))}
               </Select>
@@ -472,7 +472,7 @@ const SolarPanel = ({ data, control, setValue }) => {
                 }}
               >
                 {PVPanelType.map((o) => (
-                  <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
+                  <MenuItem key={o.id} value={o.id}>{t(o.name, {ns: 'common'})}</MenuItem>
                 ))}
               </Select>
               {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
