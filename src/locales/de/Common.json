@@ -58,9 +58,23 @@
   "Fluorescent T8 Tube": "T8-Leuchtstoffröhre",
   "Fluorescent T12 Tube": "T12-Leuchtstoffröhre",
 
+  "Pitched Roof": "Satteldach",
+  "Flat Roof" : "Flachdach",
+
+  "Single Glazed": "1-Fachverglasung",
+  "Double Glazed (No Low-E Coating)": "2-Fachverglasung (kein Low-E)",
+  "Double Glazed (Low-E Coating)" : "2-Fachverglasung (Low-E)",
+  "Triple Glazed (Low-E Coating)": "3-Fachverglasung (Low-E)",
+
+  "Fixed": "Fest",
+  "Vertical Axis Tracking": "Nachführung um vertikale Achse",
+  "Incline Axis Tracking": "Nachführung des Neigungswinkels",
+  "Two-Axis Tracking": "Nachführung um zwei-Achsen",
+
+
   "Crystal Silicon": "Kristallin",
   "Copper Indium Selenide": "Dünnschicht: Kupfer-Indium",
-  "Cadmium Telluride": "Dünnschicht: Cadmium-Telluride",
+  "Cadmium Telluride": "Dünnschicht: Cadmium-TelFestluride",
   "Unknown": "Nicht bekannt",
 
   "Free Standing": "Freistehend",

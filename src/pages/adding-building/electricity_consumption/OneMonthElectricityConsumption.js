@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import 'date-fns'
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
@@ -8,10 +8,12 @@ import Grid from '@material-ui/core/Grid'
 import DateFnsUtils from '@date-io/date-fns'
 import { useRecoilState } from 'recoil'
 import { Controller } from 'react-hook-form'
-import { electricityConsumptionListState } from '../../../atoms'
-import { removeItemAtIndex, replaceItemAtIndex } from '../../../Utilities'
+import { electricityConsumptionListState } from 'atoms'
+import { removeItemAtIndex, replaceItemAtIndex } from 'Utilities'
 import { FormHelperText } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
+import de from "date-fns/locale/de";
+import enGB from "date-fns/locale/en-GB";
 
 const Subtraction = styled(RemoveIcon)`
   cursor: pointer;
@@ -23,7 +25,7 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
   const [selectedDate, setSelectedDate] = React.useState(`${data.year}/${data.month + 1}/01`,
     // new Date("2014-08-18T21:11:54")
   )
-  const { t } = useTranslation('buildingInput')
+  const { t, i18n } = useTranslation('buildingInput')
   const [electricityConsumptionList, setElectricityConsumptionList] = useRecoilState(electricityConsumptionListState)
 
   const onRemoveItem = () => {
@@ -58,11 +60,21 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
     setElectricityConsumptionList(newList)
   }
 
+  const [locale, setLocale] = useState(enGB)
+
   useEffect(() => {
     setValue(`date${data.id}`, selectedDate, {shouldValidate: true})
     setValue(`cost${data.id}`, data.cost, {shouldValidate: true})
     setValue(`value${data.id}`, data.value, {shouldValidate: true})
   }, [data.cost, data.id, data.value, selectedDate, setValue])
+
+  useEffect(() => {
+    if(i18n.language === 'de') {
+      setLocale(de)
+    } else {
+      setLocale(enGB)
+    }
+  },[i18n.language])
 
   return (
     <li className="row mb-4">
@@ -76,7 +88,7 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
             field: { onChange },
             fieldState: { error },
           }) => (
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
               <Grid container justifyContent="flex-start">
                 <KeyboardDatePicker
                   variant="inline"

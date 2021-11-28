@@ -9,7 +9,7 @@ import ExternalWindowType from '../../../reference-tables/ExternalWindowType'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { makeStyles } from '@material-ui/core/styles'
 import { useRecoilState } from 'recoil'
-import { addingBuildingProgressState, envelopFacadeState } from '../../../atoms'
+import { addingBuildingProgressState, envelopFacadeState } from 'atoms'
 import { Redirect, useParams } from 'react-router-dom'
 import RoofType from '../../../reference-tables/RoofType'
 import { useTranslation } from 'react-i18next'
@@ -245,7 +245,7 @@ const EnvelopFacade = () => {
                       key={o.id}
                       value={o.id}
                     >
-                      {o.name}
+                      {t(o.name, {ns: 'common'})}
                     </MenuItem>
                   ))}
                 </Select>
