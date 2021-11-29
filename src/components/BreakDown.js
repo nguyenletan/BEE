@@ -119,6 +119,7 @@ const BreakDown = (props) => {
   }
 
   const list = data.map(x => <li className="d-flex justify-content-between" key={x.id}>
+
     <Label style={{ fontSize: informationFontSize }}>{t(x.id, {ns: 'buildingPerformance'})}:</Label>
     <span style={{ fontSize: informationFontSize }}>{x.value}</span>
   </li>)
