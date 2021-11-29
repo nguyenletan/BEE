@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 const BreakDownBlock = styled.div`
   background-color: #fafafa;
   border-radius: 20px;
-  padding: 0px;
+  padding: 0;
   margin-right: ${props => props.marginRight ? props.marginRight : '0px'};
   width: 100%;
 
@@ -48,9 +48,16 @@ const Value = styled.label`
   font-size: 1.1rem;
 `
 
+const ColorBlock = styled.span`
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-color: ${(props) => props.bgColor};
+  margin-right: 0.5em;
+`
+
 const TotalBreakDownPieChart = (props) => {
   const {
-    enableRadialLabels,
     valueFontSize,
     title,
     data,
@@ -112,8 +119,11 @@ const TotalBreakDownPieChart = (props) => {
   }
 
   const list = data.map(x => <li className="d-flex justify-content-between" key={x.id}>
-    <Label fontSize={informationFontSize}>{x.id}:</Label>
-    <Value fontSize={informationFontSize}>${formatNumber(x.pureValue, 0)}</Value>
+    <span className="d-flex">
+      <ColorBlock bgColor={x.color}/>
+      <Label fontSize={informationFontSize}>{x.id}:</Label>
+    </span>
+    <Value fontSize={informationFontSize}>{t('$')}{formatNumber(x.pureValue, 0)}</Value>
   </li>)
 
   return (
@@ -140,25 +150,10 @@ const TotalBreakDownPieChart = (props) => {
             </div>
           )}
           arcLabel={function (e) {return e.value + '%'}}
-          radialLabelsLinkColor={{
-            from: 'color',
-          }}
-          radialLabelsLinkHorizontalLength={10}
-          radialLabelsTextXOffset={3}
-          radialLabelsLinkStrokeWidth={2}
-          arcLinkLabelsThickness={3}
-          arcLinkLabelsColor={{ from: 'color' }}
-          arcLabelsTextColor={{ from: 'color', modifiers: [['brighter', 3]] }}
-          radialLabelsTextColor={{
-            from: 'color',
-            modifiers: [['brighter', 1.2]],
-          }}
-          enableSliceLabels={true}
-          enableRadialLabels={enableRadialLabels ?? true}
+
           layers={[
             'arcs',
             'arcLabels',
-            'arcLinkLabels',
             'legends',
             isCenteredPercentage === true ? CenteredPercentage : '']}
         />

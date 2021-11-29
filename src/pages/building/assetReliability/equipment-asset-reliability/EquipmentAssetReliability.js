@@ -292,7 +292,7 @@ const EquipmentAssetReliability = () => {
                   <EquipmentDetailInformationCol>
                     <span>{t('Age (Years)')}</span>
                     <EquipmentDetailInformationRowValue>{getTheTimeDifference(new Date(),
-                      equipment?.EquipmentDetail[0].installDate, 'years')}</EquipmentDetailInformationRowValue>
+                      equipment?.EquipmentDetail[0]?.installDate, 'years')}</EquipmentDetailInformationRowValue>
                   </EquipmentDetailInformationCol>
 
                   <EquipmentDetailInformationCol>

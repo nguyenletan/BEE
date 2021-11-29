@@ -82,7 +82,6 @@ const TotalCostBreakDown = () => {
         innerRadius={0.55}
         marginRight="0px"
         hasDescription
-
       />
     </Wrapper>
   )
