@@ -10,7 +10,7 @@ import HeaterEnergySourceType from '../../../reference-tables/HeaterEnergySource
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import { makeStyles } from '@material-ui/core/styles'
 import { useRecoilState } from 'recoil'
-import { heatingSystemState } from '../../../atoms'
+import { heatingSystemState } from 'atoms'
 import { useTranslation } from 'react-i18next'
 
 const Title = styled.h4`
@@ -109,7 +109,7 @@ const HeatingSystem = ({ control, setValue }) => {
                   error={!!error}
                 >
                   {HeatingSystemType.map((o) => (
-                    <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
+                    <MenuItem key={o.id} value={o.id}>{t(o.name, {ns: 'common'})}</MenuItem>
                   ))}
                 </Select>
                 {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
@@ -142,7 +142,7 @@ const HeatingSystem = ({ control, setValue }) => {
                   error={!!error}
                 >
                   {HeaterType.map((o) => (
-                    <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
+                    <MenuItem key={o.id} value={o.id}>{t(o.name, {ns: 'common'})}</MenuItem>
                   ))}
                 </Select>
                 {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
@@ -175,7 +175,7 @@ const HeatingSystem = ({ control, setValue }) => {
                   error={!!error}
                 >
                   {energySourceType.map((o) => (
-                    <MenuItem key={o.id} value={o.id}>{o.name}</MenuItem>
+                    <MenuItem key={o.id} value={o.id}>{t(o.name, {ns: 'common'})}</MenuItem>
                   ))}
                 </Select>
                 {error &&

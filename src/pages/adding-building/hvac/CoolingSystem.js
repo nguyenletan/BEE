@@ -150,7 +150,7 @@ const CoolingSystem = ({ control, setValue }) => {
                   }}
                   error={!!error}
                 >
-                  {CoolingSystemType.map(item => <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>)}
+                  {CoolingSystemType.map(item => <MenuItem key={item.id} value={item.id}> {t(item.name, {ns: 'common'})}</MenuItem>)}
                 </Select>
                 {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
               </FormControl>
@@ -187,7 +187,7 @@ const CoolingSystem = ({ control, setValue }) => {
                         key={o.id}
                         value={o.id}
                       >
-                        {o.name}
+                        {t(o.name, {ns: 'common'})}
                       </MenuItem>
                     ))}
                   </Select>
@@ -261,7 +261,7 @@ const CoolingSystem = ({ control, setValue }) => {
                     error={!!error}
                   >
                     {chillerEnergySourceTypeList.map(
-                      item => <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>)}
+                      item => <MenuItem key={item.id} value={item.id}> {t(item.name, {ns: 'common'})}</MenuItem>)}
                   </Select>
                   {error &&
                   <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}

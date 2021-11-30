@@ -3,18 +3,17 @@ import styled from 'styled-components'
 import { ResponsivePie } from '@nivo/pie'
 import { deepClone, formatNumber, getColorPattern } from 'Utilities'
 import {
-  breakDownLevelState, breakdownState,
+  breakDownLevelState,
+  breakdownState,
   consumptionBreakdownState,
   isBreakDownDrillDownState,
   selectedSubBreakdownState,
 } from 'atoms'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
-import { Menu, Item, useContextMenu } from 'react-contexify'
-import 'react-contexify/dist/ReactContexify.css';
+import { Item, Menu, useContextMenu } from 'react-contexify'
+import 'react-contexify/dist/ReactContexify.css'
 import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-
-
 
 const BreakDownBlock = styled.div`
   background-color: #fafafa;
@@ -65,10 +64,16 @@ const Label = styled.label`
 const Value = styled.label`
   font-size: 1.1rem;
 `
+const ColorBlock = styled.span`
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-color: ${(props) => props.bgColor};
+  margin-right: 0.5em;
+`
 
 const DrillDownDonutChart3Lv = (props) => {
   const {
-    enableRadialLabels,
     valueFontSize,
     title,
     data,
@@ -87,15 +92,15 @@ const DrillDownDonutChart3Lv = (props) => {
   const [isBreakDownDrillDown, setIsBreakDownDrillDown] = useRecoilState(isBreakDownDrillDownState)
   const [breakDownLevel, setBreakDownLevel] = useRecoilState(breakDownLevelState)
   const breakdownSt = useRecoilValue(breakdownState)
-  const setConsumptionBreakdownSt =  useSetRecoilState(consumptionBreakdownState)
+  const setConsumptionBreakdownSt = useSetRecoilState(consumptionBreakdownState)
   const [selectedBreakdownItemMenuItem, setSelectedBreakdownItemMenuItem] = useState()
   const [equipmentId, setEquipmentId] = useState()
 
-  const { t, i18n } = useTranslation('buildingPerformance');
+  const { t, i18n } = useTranslation('buildingPerformance')
 
   useEffect(() => {
     const tmp = deepClone(data)
-    for(let item of tmp) {
+    for (let item of tmp) {
       item.id = t(item.id)
     }
     setDataSource(tmp)
@@ -195,7 +200,6 @@ const DrillDownDonutChart3Lv = (props) => {
       >
         {selectedSubBreakdown}
       </text>
-
     )
   }
 
@@ -206,13 +210,13 @@ const DrillDownDonutChart3Lv = (props) => {
       setIsBreakDownDrillDown(true)
       setConsumptionBreakdownSt(node.data.subBreakdown)
     } else {
-      if(breakDownLevel === 2) {
+      if (breakDownLevel === 2) {
         setEquipmentId(node?.data.equipmentId)
-        setSelectedBreakdownItemMenuItem({name: node.label, id: node.label})
+        setSelectedBreakdownItemMenuItem({ name: node.label, id: node.label })
         show(event, {
           props: {
-            key: 'value'
-          }
+            key: 'value',
+          },
         })
       }
     }
@@ -223,15 +227,14 @@ const DrillDownDonutChart3Lv = (props) => {
     setIsBreakDownDrillDown(false)
     setBreakDownLevel(0)
     setConsumptionBreakdownSt(breakdownSt.consumptionBreakdown)
-
   }
 
   const { show } = useContextMenu({
     id: 'MENU_ID',
-  });
+  })
 
-  const getValue = (value, title)=> {
-    if(title === t('Consumption Breakdown')) {
+  const getValue = (value, title) => {
+    if (title === t('Consumption Breakdown')) {
       return formatNumber(value / 1000, 2, 'MWh')
     } else {
       if (title === t('Cost Breakdown')) {
@@ -242,10 +245,18 @@ const DrillDownDonutChart3Lv = (props) => {
     }
   }
 
-  const list = dataSource.map(x => <li className="d-flex justify-content-between" key={x.id}>
-    <Label fontSize={informationFontSize}>{x.id}:</Label>
-    <Value fontSize={informationFontSize}>{getValue(x.consumption, title) }</Value>
-  </li>)
+  const list = dataSource.map((x, index) => {
+    const colors = getColorPattern(isBreakDownDrillDown ? 1 : 0)
+    return (
+      <li className="d-flex justify-content-between" key={x.id}>
+      <span className="d-flex">
+        <ColorBlock bgColor={colors[index]}/>
+        <Label fontSize={informationFontSize}>{x.id}:</Label>
+      </span>
+        <Value fontSize={informationFontSize}>{getValue(x.consumption, title)}</Value>
+      </li>
+    )
+  })
 
   return (
     <BreakDownBlock marginRight={marginRight}>
@@ -256,20 +267,20 @@ const DrillDownDonutChart3Lv = (props) => {
         </div>
         <div>
           {isBreakDownDrillDown === true &&
-          <button className="btn btn-sm btn-outline-primary" onClick={handleBackBtn}>{t('Reset')}</button>}
+            <button className="btn btn-sm btn-outline-primary" onClick={handleBackBtn}>{t('Reset')}</button>}
         </div>
       </div>
 
-      <Menu id='MENU_ID'>
+      <Menu id="MENU_ID">
         {selectedBreakdownItemMenuItem &&
-        <Item>
-          <Link to={`/building/${id}/asset-reliability/equipment/${equipmentId}/${selectedSubBreakdown}`}>
-            {t('Go to Asset Reliability')} - {selectedBreakdownItemMenuItem?.name}
-          </Link>
-        </Item>}
+          <Item>
+            <Link to={`/building/${id}/asset-reliability/equipment/${equipmentId}/${selectedSubBreakdown}`}>
+              {t('Go to Asset Reliability')} - {selectedBreakdownItemMenuItem?.name}
+            </Link>
+          </Item>}
 
       </Menu>
-        <ResponsivePieWrapper height={chartHeight}>
+      <ResponsivePieWrapper height={chartHeight}>
         <ResponsivePie
           {...commonProperties}
           innerRadius={innerRadius ?? 0.55}
@@ -289,26 +300,13 @@ const DrillDownDonutChart3Lv = (props) => {
             </div>
           )}
           arcLabel={function (e) {return e.value + '%'}}
-          radialLabelsLinkColor={{
-            from: 'color',
-          }}
-          radialLabelsLinkHorizontalLength={10}
-          radialLabelsTextXOffset={3}
-          radialLabelsLinkStrokeWidth={2}
-          arcLinkLabelsThickness={3}
-          arcLinkLabelsColor={{ from: 'color' }}
           arcLabelsTextColor={{ from: 'color', modifiers: [['brighter', 3]] }}
-          radialLabelsTextColor={{
-            from: 'color',
-            modifiers: [['brighter', 1.2]],
-          }}
-          enableSliceLabels={true}
-          enableRadialLabels={enableRadialLabels ?? true}
+          // enableSliceLabels={false}
+          // enableRadialLabels={enableRadialLabels ?? true}
           onClick={handleClick}
           layers={[
             'arcs',
             'arcLabels',
-            'arcLinkLabels',
             'legends',
             SubCategoryName,
             isCenteredPercentage === true ? CenteredPercentage : '']}

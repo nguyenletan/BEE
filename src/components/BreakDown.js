@@ -43,6 +43,14 @@ const Label = styled.label`
   text-transform: capitalize;
 `
 
+const ColorBlock = styled.span`
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-color: ${(props) => props.bgColor};
+  margin-right: 0.5em;
+`
+
 const BreakDown = (props) => {
   const {
     enableRadialLabels,
@@ -57,7 +65,7 @@ const BreakDown = (props) => {
     marginRight,
     hasDescription,
     noCenterText,
-    hasArcLabels
+    hasArcLabels,
   } = props
 
   const { t, i18n } = useTranslation(['buildingPerformance', 'improvement'])
@@ -119,15 +127,17 @@ const BreakDown = (props) => {
   }
 
   const list = data.map(x => <li className="d-flex justify-content-between" key={x.id}>
-
-    <Label style={{ fontSize: informationFontSize }}>{t(x.id, {ns: 'buildingPerformance'})}:</Label>
+      <span className="d-flex">
+        <ColorBlock bgColor={x.color}/>
+           <Label style={{ fontSize: informationFontSize }}>{t(x.id, { ns: 'buildingPerformance' })}:</Label>
+      </span>
     <span style={{ fontSize: informationFontSize }}>{x.value}</span>
   </li>)
 
   return (
     <BreakDownBlock marginRight={marginRight}>
-      <BreakDownTitle>{t(title, {ns: 'improvement'})}</BreakDownTitle>
-      <BreakDownSubTitle>{t(subTitle, {ns: 'improvement'})}</BreakDownSubTitle>
+      <BreakDownTitle>{t(title, { ns: 'improvement' })}</BreakDownTitle>
+      <BreakDownSubTitle>{t(subTitle, { ns: 'improvement' })}</BreakDownSubTitle>
       <ResponsivePieWrapper height={chartHeight}>
         <ResponsivePie
           {...commonProperties}
@@ -152,22 +162,15 @@ const BreakDown = (props) => {
           radialLabelsLinkColor={{
             from: 'color',
           }}
-          radialLabelsLinkHorizontalLength={10}
-          radialLabelsTextXOffset={3}
-          radialLabelsLinkStrokeWidth={2}
-          arcLinkLabelsThickness={3}
-          arcLinkLabelsColor={{ from: 'color' }}
+
+
           arcLabelsTextColor={{ from: 'color', modifiers: [['brighter', 3]] }}
-          radialLabelsTextColor={{
-            from: 'color',
-            modifiers: [['brighter', 1.2]],
-          }}
           enableSliceLabels={true}
           enableRadialLabels={enableRadialLabels ?? true}
           layers={[
             'arcs',
             hasArcLabels !== false ? 'arcLabels' : '',
-            'arcLinkLabels',
+            // 'arcLinkLabels',
             'legends',
             isCenteredPercentage === true ? CenteredPercentage : '']}
         />
