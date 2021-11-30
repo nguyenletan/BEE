@@ -89,5 +89,48 @@
   "North East": "Nordosten",
   "South East": "Südosten",
   "South West": "Südwesten",
-  "North West": "Nordwest"
+  "North West": "Nordwest",
+
+
+  "Air-Cooled Chiller": "Luftgekühlte Kälteanlage",
+  "Water-Cooled Chiller": "Wassergekühlte Kälteanlage",
+  "District Cooling System": "Fernkältesystem",
+  "Split Unit AC:" : "Split-Klimagerät",
+  "Absorption Chiller": "Absorptionskältemaschine",
+
+  "Centrifugal": "Radial",
+  "Reciprocating": "Kolben",
+  "Scroll": "Scroll",
+  "Screw Driven": "Schrauben",
+  "Rotary Vane": "Rotation",
+  "Screw": "Screw",
+
+  "Hot Water": "Heisswasser",
+  "Steam": "Dampf",
+  "Exhaust": "Abluft",
+  "Electricity": "Strom",
+
+  "Warm Air Heating": "Warmluftheizung",
+  "Destratification Heating": "Thermische Entmischung",
+  "Air Rotation Heating": "Luftwärmepumpe",
+  "Radiant Heating": "Heizstrahler",
+
+
+  "Air Source Heat Pump": "Luftwärmepumpe",
+  "Electric Resistance Heater": "Elektrische Widerstandsheizung",
+  "Geothermal Heating": "Erdwärme",
+  "District Heating": "Fernwärme",
+  "Central Boiler": "Zentraler Heizkesselanlage",
+  "Ground Source Heat Pump": "Erdwärmepumpe",
+  "Absorption Heat Pump": "Absorptionswärmepumpe",
+
+  "_Electricity": "Strom",
+  "District Steam": "Fernwärme (Dampf)",
+  "Natural Gas": "Erdgas",
+  "Fuel Oil": "Erdöl",
+  "Propane": "Propangas",
+  "District Hot Water": "Fernwärme (Heisswasser)",
+  "Geothermal Hot Water": "Geothermie"
+
+
 }
