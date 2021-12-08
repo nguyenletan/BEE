@@ -9,6 +9,7 @@ import PerformanceComparison2 from './components/PerformanceComparison2'
 import { useSetRecoilState } from 'recoil'
 import { isDisplayPerformanceFilterState } from 'atoms'
 import { useTranslation } from 'react-i18next'
+import PerformanceComparison from 'pages/building/comparision/components/PerformanceComparison'
 
 const ComparisonWrapper = styled.div`
   margin-bottom: 50px;
@@ -144,7 +145,7 @@ const Comparison = () => {
           <SubSystemComparison/>
         </div>
       </div>
-      {/* <PerformanceComparison/> */}
+       <PerformanceComparison/>
 
       <PerformanceComparison2/>
 

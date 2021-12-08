@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 // import range from 'lodash/range'
 // import shuffle from 'lodash/shuffle'
-import { Bump } from '@nivo/bump'
+import { ResponsiveBump  } from '@nivo/bump'
 
 const PerformanceComparisonTitle = styled.h3`
   font-size: 1.15rem;
@@ -12,12 +12,17 @@ const PerformanceComparisonTitle = styled.h3`
 const PerformanceComparisonWrapper = styled.div`
   border-radius: 15px;
   background-color: #fafafa;
-  padding: 20px;
+  padding: 10px;
+  @media (min-width: 768px) {
+    padding: 20px;
+  }
   margin-top: 40px;
   margin-bottom: 40px;
+  height: max(500px, 100vw / 4);
+  min-width: 100%;
 `
 
-// const data2 = [
+// const PerformanceComparisonData = [
 //   {
 //     id: `Design Excellent Center`,
 //     data: [
@@ -47,182 +52,182 @@ const PerformanceComparisonWrapper = styled.div`
 // ]
 
 const PerformanceComparisonData = [
-
+  {
+    id: '',
+    data: [
+      {
+        x: null,
+        y: 'A',
+      },
+    ],
+  },
   {
     id: 'Design Excellent Center',
     data: [
       {
         x: 'Cooling',
-        y: 3
+        y: 'C',
       },
       {
         x: 'Heating',
-        y: 3
+        y: 'C',
       },
       {
         x: 'Lighting',
-        y: 5
+        y: 'C',
       },
       {
         x: 'Mechanical Ventilation',
-        y: 4
+        y: 'D',
       },
       {
         x: 'Roof',
-        y: 3
+        y: 'C',
       },
       {
         x: 'Wall',
-        y: 4
+        y: 'D',
       },
       {
         x: 'Openings',
-        y: 3
+        y: 'C',
       },
       {
         x: 'Floor',
-        y: 5
+        y: 'E',
       },
       {
         x: 'Renewables',
-        y: 5
+        y: 'E',
       },
       {
         x: 'Plug Loads',
-        y: 5
-      }
-    ]
+        y: 'E',
+      },
+    ],
   },
   {
     id: 'Hill Bay Central Bank Center',
     data: [
       {
         x: 'Cooling',
-        y: 2
+        y: 'B',
       },
       {
         x: 'Heating',
-        y: 2
+        y: 'B',
       },
       {
         x: 'Lighting',
-        y: 3
+        y: 'C',
       },
       {
         x: 'Mechanical Ventilation',
-        y: 3
+        y: 'C',
       },
       {
         x: 'Roof',
-        y: 5
+        y: 'E',
       },
       {
         x: 'Wall',
-        y: 5
+        y: 'E',
       },
       {
         x: 'Openings',
-        y: 4
+        y: 'D',
       },
       {
         x: 'Floor',
-        y: 3
+        y: 'C',
       },
       {
         x: 'Renewables',
-        y: 4
+        y: 'D',
       },
       {
         x: 'Plug Loads',
-        y: 6
-      }
+        y: 'F',
+      },
 
-    ]
+    ],
   },
   {
     id: 'F+E Campus',
     data: [
       {
         x: 'Cooling',
-        y: 4
+        y: 'D',
       },
       {
         x: 'Heating',
-        y: 3
+        y: 'C',
       },
       {
         x: 'Lighting',
-        y: 4
+        y: 'D',
       },
       {
         x: 'Mechanical Ventilation',
-        y: 5
+        y: 'E',
       },
       {
         x: 'Roof',
-        y: 4
+        y: 'D',
       },
       {
         x: 'Wall',
-        y: 4
+        y: 'D',
       },
       {
         x: 'Openings',
-        y: 3
+        y: 'C',
       },
       {
         x: 'Floor',
-        y: 5
+        y: 'E',
       },
       {
         x: 'Renewables',
-        y: 2
+        y: 'B',
       },
       {
         x: 'Plug Loads',
-        y: 2
-      }
-    ]
+        y: 'B',
+      },
+    ],
   },
-  {
-    id: 'A',
-    data: [
-      {
-        x: 'Cooling',
-        y: 1
-      }
-    ]
-  },
+
   {
     id: 'E',
     data: [
       {
         x: 'Cooling',
-        y: 7
-      }
+        y: 'G',
+      },
 
-    ]
+    ],
   },
   {
     id: 'F',
     data: [
       {
         x: 'Cooling',
-        y: 7
-      }
+        y: 'G',
+      },
 
-    ]
+    ],
   },
   {
     id: '',
     data: [
       {
         x: 'Cooling',
-        y: 7
-      }
+        y: 'G',
+      },
 
-    ]
-  }
+    ],
+  },
 ]
 
 // const generateData = () => {
@@ -270,23 +275,48 @@ const commonProps = {
   pointBorderWidth: 1,
   activePointBorderWidth: 2,
   inactivePointBorderWidth: 1,
-  lineWidth: 1,
-  activeLineWidth: 2,
+  lineWidth: 3,
+  activeLineWidth: 6,
+  inactiveLineWidth: 2,
   enableGridX: false,
-  axisTop: false
-
+  axisTop: false,
+  yScale: { type: 'point' },
+  pointBorderColor: { from: 'serie.color' },
+  startLabel: false,
+  colors: ["transparent", '#AACC72', '#44D7B6', '#478D58'],
+  legends: [{
+        anchor: 'top',
+        direction: 'row',
+        justify: false,
+        translateX: 0,
+        translateY: -35,
+        itemWidth: 180,
+        itemHeight: 20,
+        itemsSpacing: 4,
+        symbolSize: 20,
+        symbolShape: 'circle',
+        itemDirection: 'left-to-right',
+        itemTextColor: '#777',
+        effects: [
+          {
+            on: 'hover',
+            style: {
+              itemBackground: 'rgba(0, 0, 0, .03)',
+              itemOpacity: 1,
+            },
+          }],
+      }],
 }
 
 const PerformanceComparison = () => {
   return (
     <PerformanceComparisonWrapper>
       <PerformanceComparisonTitle>Sub-System Performance</PerformanceComparisonTitle>
-      <Bump
+      <ResponsiveBump
         {...commonProps}
-        pointBorderColor={{ from: 'serie.color' }}
-        startLabel={false}
-        yScale={{ type: 'point' }}
-        colors={['#87972F', '#636c2e', '#c1cf74', 'transparent', 'transparent', 'transparent', 'transparent']}
+        
+
+        //colors={['#87972F', '#636c2e', '#c1cf74', 'transparent', 'transparent', 'transparent', 'transparent']}
       />
 
     </PerformanceComparisonWrapper>

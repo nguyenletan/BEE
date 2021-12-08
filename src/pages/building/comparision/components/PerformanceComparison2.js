@@ -14,6 +14,7 @@ import renewableImg from '../../../../assets/images/renewable.svg'
 import plugloadImg from '../../../../assets/images/plugload.svg'
 import { useTranslation } from 'react-i18next'
 import { deepClone } from 'Utilities'
+//import BarBlock from 'pages/building/comparision/components/BarBlock'
 
 const ChartHeader = styled.div`
   margin-left: 20px;
@@ -242,7 +243,6 @@ const PerformanceComparison2 = () => {
     },
   ]
 
-
   const otherMonitoredEquipments = [
     'Photocopy Printers',
     'Computers',
@@ -262,12 +262,11 @@ const PerformanceComparison2 = () => {
   const [show, setShow] = useState(false)
   const [chartData, setChartData] = useState(deepClone(data))
 
-
   useEffect(() => {
     const tmp = deepClone(data)
-    for(let item of tmp) {
+    for (let item of tmp) {
       item.id = t(item.id)
-      for(let j of item.data) {
+      for (let j of item.data) {
         j.x = t(j.x)
       }
     }
@@ -365,7 +364,7 @@ const PerformanceComparison2 = () => {
           <div className="custom-control custom-checkbox">
             <input
               onChange={onSelectBuilding} type="checkbox" className="custom-control-input me-1"
-              id={'checkbox_building_' + index} value={item.id} defaultChecked />
+              id={'checkbox_building_' + index} value={item.id} defaultChecked/>
             <label className="custom-control-label" htmlFor={'checkbox_building_' + index}>
               {t(item.id)}
             </label>
@@ -462,70 +461,135 @@ const PerformanceComparison2 = () => {
         </EditConfigurationButton>
 
       </ChartHeader>
-
-      <ResponsiveLine
-        {...commonProperties}
-        curve="monotoneX"
-        data={chartData}
-        useMesh={false}
-        enableSlices={false}
-        enablePoint
-        pointSize={12}
-        pointColor="#fff"
-        pointBorderWidth={1}
-        enableGridX={false}
-        lineWidth={1}
-        yScale={
-          {
-            type: 'linear',
-            min: 1,
-            max: 7,
-          }
-        }
-        axisLeft={
-          {
-            tickValues: [1, 2, 3, 4, 5, 6, 7],
-            format: value => {
-              const labels = ['G', 'F', 'E', 'D', 'C', 'B', 'A']
-              return labels[value - 1]
-            },
-          }
-        }
-        pointBorderColor={
-          { from: 'serieColor' }
-        }
-        xScale={
-          { type: 'point' }
-        }
-        colors={
-          ['#87972F', '#636c2e', '#c1cf74']
-        }
-        legends={
-          [
+        <ResponsiveLine
+          {...commonProperties}
+          curve="monotoneX"
+          data={chartData}
+          useMesh={false}
+          enableSlices={false}
+          enablePoint
+          pointSize={16}
+          //pointColor="#fff"
+          pointBorderWidth={1}
+          enableGridX={false}
+          lineWidth={2}
+          isInteractive={true}
+          yScale={
             {
-              anchor: 'top',
-              direction: 'row',
-              justify: false,
-              translateX: 0,
-              translateY: -35,
-              itemWidth: 200,
-              itemHeight: 20,
-              itemsSpacing: 4,
-              symbolSize: 20,
-              symbolShape: 'circle',
-              itemDirection: 'left-to-right',
-              itemTextColor: '#777',
-              effects: [
-                {
-                  on: 'hover',
-                  style: {
-                    itemBackground: 'rgba(0, 0, 0, .03)',
-                    itemOpacity: 1,
-                  },
-                }],
-            }]
-        }
-      />
+              type: 'linear',
+              min: 1,
+              max: 7,
+            }
+          }
+          axisLeft={
+            {
+              tickValues: [1, 2, 3, 4, 5, 6, 7],
+              format: value => {
+                const labels = ['G', 'F', 'E', 'D', 'C', 'B', 'A']
+                return labels[value - 1]
+              },
+            }
+          }
+          pointBorderColor={
+            { from: 'serieColor' }
+          }
+          xScale={
+            { type: 'point' }
+          }
+          colors={['#AACC72', '#44D7B6', '#478D58']}
+          legends={
+            [
+              {
+                anchor: 'top',
+                direction: 'row',
+                justify: false,
+                translateX: 0,
+                translateY: -35,
+                itemWidth: 180,
+                itemHeight: 20,
+                itemsSpacing: 4,
+                symbolSize: 20,
+                symbolShape: 'circle',
+                itemDirection: 'left-to-right',
+                itemTextColor: '#777',
+                effects: [
+                  {
+                    on: 'hover',
+                    style: {
+                      itemBackground: 'rgba(0, 0, 0, .03)',
+                      itemOpacity: 1,
+                    },
+                  }],
+              }]
+          }
+        />
+      {/*<div className="flex">*/}
+      {/*  <div>*/}
+      {/*    <BarBlock width='108px' backgroundColor='#63AE62' text='B' />*/}
+      {/*  </div>*/}
+      {/*  <ResponsiveLine*/}
+      {/*    {...commonProperties}*/}
+      {/*    curve="monotoneX"*/}
+      {/*    data={chartData}*/}
+      {/*    useMesh={false}*/}
+      {/*    enableSlices={false}*/}
+      {/*    enablePoint*/}
+      {/*    pointSize={16}*/}
+      {/*    //pointColor="#fff"*/}
+      {/*    pointBorderWidth={1}*/}
+      {/*    enableGridX={false}*/}
+      {/*    lineWidth={2}*/}
+      {/*    isInteractive={true}*/}
+      {/*    yScale={*/}
+      {/*      {*/}
+      {/*        type: 'linear',*/}
+      {/*        min: 1,*/}
+      {/*        max: 7,*/}
+      {/*      }*/}
+      {/*    }*/}
+      {/*    axisLeft={*/}
+      {/*      {*/}
+      {/*        tickValues: [1, 2, 3, 4, 5, 6, 7],*/}
+      {/*        format: value => {*/}
+      {/*          const labels = ['G', 'F', 'E', 'D', 'C', 'B', 'A']*/}
+      {/*          return labels[value - 1]*/}
+      {/*        },*/}
+      {/*      }*/}
+      {/*    }*/}
+      {/*    pointBorderColor={*/}
+      {/*      { from: 'serieColor' }*/}
+      {/*    }*/}
+      {/*    xScale={*/}
+      {/*      { type: 'point' }*/}
+      {/*    }*/}
+      {/*    colors={['#AACC72', '#44D7B6', '#478D58']}*/}
+      {/*    legends={*/}
+      {/*      [*/}
+      {/*        {*/}
+      {/*          anchor: 'top',*/}
+      {/*          direction: 'row',*/}
+      {/*          justify: false,*/}
+      {/*          translateX: 0,*/}
+      {/*          translateY: -35,*/}
+      {/*          itemWidth: 180,*/}
+      {/*          itemHeight: 20,*/}
+      {/*          itemsSpacing: 4,*/}
+      {/*          symbolSize: 20,*/}
+      {/*          symbolShape: 'circle',*/}
+      {/*          itemDirection: 'left-to-right',*/}
+      {/*          itemTextColor: '#777',*/}
+      {/*          effects: [*/}
+      {/*            {*/}
+      {/*              on: 'hover',*/}
+      {/*              style: {*/}
+      {/*                itemBackground: 'rgba(0, 0, 0, .03)',*/}
+      {/*                itemOpacity: 1,*/}
+      {/*              },*/}
+      {/*            }],*/}
+      {/*        }]*/}
+      {/*    }*/}
+      {/*  />*/}
+      {/*</div>*/}
       <Popup/>
     </PerformanceComparisonWrapper>
   )
