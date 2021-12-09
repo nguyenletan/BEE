@@ -489,7 +489,7 @@ const PerformanceComparison2 = () => {
             //pointColor="#fff"
             pointBorderWidth={1}
             enableGridX={false}
-            lineWidth={4}
+            lineWidth={3}
             isInteractive={true}
             yScale={
               {

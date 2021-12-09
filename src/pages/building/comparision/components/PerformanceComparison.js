@@ -222,7 +222,7 @@ const commonProps = {
   pointBorderWidth: 1,
   activePointBorderWidth: 2,
   inactivePointBorderWidth: 1,
-  lineWidth: 3.5,
+  lineWidth: 3,
   activeLineWidth: 6,
   inactiveLineWidth: 2,
   enableGridX: false,
