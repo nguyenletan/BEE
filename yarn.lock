@@ -2326,6 +2326,15 @@
     "@nivo/tooltip" "0.74.0"
     d3-shape "^1.3.5"
 
+"@nivo/polar-axes@0.74.0":
+  version "0.74.0"
+  resolved "https://registry.yarnpkg.com/@nivo/polar-axes/-/polar-axes-0.74.0.tgz#183b15768b5100de989203a705957b4e9d648385"
+  integrity sha512-umrHzLRTqQYNOyLXmpjtaF1HQ9LnGUGMteMjIknuR+KHDQa9RvKlVIfb2VTYc9NeT0Y6TtungJJeg4BWWYLrBw==
+  dependencies:
+    "@nivo/arcs" "0.74.0"
+    "@nivo/scales" "0.74.0"
+    "@react-spring/web" "9.2.6"
+
 "@nivo/radar@^0.74.0":
   version "0.74.0"
   resolved "https://registry.yarnpkg.com/@nivo/radar/-/radar-0.74.0.tgz#d159b579125036f5a3dda12b39aa4d22bffc2665"
@@ -2333,6 +2342,21 @@
   dependencies:
     "@nivo/colors" "0.74.0"
     "@nivo/legends" "0.74.0"
+    "@nivo/tooltip" "0.74.0"
+    "@react-spring/web" "9.2.6"
+    d3-scale "^3.2.3"
+    d3-shape "^1.3.5"
+
+"@nivo/radial-bar@^0.74.0":
+  version "0.74.0"
+  resolved "https://registry.yarnpkg.com/@nivo/radial-bar/-/radial-bar-0.74.0.tgz#04866ddfc8b61ca0944be992e9d3af6e37129856"
+  integrity sha512-h4Ch6mPYros1ZlOIWxRdn9ntem/P/g5IZpTDT60jHT5cK3dpYv+2Hsimv6WSzmisN2bWW9xXElZsUeteOWkZMA==
+  dependencies:
+    "@nivo/arcs" "0.74.0"
+    "@nivo/colors" "0.74.0"
+    "@nivo/legends" "0.74.0"
+    "@nivo/polar-axes" "0.74.0"
+    "@nivo/scales" "0.74.0"
     "@nivo/tooltip" "0.74.0"
     "@react-spring/web" "9.2.6"
     d3-scale "^3.2.3"
