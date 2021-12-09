@@ -6,14 +6,14 @@ $border-radius: 3px;
 $euiColorPrimary: #87972f;
 
 $font-family-sans-serif: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
+@import '~@elastic/eui/dist/eui_theme_light.min.css';
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
 //@import '~bootstrap/dist/css/bootstrap.min.css';
 //@import '~@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
 //@import '~@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_globals.scss';
 //@import '~@elastic/eui/src/theme_amsterdam_light.scss';
-@import '~@elastic/eui/dist/eui_theme_amsterdam_light.css';
+
 :root {
   --inkydark: #373637;
   --offwhite: #f9f3f2;

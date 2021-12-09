@@ -2,11 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 // import range from 'lodash/range'
 // import shuffle from 'lodash/shuffle'
-import { ResponsiveBump  } from '@nivo/bump'
+import { ResponsiveBump } from '@nivo/bump'
+import BarBlock from 'pages/building/comparision/components/BarBlock'
 
 const PerformanceComparisonTitle = styled.h3`
   font-size: 1.15rem;
   font-weight: 700;
+  margin-bottom: 20px;
 `
 
 const PerformanceComparisonWrapper = styled.div`
@@ -16,93 +18,61 @@ const PerformanceComparisonWrapper = styled.div`
   @media (min-width: 768px) {
     padding: 20px;
   }
-  margin-top: 40px;
+  margin-top: 100px;
   margin-bottom: 40px;
   height: max(500px, 100vw / 4);
   min-width: 100%;
 `
 
-// const PerformanceComparisonData = [
-//   {
-//     id: `Design Excellent Center`,
-//     data: [
-//       {
-//         x: 1,
-//         y: 'A'
-//       },
-//       {
-//         x: 1,
-//         y: 'B'
-//       }
-//     ]
-//   },
-//   {
-//     id: `Hill Bay Central Bank Center`,
-//     data: [
-//       {
-//         x: 1,
-//         y: 'A'
-//       },
-//       {
-//         x: 1,
-//         y: 'B'
-//       }
-//     ]
-//   }
-// ]
+const LineChartWrapper =  styled.div`
+  margin-top: 0;
+  height: max(500px, 100vw / 4);
+  width: calc(100% - 50px);
+`
 
 const PerformanceComparisonData = [
-  {
-    id: '',
-    data: [
-      {
-        x: null,
-        y: 'A',
-      },
-    ],
-  },
   {
     id: 'Design Excellent Center',
     data: [
       {
         x: 'Cooling',
-        y: 'C',
+        y: 3,
       },
       {
         x: 'Heating',
-        y: 'C',
+        y: 3,
       },
       {
         x: 'Lighting',
-        y: 'C',
+        y: 5,
       },
       {
         x: 'Mechanical Ventilation',
-        y: 'D',
+        y: 4,
       },
       {
         x: 'Roof',
-        y: 'C',
+        y: 3,
       },
       {
         x: 'Wall',
-        y: 'D',
+        y: 4,
       },
       {
         x: 'Openings',
-        y: 'C',
+        y: 3,
       },
       {
         x: 'Floor',
-        y: 'E',
+        y: 5,
       },
       {
         x: 'Renewables',
-        y: 'E',
+        y: 5,
       },
       {
         x: 'Plug Loads',
-        y: 'E',
+        y: 5,
       },
     ],
   },
@@ -111,43 +81,43 @@ const PerformanceComparisonData = [
     data: [
       {
         x: 'Cooling',
-        y: 'B',
+        y: 2,
       },
       {
         x: 'Heating',
-        y: 'B',
+        y: 2,
       },
       {
         x: 'Lighting',
-        y: 'C',
+        y: 3,
       },
       {
         x: 'Mechanical Ventilation',
-        y: 'C',
+        y: 3,
       },
       {
         x: 'Roof',
-        y: 'E',
+        y: 5,
       },
       {
         x: 'Wall',
-        y: 'E',
+        y: 5,
       },
       {
         x: 'Openings',
-        y: 'D',
+        y: 4,
       },
       {
         x: 'Floor',
-        y: 'C',
+        y: 3,
       },
       {
         x: 'Renewables',
-        y: 'D',
+        y: 4,
       },
       {
         x: 'Plug Loads',
-        y: 'F',
+        y: 6,
       },
 
     ],
@@ -157,53 +127,61 @@ const PerformanceComparisonData = [
     data: [
       {
         x: 'Cooling',
-        y: 'D',
+        y: 4,
       },
       {
         x: 'Heating',
-        y: 'C',
+        y: 3,
       },
       {
         x: 'Lighting',
-        y: 'D',
+        y: 4,
       },
       {
         x: 'Mechanical Ventilation',
-        y: 'E',
+        y: 5,
       },
       {
         x: 'Roof',
-        y: 'D',
+        y: 4,
       },
       {
         x: 'Wall',
-        y: 'D',
+        y: 4,
       },
       {
         x: 'Openings',
-        y: 'C',
+        y: 3,
       },
       {
         x: 'Floor',
-        y: 'E',
+        y: 5,
       },
       {
         x: 'Renewables',
-        y: 'B',
+        y: 2,
       },
       {
         x: 'Plug Loads',
-        y: 'B',
+        y: 2,
       },
     ],
   },
-
+  {
+    id: 'A',
+    data: [
+      {
+        x: 'Cooling',
+        y: 1,
+      },
+    ],
+  },
   {
     id: 'E',
     data: [
       {
         x: 'Cooling',
-        y: 'G',
+        y: 7,
       },
 
     ],
@@ -213,7 +191,7 @@ const PerformanceComparisonData = [
     data: [
       {
         x: 'Cooling',
-        y: 'G',
+        y: 7,
       },
 
     ],
@@ -223,102 +201,62 @@ const PerformanceComparisonData = [
     data: [
       {
         x: 'Cooling',
-        y: 'G',
+        y: 7,
       },
 
     ],
   },
 ]
 
-// const generateData = () => {
-//   const years = range(2000, 2005)
-//   const ranks = range(1, 7)
-//
-//   const series = ranks.map(rank => {
-//     return {
-//       id: `F+E ${rank}`,
-//       data: [],
-//     }
-//   })
-//
-//   years.forEach(year => {
-//     shuffle(ranks).forEach((rank, i) => {
-//       console.log(rank)
-//       console.log(i)
-//       series[i].data.push({
-//         x: 2000,
-//         y: 1,
-//         //extra: Math.random(),
-//       })
-//     })
-//   })
-//
-//   return series
-// }
-
-// const data = generateData()
-// console.log(data)
-// console.log(PerformanceComparisonData)
-// console.log(shuffle([1, 2, 3]))
 
 const commonProps = {
-  width: 1110,
-  height: 360,
-  margin: { top: 40, right: 40, bottom: 40, left: 40 },
+
+  margin: { top: 0, right: 140, bottom: 108, left: 25 },
   titleOffsetX: -80,
   data: PerformanceComparisonData,
-  spacing: 80,
+  spacing: 50,
+  xOuterPadding: 0.2,
   pointSize: 12,
-  activePointSize: 18,
+  activePointSize: 20,
   inactivePointSize: 6,
-  pointColor: '#fafafa',
   pointBorderWidth: 1,
   activePointBorderWidth: 2,
   inactivePointBorderWidth: 1,
-  lineWidth: 3,
+  lineWidth: 3.5,
   activeLineWidth: 6,
   inactiveLineWidth: 2,
   enableGridX: false,
   axisTop: false,
+  axisLeft: null,
   yScale: { type: 'point' },
   pointBorderColor: { from: 'serie.color' },
   startLabel: false,
-  colors: ["transparent", '#AACC72', '#44D7B6', '#478D58'],
-  legends: [{
-        anchor: 'top',
-        direction: 'row',
-        justify: false,
-        translateX: 0,
-        translateY: -35,
-        itemWidth: 180,
-        itemHeight: 20,
-        itemsSpacing: 4,
-        symbolSize: 20,
-        symbolShape: 'circle',
-        itemDirection: 'left-to-right',
-        itemTextColor: '#777',
-        effects: [
-          {
-            on: 'hover',
-            style: {
-              itemBackground: 'rgba(0, 0, 0, .03)',
-              itemOpacity: 1,
-            },
-          }],
-      }],
+  colors: ['#AACC72', '#44D7B6', '#478D58', 'transparent', 'transparent', 'transparent', 'transparent'],
 }
 
 const PerformanceComparison = () => {
   return (
     <PerformanceComparisonWrapper>
-      <PerformanceComparisonTitle>Sub-System Performance</PerformanceComparisonTitle>
+      <PerformanceComparisonTitle>C02 Emissions - Sub-System Performance</PerformanceComparisonTitle>
+      <div className="d-flex">
+        <div className=" mt-2">
+          <BarBlock width="36px" marginBottom="20px" backgroundColor="#93d2f0" text="A"/>
+          <BarBlock width="36px" marginBottom="20px" backgroundColor="#63bcf2" text="B"/>
+          <BarBlock width="36px" marginBottom="20px" backgroundColor="#52a8d9" text="C"/>
+          <BarBlock width="36px" marginBottom="20px" backgroundColor="#3c82c6" text="D"/>
+          <BarBlock width="36px" marginBottom="20px" backgroundColor="#c4c4c4" text="E"/>
+          <BarBlock width="36px" marginBottom="20px" backgroundColor="#a9a9a9" text="F"/>
+          <BarBlock width="36px" backgroundColor="#8b8b8b" text="G"/>
+        </div>
+        <LineChartWrapper>
       <ResponsiveBump
         {...commonProps}
-        
+
 
         //colors={['#87972F', '#636c2e', '#c1cf74', 'transparent', 'transparent', 'transparent', 'transparent']}
       />
-
+        </LineChartWrapper>
+      </div>
     </PerformanceComparisonWrapper>
   )
 }

@@ -14,10 +14,10 @@ import renewableImg from '../../../../assets/images/renewable.svg'
 import plugloadImg from '../../../../assets/images/plugload.svg'
 import { useTranslation } from 'react-i18next'
 import { deepClone } from 'Utilities'
-//import BarBlock from 'pages/building/comparision/components/BarBlock'
+import BarBlock from 'pages/building/comparision/components/BarBlock'
 
 const ChartHeader = styled.div`
-  margin-left: 20px;
+  
   margin-right: 20px;
 `
 
@@ -98,6 +98,12 @@ const CancelBtn = styled.button`
   font-size: .85rem;
   padding-left: 20px;
   padding-right: 20px;
+`
+
+const LineChartWrapper =  styled.div`
+  margin-top: 18px;
+  height: max(500px, 100vw / 4);
+  width: calc(100% - 50px);
 `
 
 const PerformanceComparison2 = () => {
@@ -451,7 +457,7 @@ const PerformanceComparison2 = () => {
   return (
     <PerformanceComparisonWrapper>
       <ChartHeader className="d-flex justify-content-between mb-5 flex-wrap">
-        <PerformanceComparisonTitle className="mb-2 mb-md-0">{t('Sub-System Performance')}</PerformanceComparisonTitle>
+        <PerformanceComparisonTitle className="mb-2 mb-md-0">{t('Building Energy - Sub-System Performance')}</PerformanceComparisonTitle>
 
         <EditConfigurationButton
           type="button"
@@ -461,135 +467,81 @@ const PerformanceComparison2 = () => {
         </EditConfigurationButton>
 
       </ChartHeader>
-        <ResponsiveLine
-          {...commonProperties}
-          curve="monotoneX"
-          data={chartData}
-          useMesh={false}
-          enableSlices={false}
-          enablePoint
-          pointSize={16}
-          //pointColor="#fff"
-          pointBorderWidth={1}
-          enableGridX={false}
-          lineWidth={2}
-          isInteractive={true}
-          yScale={
-            {
-              type: 'linear',
-              min: 1,
-              max: 7,
-            }
-          }
-          axisLeft={
-            {
-              tickValues: [1, 2, 3, 4, 5, 6, 7],
-              format: value => {
-                const labels = ['G', 'F', 'E', 'D', 'C', 'B', 'A']
-                return labels[value - 1]
-              },
-            }
-          }
-          pointBorderColor={
-            { from: 'serieColor' }
-          }
-          xScale={
-            { type: 'point' }
-          }
-          colors={['#AACC72', '#44D7B6', '#478D58']}
-          legends={
-            [
+      <div className="d-flex">
+        <div className="me-2">
+          <BarBlock width="36px" marginBottom="30px" backgroundColor="#478D58" text="A"/>
+          <BarBlock width="36px" marginBottom="30px" backgroundColor="#63AE62" text="B"/>
+          <BarBlock width="36px" marginBottom="30px" backgroundColor="#AACC72" text="C"/>
+          <BarBlock width="36px" marginBottom="31px" backgroundColor="#F0EA6F" text="D"/>
+          <BarBlock width="36px" marginBottom="31px" backgroundColor="#ECB75F" text="E"/>
+          <BarBlock width="36px" marginBottom="31px" backgroundColor="#DF7F4F" text="F"/>
+          <BarBlock width="36px" backgroundColor="#D94545" text="G"/>
+        </div>
+        <LineChartWrapper>
+          <ResponsiveLine
+            {...commonProperties}
+            curve="monotoneX"
+            data={chartData}
+            useMesh={false}
+            enableSlices={false}
+            enablePoint
+            pointSize={12}
+            //pointColor="#fff"
+            pointBorderWidth={1}
+            enableGridX={false}
+            lineWidth={4}
+            isInteractive={true}
+            yScale={
               {
-                anchor: 'top',
-                direction: 'row',
-                justify: false,
-                translateX: 0,
-                translateY: -35,
-                itemWidth: 180,
-                itemHeight: 20,
-                itemsSpacing: 4,
-                symbolSize: 20,
-                symbolShape: 'circle',
-                itemDirection: 'left-to-right',
-                itemTextColor: '#777',
-                effects: [
-                  {
-                    on: 'hover',
-                    style: {
-                      itemBackground: 'rgba(0, 0, 0, .03)',
-                      itemOpacity: 1,
-                    },
-                  }],
-              }]
-          }
-        />
-      {/*<div className="flex">*/}
-      {/*  <div>*/}
-      {/*    <BarBlock width='108px' backgroundColor='#63AE62' text='B' />*/}
-      {/*  </div>*/}
-      {/*  <ResponsiveLine*/}
-      {/*    {...commonProperties}*/}
-      {/*    curve="monotoneX"*/}
-      {/*    data={chartData}*/}
-      {/*    useMesh={false}*/}
-      {/*    enableSlices={false}*/}
-      {/*    enablePoint*/}
-      {/*    pointSize={16}*/}
-      {/*    //pointColor="#fff"*/}
-      {/*    pointBorderWidth={1}*/}
-      {/*    enableGridX={false}*/}
-      {/*    lineWidth={2}*/}
-      {/*    isInteractive={true}*/}
-      {/*    yScale={*/}
-      {/*      {*/}
-      {/*        type: 'linear',*/}
-      {/*        min: 1,*/}
-      {/*        max: 7,*/}
-      {/*      }*/}
-      {/*    }*/}
-      {/*    axisLeft={*/}
-      {/*      {*/}
-      {/*        tickValues: [1, 2, 3, 4, 5, 6, 7],*/}
-      {/*        format: value => {*/}
-      {/*          const labels = ['G', 'F', 'E', 'D', 'C', 'B', 'A']*/}
-      {/*          return labels[value - 1]*/}
-      {/*        },*/}
-      {/*      }*/}
-      {/*    }*/}
-      {/*    pointBorderColor={*/}
-      {/*      { from: 'serieColor' }*/}
-      {/*    }*/}
-      {/*    xScale={*/}
-      {/*      { type: 'point' }*/}
-      {/*    }*/}
-      {/*    colors={['#AACC72', '#44D7B6', '#478D58']}*/}
-      {/*    legends={*/}
-      {/*      [*/}
-      {/*        {*/}
-      {/*          anchor: 'top',*/}
-      {/*          direction: 'row',*/}
-      {/*          justify: false,*/}
-      {/*          translateX: 0,*/}
-      {/*          translateY: -35,*/}
-      {/*          itemWidth: 180,*/}
-      {/*          itemHeight: 20,*/}
-      {/*          itemsSpacing: 4,*/}
-      {/*          symbolSize: 20,*/}
-      {/*          symbolShape: 'circle',*/}
-      {/*          itemDirection: 'left-to-right',*/}
-      {/*          itemTextColor: '#777',*/}
-      {/*          effects: [*/}
-      {/*            {*/}
-      {/*              on: 'hover',*/}
-      {/*              style: {*/}
-      {/*                itemBackground: 'rgba(0, 0, 0, .03)',*/}
-      {/*                itemOpacity: 1,*/}
-      {/*              },*/}
-      {/*            }],*/}
-      {/*        }]*/}
-      {/*    }*/}
-      {/*  />*/}
-      {/*</div>*/}
+                type: 'linear',
+                min: 1,
+                max: 7,
+              }
+            }
+            axisLeft={ null
+              // {
+              //   tickValues: [1, 2, 3, 4, 5, 6, 7],
+              //   format: value => {
+              //     const labels = ['G', 'F', 'E', 'D', 'C', 'B', 'A']
+              //     return labels[value - 1]
+              //   },
+              // }
+            }
+            pointBorderColor={
+              { from: 'serieColor' }
+            }
+            xScale={
+              { type: 'point' }
+            }
+            colors={['#AACC72', '#44D7B6', '#478D58']}
+            legends={
+              [
+                {
+                  anchor: 'top',
+                  direction: 'row',
+                  justify: false,
+                  translateX: 0,
+                  translateY: -35,
+                  itemWidth: 180,
+                  itemHeight: 20,
+                  itemsSpacing: 4,
+                  symbolSize: 20,
+                  symbolShape: 'circle',
+                  itemDirection: 'left-to-right',
+                  itemTextColor: '#777',
+                  effects: [
+                    {
+                      on: 'hover',
+                      style: {
+                        itemBackground: 'rgba(0, 0, 0, .03)',
+                        itemOpacity: 1,
+                      },
+                    }],
+                }]
+            }
+          />
+        </LineChartWrapper>
+      </div>
       <Popup/>
     </PerformanceComparisonWrapper>
   )

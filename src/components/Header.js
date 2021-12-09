@@ -38,12 +38,12 @@ const Header = () => {
       </Menu>
 
       <LangWrapper className="d-flex justify-content-between">
-        <button type="button" onClick={() => changeLanguage('en')} style={{fontWeight: i18n.language === 'en' ? 'bold' : '' }}>
+        <span onClick={() => changeLanguage('en')} style={{fontWeight: i18n.language === 'en' ? 'bold' : '' }}>
           EN
-        </button> /
-        <button type="button" onClick={() => changeLanguage('de')} style={{fontWeight: i18n.language === 'de' ? 'bold' : '' }}>
+        </span> /
+        <span onClick={() => changeLanguage('de')} style={{fontWeight: i18n.language === 'de' ? 'bold' : '' }}>
           DE
-        </button>
+        </span>
       </LangWrapper>
       <SearchMenu>
         <InputGroup className='input-group'>

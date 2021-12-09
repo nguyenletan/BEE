@@ -8,7 +8,7 @@ const Block = styled.div`
   margin-bottom: ${props => props.marginBottom ? props.marginBottom : '10px'};
   margin-left: ${props => props.marginLeft ? props.marginLeft : '0px'};
   text-align: ${props => props.textAlign ? props.textAlign : 'right'};
-  padding-right: ${props => props.paddingRight ? props.paddingRight : '0.35em'};
+  padding-right: ${props => props.paddingRight ? props.paddingRight : '0.45em'};
   font-weight: 500;
   font-size: 24px;
   line-height: 36px;
