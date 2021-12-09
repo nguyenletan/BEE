@@ -14,9 +14,10 @@ const RadialBarWrapper = styled.div`
   @media (min-width: 768px) {
     padding: 20px;
   }
-  margin-top: 60px;
+  margin-top: 50px;
   margin-bottom: 40px;
-  min-height: 400px;
+
+  height: 500px;
   max-width: 50%;
 `
 
