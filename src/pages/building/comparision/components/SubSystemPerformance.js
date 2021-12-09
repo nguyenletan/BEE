@@ -233,7 +233,7 @@ const SubSystemPerformance = ({ data }) => {
         enableDotLabel={false}
         gridLabelOffset={36}
         gridLabel={LabelComponent}
-        fillOpacity={0.1}
+        fillOpacity={0.05}
         borderWidth={3}
         colors={['#AACC72', '#44D7B6', '#478D58']}
         legends={[
