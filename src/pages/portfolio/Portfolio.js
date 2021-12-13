@@ -29,10 +29,14 @@ const Portfolio = () => {
 
   const [isLoading, setIsLoading] = useState(false)
 
+
+
   useEffect(() => {
     async function fetchMyAPI () {
       setIsLoading(true)
       const idToken = await user.getIdToken()
+
+      //setUser(user.)
       const tmp = await getAllBuilding(idToken)
       setBuildings(tmp)
       setIsLoading(false)
