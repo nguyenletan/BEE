@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/auth'
 import 'firebase/database'
+import 'firebase/analytics';
 
 
 const config = {
@@ -27,6 +28,8 @@ const config = {
 const initFirebase = () => {
   if (!firebase.apps.length) {
     firebase.initializeApp(config)
+    firebase.analytics()
+    firebase.performance()
   }
 }
 
