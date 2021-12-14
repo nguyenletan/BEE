@@ -1,11 +1,12 @@
-import {getAnalytics, setUserId} from 'firebase/analytics';
+import {getAnalytics, setUserId, setUserProperties, setCurrentScreen} from 'firebase/analytics';
 
 class Analytics {
 
 
-    setUser(id) {
+    setUser(id, props) {
         setUserId(getAnalytics(), id);
-        //setUserProperties(getAnalytics(), props);
+        setUserProperties(getAnalytics(), props);
+        setCurrentScreen(getAnalytics(), 'authenticate')
     }
 	//
     // page(screen: string, props?: { [key: string]: any }) {

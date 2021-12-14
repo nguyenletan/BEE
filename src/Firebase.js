@@ -1,7 +1,8 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/auth'
 import 'firebase/database'
-import 'firebase/analytics';
+import { getAnalytics, logEvent } from "firebase/analytics";
+
 
 
 const config = {
@@ -28,8 +29,8 @@ const config = {
 const initFirebase = () => {
   if (!firebase.apps.length) {
     firebase.initializeApp(config)
-    firebase.analytics()
-    firebase.performance()
+    const analytics = getAnalytics()
+    logEvent(analytics, 'notification_received');
   }
 }
 

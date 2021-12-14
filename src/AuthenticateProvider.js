@@ -6,6 +6,7 @@ import {
 } from 'react'
 import { firebase } from './Firebase'
 import Analytics from 'Analytics';
+import { trackingUser } from 'api/UserAPI'
 const AuthContext = createContext({
   user: null,
   loading: true,
@@ -22,7 +23,8 @@ const AuthProvider = ({ children }) => {
     const cancelAuthListener = firebase.auth().onIdTokenChanged((u) => {
       setUser(u)
       console.log(u)
-      Analytics.setUser(u.uid)
+      Analytics.setUser(u.uid, {action: 'authenticate'})
+      trackingUser(u.uid)
       setLoading(false)
     })
 
