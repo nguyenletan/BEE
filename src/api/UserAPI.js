@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const trackingUser = async(externalUID, idToken) => {
+export const trackingUser = async(externalUID, pageName, idToken) => {
   let result
   await axios({
     method: 'post',
@@ -9,7 +9,10 @@ export const trackingUser = async(externalUID, idToken) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,
     },
-    data: {externalUID: externalUID},
+    data: {
+      externalUID: externalUID,
+      pageName: pageName
+    },
     body: {},
   }).then((response) => {
     console.log(response)

@@ -3,7 +3,7 @@ import {getAnalytics, setUserId, setUserProperties, setCurrentScreen} from 'fire
 class Analytics {
 
 
-    setUser(id, props) {
+    setUser(id, pageName, props) {
         setUserId(getAnalytics(), id);
         setUserProperties(getAnalytics(), props);
         setCurrentScreen(getAnalytics(), 'authenticate')

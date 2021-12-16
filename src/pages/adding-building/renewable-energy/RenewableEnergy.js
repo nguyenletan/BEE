@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import StepNav from '../step-nav/StepNav'
 import { useForm } from 'react-hook-form'
@@ -9,6 +10,8 @@ import _ from 'lodash'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { Redirect, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useAuth } from 'AuthenticateProvider'
+import { trackingUser } from 'api/UserAPI'
 
 const Form = styled.form`
 
@@ -88,6 +91,15 @@ const RenewableEnergy = () => {
 
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
+
+  const { user } = useAuth()
+  useEffect(() => {
+    async function tracking() {
+      const idToken = await user.getIdToken()
+      trackingUser(user.uid, 'Renewable Energy - Adding Building', idToken)
+    }
+    tracking()
+  }, [])
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

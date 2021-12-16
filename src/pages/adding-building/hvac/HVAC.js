@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import CoolingSystem from './CoolingSystem'
 import StepNav from '../step-nav/StepNav'
 import styled from 'styled-components'
@@ -6,9 +7,11 @@ import { useForm } from 'react-hook-form'
 import HeatingSystem from './HeatingSystem'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
-import { addingBuildingProgressState } from '../../../atoms'
+import { addingBuildingProgressState } from 'atoms'
 import { Redirect, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { trackingUser } from 'api/UserAPI'
+import { useAuth } from 'AuthenticateProvider'
 
 const Form = styled.form`
 
@@ -48,6 +51,14 @@ const HVAC = () => {
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
 
   const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/lighting')
+  const { user } = useAuth()
+  useEffect(() => {
+    async function tracking() {
+      const idToken = await user.getIdToken()
+      trackingUser(user.uid, 'HVAC - Adding Building', idToken)
+    }
+    tracking()
+  }, [])
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

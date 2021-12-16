@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react'
 import { ArrowLeft } from 'react-bootstrap-icons'
 import { useParams } from 'react-router'
 import { useHistory } from 'react-router-dom'
@@ -11,6 +12,8 @@ import UnitsOfProductionDepreciation from './components/IssueDetail/UnitsOfProdu
 import Obsolescence from './components/IssueDetail/Obsolescence'
 import ObsolescenceMoreInfo from './components/IssueDetail/ObsolescenceMoreInfo'
 import WallLineChart from './components/IssueDetail/WallLineChart'
+import { trackingUser } from 'api/UserAPI'
+import { useAuth } from 'AuthenticateProvider'
 
 const Breadcrumb = styled.div`
   margin-top: 20px;
@@ -32,7 +35,7 @@ const BreadcrumbItemActive = styled.span`
 const IssueDetail = ({ data }) => {
   const { id } = useParams()
   const history = useHistory()
-
+  const { user } = useAuth()
   const annualMaintenanceCost = [
     {
       id: 'Current',
@@ -196,6 +199,14 @@ const IssueDetail = ({ data }) => {
       ],
     },
   ]
+
+  useEffect(() => {
+    async function tracking() {
+      const idToken = await user.getIdToken()
+      trackingUser(user.uid, 'IssueDetail-AssetReliability', idToken)
+    }
+    tracking()
+  }, [])
 
   return (
     <>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import PotentialSavings from '../comparision/components/PotentialSavings'
@@ -8,6 +9,8 @@ import PayBack from '../comparision/components/PayBack'
 import { useSetRecoilState } from 'recoil'
 import { isDisplayPerformanceFilterState } from 'atoms'
 import { useTranslation } from 'react-i18next'
+import { trackingUser } from 'api/UserAPI'
+import { useAuth } from 'AuthenticateProvider'
 
 const ImproveWrapper = styled.div`
   margin-bottom: 40px;
@@ -27,7 +30,7 @@ const Improve = (props) => {
   const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
   setIsDisplayPerformanceFilter(false)
 
-
+  const { user } = useAuth()
   const improveData = {
     improvementMeasuresData: [
       {
@@ -276,7 +279,19 @@ const Improve = (props) => {
       setSubSystemPerformanceData(subSystemPerformanceDataDE)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [i18n.language])
+
+
+
+  useEffect(() => {
+    async function tracking() {
+      const idToken = await user.getIdToken()
+      trackingUser(user.uid, 'Improve', idToken)
+    }
+    tracking()
+  }, [])
+
 
 
   const updateValue = () => {

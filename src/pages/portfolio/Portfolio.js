@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Header from '../../components/Header'
@@ -7,6 +8,7 @@ import { Link } from 'react-router-dom'
 import { getAllBuilding } from 'api/BuildidingAPI'
 import { useAuth } from 'AuthenticateProvider'
 import { useTranslation  } from 'react-i18next';
+import { trackingUser } from 'api/UserAPI'
 
 const BuildingListBlocks = ({ buildings }) => {
 
@@ -44,7 +46,13 @@ const Portfolio = () => {
 
     //  eslint-disable-next-line
     fetchMyAPI()
+
     //  eslint-disable-next-line
+    async function tracking() {
+      const idToken = await user.getIdToken()
+      trackingUser(user.uid, 'Portfolio', idToken)
+    }
+    tracking()
   }, [])
 
 

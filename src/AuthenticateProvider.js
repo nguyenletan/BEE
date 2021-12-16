@@ -22,9 +22,8 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const cancelAuthListener = firebase.auth().onIdTokenChanged((u) => {
       setUser(u)
-      console.log(u)
-      Analytics.setUser(u.uid, {action: 'authenticate'})
-      trackingUser(u.uid)
+      Analytics.setUser(u.uid, {action: 'IdTokenChanged'})
+      trackingUser(u.uid, "Sign In")
       setLoading(false)
     })
 
