@@ -7,7 +7,10 @@ const firebaseAuthConfig = {
   signInOptions: [
     {
       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-      requireDisplayName: false
+      requireDisplayName: false,
+      disableSignUp: {
+        status: true,
+      },
     }
   ],
   signInSuccessUrl: '/'
