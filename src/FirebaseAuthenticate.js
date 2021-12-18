@@ -5,14 +5,18 @@ import 'firebase/compat/auth';
 
 
 const firebaseAuthConfig = {
-  signInFlow: 'popup',
+  signInFlow: 'redirect',
   signInOptions: [
     {
       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-      requireDisplayName: false
+      requireDisplayName: false,
+      disableSignUp: {
+        status: true,
+      },
     }
   ],
-  signInSuccessUrl: '/'
+  signInSuccessUrl: '/',
+
 }
 
 const FirebaseAuth = () => {
