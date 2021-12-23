@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import { ResponsiveLine } from '@nivo/line'
 import styled from 'styled-components'
-import { line } from 'd3-shape'
 import { getProjectPeakDemand } from 'api/EquipmentAPI'
 import { useAuth } from 'AuthenticateProvider'
 import { deepClone, getMonthName } from 'Utilities'
