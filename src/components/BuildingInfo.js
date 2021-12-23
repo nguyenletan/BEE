@@ -36,7 +36,7 @@ const BuildingTitle = styled.h2`
   font-size: 2.2rem;
   color: var(--bs-primary);
   font-weight: 700;
-  padding-left: 0px;
+  padding-left: 0;
   width: 100%;
   
   @media (min-width: 1024px) {
@@ -75,7 +75,7 @@ const BuildingInfo = (props) => {
     totalOperatingHours,
   } = props
 
-  const { t, i18n } = useTranslation('generalBuildingInformation');
+  const { t, i18n } = useTranslation(['generalBuildingInformation', 'common']);
   const [countryName, setCountryName] = useState()
 
   useEffect(()=> {
@@ -108,7 +108,7 @@ const BuildingInfo = (props) => {
         <div className="row ms-2 mb-1 w-100">
           <div className="col-12 col-md-4 col-lg-3">
             <TypeCol className="mb-1"><Label>{t('Use Type')}</Label></TypeCol>
-            <TypeCol className="mb-0">{useType}</TypeCol>
+            <TypeCol className="mb-0">{t(useType, {ns: 'common'})}</TypeCol>
           </div>
           <div className="col-12 col-md-4 col-lg-3">
             <TypeCol className="mb-1"><Label>{t('Total Floor Area (Internal)')}</Label></TypeCol>
