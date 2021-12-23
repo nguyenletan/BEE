@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import { ResponsiveLine } from '@nivo/line'
 import styled from 'styled-components'
-import { line } from 'd3-shape'
 import { useTranslation } from 'react-i18next'
 import { deepClone } from 'Utilities'
 
