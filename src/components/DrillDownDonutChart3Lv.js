@@ -238,7 +238,7 @@ const DrillDownDonutChart3Lv = (props) => {
       return formatNumber(value / 1000, 2, 'MWh')
     } else {
       if (title === t('Cost Breakdown')) {
-        return formatNumber(value * 0.23, 2, '$')
+        return formatNumber(value * 0.23, 2, t('$'))
       } else {
         return formatNumber(value * 0.000208, 2, t('Ton'))
       }
