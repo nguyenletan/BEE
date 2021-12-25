@@ -51,7 +51,7 @@ const BreakDown = (props) => {
         <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
           <DrillDownDonutChart3Lv
             title={t("Cost Breakdown")}
-            subTitle="$"
+            subTitle={t('$')}
             data={consumptionBreakdownSt}
             hasDescription
           />
