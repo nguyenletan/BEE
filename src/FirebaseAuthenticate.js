@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
-import { firebase } from './Firebase'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+
 
 const firebaseAuthConfig = {
   signInFlow: 'popup',
@@ -9,11 +11,12 @@ const firebaseAuthConfig = {
       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
       requireDisplayName: false,
       disableSignUp: {
-        status: true,
+        status: false,
       },
     }
   ],
-  signInSuccessUrl: '/'
+  signInSuccessUrl: '/',
+
 }
 
 const FirebaseAuth = () => {

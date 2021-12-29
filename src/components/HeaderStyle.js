@@ -108,6 +108,9 @@ export const LangWrapper = styled.div`
   padding-left: 1rem;
   padding-right: 1rem;
   font-size: 0.95rem;
+  span {
+    cursor: pointer;
+  }
 `
 
 export const SearchMenu = styled.div`
@@ -127,13 +130,13 @@ export const InputGroup = styled.div`
 `
 
 export const SearchInput = styled.input`
-  border-radius: 18px 0px 0px 18px;
+  border-radius: 18px 0 0 18px;
   border-right: none;
 
 `
 
 export const SearchIcon = styled.span`
-  border-radius: 0 18px 18px 0px;
+  border-radius: 0 18px 18px 0;
   background-color: var(--white);
   border-left: none;
 

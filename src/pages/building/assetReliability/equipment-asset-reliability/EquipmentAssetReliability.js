@@ -27,6 +27,7 @@ import MaintenanceRegime from 'pages/building/assetReliability/equipment-asset-r
 import ProjectedPeakDemand from 'pages/building/assetReliability/equipment-asset-reliability/components/ProjectedPeakDemand'
 import { ArrowLeft } from 'react-bootstrap-icons'
 import { useTranslation } from 'react-i18next'
+import { trackingUser } from 'api/UserAPI'
 
 const Wrapper = styled.div`
   margin-top: 30px;
@@ -224,8 +225,13 @@ const EquipmentAssetReliability = () => {
   }
 
   useEffect(() => {
-    getEquipmentInfo()
+    async function tracking() {
+      const idToken = await user.getIdToken()
+      trackingUser(user.uid, 'EquipmentAssetReliability', idToken)
+    }
+    tracking()
 
+    getEquipmentInfo()
   }, [])
 
   return (

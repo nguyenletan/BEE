@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import StepNav from '../step-nav/StepNav'
 import styled from 'styled-components'
 import { Controller, useForm } from 'react-hook-form'
@@ -13,6 +14,8 @@ import LightingSubSystem from './LightingSubSystem'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { Redirect, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useAuth } from 'AuthenticateProvider'
+import { trackingUser } from 'api/UserAPI'
 
 const Form = styled.form`
 
@@ -54,6 +57,15 @@ const Lighting = () => {
   const totalPercentageOfLightingSubSystemList = useRecoilValue(totalPercentageOfLightingSubSystemListState)
 
   const [isMovingNext, setIsMovingNext] = useState(false)
+
+  const { user } = useAuth()
+  useEffect(() => {
+    async function tracking() {
+      const idToken = await user.getIdToken()
+      trackingUser(user.uid, 'Lighting - Adding Building', idToken)
+    }
+    tracking()
+  }, [])
 
   const onAddLightingSubSystemList = () => {
     setLightingSubSystemList((oldLightingSubSystemList) => [

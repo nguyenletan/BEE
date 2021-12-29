@@ -65,7 +65,6 @@ const SubSystemPerformance = ({ data }) => {
   // const curveOptions = ['linearClosed', 'basisClosed', 'catmullRomClosed', 'cardinalClosed']
 
   const LabelComponent = (props) => {
-
     const { id, anchor, angle } = props
     let texts = ''
     let iconSVG = ''
@@ -79,57 +78,57 @@ const SubSystemPerformance = ({ data }) => {
         texts = (
           <>
             <text
-              y={50} x={-25}
+              y={-25} x={-25}
               style={{ fontSize: 12, fill: '#343a40' }}
             >{t('Energy Usage')}
             </text>
             <text
-              y={66} x={-25}
+              y={-10} x={-25}
               style={{ fontSize: 12, fill: '#343a40' }}
             >{t('Intensity')}
             </text>
           </>
         )
         translateX = -5
-        translateY = -45
+        translateY = -185
         break
       case t('Cooling Efficiency'):
         iconSVG = coolingSVG()
         texts = (
           <>
             <text
-              y={50} x={-6}
+              y={15} x={38}
               style={{ fontSize: 12, fill: '#343a40' }}
             >{t('Cooling')}
             </text>
             <text
-              y={66} x={-6}
+              y={30} x={38}
               style={{ fontSize: 12, fill: '#343a40' }}
             >{t('Efficiency')}
             </text>
           </>
         )
-        translateX = -10
-        translateY = -40
+        translateX = 120
+        translateY = -120
         break
       case t('Heating Efficiency'):
         iconSVG = heatingSVG()
         texts = (
           <>
             <text
-              y={50} x={-13}
+              y={15} x={20}
               style={{ fontSize: 12, fill: '#343a40' }}
             >{t('Heating')}
             </text>
             <text
-              y={66} x={-13}
+              y={30} x={20}
               style={{ fontSize: 12, fill: '#343a40' }}
             >{t('Efficiency')}
             </text>
           </>
         )
-        translateX = -15
-        translateY = -40
+        translateX = 150
+        translateY = 15
         break
       case t('Lighting Efficiency'):
         iconSVG = lightingSVG()
@@ -147,8 +146,8 @@ const SubSystemPerformance = ({ data }) => {
             </text>
           </>
         )
-        translateX = -5
-        translateY = -20
+        translateX = 50
+        translateY = 140
         break
       case t('Mechanical Ventilation Efficiency'):
         iconSVG = mechVentSVG()
@@ -166,8 +165,8 @@ const SubSystemPerformance = ({ data }) => {
             </text>
           </>
         )
-        translateX = -20
-        translateY = -22
+        translateX = -90
+        translateY = 140
         break
       case t('Envelope Performance'):
         iconSVG = envelopeSVG()
@@ -185,15 +184,15 @@ const SubSystemPerformance = ({ data }) => {
             </text>
           </>
         )
-        translateX = -30
-        translateY = -30
+        translateX = -200
+        translateY = 5
         break
       case t('Renewables Usage'):
         iconSVG = renewableSVG()
         texts = (
           <>
             <text
-              y={50} x={-20}
+              y={50} x={-10}
               style={{ fontSize: 12, fill: '#343a40' }}
             >{t('Renewables')}
             </text>
@@ -204,8 +203,8 @@ const SubSystemPerformance = ({ data }) => {
             </text>
           </>
         )
-        translateX = -30
-        translateY = -30
+        translateX = -175
+        translateY = -140
         break
       default:
         break
@@ -227,24 +226,26 @@ const SubSystemPerformance = ({ data }) => {
         {...commonProperties}
         gridShape="linear"
         dotSize={0}
+        blendMode="multiply"
+        gridLevels={1}
         dotBorderColor="#fff"
         dotBorderWidth={0}
         enableDotLabel={false}
         gridLabelOffset={36}
         gridLabel={LabelComponent}
-        fillOpacity={0.5}
-        borderWidth={1}
-        colors={['#AACC72', '#63AE62', '#478D58']}
+        fillOpacity={0.05}
+        borderWidth={3}
+        colors={['#AACC72', '#44D7B6', '#478D58']}
         legends={[
           {
             anchor: 'top',
             direction: 'row',
             translateX: 0,
             translateY: -105,
-            itemWidth: 135,
-            itemHeight: 10,
+            itemWidth: 150,
+            itemHeight: 18,
             itemTextColor: '#999',
-            symbolSize: 8,
+            symbolSize: 18,
             symbolShape: 'circle',
             effects: [
               {

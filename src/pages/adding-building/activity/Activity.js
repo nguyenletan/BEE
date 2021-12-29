@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import StepNav from '../step-nav/StepNav'
@@ -6,9 +7,11 @@ import TimeTable from './TimeTable'
 import SpaceUsageGFA from './SapceUsageGFA'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
-import { addingBuildingProgressState } from '../../../atoms'
+import { addingBuildingProgressState } from 'atoms'
 import { Redirect, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { trackingUser } from 'api/UserAPI'
+import { useAuth } from 'AuthenticateProvider'
 
 const Title = styled.h2`
   color: var(--bs-primary);
@@ -24,10 +27,19 @@ const Activity = () => {
   const [isMovingNext, setIsMovingNext] = useState(false)
 
   const { id } = useParams()
+
+  const { user } = useAuth()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
   const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/electricity-consumption')
-
   const { t } = useTranslation('buildingInput')
+
+  useEffect(() => {
+    async function tracking() {
+      const idToken = await user.getIdToken()
+      trackingUser(user.uid, 'Activity - Adding Building', idToken)
+    }
+    tracking()
+  }, [])
 
   const onSubmit = () => {
     if (!id) {
