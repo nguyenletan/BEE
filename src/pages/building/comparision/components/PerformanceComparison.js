@@ -314,7 +314,7 @@ const data = [
 
 const PerformanceComparison = () => {
 
-  const { t, i18n } = useTranslation('comparison')
+  const { t } = useTranslation('comparison')
   const [show, setShow] = useState(false)
   const [chartData, setChartData] = useState(deepClone(data))
   const otherMonitoredEquipments = [
@@ -370,13 +370,13 @@ const PerformanceComparison = () => {
     setShow(false)
   }
 
-  const filterData = (buildings, subSystems) => {
-    const arr = [...data.filter(i => buildings.includes(i.id))]
-    arr.forEach(a => {
-      a.data = [...a.data.filter(d => subSystems.includes(d.x))]
-    })
-    setChartData(arr)
-  }
+  // const filterData = (buildings, subSystems) => {
+  //   const arr = [...data.filter(i => buildings.includes(i.id))]
+  //   arr.forEach(a => {
+  //     a.data = [...a.data.filter(d => subSystems.includes(d.x))]
+  //   })
+  //   setChartData(arr)
+  // }
 
   const onClick = () => {
     handleShow()

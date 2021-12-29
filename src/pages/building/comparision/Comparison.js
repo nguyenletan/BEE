@@ -10,8 +10,8 @@ import PerformanceComparison2 from './components/PerformanceComparison2'
 import { useSetRecoilState } from 'recoil'
 import { isDisplayPerformanceFilterState } from 'atoms'
 import { useTranslation } from 'react-i18next'
-import PerformanceComparison from 'pages/building/comparision/components/PerformanceComparison'
-import RadialBar from 'pages/building/comparision/components/RadialBar'
+// import PerformanceComparison from 'pages/building/comparision/components/PerformanceComparison'
+// import RadialBar from 'pages/building/comparision/components/RadialBar'
 import { trackingUser } from 'api/UserAPI'
 import { useAuth } from 'AuthenticateProvider'
 //import PerformanceComparison from 'pages/building/comparision/components/PerformanceComparison'
@@ -163,9 +163,9 @@ const Comparison = () => {
 
       <PerformanceComparison2/>
 
-      <PerformanceComparison/>
+      {/*<PerformanceComparison/>*/}
 
-      <RadialBar/>
+      {/*<RadialBar/>*/}
 
     </ComparisonWrapper>
   )
