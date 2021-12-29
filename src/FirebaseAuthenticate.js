@@ -5,13 +5,13 @@ import 'firebase/compat/auth';
 
 
 const firebaseAuthConfig = {
-  signInFlow: 'redirect',
+  signInFlow: 'popup',
   signInOptions: [
     {
       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
       requireDisplayName: false,
       disableSignUp: {
-        status: true,
+        status: false,
       },
     }
   ],

@@ -30,7 +30,8 @@ const CurrentSubSystemHealthList = styled.ul`
   margin-block-end: 0;
   padding-inline-start: 0;
 
-  margin: 0;
+  margin: 40px 0 0;
+
   li {
     list-style-type: none;
     display: flex;
@@ -47,35 +48,35 @@ const CurrentSubSystemHealth = ({ data }) => {
     let iconSVG = ''
     let translateX = anchor === 'end' ? -50 : anchor === 'middle' ? -20 : -10
     let translateY = angle < 0 ? -60 : -30
-
+    console.log(id)
     switch (id) {
       case 'Cooling':
         iconSVG = coolingSVG()
         texts = (
           <>
             <text
-              y={50} x={0}
+              y={50} x={-5}
               style={{ fontSize: 12, fill: '#343a40' }}
             >{t(id)}
             </text>
           </>
         )
-        translateX = -5
-        translateY = -25
+        translateX = -16
+        translateY = -165
         break
       case 'Heating':
         iconSVG = heatingSVG()
         texts = (
           <>
             <text
-              y={50} x={-6}
+              y={50} x={-10}
               style={{ fontSize: 12, fill: '#343a40' }}
             >{t(id)}
             </text>
           </>
         )
-        translateX = -10
-        translateY = -40
+        translateX = 102
+        translateY = 40
         break
       case 'Mechanical Ventilation':
         iconSVG = mechVentSVG()
@@ -87,14 +88,14 @@ const CurrentSubSystemHealth = ({ data }) => {
             >{t('Mechanical')}
             </text>
             <text
-              y={66} x={-6}
+              y={66} x={-10}
               style={{ fontSize: 12, fill: '#343a40' }}
             >{t('Ventilation')}
             </text>
           </>
         )
-        translateX = -15
-        translateY = -40
+        translateX = -140
+        translateY = 30
         break
       case 'Lighting Efficacy':
         iconSVG = lightingSVG()
