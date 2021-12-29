@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import BuildingHistorical from '../../../components/BuildingHistorical'
 import ElectricalSystemInformation from '../../../components/ElectricalSystemInformation'
@@ -6,6 +7,8 @@ import IncidentalGains from '../../../components/IncidentalGains'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { breakdownState, isDisplayPerformanceFilterState } from 'atoms'
 import BreakDown from './components/BreakDown'
+import { trackingUser } from 'api/UserAPI'
+import { useAuth } from 'AuthenticateProvider'
 
 const EnergyPerformance = (props) => {
   const {
@@ -27,6 +30,16 @@ const EnergyPerformance = (props) => {
   const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
   const [breakdownRecoilState, setBreakdownRecoilState] = useRecoilState(breakdownState)
   setIsDisplayPerformanceFilter(true)
+  const { user } = useAuth()
+
+  useEffect(() => {
+    async function tracking() {
+      const idToken = await user.getIdToken()
+      trackingUser(user.uid, 'Performance', idToken)
+    }
+    tracking()
+  }, [])
+
 
   useEffect(() => {
     setBreakdownRecoilState({consumptionBreakdown: consumptionBreakdown})

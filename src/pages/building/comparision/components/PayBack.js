@@ -48,7 +48,7 @@ const PayBack = ({ data }) => {
     width: 790,
     height: 470,
     margin: { top: 24, right: 30, bottom: 40, left: 50 },
-    nodeSize: 10,
+    nodeSize: 20,
     blendMode: 'multiply',
     xFormat: d => `${d}%`,
     yFormat: d => `${d} Yr`,
@@ -70,10 +70,12 @@ const PayBack = ({ data }) => {
     x,
     y
   }) => {
+    console.log(node)
+    console.log(x)
     switch (node.data.subSystem) {
       case 'Cooling':
         return (
-          <g transform={`translate(${x},${y})`}>
+          <g transform={`translate(${node.x},${node.y})`}>
             {coolingSVG()}
           </g>
         )
@@ -85,19 +87,19 @@ const PayBack = ({ data }) => {
         )
       case 'Lighting':
         return (
-          <g transform={`translate(${x},${y})`}>
+          <g transform={`translate(${node.x},${node.y})`}>
             {lightingSVG()}
           </g>
         )
       case 'Openings':
         return (
-          <g transform={`translate(${x},${y})`}>
+          <g transform={`translate(${node.x},${node.y})`}>
             {openingsSVG()}
           </g>
         )
       case 'Walls':
         return (
-          <g transform={`translate(${x},${y})`}>
+          <g transform={`translate(${node.x},${node.y})`}>
             {wallSVG()}
           </g>
         )
@@ -113,7 +115,7 @@ const PayBack = ({ data }) => {
         {...commonProps}
         colors={{ scheme: 'set2' }}
         nodeSize={32}
-        renderNode={CustomNode}
+        nodeComponent={CustomNode}
       />
     </PayBackWrapper>
   )

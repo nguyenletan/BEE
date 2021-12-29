@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import StepNav from '../step-nav/StepNav'
 import { Controller, useForm } from 'react-hook-form'
@@ -13,6 +14,8 @@ import { addingBuildingProgressState, envelopFacadeState } from 'atoms'
 import { Redirect, useParams } from 'react-router-dom'
 import RoofType from '../../../reference-tables/RoofType'
 import { useTranslation } from 'react-i18next'
+import { useAuth } from 'AuthenticateProvider'
+import { trackingUser } from 'api/UserAPI'
 
 const Title = styled.h2`
   color: var(--bs-primary);
@@ -63,6 +66,16 @@ const EnvelopFacade = () => {
   const handleChange = (e) => {
     setEnvelopFacade({ ...envelopFacade, [e.target.name]: e.target.value })
   }
+
+  const { user } = useAuth()
+
+  useEffect(() => {
+    async function tracking() {
+      const idToken = await user.getIdToken()
+      trackingUser(user.uid, 'Envelop Facade - Adding Building', idToken)
+    }
+    tracking()
+  }, [])
 
   useEffect(() => {
     setValue(`externalRoofInsulationTypeId`, envelopFacade.externalRoofInsulationTypeId, {shouldValidate: true})

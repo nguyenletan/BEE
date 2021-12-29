@@ -13,7 +13,7 @@ import Lighting from './lighting/Lighting'
 import EnvelopFacade from './envelope-facade/EnvelopFacade'
 import RenewableEnergy from './renewable-energy/RenewableEnergy'
 import AddingBuildingSuccessfully from './AddingBuildingSuccessfully'
-import { getBuildingByIdForEditing } from '../../api/BuildidingAPI'
+import { getBuildingByIdForEditing } from 'api/BuildidingAPI'
 import { useSetRecoilState } from 'recoil'
 import {
   addingBuildingProgressState,
@@ -26,7 +26,7 @@ import {
   lightingSubSystemListState,
   solarPanelSystemListState,
   spaceUsageGFAListState,
-} from '../../atoms'
+} from 'atoms'
 
 export const BuildingInformationContext = React.createContext()
 
@@ -74,6 +74,8 @@ const AddingBuilding = () => {
     if (id) {
       fetchApi()
     }
+
+
     // eslint-disable-line
   }, [])
 

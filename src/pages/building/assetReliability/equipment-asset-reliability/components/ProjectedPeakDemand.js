@@ -149,7 +149,7 @@ const ProjectedPeakDemand = (props) => {
             showTicks
             value={numberOfNextDays}
             onChange={onChange}
-            showRange
+
             aria-label="Number of Next Days"
           />
         </NumberOfDaysWrapper>

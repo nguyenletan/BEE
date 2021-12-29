@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 
 import styled from 'styled-components'
@@ -29,6 +30,8 @@ import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/picker
 import DateFnsUtils from '@date-io/date-fns'
 import Grid from '@material-ui/core/Grid'
 import { useTranslation } from 'react-i18next'
+import { useAuth } from 'AuthenticateProvider'
+import { trackingUser } from 'api/UserAPI'
 
 const UploadImage = styled.div`
   width: 400px;
@@ -172,6 +175,16 @@ const GeneralInformation = () => {
           generalBuildingInformation?.sustainabilityRatingSchemeId?.toString())[0]?.ratingLevels)
     }
   }, [generalBuildingInformation, generalBuildingInformation?.sustainabilityRatingSchemeId])
+
+  const { user } = useAuth()
+
+  useEffect(() => {
+    async function tracking() {
+      const idToken = await user.getIdToken()
+      trackingUser(user.uid, 'General Information - Adding Building', idToken)
+    }
+    tracking()
+  }, [])
 
   const [sustainabilityRating, setSustainabilityRating] = useState(
     SustainabilityRatingScheme[0].ratingLevels)

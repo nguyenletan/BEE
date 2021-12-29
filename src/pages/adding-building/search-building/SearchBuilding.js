@@ -17,6 +17,8 @@ import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState, generalBuildingInformationState } from 'atoms'
 import { useTranslation } from 'react-i18next'
+import { trackingUser } from 'api/UserAPI'
+import { useAuth } from 'AuthenticateProvider'
 
 const Title = styled.h2`
   color: var(--bs-primary);
@@ -46,7 +48,7 @@ const SearchBuilding = () => {
   }
 
   const { t } = useTranslation('buildingInput')
-
+  const { user } = useAuth()
   const classes = makeStyles(() => (MaterialFormStyle))()
 
   const [searchValue, setSearchValue] = useState('')
@@ -74,7 +76,7 @@ const SearchBuilding = () => {
   const onSearch = async () => {
     const result = await getLatLngFromAddress(searchValue?.value?.description)
 
-    console.log(result)
+    //console.log(result)
 
     let information = {
       buildingName: searchValue?.value?.structured_formatting?.main_text,
@@ -123,6 +125,12 @@ const SearchBuilding = () => {
 
   useEffect(() => {
     setValueToForm(generalBuildingInformation)
+
+    async function tracking() {
+      const idToken = await user.getIdToken()
+      trackingUser(user.uid, 'SearchBuilding', idToken)
+    }
+    tracking()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

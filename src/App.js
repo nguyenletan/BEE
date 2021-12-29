@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { useAuth } from 'AuthenticateProvider'
 import FirebaseAuth from './FirebaseAuthenticate'
 import { createTheme , ThemeProvider } from '@material-ui/core/styles'
+import 'analytics_log_event'
 // import Login from './pages/login/Login';
 import Portfolio from './pages/portfolio/Portfolio'
 import Building from './pages/building/Building'

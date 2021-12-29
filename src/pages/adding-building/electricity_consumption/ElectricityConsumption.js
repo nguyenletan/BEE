@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import _ from 'lodash'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
@@ -8,11 +9,13 @@ import AddIcon from '@material-ui/icons/Add'
 import StepNav from '../step-nav/StepNav'
 import OneMonthElectricityConsumption from './OneMonthElectricityConsumption'
 
-import { addingBuildingProgressState, electricityConsumptionListState } from '../../../atoms'
+import { addingBuildingProgressState, electricityConsumptionListState } from 'atoms'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { Redirect, useParams } from 'react-router-dom'
-import { getPrevMonthYear } from '../../../Utilities'
+import { getPrevMonthYear } from 'Utilities'
 import { useTranslation } from 'react-i18next'
+import { trackingUser } from 'api/UserAPI'
+import { useAuth } from 'AuthenticateProvider'
 
 const Form = styled.form`
 
@@ -112,6 +115,15 @@ const ElectricityConsumption = () => {
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
   const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/hvac')
+  const { user } = useAuth()
+
+  useEffect(() => {
+    async function tracking() {
+      const idToken = await user.getIdToken()
+      trackingUser(user.uid, 'Electricity Consumption - Adding Building', idToken)
+    }
+    tracking()
+  }, [])
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

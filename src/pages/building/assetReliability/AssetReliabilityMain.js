@@ -11,6 +11,8 @@ import styled from 'styled-components'
 import { useSetRecoilState } from 'recoil'
 import { isDisplayPerformanceFilterState } from 'atoms'
 import { useTranslation } from 'react-i18next'
+import { useAuth } from 'AuthenticateProvider'
+import { trackingUser } from 'api/UserAPI'
 
 const TheSecondWrapper = styled.div`
   margin-bottom: 50px;
@@ -25,6 +27,15 @@ const AssetReliabilityMain = ({ data }) => {
 
 
   const [maintenanceBudgetBySubSystem, setMaintenanceBudgetBySubSystem] = useState(data.maintenanceBudgetBySubSystemEN)
+
+  const { user } = useAuth()
+  useEffect(() => {
+    async function tracking() {
+      const idToken = await user.getIdToken()
+      trackingUser(user.uid, 'AssetReliability', idToken)
+    }
+    tracking()
+  }, [])
 
   useEffect(() => {
     if(i18n.language === 'en') {
