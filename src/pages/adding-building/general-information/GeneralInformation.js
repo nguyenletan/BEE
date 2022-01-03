@@ -300,7 +300,7 @@ const GeneralInformation = () => {
             <div className="col-12 col-lg-6">
 
               <Controller
-                name="street-number"
+                name="streetNumber"
                 control={control}
                 render={({
                   field: { onChange },
@@ -328,7 +328,7 @@ const GeneralInformation = () => {
             <div className="col-12 col-lg-6">
 
               <Controller
-                name="street-name"
+                name="streetName"
                 control={control}
                 render={({
                   field: { onChange },
