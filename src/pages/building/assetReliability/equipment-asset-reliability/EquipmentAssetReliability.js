@@ -251,7 +251,7 @@ const EquipmentAssetReliability = () => {
               <h3>{t('Equipment Details')}</h3>
               <EquipmentDetailContent>
                 <div>
-                  <EquipmentPhoto src={equipment?.EquipmentDetail[0]?.imageUrl} alt="Chiller "/>
+                  <EquipmentPhoto src={equipment?.EquipmentDetail[0]?.imageUrl} alt="Chiller"/>
                 </div>
                 <EquipmentDetailInformation>
                   {/*row 1*/}
