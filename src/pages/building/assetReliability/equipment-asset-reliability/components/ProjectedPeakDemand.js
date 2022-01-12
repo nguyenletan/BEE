@@ -40,7 +40,7 @@ const ProjectedPeakDemand = (props) => {
         id: 'ProjectPeakDemand',
         data: rawData.map(d => {
           return {
-            x: t(getMonthName(d.month), {ns: "common"}) + ' ' + d.day,
+            x: t(getMonthName(d.month), { ns: 'common' }) + ' ' + d.day,
             y: +d.average.toFixed(2),
           }
         }),
@@ -49,10 +49,11 @@ const ProjectedPeakDemand = (props) => {
     setFilterData(deepClone(dataSource))
   }
 
-  const getProjectPeakDemandInfo =  async () => {
+  const getProjectPeakDemandInfo = async () => {
     const idToken = await user.getIdToken()
     // moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'),
     const tmp = await getProjectPeakDemand(equipmentId, 14, idToken)
+    console.log(tmp)
     convertRawDataToChartData(tmp)
   }
 
@@ -127,13 +128,12 @@ const ProjectedPeakDemand = (props) => {
   const onChange = (e) => {
     setNumberOfNextDays(e.target.value)
     let tmp = [...filterData]
-    tmp[0].data= []
-    for(let i = 0; i <= e.target.value; i++) {
+    tmp[0].data = []
+    for (let i = 0; i <= e.target.value; i++) {
       tmp[0].data.push(deepClone(depreciationData[0].data[i]))
     }
     setFilterData([...tmp])
-  };
-
+  }
 
   return (
     <Wrapper>
