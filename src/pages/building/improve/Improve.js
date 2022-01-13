@@ -283,8 +283,6 @@ const Improve = (props) => {
 
   }, [i18n.language])
 
-
-
   useEffect(() => {
     async function tracking() {
       const idToken = await user.getIdToken()
@@ -292,8 +290,6 @@ const Improve = (props) => {
     }
     tracking()
   }, [])
-
-
 
   const updateValue = () => {
     let investmentCost = 0
@@ -477,7 +473,6 @@ const Improve = (props) => {
       <ImprovementMeasures data={improveData.improvementMeasuresData} setResult={setResult} />
 
     </ImproveWrapper>
-
   )
 }
 
