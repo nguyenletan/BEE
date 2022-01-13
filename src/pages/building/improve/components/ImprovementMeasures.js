@@ -3,14 +3,14 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Input from '@material-ui/core/Input'
 import Slider from '@material-ui/core/Slider'
-import openingsImg from '../../../../assets/images/openings.svg'
-import coolingImg from '../../../../assets/images/cooling.svg'
-import lightingImg from '../../../../assets/images/lighting.svg'
-import heatingImg from '../../../../assets/images/heating.svg'
-import wallImg from '../../../../assets/images/wall.svg'
+import openingsImg from 'assets/images/openings.svg'
+import coolingImg from 'assets/images/cooling.svg'
+import lightingImg from 'assets/images/lighting.svg'
+import heatingImg from 'assets/images/heating.svg'
+import wallImg from 'assets/images/wall.svg'
 import { Col, Container, Modal, Row } from 'react-bootstrap'
 import { LinkExternalIcon, XCircleIcon } from '@primer/octicons-react'
-import IRR from '../../../../IRR'
+import IRR from 'IRR'
 import { withStyles } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
 
@@ -299,11 +299,8 @@ const ImprovementMeasures = ({ data, setResult }) => {
     const [editText, setEditText] = useState(t('Edit'))
 
     useEffect(()=> {
-
         setSaveText(t('Save'))
         setEditText(t('Edit'))
-
-
     }, [i18n.language])
 
 

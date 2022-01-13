@@ -4,13 +4,14 @@ import styled from 'styled-components'
 import PotentialSavings from '../comparision/components/PotentialSavings'
 import BreakDown from '../../../components/BreakDown'
 import SubSystemPerformance from '../comparision/components/SubSystemPerformance'
-import ImprovementMeasures from '../comparision/components/ImprovementMeasures'
+import ImprovementMeasures from 'pages/building/improve/components/ImprovementMeasures'
 import PayBack from '../comparision/components/PayBack'
 import { useSetRecoilState } from 'recoil'
 import { isDisplayPerformanceFilterState } from 'atoms'
 import { useTranslation } from 'react-i18next'
 import { trackingUser } from 'api/UserAPI'
 import { useAuth } from 'AuthenticateProvider'
+import { deepClone } from 'Utilities'
 
 const ImproveWrapper = styled.div`
   margin-bottom: 40px;
@@ -340,7 +341,8 @@ const Improve = (props) => {
 
       setPotentialSavingsData({ ...tmp })
 
-      tmp = breakDownConsumption
+      tmp = deepClone(breakDownConsumption)
+
       let total = tmp[0].value + tmp[1].value + tmp[2].value + tmp[3].value
       for (let i = 0; i < tmp.length; i++) {
         switch (tmp[i].id) {
@@ -365,7 +367,7 @@ const Improve = (props) => {
       }
       setBreakDownConsumption([...tmp])
 
-      tmp = breakDownCost
+      tmp = deepClone(breakDownCost)
       total = tmp[0].value + tmp[1].value + tmp[3].value + tmp[4].value
       for (let i = 0; i < tmp.length; i++) {
         switch (tmp[i].id) {
@@ -390,7 +392,7 @@ const Improve = (props) => {
       }
       setBreakDownCost([...tmp])
 
-      tmp = breakDownCO2Emissions
+      tmp = deepClone(breakDownCO2Emissions)
       total = tmp[0].value + tmp[1].value + tmp[3].value + tmp[4].value + popupResult.co2EmissionsAvoided
       for (let i = 0; i < tmp.length; i++) {
         switch (tmp[i].id) {
