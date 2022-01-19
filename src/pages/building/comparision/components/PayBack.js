@@ -70,8 +70,8 @@ const PayBack = ({ data }) => {
     x,
     y
   }) => {
-    console.log(node)
-    console.log(x)
+    //console.log(node)
+    //console.log(x)
     switch (node.data.subSystem) {
       case 'Cooling':
         return (

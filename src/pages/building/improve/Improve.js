@@ -413,8 +413,9 @@ const Improve = (props) => {
       }
       setBreakDownCO2Emissions([...tmp])
 
-      tmp = subSystemPerformance
-      tmp.data[3].Potential_Best_In_Class = (((0.54 - 0.38) / 0.6) * popupResult.percentageLEDUsage) + 0.38
+      tmp = deepClone(subSystemPerformance)
+
+      tmp.data[3]["Potential Best In Class"] = (((0.54 - 0.38) / 0.6) * popupResult.percentageLEDUsage) + 0.38
       setSubSystemPerformanceData(tmp)
     }
   }
