@@ -13,6 +13,14 @@ import { LinkExternalIcon, XCircleIcon } from '@primer/octicons-react'
 import IRR from 'IRR'
 import { withStyles } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
+import {
+  getAnnualCarbonEmissionsAvoided,
+  getAnnualEnergySavings, getCostOfImprovement,
+  getNewAnnualLightingSystemEnergyConsumption,
+} from 'api/ImproveAPI'
+import { useAuth } from 'AuthenticateProvider'
+import { useParams } from 'react-router-dom'
+import { formatNumber } from 'Utilities'
 
 const ImprovementMeasuresWrapper = styled.div`
   padding: 20px;
@@ -208,6 +216,7 @@ const valuetext = (value) => {
 }
 
 const ImprovementMeasures = ({ data, setResult }) => {
+  const { id } = useParams()
   let isChanged = false
   const [show, setShow] = useState(false)
   const [popUpProps, setPopupProps] = useState({})
@@ -260,6 +269,27 @@ const ImprovementMeasures = ({ data, setResult }) => {
     })
     const [value, setValue] = React.useState(detailValue.internalRateOfReturn)
 
+    //const [newAnnualLightingSystemEnergyConsumption, setNewAnnualLightingSystemEnergyConsumption] = useState()
+
+
+    const { user } = useAuth()
+
+    const getImproveFormulasAPI = async (buildingId, percentReplacement) => {
+      const idToken = await user.getIdToken()
+     // trackingUser(user.uid, 'AssetReliability', idToken)
+      const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId, percentReplacement, idToken)
+      const annualEnergySavings = await getAnnualEnergySavings(buildingId, percentReplacement, idToken)
+      const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, percentReplacement, idToken)
+      const costOfImprovement = await getCostOfImprovement(buildingId, percentReplacement, idToken)
+
+      return {
+        newAnnualLightingSystemEnergyConsumption: newAnnualLightingSystemEnergyConsumption,
+        annualEnergySavings: annualEnergySavings,
+        annualCarbonEmissionsAvoided: annualCarbonEmissionsAvoided,
+        costOfImprovement: costOfImprovement
+      }
+    }
+
     const handleSliderChange = (event, newValue) => {
       setValue(newValue)
     }
@@ -280,6 +310,26 @@ const ImprovementMeasures = ({ data, setResult }) => {
           percentageLEDUsage: value
         }
       })
+
+      getImproveFormulasAPI(id, value).then(r => {
+        setDetailValue({
+          ...detailValue,
+          ...{
+            energySavings: +(123.8 * value / 100).toFixed(2),
+            investmentCost: investmentCost,
+            energyCostSavings: energyCostSavings,
+            co2EmissionsAvoided: +(108.3 * value / 100).toFixed(2),
+            paybackPeriod: value > 0 ? +(investmentCost / energyCostSavings).toFixed(2) : 0,
+            internalRateOfReturn: value > 0 ? calculateIRRValue(-investmentCost, energyCostSavings, 20) : 0,
+            percentageLEDUsage: value,
+            newAnnualLightingSystemEnergyConsumption: formatNumber(r.newAnnualLightingSystemEnergyConsumption),
+            annualEnergySavings: formatNumber(r.annualEnergySavings),
+            annualCarbonEmissionsAvoided: formatNumber(r.annualCarbonEmissionsAvoided),
+            costOfImprovement: formatNumber(r.costOfImprovement)
+          }
+        })
+      })
+
       isChanged = true
     }
 
@@ -303,10 +353,8 @@ const ImprovementMeasures = ({ data, setResult }) => {
         setEditText(t('Edit'))
     }, [i18n.language])
 
-
-
     return (
-      <Modal show={show} onHide={handleClose} size='lg'>
+      <Modal show={show} onHide={handleClose} size='xl'>
 
         <Modal.Header>
           <Container className='mt-0'>
@@ -392,6 +440,25 @@ const ImprovementMeasures = ({ data, setResult }) => {
               <Col xs={4} sm={2} className='col col-value'>{detailValue.co2EmissionsAvoided} {t('Tons/Yr')}</Col>
               <Col xs={8} sm={4} className='col'>{t('Internal Rate of Return')}</Col>
               <Col xs={4} sm={2} className='col col-value'>{detailValue.internalRateOfReturn} %</Col>
+            </Row>
+
+            <Row>
+              <Col xs={8} sm={4} className='col'>{t('Annual Lighting System Energy Consumption')}</Col>
+              <Col xs={4} sm={2} className='col col-value'>{detailValue.newAnnualLightingSystemEnergyConsumption} {t('(kWh)')}</Col>
+              <Col xs={8} sm={4} className='col'>{t('Annual Energy Savings')}</Col>
+              <Col xs={4} sm={2} className='col col-value'>{detailValue.annualEnergySavings} {t('kWh/Yr')}</Col>
+            </Row>
+            <Row>
+              <Col xs={8} sm={4} className='col'>{t('Annual Energy Cost Savings')}</Col>
+              <Col xs={4} sm={2} className='col col-value'>___ {t('$')}</Col>
+              <Col xs={8} sm={4} className='col'>{t('Annual Carbon Emissions Avoided')}</Col>
+              <Col xs={4} sm={2} className='col col-value'>{detailValue.annualCarbonEmissionsAvoided} {t('(Tons/Yr)')}</Col>
+            </Row>
+            <Row>
+              <Col xs={8} sm={4} className='col'>{t('Cost of Improvement')}</Col>
+              <Col xs={4} sm={2} className='col col-value'>{detailValue.costOfImprovement} {t('$')}</Col>
+              <Col xs={8} sm={4} className='col'>{t('Payback')}</Col>
+              <Col xs={4} sm={2} className='col col-value'>___ {t('(Yr)')}</Col>
             </Row>
           </PopupBodyInnerWrapper>
         </Modal.Body>
