@@ -23,6 +23,7 @@ import {
 import { useAuth } from 'AuthenticateProvider'
 import { useParams } from 'react-router-dom'
 import { formatNumber } from 'Utilities'
+import ImprovementMeasureSkeleton from 'pages/building/improve/components/ImprovementMeasureSkeleton'
 
 const ImprovementMeasuresWrapper = styled.div`
   padding: 20px;
@@ -261,6 +262,8 @@ const ImprovementMeasures = ({ data, setResult }) => {
 
     const [showSlider, setShowSlider] = useState(false)
 
+    const [isLoading, setIsLoading] = useState(false)
+
     const [detailValue, setDetailValue] = useState({
       investmentCost: props.data.investmentCost,
       energyCostSavings: props.data.energyCostSavings,
@@ -304,20 +307,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
     const saveHandle = () => {
       const investmentCost = (60000 * value / 100)
       const energyCostSavings = (32167 * value / 100)
-
-      // setDetailValue({
-      //   ...detailValue,
-      //   ...{
-      //     energySavings: +(123.8 * value / 100).toFixed(2),
-      //     investmentCost: investmentCost,
-      //     energyCostSavings: energyCostSavings,
-      //     co2EmissionsAvoided: +(108.3 * value / 100).toFixed(2),
-      //     paybackPeriod: value > 0 ? +(investmentCost / energyCostSavings).toFixed(2) : 0,
-      //     internalRateOfReturn: value > 0 ? calculateIRRValue(-investmentCost, energyCostSavings, 20) : 0,
-      //     percentageLEDUsage: value
-      //   }
-      // })
-
+      setIsLoading(true)
       getImproveFormulasAPI(id, value).then(r => {
         setDetailValue({
           ...detailValue,
@@ -334,10 +324,11 @@ const ImprovementMeasures = ({ data, setResult }) => {
             annualEnergyCostSavings: formatNumber(r.annualEnergyCostSavings),
             annualCarbonEmissionsAvoided: formatNumber(r.annualCarbonEmissionsAvoided),
             costOfImprovement: formatNumber(r.costOfImprovement),
-            payback: (r.payback).toFixed(4)
+            payback: (r.payback).toFixed(4),
 
           },
         })
+        setIsLoading(false)
       })
 
       isChanged = true
@@ -433,44 +424,49 @@ const ImprovementMeasures = ({ data, setResult }) => {
 
         <Modal.Body>
           <PopupBodyInnerWrapper className="container my-2">
-            <Row>
-              <Col xs={8} sm={4} className="col">{t('Annual Energy Savings')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{detailValue.energySavings} MWh</Col>
-              <Col xs={8} sm={4} className="col">{t('Investment Cost')}</Col>
-              <Col xs={4} sm={2} className="col col-value">${detailValue.investmentCost}</Col>
-            </Row>
-            <Row>
-              <Col xs={8} sm={4} className="col">{t('Annual Energy Cost Savings')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{t('$')}{detailValue.energyCostSavings} / {t('Yr')}</Col>
-              <Col xs={8} sm={4} className="col">{t('Simple Payback')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{detailValue.paybackPeriod} {t('Yr')}</Col>
-            </Row>
-            <Row>
-              <Col xs={8} sm={4} className="col">{t('Annual CO2 Emissions Avoided')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{detailValue.co2EmissionsAvoided} {t('Tons/Yr')}</Col>
-              <Col xs={8} sm={4} className="col">{t('Internal Rate of Return')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{detailValue.internalRateOfReturn} %</Col>
-            </Row>
+            {isLoading ? <>
+              <ImprovementMeasureSkeleton/>
+            </> : <>
+              <Row>
+                <Col xs={8} sm={4} className="col">{t('Annual Energy Savings')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{detailValue.energySavings} MWh</Col>
+                <Col xs={8} sm={4} className="col">{t('Investment Cost')}</Col>
+                <Col xs={4} sm={2} className="col col-value">${detailValue.investmentCost}</Col>
+              </Row>
+              <Row>
+                <Col xs={8} sm={4} className="col">{t('Annual Energy Cost Savings')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{t('$')}{detailValue.energyCostSavings} / {t('Yr')}</Col>
+                <Col xs={8} sm={4} className="col">{t('Simple Payback')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{detailValue.paybackPeriod} {t('Yr')}</Col>
+              </Row>
+              <Row>
+                <Col xs={8} sm={4} className="col">{t('Annual CO2 Emissions Avoided')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{detailValue.co2EmissionsAvoided} {t('Tons/Yr')}</Col>
+                <Col xs={8} sm={4} className="col">{t('Internal Rate of Return')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{detailValue.internalRateOfReturn} %</Col>
+              </Row>
 
-            <Row>
-              <Col xs={8} sm={4} className="col">{t('Annual Lighting System Energy Consumption')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{detailValue.newAnnualLightingSystemEnergyConsumption} {t(
-                '(kWh)')}</Col>
-              <Col xs={8} sm={4} className="col">{t('Annual Energy Savings')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{detailValue.annualEnergySavings} {t('kWh/Yr')}</Col>
-            </Row>
-            <Row>
-              <Col xs={8} sm={4} className="col">{t('Annual Energy Cost Savings')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{detailValue.annualEnergyCostSavings} {t('$')}</Col>
-              <Col xs={8} sm={4} className="col">{t('Annual Carbon Emissions Avoided')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{detailValue.annualCarbonEmissionsAvoided} {t('(Tons/Yr)')}</Col>
-            </Row>
-            <Row>
-              <Col xs={8} sm={4} className="col">{t('Cost of Improvement')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{detailValue.costOfImprovement} {t('$')}</Col>
-              <Col xs={8} sm={4} className="col">{t('Payback')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{detailValue.payback} {t('(Yr)')}</Col>
-            </Row>
+              <Row>
+                <Col xs={8} sm={4} className="col">{t('Annual Lighting System Energy Consumption')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{detailValue.newAnnualLightingSystemEnergyConsumption} {t(
+                  '(kWh)')}</Col>
+                <Col xs={8} sm={4} className="col">{t('Annual Energy Savings')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{detailValue.annualEnergySavings} {t('kWh/Yr')}</Col>
+              </Row>
+              <Row>
+                <Col xs={8} sm={4} className="col">{t('Annual Energy Cost Savings')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{detailValue.annualEnergyCostSavings} {t('$')}</Col>
+                <Col xs={8} sm={4} className="col">{t('Annual Carbon Emissions Avoided')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{detailValue.annualCarbonEmissionsAvoided} {t(
+                  '(Tons/Yr)')}</Col>
+              </Row>
+              <Row>
+                <Col xs={8} sm={4} className="col">{t('Cost of Improvement')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{detailValue.costOfImprovement} {t('$')}</Col>
+                <Col xs={8} sm={4} className="col">{t('Payback')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{detailValue.payback} {t('(Yr)')}</Col>
+              </Row>
+            </>}
           </PopupBodyInnerWrapper>
         </Modal.Body>
       </Modal>

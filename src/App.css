@@ -57,6 +57,14 @@
     border-radius: 6px;
 }
 
+.skeleton-line-box1 {
+    width: 100px;
+    height: 1rem;
+    margin-right: 50px;
+    margin-top: 1rem;
+    border-radius: 6px;
+}
+
 
 .skeleton-line-box2 {
     width: 270px;

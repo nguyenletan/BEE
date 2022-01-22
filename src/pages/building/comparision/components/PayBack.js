@@ -42,9 +42,6 @@ const PayBack = ({ data }) => {
       item.id = t(item.id)
     }
     setDataSource(tmp)
-
-
-
   }, [i18n.language, data])
 
 
