@@ -52,6 +52,32 @@ export const getAnnualEnergySavings = async (buildingId, percentReplacement, idT
   return result
 }
 
+export const getAnnualEnergyCostSavings = async (buildingId, percentReplacement, idToken) => {
+  let result
+  await axios({
+    method: 'get',
+    url: process.env.REACT_APP_BACKEND_API + `/improvement/getAnnualEnergyCostSavings/${buildingId}/${percentReplacement}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${idToken}`,
+    },
+    //data: data,
+    body: {},
+  }).then((response) => {
+    console.log(response.data)
+    result = response.data
+    //result = 'Retrieve successfully!'
+    //return response.data
+  }).catch(error => {
+    if (error.response) {
+      // setErrorMsg(error.response.data.message)
+      result = error.response.data.message
+    }
+  })
+
+  return result
+}
+
 export const getAnnualCarbonEmissionsAvoided = async (buildingId, percentReplacement, idToken) => {
   let result
   await axios({
@@ -83,6 +109,32 @@ export const getCostOfImprovement = async (buildingId, percentReplacement, idTok
   await axios({
     method: 'get',
     url: process.env.REACT_APP_BACKEND_API + `/improvement/getCostOfImprovement/${buildingId}/${percentReplacement}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${idToken}`,
+    },
+    //data: data,
+    body: {},
+  }).then((response) => {
+    console.log(response.data)
+    result = response.data
+    //result = 'Retrieve successfully!'
+    //return response.data
+  }).catch(error => {
+    if (error.response) {
+      // setErrorMsg(error.response.data.message)
+      result = error.response.data.message
+    }
+  })
+
+  return result
+}
+
+export const getPayback = async (buildingId, percentReplacement, idToken) => {
+  let result
+  await axios({
+    method: 'get',
+    url: process.env.REACT_APP_BACKEND_API + `/improvement/getPayback/${buildingId}/${percentReplacement}`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,

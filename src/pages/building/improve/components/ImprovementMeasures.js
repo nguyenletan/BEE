@@ -15,8 +15,10 @@ import { withStyles } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
 import {
   getAnnualCarbonEmissionsAvoided,
-  getAnnualEnergySavings, getCostOfImprovement,
+  getAnnualEnergySavings,
+  getCostOfImprovement,
   getNewAnnualLightingSystemEnergyConsumption,
+  getPayback,
 } from 'api/ImproveAPI'
 import { useAuth } from 'AuthenticateProvider'
 import { useParams } from 'react-router-dom'
@@ -37,6 +39,7 @@ const ImprovementMeasuresTitle = styled.h3`
 const ImprovementMeasuresTable = styled.table`
   border-top: none;
   font-size: 0.9rem;
+
   th {
     font-weight: 500;
     text-align: center;
@@ -173,7 +176,7 @@ const Message = styled.div`
 const PrettoSlider = withStyles({
   root: {
     color: '#87972f',
-    height: 6
+    height: 6,
   },
   thumb: {
     height: 20,
@@ -183,32 +186,32 @@ const PrettoSlider = withStyles({
     marginTop: -7,
     marginLeft: -10,
     '&:focus, &:hover, &$active': {
-      boxShadow: 'inherit'
-    }
+      boxShadow: 'inherit',
+    },
   },
   active: {},
   valueLabel: {
-    left: 'calc(-50% + 3px)'
+    left: 'calc(-50% + 3px)',
   },
   track: {
     height: 6,
-    borderRadius: 3
+    borderRadius: 3,
   },
   rail: {
     height: 6,
-    borderRadius: 3
-  }
+    borderRadius: 3,
+  },
 })(Slider)
 
 const marks = [
   {
     value: 0,
-    label: '0%'
+    label: '0%',
   },
   {
     value: 100,
-    label: '100%'
-  }
+    label: '100%',
+  },
 ]
 
 const valuetext = (value) => {
@@ -265,28 +268,32 @@ const ImprovementMeasures = ({ data, setResult }) => {
       paybackPeriod: props.data.paybackPeriod,
       co2EmissionsAvoided: props.data.co2EmissionsAvoided,
       internalRateOfReturn: calculateIRRValue(-props.data.investmentCost, props.data.energyCostSavings, 20),
-      percentageLEDUsage: calculateIRRValue(-props.data.investmentCost, props.data.energyCostSavings, 20)
+      percentageLEDUsage: calculateIRRValue(-props.data.investmentCost, props.data.energyCostSavings, 20),
     })
     const [value, setValue] = React.useState(detailValue.internalRateOfReturn)
 
     //const [newAnnualLightingSystemEnergyConsumption, setNewAnnualLightingSystemEnergyConsumption] = useState()
 
-
     const { user } = useAuth()
 
     const getImproveFormulasAPI = async (buildingId, percentReplacement) => {
       const idToken = await user.getIdToken()
-     // trackingUser(user.uid, 'AssetReliability', idToken)
-      const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId, percentReplacement, idToken)
+      // trackingUser(user.uid, 'AssetReliability', idToken)
+      const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
+        percentReplacement, idToken)
       const annualEnergySavings = await getAnnualEnergySavings(buildingId, percentReplacement, idToken)
+      const annualEnergyCostSavings = await getAnnualEnergySavings(buildingId, percentReplacement, idToken)
       const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, percentReplacement, idToken)
       const costOfImprovement = await getCostOfImprovement(buildingId, percentReplacement, idToken)
+      const payback = await getPayback(buildingId, percentReplacement, idToken)
 
       return {
         newAnnualLightingSystemEnergyConsumption: newAnnualLightingSystemEnergyConsumption,
         annualEnergySavings: annualEnergySavings,
         annualCarbonEmissionsAvoided: annualCarbonEmissionsAvoided,
-        costOfImprovement: costOfImprovement
+        costOfImprovement: costOfImprovement,
+        annualEnergyCostSavings: annualEnergyCostSavings,
+        payback: payback,
       }
     }
 
@@ -298,18 +305,18 @@ const ImprovementMeasures = ({ data, setResult }) => {
       const investmentCost = (60000 * value / 100)
       const energyCostSavings = (32167 * value / 100)
 
-      setDetailValue({
-        ...detailValue,
-        ...{
-          energySavings: +(123.8 * value / 100).toFixed(2),
-          investmentCost: investmentCost,
-          energyCostSavings: energyCostSavings,
-          co2EmissionsAvoided: +(108.3 * value / 100).toFixed(2),
-          paybackPeriod: value > 0 ? +(investmentCost / energyCostSavings).toFixed(2) : 0,
-          internalRateOfReturn: value > 0 ? calculateIRRValue(-investmentCost, energyCostSavings, 20) : 0,
-          percentageLEDUsage: value
-        }
-      })
+      // setDetailValue({
+      //   ...detailValue,
+      //   ...{
+      //     energySavings: +(123.8 * value / 100).toFixed(2),
+      //     investmentCost: investmentCost,
+      //     energyCostSavings: energyCostSavings,
+      //     co2EmissionsAvoided: +(108.3 * value / 100).toFixed(2),
+      //     paybackPeriod: value > 0 ? +(investmentCost / energyCostSavings).toFixed(2) : 0,
+      //     internalRateOfReturn: value > 0 ? calculateIRRValue(-investmentCost, energyCostSavings, 20) : 0,
+      //     percentageLEDUsage: value
+      //   }
+      // })
 
       getImproveFormulasAPI(id, value).then(r => {
         setDetailValue({
@@ -324,9 +331,12 @@ const ImprovementMeasures = ({ data, setResult }) => {
             percentageLEDUsage: value,
             newAnnualLightingSystemEnergyConsumption: formatNumber(r.newAnnualLightingSystemEnergyConsumption),
             annualEnergySavings: formatNumber(r.annualEnergySavings),
+            annualEnergyCostSavings: formatNumber(r.annualEnergyCostSavings),
             annualCarbonEmissionsAvoided: formatNumber(r.annualCarbonEmissionsAvoided),
-            costOfImprovement: formatNumber(r.costOfImprovement)
-          }
+            costOfImprovement: formatNumber(r.costOfImprovement),
+            payback: (r.payback).toFixed(4)
+
+          },
         })
       })
 
@@ -348,57 +358,57 @@ const ImprovementMeasures = ({ data, setResult }) => {
     const [saveText, setSaveText] = useState(t('Save'))
     const [editText, setEditText] = useState(t('Edit'))
 
-    useEffect(()=> {
-        setSaveText(t('Save'))
-        setEditText(t('Edit'))
+    useEffect(() => {
+      setSaveText(t('Save'))
+      setEditText(t('Edit'))
     }, [i18n.language])
 
     return (
-      <Modal show={show} onHide={handleClose} size='xl'>
+      <Modal show={show} onHide={handleClose} size="xl">
 
         <Modal.Header>
-          <Container className='mt-0'>
-            <div className='d-flex justify-content-between align-items-center'>
+          <Container className="mt-0">
+            <div className="d-flex justify-content-between align-items-center">
               <PopupTitle>{t('Improvement Measures')}</PopupTitle>
               <HeaderGroupButton>
                 <HeaderButton
-                  className='me-4' onClick={() => {
-                    if (showSlider === false) {
-                      setShowSlider(true)
-                    } else {
-                      saveHandle()
-                    }
-                  }}
+                  className="me-4" onClick={() => {
+                  if (showSlider === false) {
+                    setShowSlider(true)
+                  } else {
+                    saveHandle()
+                  }
+                }}
                 >
-                  <LinkExternalIcon size={16} className='me-1' /><span>{showSlider ? saveText : editText}</span>
+                  <LinkExternalIcon size={16} className="me-1"/><span>{showSlider ? saveText : editText}</span>
                 </HeaderButton>
-                <HeaderButton className='' onClick={() => { handleClose(isChanged, detailValue) }}>
-                  <XCircleIcon size={16} className='me-1' /><span>{t('Close')}</span>
+                <HeaderButton className="" onClick={() => { handleClose(isChanged, detailValue) }}>
+                  <XCircleIcon size={16} className="me-1"/><span>{t('Close')}</span>
                 </HeaderButton>
               </HeaderGroupButton>
             </div>
 
-            <div className='d-flex'>
-              <PopupIcon src={icon} alt={measure} />
-              <PopupValueWrapper className='d-flex flex-column justify-content-start align-items-start'>
+            <div className="d-flex">
+              <PopupIcon src={icon} alt={measure}/>
+              <PopupValueWrapper className="d-flex flex-column justify-content-start align-items-start">
                 <PopupValue>{value}%</PopupValue>
                 <MeasureName>{t(measure)}</MeasureName>
               </PopupValueWrapper>
-              <RangeWrapper className='d-flex justify-content-between w-100  align-items-center' show={showSlider}>
+              <RangeWrapper className="d-flex justify-content-between w-100  align-items-center" show={showSlider}>
                 <PrettoSlider
-                  className='me-4'
+                  className="me-4"
                   marks={marks}
-                  valueLabelDisplay='auto'
-                  aria-label='LED replacement slider'
+                  valueLabelDisplay="auto"
+                  aria-label="LED replacement slider"
                   defaultValue={value}
                   getAriaValueText={valuetext}
                   onChange={handleSliderChange}
                   value={value}
                   step={1}
                 />
-                <div style={{ width: '200px' }} className='d-flex flex-column align-items-center justify-content-center'>
+                <div style={{ width: '200px' }} className="d-flex flex-column align-items-center justify-content-center">
                   <Input
-                    className='ms-2'
+                    className="ms-2"
                     onChange={handleInputChange}
                     onBlur={handleBlur}
                     value={value}
@@ -408,10 +418,10 @@ const ImprovementMeasures = ({ data, setResult }) => {
                       min: 0,
                       max: 100,
                       type: 'number',
-                      'aria-labelledby': 'input-slider'
+                      'aria-labelledby': 'input-slider',
                     }}
                   />
-                  <Message className='d-flex justify-content-end mt-2'>
+                  <Message className="d-flex justify-content-end mt-2">
                     <span>{'0 <='} {t('Value')} {'<= 100'}</span>
                   </Message>
                 </div>
@@ -422,43 +432,44 @@ const ImprovementMeasures = ({ data, setResult }) => {
         </Modal.Header>
 
         <Modal.Body>
-          <PopupBodyInnerWrapper className='container my-2'>
+          <PopupBodyInnerWrapper className="container my-2">
             <Row>
-              <Col xs={8} sm={4} className='col'>{t('Annual Energy Savings')}</Col>
-              <Col xs={4} sm={2} className='col col-value'>{detailValue.energySavings} MWh</Col>
-              <Col xs={8} sm={4} className='col'>{t('Investment Cost')}</Col>
-              <Col xs={4} sm={2} className='col col-value'>${detailValue.investmentCost}</Col>
+              <Col xs={8} sm={4} className="col">{t('Annual Energy Savings')}</Col>
+              <Col xs={4} sm={2} className="col col-value">{detailValue.energySavings} MWh</Col>
+              <Col xs={8} sm={4} className="col">{t('Investment Cost')}</Col>
+              <Col xs={4} sm={2} className="col col-value">${detailValue.investmentCost}</Col>
             </Row>
             <Row>
-              <Col xs={8} sm={4} className='col'>{t('Annual Energy Cost Savings')}</Col>
-              <Col xs={4} sm={2} className='col col-value'>{t('$')}{detailValue.energyCostSavings} / {t('Yr')}</Col>
-              <Col xs={8} sm={4} className='col'>{t('Simple Payback')}</Col>
-              <Col xs={4} sm={2} className='col col-value'>{detailValue.paybackPeriod} {t('Yr')}</Col>
+              <Col xs={8} sm={4} className="col">{t('Annual Energy Cost Savings')}</Col>
+              <Col xs={4} sm={2} className="col col-value">{t('$')}{detailValue.energyCostSavings} / {t('Yr')}</Col>
+              <Col xs={8} sm={4} className="col">{t('Simple Payback')}</Col>
+              <Col xs={4} sm={2} className="col col-value">{detailValue.paybackPeriod} {t('Yr')}</Col>
             </Row>
             <Row>
-              <Col xs={8} sm={4} className='col'>{t('Annual CO2 Emissions Avoided')}</Col>
-              <Col xs={4} sm={2} className='col col-value'>{detailValue.co2EmissionsAvoided} {t('Tons/Yr')}</Col>
-              <Col xs={8} sm={4} className='col'>{t('Internal Rate of Return')}</Col>
-              <Col xs={4} sm={2} className='col col-value'>{detailValue.internalRateOfReturn} %</Col>
+              <Col xs={8} sm={4} className="col">{t('Annual CO2 Emissions Avoided')}</Col>
+              <Col xs={4} sm={2} className="col col-value">{detailValue.co2EmissionsAvoided} {t('Tons/Yr')}</Col>
+              <Col xs={8} sm={4} className="col">{t('Internal Rate of Return')}</Col>
+              <Col xs={4} sm={2} className="col col-value">{detailValue.internalRateOfReturn} %</Col>
             </Row>
 
             <Row>
-              <Col xs={8} sm={4} className='col'>{t('Annual Lighting System Energy Consumption')}</Col>
-              <Col xs={4} sm={2} className='col col-value'>{detailValue.newAnnualLightingSystemEnergyConsumption} {t('(kWh)')}</Col>
-              <Col xs={8} sm={4} className='col'>{t('Annual Energy Savings')}</Col>
-              <Col xs={4} sm={2} className='col col-value'>{detailValue.annualEnergySavings} {t('kWh/Yr')}</Col>
+              <Col xs={8} sm={4} className="col">{t('Annual Lighting System Energy Consumption')}</Col>
+              <Col xs={4} sm={2} className="col col-value">{detailValue.newAnnualLightingSystemEnergyConsumption} {t(
+                '(kWh)')}</Col>
+              <Col xs={8} sm={4} className="col">{t('Annual Energy Savings')}</Col>
+              <Col xs={4} sm={2} className="col col-value">{detailValue.annualEnergySavings} {t('kWh/Yr')}</Col>
             </Row>
             <Row>
-              <Col xs={8} sm={4} className='col'>{t('Annual Energy Cost Savings')}</Col>
-              <Col xs={4} sm={2} className='col col-value'>___ {t('$')}</Col>
-              <Col xs={8} sm={4} className='col'>{t('Annual Carbon Emissions Avoided')}</Col>
-              <Col xs={4} sm={2} className='col col-value'>{detailValue.annualCarbonEmissionsAvoided} {t('(Tons/Yr)')}</Col>
+              <Col xs={8} sm={4} className="col">{t('Annual Energy Cost Savings')}</Col>
+              <Col xs={4} sm={2} className="col col-value">{detailValue.annualEnergyCostSavings} {t('$')}</Col>
+              <Col xs={8} sm={4} className="col">{t('Annual Carbon Emissions Avoided')}</Col>
+              <Col xs={4} sm={2} className="col col-value">{detailValue.annualCarbonEmissionsAvoided} {t('(Tons/Yr)')}</Col>
             </Row>
             <Row>
-              <Col xs={8} sm={4} className='col'>{t('Cost of Improvement')}</Col>
-              <Col xs={4} sm={2} className='col col-value'>{detailValue.costOfImprovement} {t('$')}</Col>
-              <Col xs={8} sm={4} className='col'>{t('Payback')}</Col>
-              <Col xs={4} sm={2} className='col col-value'>___ {t('(Yr)')}</Col>
+              <Col xs={8} sm={4} className="col">{t('Cost of Improvement')}</Col>
+              <Col xs={4} sm={2} className="col col-value">{detailValue.costOfImprovement} {t('$')}</Col>
+              <Col xs={8} sm={4} className="col">{t('Payback')}</Col>
+              <Col xs={4} sm={2} className="col col-value">{detailValue.payback} {t('(Yr)')}</Col>
             </Row>
           </PopupBodyInnerWrapper>
         </Modal.Body>
@@ -498,17 +509,17 @@ const ImprovementMeasures = ({ data, setResult }) => {
     return (
       <tr key={item.measures}>
         <FirstTd>
-          <ImageWrapper><Image src={imgSrc} alt={item.measures} width={width} /></ImageWrapper>
+          <ImageWrapper><Image src={imgSrc} alt={item.measures} width={width}/></ImageWrapper>
           {t(item.measures)}
         </FirstTd>
-        <td width='18%'>{item.investmentCost}</td>
-        <td width='12%'>{item.energySavings}</td>
-        <td width='12%'>{item.energyCostSavings}</td>
-        <td width='12%'>{item.paybackPeriod}</td>
-        <td width='12%'>{item.co2EmissionsAvoided}</td>
-        <td width='10%'>
+        <td width="18%">{item.investmentCost}</td>
+        <td width="12%">{item.energySavings}</td>
+        <td width="12%">{item.energyCostSavings}</td>
+        <td width="12%">{item.paybackPeriod}</td>
+        <td width="12%">{item.co2EmissionsAvoided}</td>
+        <td width="10%">
           <InfoButton
-            className='btn btn-primary btn-sm'
+            className="btn btn-primary btn-sm"
             onClick={() => openPopup({
               icon: imgSrc,
               measure: item.measures,
@@ -516,7 +527,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
               energyCostSavings: item.energyCostSavings,
               energySavings: item.energySavings,
               paybackPeriod: item.paybackPeriod,
-              co2EmissionsAvoided: item.co2EmissionsAvoided
+              co2EmissionsAvoided: item.co2EmissionsAvoided,
             })}
           >
             {t('Info')}
@@ -529,28 +540,28 @@ const ImprovementMeasures = ({ data, setResult }) => {
   return (
     <ImprovementMeasuresWrapper>
       <ImprovementMeasuresTitle>{t('Improvement Measures')}</ImprovementMeasuresTitle>
-      <ImprovementMeasuresTable className='table'>
+      <ImprovementMeasuresTable className="table">
         <thead>
-          <tr>
-            <FirstTh>{t('MEASURES')}</FirstTh>
-            <th width='18%'>{t('INVESTMENT COST')}<br />({t('$')})</th>
-            <th width='12%'>{t('ENERGY SAVINGS')}<br />({t('MWH/YR')})</th>
-            <th width='12%'>{t('ENERGY COST SAVINGS')}<br />({t('$/YR')})</th>
-            <th width='12%'>{t('PAYBACK PERIOD')}<br />({t('YR')})</th>
-            <th width='12%'>{t('CO2 EMISSIONS AVOIDED')}<br />({t('TONS/YR')})</th>
-            <th width='10%' />
-          </tr>
+        <tr>
+          <FirstTh>{t('MEASURES')}</FirstTh>
+          <th width="18%">{t('INVESTMENT COST')}<br/>({t('$')})</th>
+          <th width="12%">{t('ENERGY SAVINGS')}<br/>({t('MWH/YR')})</th>
+          <th width="12%">{t('ENERGY COST SAVINGS')}<br/>({t('$/YR')})</th>
+          <th width="12%">{t('PAYBACK PERIOD')}<br/>({t('YR')})</th>
+          <th width="12%">{t('CO2 EMISSIONS AVOIDED')}<br/>({t('TONS/YR')})</th>
+          <th width="10%"/>
+        </tr>
         </thead>
       </ImprovementMeasuresTable>
       <ImprovementMeasuresTableWrapper>
-        <ImprovementMeasuresTable className='table'>
+        <ImprovementMeasuresTable className="table">
           <tbody>
-            {rows}
+          {rows}
           </tbody>
         </ImprovementMeasuresTable>
       </ImprovementMeasuresTableWrapper>
 
-      <Popup data={popUpProps} />
+      <Popup data={popUpProps}/>
     </ImprovementMeasuresWrapper>
 
   )

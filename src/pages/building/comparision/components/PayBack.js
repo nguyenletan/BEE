@@ -36,10 +36,14 @@ const PayBack = ({ data }) => {
   useEffect(() => {
     const tmp = deepClone(dataSource)
 
+    console.log('change')
+
     for (let item of tmp) {
       item.id = t(item.id)
     }
     setDataSource(tmp)
+
+
 
   }, [i18n.language, data])
 
@@ -70,8 +74,6 @@ const PayBack = ({ data }) => {
     x,
     y
   }) => {
-    //console.log(node)
-    //console.log(x)
     switch (node.data.subSystem) {
       case 'Cooling':
         return (
