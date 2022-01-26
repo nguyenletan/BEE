@@ -230,7 +230,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
 
   const handleClose = (isChanged, result) => {
     if (isChanged) {
-      // setPopUpResult({ ...result })
+      // setPopUpResult({ ...result })]
       setResult({ ...result })
     }
     setShow(false)
@@ -258,7 +258,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
       return internalRateOfReturn
     }
 
-    const { icon, measure } = props?.data
+    const { icon, measures } = props?.data
 
     const [showSlider, setShowSlider] = useState(false)
 
@@ -325,7 +325,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
             annualCarbonEmissionsAvoided: formatNumber(r.annualCarbonEmissionsAvoided),
             costOfImprovement: formatNumber(r.costOfImprovement),
             payback: (r.payback).toFixed(4),
-
+            measures: measures
           },
         })
         setIsLoading(false)
@@ -380,17 +380,17 @@ const ImprovementMeasures = ({ data, setResult }) => {
             </div>
 
             <div className="d-flex">
-              <PopupIcon src={icon} alt={measure}/>
+              <PopupIcon src={icon} alt={measures}/>
               <PopupValueWrapper className="d-flex flex-column justify-content-start align-items-start">
                 <PopupValue>{value}%</PopupValue>
-                <MeasureName>{t(measure)}</MeasureName>
+                <MeasureName>{t(measures)}</MeasureName>
               </PopupValueWrapper>
               <RangeWrapper className="d-flex justify-content-between w-100  align-items-center" show={showSlider}>
                 <PrettoSlider
                   className="me-4"
                   marks={marks}
                   valueLabelDisplay="auto"
-                  aria-label="LED replacement slider"
+                  aria-label="replacement slider"
                   defaultValue={value}
                   getAriaValueText={valuetext}
                   onChange={handleSliderChange}
@@ -518,7 +518,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
             className="btn btn-primary btn-sm"
             onClick={() => openPopup({
               icon: imgSrc,
-              measure: item.measures,
+              measures: item.measures,
               investmentCost: item.investmentCost,
               energyCostSavings: item.energyCostSavings,
               energySavings: item.energySavings,

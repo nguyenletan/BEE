@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { ScatterPlot } from '@nivo/scatterplot'
 import { coolingSVG, heatingSVG, lightingSVG, openingsSVG, wallSVG } from 'SvgConstants'
 import { useTranslation } from 'react-i18next'
-import { deepClone } from 'Utilities'
 
 const PayBackWrapper = styled.div`
   background-color: #fafafa;
@@ -34,14 +33,29 @@ const PayBack = ({ data }) => {
   const [dataSource, setDataSource] = useState(payBackData)
 
   useEffect(() => {
-    const tmp = deepClone(dataSource)
 
-    console.log('change')
+    // const tmp = deepClone(dataSource)
 
-    for (let item of tmp) {
-      item.id = t(item.id)
-    }
-    setDataSource(tmp)
+    // console.log(tmp)
+
+    // for (let item of tmp) {
+    //   item.id = t(item.id)
+    // }
+
+    console.log(data)
+
+    const payBackData = data.map(item => {
+      return {
+        id: t(item.measures),
+        data: [{
+          x: item.internalRateOfReturn,
+          y: item.paybackPeriod,
+          subSystem: item.subSystem
+        }]
+      }
+    })
+
+    setDataSource(payBackData)
   }, [i18n.language, data])
 
 
