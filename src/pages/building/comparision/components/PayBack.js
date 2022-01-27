@@ -198,6 +198,7 @@ const PayBack = ({ data, setResult }) => {
     height: 470,
     margin: { top: 24, right: 30, bottom: 40, left: 50 },
     nodeSize: 20,
+    useMesh: true,
     blendMode: 'multiply',
     xFormat: d => `${d}%`,
     yFormat: d => `${d} Yr`,
@@ -527,31 +528,31 @@ const PayBack = ({ data, setResult }) => {
 
   const handleClick = (node, event) => {
     let imgSrc
-    let width
+    // let width
     switch (node.data.subSystem) {
       case 'Cooling':
         imgSrc = coolingImg
-        width = 30
+        // width = 30
         break
       case 'Openings':
         imgSrc = openingsImg
-        width = 45
+        // width = 45
         break
       case 'Lighting':
         imgSrc = lightingImg
-        width = 25
+        // width = 25
         break
       case 'Heating':
         imgSrc = heatingImg
-        width = 20
+        // width = 20
         break
       case 'Walls':
         imgSrc = wallImg
-        width = 40
+        // width = 40
         break
       default:
         imgSrc = ''
-        width = 25
+        // width = 25
         break
     }
     openPopup({
