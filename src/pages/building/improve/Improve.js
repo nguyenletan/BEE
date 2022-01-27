@@ -431,6 +431,7 @@ const Improve = (props) => {
   }
 
   useEffect(() => {
+
     updateValue()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [popupResult])
@@ -477,7 +478,7 @@ const Improve = (props) => {
           <SubSystemPerformance data={subSystemPerformance}/>
         </div>
         <div className="col-12 col-xl-8">
-          <PayBack data={improvementMeasuresData}/>
+          <PayBack data={improvementMeasuresData} setResult={setResult}/>
         </div>
       </div>
 

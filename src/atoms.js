@@ -271,6 +271,14 @@ export const energyPerformanceStartTimeState = atom({
 })
 
 export const energyPerformanceEndTimeState = atom({
-  key: 'energyPerformancEndTime',
+  key: 'energyPerformanceEndTime',
   default: moment()
 })
+
+// export const improveMeasuresPopupState = atom({
+//   key: 'improveMeasuresPopup',
+//   default: {
+//     isShow: false,
+//
+//   }
+// })
