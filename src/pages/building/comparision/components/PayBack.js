@@ -356,19 +356,19 @@ const PayBack = ({ data, setResult }) => {
     }
 
     const saveHandle = () => {
-      const investmentCost = (60000 * value / 100)
-      const energyCostSavings = (32167 * value / 100)
       setIsLoading(true)
       getImproveFormulasAPI(id, value).then(r => {
 
+        const investmentCost = r.costOfImprovement//(60000 * value / 100) // => change
+        const energyCostSavings = r.annualEnergyCostSavings //(32167 * value / 100)
         setDetailValue({
           ...detailValue,
           ...{
             energySavings: +(123.8 * value / 100).toFixed(2),
-            investmentCost: investmentCost,
-            energyCostSavings: energyCostSavings,
+            investmentCost: formatNumber(investmentCost),
+            energyCostSavings: formatNumber(energyCostSavings),
             co2EmissionsAvoided: +(108.3 * value / 100).toFixed(2),
-            paybackPeriod: value > 0 ? +(investmentCost / energyCostSavings).toFixed(2) : 0,
+            paybackPeriod: (r.payback).toFixed(4),//value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
             internalRateOfReturn: value > 0 ? calculateIRRValue(-investmentCost, energyCostSavings, 20) : 0,
             percentageLEDUsage: value,
             newAnnualLightingSystemEnergyConsumption: formatNumber(r.newAnnualLightingSystemEnergyConsumption),
@@ -377,7 +377,7 @@ const PayBack = ({ data, setResult }) => {
             annualCarbonEmissionsAvoided: formatNumber(r.annualCarbonEmissionsAvoided),
             costOfImprovement: formatNumber(r.costOfImprovement),
             payback: (r.payback).toFixed(4),
-            measures: measures,
+            measures: measures
           },
         })
         setIsLoading(false)
