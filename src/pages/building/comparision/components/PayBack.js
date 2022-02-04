@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import IRR from 'IRR'
 import { useAuth } from 'AuthenticateProvider'
 import {
-  getAnnualCarbonEmissionsAvoided,
+  getAnnualCarbonEmissionsAvoided, getAnnualEnergyCostSavings,
   getAnnualEnergySavings,
   getCostOfImprovement,
   getNewAnnualLightingSystemEnergyConsumption,
@@ -336,7 +336,7 @@ const PayBack = ({ data, setResult }) => {
       const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
         percentReplacement, idToken)
       const annualEnergySavings = await getAnnualEnergySavings(buildingId, percentReplacement, idToken)
-      const annualEnergyCostSavings = await getAnnualEnergySavings(buildingId, percentReplacement, idToken)
+      const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, percentReplacement, idToken)
       const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, percentReplacement, idToken)
       const costOfImprovement = await getCostOfImprovement(buildingId, percentReplacement, idToken)
       const payback = await getPayback(buildingId, percentReplacement, idToken)
@@ -369,7 +369,7 @@ const PayBack = ({ data, setResult }) => {
             energyCostSavings: formatNumber(energyCostSavings),
             co2EmissionsAvoided: +(108.3 * value / 100).toFixed(2),
             paybackPeriod: (r.payback).toFixed(4),//value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
-            internalRateOfReturn: value > 0 ? calculateIRRValue(-investmentCost, energyCostSavings, 20) : 0,
+            internalRateOfReturn: value > 0 ? calculateIRRValue(investmentCost, energyCostSavings, 20) : 0,
             percentageLEDUsage: value,
             newAnnualLightingSystemEnergyConsumption: formatNumber(r.newAnnualLightingSystemEnergyConsumption),
             annualEnergySavings: formatNumber(r.annualEnergySavings),

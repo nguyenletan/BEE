@@ -15,6 +15,7 @@ import { withStyles } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
 import {
   getAnnualCarbonEmissionsAvoided,
+  getAnnualEnergyCostSavings,
   getAnnualEnergySavings,
   getCostOfImprovement,
   getNewAnnualLightingSystemEnergyConsumption,
@@ -22,8 +23,8 @@ import {
 } from 'api/ImproveAPI'
 import { useAuth } from 'AuthenticateProvider'
 import { useParams } from 'react-router-dom'
-import { formatNumber } from 'Utilities'
 import ImprovementMeasureSkeleton from 'pages/building/improve/components/ImprovementMeasureSkeleton'
+import { formatNumber } from 'Utilities'
 
 const ImprovementMeasuresWrapper = styled.div`
   padding: 20px;
@@ -264,16 +265,18 @@ const ImprovementMeasures = ({ data, setResult }) => {
 
     const [isLoading, setIsLoading] = useState(false)
 
+    console.log(props)
+
     const [detailValue, setDetailValue] = useState({
       investmentCost: props.data.investmentCost,
       energyCostSavings: props.data.energyCostSavings,
       energySavings: props.data.energySavings,
       paybackPeriod: props.data.paybackPeriod,
       co2EmissionsAvoided: props.data.co2EmissionsAvoided,
-      internalRateOfReturn: calculateIRRValue(-props.data.investmentCost, props.data.energyCostSavings, 20),
-      percentageLEDUsage: calculateIRRValue(-props.data.investmentCost, props.data.energyCostSavings, 20),
+      internalRateOfReturn: calculateIRRValue(-props.data.investmentCost, Math.abs(props.data.energyCostSavings), 20),
+      percentageLEDUsage: calculateIRRValue(-props.data.investmentCost, Math.abs(props.data.energyCostSavings), 20),
     })
-    const [value, setValue] = React.useState(detailValue.internalRateOfReturn)
+    const [value, setValue] = React.useState(detailValue.percentageLEDUsage)
 
     //const [newAnnualLightingSystemEnergyConsumption, setNewAnnualLightingSystemEnergyConsumption] = useState()
 
@@ -285,7 +288,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
       const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
         percentReplacement, idToken)
       const annualEnergySavings = await getAnnualEnergySavings(buildingId, percentReplacement, idToken)
-      const annualEnergyCostSavings = await getAnnualEnergySavings(buildingId, percentReplacement, idToken)
+      const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, percentReplacement, idToken)
       const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, percentReplacement, idToken)
       const costOfImprovement = await getCostOfImprovement(buildingId, percentReplacement, idToken)
       const payback = await getPayback(buildingId, percentReplacement, idToken)
@@ -314,20 +317,20 @@ const ImprovementMeasures = ({ data, setResult }) => {
         setDetailValue({
           ...detailValue,
           ...{
-            energySavings: +(123.8 * value / 100).toFixed(2),
-            investmentCost: formatNumber(investmentCost),
-            energyCostSavings: formatNumber(energyCostSavings),
-            co2EmissionsAvoided: +(108.3 * value / 100).toFixed(2),
-            paybackPeriod: (r.payback).toFixed(4),//value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
-            internalRateOfReturn: value > 0 ? calculateIRRValue(-investmentCost, energyCostSavings, 20) : 0,
+            energySavings: 123.8 * value / 100,
+            investmentCost: investmentCost,
+            energyCostSavings: energyCostSavings,
+            co2EmissionsAvoided: 108.3 * value / 100,
+            paybackPeriod: r.payback,//value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
+            internalRateOfReturn: value > 0 ? calculateIRRValue(-investmentCost, Math.abs(energyCostSavings), 20) : 0,
             percentageLEDUsage: value,
-            newAnnualLightingSystemEnergyConsumption: formatNumber(r.newAnnualLightingSystemEnergyConsumption),
-            annualEnergySavings: formatNumber(r.annualEnergySavings),
-            annualEnergyCostSavings: formatNumber(r.annualEnergyCostSavings),
-            annualCarbonEmissionsAvoided: formatNumber(r.annualCarbonEmissionsAvoided),
-            costOfImprovement: formatNumber(r.costOfImprovement),
-            payback: (r.payback).toFixed(4),
-            measures: measures
+            newAnnualLightingSystemEnergyConsumption: r.newAnnualLightingSystemEnergyConsumption,
+            annualEnergySavings: r.annualEnergySavings,
+            annualEnergyCostSavings: r.annualEnergyCostSavings,
+            annualCarbonEmissionsAvoided: r.annualCarbonEmissionsAvoided,
+            costOfImprovement: r.costOfImprovement,
+            payback: r.payback,
+            measures: measures,
           },
         })
         setIsLoading(false)
@@ -431,42 +434,44 @@ const ImprovementMeasures = ({ data, setResult }) => {
             </> : <>
               <Row>
                 <Col xs={8} sm={4} className="col">{t('Annual Energy Savings')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.energySavings} MWh</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.energySavings)} MWh</Col>
                 <Col xs={8} sm={4} className="col">{t('Investment Cost')}</Col>
-                <Col xs={4} sm={2} className="col col-value">${detailValue.investmentCost}</Col>
+                <Col xs={4} sm={2} className="col col-value">${formatNumber(detailValue.investmentCost)}</Col>
               </Row>
               <Row>
                 <Col xs={8} sm={4} className="col">{t('Annual Energy Cost Savings')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{t('$')}{detailValue.energyCostSavings} / {t('Yr')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{t('$')}{formatNumber(detailValue.energyCostSavings)} / {t(
+                  'Yr')}</Col>
                 <Col xs={8} sm={4} className="col">{t('Simple Payback')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.paybackPeriod} {t('Yr')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.paybackPeriod)} {t('Yr')}</Col>
               </Row>
               <Row>
                 <Col xs={8} sm={4} className="col">{t('Annual CO2 Emissions Avoided')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.co2EmissionsAvoided} {t('Tons/Yr')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.co2EmissionsAvoided)} {t(
+                  'Tons/Yr')}</Col>
                 <Col xs={8} sm={4} className="col">{t('Internal Rate of Return')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.internalRateOfReturn} %</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.internalRateOfReturn)} %</Col>
               </Row>
 
               <Row>
                 <Col xs={8} sm={4} className="col">{t('Annual Lighting System Energy Consumption')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.newAnnualLightingSystemEnergyConsumption} {t(
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.newAnnualLightingSystemEnergyConsumption)} {t(
                   '(kWh)')}</Col>
                 <Col xs={8} sm={4} className="col">{t('Annual Energy Savings')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.annualEnergySavings} {t('kWh/Yr')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.annualEnergySavings)} {t('kWh/Yr')}</Col>
               </Row>
               <Row>
                 <Col xs={8} sm={4} className="col">{t('Annual Energy Cost Savings')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.annualEnergyCostSavings} {t('$')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.annualEnergyCostSavings)} {t('$')}</Col>
                 <Col xs={8} sm={4} className="col">{t('Annual Carbon Emissions Avoided')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.annualCarbonEmissionsAvoided} {t(
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.annualCarbonEmissionsAvoided)} {t(
                   '(Tons/Yr)')}</Col>
               </Row>
               <Row>
                 <Col xs={8} sm={4} className="col">{t('Cost of Improvement')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.costOfImprovement} {t('$')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.costOfImprovement)} {t('$')}</Col>
                 <Col xs={8} sm={4} className="col">{t('Payback')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.payback} {t('(Yr)')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{detailValue.payback?.toFixed(4)} {t('(Yr)')}</Col>
               </Row>
             </>}
           </PopupBodyInnerWrapper>
@@ -510,11 +515,11 @@ const ImprovementMeasures = ({ data, setResult }) => {
           <ImageWrapper><Image src={imgSrc} alt={item.measures} width={width}/></ImageWrapper>
           {t(item.measures)}
         </FirstTd>
-        <td width="18%">{item.investmentCost}</td>
-        <td width="12%">{item.energySavings}</td>
-        <td width="12%">{item.energyCostSavings}</td>
-        <td width="12%">{item.paybackPeriod}</td>
-        <td width="12%">{item.co2EmissionsAvoided}</td>
+        <td width="18%">{formatNumber(item.investmentCost)}</td>
+        <td width="12%">{formatNumber(item.energySavings)}</td>
+        <td width="12%">{formatNumber(item.energyCostSavings)}</td>
+        <td width="12%">{item.paybackPeriod.toFixed(4)}</td>
+        <td width="12%">{formatNumber(item.co2EmissionsAvoided)}</td>
         <td width="10%">
           <InfoButton
             className="btn btn-primary btn-sm"
