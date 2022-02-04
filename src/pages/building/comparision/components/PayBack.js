@@ -7,7 +7,8 @@ import { useTranslation } from 'react-i18next'
 import IRR from 'IRR'
 import { useAuth } from 'AuthenticateProvider'
 import {
-  getAnnualCarbonEmissionsAvoided, getAnnualEnergyCostSavings,
+  getAnnualCarbonEmissionsAvoided,
+  getAnnualEnergyCostSavings,
   getAnnualEnergySavings,
   getCostOfImprovement,
   getNewAnnualLightingSystemEnergyConsumption,
@@ -166,8 +167,8 @@ const PayBack = ({ data, setResult }) => {
       id: t(item.measures),
       data: [
         {
-          x: item.internalRateOfReturn,
-          y: item.paybackPeriod,
+          x: +(item.internalRateOfReturn.toFixed(2)),
+          y: +(item.paybackPeriod.toFixed(2)),
           subSystem: item.subSystem,
           ...item,
         }],
@@ -182,8 +183,8 @@ const PayBack = ({ data, setResult }) => {
         id: t(item.measures),
         data: [
           {
-            x: item.internalRateOfReturn,
-            y: item.paybackPeriod,
+            x: +(item.internalRateOfReturn.toFixed(2)),
+            y: +(item.paybackPeriod.toFixed(2)),
             subSystem: item.subSystem,
             ...item,
           }],
@@ -219,7 +220,7 @@ const PayBack = ({ data, setResult }) => {
           color: node.color,
           background: '#333',
           padding: '12px 16px',
-          fontSize: '13px'
+          fontSize: '13px',
         }}
       >
         <strong>{node.serieId}</strong>
@@ -364,20 +365,20 @@ const PayBack = ({ data, setResult }) => {
         setDetailValue({
           ...detailValue,
           ...{
-            energySavings: +(123.8 * value / 100).toFixed(2),
-            investmentCost: formatNumber(investmentCost),
-            energyCostSavings: formatNumber(energyCostSavings),
-            co2EmissionsAvoided: +(108.3 * value / 100).toFixed(2),
-            paybackPeriod: (r.payback).toFixed(4),//value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
-            internalRateOfReturn: value > 0 ? calculateIRRValue(investmentCost, energyCostSavings, 20) : 0,
+            energySavings: 123.8 * value / 100,
+            investmentCost: investmentCost,
+            energyCostSavings: energyCostSavings,
+            co2EmissionsAvoided: 108.3 * value / 100,
+            paybackPeriod: r.payback,//value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
+            internalRateOfReturn: value > 0 ? calculateIRRValue(-investmentCost, Math.abs(energyCostSavings), 20) : 0,
             percentageLEDUsage: value,
-            newAnnualLightingSystemEnergyConsumption: formatNumber(r.newAnnualLightingSystemEnergyConsumption),
-            annualEnergySavings: formatNumber(r.annualEnergySavings),
-            annualEnergyCostSavings: formatNumber(r.annualEnergyCostSavings),
-            annualCarbonEmissionsAvoided: formatNumber(r.annualCarbonEmissionsAvoided),
-            costOfImprovement: formatNumber(r.costOfImprovement),
-            payback: (r.payback).toFixed(4),
-            measures: measures
+            newAnnualLightingSystemEnergyConsumption: r.newAnnualLightingSystemEnergyConsumption,
+            annualEnergySavings: r.annualEnergySavings,
+            annualEnergyCostSavings: r.annualEnergyCostSavings,
+            annualCarbonEmissionsAvoided: r.annualCarbonEmissionsAvoided,
+            costOfImprovement: r.costOfImprovement,
+            payback: r.payback,
+            measures: measures,
           },
         })
         setIsLoading(false)
@@ -481,42 +482,47 @@ const PayBack = ({ data, setResult }) => {
             </> : <>
               <Row>
                 <Col xs={8} sm={4} className="col">{t('Annual Energy Savings')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.energySavings} MWh</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.energySavings)} MWh</Col>
                 <Col xs={8} sm={4} className="col">{t('Investment Cost')}</Col>
-                <Col xs={4} sm={2} className="col col-value">${detailValue.investmentCost}</Col>
+                <Col xs={4} sm={2} className="col col-value">${formatNumber(detailValue.investmentCost)}</Col>
               </Row>
               <Row>
                 <Col xs={8} sm={4} className="col">{t('Annual Energy Cost Savings')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{t('$')}{detailValue.energyCostSavings} / {t('Yr')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{t('$')}{formatNumber(detailValue.energyCostSavings)} / {t(
+                  'Yr')}</Col>
                 <Col xs={8} sm={4} className="col">{t('Simple Payback')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.paybackPeriod} {t('Yr')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.paybackPeriod)} {t('Yr')}</Col>
               </Row>
               <Row>
                 <Col xs={8} sm={4} className="col">{t('Annual CO2 Emissions Avoided')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.co2EmissionsAvoided} {t('Tons/Yr')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.co2EmissionsAvoided)} {t(
+                  'Tons/Yr')}</Col>
                 <Col xs={8} sm={4} className="col">{t('Internal Rate of Return')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.internalRateOfReturn} %</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.internalRateOfReturn)} %</Col>
               </Row>
 
               <Row>
                 <Col xs={8} sm={4} className="col">{t('Annual Lighting System Energy Consumption')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.newAnnualLightingSystemEnergyConsumption} {t(
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(
+                  detailValue.newAnnualLightingSystemEnergyConsumption)} {t(
                   '(kWh)')}</Col>
                 <Col xs={8} sm={4} className="col">{t('Annual Energy Savings')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.annualEnergySavings} {t('kWh/Yr')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.annualEnergySavings)} {t(
+                  'kWh/Yr')}</Col>
               </Row>
               <Row>
                 <Col xs={8} sm={4} className="col">{t('Annual Energy Cost Savings')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.annualEnergyCostSavings} {t('$')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.annualEnergyCostSavings)} {t(
+                  '$')}</Col>
                 <Col xs={8} sm={4} className="col">{t('Annual Carbon Emissions Avoided')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.annualCarbonEmissionsAvoided} {t(
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.annualCarbonEmissionsAvoided)} {t(
                   '(Tons/Yr)')}</Col>
               </Row>
               <Row>
                 <Col xs={8} sm={4} className="col">{t('Cost of Improvement')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.costOfImprovement} {t('$')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.costOfImprovement)} {t('$')}</Col>
                 <Col xs={8} sm={4} className="col">{t('Payback')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{detailValue.payback} {t('(Yr)')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{detailValue.payback?.toFixed(4)} {t('(Yr)')}</Col>
               </Row>
             </>}
           </PopupBodyInnerWrapper>
