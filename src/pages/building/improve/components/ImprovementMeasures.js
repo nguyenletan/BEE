@@ -276,7 +276,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
       internalRateOfReturn: calculateIRRValue(-props.data.investmentCost, Math.abs(props.data.energyCostSavings), 20),
       percentageLEDUsage: calculateIRRValue(-props.data.investmentCost, Math.abs(props.data.energyCostSavings), 20),
     })
-    const [value, setValue] = React.useState(detailValue.percentageLEDUsage)
+    const [value, setValue] = React.useState(+(detailValue.percentageLEDUsage.toFixed(0)))
 
     //const [newAnnualLightingSystemEnergyConsumption, setNewAnnualLightingSystemEnergyConsumption] = useState()
 
