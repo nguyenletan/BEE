@@ -305,7 +305,7 @@ const PayBack = ({ data, setResult }) => {
 
       let internalRateOfReturn = IRR([firstValue, ...IRRvalues])
       if (internalRateOfReturn !== '#NUM!') {
-        internalRateOfReturn = +internalRateOfReturn.toFixed(2) * 100
+        internalRateOfReturn = +(internalRateOfReturn.toFixed(2) * 100)
       }
       return internalRateOfReturn
     }
@@ -325,7 +325,7 @@ const PayBack = ({ data, setResult }) => {
       internalRateOfReturn: calculateIRRValue(-props.data.investmentCost, props.data.energyCostSavings, 20),
       percentageLEDUsage: calculateIRRValue(-props.data.investmentCost, props.data.energyCostSavings, 20),
     })
-    const [value, setValue] = React.useState(+(detailValue.percentageLEDUsage.toFixed(0)))
+    const [value, setValue] = React.useState(detailValue.percentageLEDUsage)
 
     //const [newAnnualLightingSystemEnergyConsumption, setNewAnnualLightingSystemEnergyConsumption] = useState()
 

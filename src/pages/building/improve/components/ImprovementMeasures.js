@@ -25,6 +25,7 @@ import { useAuth } from 'AuthenticateProvider'
 import { useParams } from 'react-router-dom'
 import ImprovementMeasureSkeleton from 'pages/building/improve/components/ImprovementMeasureSkeleton'
 import { formatNumber } from 'Utilities'
+import ImprovementBarChart from 'pages/building/improve/components/ImprovementBarChart'
 
 const ImprovementMeasuresWrapper = styled.div`
   padding: 20px;
@@ -254,7 +255,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
 
       let internalRateOfReturn = IRR([firstValue, ...IRRvalues])
       if (internalRateOfReturn !== '#NUM!') {
-        internalRateOfReturn = +internalRateOfReturn.toFixed(2) * 100
+        internalRateOfReturn = +(internalRateOfReturn.toFixed(2) * 100)
       }
       return internalRateOfReturn
     }
@@ -265,8 +266,6 @@ const ImprovementMeasures = ({ data, setResult }) => {
 
     const [isLoading, setIsLoading] = useState(false)
 
-    console.log(props)
-
     const [detailValue, setDetailValue] = useState({
       investmentCost: props.data.investmentCost,
       energyCostSavings: props.data.energyCostSavings,
@@ -276,7 +275,9 @@ const ImprovementMeasures = ({ data, setResult }) => {
       internalRateOfReturn: calculateIRRValue(-props.data.investmentCost, Math.abs(props.data.energyCostSavings), 20),
       percentageLEDUsage: calculateIRRValue(-props.data.investmentCost, Math.abs(props.data.energyCostSavings), 20),
     })
-    const [value, setValue] = React.useState(+(detailValue.percentageLEDUsage.toFixed(0)))
+
+    const [value, setValue] = React.useState(detailValue.percentageLEDUsage)
+    const [barChartvalue, setBarChartValue] = React.useState(null)
 
     //const [newAnnualLightingSystemEnergyConsumption, setNewAnnualLightingSystemEnergyConsumption] = useState()
 
@@ -310,29 +311,108 @@ const ImprovementMeasures = ({ data, setResult }) => {
     const saveHandle = () => {
 
       setIsLoading(true)
+
+
       getImproveFormulasAPI(id, value).then(r => {
 
-        const investmentCost = r.costOfImprovement//(60000 * value / 100) // => change
-        const energyCostSavings = r.annualEnergyCostSavings //(32167 * value / 100)
+        const investmentCost = +(r.costOfImprovement.toFixed(2))//(60000 * value / 100) // => change
+        const energyCostSavings = +(r.annualEnergyCostSavings.toFixed(2)) //(32167 * value / 100)
+        const tmp = {
+          energySavings: 123.8 * value / 100,
+          investmentCost: investmentCost,
+          energyCostSavings: energyCostSavings,
+          co2EmissionsAvoided: 108.3 * value / 100,
+          paybackPeriod: +r.payback.toFixed(2),//value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
+          internalRateOfReturn: value > 0 ? +(calculateIRRValue(-investmentCost, Math.abs(energyCostSavings), 20)).toFixed(
+            2) : 0,
+          percentageLEDUsage: value,
+          newAnnualLightingSystemEnergyConsumption: +(r.newAnnualLightingSystemEnergyConsumption).toFixed(2),
+          annualEnergySavings: +(r.annualEnergySavings).toFixed(2),
+          annualEnergyCostSavings: +(r.annualEnergyCostSavings).toFixed(2),
+          annualCarbonEmissionsAvoided: +(r.annualCarbonEmissionsAvoided).toFixed(2),
+          costOfImprovement: +r.costOfImprovement.toFixed(2),
+          payback: +r.payback.toFixed(2),
+          measures: measures,
+        }
+        const chartValue = {
+          energySavings: [
+            {
+              time: 'before',
+              value: +detailValue.energySavings.toFixed(2),
+            },
+            {
+              time: 'after',
+              value: +tmp.energySavings.toFixed(2),
+            }],
+          investmentCost: [
+            {
+              time: 'before',
+              value: +detailValue.investmentCost.toFixed(2),
+            },
+            {
+              time: 'after',
+              value: +tmp.investmentCost.toFixed(2),
+            },
+          ],
+          energyCostSavings: [
+            {
+              time: 'before',
+              value: +detailValue.energyCostSavings.toFixed(2),
+            },
+            {
+              time: 'after',
+              value: +tmp.energyCostSavings.toFixed(2),
+            },
+          ],
+          co2EmissionsAvoided: [
+            {
+              time: 'before',
+              value: +detailValue.co2EmissionsAvoided.toFixed(2),
+            },
+            {
+              time: 'after',
+              value: +tmp.co2EmissionsAvoided.toFixed(2),
+            },
+          ],
+          paybackPeriod: [
+            {
+              time: 'before',
+              value: +detailValue.paybackPeriod.toFixed(2),
+            },
+            {
+              time: 'after',
+              value: +tmp.paybackPeriod.toFixed(2),
+            },
+          ],
+          internalRateOfReturn: [
+            {
+              time: 'before',
+              value: +detailValue.internalRateOfReturn.toFixed(2),
+            },
+            {
+              time: 'after',
+              value: +tmp.internalRateOfReturn.toFixed(2),
+            },
+          ],
+          newAnnualLightingSystemEnergyConsumption: [
+            {
+              time: 'before',
+              value: detailValue.newAnnualLightingSystemEnergyConsumption / 1000,
+            },
+            {
+              time: 'after',
+              value: tmp.newAnnualLightingSystemEnergyConsumption / 1000,
+            },
+          ],
+        }
+
+        setBarChartValue(chartValue)
+
         setDetailValue({
           ...detailValue,
-          ...{
-            energySavings: 123.8 * value / 100,
-            investmentCost: investmentCost,
-            energyCostSavings: energyCostSavings,
-            co2EmissionsAvoided: 108.3 * value / 100,
-            paybackPeriod: r.payback,//value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
-            internalRateOfReturn: value > 0 ? calculateIRRValue(-investmentCost, Math.abs(energyCostSavings), 20) : 0,
-            percentageLEDUsage: value,
-            newAnnualLightingSystemEnergyConsumption: r.newAnnualLightingSystemEnergyConsumption,
-            annualEnergySavings: r.annualEnergySavings,
-            annualEnergyCostSavings: r.annualEnergyCostSavings,
-            annualCarbonEmissionsAvoided: r.annualCarbonEmissionsAvoided,
-            costOfImprovement: r.costOfImprovement,
-            payback: r.payback,
-            measures: measures,
-          },
+          ...tmp,
         })
+
         setIsLoading(false)
       })
 
@@ -440,7 +520,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
               </Row>
               <Row>
                 <Col xs={8} sm={4} className="col">{t('Annual Energy Cost Savings')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{t('$')}{formatNumber(detailValue.energyCostSavings)} / {t(
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.energyCostSavings)} {t('$')}/ {t(
                   'Yr')}</Col>
                 <Col xs={8} sm={4} className="col">{t('Simple Payback')}</Col>
                 <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.paybackPeriod)} {t('Yr')}</Col>
@@ -455,14 +535,17 @@ const ImprovementMeasures = ({ data, setResult }) => {
 
               <Row>
                 <Col xs={8} sm={4} className="col">{t('Annual Lighting System Energy Consumption')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.newAnnualLightingSystemEnergyConsumption)} {t(
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(
+                  detailValue.newAnnualLightingSystemEnergyConsumption)} {t(
                   '(kWh)')}</Col>
                 <Col xs={8} sm={4} className="col">{t('Annual Energy Savings')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.annualEnergySavings)} {t('kWh/Yr')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.annualEnergySavings)} {t(
+                  'kWh/Yr')}</Col>
               </Row>
               <Row>
                 <Col xs={8} sm={4} className="col">{t('Annual Energy Cost Savings')}</Col>
-                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.annualEnergyCostSavings)} {t('$')}</Col>
+                <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.annualEnergyCostSavings)} {t(
+                  '$')}</Col>
                 <Col xs={8} sm={4} className="col">{t('Annual Carbon Emissions Avoided')}</Col>
                 <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.annualCarbonEmissionsAvoided)} {t(
                   '(Tons/Yr)')}</Col>
@@ -473,6 +556,36 @@ const ImprovementMeasures = ({ data, setResult }) => {
                 <Col xs={8} sm={4} className="col">{t('Payback')}</Col>
                 <Col xs={4} sm={2} className="col col-value">{detailValue.payback?.toFixed(4)} {t('(Yr)')}</Col>
               </Row>
+              {barChartvalue && <>
+                <Row>
+                  <Col xs={8} sm={4} className="col">
+                    <ImprovementBarChart data={barChartvalue.energySavings} title="Energy Savings" unit="MWh"/>
+                  </Col>
+                  <Col xs={8} sm={4} className="col">
+                    <ImprovementBarChart data={barChartvalue.investmentCost} title="Investment Cost" unit="$"/>
+                  </Col>
+                  <Col xs={8} sm={4} className="col">
+                    <ImprovementBarChart data={barChartvalue.energyCostSavings} title="Energy Cost Savings" unit="$"/>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={8} sm={4} className="col">
+                    <ImprovementBarChart data={barChartvalue.co2EmissionsAvoided} title="CO2 Emissions Avoided" unit="Tons/Yr"/>
+                  </Col>
+                  <Col xs={8} sm={4} className="col">
+                    <ImprovementBarChart data={barChartvalue.paybackPeriod} title="Payback" unit="Yr"/>
+                  </Col>
+                  <Col xs={8} sm={4} className="col">
+                    <ImprovementBarChart data={barChartvalue.internalRateOfReturn} title="Internal Rate Of Return" unit="%"/>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={8} sm={4} className="col">
+                    <ImprovementBarChart data={barChartvalue.newAnnualLightingSystemEnergyConsumption}
+                                         title="Annual Lighting SystemEnergy Consumption" unit="MWh"/>
+                  </Col>
+                </Row>
+              </>}
             </>}
           </PopupBodyInnerWrapper>
         </Modal.Body>
