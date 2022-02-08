@@ -21,7 +21,7 @@ const ImprovementBarChart = ({ title, data, unit }) => {
     groupMode: 'grouped',
     enableGridY: false,
     enableLabel: false,
-    indexBy: 'time',
+    indexBy: 'name',
     keys: ['value'],
     labelTextColor: 'inherit:darker(1.4)',
     labelSkipWidth: 16,
@@ -36,10 +36,16 @@ const ImprovementBarChart = ({ title, data, unit }) => {
       }
     },
     colors: ({ id, data }) => {
-      if (data.time === 'before') {
+      if(data.name === '0%') {
         return '#d5dfa3'
       }
-      return '#87972f'
+      if (data.name === 'before') {
+        return '#acbf42'
+      }
+      if(data.name === 'after') {
+        return '#87972f'
+      }
+      return '#636c2e'
     },
   }
 

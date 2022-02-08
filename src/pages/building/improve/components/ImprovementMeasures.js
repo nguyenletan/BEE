@@ -278,6 +278,8 @@ const ImprovementMeasures = ({ data, setResult }) => {
 
     const [value, setValue] = React.useState(detailValue.percentageLEDUsage)
     const [barChartvalue, setBarChartValue] = React.useState(null)
+    let [zeroPercentChartValue, setZeroPercentChartValue] = React.useState(null)
+    const [oneHundredPercentChartValue, setOneHundredPercentChartValue] = React.useState(null)
 
     //const [newAnnualLightingSystemEnergyConsumption, setNewAnnualLightingSystemEnergyConsumption] = useState()
 
@@ -304,17 +306,72 @@ const ImprovementMeasures = ({ data, setResult }) => {
       }
     }
 
+    const getImproveFormulasAPIFor0Percent = async (buildingId) => {
+      const idToken = await user.getIdToken()
+      // trackingUser(user.uid, 'AssetReliability', idToken)
+      const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
+        0, idToken)
+      const annualEnergySavings = await getAnnualEnergySavings(buildingId, 0, idToken)
+      const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, 0, idToken)
+      const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, 0, idToken)
+      const costOfImprovement = await getCostOfImprovement(buildingId, 0, idToken)
+      const payback = await getPayback(buildingId, 0, idToken)
+
+      const investmentCost = +(costOfImprovement.toFixed(2))//(60000 * value / 100) // => change
+      const energyCostSavings = +(annualEnergyCostSavings.toFixed(2)) //(32167 * value / 100)
+      return {
+        energySavings: 123.8 * value / 100,
+        investmentCost: investmentCost,
+        energyCostSavings: energyCostSavings,
+        co2EmissionsAvoided: 108.3 * value / 100,
+        paybackPeriod: +payback.toFixed(2),//value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
+        internalRateOfReturn: +(calculateIRRValue(-investmentCost, Math.abs(energyCostSavings), 20)),
+        newAnnualLightingSystemEnergyConsumption: +(newAnnualLightingSystemEnergyConsumption).toFixed(2),
+        annualEnergySavings: +(annualEnergySavings).toFixed(2),
+        annualEnergyCostSavings: +(annualEnergyCostSavings).toFixed(2),
+        annualCarbonEmissionsAvoided: +(annualCarbonEmissionsAvoided).toFixed(2),
+        costOfImprovement: +costOfImprovement.toFixed(2),
+        payback: +payback.toFixed(2),
+      }
+    }
+    const getImproveFormulasAPIFor100Percent = async (buildingId) => {
+      const idToken = await user.getIdToken()
+      // trackingUser(user.uid, 'AssetReliability', idToken)
+      const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
+        100, idToken)
+      const annualEnergySavings = await getAnnualEnergySavings(buildingId, 100, idToken)
+      const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, 100, idToken)
+      const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, 100, idToken)
+      const costOfImprovement = await getCostOfImprovement(buildingId, 100, idToken)
+      const payback = await getPayback(buildingId, 100, idToken)
+
+      const investmentCost = +(costOfImprovement.toFixed(2))//(60000 * value / 100) // => change
+      const energyCostSavings = +(annualEnergyCostSavings.toFixed(2)) //(32167 * value / 100)
+      return {
+        energySavings: 123.8 * value / 100,
+        investmentCost: investmentCost,
+        energyCostSavings: energyCostSavings,
+        co2EmissionsAvoided: 108.3 * value / 100,
+        paybackPeriod: +payback.toFixed(2),//value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
+        internalRateOfReturn: +(calculateIRRValue(-investmentCost, Math.abs(energyCostSavings), 20)),
+        newAnnualLightingSystemEnergyConsumption: +(newAnnualLightingSystemEnergyConsumption).toFixed(2),
+        annualEnergySavings: +(annualEnergySavings).toFixed(2),
+        annualEnergyCostSavings: +(annualEnergyCostSavings).toFixed(2),
+        annualCarbonEmissionsAvoided: +(annualCarbonEmissionsAvoided).toFixed(2),
+        costOfImprovement: +costOfImprovement.toFixed(2),
+        payback: +payback.toFixed(2),
+      }
+
+    }
+
     const handleSliderChange = (event, newValue) => {
       setValue(newValue)
     }
 
-    const saveHandle = () => {
-
+    const saveHandle = async () => {
       setIsLoading(true)
 
-
       getImproveFormulasAPI(id, value).then(r => {
-
         const investmentCost = +(r.costOfImprovement.toFixed(2))//(60000 * value / 100) // => change
         const energyCostSavings = +(r.annualEnergyCostSavings.toFixed(2)) //(32167 * value / 100)
         const tmp = {
@@ -337,70 +394,95 @@ const ImprovementMeasures = ({ data, setResult }) => {
         const chartValue = {
           energySavings: [
             {
-              time: 'before',
+              name: '0%',
+              value: +zeroPercentChartValue.energySavings.toFixed(2),
+            },
+            {
+              name: 'before',
               value: +detailValue.energySavings.toFixed(2),
             },
             {
-              time: 'after',
+              name: 'after',
               value: +tmp.energySavings.toFixed(2),
-            }],
+            },
+            {
+              name: '100%',
+              value: +oneHundredPercentChartValue.energySavings.toFixed(2),
+            },
+          ],
           investmentCost: [
             {
-              time: 'before',
+              name: '0%',
+              value:  +zeroPercentChartValue.investmentCost.toFixed(2),
+            },
+            {
+              name: 'before',
               value: +detailValue.investmentCost.toFixed(2),
             },
             {
-              time: 'after',
+              name: 'after',
               value: +tmp.investmentCost.toFixed(2),
+            },
+            {
+              name: '100%',
+              value:  +oneHundredPercentChartValue.investmentCost.toFixed(2),
             },
           ],
           energyCostSavings: [
             {
-              time: 'before',
+              name: '0%',
+              value: +zeroPercentChartValue.energyCostSavings.toFixed(2),
+            },
+            {
+              name: 'before',
               value: +detailValue.energyCostSavings.toFixed(2),
             },
             {
-              time: 'after',
+              name: 'after',
               value: +tmp.energyCostSavings.toFixed(2),
+            },
+            {
+              name: '100%',
+              value: +oneHundredPercentChartValue.energyCostSavings.toFixed(2),
             },
           ],
           co2EmissionsAvoided: [
             {
-              time: 'before',
+              name: 'before',
               value: +detailValue.co2EmissionsAvoided.toFixed(2),
             },
             {
-              time: 'after',
+              name: 'after',
               value: +tmp.co2EmissionsAvoided.toFixed(2),
             },
           ],
           paybackPeriod: [
             {
-              time: 'before',
+              name: 'before',
               value: +detailValue.paybackPeriod.toFixed(2),
             },
             {
-              time: 'after',
+              name: 'after',
               value: +tmp.paybackPeriod.toFixed(2),
             },
           ],
           internalRateOfReturn: [
             {
-              time: 'before',
+              name: 'before',
               value: +detailValue.internalRateOfReturn.toFixed(2),
             },
             {
-              time: 'after',
+              name: 'after',
               value: +tmp.internalRateOfReturn.toFixed(2),
             },
           ],
           newAnnualLightingSystemEnergyConsumption: [
             {
-              time: 'before',
+              name: 'before',
               value: detailValue.newAnnualLightingSystemEnergyConsumption / 1000,
             },
             {
-              time: 'after',
+              name: 'after',
               value: tmp.newAnnualLightingSystemEnergyConsumption / 1000,
             },
           ],
@@ -438,6 +520,20 @@ const ImprovementMeasures = ({ data, setResult }) => {
       setSaveText(t('Save'))
       setEditText(t('Edit'))
     }, [i18n.language])
+
+    useEffect(() => {
+      if(zeroPercentChartValue === null) {
+        getImproveFormulasAPIFor0Percent(id).then(r => {
+          setZeroPercentChartValue(r)
+        })
+      }
+      if(oneHundredPercentChartValue === null) {
+        getImproveFormulasAPIFor100Percent(id).then(r=> {
+          setOneHundredPercentChartValue(r)
+        })
+      }
+
+    }, [])
 
     return (
       <Modal show={show} onHide={handleClose} size="xl">
@@ -570,7 +666,8 @@ const ImprovementMeasures = ({ data, setResult }) => {
                 </Row>
                 <Row>
                   <Col xs={8} sm={4} className="col">
-                    <ImprovementBarChart data={barChartvalue.co2EmissionsAvoided} title="CO2 Emissions Avoided" unit="Tons/Yr"/>
+                    <ImprovementBarChart data={barChartvalue.co2EmissionsAvoided} title="CO2 Emissions Avoided"
+                                         unit="Tons/Yr"/>
                   </Col>
                   <Col xs={8} sm={4} className="col">
                     <ImprovementBarChart data={barChartvalue.paybackPeriod} title="Payback" unit="Yr"/>
