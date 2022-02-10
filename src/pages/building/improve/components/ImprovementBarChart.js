@@ -26,6 +26,7 @@ const ImprovementBarChart = ({ title, data, unit }) => {
     labelTextColor: 'inherit:darker(1.4)',
     labelSkipWidth: 16,
     labelSkipHeight: 16,
+    borderRadius: 4,
     data: data,
     axisLeft: {
       format: value => {
