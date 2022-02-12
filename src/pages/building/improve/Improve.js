@@ -42,6 +42,7 @@ const Improve = (props) => {
         energyCostSavings: 19300,
         co2EmissionsAvoided: 65,
         paybackPeriod: 2.7,
+        usagePercent: 32,
         internalRateOfReturn: 32,
       },
       {
@@ -53,6 +54,7 @@ const Improve = (props) => {
         co2EmissionsAvoided: 154.92,
         paybackPeriod: 5.1,
         internalRateOfReturn: 21,
+        usagePercent: 21,
       },
       {
         measures: 'Double Glaze Low-E Windows',
@@ -63,6 +65,7 @@ const Improve = (props) => {
         co2EmissionsAvoided: 93.12,
         paybackPeriod: 3.7,
         internalRateOfReturn: 21,
+        usagePercent: 21,
       },
       {
         measures: 'Install Variable Speed Drive Pumps',
@@ -73,6 +76,7 @@ const Improve = (props) => {
         co2EmissionsAvoided: 61.55,
         paybackPeriod: 4.76,
         internalRateOfReturn: 18,
+        usagePercent: 18,
       },
       {
         measures: 'Install Air Distribution Control System',
@@ -83,6 +87,7 @@ const Improve = (props) => {
         co2EmissionsAvoided: 49.56,
         paybackPeriod: 8.97,
         internalRateOfReturn: 14,
+        usagePercent: 14,
       },
       {
         measures: 'Curtain Wall Insulation Blocks',
@@ -93,6 +98,7 @@ const Improve = (props) => {
         co2EmissionsAvoided: 13.5,
         paybackPeriod: 9.9,
         internalRateOfReturn: 3,
+        usagePercent: 3,
       },
       {
         measures: 'Solar Film Installation',
@@ -103,6 +109,7 @@ const Improve = (props) => {
         co2EmissionsAvoided: 20.9,
         paybackPeriod: 6.96,
         internalRateOfReturn: 7,
+        usagePercent: 7,
       },
       {
         measures: 'Electric Air Source Heat Pump (Boiler Replacement)',
@@ -113,6 +120,7 @@ const Improve = (props) => {
         co2EmissionsAvoided: 226.73,
         paybackPeriod: 3.72,
         internalRateOfReturn: 24,
+        usagePercent: 24,
       },
       {
         measures: 'Install Heating Central Time Control',
@@ -123,6 +131,7 @@ const Improve = (props) => {
         co2EmissionsAvoided: 113.91,
         paybackPeriod: 2.9,
         internalRateOfReturn: 30,
+        usagePercent: 30,
       },
     ],
   }

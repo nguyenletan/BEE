@@ -245,7 +245,6 @@ const ImprovementMeasures = ({ data, setResult }) => {
   }
 
   const Popup = (props) => {
-
     const { t, i18n } = useTranslation('improvement')
     const calculateIRRValue = (firstValue, secondValue, loopTime = 20) => {
       const IRRvalues = new Array(loopTime - 1)
@@ -273,10 +272,10 @@ const ImprovementMeasures = ({ data, setResult }) => {
       paybackPeriod: props.data.paybackPeriod,
       co2EmissionsAvoided: props.data.co2EmissionsAvoided,
       internalRateOfReturn: calculateIRRValue(-props.data.investmentCost, Math.abs(props.data.energyCostSavings), 20),
-      percentageLEDUsage: calculateIRRValue(-props.data.investmentCost, Math.abs(props.data.energyCostSavings), 20),
+      usagePercent: props.data.usagePercent
     })
 
-    const [value, setValue] = React.useState(detailValue.percentageLEDUsage)
+    const [value, setValue] = React.useState(detailValue.usagePercent)
     const [barChartvalue, setBarChartValue] = React.useState(null)
     let [zeroPercentChartValue, setZeroPercentChartValue] = React.useState(null)
     const [oneHundredPercentChartValue, setOneHundredPercentChartValue] = React.useState(null)
@@ -371,7 +370,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
           paybackPeriod: +r.payback.toFixed(2),//value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
           internalRateOfReturn: value > 0 ? +(calculateIRRValue(-investmentCost, Math.abs(energyCostSavings), 20)).toFixed(
             2) : 0,
-          percentageLEDUsage: value,
+          usagePercent: value,
           newAnnualLightingSystemEnergyConsumption: +(r.newAnnualLightingSystemEnergyConsumption).toFixed(2),
           measures: measures,
         }
@@ -745,6 +744,8 @@ const ImprovementMeasures = ({ data, setResult }) => {
               energySavings: item.energySavings,
               paybackPeriod: item.paybackPeriod,
               co2EmissionsAvoided: item.co2EmissionsAvoided,
+              internalRateOfReturn: item.internalRateOfReturn,
+              usagePercent: item.usagePercent
             })}
           >
             {t('Info')}
