@@ -92,8 +92,6 @@ const Register = () => {
   // password: 2@00L2l2
   if (!isRegistered) {
     const onSubmit = data => {
-      console.log(data)
-
       axios({
         method: 'post',
         url: '/users/signup',

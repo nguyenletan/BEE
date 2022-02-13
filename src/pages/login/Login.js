@@ -10,7 +10,6 @@ const Login = () => {
   const [isLoginSuccessfully, setIsLoginSuccessfully] = useState(false)
 
   const onSubmit = data => {
-    console.log(data)
 
     axios({
       method: 'post',

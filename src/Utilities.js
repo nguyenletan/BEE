@@ -158,7 +158,6 @@ export const getLatLngFromAddress = async (address) => {
   let location = null
   const url = googleMapAPIEndPoint + '?address=' + address + '&key=' + process.env.REACT_APP_GOOGLE_API_KEY
   await fetch(url).then(response => response.json()).then(data => {
-    console.log(data)
     location = data
     return true
   })
