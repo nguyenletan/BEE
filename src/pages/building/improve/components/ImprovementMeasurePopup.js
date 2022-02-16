@@ -129,11 +129,11 @@ const PrettoSlider = withStyles({
 const marks = [
   {
     value: 0,
-    label: '0%',
+    label: 'min (0%)',
   },
   {
     value: 100,
-    label: '100%',
+    label: 'max (100%)',
   },
 ]
 
@@ -267,127 +267,127 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
       const chartValue = {
         energySavings: [
           {
-            name: '0%',
+            name: 'min(0%)',
             value: +zeroPercentChartValue?.energySavings?.toFixed(2),
           },
           {
-            name: 'before',
+            name: 'before(' + detailValue.usagePercent + '%)',
             value: +detailValue.energySavings?.toFixed(2),
           },
           {
-            name: 'after',
+            name: 'after(' + tmp.usagePercent + '%)',
             value: +tmp.energySavings?.toFixed(2),
           },
           {
-            name: '100%',
+            name: 'max(100%)',
             value: +oneHundredPercentChartValue?.energySavings.toFixed(2),
           },
         ],
         investmentCost: [
           {
-            name: '0%',
+            name: 'min(0%)',
             value: +zeroPercentChartValue.investmentCost?.toFixed(2),
           },
           {
-            name: 'before',
+            name: 'before(' + detailValue.usagePercent + '%)',
             value: +detailValue.investmentCost?.toFixed(2),
           },
           {
-            name: 'after',
+            name: 'after(' + tmp.usagePercent + '%)',
             value: +tmp.investmentCost?.toFixed(2),
           },
           {
-            name: '100%',
+            name: 'max(100%)',
             value: +oneHundredPercentChartValue?.investmentCost?.toFixed(2),
           },
         ],
         energyCostSavings: [
           {
-            name: '0%',
+            name: 'min(0%)',
             value: +zeroPercentChartValue?.energyCostSavings?.toFixed(2),
           },
           {
-            name: 'before',
+            name: 'before(' + detailValue.usagePercent + '%)',
             value: +detailValue.energyCostSavings?.toFixed(2),
           },
           {
-            name: 'after',
+            name: 'after(' + tmp.usagePercent + '%)',
             value: +tmp.energyCostSavings?.toFixed(2),
           },
           {
-            name: '100%',
+            name: 'max(100%)',
             value: +oneHundredPercentChartValue?.energyCostSavings?.toFixed(2),
           },
         ],
         co2EmissionsAvoided: [
           {
-            name: '0%',
+            name: 'min(0%)',
             value: +zeroPercentChartValue.co2EmissionsAvoided?.toFixed(2),
           },
           {
-            name: 'before',
+            name: 'before(' + detailValue.usagePercent + '%)',
             value: +detailValue.co2EmissionsAvoided?.toFixed(2),
           },
           {
-            name: 'after',
+            name: 'after(' + tmp.usagePercent + '%)',
             value: +tmp.co2EmissionsAvoided?.toFixed(2),
           },
           {
-            name: '100%',
+            name: 'max(100%)',
             value: +oneHundredPercentChartValue.co2EmissionsAvoided?.toFixed(2),
           },
         ],
         paybackPeriod: [
           {
-            name: '0%',
+            name: 'min(0%)',
             value: +zeroPercentChartValue.paybackPeriod?.toFixed(2),
           },
           {
-            name: 'before',
+            name: 'before(' + detailValue.usagePercent + '%)',
             value: +detailValue.paybackPeriod?.toFixed(2),
           },
           {
-            name: 'after',
+            name: 'after(' + tmp.usagePercent + '%)',
             value: +tmp.paybackPeriod?.toFixed(2),
           },
           {
-            name: '100%',
+            name: 'max(100%)',
             value: +oneHundredPercentChartValue.paybackPeriod?.toFixed(2),
           },
         ],
         internalRateOfReturn: [
           {
-            name: '0%',
+            name: 'min(0%)',
             value: +zeroPercentChartValue.internalRateOfReturn?.toFixed(2),
           },
           {
-            name: 'before',
+            name: 'before(' + detailValue.usagePercent + '%)',
             value: +detailValue.internalRateOfReturn?.toFixed(2),
           },
           {
-            name: 'after',
+            name: 'after(' + tmp.usagePercent + '%)',
             value: +tmp.internalRateOfReturn?.toFixed(2),
           },
           {
-            name: '100%',
+            name: 'max(100%)',
             value: +oneHundredPercentChartValue.internalRateOfReturn?.toFixed(2),
           },
         ],
         newAnnualLightingSystemEnergyConsumption: [
           {
-            name: '0%',
+            name: 'min(0%)',
             value: zeroPercentChartValue.newAnnualLightingSystemEnergyConsumption / 1000,
           },
           {
-            name: 'before',
+            name: 'before(' + detailValue.usagePercent + '%)',
             value: detailValue.newAnnualLightingSystemEnergyConsumption / 1000,
           },
           {
-            name: 'after',
+            name: 'after(' + tmp.usagePercent + '%)',
             value: tmp.newAnnualLightingSystemEnergyConsumption / 1000,
           },
           {
-            name: '100%',
+            name: 'max(100%)',
             value: oneHundredPercentChartValue.newAnnualLightingSystemEnergyConsumption / 1000,
           },
         ],
