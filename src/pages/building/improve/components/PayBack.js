@@ -208,7 +208,7 @@ const PayBack = ({ data, setResult }) => {
         nodeComponent={CustomNode}
         onClick={handleClick}
       />
-      <ImprovementMeasurePopup data={popUpProps} handleClose={handleClose} show={show}/>
+      {show && <ImprovementMeasurePopup data={popUpProps} handleClose={handleClose} show={true}/>}
     </PayBackWrapper>
   )
 }

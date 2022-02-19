@@ -43,6 +43,7 @@ const Improve = (props) => {
         co2EmissionsAvoided: 65,
         paybackPeriod: 2.7,
         usagePercent: 32,
+        oldUsagePercent: 32,
         internalRateOfReturn: 32,
       },
       {
@@ -55,6 +56,7 @@ const Improve = (props) => {
         paybackPeriod: 5.1,
         internalRateOfReturn: 21,
         usagePercent: 21,
+        oldUsagePercent: 21,
       },
       {
         measures: 'Double Glaze Low-E Windows',
@@ -66,6 +68,7 @@ const Improve = (props) => {
         paybackPeriod: 3.7,
         internalRateOfReturn: 21,
         usagePercent: 21,
+        oldUsagePercent: 21,
       },
       {
         measures: 'Install Variable Speed Drive Pumps',
@@ -77,6 +80,7 @@ const Improve = (props) => {
         paybackPeriod: 4.76,
         internalRateOfReturn: 18,
         usagePercent: 18,
+        oldUsagePercent: 18,
       },
       {
         measures: 'Install Air Distribution Control System',
@@ -88,6 +92,7 @@ const Improve = (props) => {
         paybackPeriod: 8.97,
         internalRateOfReturn: 14,
         usagePercent: 14,
+        oldUsagePercent: 14,
       },
       {
         measures: 'Curtain Wall Insulation Blocks',
@@ -99,6 +104,7 @@ const Improve = (props) => {
         paybackPeriod: 9.9,
         internalRateOfReturn: 3,
         usagePercent: 3,
+        oldUsagePercent: 3,
       },
       {
         measures: 'Solar Film Installation',
@@ -110,6 +116,7 @@ const Improve = (props) => {
         paybackPeriod: 6.96,
         internalRateOfReturn: 7,
         usagePercent: 7,
+        oldUsagePercent: 7,
       },
       {
         measures: 'Electric Air Source Heat Pump (Boiler Replacement)',
@@ -121,6 +128,7 @@ const Improve = (props) => {
         paybackPeriod: 3.72,
         internalRateOfReturn: 24,
         usagePercent: 24,
+        oldUsagePercent: 24,
       },
       {
         measures: 'Install Heating Central Time Control',
@@ -132,6 +140,7 @@ const Improve = (props) => {
         paybackPeriod: 2.9,
         internalRateOfReturn: 30,
         usagePercent: 30,
+        oldUsagePercent: 30,
       },
     ],
   }

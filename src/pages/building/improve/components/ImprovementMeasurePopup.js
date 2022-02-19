@@ -142,6 +142,7 @@ const valuetext = (value) => {
 }
 
 const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
+
   const { id } = useParams()
   const { t, i18n } = useTranslation('improvement')
   const calculateIRRValue = (firstValue, secondValue, loopTime = 20) => {
@@ -164,9 +165,10 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
   const [isLoading, setIsLoading] = useState(true)
 
-  const [detailValue, setDetailValue] = useState(data.usagePercent)
+  const [detailValue, setDetailValue] = useState()
 
   const [value, setValue] = React.useState(0)
+
   const [barChartvalue, setBarChartValue] = React.useState(null)
   let [zeroPercentChartValue, setZeroPercentChartValue] = React.useState(null)
   const [oneHundredPercentChartValue, setOneHundredPercentChartValue] = React.useState(null)
@@ -178,13 +180,17 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
   const getImproveFormulasAPI = async (buildingId, percentReplacement) => {
     const idToken = await user.getIdToken()
     // trackingUser(user.uid, 'AssetReliability', idToken)
+
+
+
     const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
       percentReplacement, idToken)
-    const annualEnergySavings = await getAnnualEnergySavings(buildingId, percentReplacement, idToken)
-    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, percentReplacement, idToken)
-    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, percentReplacement, idToken)
+    const annualEnergySavings = await getAnnualEnergySavings(buildingId, detailValue.oldUsagePercent, percentReplacement, idToken)
+    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, detailValue.oldUsagePercent, percentReplacement, idToken)
+    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, detailValue.oldUsagePercent, percentReplacement, idToken)
     const costOfImprovement = await getCostOfImprovement(buildingId, percentReplacement, idToken)
-    const payback = await getPayback(buildingId, percentReplacement, idToken)
+    const payback = await getPayback(buildingId, detailValue.oldUsagePercent, percentReplacement, idToken)
+
 
     return {
       newAnnualLightingSystemEnergyConsumption: newAnnualLightingSystemEnergyConsumption,
@@ -197,15 +203,16 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
   }
 
   const getImproveFormulasAPIFor0Percent = async (buildingId) => {
+
     const idToken = await user.getIdToken()
     // trackingUser(user.uid, 'AssetReliability', idToken)
     const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
       0, idToken)
-    const annualEnergySavings = await getAnnualEnergySavings(buildingId, 0, idToken)
-    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, 0, idToken)
-    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, 0, idToken)
+    const annualEnergySavings = await getAnnualEnergySavings(buildingId, data.usagePercent, 0, idToken)
+    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, data.usagePercent, 0, idToken)
+    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, data.usagePercent, 0, idToken)
     const costOfImprovement = await getCostOfImprovement(buildingId, 0, idToken)
-    const payback = await getPayback(buildingId, 0, idToken)
+    const payback = await getPayback(buildingId, data.usagePercent, 0, idToken)
 
     const investmentCost = +(costOfImprovement.toFixed(2))//(60000 * value / 100) // => change
     const energyCostSavings = +(annualEnergyCostSavings.toFixed(2)) //(32167 * value / 100)
@@ -224,11 +231,11 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
     // trackingUser(user.uid, 'AssetReliability', idToken)
     const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
       100, idToken)
-    const annualEnergySavings = await getAnnualEnergySavings(buildingId, 100, idToken)
-    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, 100, idToken)
-    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, 100, idToken)
+    const annualEnergySavings = await getAnnualEnergySavings(buildingId, data.usagePercent, 100, idToken)
+    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, data.usagePercent, 100, idToken)
+    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, data.usagePercent, 100, idToken)
     const costOfImprovement = await getCostOfImprovement(buildingId, 100, idToken)
-    const payback = await getPayback(buildingId, 100, idToken)
+    const payback = await getPayback(buildingId, data.usagePercent, 100, idToken)
 
     const investmentCost = +(costOfImprovement.toFixed(2))//(60000 * value / 100) // => change
     const energyCostSavings = +(annualEnergyCostSavings.toFixed(2)) //(32167 * value / 100)
@@ -249,6 +256,7 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
   const saveHandle = async () => {
     setIsLoading(true)
+    //console.log(zeroPercentChartValue)
     getImproveFormulasAPI(id, value).then(r => {
       const investmentCost = +(r.costOfImprovement.toFixed(2))//(60000 * value / 100) // => change
       const energyCostSavings = +(r.annualEnergyCostSavings.toFixed(2)) //(32167 * value / 100)
@@ -421,20 +429,25 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
   const [editText, setEditText] = useState(t('Edit'))
 
   useEffect(() => {
-    setDetailValue({
-      investmentCost: data.investmentCost,
-      energyCostSavings: data.energyCostSavings,
-      energySavings: data.energySavings,
-      paybackPeriod: data.paybackPeriod,
-      co2EmissionsAvoided: data.co2EmissionsAvoided,
-      internalRateOfReturn: calculateIRRValue(-data.investmentCost, Math.abs(data.energyCostSavings), 20),
-      usagePercent: data.usagePercent,
-    })
+    if(data !== {}) {
+      setDetailValue({
+        investmentCost: data.investmentCost,
+        energyCostSavings: data.energyCostSavings,
+        energySavings: data.energySavings,
+        paybackPeriod: data.paybackPeriod,
+        co2EmissionsAvoided: data.co2EmissionsAvoided,
+        internalRateOfReturn: calculateIRRValue(-data.investmentCost, Math.abs(data.energyCostSavings), 20),
+        usagePercent: data.usagePercent,
+        oldUsagePercent: data.usagePercent
+      })
+      setValue(data.usagePercent)
+      setIsLoading(false)
+    }
+    // } else {
+    //   setIsLoading(true)
+    //   setShowSlider(false)
+    // }
 
-    setValue(data.usagePercent)
-    setIsChanged(false)
-    setShowSlider(false)
-    setBarChartValue(null)
   }, [data])
 
   useEffect(() => {
@@ -444,21 +457,14 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
   useEffect(() => {
     if (zeroPercentChartValue === null) {
-      setIsLoading(true)
-      getImproveFormulasAPIFor0Percent(id).then(r => {
-        setZeroPercentChartValue(r)
-        setIsLoading(false)
-      })
+      getImproveFormulasAPIFor0Percent(id).then(r=> {
+        setZeroPercentChartValue(r)})
     }
     if (oneHundredPercentChartValue === null) {
-      setIsLoading(true)
-      getImproveFormulasAPIFor100Percent(id).then(r => {
-        setOneHundredPercentChartValue(r)
-        setIsLoading(false)
-      })
+      getImproveFormulasAPIFor100Percent(id).then(r=> setOneHundredPercentChartValue(r))
     }
-    setIsChanged(false)
-    setShowSlider(false)
+    // setIsChanged(false)
+    // setShowSlider(false)
 
   }, [])
 
@@ -480,8 +486,7 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
                 }
               }}
               >
-                {(zeroPercentChartValue && oneHundredPercentChartValue) &&
-                  <><LinkExternalIcon size={16} className="me-1"/><span>{showSlider ? saveText : editText}</span></>}
+                <LinkExternalIcon size={16} className="me-1"/><span>{showSlider ? saveText : editText}</span>
               </HeaderButton>
               <HeaderButton className="" onClick={() => { handleClose(isChanged, detailValue) }}>
                 <XCircleIcon size={16} className="me-1"/><span>{t('Close')}</span>
@@ -495,7 +500,7 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
               <PopupValue>{value}%</PopupValue>
               <MeasureName>{t(measures)}</MeasureName>
             </PopupValueWrapper>
-            {showSlider && <RangeWrapper className="d-flex justify-content-between w-100  align-items-center" show={true}>
+            <RangeWrapper className="d-flex justify-content-between w-100  align-items-center" show={showSlider}>
               <PrettoSlider
                 className="me-4"
                 marks={marks}
@@ -526,7 +531,7 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
                   <span>{'0 <='} {t('Value')} {'<= 100'}</span>
                 </Message>
               </div>
-            </RangeWrapper> }
+            </RangeWrapper>
           </div>
 
         </Container>
@@ -585,15 +590,16 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
                   <ImprovementBarChart data={barChartvalue.paybackPeriod} title="Payback" unit="Yr"/>
                 </Col>
                 <Col md={8} xl={4} className="col">
-                  <ImprovementBarChart data={barChartvalue.internalRateOfReturn} title="Internal Rate Of Return" unit="%"/>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={8} xl={4} className="col">
                   <ImprovementBarChart data={barChartvalue.newAnnualLightingSystemEnergyConsumption}
                                        title="Annual Lighting SystemEnergy Consumption" unit="MWh"/>
                 </Col>
+
               </Row>
+              {/*<Row>*/}
+              {/*  <Col md={8} xl={4} className="col">*/}
+              {/*    <ImprovementBarChart data={barChartvalue.internalRateOfReturn} title="Internal Rate Of Return" unit="%"/>*/}
+              {/*  </Col>*/}
+              {/*</Row>*/}
             </>}
           </>}
         </PopupBodyInnerWrapper>

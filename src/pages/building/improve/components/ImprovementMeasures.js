@@ -192,7 +192,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
         </ImprovementMeasuresTable>
       </ImprovementMeasuresTableWrapper>
 
-      <ImprovementMeasurePopup data={popUpProps} handleClose={handleClose} show={show}/>
+      {show && <ImprovementMeasurePopup data={popUpProps} handleClose={handleClose} show={true}/>}
     </ImprovementMeasuresWrapper>
 
   )

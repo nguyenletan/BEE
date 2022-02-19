@@ -26,11 +26,11 @@ export const getNewAnnualLightingSystemEnergyConsumption = async (buildingId, pe
   return result
 }
 
-export const getAnnualEnergySavings = async (buildingId, percentReplacement, idToken) => {
+export const getAnnualEnergySavings = async (buildingId, oldPercentReplacement, percentReplacement, idToken) => {
   let result
   await axios({
     method: 'get',
-    url: process.env.REACT_APP_BACKEND_API + `/improvement/getAnnualEnergySavings/${buildingId}/${percentReplacement}`,
+    url: process.env.REACT_APP_BACKEND_API + `/improvement/getAnnualEnergySavings/${buildingId}/${oldPercentReplacement}/${percentReplacement}`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,
@@ -52,11 +52,11 @@ export const getAnnualEnergySavings = async (buildingId, percentReplacement, idT
   return result
 }
 
-export const getAnnualEnergyCostSavings = async (buildingId, percentReplacement, idToken) => {
+export const getAnnualEnergyCostSavings = async (buildingId, oldPercentReplacement, percentReplacement, idToken) => {
   let result
   await axios({
     method: 'get',
-    url: process.env.REACT_APP_BACKEND_API + `/improvement/getAnnualEnergyCostSavings/${buildingId}/${percentReplacement}`,
+    url: process.env.REACT_APP_BACKEND_API + `/improvement/getAnnualEnergyCostSavings/${buildingId}/${oldPercentReplacement}/${percentReplacement}`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,
@@ -78,11 +78,11 @@ export const getAnnualEnergyCostSavings = async (buildingId, percentReplacement,
   return result
 }
 
-export const getAnnualCarbonEmissionsAvoided = async (buildingId, percentReplacement, idToken) => {
+export const getAnnualCarbonEmissionsAvoided = async (buildingId, oldPercentReplacement, percentReplacement, idToken) => {
   let result
   await axios({
     method: 'get',
-    url: process.env.REACT_APP_BACKEND_API + `/improvement/getAnnualCarbonEmissionsAvoided/${buildingId}/${percentReplacement}`,
+    url: process.env.REACT_APP_BACKEND_API + `/improvement/getAnnualCarbonEmissionsAvoided/${buildingId}/${oldPercentReplacement}/${percentReplacement}`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,
@@ -130,11 +130,11 @@ export const getCostOfImprovement = async (buildingId, percentReplacement, idTok
   return result
 }
 
-export const getPayback = async (buildingId, percentReplacement, idToken) => {
+export const getPayback = async (buildingId, oldPercentReplacement, percentReplacement, idToken) => {
   let result
   await axios({
     method: 'get',
-    url: process.env.REACT_APP_BACKEND_API + `/improvement/getPayback/${buildingId}/${percentReplacement}`,
+    url: process.env.REACT_APP_BACKEND_API + `/improvement/getPayback/${buildingId}/${oldPercentReplacement}/${percentReplacement}`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,
