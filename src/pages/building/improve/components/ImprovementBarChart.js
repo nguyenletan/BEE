@@ -9,7 +9,7 @@ const Wrapper = styled.section`
 `
 
 const Title = styled.h4`
-  font-size: 1.05em;
+  font-size: 1.2em;
   margin-bottom: 25px;
 `
 
@@ -37,14 +37,16 @@ const ImprovementBarChart = ({ title, data, unit }) => {
       }
     },
     colors: ({ id, data }) => {
-      if(data.name === '0%') {
+      if(data.name === 'min(0%)') {
         return '#d5dfa3'
       }
-      if (data.name === 'before') {
-        return '#acbf42'
+      if (data.name.includes('before')) {
+        return '#d5dfa3'
+        //return '#acbf42'
       }
-      if(data.name === 'after') {
-        return '#87972f'
+      if(data.name.includes('after')) {
+        return '#acbf42'
+        //return '#87972f'
       }
       return '#636c2e'
     },

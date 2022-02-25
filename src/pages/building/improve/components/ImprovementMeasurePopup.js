@@ -21,6 +21,9 @@ import styled from 'styled-components'
 import { withStyles } from '@material-ui/core'
 import Slider from '@material-ui/core/Slider'
 import { useParams } from 'react-router-dom'
+import ImprovementRaidalBarChart from 'pages/building/improve/components/ImprovementRaidalBarChart'
+import { EuiButton, EuiDatePicker, EuiFormRow, EuiSelect } from '@elastic/eui'
+import moment from 'moment'
 
 const PopupTitle = styled.h3`
   font-size: 1.1rem;
@@ -169,28 +172,39 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
   const [value, setValue] = React.useState(0)
 
-  const [barChartvalue, setBarChartValue] = React.useState(null)
-  let [zeroPercentChartValue, setZeroPercentChartValue] = React.useState(null)
+  const [barChartValue, setBarChartValue] = React.useState(null)
+
+  const [costRadialBarChartValue, setCostRadialBarChartValue] = React.useState(null)
+  const [energySavingRadialBarChartValue, setEnergySavingRadialBarChartValue] = React.useState(null)
+  const [co2EmissionsAvoidRadialBarChartValue, setCO2EmissionsAvoidRadialBarChartValue] = React.useState(null)
+  const [newAnnualLightingSystemEnergyConsumptionRadialBarChartValue, setNewAnnualLightingSystemEnergyConsumptionRadialBarChartValue] = React.useState(null)
   const [oneHundredPercentChartValue, setOneHundredPercentChartValue] = React.useState(null)
 
   //const [newAnnualLightingSystemEnergyConsumption, setNewAnnualLightingSystemEnergyConsumption] = useState()
 
   const { user } = useAuth()
 
+  const getAnnualLightingSystemEnergyConsumptionAPI = async (buildingId, percentReplacement) => {
+    const idToken = await user.getIdToken()
+    // trackingUser(user.uid, 'AssetReliability', idToken)
+
+    return await getNewAnnualLightingSystemEnergyConsumption(buildingId, percentReplacement, idToken);
+  }
+
   const getImproveFormulasAPI = async (buildingId, percentReplacement) => {
     const idToken = await user.getIdToken()
     // trackingUser(user.uid, 'AssetReliability', idToken)
 
-
-
     const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
       percentReplacement, idToken)
-    const annualEnergySavings = await getAnnualEnergySavings(buildingId, detailValue.oldUsagePercent, percentReplacement, idToken)
-    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, detailValue.oldUsagePercent, percentReplacement, idToken)
-    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, detailValue.oldUsagePercent, percentReplacement, idToken)
+    const annualEnergySavings = await getAnnualEnergySavings(buildingId, 0, percentReplacement,
+      idToken)
+    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, 0,
+      percentReplacement, idToken)
+    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, 0,
+      percentReplacement, idToken)
     const costOfImprovement = await getCostOfImprovement(buildingId, percentReplacement, idToken)
-    const payback = await getPayback(buildingId, detailValue.oldUsagePercent, percentReplacement, idToken)
-
+    const payback = await getPayback(buildingId, 0, percentReplacement, idToken)
 
     return {
       newAnnualLightingSystemEnergyConsumption: newAnnualLightingSystemEnergyConsumption,
@@ -202,40 +216,16 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
     }
   }
 
-  const getImproveFormulasAPIFor0Percent = async (buildingId) => {
-
-    const idToken = await user.getIdToken()
-    // trackingUser(user.uid, 'AssetReliability', idToken)
-    const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
-      0, idToken)
-    const annualEnergySavings = await getAnnualEnergySavings(buildingId, data.usagePercent, 0, idToken)
-    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, data.usagePercent, 0, idToken)
-    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, data.usagePercent, 0, idToken)
-    const costOfImprovement = await getCostOfImprovement(buildingId, 0, idToken)
-    const payback = await getPayback(buildingId, data.usagePercent, 0, idToken)
-
-    const investmentCost = +(costOfImprovement.toFixed(2))//(60000 * value / 100) // => change
-    const energyCostSavings = +(annualEnergyCostSavings.toFixed(2)) //(32167 * value / 100)
-    return {
-      energySavings: +(annualEnergySavings).toFixed(2),
-      investmentCost: investmentCost,
-      energyCostSavings: energyCostSavings,
-      co2EmissionsAvoided: +(annualCarbonEmissionsAvoided).toFixed(2), //108.3 * value / 100,
-      paybackPeriod: +payback.toFixed(2),//value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
-      internalRateOfReturn: +(calculateIRRValue(-investmentCost, Math.abs(energyCostSavings), 20)),
-      newAnnualLightingSystemEnergyConsumption: +(newAnnualLightingSystemEnergyConsumption).toFixed(2),
-    }
-  }
   const getImproveFormulasAPIFor100Percent = async (buildingId) => {
     const idToken = await user.getIdToken()
     // trackingUser(user.uid, 'AssetReliability', idToken)
     const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
       100, idToken)
-    const annualEnergySavings = await getAnnualEnergySavings(buildingId, data.usagePercent, 100, idToken)
-    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, data.usagePercent, 100, idToken)
-    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, data.usagePercent, 100, idToken)
+    const annualEnergySavings = await getAnnualEnergySavings(buildingId, 0, 100, idToken)
+    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, 0, 100, idToken)
+    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, 0, 100, idToken)
     const costOfImprovement = await getCostOfImprovement(buildingId, 100, idToken)
-    const payback = await getPayback(buildingId, data.usagePercent, 100, idToken)
+    const payback = await getPayback(buildingId, 0, 100, idToken)
 
     const investmentCost = +(costOfImprovement.toFixed(2))//(60000 * value / 100) // => change
     const energyCostSavings = +(annualEnergyCostSavings.toFixed(2)) //(32167 * value / 100)
@@ -274,10 +264,10 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
       }
       const chartValue = {
         energySavings: [
-          {
-            name: 'min(0%)',
-            value: +zeroPercentChartValue?.energySavings?.toFixed(2),
-          },
+          // {
+          //   name: 'min(0%)',
+          //   value: +zeroPercentChartValue?.energySavings?.toFixed(2),
+          // },
           {
             name: 'before(' + detailValue.usagePercent + '%)',
             value: +detailValue.energySavings?.toFixed(2),
@@ -292,10 +282,10 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
           },
         ],
         investmentCost: [
-          {
-            name: 'min(0%)',
-            value: +zeroPercentChartValue.investmentCost?.toFixed(2),
-          },
+          // {
+          //   name: 'min(0%)',
+          //   value: +zeroPercentChartValue.investmentCost?.toFixed(2),
+          // },
           {
             name: 'before(' + detailValue.usagePercent + '%)',
             value: +detailValue.investmentCost?.toFixed(2),
@@ -310,10 +300,10 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
           },
         ],
         energyCostSavings: [
-          {
-            name: 'min(0%)',
-            value: +zeroPercentChartValue?.energyCostSavings?.toFixed(2),
-          },
+          // {
+          //   name: 'min(0%)',
+          //   value: +zeroPercentChartValue?.energyCostSavings?.toFixed(2),
+          // },
           {
             name: 'before(' + detailValue.usagePercent + '%)',
             value: +detailValue.energyCostSavings?.toFixed(2),
@@ -328,10 +318,10 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
           },
         ],
         co2EmissionsAvoided: [
-          {
-            name: 'min(0%)',
-            value: +zeroPercentChartValue.co2EmissionsAvoided?.toFixed(2),
-          },
+          // {
+          //   name: 'min(0%)',
+          //   value: +zeroPercentChartValue.co2EmissionsAvoided?.toFixed(2),
+          // },
           {
             name: 'before(' + detailValue.usagePercent + '%)',
             value: +detailValue.co2EmissionsAvoided?.toFixed(2),
@@ -346,10 +336,10 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
           },
         ],
         paybackPeriod: [
-          {
-            name: 'min(0%)',
-            value: +zeroPercentChartValue.paybackPeriod?.toFixed(2),
-          },
+          // {
+          //   name: 'min(0%)',
+          //   value: +zeroPercentChartValue.paybackPeriod?.toFixed(2),
+          // },
           {
             name: 'before(' + detailValue.usagePercent + '%)',
             value: +detailValue.paybackPeriod?.toFixed(2),
@@ -364,10 +354,10 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
           },
         ],
         internalRateOfReturn: [
-          {
-            name: 'min(0%)',
-            value: +zeroPercentChartValue.internalRateOfReturn?.toFixed(2),
-          },
+          // {
+          //   name: 'min(0%)',
+          //   value: +zeroPercentChartValue.internalRateOfReturn?.toFixed(2),
+          // },
           {
             name: 'before(' + detailValue.usagePercent + '%)',
             value: +detailValue.internalRateOfReturn?.toFixed(2),
@@ -382,10 +372,10 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
           },
         ],
         newAnnualLightingSystemEnergyConsumption: [
-          {
-            name: 'min(0%)',
-            value: zeroPercentChartValue.newAnnualLightingSystemEnergyConsumption / 1000,
-          },
+          // {
+          //   name: 'min(0%)',
+          //   value: zeroPercentChartValue.newAnnualLightingSystemEnergyConsumption / 1000,
+          // },
           {
             name: 'before(' + detailValue.usagePercent + '%)',
             value: detailValue.newAnnualLightingSystemEnergyConsumption / 1000,
@@ -400,6 +390,107 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
           },
         ],
       }
+
+      const costRadialChartValue = [
+        {
+          id: 'Investment Cost ($)',
+          data: [
+            {
+              x: 'Before (' + detailValue.usagePercent + '%)',
+              y: +detailValue.investmentCost?.toFixed(2),
+            },
+            {
+              x: 'After (' + tmp.usagePercent + '%)',
+              y: +tmp.investmentCost?.toFixed(2),
+            },
+            {
+              x: 'Max (100%)',
+              y: +oneHundredPercentChartValue?.investmentCost?.toFixed(2),
+            },
+          ],
+        },
+        {
+          id: 'Energy Cost Savings',
+          data: [
+            {
+              x: 'Before (' + detailValue.usagePercent + '%)',
+              y: +detailValue.energyCostSavings?.toFixed(2),
+            },
+            {
+              x: 'After (' + tmp.usagePercent + '%)',
+              y: +tmp.energyCostSavings?.toFixed(2),
+            },
+            {
+              x: 'Max (100%)',
+              y: +oneHundredPercentChartValue?.energyCostSavings?.toFixed(2),
+            },
+          ],
+        },
+      ]
+
+      const energySavingRadialChartValue = [
+        {
+          id: 'Energy Savings (MWh)',
+          data: [
+            {
+              x: 'Before (' + detailValue.usagePercent + '%)',
+              y: +detailValue.energySavings?.toFixed(2),
+            },
+            {
+              x: 'After (' + tmp.usagePercent + '%)',
+              y: +tmp.energySavings?.toFixed(2),
+            },
+            {
+              x: 'Max (100%)',
+              y: +oneHundredPercentChartValue?.energySavings?.toFixed(2),
+            },
+          ],
+        },
+      ]
+
+      const co2EmissionsAvoidRadialChartValue = [
+        {
+          id: 'CO2 Emissions Avoided (Ton/Yr)',
+          data: [
+            {
+              x: 'Before (' + detailValue.usagePercent + '%)',
+              y: detailValue.co2EmissionsAvoided * 1000,
+            },
+            {
+              x: 'After (' + tmp.usagePercent + '%)',
+              y: tmp.co2EmissionsAvoided * 1000,
+            },
+            {
+              x: 'Max (100%)',
+              y: oneHundredPercentChartValue?.co2EmissionsAvoided * 1000,
+            },
+          ],
+        },
+      ]
+      const annualLightingSystemEnergyConsumptionRadialChartValue = [
+        {
+          id: 'Annual Lighting System Energy Consumption (MWh)',
+          data: [
+            {
+              x: 'Before (' + detailValue.usagePercent + '%)',
+              y: +detailValue.newAnnualLightingSystemEnergyConsumption.toFixed(2),
+            },
+            {
+              x: 'After (' + tmp.usagePercent + '%)',
+              y: +tmp.newAnnualLightingSystemEnergyConsumption.toFixed(2)
+            },
+            {
+              x: 'Max (100%)',
+              y: +oneHundredPercentChartValue?.newAnnualLightingSystemEnergyConsumption.toFixed(2),
+            },
+          ],
+        },
+      ]
+
+      setCostRadialBarChartValue(costRadialChartValue)
+      setEnergySavingRadialBarChartValue(energySavingRadialChartValue)
+      setCO2EmissionsAvoidRadialBarChartValue(co2EmissionsAvoidRadialChartValue)
+      setNewAnnualLightingSystemEnergyConsumptionRadialBarChartValue(annualLightingSystemEnergyConsumptionRadialChartValue)
 
       setBarChartValue(chartValue)
 
@@ -427,26 +518,31 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
   const [saveText, setSaveText] = useState(t('Save'))
   const [editText, setEditText] = useState(t('Edit'))
+  const [startDate, setStartDate] = useState(moment())
+
+  const handleChange = (date) => {
+    setStartDate(date)
+  }
 
   useEffect(() => {
-    if(data !== {}) {
-      setDetailValue({
-        investmentCost: data.investmentCost,
-        energyCostSavings: data.energyCostSavings,
-        energySavings: data.energySavings,
-        paybackPeriod: data.paybackPeriod,
-        co2EmissionsAvoided: data.co2EmissionsAvoided,
-        internalRateOfReturn: calculateIRRValue(-data.investmentCost, Math.abs(data.energyCostSavings), 20),
-        usagePercent: data.usagePercent,
-        oldUsagePercent: data.usagePercent
+    if (data !== {}) {
+      getAnnualLightingSystemEnergyConsumptionAPI(id, data.usagePercent).then(r => {
+        setDetailValue({
+          investmentCost: data.investmentCost,
+          energyCostSavings: data.energyCostSavings,
+          energySavings: data.energySavings,
+          paybackPeriod: data.paybackPeriod,
+          co2EmissionsAvoided: data.co2EmissionsAvoided,
+          internalRateOfReturn: calculateIRRValue(-data.investmentCost, Math.abs(data.energyCostSavings), 20),
+          usagePercent: data.usagePercent,
+          oldUsagePercent: data.usagePercent,
+          newAnnualLightingSystemEnergyConsumption: +r.toFixed(2)
+        })
+        setValue(data.usagePercent)
+        setIsLoading(false)
       })
-      setValue(data.usagePercent)
-      setIsLoading(false)
+
     }
-    // } else {
-    //   setIsLoading(true)
-    //   setShowSlider(false)
-    // }
 
   }, [data])
 
@@ -456,12 +552,12 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
   }, [i18n.language])
 
   useEffect(() => {
-    if (zeroPercentChartValue === null) {
-      getImproveFormulasAPIFor0Percent(id).then(r=> {
-        setZeroPercentChartValue(r)})
-    }
     if (oneHundredPercentChartValue === null) {
-      getImproveFormulasAPIFor100Percent(id).then(r=> setOneHundredPercentChartValue(r))
+      setIsLoading(true)
+      getImproveFormulasAPIFor100Percent(id).then(r => {
+        setOneHundredPercentChartValue(r)
+        setIsLoading(false)
+      })
     }
     // setIsChanged(false)
     // setShowSlider(false)
@@ -476,18 +572,20 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
           <div className="d-flex justify-content-between align-items-center">
             <PopupTitle>{t('Improvement Measures')}</PopupTitle>
             <HeaderGroupButton>
-              <HeaderButton
-                className="me-4" onClick={() => {
-                if (showSlider === false) {
-                  setValue(data.usagePercent)
-                  setShowSlider(true)
-                } else {
-                  saveHandle()
-                }
-              }}
-              >
-                <LinkExternalIcon size={16} className="me-1"/><span>{showSlider ? saveText : editText}</span>
-              </HeaderButton>
+              {!isLoading &&
+                <HeaderButton
+                  className="me-4" onClick={() => {
+                  if (showSlider === false) {
+                    setValue(data.usagePercent)
+                    setShowSlider(true)
+                  } else {
+                    saveHandle()
+                  }
+                }}
+                >
+                  <LinkExternalIcon size={16} className="me-1"/><span>{showSlider ? saveText : editText}</span>
+                </HeaderButton>
+              }
               <HeaderButton className="" onClick={() => { handleClose(isChanged, detailValue) }}>
                 <XCircleIcon size={16} className="me-1"/><span>{t('Close')}</span>
               </HeaderButton>
@@ -534,6 +632,27 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
             </RangeWrapper>
           </div>
 
+          <div className="d-flex mt-3">
+            <EuiFormRow label="Select period">
+              <EuiSelect
+                options={[
+                  { value: 1, text: 'One Year' },
+                  { value: 2, text: 'Two Years' },
+                ]}
+                value={value}
+                //onChange={}
+                aria-label="Use aria labels when no actual label is in use"
+              />
+            </EuiFormRow>
+
+            <EuiFormRow label="Select Start Date" className="mt-0 ms-3">
+              <EuiDatePicker selected={startDate} onChange={handleChange}/>
+            </EuiFormRow>
+            <EuiFormRow className="mt-4 ms-3" label="">
+              <EuiButton color='primary' size="m">Apply</EuiButton>
+            </EuiFormRow>
+          </div>
+
         </Container>
       </Modal.Header>
 
@@ -562,36 +681,35 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
               <Col xs={8} sm={4} className="col">{t('Internal Rate of Return')}</Col>
               <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.internalRateOfReturn)} %</Col>
             </Row>
-
             <Row>
               <Col xs={8} sm={4} className="col">{t('Annual Lighting System Energy Consumption')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{formatNumber(
-                detailValue.newAnnualLightingSystemEnergyConsumption)} {t(
-                '(kWh)')}</Col>
+              <Col xs={4} sm={2} className="col col-value">
+                {formatNumber(detailValue.newAnnualLightingSystemEnergyConsumption)} {t('(kWh)')}
+              </Col>
             </Row>
-            {barChartvalue && <>
+            {barChartValue && <>
               <Row>
                 <Col md={8} xl={4} className="col">
-                  <ImprovementBarChart data={barChartvalue.energySavings} title="Energy Savings" unit="MWh"/>
+                  <ImprovementBarChart data={barChartValue.energySavings} title="Energy Savings" unit="MWh"/>
                 </Col>
                 <Col md={8} xl={4} className="col">
-                  <ImprovementBarChart data={barChartvalue.investmentCost} title="Investment Cost" unit="$"/>
+                  <ImprovementBarChart data={barChartValue.investmentCost} title="Investment Cost" unit="$"/>
                 </Col>
                 <Col md={8} xl={4} className="col">
-                  <ImprovementBarChart data={barChartvalue.energyCostSavings} title="Energy Cost Savings" unit="$"/>
+                  <ImprovementBarChart data={barChartValue.energyCostSavings} title="Energy Cost Savings" unit="$"/>
                 </Col>
               </Row>
               <Row>
                 <Col md={8} xl={4} className="col">
-                  <ImprovementBarChart data={barChartvalue.co2EmissionsAvoided} title="CO2 Emissions Avoided"
+                  <ImprovementBarChart data={barChartValue.co2EmissionsAvoided} title="CO2 Emissions Avoided"
                                        unit="Tons/Yr"/>
                 </Col>
                 <Col md={8} xl={4} className="col">
-                  <ImprovementBarChart data={barChartvalue.paybackPeriod} title="Payback" unit="Yr"/>
+                  <ImprovementBarChart data={barChartValue.paybackPeriod} title="Payback" unit="Yr"/>
                 </Col>
                 <Col md={8} xl={4} className="col">
-                  <ImprovementBarChart data={barChartvalue.newAnnualLightingSystemEnergyConsumption}
-                                       title="Annual Lighting SystemEnergy Consumption" unit="MWh"/>
+                  <ImprovementBarChart data={barChartValue.newAnnualLightingSystemEnergyConsumption}
+                                       title="Annual Lighting System Energy Consumption" unit="MWh"/>
                 </Col>
 
               </Row>
@@ -600,6 +718,12 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
               {/*    <ImprovementBarChart data={barChartvalue.internalRateOfReturn} title="Internal Rate Of Return" unit="%"/>*/}
               {/*  </Col>*/}
               {/*</Row>*/}
+              <Row>
+                <ImprovementRaidalBarChart data={costRadialBarChartValue} title="Cost Saving"/>
+                <ImprovementRaidalBarChart data={energySavingRadialBarChartValue} title="Energy Saving"/>
+                <ImprovementRaidalBarChart data={co2EmissionsAvoidRadialBarChartValue} title="C02 Emissions Avoid"/>
+                <ImprovementRaidalBarChart data={newAnnualLightingSystemEnergyConsumptionRadialBarChartValue} title="Annual Lighting SystemEnergy Consumption"/>
+              </Row>
             </>}
           </>}
         </PopupBodyInnerWrapper>
