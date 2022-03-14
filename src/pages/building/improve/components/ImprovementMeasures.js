@@ -151,6 +151,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
             className="btn btn-primary btn-sm"
             onClick={() => openPopup({
               icon: imgSrc,
+              subSystem: item.subSystem,
               measures: item.measures,
               investmentCost: item.investmentCost,
               energyCostSavings: item.energyCostSavings,

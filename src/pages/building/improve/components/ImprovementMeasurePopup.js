@@ -22,8 +22,10 @@ import { withStyles } from '@material-ui/core'
 import Slider from '@material-ui/core/Slider'
 import { useParams } from 'react-router-dom'
 import ImprovementRaidalBarChart from 'pages/building/improve/components/ImprovementRaidalBarChart'
-import { EuiButton, EuiDatePicker, EuiFormRow, EuiSelect } from '@elastic/eui'
+import { EuiFieldNumber, EuiDatePicker, EuiFormRow, EuiSelect } from '@elastic/eui'
 import moment from 'moment'
+import _ from 'lodash'
+import { getLightingSystemByBuildingId } from 'api/LightingAPI'
 
 const PopupTitle = styled.h3`
   font-size: 1.1rem;
@@ -177,34 +179,64 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
   const [costRadialBarChartValue, setCostRadialBarChartValue] = React.useState(null)
   const [energySavingRadialBarChartValue, setEnergySavingRadialBarChartValue] = React.useState(null)
   const [co2EmissionsAvoidRadialBarChartValue, setCO2EmissionsAvoidRadialBarChartValue] = React.useState(null)
-  const [newAnnualLightingSystemEnergyConsumptionRadialBarChartValue, setNewAnnualLightingSystemEnergyConsumptionRadialBarChartValue] = React.useState(null)
+  const [newAnnualLightingSystemEnergyConsumptionRadialBarChartValue, setNewAnnualLightingSystemEnergyConsumptionRadialBarChartValue] = React.useState(
+    null)
   const [oneHundredPercentChartValue, setOneHundredPercentChartValue] = React.useState(null)
+  const [lightingSystemInfo, setLightingSystemInfo] = useState(null)
+  const [numberOfLEDBulbs, setNumberOfLEDBulbs] = useState(null)
+  const [lumensOfBulb, setLumensOfBulb] = useState(null)
+  const [wattRatingOfBulb, setWattRatingOfBulb] = useState(null)
+
 
   //const [newAnnualLightingSystemEnergyConsumption, setNewAnnualLightingSystemEnergyConsumption] = useState()
 
   const { user } = useAuth()
 
+  const getCurrentLightingSybSystem = (lightingSystem) => {
+    console.log(data)
+    const LEDdata = _.filter(lightingSystem, {lightingFittingTypeId: 1})
+    let _numberOfLEDBulbs =  0;
+    let _lumensOfBulb =  0;
+    let _wattRatingOfBulb =  0;
+    for(let item of LEDdata) {
+      _numberOfLEDBulbs += item.numberOfBulbs
+      _lumensOfBulb += item.lumensOfBulb
+      _wattRatingOfBulb += item.wattRatingOfBulb
+    }
+    setLumensOfBulb(_lumensOfBulb)
+    setNumberOfLEDBulbs(_numberOfLEDBulbs)
+    setWattRatingOfBulb(_wattRatingOfBulb)
+  }
+
+
+  const getLightingSystemInfo = async (buildingId) => {
+    console.log('getLightingSystemInfo')
+    const idToken = await user.getIdToken()
+    return await getLightingSystemByBuildingId(buildingId, idToken)
+  }
+
   const getAnnualLightingSystemEnergyConsumptionAPI = async (buildingId, percentReplacement) => {
     const idToken = await user.getIdToken()
     // trackingUser(user.uid, 'AssetReliability', idToken)
+    console.log(moment(startDate))
+    const _startDate =  moment(startDate).format('YYYY-MM-DD')
 
-    return await getNewAnnualLightingSystemEnergyConsumption(buildingId, percentReplacement, idToken);
+    return await getNewAnnualLightingSystemEnergyConsumption(buildingId, percentReplacement, period, _startDate, idToken)
   }
 
   const getImproveFormulasAPI = async (buildingId, percentReplacement) => {
     const idToken = await user.getIdToken()
     // trackingUser(user.uid, 'AssetReliability', idToken)
-
+    console.log(moment(startDate))
+    const _startDate =  moment(startDate).format('YYYY-MM-DD')
     const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
-      percentReplacement, idToken)
-    const annualEnergySavings = await getAnnualEnergySavings(buildingId, 0, percentReplacement,
-      idToken)
+      percentReplacement, period, startDate, idToken)
+    const annualEnergySavings = await getAnnualEnergySavings(buildingId, percentReplacement, period, _startDate, idToken)
     const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, 0,
-      percentReplacement, idToken)
-    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, 0,
-      percentReplacement, idToken)
+      percentReplacement, period, _startDate, idToken)
+    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, percentReplacement, period, _startDate, idToken)
     const costOfImprovement = await getCostOfImprovement(buildingId, percentReplacement, idToken)
-    const payback = await getPayback(buildingId, 0, percentReplacement, idToken)
+    const payback = await getPayback(buildingId, percentReplacement, period, _startDate, idToken)
 
     return {
       newAnnualLightingSystemEnergyConsumption: newAnnualLightingSystemEnergyConsumption,
@@ -219,13 +251,15 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
   const getImproveFormulasAPIFor100Percent = async (buildingId) => {
     const idToken = await user.getIdToken()
     // trackingUser(user.uid, 'AssetReliability', idToken)
+    console.log(moment(startDate))
+    const _startDate =  moment(startDate).format('YYYY-MM-DD')
     const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
-      100, idToken)
-    const annualEnergySavings = await getAnnualEnergySavings(buildingId, 0, 100, idToken)
-    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, 0, 100, idToken)
-    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, 0, 100, idToken)
+      100, period, _startDate, idToken)
+    const annualEnergySavings = await getAnnualEnergySavings(buildingId, 100, period, _startDate, idToken)
+    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, 100, period, _startDate, idToken)
+    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, 100, period, _startDate, idToken)
     const costOfImprovement = await getCostOfImprovement(buildingId, 100, idToken)
-    const payback = await getPayback(buildingId, 0, 100, idToken)
+    const payback = await getPayback(buildingId, 100, period, _startDate, idToken)
 
     const investmentCost = +(costOfImprovement.toFixed(2))//(60000 * value / 100) // => change
     const energyCostSavings = +(annualEnergyCostSavings.toFixed(2)) //(32167 * value / 100)
@@ -477,7 +511,7 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
             },
             {
               x: 'After (' + tmp.usagePercent + '%)',
-              y: +tmp.newAnnualLightingSystemEnergyConsumption.toFixed(2)
+              y: +tmp.newAnnualLightingSystemEnergyConsumption.toFixed(2),
             },
             {
               x: 'Max (100%)',
@@ -518,11 +552,8 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
   const [saveText, setSaveText] = useState(t('Save'))
   const [editText, setEditText] = useState(t('Edit'))
-  const [startDate, setStartDate] = useState(moment())
-
-  const handleChange = (date) => {
-    setStartDate(date)
-  }
+  const [period, setPeriod] = useState(1)
+  const [startDate, setStartDate] = useState(moment(new Date('20020-01-01')))
 
   useEffect(() => {
     if (data !== {}) {
@@ -536,10 +567,10 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
           internalRateOfReturn: calculateIRRValue(-data.investmentCost, Math.abs(data.energyCostSavings), 20),
           usagePercent: data.usagePercent,
           oldUsagePercent: data.usagePercent,
-          newAnnualLightingSystemEnergyConsumption: +r.toFixed(2)
+          newAnnualLightingSystemEnergyConsumption: +r.toFixed(2),
         })
         setValue(data.usagePercent)
-        setIsLoading(false)
+        //setIsLoading(false)
       })
 
     }
@@ -552,6 +583,7 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
   }, [i18n.language])
 
   useEffect(() => {
+
     if (oneHundredPercentChartValue === null) {
       setIsLoading(true)
       getImproveFormulasAPIFor100Percent(id).then(r => {
@@ -559,10 +591,26 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
         setIsLoading(false)
       })
     }
+
+    if(!lightingSystemInfo) {
+      //setIsLoading(true)
+      getLightingSystemInfo(id).then(r => {
+        setLightingSystemInfo(r)
+        getCurrentLightingSybSystem(r)
+        //setIsLoading(false)
+      })
+    }
     // setIsChanged(false)
     // setShowSlider(false)
 
   }, [])
+
+  useEffect(() => {
+    const  _totalOfBulbs = _.sumBy(lightingSystemInfo, 'numberOfBulbs')
+    const _numberOfLEDBulbs = (_totalOfBulbs * value) / 100
+    console.log(_numberOfLEDBulbs)
+    setNumberOfLEDBulbs(Math.round(_numberOfLEDBulbs))
+  }, [value])
 
   return (
     <Modal show={show} onHide={handleClose} size="xl">
@@ -636,21 +684,51 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
             <EuiFormRow label="Select period">
               <EuiSelect
                 options={[
-                  { value: 1, text: 'One Year' },
-                  { value: 2, text: 'Two Years' },
+                  { value: 1, text: '1 Year' },
+                  { value: 2, text: '2 Years' },
                 ]}
-                value={value}
-                //onChange={}
+                value={period}
+                onChange={(e) => { setPeriod(e.target.value)}}
                 aria-label="Use aria labels when no actual label is in use"
               />
             </EuiFormRow>
 
             <EuiFormRow label="Select Start Date" className="mt-0 ms-3">
-              <EuiDatePicker selected={startDate} onChange={handleChange}/>
+              <EuiDatePicker selected={startDate} onChange={(date) => {
+                setStartDate(date)
+              }}/>
             </EuiFormRow>
-            <EuiFormRow className="mt-4 ms-3" label="">
-              <EuiButton color='primary' size="m">Apply</EuiButton>
+            <EuiFormRow label="Number Of Bulbs" className="mt-0 ms-3">
+              <EuiFieldNumber
+                placeholder="Number Of Bulbs"
+                aria-label="Number Of Bulbs"
+                value={numberOfLEDBulbs}
+                readOnly
+              />
             </EuiFormRow>
+            <EuiFormRow label="Watt Rating of Bulb" className="mt-0 ms-3">
+              <EuiFieldNumber
+                placeholder="Watt Rating of Bulb"
+                aria-label="Watt Ratting Of Bulbs"
+                value={wattRatingOfBulb}
+              />
+            </EuiFormRow>
+            <EuiFormRow label="Lumens of Bulb (lm)" className="mt-0 ms-3">
+              <EuiFieldNumber
+                placeholder="Lumens of Bulb (lm)"
+                aria-label="Lumens of Bulb (lm)"
+                value={lumensOfBulb}
+              />
+            </EuiFormRow>
+            <EuiFormRow label="Cost of Each Bulb ($)" className="mt-0 ms-3">
+              <EuiFieldNumber
+                placeholder="Cost of Each Bulb ($)"
+                aria-label="Cost of Each Bulb ($)"
+              />
+            </EuiFormRow>
+            {/*<EuiFormRow className="mt-4 ms-3" label="">*/}
+            {/*  <EuiButton color="primary" size="m">Apply</EuiButton>*/}
+            {/*</EuiFormRow>*/}
           </div>
 
         </Container>
@@ -722,7 +800,8 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
                 <ImprovementRaidalBarChart data={costRadialBarChartValue} title="Cost Saving"/>
                 <ImprovementRaidalBarChart data={energySavingRadialBarChartValue} title="Energy Saving"/>
                 <ImprovementRaidalBarChart data={co2EmissionsAvoidRadialBarChartValue} title="C02 Emissions Avoid"/>
-                <ImprovementRaidalBarChart data={newAnnualLightingSystemEnergyConsumptionRadialBarChartValue} title="Annual Lighting SystemEnergy Consumption"/>
+                <ImprovementRaidalBarChart data={newAnnualLightingSystemEnergyConsumptionRadialBarChartValue}
+                                           title="Annual Lighting System Energy Consumption"/>
               </Row>
             </>}
           </>}

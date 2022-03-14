@@ -50,7 +50,7 @@ const AddingBuilding = () => {
   useEffect(() => {
     const fetchApi = async () => {
       const building = await getBuildingByIdForEditing(id)
-      console.log(building)
+      //console.log(building)
       setGeneralBuildingInformation(building?.generalBuildingInformation)
       setBuildingActivity(building?.buildingActivity)
       setSpaceUsageGFAList(building?.spaceUsageGFAList)
@@ -74,8 +74,6 @@ const AddingBuilding = () => {
     if (id) {
       fetchApi()
     }
-
-
     // eslint-disable-line
   }, [])
 

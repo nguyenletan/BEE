@@ -2,11 +2,14 @@
 import React, { useEffect, useState } from 'react'
 import StepNav from '../step-nav/StepNav'
 import styled from 'styled-components'
-import { Controller, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   addingBuildingProgressState,
-  lightingSubSystemListState, totalPercentageOfLightingSubSystemListState,
+  lightingSubSystemListSelectorState,
+  lightingSubSystemListState,
+  totalEfficacyOfLightingSubSystemListState,
+  totalWattOfLightingSubSystemListState,
 } from 'atoms'
 import _ from 'lodash'
 
@@ -54,16 +57,19 @@ const Lighting = () => {
 
   const { t } = useTranslation('buildingInput')
 
-  const totalPercentageOfLightingSubSystemList = useRecoilValue(totalPercentageOfLightingSubSystemListState)
+  const lightingSubSystemListSelector = useRecoilValue(lightingSubSystemListSelectorState)
+  const totalWatt = useRecoilValue(totalWattOfLightingSubSystemListState)
+  const overallEfficacy = useRecoilValue(totalEfficacyOfLightingSubSystemListState)
 
   const [isMovingNext, setIsMovingNext] = useState(false)
 
   const { user } = useAuth()
   useEffect(() => {
-    async function tracking() {
+    async function tracking () {
       const idToken = await user.getIdToken()
       trackingUser(user.uid, 'Lighting - Adding Building', idToken)
     }
+
     tracking()
   }, [])
 
@@ -72,9 +78,12 @@ const Lighting = () => {
       ...oldLightingSubSystemList,
       {
         id: parseInt(_.uniqueId()),
-        title: 'Fitting ',
+        title: 'Light ',
         indoorLightingSystemTypeId: '',
         percentage: '',
+        numberOfBulbs: 0,
+        wattRatingOfBulb: 0,
+        lumensOfBulb: 0,
       },
     ])
   }
@@ -96,10 +105,16 @@ const Lighting = () => {
     shouldUnregister: false,
   })
 
-  const lis = lightingSubSystemList.map(item =>
+  const lis = lightingSubSystemList.map((item, index) =>
 
-    <li className="col-12 col-lg-6 mb-4" key={item.id}>
-      <LightingSubSystem data={item} control={control} setValue={setValue}/>
+    <li className="col-12 col-lg-6 col-xl-4 mb-4" key={item.id}>
+      <LightingSubSystem data={item}
+                         totalWatt={lightingSubSystemListSelector[index]?.totalWatt}
+                         percentage={lightingSubSystemListSelector[index]?.percentage}
+                         efficacy={lightingSubSystemListSelector[index]?.efficacy}
+                         control={control}
+                         order={index}
+                         setValue={setValue}/>
     </li>,
   )
 
@@ -126,16 +141,19 @@ const Lighting = () => {
       <StepNav/>
 
       <div className="row">
-        <div className="col-12 col-lg-8">
+        <div className="col-12">
           <Header className="d-flex justify-content-between">
             <h6>{t('Lighting Subsystem')}</h6>
-            <Adding onClick={onAddLightingSubSystemList} title={t("Add new item")}><i
+
+            <Adding onClick={onAddLightingSubSystemList} title={t('Add new item')}><i
               className="bi bi-plus-lg font-weight-bolder"
             />
             </Adding>
           </Header>
-          <p>{t('Total light fitting usage')}: {totalPercentageOfLightingSubSystemList}%</p>
-          <Controller
+          <p>Total Watt (W): <strong className="text-primary">{totalWatt}</strong></p>
+          <p>Overall Efficacy (lm/W): <strong className="text-success">{overallEfficacy}</strong></p>
+          {/* <p>{t('Total light fitting usage')}: {totalPercentageOfLightingSubSystemList}%</p> */}
+          {/* <Controller
             name={`total`}
             control={control}
             setValue={setValue}
@@ -156,7 +174,7 @@ const Lighting = () => {
                 return totalPercentageOfLightingSubSystemList === 100
               }
             }}
-          />
+          /> */}
 
           <Ul className="row">
             {lis}

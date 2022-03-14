@@ -3,9 +3,9 @@ import { FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField } 
 import styled from 'styled-components'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import LightingFittingType from '../../../reference-tables/LightingFittingType'
-import { removeItemAtIndex, replaceItemAtIndex } from '../../../Utilities'
+import { removeItemAtIndex, replaceItemAtIndex } from 'Utilities'
 import { useRecoilState } from 'recoil'
-import { lightingSubSystemListState } from '../../../atoms'
+import { lightingSubSystemListState } from 'atoms'
 import { makeStyles } from '@material-ui/core/styles'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -28,24 +28,30 @@ const Content = styled.div`
 
 `
 
+const Total = styled.p`
+  color: var(--bs-primary);
+  font-weight: 500;
+`
+
 // const SpanId = styled.span`
 //   color: var(--gray);
 //   margin-left: .5em;
 // `
 
-const LightingSubSystem = ({ data, control, setValue }) => {
+const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, control, setValue }) => {
   const classes = makeStyles(() => (MaterialFormStyle))()
   const { t } = useTranslation(['buildingInput', 'common'])
   const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
     lightingSubSystemListState)
 
-  const onPercentageChange = (e) => {
-
+  const handleChange = (e) => {
     const index = lightingSubSystemList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(lightingSubSystemList, index, {
       ...data,
-      percentage: e.target.value,
+      [e.target.name]: e.target.value
+      //percentage: percentage
     })
+
     setLightingSubSystemList(newList)
   }
 
@@ -68,15 +74,31 @@ const LightingSubSystem = ({ data, control, setValue }) => {
   }
 
   useEffect(() => {
-    setValue(`lighting-fitting-type${data.id}`, data.indoorLightingSystemTypeId, {shouldValidate: true})
-    setValue(`percentage-of-all-light-fittings${data.id}`, data.percentage, {shouldValidate: true})
-  }, [data.id, data.indoorLightingSystemTypeId, data.percentage, setValue])
+    setValue(`lighting-fitting-type${data.id}`, data.indoorLightingSystemTypeId, { shouldValidate: true })
+    setValue(`percentage-of-all-light-fittings${data.id}`, data.percentage, { shouldValidate: true })
+    setValue(`wattRatingOfBulb${data.id}`, data.wattRatingOfBulb, { shouldValidate: true })
+    setValue(`numberOfBulbs${data.id}`, data.numberOfBulbs, { shouldValidate: true })
+    setValue(`lumensOfBulb${data.id}`, data.lumensOfBulb, { shouldValidate: true })
+  }, [data.id, data.indoorLightingSystemTypeId, data.lumensOfBulb, data.numberOfBulbs, data.percentage, data.wattRatingOfBulb, setValue])
+
+  useEffect(() => {
+    console.log(percentage)
+    const index = lightingSubSystemList.findIndex((o) => o.id === data.id)
+    console.log(index)
+    const newList = replaceItemAtIndex(lightingSubSystemList, index, {
+      ...data,
+      percentage: percentage
+    })
+    setLightingSubSystemList(newList)
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [percentage])
 
   return (
     <div className="p-3 shadow-sm border rounded">
       <Header>
-        <Title>{t(data.title)}</Title>
-        <Subtraction title={t("Remove Item")} onClick={onRemoveItem}>
+        <Title>{t(data.title)} {order + 1}</Title>
+        <Subtraction title={t('Remove Item')} onClick={onRemoveItem}>
           <i className="bi bi-dash-lg"/>
         </Subtraction>
       </Header>
@@ -91,10 +113,10 @@ const LightingSubSystem = ({ data, control, setValue }) => {
           }) => (
             <FormControl className={classes.formControl}>
               <InputLabel id={`lighting-fitting-type-label${data.id}`} className={error && 'text-danger'}>
-                {t('Light Fitting Type')}
+                {t('Light Bulb Type')}
               </InputLabel>
               <Select
-                labelId={`lighting-fitting-type-label${data.id}`}
+                labelId={`lighting-fitting-type-label`}
                 id="lighting-fitting-type-select"
                 value={data.indoorLightingSystemTypeId}
                 error={!!error}
@@ -108,7 +130,7 @@ const LightingSubSystem = ({ data, control, setValue }) => {
                     key={o.id}
                     value={o.id}
                   >
-                    {t(o.name,{ns: 'common'})}
+                    {t(o.name, { ns: 'common' })}
                   </MenuItem>
                 ))}
               </Select>
@@ -121,7 +143,7 @@ const LightingSubSystem = ({ data, control, setValue }) => {
         />
 
         <Controller
-          name={`percentage-of-all-light-fittings${data.id}`}
+          name={`numberOfBulbs${data.id}`}
           control={control}
           setValue={setValue}
           render={({
@@ -130,12 +152,13 @@ const LightingSubSystem = ({ data, control, setValue }) => {
           }) => (
             <FormControl className={classes.formControl}>
               <TextField
-                label={t('% of All Light Fittings') + '' + data.id}
+                label={t('Number of Bulbs')}
+                name={'numberOfBulbs'}
                 type="number"
-                value={data.percentage}
+                value={data.numberOfBulbs}
                 onChange={(e) => {
                   onChange(e)
-                  onPercentageChange(e)
+                  handleChange(e)
                 }}
                 error={!!error}
                 helperText={error ? error.message : null}
@@ -147,6 +170,98 @@ const LightingSubSystem = ({ data, control, setValue }) => {
             min: { value: 0, message: t('The value should be >= 0') },
           }}
         />
+
+        <Controller
+          name={`wattRatingOfBulb${data.id}`}
+          control={control}
+          setValue={setValue}
+          render={({
+            field: { onChange },
+            fieldState: { error },
+          }) => (
+            <FormControl className={classes.formControl}>
+              <TextField
+                label={t('Watt Rating of Bulb') + ' (W)'}
+                name={'wattRatingOfBulb'}
+                type="number"
+                value={data.wattRatingOfBulb}
+                onChange={(e) => {
+                  onChange(e)
+                  handleChange(e)
+                }}
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
+            </FormControl>
+          )}
+          rules={{
+            required: t(`This field is required`),
+            min: { value: 0, message: t('The value should be >= 0') },
+          }}
+        />
+
+        <Controller
+          name={`lumensOfBulb${data.id}`}
+          control={control}
+          setValue={setValue}
+          render={({
+            field: { onChange },
+            fieldState: { error },
+          }) => (
+            <FormControl className={classes.formControl}>
+              <TextField
+                label={t('Lumens of Bulb') + ' (lm)'}
+                type="number"
+                name={'lumensOfBulb'}
+                value={data.lumensOfBulb}
+                onChange={(e) => {
+                  onChange(e)
+                  handleChange(e)
+                }}
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
+            </FormControl>
+          )}
+          rules={{
+            required: t(`This field is required`),
+            min: { value: 0, message: t('The value should be >= 0') },
+          }}
+        />
+
+
+        <Total className="font-bold primary">Percentage: {percentage} %</Total>
+        <Total className="font-bold primary">Efficacy: {efficacy} lm/W</Total>
+        <Total className="bold">Total Watt: {totalWatt} W</Total>
+
+        {/*<Controller*/}
+        {/*  name={`percentage-of-all-light-fittings${data.id}`}*/}
+        {/*  control={control}*/}
+        {/*  setValue={setValue}*/}
+        {/*  render={({*/}
+        {/*    field: { onChange },*/}
+        {/*    fieldState: { error },*/}
+        {/*  }) => (*/}
+        {/*    <FormControl className={classes.formControl}>*/}
+        {/*      <TextField*/}
+        {/*        label={t('% of All Light Fittings') + '' + data.id}*/}
+        {/*        type="number"*/}
+        {/*        value={data.percentage}*/}
+        {/*        onChange={(e) => {*/}
+        {/*          onChange(e)*/}
+        {/*        }}*/}
+        {/*        error={!!error}*/}
+        {/*        helperText={error ? error.message : null}*/}
+        {/*      />*/}
+        {/*    </FormControl>*/}
+        {/*  )}*/}
+        {/*  rules={{*/}
+        {/*    required: t(`This field is required`),*/}
+        {/*    min: { value: 0, message: t('The value should be >= 0') },*/}
+        {/*  }}*/}
+        {/*/>*/}
+
+
       </Content>
     </div>
   )

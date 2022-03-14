@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-export const getLightingInfo = async (buildingId, idToken) => {
+export const getLightingSystemByBuildingId = async (buildingId, idToken) => {
   let result
   await axios({
     method: 'get',
-    url: process.env.REACT_APP_BACKEND_API + `/improvement/getLightingInfo/${buildingId}`,
+    url: process.env.REACT_APP_BACKEND_API + `/lighting-system/findByBuildingId/${buildingId}`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,

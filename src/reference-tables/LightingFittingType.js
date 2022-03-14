@@ -18,6 +18,10 @@ const LightingFittingType = [
   {
     id: 5,
     name: 'Fluorescent T12 Tube'
+  },
+  {
+    id: 6,
+    name: 'Others'
   }
 ]
 

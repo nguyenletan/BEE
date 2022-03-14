@@ -17,7 +17,7 @@ const ImprovementRaidalBarChart = ({ title, data }) => {
 
   const commonProps = {
     data: data,
-    padding: 0.4,
+    padding: 0.5,
     cornerRadius: 2,
     enableTracks: true,
     margin: { top: 0, right: 0, bottom: 80, left: 0 },

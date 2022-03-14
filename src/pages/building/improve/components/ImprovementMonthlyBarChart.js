@@ -9,11 +9,11 @@ const Wrapper = styled.section`
 `
 
 const Title = styled.h4`
-  font-size: 1.15em;
+  font-size: 1.2em;
   margin-bottom: 25px;
 `
 
-const ImprovementBarChart = ({ title, data, unit }) => {
+const ImprovementMonthlyBarChart = ({ title, data, unit }) => {
 
   const commonProps = {
     margin: { top: 0, right: 0, bottom: 30, left: 40 },
@@ -60,4 +60,4 @@ const ImprovementBarChart = ({ title, data, unit }) => {
   )
 }
 
-export default ImprovementBarChart
+export default ImprovementMonthlyBarChart

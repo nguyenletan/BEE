@@ -34,10 +34,43 @@ export const lightingSubSystemListState = atom({
   default: [
     {
       id: parseInt(_.uniqueId()),
-      title: 'Fitting',
+      title: 'Light ',
       indoorLightingSystemTypeId: '',
-      percentage: '',
+      percentage: 0,
+      numberOfBulbs: 0,
+      wattRatingOfBulb: 0,
+      lumensOfBulb: 0,
+      totalWatt: 0,
     }],
+})
+
+export const lightingSubSystemListSelectorState = selector({
+  key: 'lightingSubSystemListSelector',
+  get: ({ get }) => {
+    const lightingSubSystemList = get(lightingSubSystemListState)
+
+    const totalOfBulbs = _.sumBy(lightingSubSystemList, (item) => {
+      if (item && typeof +item.numberOfBulbs === 'number') {
+        return (+item.numberOfBulbs)
+      }
+      return 0
+    })
+    const result = []
+      for (let lightingSubSystem of lightingSubSystemList) {
+        let efficacy = 0
+        let percentage = 0
+        let watt = lightingSubSystem.numberOfBulbs * lightingSubSystem.wattRatingOfBulb
+        if(totalOfBulbs > 0) {
+          percentage = (lightingSubSystem.numberOfBulbs / totalOfBulbs) * 100
+        }
+        if(lightingSubSystem.lumensOfBulb > 0) {
+          efficacy = (watt / lightingSubSystem.lumensOfBulb)
+        }
+        result.push({ totalWatt: watt, percentage: +percentage.toFixed(2), efficacy: +efficacy.toFixed(2) })
+      }
+
+    return result
+  },
 })
 
 export const totalPercentageOfLightingSubSystemListState = selector({
@@ -47,6 +80,33 @@ export const totalPercentageOfLightingSubSystemListState = selector({
     return _.sumBy(lightingSubSystemList, (item) => {
       if (item && typeof +item.percentage === 'number') {
         return +item.percentage
+      }
+      return 0
+    })
+  },
+})
+
+export const totalWattOfLightingSubSystemListState = selector({
+  key: 'totalWattOfLightingSubSystemList',
+  get: ({ get }) => {
+    const lightingSubSystemList = get(lightingSubSystemListState)
+    return _.sumBy(lightingSubSystemList, (item) => {
+      if (item && typeof +item.wattRatingOfBulb === 'number' && typeof +item.numberOfBulbs === 'number') {
+        return (+item.wattRatingOfBulb) * (+item.numberOfBulbs)
+      }
+      return 0
+    })
+  },
+})
+
+export const totalEfficacyOfLightingSubSystemListState = selector({
+  key: 'totalEfficacyOfLightingSubSystemList',
+  get: ({ get }) => {
+    const lightingSubSystemList = get(lightingSubSystemListState)
+    return _.sumBy(lightingSubSystemList, (item) => {
+      if (item && typeof +item.wattRatingOfBulb === 'number' && typeof +item.lumensOfBulb === 'number') {
+        if(+item.lumensOfBulb > 0)
+        return +((+item.wattRatingOfBulb) / (+item.lumensOfBulb)).toFixed(2)
       }
       return 0
     })
@@ -261,18 +321,17 @@ export const breakDownLevelState = atom({
 
 export const selectedSubBreakdownState = atom({
   key: 'selectedSubBreakdown',
-  default: null
+  default: null,
 })
-
 
 export const energyPerformanceStartTimeState = atom({
   key: 'energyPerformanceStartTime',
-  default: moment().subtract(1, 'y')
+  default: moment().subtract(1, 'y'),
 })
 
 export const energyPerformanceEndTimeState = atom({
   key: 'energyPerformanceEndTime',
-  default: moment()
+  default: moment(),
 })
 
 // export const improveMeasuresPopupState = atom({
