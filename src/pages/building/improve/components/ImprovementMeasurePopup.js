@@ -15,7 +15,7 @@ import { Col, Container, Modal, Row } from 'react-bootstrap'
 import { LinkExternalIcon, XCircleIcon } from '@primer/octicons-react'
 import Input from '@material-ui/core/Input'
 import ImprovementMeasureSkeleton from 'pages/building/improve/components/ImprovementMeasureSkeleton'
-import { formatNumber } from 'Utilities'
+import { deepClone, formatNumber } from 'Utilities'
 import ImprovementBarChart from 'pages/building/improve/components/ImprovementBarChart'
 import styled from 'styled-components'
 import { withStyles } from '@material-ui/core'
@@ -26,6 +26,7 @@ import { EuiFieldNumber, EuiDatePicker, EuiFormRow, EuiSelect } from '@elastic/e
 import moment from 'moment'
 import _ from 'lodash'
 import { getLightingSystemByBuildingId } from 'api/LightingAPI'
+import SubLightingSystem from 'pages/building/improve/components/SubLightingSystem'
 
 const PopupTitle = styled.h3`
   font-size: 1.1rem;
@@ -79,6 +80,11 @@ const MeasureName = styled.span`
   font-weight: 500;
 `
 
+const MeasureNumber = styled.span`
+  font-size: 1rem;
+  font-weight: 400;
+`
+
 const RangeWrapper = styled.div`
   visibility: ${props => props.show === false ? 'hidden' : 'visible'};
 `
@@ -93,6 +99,12 @@ const PopupBodyInnerWrapper = styled.div`
   .col-value {
     color: var(--bs-primary);
   }
+`
+
+const SubLightingSystemList = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
 `
 
 const Message = styled.div`
@@ -210,7 +222,6 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
 
   const getLightingSystemInfo = async (buildingId) => {
-    console.log('getLightingSystemInfo')
     const idToken = await user.getIdToken()
     return await getLightingSystemByBuildingId(buildingId, idToken)
   }
@@ -218,7 +229,6 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
   const getAnnualLightingSystemEnergyConsumptionAPI = async (buildingId, percentReplacement) => {
     const idToken = await user.getIdToken()
     // trackingUser(user.uid, 'AssetReliability', idToken)
-    console.log(moment(startDate))
     const _startDate =  moment(startDate).format('YYYY-MM-DD')
 
     return await getNewAnnualLightingSystemEnergyConsumption(buildingId, percentReplacement, period, _startDate, idToken)
@@ -606,11 +616,61 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
   }, [])
 
   useEffect(() => {
-    const  _totalOfBulbs = _.sumBy(lightingSystemInfo, 'numberOfBulbs')
-    const _numberOfLEDBulbs = (_totalOfBulbs * value) / 100
-    console.log(_numberOfLEDBulbs)
-    setNumberOfLEDBulbs(Math.round(_numberOfLEDBulbs))
+    console.log(lightingSystemInfo)
+    if(lightingSystemInfo) {
+      const _totalOfBulbs = _.sumBy(lightingSystemInfo, 'numberOfBulbs')
+      const _totalOfNonLEDBubls = _.sumBy(lightingSystemInfo, (item) => {
+        console.log(item.numberOfBulbs)
+        if (item.lightingFittingTypeId !== 1) {
+          return item.numberOfBulbs
+        }
+        return 0
+      })
+
+      //console.log(lightingSystemInfo)
+
+
+      const tmp = _.orderBy(deepClone(lightingSystemInfo), ['lightingFittingTypeId'], ['desc'])
+
+      //console.log(_numberOfLEDBulbs)
+      console.log('_totalOfNonLEDBubls')
+      console.log(_totalOfNonLEDBubls)
+      console.log('_totalOfBulbs')
+      console.log(_totalOfBulbs)
+      //console.log(_newNumberOfLEDBulbs)
+      //const _newNumberOfLEDBulbs = Math.ceil((_totalOfNonLEDBubls * value) / 100)
+      let _newNumberOfLEDBulbs = 0
+
+      for (let item of tmp) {
+        if (item.lightingFittingTypeId !== 1) {
+          item.percentage = (item.numberOfBulbs / _totalOfNonLEDBubls)
+          const takeAwayBulbs = Math.ceil((item.numberOfBulbs * value) / 100)
+          item.takeAwayBulbs = takeAwayBulbs
+          item.addNewBulbs = 0
+          item.percentageOfFittingTypeUsed = +(((item.numberOfBulbs - takeAwayBulbs) * 100) / _totalOfBulbs).toFixed(2)
+          _newNumberOfLEDBulbs += takeAwayBulbs
+        } else {
+          item.addNewBulbs =  (_newNumberOfLEDBulbs)
+          item.takeAwayBulbs = 0
+          item.percentageOfFittingTypeUsed = +(((item.numberOfBulbs + item.addNewBulbs) * 100) / _totalOfBulbs).toFixed(2)
+        }
+      }
+
+
+
+      console.log(tmp)
+
+      setNumberOfLEDBulbs(Math.round(_newNumberOfLEDBulbs))
+      setLightingSystemInfo(_.sortBy(tmp, 'lightingFittingTypeId'))
+    }
   }, [value])
+
+  const subLightingSystemRows= lightingSystemInfo?.map((item) => {
+    return <li>
+      <SubLightingSystem data={item}></SubLightingSystem>
+    </li>
+  })
+
 
   return (
     <Modal show={show} onHide={handleClose} size="xl">
@@ -645,6 +705,7 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
             <PopupValueWrapper className="d-flex flex-column justify-content-start align-items-start">
               <PopupValue>{value}%</PopupValue>
               <MeasureName>{t(measures)}</MeasureName>
+              <MeasureNumber>Number of Bulbs: {numberOfLEDBulbs}</MeasureNumber>
             </PopupValueWrapper>
             <RangeWrapper className="d-flex justify-content-between w-100  align-items-center" show={showSlider}>
               <PrettoSlider
@@ -698,14 +759,14 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
                 setStartDate(date)
               }}/>
             </EuiFormRow>
-            <EuiFormRow label="Number Of Bulbs" className="mt-0 ms-3">
-              <EuiFieldNumber
-                placeholder="Number Of Bulbs"
-                aria-label="Number Of Bulbs"
-                value={numberOfLEDBulbs}
-                readOnly
-              />
-            </EuiFormRow>
+            {/*<EuiFormRow label="Number Of LED Bulbs" className="mt-0 ms-3">*/}
+            {/*  <EuiFieldNumber*/}
+            {/*    placeholder="Number Of LED Bulbs"*/}
+            {/*    aria-label="Number Of LED Bulbs"*/}
+            {/*    value={numberOfLEDBulbs}*/}
+            {/*    readOnly*/}
+            {/*  />*/}
+            {/*</EuiFormRow>*/}
             <EuiFormRow label="Watt Rating of Bulb" className="mt-0 ms-3">
               <EuiFieldNumber
                 placeholder="Watt Rating of Bulb"
@@ -730,6 +791,9 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
             {/*  <EuiButton color="primary" size="m">Apply</EuiButton>*/}
             {/*</EuiFormRow>*/}
           </div>
+          <SubLightingSystemList className="d-flex mt-3">
+            {subLightingSystemRows}
+          </SubLightingSystemList>
 
         </Container>
       </Modal.Header>
