@@ -103,8 +103,12 @@ const PopupBodyInnerWrapper = styled.div`
 
 const SubLightingSystemList = styled.ul`
   display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
+  justify-content: flex-start;
+
+  flex-wrap: wrap;
+  li {
+    margin-right: 15px;
+  }
 `
 
 const Message = styled.div`
@@ -666,8 +670,8 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
   }, [value])
 
   const subLightingSystemRows= lightingSystemInfo?.map((item) => {
-    return <li>
-      <SubLightingSystem data={item}></SubLightingSystem>
+    return <li className="mb-4">
+      <SubLightingSystem data={item}/>
     </li>
   })
 
@@ -705,7 +709,7 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
             <PopupValueWrapper className="d-flex flex-column justify-content-start align-items-start">
               <PopupValue>{value}%</PopupValue>
               <MeasureName>{t(measures)}</MeasureName>
-              <MeasureNumber>Number of Bulbs: {numberOfLEDBulbs}</MeasureNumber>
+              <MeasureNumber>No of adding news bulbs: {numberOfLEDBulbs}</MeasureNumber>
             </PopupValueWrapper>
             <RangeWrapper className="d-flex justify-content-between w-100  align-items-center" show={showSlider}>
               <PrettoSlider
@@ -791,7 +795,7 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
             {/*  <EuiButton color="primary" size="m">Apply</EuiButton>*/}
             {/*</EuiFormRow>*/}
           </div>
-          <SubLightingSystemList className="d-flex mt-3">
+          <SubLightingSystemList className="d-flex mt-4">
             {subLightingSystemRows}
           </SubLightingSystemList>
 

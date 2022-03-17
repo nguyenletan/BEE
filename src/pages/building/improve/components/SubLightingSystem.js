@@ -10,8 +10,10 @@ const Wrapper = styled.section`
   //border: 1px solid var(--bs-primary);
   //display: block;
   padding: 15px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   background: #fdba74;
+  width: 200px;
+  height: 200px;
   //box-shadow: 5px 3px 15px 15px #fff7ed;
   &.LED {
     background: #d5dfa3;
