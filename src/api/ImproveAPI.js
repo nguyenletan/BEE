@@ -26,11 +26,18 @@ export const getNewAnnualLightingSystemEnergyConsumption = async (buildingId, pe
   return result
 }
 
-export const getAnnualEnergySavings = async (buildingId, percentReplacement, period, startDate, idToken) => {
+export const getAnnualEnergySavings = async (buildingId, percentReplacement, period, startDate, lightingSystem, idToken) => {
   let result
   await axios({
-    method: 'get',
-    url: process.env.REACT_APP_BACKEND_API + `/improvement/getAnnualEnergySavings/${buildingId}/${percentReplacement}/${period}/${startDate}`,
+    method: 'post',
+    url: process.env.REACT_APP_BACKEND_API + `/improvement/getAnnualEnergySavings`,
+    data: {
+      buildingId: buildingId,
+      percentReplacement: percentReplacement,
+      period: period,
+      startDate: startDate,
+      lightingSystem: lightingSystem
+    },
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,

@@ -262,14 +262,18 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
     }
   }
 
-  const getImproveFormulasAPIFor100Percent = async (buildingId) => {
+  const getImproveFormulasAPIFor100Percent = async (buildingId, lightingSystem) => {
     const idToken = await user.getIdToken()
     // trackingUser(user.uid, 'AssetReliability', idToken)
     console.log(moment(startDate))
+
+    if (lightingSystem === null) {
+      lightingSystem = lightingSystemInfo
+    }
     const _startDate =  moment(startDate).format('YYYY-MM-DD')
     const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
       100, period, _startDate, idToken)
-    const annualEnergySavings = await getAnnualEnergySavings(buildingId, 100, period, _startDate, idToken)
+    const annualEnergySavings = await getAnnualEnergySavings(buildingId, 100, period, _startDate, lightingSystem, idToken)
     const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, 100, period, _startDate, idToken)
     const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, 100, period, _startDate, idToken)
     const costOfImprovement = await getCostOfImprovement(buildingId, 100, idToken)
@@ -294,7 +298,6 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
   const saveHandle = async () => {
     setIsLoading(true)
-    //console.log(zeroPercentChartValue)
     getImproveFormulasAPI(id, value).then(r => {
       const investmentCost = +(r.costOfImprovement.toFixed(2))//(60000 * value / 100) // => change
       const energyCostSavings = +(r.annualEnergyCostSavings.toFixed(2)) //(32167 * value / 100)
@@ -567,7 +570,7 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
   const [saveText, setSaveText] = useState(t('Save'))
   const [editText, setEditText] = useState(t('Edit'))
   const [period, setPeriod] = useState(1)
-  const [startDate, setStartDate] = useState(moment(new Date('20020-01-01')))
+  const [startDate, setStartDate] = useState(moment(new Date('2020-01-01')))
 
   useEffect(() => {
     if (data !== {}) {
@@ -598,51 +601,43 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
   useEffect(() => {
 
-    if (oneHundredPercentChartValue === null) {
-      setIsLoading(true)
-      getImproveFormulasAPIFor100Percent(id).then(r => {
-        setOneHundredPercentChartValue(r)
-        setIsLoading(false)
-      })
-    }
-
     if(!lightingSystemInfo) {
-      //setIsLoading(true)
       getLightingSystemInfo(id).then(r => {
         setLightingSystemInfo(r)
         getCurrentLightingSybSystem(r)
-        //setIsLoading(false)
+        if (oneHundredPercentChartValue === null) {
+          setIsLoading(true)
+          getImproveFormulasAPIFor100Percent(id, r).then(d => {
+            setOneHundredPercentChartValue(d)
+            setIsLoading(false)
+          })
+        }
       })
     }
-    // setIsChanged(false)
-    // setShowSlider(false)
 
   }, [])
 
   useEffect(() => {
-    console.log(lightingSystemInfo)
+    // console.log(lightingSystemInfo)
     if(lightingSystemInfo) {
       const _totalOfBulbs = _.sumBy(lightingSystemInfo, 'numberOfBulbs')
       const _totalOfNonLEDBubls = _.sumBy(lightingSystemInfo, (item) => {
-        console.log(item.numberOfBulbs)
+        //console.log(item.numberOfBulbs)
         if (item.lightingFittingTypeId !== 1) {
           return item.numberOfBulbs
         }
         return 0
       })
 
-      //console.log(lightingSystemInfo)
-
-
       const tmp = _.orderBy(deepClone(lightingSystemInfo), ['lightingFittingTypeId'], ['desc'])
 
       //console.log(_numberOfLEDBulbs)
-      console.log('_totalOfNonLEDBubls')
-      console.log(_totalOfNonLEDBubls)
-      console.log('_totalOfBulbs')
-      console.log(_totalOfBulbs)
-      //console.log(_newNumberOfLEDBulbs)
-      //const _newNumberOfLEDBulbs = Math.ceil((_totalOfNonLEDBubls * value) / 100)
+      // console.log('_totalOfNonLEDBubls')
+      // console.log(_totalOfNonLEDBubls)
+      // console.log('_totalOfBulbs')
+      // console.log(_totalOfBulbs)
+      // console.log(_newNumberOfLEDBulbs)
+      // const _newNumberOfLEDBulbs = Math.ceil((_totalOfNonLEDBubls * value) / 100)
       let _newNumberOfLEDBulbs = 0
 
       for (let item of tmp) {
@@ -657,20 +652,28 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
           item.addNewBulbs =  (_newNumberOfLEDBulbs)
           item.takeAwayBulbs = 0
           item.percentageOfFittingTypeUsed = +(((item.numberOfBulbs + item.addNewBulbs) * 100) / _totalOfBulbs).toFixed(2)
+          item.wattRatingOfBulb = wattRatingOfBulb
+          item.lumensOfBulb = lumensOfBulb
         }
       }
 
+      const totalEfficacy = +(_.sumBy(tmp, (item) => {
+          if(item.lumensOfBulb > 0) {
+            return item.wattRatingOfBulb / item.lumensOfBulb
+          }
+        return 0
+      }).toFixed(2))
 
-
-      console.log(tmp)
+      console.log('totalEfficacy:')
+      console.log(totalEfficacy)
 
       setNumberOfLEDBulbs(Math.round(_newNumberOfLEDBulbs))
       setLightingSystemInfo(_.sortBy(tmp, 'lightingFittingTypeId'))
     }
-  }, [value])
+  }, [value, lumensOfBulb, wattRatingOfBulb])
 
   const subLightingSystemRows= lightingSystemInfo?.map((item) => {
-    return <li className="mb-4">
+    return <li className="mb-3">
       <SubLightingSystem data={item}/>
     </li>
   })
@@ -709,7 +712,7 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
             <PopupValueWrapper className="d-flex flex-column justify-content-start align-items-start">
               <PopupValue>{value}%</PopupValue>
               <MeasureName>{t(measures)}</MeasureName>
-              <MeasureNumber>No of adding news bulbs: {numberOfLEDBulbs}</MeasureNumber>
+              <MeasureNumber>Number of adding new LED: {numberOfLEDBulbs}</MeasureNumber>
             </PopupValueWrapper>
             <RangeWrapper className="d-flex justify-content-between w-100  align-items-center" show={showSlider}>
               <PrettoSlider
@@ -776,6 +779,9 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
                 placeholder="Watt Rating of Bulb"
                 aria-label="Watt Ratting Of Bulbs"
                 value={wattRatingOfBulb}
+                onChange={(e) => {
+                  setWattRatingOfBulb(e.target.value)
+                }}
               />
             </EuiFormRow>
             <EuiFormRow label="Lumens of Bulb (lm)" className="mt-0 ms-3">
@@ -783,6 +789,9 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
                 placeholder="Lumens of Bulb (lm)"
                 aria-label="Lumens of Bulb (lm)"
                 value={lumensOfBulb}
+                onChange={(e) => {
+                  setLumensOfBulb(e.target.value)
+                }}
               />
             </EuiFormRow>
             <EuiFormRow label="Cost of Each Bulb ($)" className="mt-0 ms-3">

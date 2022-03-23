@@ -13,7 +13,7 @@ const Wrapper = styled.section`
   font-size: 0.95rem;
   background: #fdba74;
   width: 200px;
-  height: 200px;
+  height: 225px;
   //box-shadow: 5px 3px 15px 15px #fff7ed;
   &.LED {
     background: #d5dfa3;
@@ -24,8 +24,8 @@ const Wrapper = styled.section`
 `
 
 const Icon = styled.img`
-  width: 81px;
-  height: 81px;
+  width: 60px;
+  height: 60px;
   display: block;
   margin: 0 0 15px;
 `
@@ -33,10 +33,18 @@ const Icon = styled.img`
 const Title = styled.h4`
   font-weight: 600;
   margin-bottom: .5rem;
+  font-size: 1.2rem;
+  height: 2.75rem ;
 `
 
 const OldNumberBulbs = styled.span`
   text-decoration: line-through;
+`
+
+const NewNumberBulbs = styled.span`
+  color: #636c2e;
+  font-weight: 700;
+  font-size: 1.25rem;
 `
 
 const SubLightingSystem = ({ data }) => {
@@ -46,11 +54,12 @@ const SubLightingSystem = ({ data }) => {
       <Icon src={getLightingFittingTypeImage(data.lightingFittingTypeId)}></Icon>
       <Title>{getLightingFittingTypeName(data.lightingFittingTypeId)}</Title>
       <p>
-        Number of Bulbs: <OldNumberBulbs>{data.numberOfBulbs}</OldNumberBulbs> => <strong>{
-          data.lightingFittingTypeId !== 1
-            ? data.numberOfBulbs - data.takeAwayBulbs
-            : data.numberOfBulbs + data.addNewBulbs
-      }</strong>
+        Current: <OldNumberBulbs>{data.numberOfBulbs}</OldNumberBulbs> Bulbs <br/>
+        New: <NewNumberBulbs>{
+            data.lightingFittingTypeId !== 1
+              ? data.numberOfBulbs - data.takeAwayBulbs
+              : data.numberOfBulbs + data.addNewBulbs
+        }</NewNumberBulbs> Bulbs
       </p>
       <p>Percentage ≈ {data.percentageOfFittingTypeUsed}%</p>
     </Wrapper>

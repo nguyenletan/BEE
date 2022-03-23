@@ -34,12 +34,14 @@ export const lightingSubSystemListState = atom({
   default: [
     {
       id: parseInt(_.uniqueId()),
-      title: 'Light ',
+      title: null,
       indoorLightingSystemTypeId: '',
       percentage: 0,
       numberOfBulbs: 0,
       wattRatingOfBulb: 0,
       lumensOfBulb: 0,
+      numberOfDaysUsedPerWeek: 0,
+      numberOfHoursUsedPerDay: 0,
       totalWatt: 0,
     }],
 })

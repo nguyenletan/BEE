@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import { FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField } from '@material-ui/core'
 import styled from 'styled-components'
@@ -48,7 +49,7 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
     const index = lightingSubSystemList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(lightingSubSystemList, index, {
       ...data,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
       //percentage: percentage
     })
 
@@ -79,7 +80,19 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
     setValue(`wattRatingOfBulb${data.id}`, data.wattRatingOfBulb, { shouldValidate: true })
     setValue(`numberOfBulbs${data.id}`, data.numberOfBulbs, { shouldValidate: true })
     setValue(`lumensOfBulb${data.id}`, data.lumensOfBulb, { shouldValidate: true })
-  }, [data.id, data.indoorLightingSystemTypeId, data.lumensOfBulb, data.numberOfBulbs, data.percentage, data.wattRatingOfBulb, setValue])
+    setValue(`title${data.id}`, data.title, { shouldValidate: true })
+    setValue(`numberOfDaysUsedPerWeek${data.id}`, data.numberOfDaysUsedPerWeek, { shouldValidate: true })
+    setValue(`numberOfHoursUsedPerDay${data.id}`, data.numberOfHoursUsedPerDay, { shouldValidate: true })
+  }, [
+    data.id,
+    data.title,
+    data.indoorLightingSystemTypeId,
+    data.lumensOfBulb,
+    data.numberOfBulbs,
+    data.percentage,
+    data.wattRatingOfBulb,
+    data.numberOfDaysUsedPerWeek,
+    data.numberOfHoursUsedPerDay])
 
   useEffect(() => {
     console.log(percentage)
@@ -87,22 +100,49 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
     console.log(index)
     const newList = replaceItemAtIndex(lightingSubSystemList, index, {
       ...data,
-      percentage: percentage
+      percentage: percentage,
     })
     setLightingSubSystemList(newList)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [percentage])
 
   return (
     <div className="p-3 shadow-sm border rounded">
       <Header>
-        <Title>{t(data.title)} {order + 1}</Title>
+        <Title>{order + 1}. {t(data.title)} </Title>
         <Subtraction title={t('Remove Item')} onClick={onRemoveItem}>
           <i className="bi bi-dash-lg"/>
         </Subtraction>
       </Header>
       <Content>
+        <Controller
+          name={`title${data.id}`}
+          control={control}
+          setValue={setValue}
+          render={({
+            field: { onChange },
+            fieldState: { error },
+          }) => (
+            <FormControl className={classes.formControl}>
+              <TextField
+                label={t('Title')}
+                name={'title'}
+                value={data.title}
+                onChange={(e) => {
+                  onChange(e)
+                  handleChange(e)
+                }}
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
+            </FormControl>
+          )}
+          rules={{
+            required: t(`This field is required`),
+            min: { value: 0, message: t('The value should be >= 0') },
+          }}
+        />
         <Controller
           name={`lighting-fitting-type${data.id}`}
           control={control}
@@ -214,6 +254,64 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
                 type="number"
                 name={'lumensOfBulb'}
                 value={data.lumensOfBulb}
+                onChange={(e) => {
+                  onChange(e)
+                  handleChange(e)
+                }}
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
+            </FormControl>
+          )}
+          rules={{
+            required: t(`This field is required`),
+            min: { value: 0, message: t('The value should be >= 0') },
+          }}
+        />
+
+        <Controller
+          name={`numberOfDaysUsedPerWeek${data.id}`}
+          control={control}
+          setValue={setValue}
+          render={({
+            field: { onChange },
+            fieldState: { error },
+          }) => (
+            <FormControl className={classes.formControl}>
+              <TextField
+                label={t('Number Of Days Used Per Week')}
+                type="number"
+                name={'numberOfDaysUsedPerWeek'}
+                value={data.numberOfDaysUsedPerWeek}
+                onChange={(e) => {
+                  onChange(e)
+                  handleChange(e)
+                }}
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
+            </FormControl>
+          )}
+          rules={{
+            required: t(`This field is required`),
+            min: { value: 0, message: t('The value should be >= 0') },
+          }}
+        />
+
+        <Controller
+          name={`numberOfHoursUsedPerDay${data.id}`}
+          control={control}
+          setValue={setValue}
+          render={({
+            field: { onChange },
+            fieldState: { error },
+          }) => (
+            <FormControl className={classes.formControl}>
+              <TextField
+                label={t('Number Of Hours Used Per Day')}
+                type="number"
+                name={'numberOfHoursUsedPerDay'}
+                value={data.numberOfHoursUsedPerDay}
                 onChange={(e) => {
                   onChange(e)
                   handleChange(e)
