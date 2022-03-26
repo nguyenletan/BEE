@@ -15,9 +15,19 @@ import plugloadImg from '../../../../assets/images/plugload.svg'
 import { useTranslation } from 'react-i18next'
 import { deepClone } from 'Utilities'
 import BarBlock from 'pages/building/comparision/components/BarBlock'
+import {
+  coolingSVG, floorSVG,
+  heatingSVG,
+  lightingSVG,
+  mechVentSVG,
+  openingsSVG,
+  plugLoadSVG,
+  renewableSVG, roofSVG,
+  wallSVG,
+} from 'SvgConstants'
 
 const ChartHeader = styled.div`
-  
+
   margin-right: 20px;
 `
 
@@ -100,7 +110,7 @@ const CancelBtn = styled.button`
   padding-right: 20px;
 `
 
-const LineChartWrapper =  styled.div`
+const LineChartWrapper = styled.div`
   margin-top: 18px;
   height: max(500px, 100vw / 4);
   width: calc(100% - 50px);
@@ -259,7 +269,7 @@ const PerformanceComparison2 = () => {
   ]
 
   const commonProperties = {
-    margin: { top: 0, right: 20, bottom: 100, left: 20 },
+    margin: { top: 0, right: 20, bottom: 100, left: 25 },
     animate: true,
     // height: 350
     // enableSlices: 'x',
@@ -454,10 +464,52 @@ const PerformanceComparison2 = () => {
     )
   }
 
+  const AreaLayer = (props) => {
+    //console.log(props)
+    const {  xScale,innerHeight } = props
+    const y = innerHeight + 30
+
+    return (
+      <>
+        <g transform={`translate(${xScale('Cooling') - 16}, ${y})`}>
+          {coolingSVG()}
+        </g>
+        <g transform={`translate(${xScale('Heating') - 8}, ${y})`}>
+          {heatingSVG()}
+        </g>
+        <g transform={`translate(${xScale('Lighting') - 12}, ${y})`}>
+          {lightingSVG()}
+        </g>
+        <g transform={`translate(${xScale('Mechanical Ventilation') - 18}, ${y})`}>
+          {mechVentSVG()}
+        </g>
+        <g transform={`translate(${xScale('Roof') - 26}, ${y})`}>
+          {roofSVG()}
+        </g>
+        <g transform={`translate(${xScale('Wall') - 28}, ${y})`}>
+          {wallSVG()}
+        </g>
+        <g transform={`translate(${xScale('Openings') - 24}, ${y})`}>
+          {openingsSVG()}
+        </g>
+        <g transform={`translate(${xScale('Floor') - 32}, ${y})`}>
+          {floorSVG()}
+        </g>
+        <g transform={`translate(${xScale('Renewable') - 20}, ${y})`}>
+          {renewableSVG()}
+        </g>
+        <g transform={`translate(${xScale('Plug Loads') - 20}, ${y})`}>
+          {plugLoadSVG()}
+        </g>
+      </>
+    )
+  }
+
   return (
     <PerformanceComparisonWrapper>
       <ChartHeader className="d-flex justify-content-between mb-5 flex-wrap">
-        <PerformanceComparisonTitle className="mb-2 mb-md-0">{t('Building Energy - Sub-System Performance')}</PerformanceComparisonTitle>
+        <PerformanceComparisonTitle className="mb-2 mb-md-0">{t(
+          'Building Energy - Sub-System Performance')}</PerformanceComparisonTitle>
 
         <EditConfigurationButton
           type="button"
@@ -491,6 +543,17 @@ const PerformanceComparison2 = () => {
             enableGridX={false}
             lineWidth={3}
             isInteractive={true}
+            layers={[
+              'grid',
+              'markers',
+              'areas',
+              AreaLayer,
+              'lines',
+              'slices',
+              'axes',
+              'points',
+              'legends',
+            ]}
             yScale={
               {
                 type: 'linear',
@@ -498,7 +561,7 @@ const PerformanceComparison2 = () => {
                 max: 7,
               }
             }
-            axisLeft={ null
+            axisLeft={null
               // {
               //   tickValues: [1, 2, 3, 4, 5, 6, 7],
               //   format: value => {
