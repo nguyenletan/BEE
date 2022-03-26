@@ -70,12 +70,13 @@ export const renewableSVG = () => <g
 </g>
 
 export const openingsSVG = () => <g fill="none" fillRule="evenodd" strokeLinejoin="round" transform="translate(1)">
-  <path d="m10.714286 11.071071h9.285714v8.571429h-9.285714z" stroke="#879637" strokeLinecap="round" strokeWidth="2"/>
-  <path d="m25 11.071071h8.571429v17.857143h-8.571429z" stroke="#879637" strokeLinecap="round" strokeWidth="2"/>
-  <path
-    d="m22.8499468.35678571 9.6223404 4.3544618 12.5277128 5.47068789h-7.3565426v19.4605646h-30.50808506v-19.4605646h-7.13537234l14.2314894-6.25322611z"
-    stroke="#3e3d3e" strokeWidth=".5"
-  />
+  <path fillRule="evenodd" clipRule="evenodd" d="M13.1992 12.4736H23.6611V22.1308H13.1992V12.4736Z" stroke="#879637"
+        strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  <path fillRule="evenodd" clipRule="evenodd" d="M29.293 12.4736H38.9501V32.5927H29.293V12.4736Z" stroke="#879637"
+        strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  <path fillRule="evenodd" clipRule="evenodd"
+        d="M26.8712 0.4021L37.7124 5.30813L51.827 11.4718H43.5386V33.3973H9.16614V11.4718H1.12695L17.1611 4.42647L26.8712 0.4021Z"
+        stroke="#3E3D3E" strokeWidth="0.5" strokeLinejoin="round"/>
 </g>
 
 export const wallSVG = () => <g fill="none" fillRule="evenodd" transform="translate(1)">
@@ -89,10 +90,10 @@ export const wallSVG = () => <g fill="none" fillRule="evenodd" transform="transl
   </g>
 </g>
 export const floorSVG = () => <g fill="none" fillRule="evenodd" transform="translate(1 .5005)">
-  <path
-    d="m31.9899255.4995 13.4712766 6.24493545 17.5387979 7.84576705h-10.2991596v27.9092975h-42.71131912v-27.9092975h-9.98952128l19.9240851-8.96804138z"
-    stroke="#363536" strokeLinejoin="round" strokeWidth=".5"/>
-  <path d="m52 42.9995h-41" stroke="#879637" strokeLinecap="round" strokeWidth="2"/>
+  <path fillRule="evenodd" clipRule="evenodd"
+        d="M26.4447 1L37.1597 5.9672L51.11 12.2077H42.9181V34.4067H8.94563V12.2077H1L16.8476 5.07455L26.4447 1Z"
+        stroke="#363536" strokeWidth="0.5" strokeLinejoin="round"/>
+  <path d="M42.3613 34.8044H9.75" stroke="#879637" strokeWidth="2" strokeLinecap="round"/>
 </g>
 
 export const roofSVG = () => <path
