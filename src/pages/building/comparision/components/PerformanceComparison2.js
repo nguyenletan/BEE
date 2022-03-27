@@ -469,7 +469,7 @@ const PerformanceComparison2 = () => {
   const IconLayer = (props) => {
     //console.log(props)
     const { xScale, innerHeight } = props
-    const y = innerHeight + 10
+    const y = innerHeight + 15
 
     return (
       <>
@@ -581,7 +581,7 @@ const PerformanceComparison2 = () => {
             axisBottom={{
               orient: 'bottom',
               tickSize: 6,
-              tickPadding: 45,
+              tickPadding: 52,
               tickRotation: 0,
               legend: '',
               legendOffset: 36,
