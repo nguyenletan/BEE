@@ -17,7 +17,7 @@ import { useAuth } from 'AuthenticateProvider'
 //import PerformanceComparison from 'pages/building/comparision/components/PerformanceComparison'
 
 const ComparisonWrapper = styled.div`
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 `
 
 const Comparison = () => {

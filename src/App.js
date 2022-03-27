@@ -79,7 +79,9 @@ function App () {
               </Switch>
             </Router>
             <DebugButton/>
+            <footer className="mt-5">&nbsp;</footer>
           </div>
+
 
         </RecoilRoot>
       </EuiProvider>

@@ -41,6 +41,13 @@ body {
 
 }
 
+footer {
+  @media (min-width: 1440px) {
+    margin-left: 100px !important;
+    margin-right: 100px !important;
+  }
+}
+
 .nav-pills .nav-link {
   font-size: 1.1rem;
   color: var(--gray);

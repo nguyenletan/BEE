@@ -16,13 +16,15 @@ import { useTranslation } from 'react-i18next'
 import { deepClone } from 'Utilities'
 import BarBlock from 'pages/building/comparision/components/BarBlock'
 import {
-  coolingSVG, floorSVG,
+  coolingSVG,
+  floorSVG,
   heatingSVG,
   lightingSVG,
   mechVentSVG,
   openingsSVG,
   plugLoadSVG,
-  renewableSVG, roofSVG,
+  renewableSVG,
+  roofSVG,
   wallSVG,
 } from 'SvgConstants'
 
@@ -53,7 +55,7 @@ const PerformanceComparisonWrapper = styled.div`
   }
   margin-top: 40px;
   margin-bottom: 40px;
-  height: max(500px, 100vw / 4);
+  //height: max(500px, 100vw / 4);
   min-width: 100%;
 `
 
@@ -269,7 +271,7 @@ const PerformanceComparison2 = () => {
   ]
 
   const commonProperties = {
-    margin: { top: 0, right: 20, bottom: 100, left: 25 },
+    margin: { top: 0, right: 20, bottom: 80, left: 25 },
     animate: true,
     // height: 350
     // enableSlices: 'x',
@@ -464,10 +466,10 @@ const PerformanceComparison2 = () => {
     )
   }
 
-  const AreaLayer = (props) => {
+  const IconLayer = (props) => {
     //console.log(props)
-    const {  xScale,innerHeight } = props
-    const y = innerHeight + 30
+    const { xScale, innerHeight } = props
+    const y = innerHeight + 10
 
     return (
       <>
@@ -489,10 +491,10 @@ const PerformanceComparison2 = () => {
         <g transform={`translate(${xScale('Wall') - 28}, ${y})`}>
           {wallSVG()}
         </g>
-        <g transform={`translate(${xScale('Openings') - 24}, ${y})`}>
+        <g transform={`translate(${xScale('Openings') - 28}, ${y})`}>
           {openingsSVG()}
         </g>
-        <g transform={`translate(${xScale('Floor') - 32}, ${y})`}>
+        <g transform={`translate(${xScale('Floor') - 28}, ${y})`}>
           {floorSVG()}
         </g>
         <g transform={`translate(${xScale('Renewable') - 20}, ${y})`}>
@@ -541,13 +543,13 @@ const PerformanceComparison2 = () => {
             //pointColor="#fff"
             pointBorderWidth={1}
             enableGridX={false}
-            lineWidth={3}
+            lineWidth={2}
             isInteractive={true}
             layers={[
               'grid',
               'markers',
               'areas',
-              AreaLayer,
+              IconLayer,
               'lines',
               'slices',
               'axes',
@@ -576,6 +578,15 @@ const PerformanceComparison2 = () => {
             xScale={
               { type: 'point' }
             }
+            axisBottom={{
+              orient: 'bottom',
+              tickSize: 6,
+              tickPadding: 45,
+              tickRotation: 0,
+              legend: '',
+              legendOffset: 36,
+              legendPosition: 'middle'
+            }}
             colors={['#AACC72', '#44D7B6', '#478D58']}
             legends={
               [
