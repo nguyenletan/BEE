@@ -470,39 +470,49 @@ const PerformanceComparison2 = () => {
     //console.log(props)
     const { xScale, innerHeight } = props
     const y = innerHeight + 15
-
+    console.log(xScale('Cooling'))
+    const xCooling = xScale('Cooling')
+    const xHeating = xScale('Heating')
+    const xLighting = xScale('Lighting')
+    const xMechanicalVentilation = xScale('Mechanical Ventilation')
+    const xRoof = xScale('Roof')
+    const xWall = xScale('Wall')
+    const xOpenings = xScale('Openings')
+    const xFloor = xScale('Floor')
+    const xRenewable = xScale('Renewable')
+    const xPlugLoads = xScale('Plug Loads')
     return (
       <>
-        <g transform={`translate(${xScale('Cooling') - 16}, ${y})`}>
+        {(xCooling !== undefined) && <g transform={`translate(${xCooling - 16}, ${y})`}>
           {coolingSVG()}
-        </g>
-        <g transform={`translate(${xScale('Heating') - 8}, ${y})`}>
+        </g>}
+        {(xHeating !== undefined) && <g transform={`translate(${xHeating - 8}, ${y})`}>
           {heatingSVG()}
-        </g>
-        <g transform={`translate(${xScale('Lighting') - 12}, ${y})`}>
+        </g>}
+        {(xLighting !== undefined) && <g transform={`translate(${xLighting - 12}, ${y})`}>
           {lightingSVG()}
-        </g>
-        <g transform={`translate(${xScale('Mechanical Ventilation') - 18}, ${y})`}>
+        </g>}
+        {(xMechanicalVentilation !== undefined) && <g transform={`translate(${xMechanicalVentilation - 18}, ${y})`}>
           {mechVentSVG()}
-        </g>
-        <g transform={`translate(${xScale('Roof') - 26}, ${y})`}>
+        </g>}
+        {(xRoof !== undefined) && <g transform={`translate(${xRoof - 26}, ${y})`}>
           {roofSVG()}
-        </g>
-        <g transform={`translate(${xScale('Wall') - 28}, ${y})`}>
+        </g>}
+        {(xWall !== undefined) && <g transform={`translate(${xWall - 28}, ${y})`}>
           {wallSVG()}
-        </g>
-        <g transform={`translate(${xScale('Openings') - 28}, ${y})`}>
+        </g>}
+        {(xOpenings !== undefined) && <g transform={`translate(${xOpenings - 28}, ${y})`}>
           {openingsSVG()}
-        </g>
-        <g transform={`translate(${xScale('Floor') - 28}, ${y})`}>
+        </g>}
+        {(xFloor !== undefined) && <g transform={`translate(${xFloor - 28}, ${y})`}>
           {floorSVG()}
-        </g>
-        <g transform={`translate(${xScale('Renewable') - 20}, ${y})`}>
+        </g>}
+        {(xRenewable !== undefined) && <g transform={`translate(${xRenewable - 20}, ${y})`}>
           {renewableSVG()}
-        </g>
-        <g transform={`translate(${xScale('Plug Loads') - 20}, ${y})`}>
+        </g>}
+        {(xPlugLoads !== undefined) && <g transform={`translate(${xPlugLoads - 20}, ${y})`}>
           {plugLoadSVG()}
-        </g>
+        </g>}
       </>
     )
   }
@@ -585,7 +595,7 @@ const PerformanceComparison2 = () => {
               tickRotation: 0,
               legend: '',
               legendOffset: 36,
-              legendPosition: 'middle'
+              legendPosition: 'middle',
             }}
             colors={['#AACC72', '#44D7B6', '#478D58']}
             legends={
