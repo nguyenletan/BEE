@@ -166,7 +166,7 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
     return await getLightingSystemByBuildingId(buildingId, idToken)
   }
 
-  console.log(data)
+  console.log(lightingSystemInfo)
 
   const buttonContent = (data) => (
     <div>
@@ -258,7 +258,6 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
   return (
     <Modal show={show} onHide={handleClose} size="xl">
-
       <Modal.Header>
         <Container className="mt-0">
           <div className="d-flex justify-content-between align-items-center">
@@ -314,10 +313,9 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
         </Container>
       </Modal.Header>
       <Modal.Body>
-
         <PopupBodyInnerWrapper className="container my-2">
           <BodyTitle>Existing Lighting</BodyTitle>
-          <ul className="d-flex flex-wrap">
+          <ul className="d-flex flex-wrap align-items-start">
             {subSystemRows}
           </ul>
         </PopupBodyInnerWrapper>
