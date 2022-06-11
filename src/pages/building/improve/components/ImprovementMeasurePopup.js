@@ -224,7 +224,6 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
     setWattRatingOfBulb(_wattRatingOfBulb)
   }
 
-
   const getLightingSystemInfo = async (buildingId) => {
     const idToken = await user.getIdToken()
     return await getLightingSystemByBuildingId(buildingId, idToken)
@@ -589,9 +588,7 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
         setValue(data.usagePercent)
         //setIsLoading(false)
       })
-
     }
-
   }, [data])
 
   useEffect(() => {

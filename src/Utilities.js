@@ -6,6 +6,7 @@ import wallImg from './assets/images/wall.svg'
 import mechVentImg from './assets/images/mechanical-ventilation.svg'
 import { addMonths, eachWeekOfInterval, lastDayOfMonth, lastDayOfQuarter, startOfQuarter } from 'date-fns'
 import moment from 'moment'
+import IRR from 'IRR'
 
 export const getCurrentColor = (type) => {
   switch (type) {
@@ -625,4 +626,17 @@ export const getTheTimeDifference = (datetime1, datetime2, measurement='days') =
 
 export const deepClone = (source) => {
   return JSON.parse(JSON.stringify(source))
+}
+
+export const calculateIRRValue = (firstValue, secondValue, loopTime = 20) => {
+  const IRRvalues = new Array(loopTime - 1)
+  for (let i = 0; i < IRRvalues.length; i++) {
+    IRRvalues[i] = secondValue
+  }
+
+  let internalRateOfReturn = IRR([firstValue, ...IRRvalues])
+  if (internalRateOfReturn !== '#NUM!') {
+    internalRateOfReturn = +(internalRateOfReturn.toFixed(2) * 100)
+  }
+  return internalRateOfReturn
 }

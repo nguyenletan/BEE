@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next'
 import { formatNumber } from 'Utilities'
 
 import ImprovementMeasurePopup from 'pages/building/improve/components/ImprovementMeasurePopup'
+import LightingImprovementMeasurePopup from 'pages/building/improve/components/LightingImproveMeasurePopup'
 
 const ImprovementMeasuresWrapper = styled.div`
   padding: 20px;
@@ -88,22 +89,36 @@ const InfoButton = styled.button`
 `
 
 const ImprovementMeasures = ({ data, setResult }) => {
-  const [show, setShow] = useState(false)
+  const [showOtherSubSystemPopup, setShowOtherSubSystemPopup] = useState(false)
+  const [showLightingSubSystemPopup, setShowLightingSubSystemPopup] = useState(false)
   const [popUpProps, setPopupProps] = useState({})
   const { t } = useTranslation('improvement')
 
-  const handleClose = (isChanged, result) => {
+  const handleCloseOtherSubSystemPopup = (isChanged, result) => {
     if (isChanged) {
       // setPopUpResult({ ...result })]
       setResult({ ...result })
     }
-    setShow(false)
+    setShowOtherSubSystemPopup(false)
   }
-  const handleShow = () => setShow(true)
+
+  const handleCloseLightingSubSystemPopup = (isChanged, result) => {
+    // if (isChanged) {
+    //   // setPopUpResult({ ...result })]
+    //   setResult({ ...result })
+    // }
+    setShowLightingSubSystemPopup(false)
+  }
+
 
   const openPopup = (data) => {
+    console.log(data.subSystem)
     setPopupProps(data)
-    handleShow()
+    if(data.subSystem === t('Lighting')) {
+      setShowLightingSubSystemPopup(true)
+    } else {
+      setShowOtherSubSystemPopup(true)
+    }
   }
 
   const rows = data.map(item => {
@@ -193,7 +208,8 @@ const ImprovementMeasures = ({ data, setResult }) => {
         </ImprovementMeasuresTable>
       </ImprovementMeasuresTableWrapper>
 
-      {show && <ImprovementMeasurePopup data={popUpProps} handleClose={handleClose} show={true}/>}
+      {showOtherSubSystemPopup && <ImprovementMeasurePopup data={popUpProps} handleClose={handleCloseOtherSubSystemPopup} show={true}/>}
+      {showLightingSubSystemPopup && <LightingImprovementMeasurePopup data={popUpProps} handleClose={handleCloseLightingSubSystemPopup} show={true}/>}
     </ImprovementMeasuresWrapper>
 
   )
