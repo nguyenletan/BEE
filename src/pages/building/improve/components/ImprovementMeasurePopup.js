@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import IRR from 'IRR'
+import { calculateIRRValue } from 'IRR'
 import { useAuth } from 'AuthenticateProvider'
 import {
   getAnnualCarbonEmissionsAvoided,
@@ -13,13 +13,12 @@ import {
 } from 'api/ImproveAPI'
 import { Col, Container, Modal, Row } from 'react-bootstrap'
 import { LinkExternalIcon, XCircleIcon } from '@primer/octicons-react'
-import Input from '@material-ui/core/Input'
+import {Input, Slider} from '@mui/material'
 import ImprovementMeasureSkeleton from 'pages/building/improve/components/ImprovementMeasureSkeleton'
 import { deepClone, formatNumber } from 'Utilities'
 import ImprovementBarChart from 'pages/building/improve/components/ImprovementBarChart'
 import styled from 'styled-components'
-import { withStyles } from '@material-ui/core'
-import Slider from '@material-ui/core/Slider'
+
 import { useParams } from 'react-router-dom'
 import ImprovementRaidalBarChart from 'pages/building/improve/components/ImprovementRaidalBarChart'
 import { EuiFieldNumber, EuiDatePicker, EuiFormRow, EuiSelect } from '@elastic/eui'
@@ -117,35 +116,35 @@ const Message = styled.div`
   font-weight: 500;
 `
 
-const PrettoSlider = withStyles({
-  root: {
-    color: '#87972f',
-    height: 6,
-  },
-  thumb: {
-    height: 20,
-    width: 20,
-    backgroundColor: '#87972f',
-    // border: '2px solid currentColor',
-    marginTop: -7,
-    marginLeft: -10,
-    '&:focus, &:hover, &$active': {
-      boxShadow: 'inherit',
-    },
-  },
-  active: {},
-  valueLabel: {
-    left: 'calc(-50% + 3px)',
-  },
-  track: {
-    height: 6,
-    borderRadius: 3,
-  },
-  rail: {
-    height: 6,
-    borderRadius: 3,
-  },
-})(Slider)
+// const PrettoSlider = withStyles({
+//   root: {
+//     color: '#87972f',
+//     height: 6,
+//   },
+//   thumb: {
+//     height: 20,
+//     width: 20,
+//     backgroundColor: '#87972f',
+//     // border: '2px solid currentColor',
+//     marginTop: -7,
+//     marginLeft: -10,
+//     '&:focus, &:hover, &$active': {
+//       boxShadow: 'inherit',
+//     },
+//   },
+//   active: {},
+//   valueLabel: {
+//     left: 'calc(-50% + 3px)',
+//   },
+//   track: {
+//     height: 6,
+//     borderRadius: 3,
+//   },
+//   rail: {
+//     height: 6,
+//     borderRadius: 3,
+//   },
+// })(Slider)
 
 const marks = [
   {
@@ -166,18 +165,7 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
   const { id } = useParams()
   const { t, i18n } = useTranslation('improvement')
-  const calculateIRRValue = (firstValue, secondValue, loopTime = 20) => {
-    const IRRvalues = new Array(loopTime - 1)
-    for (let i = 0; i < IRRvalues.length; i++) {
-      IRRvalues[i] = secondValue
-    }
 
-    let internalRateOfReturn = IRR([firstValue, ...IRRvalues])
-    if (internalRateOfReturn !== '#NUM!') {
-      internalRateOfReturn = +(internalRateOfReturn.toFixed(2) * 100)
-    }
-    return internalRateOfReturn
-  }
   const [isChanged, setIsChanged] = useState(false)
 
   const { icon, measures } = data
@@ -712,7 +700,7 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
               <MeasureNumber>Number of adding new LED: {numberOfLEDBulbs}</MeasureNumber>
             </PopupValueWrapper>
             <RangeWrapper className="d-flex justify-content-between w-100  align-items-center" show={showSlider}>
-              <PrettoSlider
+              <Slider
                 className="me-4"
                 marks={marks}
                 valueLabelDisplay="auto"

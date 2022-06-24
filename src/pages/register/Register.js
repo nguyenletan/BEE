@@ -210,7 +210,7 @@ const Register = () => {
         </RegisterForm>
 
       </RegisterPage>
-    )
+    );
   } else {
     return (
       <Successful>

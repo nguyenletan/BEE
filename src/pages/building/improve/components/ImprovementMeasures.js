@@ -112,7 +112,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
 
 
   const openPopup = (data) => {
-    console.log(data.subSystem)
+
     setPopupProps(data)
     if(data.subSystem === t('Lighting')) {
       setShowLightingSubSystemPopup(true)

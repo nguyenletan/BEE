@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { useAuth } from 'AuthenticateProvider'
 import FirebaseAuth from './FirebaseAuthenticate'
 import { EuiProvider } from '@elastic/eui'
-import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+
+import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles'
 import 'analytics_log_event'
 // import Login from './pages/login/Login';
 import Portfolio from './pages/portfolio/Portfolio'
@@ -13,23 +14,6 @@ import TermOfService from './pages/TermsOfService'
 import AddingBuilding from './pages/adding-building/AddingBuilding'
 import { RecoilRoot, useRecoilCallback, useRecoilSnapshot } from 'recoil'
 import { useEffect } from 'react'
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      light: '#aed581',
-      main: '#87972f',
-      dark: '#33691e',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#ff7961',
-      main: '#f44336',
-      dark: '#ba000d',
-      contrastText: '#000',
-    },
-  },
-})
 
 function DebugObserver () {
   const snapshot = useRecoilSnapshot()
@@ -52,11 +36,30 @@ function DebugButton () {
     }
   }, [])
 
-  return <button onClick={onClick} className="visually-hidden">Dump State</button>
+  return <button onClick={onClick} className="--visually-hidden">Dump State</button>
 }
 
 function App () {
   const { user, loading } = useAuth()
+
+  let theme = createTheme({
+    palette: {
+      primary: {
+        light: '#aed581',
+        main: '#87972f',
+        dark: '#33691e',
+        contrastText: '#fff',
+      },
+      secondary: {
+        light: '#ff7961',
+        main: '#f44336',
+        dark: '#ba000d',
+        contrastText: '#000',
+      },
+    },
+  })
+
+  theme = responsiveFontSizes(theme)
 
   if (loading) return null
   if (!user) return <FirebaseAuth/>
@@ -81,8 +84,6 @@ function App () {
             <DebugButton/>
             <footer className="mt-5">&nbsp;</footer>
           </div>
-
-
         </RecoilRoot>
       </EuiProvider>
     </ThemeProvider>

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import SearchIcon from '../../../assets/images/search.svg'
 import { Link } from 'react-router-dom'
-import { Button } from '@material-ui/core'
+import { Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
 const Title = styled.h2`

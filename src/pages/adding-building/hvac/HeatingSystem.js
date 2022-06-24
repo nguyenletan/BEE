@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem } from '@material-ui/core'
-import Select from '@material-ui/core/Select'
+import { Select, Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem } from '@mui/material'
 import { Controller } from 'react-hook-form'
 
 import HeatingSystemType from '../../../reference-tables/HeatingSystemType'
 import HeaterType from '../../../reference-tables/HeaterType'
 import HeaterEnergySourceType from '../../../reference-tables/HeaterEnergySourceType'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/styles'
 import { useRecoilState } from 'recoil'
 import { heatingSystemState } from 'atoms'
 import { useTranslation } from 'react-i18next'
@@ -99,6 +98,7 @@ const HeatingSystem = ({ control, setValue }) => {
                   {t('Heating System Type')}
                 </InputLabel>
                 <Select
+                  variant="standard"
                   labelId="heating-system-type-label"
                   id="heating-system-type-select"
                   value={heatingSystem.heatingSystemTypeId}
@@ -132,6 +132,7 @@ const HeatingSystem = ({ control, setValue }) => {
                   {t('Heater Type')}
                 </InputLabel>
                 <Select
+                  variant="standard"
                   labelId="heater-type-label"
                   id="heater-type-select"
                   value={heatingSystem.heaterTypeId}
@@ -165,6 +166,7 @@ const HeatingSystem = ({ control, setValue }) => {
                   {t('Heater Energy Source')}
                 </InputLabel>
                 <Select
+                  variant="standard"
                   labelId="heater-energy-source-label"
                   id="heater-energy-source-select"
                   value={heatingSystem.heaterEnergySourceTypeId}

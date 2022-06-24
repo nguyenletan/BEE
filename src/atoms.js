@@ -336,6 +336,63 @@ export const energyPerformanceEndTimeState = atom({
   default: moment(),
 })
 
+export const totalAnnualSavingState = atom({
+  key: 'totalAnnualSavingState',
+  default: []
+})
+
+export const getTotalValueAnnualEnergySavings = selector({
+  key: 'getTotalValueAnnualEnergySavings',
+  get: ({get}) => {
+    let arr = get(totalAnnualSavingState)
+    let total = 0;
+    for(let i = 0; i < arr.length; i++) {
+      total += arr[i].energySavings;
+    }
+    return total
+  },
+});
+
+export const getTotalInvestmentCost = selector({
+  key: 'getTotalInvestmentCost',
+  get: ({get}) => {
+    let arr = get(totalAnnualSavingState)
+    let total = 0;
+    for(let i = 0; i < arr.length; i++) {
+      total += arr[i].investmentCost;
+    }
+    return total
+  },
+});
+
+export const getTotalSimplePayback = selector({
+  key: 'getTotalSimplePayback',
+  get: ({get}) => {
+    let arr = get(totalAnnualSavingState)
+    let total = 0;
+    for(let i = 0; i < arr.length; i++) {
+      total += arr[i].simplePayback;
+    }
+    return total
+  },
+});
+
+export const getTotalIRR = selector({
+  key: 'getTotalIRR',
+  get: ({get}) => {
+    let arr = get(totalAnnualSavingState)
+    let total = 0;
+    for(let i = 0; i < arr.length; i++) {
+      console.log(arr[i].IRR)
+      if(!isNaN(arr[i].IRR)) {
+        total += arr[i].IRR;
+      }
+    }
+    return total
+  },
+});
+
+
 // export const improveMeasuresPopupState = atom({
 //   key: 'improveMeasuresPopup',
 //   default: {

@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
 
-import AddIcon from '@material-ui/icons/Add'
+import {Add} from '@mui/icons-material'
 import StepNav from '../step-nav/StepNav'
 import OneMonthElectricityConsumption from './OneMonthElectricityConsumption'
 
@@ -43,7 +43,7 @@ const UL = styled.ul`
   padding: 0;
 `
 
-const Adding = styled(AddIcon)`
+const Adding = styled(Add)`
   cursor: pointer;
   color: var(--bs-primary);
 `

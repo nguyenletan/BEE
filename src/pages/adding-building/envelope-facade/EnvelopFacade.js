@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react'
 import StepNav from '../step-nav/StepNav'
 import { Controller, useForm } from 'react-hook-form'
 import styled from 'styled-components'
-import { Box, FormControl, FormHelperText, Input, InputLabel, MenuItem, Select, Slider, Typography } from '@material-ui/core'
-import Grid from '@material-ui/core/Grid'
+import { Box, FormControl, FormHelperText, Input, InputLabel, MenuItem, Select, Slider, Typography, Grid } from '@mui/material'
+
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import ExternalWindowType from '../../../reference-tables/ExternalWindowType'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/styles'
 import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState, envelopFacadeState } from 'atoms'
 import { Redirect, useParams } from 'react-router-dom'
@@ -204,6 +204,7 @@ const EnvelopFacade = () => {
               <FormControl className={classes.formControl}>
                 <InputLabel id="external-roof-type-label" className={error && 'text-danger'}>{t('Roof Type')}</InputLabel>
                 <Select
+                  variant="standard"
                   id="external-roof-type-select"
                   labelId="external-roof-type-label"
                   error={!!error}
@@ -246,6 +247,7 @@ const EnvelopFacade = () => {
                   id="external-window-type-select"
                   labelId="external-window-type-label"
                   name="externalWindowInsulationTypeId"
+                  variant="standard"
                   onChange={(e) => {
                     onChange(e)
                     handleChange(e)

@@ -5,27 +5,24 @@ import { useAuth } from 'AuthenticateProvider'
 import { sortBy } from 'lodash'
 import { Col, Container, Modal, Row } from 'react-bootstrap'
 import { XCircleIcon } from '@primer/octicons-react'
-import {
-  EuiAccordion,
-  EuiFieldNumber,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiFormRow,
-  EuiSelect,
-  EuiSpacer,
-  EuiText,
-  EuiTitle,
-} from '@elastic/eui'
+import { EuiText } from '@elastic/eui'
+import { differenceInCalendarWeeks } from 'date-fns'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import { calculateIRRValue, formatNumber } from 'Utilities'
+import { formatNumber } from 'Utilities'
 import { getNewAnnualLightingSystemEnergyConsumption } from 'api/ImproveAPI'
 import ImprovementMeasureSkeleton from 'pages/building/improve/components/ImprovementMeasureSkeleton'
 import { getLightingSystemByBuildingId } from 'api/LightingAPI'
-import LightingFittingType, {
-  getLightingFittingTypeImage,
-  getLightingFittingTypeName,
-} from 'reference-tables/LightingFittingType'
+
+import LightingSubSystem from 'pages/building/improve/components/LightingSubSystem'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import {
+  getTotalInvestmentCost,
+  getTotalIRR,
+  getTotalSimplePayback,
+  getTotalValueAnnualEnergySavings,
+  totalAnnualSavingState,
+} from 'atoms'
 
 const PopupTitle = styled.h3`
   font-size: 1.35rem;
@@ -34,7 +31,7 @@ const PopupTitle = styled.h3`
   margin-bottom: 0;
   text-align: center;
   text-transform: capitalize;
- 
+
 `
 
 const HeaderGroupButton = styled.div`
@@ -53,23 +50,8 @@ const PopupValueWrapper = styled.div`
   margin-right: 1rem;
 `
 
-const Icon = styled.img`
-  width: 60px;
-  height: 60px;
-  display: block;
-  margin: 0 0 15px;
-`
-
-const Item = styled.p`
-  margin-bottom: 0 !important;
-  padding: 0;
-  line-height: 1.5rem;
-  margin-left: 20px;
-  font-size: 0.95rem;
-`
-
 const LI = styled.li`
-  max-width: 320px;
+  width: 340px;
   list-style-type: none;
 `
 
@@ -96,6 +78,20 @@ const HeaderButton = styled.a`
   span {
     vertical-align: text-bottom;
     line-height: 16px;
+  }
+`
+
+const TitleWrapper = styled.div`
+  display: flex;
+  column-gap: 20px;
+
+  span {
+    margin-bottom: 1rem;
+    line-height: 1.25rem;
+
+    strong {
+      line-height: 1.25rem;
+    }
   }
 `
 
@@ -127,7 +123,13 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
   // eslint-disable-next-line
   const [value, setValue] = React.useState(0)
   const [isLoading, setIsLoading] = useState(true)
-  const [detailValue, setDetailValue] = useState()
+  //const [detailValue, setDetailValue] = useState()
+
+  const valueAnnualEnergySavingsSelector = useRecoilValue(getTotalValueAnnualEnergySavings)
+  const getTotalInvestmentCostSelector = useRecoilValue(getTotalInvestmentCost)
+  const getTotalSimplePaybackSelector = useRecoilValue(getTotalSimplePayback)
+  const getTotalIRRSelector = useRecoilValue(getTotalIRR)
+  const setAnnualEnergySavingsState = useSetRecoilState(totalAnnualSavingState)
 
   //const [newAnnualLightingSystemEnergyConsumption, setNewAnnualLightingSystemEnergyConsumption] = useState()
 
@@ -136,20 +138,36 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
   useEffect(() => {
     if (data !== {}) {
       getLightingSystemInfo(id).then(r => {
+        let temp = []
+        for (let i = 0; i < r.length; i++) {
+          temp.push({
+            id: r[i].id,
+            energySavings: 0,
+            costSavings: 0,
+            emissionsAvoided: 0,
+            investmentCost: 0,
+            simplePayback: 0,
+            IRR: 0,
+          })
+
+        }
+        setAnnualEnergySavingsState(temp)
+
         setLightingSystemInfo(sortBy(r, 'title'))
         getAnnualLightingSystemEnergyConsumptionAPI(id, data.usagePercent).then(r => {
-          setDetailValue({
-            investmentCost: data.investmentCost,
-            energyCostSavings: data.energyCostSavings,
-            energySavings: data.energySavings,
-            paybackPeriod: data.paybackPeriod,
-            co2EmissionsAvoided: data.co2EmissionsAvoided,
-            internalRateOfReturn: calculateIRRValue(-data.investmentCost, Math.abs(data.energyCostSavings), 20),
-            usagePercent: data.usagePercent,
-            oldUsagePercent: data.usagePercent,
-            newAnnualLightingSystemEnergyConsumption: +r.toFixed(2),
-          })
+          // setDetailValue({
+          //   investmentCost: data.investmentCost,
+          //   energyCostSavings: data.energyCostSavings,
+          //   energySavings: valueAnnualEnergySavingsSelector,//data.energySavings,
+          //   paybackPeriod: data.paybackPeriod,
+          //   co2EmissionsAvoided: data.co2EmissionsAvoided,
+          //   internalRateOfReturn: calculateIRRValue(-data.investmentCost, Math.abs(data.energyCostSavings), 20),
+          //   usagePercent: data.usagePercent,
+          //   oldUsagePercent: data.usagePercent,
+          //   newAnnualLightingSystemEnergyConsumption: +r.toFixed(2),
+          // })
           //setValue(data.usagePercent)
+
           setIsLoading(false)
         })
       })
@@ -166,95 +184,15 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
     return await getLightingSystemByBuildingId(buildingId, idToken)
   }
 
-  console.log(lightingSystemInfo)
+  const subSystemRows = lightingSystemInfo?.map(x => {
+    //setAnnualEnergySavingsState([...annualEnergySavingsState, {id: x.id, value: 0}])
 
-  const buttonContent = (data) => (
-    <div>
-      <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>
-        <EuiFlexItem grow={false}>
-          <Icon src={getLightingFittingTypeImage(data.lightingFittingTypeId)}/>
-        </EuiFlexItem>
-
-        <EuiFlexItem>
-          <EuiTitle size="xs">
-            <h3>{data.title}</h3>
-          </EuiTitle>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-
-      <EuiText size="s">
-        <Item>
-          Bulb: <span className="text-primary">{getLightingFittingTypeName(data.lightingFittingTypeId)}</span>
-        </Item>
-        <Item>
-          Number: <span className="text-primary">{data.numberOfBulbs}</span>
-        </Item>
-        <Item>
-          Watt Ratting (W):  <span className="text-primary">{data.wattRatingOfBulb}</span>
-        </Item>
-        <Item>
-          Lumen Rating (lm):  <span className="text-primary">{data.lumensOfBulb}</span>
-        </Item>
-      </EuiText>
-    </div>
-  )
-
-  const subSystemRows = lightingSystemInfo?.map(x => (<>
-      <LI className="shadow-sm rounded-3 m-3 m-3 border border-1 p-3">
-        <EuiAccordion
-          id={x.title + '_' + x.id}
-          buttonContent={buttonContent(x)}
-          paddingSize="m"
-        >
-          <EuiFormRow label="Replacement Bulb Type" className="mt-4">
-            <EuiSelect
-              compressed
-              options={LightingFittingType.map(t => {
-                  if (t.id === x.id) return null
-                  return {
-                    value: t.id,
-                    text: t.name,
-                  }
-                },
-              )}
-              value={value}
-              aria-label="Use aria labels when no actual label is in use"
-            />
-          </EuiFormRow>
-          <EuiFormRow label="Number Of Bulbs" className="mt-4">
-            <EuiFieldNumber
-              compressed
-              placeholder="Number Of Bulbs"
-              aria-label="Number Of Bulbs"
-            />
-          </EuiFormRow>
-          <EuiFormRow label="Watt Rating (W)" className="mt-4">
-            <EuiFieldNumber
-              compressed
-              placeholder="Number Of Bulbs"
-              aria-label="Number Of Bulbs"
-            />
-          </EuiFormRow>
-          <EuiFormRow label="Lumens Rating (lm)" className="mt-4">
-            <EuiFieldNumber
-              compressed
-              placeholder="Lumens Rating (lm)"
-              aria-label="Lumens Rating (lm)"
-            />
-          </EuiFormRow>
-          <EuiFormRow label="Cost of Each Bulb ($)" className="mt-4">
-            <EuiFieldNumber
-              compressed
-              placeholder="Cost of Each Bulb ($)"
-              aria-label="Cost of Each Bulb ($)"
-            />
-          </EuiFormRow>
-        </EuiAccordion>
-
-        <EuiSpacer/>
+    return (
+      <LI className="shadow-sm rounded-3 m-2 border border-1 px-2 py-4">
+        <LightingSubSystem subSystem={x} value={value}/>
       </LI>
-    </>
-  ))
+    )
+  })
 
   return (
     <Modal show={show} onHide={handleClose} size="xl">
@@ -283,29 +221,29 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
                   <Row className="mb-3">
                     <Col xs={8} sm={4} className="col">{t('Annual Energy Savings')}</Col>
                     <Col xs={4} sm={2} className="col col-value text-primary">{formatNumber(
-                      detailValue.energySavings)} MWh</Col>
+                      valueAnnualEnergySavingsSelector)} kWh</Col>
                     <Col xs={8} sm={4} className="col">{t('Investment Cost')}</Col>
                     <Col xs={4} sm={2} className="col col-value text-primary">${formatNumber(
-                      detailValue.investmentCost)}</Col>
+                      getTotalInvestmentCostSelector)}</Col>
                   </Row>
                   <Row className="mb-3">
                     <Col xs={8} sm={4} className="col">{t('Annual Energy Cost Savings')}</Col>
                     <Col xs={4} sm={2} className="col col-value text-primary">{formatNumber(
-                      detailValue.energyCostSavings)} {t(
+                      valueAnnualEnergySavingsSelector * 0.023)} {t(
                       '$')}/ {t(
                       'Yr')}</Col>
                     <Col xs={8} sm={4} className="col">{t('Simple Payback')}</Col>
-                    <Col xs={4} sm={2} className="col col-value text-primary">{formatNumber(detailValue.paybackPeriod)} {t(
+                    <Col xs={4} sm={2} className="col col-value text-primary">{formatNumber(
+                      getTotalSimplePaybackSelector)} {t(
                       'Yr')}</Col>
                   </Row>
                   <Row className="mb-3">
                     <Col xs={8} sm={4} className="col">{t('Annual CO2 Emissions Avoided')}</Col>
                     <Col xs={4} sm={2} className="col col-value text-primary">{formatNumber(
-                      detailValue.co2EmissionsAvoided)} {t(
+                      valueAnnualEnergySavingsSelector * 0.1)} {t(
                       'Tons/Yr')}</Col>
                     <Col xs={8} sm={4} className="col">{t('Internal Rate of Return')}</Col>
-                    <Col xs={4} sm={2} className="col col-value text-primary">{formatNumber(
-                      detailValue.internalRateOfReturn)} %</Col>
+                    <Col xs={4} sm={2} className="col col-value text-primary">{formatNumber(getTotalIRRSelector)} %</Col>
                   </Row>
                 </EuiText>
               </div>
@@ -314,7 +252,15 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
       </Modal.Header>
       <Modal.Body>
         <PopupBodyInnerWrapper className="container my-2">
-          <BodyTitle>Existing Lighting</BodyTitle>
+          <TitleWrapper><BodyTitle>Existing Lighting</BodyTitle>
+            <span><strong>Number of weeks a year: </strong>{
+              -differenceInCalendarWeeks(
+                new Date(new Date().getFullYear(), 1, 1),
+                new Date(new Date().getFullYear(), 12, 31),
+              )}</span>
+            <span><strong>Tariff Rate ($/kWh): </strong>0.023</span>
+            <span><strong>Grid Emission Rate (Tons/kWh): </strong>0.1</span>
+          </TitleWrapper>
           <ul className="d-flex flex-wrap align-items-start">
             {subSystemRows}
           </ul>

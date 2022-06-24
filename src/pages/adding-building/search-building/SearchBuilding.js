@@ -8,8 +8,8 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 import { Controller, useForm } from 'react-hook-form'
 
 import Countries, { findCountryByCountryCode } from '../../../reference-tables/Country'
-import { Button, FormControl, InputLabel, NativeSelect, TextField } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Button, FormControl, InputLabel, NativeSelect, TextField } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import StepNav from '../step-nav/StepNav'
@@ -271,6 +271,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
+                    variant="standard"
                     label={t("Building Name")}
                     value={value}
                     onChange={onChange}
@@ -290,6 +291,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
+                    variant="standard"
                     label={t("Building Number")}
                     value={value}
                     onChange={onChange}
@@ -309,6 +311,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
+                    variant="standard"
                     label={t("Street Name")}
                     value={value}
                     onChange={onChange}
@@ -328,6 +331,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
+                    variant="standard"
                     label={t("Address")}
                     aria-describedby="Address"
                     value={value}
@@ -348,6 +352,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
+                    variant="standard"
                     label={t("Post Code")}
                     aria-describedby="Postal Code"
                     value={value}
@@ -368,6 +373,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
+                    variant="standard"
                     aria-describedby="City"
                     label={t("City")}
                     value={value}
@@ -388,6 +394,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
+                    variant="standard"
                     aria-describedby="State"
                     label={t("State")}
                     value={value}

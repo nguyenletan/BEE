@@ -12,7 +12,7 @@ export const getNewAnnualLightingSystemEnergyConsumption = async (buildingId, pe
     //data: data,
     body: {},
   }).then((response) => {
-    console.log('getNewAnnualLightingSystemEnergyConsumption:' + response.data)
+    //console.log('getNewAnnualLightingSystemEnergyConsumption:' + response.data)
     result = response.data
     //result = 'Retrieve successfully!'
     //return response.data

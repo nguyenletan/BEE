@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
-import { FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField } from '@material-ui/core'
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import styled from 'styled-components'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import LightingFittingType from '../../../reference-tables/LightingFittingType'
 import { removeItemAtIndex, replaceItemAtIndex } from 'Utilities'
 import { useRecoilState } from 'recoil'
 import { lightingSubSystemListState } from 'atoms'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/styles'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
@@ -95,9 +95,9 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
     data.numberOfHoursUsedPerDay])
 
   useEffect(() => {
-    console.log(percentage)
+    //console.log(percentage)
     const index = lightingSubSystemList.findIndex((o) => o.id === data.id)
-    console.log(index)
+    //console.log(index)
     const newList = replaceItemAtIndex(lightingSubSystemList, index, {
       ...data,
       percentage: percentage,
@@ -126,6 +126,7 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           }) => (
             <FormControl className={classes.formControl}>
               <TextField
+                variant="standard"
                 label={t('Title')}
                 name={'title'}
                 value={data.title}
@@ -156,6 +157,7 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
                 {t('Light Bulb Type')}
               </InputLabel>
               <Select
+                variant="standard"
                 labelId={`lighting-fitting-type-label`}
                 id="lighting-fitting-type-select"
                 value={data.indoorLightingSystemTypeId}
@@ -192,6 +194,7 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           }) => (
             <FormControl className={classes.formControl}>
               <TextField
+                variant="standard"
                 label={t('Number of Bulbs')}
                 name={'numberOfBulbs'}
                 type="number"
@@ -221,6 +224,7 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           }) => (
             <FormControl className={classes.formControl}>
               <TextField
+                variant="standard"
                 label={t('Watt Rating of Bulb') + ' (W)'}
                 name={'wattRatingOfBulb'}
                 type="number"
@@ -250,6 +254,7 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           }) => (
             <FormControl className={classes.formControl}>
               <TextField
+                variant="standard"
                 label={t('Lumens of Bulb') + ' (lm)'}
                 type="number"
                 name={'lumensOfBulb'}
@@ -279,6 +284,7 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           }) => (
             <FormControl className={classes.formControl}>
               <TextField
+                variant="standard"
                 label={t('Number Of Days Used Per Week')}
                 type="number"
                 name={'numberOfDaysUsedPerWeek'}
@@ -308,6 +314,7 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           }) => (
             <FormControl className={classes.formControl}>
               <TextField
+                variant="standard"
                 label={t('Number Of Hours Used Per Day')}
                 type="number"
                 name={'numberOfHoursUsedPerDay'}

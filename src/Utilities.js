@@ -213,12 +213,10 @@ export const printDateTime = (dateString, localeString) => {
 
 export const formatNumber = (num, decimal = 2, unit = '') => {
   if (num && typeof num === 'number') {
-    return (
-      num.toFixed(decimal) // always two decimal digits
-        .replace('.', ',') // replace decimal point character with ,
-        .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
-      + ' ' + unit
-    ) // use . as a separator
+    return num.toFixed(decimal) // always two decimal digits
+      .replace('.', ',') // replace decimal point character with ,
+      .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+    + ' ' + unit; // use . as a separator
   }
   return '---'
 }
@@ -639,4 +637,33 @@ export const calculateIRRValue = (firstValue, secondValue, loopTime = 20) => {
     internalRateOfReturn = +(internalRateOfReturn.toFixed(2) * 100)
   }
   return internalRateOfReturn
+}
+
+export const calculateEnergyConsumption = (
+  numberOfBulb,
+  wattRatingOfBulb,
+  numberOfWeeksAYear,
+  numberOfDaysUsedPerWeek=6,
+  numberOfHoursUsedPerDay=8) => {
+  return numberOfBulb * wattRatingOfBulb * numberOfDaysUsedPerWeek * numberOfHoursUsedPerDay * numberOfWeeksAYear / 1000
+}
+
+export const calculateEnergyCost = (
+  numberOfBulb,
+  wattRatingOfBulb,
+  numberOfWeeksAYear,
+  numberOfDaysUsedPerWeek=6,
+  numberOfHoursUsedPerDay=8,
+  tariffRate=0.023) => {
+  return calculateEnergyConsumption(numberOfBulb, wattRatingOfBulb, numberOfDaysUsedPerWeek, numberOfHoursUsedPerDay, numberOfWeeksAYear) * tariffRate
+}
+
+export const calculateEmissions = (
+  numberOfBulb,
+  wattRatingOfBulb,
+  numberOfWeeksAYear,
+  numberOfDaysUsedPerWeek=6,
+  numberOfHoursUsedPerDay=8,
+  gridEmissionRate=0.1) => {
+  return calculateEnergyConsumption(numberOfBulb, wattRatingOfBulb, numberOfDaysUsedPerWeek, numberOfHoursUsedPerDay, numberOfWeeksAYear) * gridEmissionRate
 }

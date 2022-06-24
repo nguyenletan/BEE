@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import 'date-fns'
-import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
-import RemoveIcon from '@material-ui/icons/Remove'
-import Input from '@material-ui/core/Input'
-import Grid from '@material-ui/core/Grid'
-import DateFnsUtils from '@date-io/date-fns'
+import { DatePicker, LocalizationProvider } from '@mui/lab'
+import RemoveIcon from '@mui/icons-material/Remove'
+import { Input, Grid, FormHelperText, TextField } from '@mui/material'
 import { useRecoilState } from 'recoil'
 import { Controller } from 'react-hook-form'
 import { electricityConsumptionListState } from 'atoms'
 import { removeItemAtIndex, replaceItemAtIndex } from 'Utilities'
-import { FormHelperText } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
 import de from "date-fns/locale/de";
 import enGB from "date-fns/locale/en-GB";
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
 const Subtraction = styled(RemoveIcon)`
   cursor: pointer;
@@ -88,9 +86,9 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
             field: { onChange },
             fieldState: { error },
           }) => (
-            <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
+            <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={locale}>
               <Grid container justifyContent="flex-start">
-                <KeyboardDatePicker
+                <DatePicker
                   variant="inline"
                   openTo="year"
                   views={['year', 'month']}
@@ -101,9 +99,9 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
                     onDateChange(date)
                     onChange(date)
                   }}
-                />
+                  renderInput={(params) => <TextField variant="standard" {...params} />}/>
               </Grid>
-            </MuiPickersUtilsProvider>
+            </LocalizationProvider>
           )}
           rules={{
             required: t(`This field is not empty`)

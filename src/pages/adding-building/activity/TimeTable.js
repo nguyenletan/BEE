@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Controller } from 'react-hook-form'
-import { Checkbox, FormControlLabel } from '@material-ui/core'
+import { Checkbox, FormControlLabel, TextField } from '@mui/material'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { buildingActivityState } from '../../../atoms'
-import { replaceItemAtIndex } from '../../../Utilities'
-import { KeyboardTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
-import DateFnsUtils from '@date-io/date-fns'
+import { buildingActivityState } from 'atoms'
+import { replaceItemAtIndex } from 'Utilities'
 import { useTranslation } from 'react-i18next'
+import { LocalizationProvider, TimePicker } from '@mui/lab'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
 const Header = styled.div`
   margin-bottom: 20px;
@@ -65,8 +65,8 @@ const Row = ({ data, control, setValue }) => {
             field: { onChange },
             fieldState: { error },
           }) => (
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <KeyboardTimePicker
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <TimePicker
                 variant="inline"
                 margin="normal"
                 label={t("Start Time")}
@@ -83,8 +83,8 @@ const Row = ({ data, control, setValue }) => {
                   handleChange('startTime', date)
                   onChange(date)
                 }}
-              />
-            </MuiPickersUtilsProvider>
+                renderInput={(params) => <TextField  variant="standard" {...params} />}/>
+            </LocalizationProvider>
           )}
           rules={data.isEnable ?
             { required: `${data.name}StartTime is not empty` } : {}}
@@ -101,8 +101,8 @@ const Row = ({ data, control, setValue }) => {
             field: { onChange },
             fieldState: { error },
           }) => (
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <KeyboardTimePicker
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <TimePicker
                 variant="inline"
                 margin="normal"
                 label={t("End Time")}
@@ -117,8 +117,8 @@ const Row = ({ data, control, setValue }) => {
                 }}
                 autoOk
                 fullWidth
-              />
-            </MuiPickersUtilsProvider>
+                renderInput={(params) => <TextField variant="standard" {...params} />}/>
+            </LocalizationProvider>
           )}
           rules={data.isEnable ?
             { required: `${data.codeName}EndTime is not empty` } : {}}

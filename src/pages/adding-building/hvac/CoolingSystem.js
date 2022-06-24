@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem } from '@material-ui/core'
-import Select from '@material-ui/core/Select'
+import { Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material'
 import CoolingSystemType from '../../../reference-tables/CoolingSystemType'
 import ChillerEnergySourceType from '../../../reference-tables/ChillerEnergySourceType'
 import CompressorType from '../../../reference-tables/CompressorType'
 import { AbsorptionChillerRefrigerantType, RefrigerantType } from 'reference-tables/RefrigerantType'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/styles'
 import { useRecoilState } from 'recoil'
 import { coolingSystemState } from 'atoms'
 import { Controller } from 'react-hook-form'
@@ -98,10 +97,10 @@ const CoolingSystem = ({ control, setValue }) => {
   }
 
   useEffect(() => {
-    setValue(`coolingSystemTypeId`, coolingSystem.coolingSystemTypeId, {shouldValidate: true})
-    setValue(`compressorTypeId`, coolingSystem.compressorTypeId, {shouldValidate: true})
-    setValue(`refrigerantTypeId`, coolingSystem.refrigerantTypeId, {shouldValidate: true})
-    setValue(`chillerEnergySourceTypeId`, coolingSystem.chillerEnergySourceTypeId, {shouldValidate: true})
+    setValue(`coolingSystemTypeId`, coolingSystem.coolingSystemTypeId, { shouldValidate: true })
+    setValue(`compressorTypeId`, coolingSystem.compressorTypeId, { shouldValidate: true })
+    setValue(`refrigerantTypeId`, coolingSystem.refrigerantTypeId, { shouldValidate: true })
+    setValue(`chillerEnergySourceTypeId`, coolingSystem.chillerEnergySourceTypeId, { shouldValidate: true })
 
   }, [
     coolingSystem.chillerEnergySourceTypeId,
@@ -123,7 +122,7 @@ const CoolingSystem = ({ control, setValue }) => {
             onChange={onHasCoolingSystemChange}
           />
         }
-        label={t("Yes")}
+        label={t('Yes')}
       />
 
       {coolingSystem.hasCoolingSystem && (
@@ -141,6 +140,7 @@ const CoolingSystem = ({ control, setValue }) => {
                   {t('Cooling System Type')}
                 </InputLabel>
                 <Select
+                  variant="standard"
                   labelId="cooling-system-type-id-label"
                   id="cooling-system-type-id-select"
                   value={coolingSystem.coolingSystemTypeId}
@@ -150,7 +150,8 @@ const CoolingSystem = ({ control, setValue }) => {
                   }}
                   error={!!error}
                 >
-                  {CoolingSystemType.map(item => <MenuItem key={item.id} value={item.id}> {t(item.name, {ns: 'common'})}</MenuItem>)}
+                  {CoolingSystemType.map(
+                    item => <MenuItem key={item.id} value={item.id}> {t(item.name, { ns: 'common' })}</MenuItem>)}
                 </Select>
                 {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
               </FormControl>
@@ -173,6 +174,7 @@ const CoolingSystem = ({ control, setValue }) => {
                     {t('Compressor Type')}
                   </InputLabel>
                   <Select
+                    variant="standard"
                     labelId="compressor-type-label"
                     id="compressor-type-select"
                     value={coolingSystem.compressorTypeId}
@@ -187,7 +189,7 @@ const CoolingSystem = ({ control, setValue }) => {
                         key={o.id}
                         value={o.id}
                       >
-                        {t(o.name, {ns: 'common'})}
+                        {t(o.name, { ns: 'common' })}
                       </MenuItem>
                     ))}
                   </Select>
@@ -212,6 +214,7 @@ const CoolingSystem = ({ control, setValue }) => {
                     {t('Refrigerant Type')}
                   </InputLabel>
                   <Select
+                    variant="standard"
                     labelId="refrigerant-type-label"
                     id="refrigerant-type-select"
                     value={coolingSystem.refrigerantTypeId}
@@ -251,6 +254,7 @@ const CoolingSystem = ({ control, setValue }) => {
                     {t('Chiller Energy Source')}
                   </InputLabel>
                   <Select
+                    variant="standard"
                     labelId="chiller-energy-label"
                     id="chiller-energy-select"
                     value={coolingSystem.chillerEnergySourceTypeId}
@@ -261,10 +265,10 @@ const CoolingSystem = ({ control, setValue }) => {
                     error={!!error}
                   >
                     {chillerEnergySourceTypeList.map(
-                      item => <MenuItem key={item.id} value={item.id}> {t(item.name, {ns: 'common'})}</MenuItem>)}
+                      item => <MenuItem key={item.id} value={item.id}> {t(item.name, { ns: 'common' })}</MenuItem>)}
                   </Select>
                   {error &&
-                  <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
+                    <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
                 </FormControl>
               )}
               rules={{
