@@ -5,13 +5,11 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiFormRow,
-  EuiSelect,
-  EuiSuperSelect,
   EuiText,
   EuiFieldText,
   EuiTitle,
 } from '@elastic/eui'
-import LightingFittingType, {
+import {
   getLightingFittingTypeImage,
   getLightingFittingTypeName,
 } from 'reference-tables/LightingFittingType'
