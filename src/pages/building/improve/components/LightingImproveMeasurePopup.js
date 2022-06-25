@@ -40,14 +40,14 @@ const HeaderGroupButton = styled.div`
 
 const PopupIcon = styled.img`
   color: var(--bs-primary);
-  margin-right: 2rem;
-  width: 50px;
+  //margin-right: 2rem;
+  width: 40px;
 
 `
 
 const PopupValueWrapper = styled.div`
-  width: 150px;
-  margin-right: 1rem;
+  //width: 150px;
+  //margin-right: 1rem;
 `
 
 const LI = styled.li`
@@ -55,11 +55,11 @@ const LI = styled.li`
   list-style-type: none;
 `
 
-const PopupValue = styled.span`
-  font-size: 2.75rem;
-  color: var(--bs-primary);
-  vertical-align: text-top;
-`
+// const PopupValue = styled.span`
+//   font-size: 2.75rem;
+//   color: var(--bs-primary);
+//   vertical-align: text-top;
+// `
 
 const MeasureName = styled.span`
   font-size: 1rem;
@@ -209,10 +209,10 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
           {isLoading
             ? <><ImprovementMeasureSkeleton/></>
             : <div className="d-flex">
-              <div className="d-flex my-3">
+              <div className="d-flex flex-column my-3 align-items-center">
                 <PopupIcon src={icon} alt={measures}/>
-                <PopupValueWrapper className="d-flex flex-column justify-content-start align-items-start">
-                  <PopupValue>{value}%</PopupValue>
+                <PopupValueWrapper className="d-flex flex-column justify-content-start align-items-start mt-2 text-center">
+                  {/*<PopupValue>{value}%</PopupValue>*/}
                   <MeasureName>{t(measures)}</MeasureName>
                 </PopupValueWrapper>
               </div>

@@ -6,7 +6,9 @@ import {
   EuiFlexItem,
   EuiFormRow,
   EuiSelect,
+  EuiSuperSelect,
   EuiText,
+  EuiFieldText,
   EuiTitle,
 } from '@elastic/eui'
 import LightingFittingType, {
@@ -20,6 +22,7 @@ import { differenceInCalendarWeeks } from 'date-fns'
 import { useRecoilState } from 'recoil'
 import { totalAnnualSavingState } from 'atoms'
 import { calculateIRRValue } from 'IRR'
+
 
 const Icon = styled.img`
   width: 60px;
@@ -215,23 +218,25 @@ const LightingSubSystem = ({ subSystem, value }) => {
       </EuiText>
 
       <EuiFormRow label="Replacement Bulb Type" className="mt-4">
-        <EuiSelect
-          compressed
-          options={LightingFittingType.map(t => {
-              if (t.id === subSystem.id) return null
-              return {
-                value: t.id,
-                text: t.name,
-              }
-            },
-          )}
-          value={value}
-          aria-label="Use aria labels when no actual label is in use"
-        />
+        <EuiFieldText compressed  eadOnly value="LED"/>
+        {/*<EuiSuperSelect*/}
+        {/*  compressed*/}
+        {/*  options={LightingFittingType.map(t => {*/}
+        {/*      if (t.id === subSystem.id) return null*/}
+        {/*      return {*/}
+        {/*        value: t.id,*/}
+        {/*        text: t.name,*/}
+        {/*      }*/}
+        {/*    },*/}
+        {/*  )}*/}
+        {/*  value={{ value: "LED", text: "LED" }}*/}
+        {/*  aria-label="Use aria labels when no actual label is in use"*/}
+        {/*/>*/}
       </EuiFormRow>
       <EuiFormRow label="Number Of Bulbs" className="mt-4">
         <EuiFieldNumber
           compressed
+
           placeholder="Number Of Bulbs"
           aria-label="Number Of Bulbs"
           value={numberOfBulbs}
