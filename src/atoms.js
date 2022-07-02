@@ -383,10 +383,29 @@ export const getTotalIRR = selector({
     let arr = get(totalAnnualSavingState)
     let total = 0;
     for(let i = 0; i < arr.length; i++) {
-      console.log(arr[i].IRR)
       if(!isNaN(arr[i].IRR)) {
         total += arr[i].IRR;
       }
+    }
+    return total
+  },
+});
+
+export const getTotalPercentageOfLEDReplacement = selector({
+  key: 'getTotalPercentageOfLEDReplacement',
+  get: ({get}) => {
+    let arr = get(totalAnnualSavingState)
+    let total = 0;
+    let numberOfReplacingBulbs = 0;
+    let numberOfOldBulbs = 0;
+    for(let i = 0; i < arr.length; i++) {
+      if(!isNaN(arr[i].numberOfReplacingBulbs) && !isNaN(arr[i].numberOfOldBulbs)) {
+        numberOfReplacingBulbs += arr[i].numberOfReplacingBulbs;
+        numberOfOldBulbs += arr[i].numberOfOldBulbs;
+      }
+    }
+    if(numberOfOldBulbs > 0) {
+      total = numberOfReplacingBulbs * 100 / numberOfOldBulbs;
     }
     return total
   },

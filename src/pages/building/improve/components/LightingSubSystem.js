@@ -2,17 +2,14 @@
 import {
   EuiAccordion,
   EuiFieldNumber,
+  EuiFieldText,
   EuiFlexGroup,
   EuiFlexItem,
   EuiFormRow,
   EuiText,
-  EuiFieldText,
   EuiTitle,
 } from '@elastic/eui'
-import {
-  getLightingFittingTypeImage,
-  getLightingFittingTypeName,
-} from 'reference-tables/LightingFittingType'
+import { getLightingFittingTypeImage, getLightingFittingTypeName } from 'reference-tables/LightingFittingType'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { calculateEnergyConsumption, formatNumber, replaceItemAtIndex } from 'Utilities'
@@ -20,7 +17,6 @@ import { differenceInCalendarWeeks } from 'date-fns'
 import { useRecoilState } from 'recoil'
 import { totalAnnualSavingState } from 'atoms'
 import { calculateIRRValue } from 'IRR'
-
 
 const Icon = styled.img`
   width: 60px;
@@ -37,13 +33,15 @@ const Item = styled.p`
   //font-size: 0.95em;
 `
 
-const LightingSubSystem = ({ subSystem, value }) => {
+const LightingSubSystem = ({ subSystem }) => {
 
   const [energyConsumption, setEnergyConsumption] = useState(0)
   const [energyCost, setEnergyCost] = useState(0)
   const [emissions, setEmissions] = useState(0)
   const [investmentCost, setInvestmentCost] = useState(0)
   const [simplePayback, setSimplePayback] = useState(0)
+  const [percentageOfLEDReplacement, setPercentageOfLEDReplacement] = useState(0)
+  const [IRR, setIRR] = useState(0)
   const [costPerBulb, setCostPerBulb] = useState()
   const [numberOfBulbs, setNumberOfBulbs] = useState()
   const [wattRatingOfBulb, setWattRatingOfBulb] = useState()
@@ -80,13 +78,16 @@ const LightingSubSystem = ({ subSystem, value }) => {
     const emissionsAvoided = consumption * 0.1
     const investmentCost = numberOfBulbs * costPerBulb
     const simplePayback = investmentCost / costSavings
-    const IRR = calculateIRRValue(-investmentCost, costSavings)
+    const _IRR = calculateIRRValue(-investmentCost, costSavings)
+    const _percentageOfLEDReplacement = numberOfBulbs * 100 / subSystem.numberOfBulbs
 
     setEnergyConsumption(consumption)
     setEnergyCost(costSavings)
     setEmissions(emissionsAvoided)
     setInvestmentCost(investmentCost)
     setSimplePayback(simplePayback)
+    setPercentageOfLEDReplacement(_percentageOfLEDReplacement)
+    setIRR(_IRR)
 
     const index = totalAnnualSaving.findIndex((o) => o.id === subSystem.id)
     const newList = replaceItemAtIndex(totalAnnualSaving, index, {
@@ -97,8 +98,10 @@ const LightingSubSystem = ({ subSystem, value }) => {
       emissionsAvoided: emissionsAvoided,
       investmentCost: investmentCost,
       simplePayback: simplePayback,
-      IRR: IRR,
-      //percentage: percentage
+      IRR: _IRR,
+      percentageOfLEDReplacement: _percentageOfLEDReplacement,
+      numberOfReplacingBulbs: numberOfBulbs,
+      numberOfOldBulbs: subSystem.numberOfBulbs,
     })
 
     setTotalAnnualSavingState(newList)
@@ -206,17 +209,14 @@ const LightingSubSystem = ({ subSystem, value }) => {
           : 0}</span>
         </Item>
         <Item>
-          Internal Rate of Return: <span className="fw-bold text-primary">{investmentCost !== 0 ? formatNumber(
-          calculateIRRValue(-investmentCost, subSystem.energyCost - energyCost), 2) : 0}</span>
+          Internal Rate of Return: <span className="fw-bold text-primary">{IRR}</span>
         </Item>
         <Item>
-          % Light Replacement: <span className="fw-bold text-primary">{investmentCost !== 0 ? formatNumber(
-          numberOfBulbs * 100 / subSystem.numberOfBulbs, 0) : 0}%</span>
-        </Item>
+          % Light Replacement: <span className="fw-bold text-primary">{formatNumber(percentageOfLEDReplacement, 2)}</span></Item>
       </EuiText>
 
       <EuiFormRow label="Replacement Bulb Type" className="mt-4">
-        <EuiFieldText compressed  eadOnly value="LED"/>
+        <EuiFieldText compressed eadOnly value="LED"/>
         {/*<EuiSuperSelect*/}
         {/*  compressed*/}
         {/*  options={LightingFittingType.map(t => {*/}
@@ -234,7 +234,6 @@ const LightingSubSystem = ({ subSystem, value }) => {
       <EuiFormRow label="Number Of Bulbs" className="mt-4">
         <EuiFieldNumber
           compressed
-
           placeholder="Number Of Bulbs"
           aria-label="Number Of Bulbs"
           value={numberOfBulbs}
@@ -292,7 +291,7 @@ const LightingSubSystem = ({ subSystem, value }) => {
 
     </EuiAccordion>
 
-  )
+)
 }
 
 export default LightingSubSystem

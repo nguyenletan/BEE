@@ -18,7 +18,7 @@ import LightingSubSystem from 'pages/building/improve/components/LightingSubSyst
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import {
   getTotalInvestmentCost,
-  getTotalIRR,
+  getTotalIRR, getTotalPercentageOfLEDReplacement,
   getTotalSimplePayback,
   getTotalValueAnnualEnergySavings,
   totalAnnualSavingState,
@@ -40,14 +40,14 @@ const HeaderGroupButton = styled.div`
 
 const PopupIcon = styled.img`
   color: var(--bs-primary);
-  //margin-right: 2rem;
+  margin-right: 2rem;
   width: 40px;
 
 `
 
 const PopupValueWrapper = styled.div`
-  //width: 150px;
-  //margin-right: 1rem;
+  width: 150px;
+  margin-right: 1rem;
 `
 
 const LI = styled.li`
@@ -55,11 +55,11 @@ const LI = styled.li`
   list-style-type: none;
 `
 
-// const PopupValue = styled.span`
-//   font-size: 2.75rem;
-//   color: var(--bs-primary);
-//   vertical-align: text-top;
-// `
+const PopupValue = styled.span`
+  font-size: 2.75rem;
+  color: var(--bs-primary);
+  vertical-align: text-top;
+`
 
 const MeasureName = styled.span`
   font-size: 1rem;
@@ -129,6 +129,7 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
   const getTotalInvestmentCostSelector = useRecoilValue(getTotalInvestmentCost)
   const getTotalSimplePaybackSelector = useRecoilValue(getTotalSimplePayback)
   const getTotalIRRSelector = useRecoilValue(getTotalIRR)
+  const getTotalPercentageOfLEDReplacementSelector = useRecoilValue(getTotalPercentageOfLEDReplacement)
   const setAnnualEnergySavingsState = useSetRecoilState(totalAnnualSavingState)
 
   //const [newAnnualLightingSystemEnergyConsumption, setNewAnnualLightingSystemEnergyConsumption] = useState()
@@ -148,6 +149,7 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
             investmentCost: 0,
             simplePayback: 0,
             IRR: 0,
+            percentageOfLEDReplacement: 0,
           })
 
         }
@@ -155,19 +157,6 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
         setLightingSystemInfo(sortBy(r, 'title'))
         getAnnualLightingSystemEnergyConsumptionAPI(id, data.usagePercent).then(r => {
-          // setDetailValue({
-          //   investmentCost: data.investmentCost,
-          //   energyCostSavings: data.energyCostSavings,
-          //   energySavings: valueAnnualEnergySavingsSelector,//data.energySavings,
-          //   paybackPeriod: data.paybackPeriod,
-          //   co2EmissionsAvoided: data.co2EmissionsAvoided,
-          //   internalRateOfReturn: calculateIRRValue(-data.investmentCost, Math.abs(data.energyCostSavings), 20),
-          //   usagePercent: data.usagePercent,
-          //   oldUsagePercent: data.usagePercent,
-          //   newAnnualLightingSystemEnergyConsumption: +r.toFixed(2),
-          // })
-          //setValue(data.usagePercent)
-
           setIsLoading(false)
         })
       })
@@ -209,10 +198,10 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
           {isLoading
             ? <><ImprovementMeasureSkeleton/></>
             : <div className="d-flex">
-              <div className="d-flex flex-column my-3 align-items-center">
+              <div className="d-flex my-3">
                 <PopupIcon src={icon} alt={measures}/>
                 <PopupValueWrapper className="d-flex flex-column justify-content-start align-items-start mt-2 text-center">
-                  {/*<PopupValue>{value}%</PopupValue>*/}
+                  <PopupValue>{getTotalPercentageOfLEDReplacementSelector}%</PopupValue>
                   <MeasureName>{t(measures)}</MeasureName>
                 </PopupValueWrapper>
               </div>
