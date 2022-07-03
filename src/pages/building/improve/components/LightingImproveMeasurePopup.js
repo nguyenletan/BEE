@@ -15,7 +15,7 @@ import ImprovementMeasureSkeleton from 'pages/building/improve/components/Improv
 import { getLightingSystemByBuildingId } from 'api/LightingAPI'
 
 import LightingSubSystem from 'pages/building/improve/components/LightingSubSystem'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   getTotalInvestmentCost,
   getTotalIRR, getTotalPercentageOfLEDReplacement,
@@ -130,30 +130,32 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
   const getTotalSimplePaybackSelector = useRecoilValue(getTotalSimplePayback)
   const getTotalIRRSelector = useRecoilValue(getTotalIRR)
   const getTotalPercentageOfLEDReplacementSelector = useRecoilValue(getTotalPercentageOfLEDReplacement)
-  const setAnnualEnergySavingsState = useSetRecoilState(totalAnnualSavingState)
-
-  //const [newAnnualLightingSystemEnergyConsumption, setNewAnnualLightingSystemEnergyConsumption] = useState()
+  const [totalAnnualSaving, setAnnualEnergySavingsState] = useRecoilState(totalAnnualSavingState)
 
   const { user } = useAuth()
 
   useEffect(() => {
     if (data !== {}) {
       getLightingSystemInfo(id).then(r => {
-        let temp = []
-        for (let i = 0; i < r.length; i++) {
-          temp.push({
-            id: r[i].id,
-            energySavings: 0,
-            costSavings: 0,
-            emissionsAvoided: 0,
-            investmentCost: 0,
-            simplePayback: 0,
-            IRR: 0,
-            percentageOfLEDReplacement: 0,
-          })
 
+        console.log(totalAnnualSavingState)
+        if(totalAnnualSaving === []) {
+          let temp = []
+          for (let i = 0; i < r.length; i++) {
+            temp.push({
+              id: r[i].id,
+              energySavings: 0,
+              costSavings: 0,
+              emissionsAvoided: 0,
+              investmentCost: 0,
+              simplePayback: 0,
+              IRR: 0,
+              percentageOfLEDReplacement: 0,
+            })
+
+          }
+          setAnnualEnergySavingsState(temp)
         }
-        setAnnualEnergySavingsState(temp)
 
         setLightingSystemInfo(sortBy(r, 'title'))
         getAnnualLightingSystemEnergyConsumptionAPI(id, data.usagePercent).then(r => {

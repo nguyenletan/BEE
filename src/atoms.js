@@ -336,7 +336,7 @@ export const energyPerformanceEndTimeState = atom({
   default: moment(),
 })
 
-export const totalAnnualSavingState = atom({
+export let totalAnnualSavingState = atom({
   key: 'totalAnnualSavingState',
   default: []
 })
