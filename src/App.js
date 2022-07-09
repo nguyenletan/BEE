@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, useLocation } from 'react-router-dom'
 import { useAuth } from 'AuthenticateProvider'
 import FirebaseAuth from './FirebaseAuthenticate'
 import { EuiProvider } from '@elastic/eui'
@@ -42,6 +42,8 @@ function DebugButton () {
 
 function App () {
   const { user, loading } = useAuth()
+  const { pathname } = useLocation()
+
 
   let theme = createTheme({
     palette: {
@@ -63,7 +65,12 @@ function App () {
   theme = responsiveFontSizes(theme)
 
   if (loading) return null
-  if (!user) return <FirebaseAuth/>
+
+  // const noAuthList = ['/iframe']
+
+  if (!pathname.includes('/iframe') && !user) {
+    return <FirebaseAuth/>
+  }
 
   return (
     <ThemeProvider theme={theme}>
