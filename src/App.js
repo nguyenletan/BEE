@@ -14,6 +14,7 @@ import TermOfService from './pages/TermsOfService'
 import AddingBuilding from './pages/adding-building/AddingBuilding'
 import { RecoilRoot, useRecoilCallback, useRecoilSnapshot } from 'recoil'
 import { useEffect } from 'react'
+import IFrame from 'iframes/IFrame'
 
 function DebugObserver () {
   const snapshot = useRecoilSnapshot()
@@ -79,6 +80,7 @@ function App () {
                 <Route path="/building/:id" component={Building}/>
                 <Route path="/adding-building" component={AddingBuilding}/>
                 <Route path="/editing-building/:id" component={AddingBuilding}/>
+                <Route path="/iframe" component={IFrame}/>
               </Switch>
             </Router>
             <DebugButton/>
