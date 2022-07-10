@@ -10,6 +10,7 @@ import lightingImg from 'assets/images/lighting.svg'
 import heatingImg from 'assets/images/heating.svg'
 import wallImg from 'assets/images/wall.svg'
 import ImprovementMeasurePopup from 'pages/building/improve/components/ImprovementMeasurePopup'
+import UrlButton from 'components/UrlButton'
 
 const PayBackWrapper = styled.div`
   background-color: #fafafa;
@@ -23,6 +24,7 @@ const PayBackTitle = styled.h4`
   font-size: 1.1rem;
   font-weight: 700;
 `
+
 
 const PayBack = ({ data, setResult }) => {
   const { t, i18n } = useTranslation('improvement')
@@ -202,7 +204,10 @@ const PayBack = ({ data, setResult }) => {
 
   return (
     <PayBackWrapper>
-      <PayBackTitle>{t('Payback')}</PayBackTitle>
+      <div className="d-flex justify-content-between">
+        <PayBackTitle>{t('Payback')}</PayBackTitle>
+        <UrlButton url="improve-payback"/>
+      </div>
       <ResponsiveScatterPlot
         {...commonProps}
         colors={{ scheme: 'set2' }}

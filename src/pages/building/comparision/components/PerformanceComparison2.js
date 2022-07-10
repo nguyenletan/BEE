@@ -470,7 +470,6 @@ const PerformanceComparison2 = () => {
     //console.log(props)
     const { xScale, innerHeight } = props
     const y = innerHeight + 15
-    console.log(xScale('Cooling'))
     const xCooling = xScale('Cooling')
     const xHeating = xScale('Heating')
     const xLighting = xScale('Lighting')
