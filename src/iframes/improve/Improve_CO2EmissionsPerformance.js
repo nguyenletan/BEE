@@ -5,7 +5,7 @@ const ImproveCO2EmissionsPerformance = () => {
   const co2EmissionsPerformance = { current: 'D', improved: 'C' }
 
   return (
-    <CO2EmissionsPerformance improved={co2EmissionsPerformance}/>
+    <CO2EmissionsPerformance improved={co2EmissionsPerformance.improved}/>
   )
 }
 export default ImproveCO2EmissionsPerformance

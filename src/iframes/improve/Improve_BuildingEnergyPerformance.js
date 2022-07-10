@@ -5,7 +5,7 @@ const ImproveBuildingEnergyPerformance = () => {
   const energyPerformance = { current: 'D', improved: 'C' }
 
   return (
-    <BuildingEnergyPerformance improved={energyPerformance}/>
+    <BuildingEnergyPerformance improved={energyPerformance.improved}/>
   )
 }
 export default ImproveBuildingEnergyPerformance
