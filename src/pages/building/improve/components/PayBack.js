@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { ScatterPlot } from '@nivo/scatterplot'
+import { ResponsiveScatterPlot } from '@nivo/scatterplot'
 import { coolingSVG, heatingSVG, lightingSVG, openingsSVG, wallSVG } from 'SvgConstants'
 import { useTranslation } from 'react-i18next'
 import coolingImg from 'assets/images/cooling.svg'
@@ -15,6 +15,8 @@ const PayBackWrapper = styled.div`
   background-color: #fafafa;
   border-radius: 20px;
   padding: 20px;
+  width: 100%;
+  height: 550px
 `
 
 const PayBackTitle = styled.h4`
@@ -60,9 +62,9 @@ const PayBack = ({ data, setResult }) => {
   }, [i18n.language, data])
 
   const commonProps = {
-    width: 790,
-    height: 470,
-    margin: { top: 24, right: 30, bottom: 40, left: 50 },
+    // width: 790,
+    // height: 470,
+    margin: { top: 34, right: 30, bottom: 70, left: 50 },
     nodeSize: 20,
     useMesh: true,
     blendMode: 'multiply',
@@ -143,7 +145,7 @@ const PayBack = ({ data, setResult }) => {
 
   const handleClose = (isChanged, result) => {
 
-    if (isChanged) {
+    if (isChanged && setResult !== undefined) {
       // setPopUpResult({ ...result })]
       setResult({ ...result })
     }
@@ -201,7 +203,7 @@ const PayBack = ({ data, setResult }) => {
   return (
     <PayBackWrapper>
       <PayBackTitle>{t('Payback')}</PayBackTitle>
-      <ScatterPlot
+      <ResponsiveScatterPlot
         {...commonProps}
         colors={{ scheme: 'set2' }}
         nodeSize={32}
