@@ -5,6 +5,7 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import ImproveSubSystemPerformance from 'iframes/improve/Improve_SubSystemPerformance'
 import ImproveBuildingEnergyPerformance from 'iframes/improve/Improve_BuildingEnergyPerformance'
 import ImproveCO2EmissionsPerformance from 'iframes/improve/Improve_CO2EmissionsPerformance'
+import ComparisonPerformanceComparison from 'iframes/comparison/Comparison_PerformanceComparison'
 // import { useAuth } from 'AuthenticateProvider'
 
 
@@ -23,6 +24,9 @@ const Iframe = () => {
       </Route>
       <Route path={`${path}/improve-co2-emission-performance`}>
         <ImproveCO2EmissionsPerformance/>
+      </Route>
+      <Route path={`${path}/comparison-building-subsystem-performance`}>
+        <ComparisonPerformanceComparison/>
       </Route>
       {/*<Redirect to={`/`}/>*/}
     </Switch>
