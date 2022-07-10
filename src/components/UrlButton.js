@@ -19,15 +19,15 @@ const UrlButton = ({url}) => {
   return (
     <>
       {showUrl && <div>
-        <Input value={`${window.location.origin}/iframe/${url}`} inputProps="url" className="me-1"/>
-        <Button type="button" className="btn btn-outline-primary btn-sm" onClick={onClick}>Copy</Button>
+        <Input sx={{ width: '45ch' }} size="small" value={`${window.location.origin}/iframe/${url}`} inputProps="url"/>
+        <Button type="button" className="btn btn-primary btn-sm ms-1" onClick={onClick}>Copy Url</Button>
       </div>
       }
     {!showUrl && <Button
       type="button"
       onClick={onClick}
       className="btn btn-primary btn-sm"
-    >Get Url
+    >Show Url
     </Button>
     }
     </>

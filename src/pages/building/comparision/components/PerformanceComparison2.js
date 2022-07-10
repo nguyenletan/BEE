@@ -27,6 +27,7 @@ import {
   roofSVG,
   wallSVG,
 } from 'SvgConstants'
+import UrlButton from 'components/UrlButton'
 
 const ChartHeader = styled.div`
 
@@ -521,14 +522,15 @@ const PerformanceComparison2 = () => {
       <ChartHeader className="d-flex justify-content-between mb-5 flex-wrap">
         <PerformanceComparisonTitle className="mb-2 mb-md-0">{t(
           'Building Energy - Sub-System Performance')}</PerformanceComparisonTitle>
-
-        <EditConfigurationButton
-          type="button"
-          onClick={onClick}
-          className="btn btn-primary btn-sm"
-        >{t('Edit Comparison')}
-        </EditConfigurationButton>
-
+        <div className="d-flex">
+          <UrlButton url="improve-payback"/>
+          <EditConfigurationButton
+            type="button"
+            onClick={onClick}
+            className="btn btn-primary btn-sm ms-1"
+          >{t('Edit Comparison')}
+          </EditConfigurationButton>
+        </div>
       </ChartHeader>
       <div className="d-flex">
         <div className="me-2">
