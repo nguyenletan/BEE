@@ -523,7 +523,7 @@ const PerformanceComparison2 = () => {
         <PerformanceComparisonTitle className="mb-2 mb-md-0">{t(
           'Building Energy - Sub-System Performance')}</PerformanceComparisonTitle>
         <div className="d-flex">
-          <UrlButton url="comparison-building-subsystem-performance" textWidth='68ch'/>
+          <UrlButton url="comparison-building-subsystem-performance" textWidth='70ch'/>
           <EditConfigurationButton
             type="button"
             onClick={onClick}
