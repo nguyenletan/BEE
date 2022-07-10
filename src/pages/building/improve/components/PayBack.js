@@ -206,7 +206,7 @@ const PayBack = ({ data, setResult }) => {
     <PayBackWrapper>
       <div className="d-flex justify-content-between">
         <PayBackTitle>{t('Payback')}</PayBackTitle>
-        <UrlButton url="improve-payback"/>
+        <UrlButton url="improve-payback" textWidth='45ch'/>
       </div>
       <ResponsiveScatterPlot
         {...commonProps}
