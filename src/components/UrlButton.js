@@ -9,17 +9,19 @@ const Button = styled.button`
   font-size: 0.8rem;
 `
 
-const UrlButton = ({url}) => {
+const UrlButton = ({url, textWidth}) => {
   const [showUrl, setShowUrl] = React.useState(false)
   const onClick = () => {
     navigator.clipboard.writeText(`${window.location.origin}/iframe/${url}`)
     setShowUrl(!showUrl)
   }
 
+  const width = textWidth ? textWidth : '40ch'
+
   return (
     <>
       {showUrl && <div>
-        <Input sx={{ width: '45ch' }} size="small" value={`${window.location.origin}/iframe/${url}`} inputProps="url"/>
+        <Input sx={{ width: width }} size="small" value={`${window.location.origin}/iframe/${url}`} inputProps="url"/>
         <Button type="button" className="btn btn-primary btn-sm ms-1" onClick={onClick}>Copy Url</Button>
       </div>
       }
