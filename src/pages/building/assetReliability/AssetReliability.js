@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import AssetReliabilityMain from './AssetReliabilityMain'
-import { Route, Switch, useRouteMatch } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import IssueDetail from './IssueDetail'
 import { useSetRecoilState } from 'recoil'
 import { isDisplayPerformanceFilterState } from 'atoms'
@@ -231,26 +231,20 @@ const AssetReliability = () => {
     ]
   }
 
-  const { path } = useRouteMatch()
   const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
 
   setIsDisplayPerformanceFilter(false)
 
+  console.log('assetReliablility')
 
   return (
     <AssetReliabilityWrapper>
 
-      <Switch>
-        <Route exact path={`${path}/`}>
-          <AssetReliabilityMain data={data} />
-        </Route>
-        <Route path={`${path}/issue/:id`}>
-          <IssueDetail data={data.listOfPotentialFaults} />
-        </Route>
-        <Route path={`${path}/equipment/:equipmentId/:subBreakdownName`}>
-          <EquipmentAssetReliability />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route exact path="/" element={<AssetReliabilityMain data={data} />} />
+        <Route path="issue/:id" element={<IssueDetail data={data.listOfPotentialFaults} />}/>
+        <Route path="equipment/:equipmentId/:subBreakdownName/*" element={<EquipmentAssetReliability />}/>
+      </Routes>
 
     </AssetReliabilityWrapper>
   )

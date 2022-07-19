@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { getLatLngFromAddress } from 'Utilities'
 import { GoogleMap, Marker, OverlayView } from '@react-google-maps/api'
-import { Redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 
 import { Controller, useForm } from 'react-hook-form'
@@ -49,6 +49,7 @@ const SearchBuilding = () => {
 
   const { t } = useTranslation('buildingInput')
   const { user } = useAuth()
+  const navigate = useNavigate()
   const classes = makeStyles(() => (MaterialFormStyle))()
 
   const [searchValue, setSearchValue] = useState('')
@@ -171,13 +172,11 @@ const SearchBuilding = () => {
     // console.log(generalBuildingInformation)
     setGeneralBuildingInformation({ ...generalBuildingInformation, ...data })
     setAddingBuildingProgressState(5)
-    setIsMovingNext(true)
+    navigate('/adding-building/general-information')
   }
 
   return (
     <>
-      {isMovingNext && <Redirect to="/adding-building/general-information"/>}
-
       <div className="d-flex mt-5 mb-4">
 
         <Title>{t('Search Online')}</Title>

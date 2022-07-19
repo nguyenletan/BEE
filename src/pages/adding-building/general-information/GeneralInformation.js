@@ -6,7 +6,7 @@ import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import cameraImg from '../../../assets/images/camera.jpg'
 import { Controller, useForm } from 'react-hook-form'
 import { SustainabilityRatingScheme } from 'reference-tables/GreenBuildingRatingSystem'
-import { Redirect, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import StepNav from '../step-nav/StepNav'
 import {
@@ -90,7 +90,6 @@ const GeneralInformation = () => {
 
   const classes = makeStyles(() => (MaterialFormStyle))()
 
-  const [isMovingNext, setIsMovingNext] = useState(false)
 
   const {
     control,
@@ -191,6 +190,7 @@ const GeneralInformation = () => {
     SustainabilityRatingScheme[0].ratingLevels)
 
   const { id } = useParams()
+  const navigate = useNavigate()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
   const moveNextUrl = parentUrl + (id ? '/activity' : '/activity')
 
@@ -199,13 +199,11 @@ const GeneralInformation = () => {
     if (!id) {
       setAddingBuildingProgressState(25)
     }
-    setIsMovingNext(true)
+    navigate(moveNextUrl)
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to={moveNextUrl}/>}
-
       <div className="d-flex mt-5 mb-4">
 
         <Title>{t('New Building')}</Title>

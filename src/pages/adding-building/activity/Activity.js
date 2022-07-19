@@ -8,7 +8,7 @@ import SpaceUsageGFA from './SapceUsageGFA'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState } from 'atoms'
-import { Redirect, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { trackingUser } from 'api/UserAPI'
 import { useAuth } from 'AuthenticateProvider'
@@ -24,11 +24,11 @@ const Activity = () => {
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
 
-  const [isMovingNext, setIsMovingNext] = useState(false)
+ // const [isMovingNext, setIsMovingNext] = useState(false)
 
   const { id } = useParams()
-
   const { user } = useAuth()
+  const navigate = useNavigate();
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
   const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/electricity-consumption')
   const { t } = useTranslation('buildingInput')
@@ -45,7 +45,9 @@ const Activity = () => {
     if (!id) {
       setAddingBuildingProgressState(45)
     }
-    setIsMovingNext(true)
+
+    navigate(moveNextUrl, { replace: true });
+   // setIsMovingNext(true)
   }
 
   const {
@@ -63,8 +65,6 @@ const Activity = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext &&
-      <Redirect to={moveNextUrl}/>}
       <div className="d-flex mt-5 mb-4">
 
         <Title>{t('New Building')}</Title>

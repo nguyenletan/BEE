@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import Header from '../../components/Header'
 
-import { BrowserRouter as Router, Route, Switch, useParams, useRouteMatch } from 'react-router-dom'
+import { Route, Routes, useParams } from 'react-router-dom'
 import GeneralInformation from './general-information/GeneralInformation'
 import SearchBuilding from './search-building/SearchBuilding'
 import AskQuestion from './search-building/AskQuestion'
@@ -31,7 +31,7 @@ import {
 export const BuildingInformationContext = React.createContext()
 
 const AddingBuilding = () => {
-  const { path } = useRouteMatch()
+
   const { id } = useParams()
 
   const setBuildingActivity = useSetRecoilState(buildingActivityState)
@@ -77,52 +77,52 @@ const AddingBuilding = () => {
     // eslint-disable-line
   }, [])
 
+  console.log('adding building')
+
   return (
     <>
       <Header/>
 
       <div className="container">
-        <Router>
-          <Switch>
-            <Route path={`${path}/`} component={AskQuestion} exact/>
+          <Routes>
+            <Route path={`/`} element={<AskQuestion/>} exact/>
             <Route
-              path={`${path}/search-building`}
-              component={SearchBuilding}
+              path={`search-building`}
+              element={<SearchBuilding/>}
             />
             <Route
-              path={`${path}/general-information`}
-              component={GeneralInformation}
+              path={`general-information`}
+              element={<GeneralInformation/>}
             />
             <Route
-              path={`${path}/activity`}
-              component={Activity}
+              path={`activity`}
+              element={<Activity/>}
             />
             <Route
-              path={`${path}/electricity-consumption`}
-              component={ElectricityConsumption}
+              path={`electricity-consumption`}
+              element={<ElectricityConsumption/>}
             />
             <Route
-              path={`${path}/hvac`}
-              component={HVAC}
+              path={`hvac`}
+              element={<HVAC/>}
             />
             <Route
-              path={`${path}/lighting`}
-              component={Lighting}
+              path={`lighting`}
+              element={<Lighting/>}
             />
             <Route
-              path={`${path}/envelope-facade`}
-              component={EnvelopFacade}
+              path={`envelope-facade`}
+              element={<EnvelopFacade/>}
             />
             <Route
-              path={`${path}/renewable-energy`}
-              component={RenewableEnergy}
+              path={`renewable-energy`}
+              element={<RenewableEnergy/>}
             />
             <Route
-              path={`${path}/adding-building-successfully`}
-              component={AddingBuildingSuccessfully}
+              path={`adding-building-successfully`}
+              element={<AddingBuildingSuccessfully/>}
             />
-          </Switch>
-        </Router>
+          </Routes>
       </div>
 
     </>

@@ -1,7 +1,5 @@
 import React from 'react'
-//import styled from 'styled-components'
-// import { useParams } from 'react-router'
-import { Route, Switch, useRouteMatch } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import ImproveSubSystemPerformance from 'iframes/improve/Improve_SubSystemPerformance'
 import ImproveBuildingEnergyPerformance from 'iframes/improve/Improve_BuildingEnergyPerformance'
 import ImproveCO2EmissionsPerformance from 'iframes/improve/Improve_CO2EmissionsPerformance'
@@ -13,27 +11,21 @@ import ImprovePayback from 'iframes/improve/Improve_Payback'
 const Iframe = () => {
   // const { id } = useParams()
   // const { user } = useAuth()
-  const { path } = useRouteMatch()
-
+  // const { path } = useRouteMatch()
   return (
-    <Switch>
-      <Route path={`${path}/improve-subsystem-performance`}>
-        <ImproveSubSystemPerformance/>
-      </Route>
-      <Route path={`${path}/improve-building-energy-performance`}>
-        <ImproveBuildingEnergyPerformance/>
-      </Route>
-      <Route path={`${path}/improve-co2-emission-performance`}>
-        <ImproveCO2EmissionsPerformance/>
-      </Route>
-      <Route path={`${path}/comparison-building-subsystem-performance`}>
-        <ComparisonPerformanceComparison/>
-      </Route>
-      <Route path={`${path}/improve-payback`}>
-        <ImprovePayback />
-      </Route>
+    <Routes>
+      <Route path={`improve-subsystem-performance`} element={<ImproveSubSystemPerformance />} />
+
+      <Route path={`improve-building-energy-performance`} element={<ImproveBuildingEnergyPerformance />} />
+
+      <Route path={`improve-co2-emission-performance`} element={<ImproveCO2EmissionsPerformance />} />
+
+      <Route path={`comparison-building-subsystem-performance`} element={<ComparisonPerformanceComparison />} />
+
+      <Route path={`improve-payback`} element={<ImprovePayback />} />
+
       {/*<Redirect to={`/`}/>*/}
-    </Switch>
+    </Routes>
 
   )
 }

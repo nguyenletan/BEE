@@ -32,6 +32,8 @@ const EnergyPerformance = (props) => {
   setIsDisplayPerformanceFilter(true)
   const { user } = useAuth()
 
+  console.log('EnergyPerformance', props)
+
   useEffect(() => {
     async function tracking() {
       const idToken = await user.getIdToken()

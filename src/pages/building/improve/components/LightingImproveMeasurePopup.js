@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useAuth } from 'AuthenticateProvider'
 import { sortBy } from 'lodash'
 import { Col, Container, Modal, Row } from 'react-bootstrap'
-import { XCircleIcon } from '@primer/octicons-react'
+import { LinkExternalIcon, XCircleIcon } from '@primer/octicons-react'
 import { EuiText } from '@elastic/eui'
 import { differenceInCalendarWeeks } from 'date-fns'
 import styled from 'styled-components'
@@ -23,6 +23,7 @@ import {
   getTotalValueAnnualEnergySavings,
   totalAnnualSavingState,
 } from 'atoms'
+import { updateLightingSystemImprovement } from 'api/LightingImproveAPI'
 
 const PopupTitle = styled.h3`
   font-size: 1.35rem;
@@ -138,7 +139,7 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
     if (data !== {}) {
       getLightingSystemInfo(id).then(r => {
 
-        console.log(totalAnnualSavingState)
+        //console.log(totalAnnualSavingState)
         if(totalAnnualSaving === []) {
           let temp = []
           for (let i = 0; i < r.length; i++) {
@@ -175,15 +176,24 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
     return await getLightingSystemByBuildingId(buildingId, idToken)
   }
 
+  const updateLightingSystemImprove = async (data) => {
+    const idToken = await user.getIdToken()
+    return await updateLightingSystemImprovement(data, idToken)
+  }
+
   const subSystemRows = lightingSystemInfo?.map(x => {
     //setAnnualEnergySavingsState([...annualEnergySavingsState, {id: x.id, value: 0}])
 
     return (
-      <LI className="shadow-sm rounded-3 m-2 border border-1 px-2 py-4">
+      <LI className="shadow-sm rounded-3 m-2 border border-1 px-2 py-4" key={x.id}>
         <LightingSubSystem subSystem={x} value={value}/>
       </LI>
     )
   })
+
+  const saveHandle = (e) => {
+   //updateLightingSystemImprove()
+  }
 
   return (
     <Modal show={show} onHide={handleClose} size="xl">
@@ -192,6 +202,9 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
           <div className="d-flex justify-content-between align-items-center">
             <PopupTitle>{t('Improvement Measures')}</PopupTitle>
             <HeaderGroupButton>
+              <HeaderButton className="me-4" onClick={saveHandle}>
+                <LinkExternalIcon size={16} className="me-1"/><span>Save</span>
+              </HeaderButton>
               <HeaderButton className="" onClick={() => { handleClose(isChanged, {}) }}>
                 <XCircleIcon size={16} className="me-1"/><span>{t('Close')}</span>
               </HeaderButton>

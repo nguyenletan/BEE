@@ -11,7 +11,7 @@ import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { makeStyles } from '@mui/styles'
 import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState, envelopFacadeState } from 'atoms'
-import { Redirect, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import RoofType from '../../../reference-tables/RoofType'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from 'AuthenticateProvider'
@@ -26,12 +26,13 @@ const Title = styled.h2`
 const EnvelopFacade = () => {
   const classes = makeStyles(() => (MaterialFormStyle))()
   const { t } = useTranslation(['buildingInput', 'common'])
+  const navigate = useNavigate()
+
+  console.log('envelopFacade')
   const [envelopFacade, setEnvelopFacade] = useRecoilState(envelopFacadeState)
 
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
-
-  const [isMovingNext, setIsMovingNext] = useState(false)
 
   const { handleSubmit, control, setValue } = useForm({
     mode: 'onSubmit',
@@ -60,7 +61,7 @@ const EnvelopFacade = () => {
   const onSubmit = () => {
     // console.log(data)
     setAddingBuildingProgressState(80)
-    setIsMovingNext(true)
+    navigate(moveNextUrl)
   }
 
   const handleChange = (e) => {
@@ -135,8 +136,6 @@ const EnvelopFacade = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext &&
-      <Redirect to={moveNextUrl}/>}
 
       <div className="d-flex mt-5 mb-4">
 

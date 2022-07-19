@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, useRouteMatch } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 
@@ -32,24 +32,24 @@ const SubNav = styled.nav`
 `
 
 const BuildingHistoricalNav = () => {
-  const { url } = useRouteMatch()
+  //const { url } = useMatch()
   const { t } = useTranslation('common')
   return (
     <SubNav className="nav nav-pills flex-column flex-sm-row">
-      <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to={url + '/energy-performance'}>
+      <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to="energy-performance">
         {t('Building Performance')}<i className="bi bi-caret-down-fill"/>
       </NavLink>
       <NavLink
         activeClassName="active" className="flex-sm-fill text-sm-center nav-link"
-        to={url + '/comparison'}
+        to="comparison"
       >{t('Comparison')}
       </NavLink>
       <NavLink
         activeClassName="active" className="flex-sm-fill text-sm-center nav-link"
-        to={url + '/improve'}
+        to="improve"
       >{t('Improve')}
       </NavLink>
-      <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to={url + '/asset-reliability'}>
+      <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to="asset-reliability">
         {t('Asset Reliability')}
       </NavLink>
     </SubNav>

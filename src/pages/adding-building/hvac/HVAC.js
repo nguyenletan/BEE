@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import CoolingSystem from './CoolingSystem'
 import StepNav from '../step-nav/StepNav'
 import styled from 'styled-components'
@@ -8,7 +8,7 @@ import HeatingSystem from './HeatingSystem'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState } from 'atoms'
-import { Redirect, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { trackingUser } from 'api/UserAPI'
 import { useAuth } from 'AuthenticateProvider'
@@ -24,17 +24,6 @@ const Title = styled.h2`
 `
 
 const HVAC = () => {
-  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
-    addingBuildingProgressState)
-
-  const [isMovingNext, setIsMovingNext] = useState(false)
-  const { t } = useTranslation('buildingInput')
-
-  const onSubmit = (data) => {
-    // console.log(data)
-    setAddingBuildingProgressState(65)
-    setIsMovingNext(true)
-  }
 
   const { handleSubmit, control, setValue } = useForm({
     mode: 'onSubmit',
@@ -47,11 +36,24 @@ const HVAC = () => {
     shouldUnregister: false,
   })
 
+  const navigate = useNavigate()
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
 
   const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/lighting')
   const { user } = useAuth()
+
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
+    addingBuildingProgressState)
+
+  const { t } = useTranslation('buildingInput')
+
+  const onSubmit = (data) => {
+    // console.log(data)
+    setAddingBuildingProgressState(65)
+    navigate(moveNextUrl, { replace: true })
+  }
+
   useEffect(() => {
     async function tracking() {
       const idToken = await user.getIdToken()
@@ -62,7 +64,6 @@ const HVAC = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to={moveNextUrl}/>}
 
       <div className="d-flex mt-5 mb-4">
 

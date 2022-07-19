@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ErrorMsg, LoginButton, LoginForm, LoginInput, LoginPage, LoginText, SubTitle, Title } from './LoginStyle'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
@@ -8,6 +8,7 @@ const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const [errorMsg, setErrorMsg] = useState(null)
   const [isLoginSuccessfully, setIsLoginSuccessfully] = useState(false)
+  const navigate = useNavigate()
 
   const onSubmit = data => {
 
@@ -31,7 +32,7 @@ const Login = () => {
   }
 
   if (isLoginSuccessfully) {
-    return <Redirect to='/portfolio' />
+    navigate('/portfolio')
   } else {
     return (
       <LoginPage

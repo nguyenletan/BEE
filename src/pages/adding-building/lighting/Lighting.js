@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import StepNav from '../step-nav/StepNav'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
@@ -15,7 +15,7 @@ import _ from 'lodash'
 
 import LightingSubSystem from './LightingSubSystem'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
-import { Redirect, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from 'AuthenticateProvider'
 import { trackingUser } from 'api/UserAPI'
@@ -56,18 +56,20 @@ const Lighting = () => {
     addingBuildingProgressState)
 
   const { t } = useTranslation('buildingInput')
-
+  const navigate = useNavigate()
+  const { id } = useParams()
+  const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
+  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/envelope-facade')
   const lightingSubSystemListSelector = useRecoilValue(lightingSubSystemListSelectorState)
   const totalWatt = useRecoilValue(totalWattOfLightingSubSystemListState)
   const overallEfficacy = useRecoilValue(totalEfficacyOfLightingSubSystemListState)
 
-  const [isMovingNext, setIsMovingNext] = useState(false)
 
   const { user } = useAuth()
   useEffect(() => {
     async function tracking () {
       const idToken = await user.getIdToken()
-      trackingUser(user.uid, 'Lighting - Adding Building', idToken)
+      await trackingUser(user.uid, 'Lighting - Adding Building', idToken)
     }
 
     tracking()
@@ -91,7 +93,7 @@ const Lighting = () => {
   const onSubmit = () => {
     // console.log(data)
     setAddingBuildingProgressState(75)
-    setIsMovingNext(true)
+    navigate(moveNextUrl)
   }
 
   const { handleSubmit, control, setValue } = useForm({
@@ -106,7 +108,6 @@ const Lighting = () => {
   })
 
   const lis = lightingSubSystemList.map((item, index) =>
-
     <li className="col-12 col-lg-6 col-xl-4 mb-4" key={item.id}>
       <LightingSubSystem data={item}
                          totalWatt={lightingSubSystemListSelector[index]?.totalWatt}
@@ -118,13 +119,8 @@ const Lighting = () => {
     </li>,
   )
 
-  const { id } = useParams()
-  const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
-  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/envelope-facade')
-
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to={moveNextUrl}/>}
       <div className="d-flex mt-5 mb-4">
 
         <Title>{t('New Building')}</Title>

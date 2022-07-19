@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter as Router, Route, Switch, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { useAuth } from 'AuthenticateProvider'
 import FirebaseAuth from './FirebaseAuthenticate'
 import { EuiProvider } from '@elastic/eui'
@@ -44,7 +44,6 @@ function App () {
   const { user, loading } = useAuth()
   const { pathname } = useLocation()
 
-
   let theme = createTheme({
     palette: {
       primary: {
@@ -71,25 +70,23 @@ function App () {
   if (!pathname.includes('/iframe') && !user) {
     return <FirebaseAuth/>
   }
-
+  console.log(pathname)
   return (
     <ThemeProvider theme={theme}>
       <EuiProvider colorMode="light">
         <RecoilRoot>
           <DebugObserver/>
           <div className="App container-fluid gx-0">
-            <Router>
-              <Switch>
-                <Route path="/" component={Portfolio} exact/>
-                <Route path="/register" component={Register}/>
-                <Route path="/terms-of-service" component={TermOfService}/>
-                <Route path="/building" component={Portfolio} exact/>
-                <Route path="/building/:id" component={Building}/>
-                <Route path="/adding-building" component={AddingBuilding}/>
-                <Route path="/editing-building/:id" component={AddingBuilding}/>
-                <Route path="/iframe" component={IFrame}/>
-              </Switch>
-            </Router>
+            <Routes>
+              <Route path="/" element={<Portfolio/>} exact/>
+              <Route path="/register" element={<Register/>}/>
+              <Route path="/terms-of-service" element={<TermOfService/>}/>
+              <Route path="/building" element={<Portfolio/>} exact/>
+              <Route path="/building/:id/*" element={<Building/>}/>
+              <Route path="/adding-building/*" element={<AddingBuilding/>}/>
+              <Route path="/editing-building/:id/*" element={<AddingBuilding/>}/>
+              <Route path="/iframe/*" element={<IFrame/>}/>
+            </Routes>
             <DebugButton/>
             <footer className="mt-5">&nbsp;</footer>
           </div>
