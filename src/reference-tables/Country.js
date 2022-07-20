@@ -14263,10 +14263,6 @@ export const findCountryByCountryCode = (code) => {
 export const findCountryNameByCountryCode = (code, languageCode) => {
   const country = Countries.find(c => c.alpha2Code.toUpperCase() === code.toUpperCase())
 
-  console.log(code)
-  console.log(languageCode)
-  console.log(country)
-
   if(!languageCode || languageCode === 'en') {
     return country.name
   }

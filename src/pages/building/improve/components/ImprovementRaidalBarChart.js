@@ -24,7 +24,6 @@ const ImprovementRaidalBarChart = ({ title, data }) => {
     radialAxisStart: { tickSize: 5, tickPadding: 5, tickRotation: 0 },
     circularAxisOuter: { tickSize: 5, tickPadding: 12, tickRotation: 0 },
     colors: ({ id, data }) => {
-      console.log(data.x)
       if(data.x === 'Min(0%)') {
         return '#d5dfa3'
       }

@@ -70,7 +70,7 @@ function App () {
   if (!pathname.includes('/iframe') && !user) {
     return <FirebaseAuth/>
   }
-  console.log(pathname)
+
   return (
     <ThemeProvider theme={theme}>
       <EuiProvider colorMode="light">

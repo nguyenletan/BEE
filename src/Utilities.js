@@ -173,7 +173,7 @@ export const getPlaceDetail = async (placeId) => {
   await fetch(url, {
     mode: 'cors',
   }).then(response => response.json()).then(data => {
-    console.log(data)
+    //console.log(data)
     placeDetail = data
     return true
   })
@@ -426,7 +426,6 @@ export const calculateAverageSameDayInLast4Week = (
   prev12MonthsElectricityConsumptionsFromHistorizedLogs,
   electricConsumptionsFromHistorizedLogs) => {
 
-  console.log(electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay)
 
   if (index >= 21) {
     return (value + electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay[index - 7].value

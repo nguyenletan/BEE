@@ -53,7 +53,6 @@ const ProjectedPeakDemand = (props) => {
     const idToken = await user.getIdToken()
     // moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'),
     const tmp = await getProjectPeakDemand(equipmentId, 14, idToken)
-    console.log(tmp)
     convertRawDataToChartData(tmp)
   }
 

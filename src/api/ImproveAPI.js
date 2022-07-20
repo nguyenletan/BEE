@@ -45,7 +45,7 @@ export const getAnnualEnergySavings = async (buildingId, percentReplacement, per
     //data: data,
     body: {},
   }).then((response) => {
-    console.log('getAnnualEnergySavings:' + response.data)
+    //console.log('getAnnualEnergySavings:' + response.data)
     result = response.data
     //result = 'Retrieve successfully!'
     //return response.data
@@ -71,7 +71,7 @@ export const getAnnualEnergyCostSavings = async (buildingId, percentReplacement,
     //data: data,
     body: {},
   }).then((response) => {
-    console.log('getAnnualEnergyCostSavings:' + response.data)
+    //console.log('getAnnualEnergyCostSavings:' + response.data)
     result = response.data
     //result = 'Retrieve successfully!'
     //return response.data
@@ -97,7 +97,7 @@ export const getAnnualCarbonEmissionsAvoided = async (buildingId, percentReplace
     //data: data,
     body: {},
   }).then((response) => {
-    console.log('getAnnualCarbonEmissionsAvoided:' + response.data)
+    //console.log('getAnnualCarbonEmissionsAvoided:' + response.data)
     result = response.data
     //result = 'Retrieve successfully!'
     //return response.data
@@ -123,7 +123,7 @@ export const getCostOfImprovement = async (buildingId, percentReplacement, idTok
     //data: data,
     body: {},
   }).then((response) => {
-    console.log('getCostOfImprovement:' + response.data)
+    //console.log('getCostOfImprovement:' + response.data)
     result = response.data
     //result = 'Retrieve successfully!'
     //return response.data
@@ -149,7 +149,7 @@ export const getPayback = async (buildingId, percentReplacement, period, startDa
     //data: data,
     body: {},
   }).then((response) => {
-    console.log('getPayback: ' + response.data)
+    //console.log('getPayback: ' + response.data)
     result = response.data
     //result = 'Retrieve successfully!'
     //return response.data

@@ -12,7 +12,7 @@ export const getLightingSystemByBuildingId = async (buildingId, idToken) => {
     //data: data,
     body: {},
   }).then((response) => {
-    console.log('getLightingSystemByBuildingId: ', response.data)
+    //console.log('getLightingSystemByBuildingId: ', response.data)
     result = response.data
     //result = 'Retrieve successfully!'
     //return response.data

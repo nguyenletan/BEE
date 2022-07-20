@@ -60,14 +60,13 @@ const PotentialSavings = ({ data }) => {
 
   useEffect(() => {
     const tmp = deepClone(data)
-    console.log(totalAnnualSaving)
+
     if (totalAnnualSaving !== []) {
       for (let item of tmp.saving) {
 
         switch (item.title) {
           case 'Annual Energy Savings':
             item.value = formatNumber(valueAnnualEnergySavingsSelector /1000)
-            console.log(item.value)
             break
           case 'Investment Cost':
             item.value = formatNumber(getTotalInvestmentCostSelector /1000)

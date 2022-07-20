@@ -16,7 +16,7 @@ export const createBuilding = async (data, idToken) => {
     data: data,
     body: {},
   }).then((response) => {
-    console.log(response)
+    //console.log(response)
     // result = response
     result = 'Saving successfully!'
   }).catch(error => {
@@ -31,7 +31,7 @@ export const createBuilding = async (data, idToken) => {
 
 export const updateBuilding = async (id, data, idToken) => {
   let result
-  console.log(data)
+  //console.log(data)
   await axios({
     method: 'post',
     url: process.env.REACT_APP_BACKEND_API + '/buildings/edit/' + id,

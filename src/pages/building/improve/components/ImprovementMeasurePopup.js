@@ -197,7 +197,6 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
   const { user } = useAuth()
 
   const getCurrentLightingSybSystem = (lightingSystem) => {
-    console.log(data)
     const LEDdata = _.filter(lightingSystem, {lightingFittingTypeId: 1})
     let _numberOfLEDBulbs =  0;
     let _lumensOfBulb =  0;
@@ -228,7 +227,6 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
   const getImproveFormulasAPI = async (buildingId, percentReplacement) => {
     const idToken = await user.getIdToken()
     // trackingUser(user.uid, 'AssetReliability', idToken)
-    console.log(moment(startDate))
     const _startDate =  moment(startDate).format('YYYY-MM-DD')
     const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
       percentReplacement, period, startDate, idToken)
@@ -252,7 +250,6 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
   const getImproveFormulasAPIFor100Percent = async (buildingId, lightingSystem) => {
     const idToken = await user.getIdToken()
     // trackingUser(user.uid, 'AssetReliability', idToken)
-    console.log(moment(startDate))
 
     if (lightingSystem === null) {
       lightingSystem = lightingSystemInfo
@@ -642,15 +639,12 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
         }
       }
 
-      const totalEfficacy = +(_.sumBy(tmp, (item) => {
-          if(item.lumensOfBulb > 0) {
-            return item.wattRatingOfBulb / item.lumensOfBulb
-          }
-        return 0
-      }).toFixed(2))
-
-      console.log('totalEfficacy:')
-      console.log(totalEfficacy)
+      // const totalEfficacy = +(_.sumBy(tmp, (item) => {
+      //     if(item.lumensOfBulb > 0) {
+      //       return item.wattRatingOfBulb / item.lumensOfBulb
+      //     }
+      //   return 0
+      // }).toFixed(2))
 
       setNumberOfLEDBulbs(Math.round(_newNumberOfLEDBulbs))
       setLightingSystemInfo(_.sortBy(tmp, 'lightingFittingTypeId'))
