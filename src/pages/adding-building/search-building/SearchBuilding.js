@@ -54,8 +54,6 @@ const SearchBuilding = () => {
 
   const [searchValue, setSearchValue] = useState('')
 
-  const [isMovingNext, setIsMovingNext] = useState(false)
-
   const [generalBuildingInformation, setGeneralBuildingInformation] = useRecoilState(
     generalBuildingInformationState)
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(

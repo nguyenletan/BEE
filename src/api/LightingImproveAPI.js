@@ -3,8 +3,8 @@ import axios from 'axios'
 export const updateLightingSystemImprovement = async (data, idToken) => {
   let result
   await axios({
-    method: 'get',
-    url: process.env.REACT_APP_BACKEND_API + `/lighting-system-improvement/update`,
+    method: 'post',
+    url: process.env.REACT_APP_BACKEND_API + `/lighting-system-improvement/`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,

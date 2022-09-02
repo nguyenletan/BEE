@@ -18,7 +18,8 @@ import LightingSubSystem from 'pages/building/improve/components/LightingSubSyst
 import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   getTotalInvestmentCost,
-  getTotalIRR, getTotalPercentageOfLEDReplacement,
+  getTotalIRR,
+  getTotalPercentageOfLEDReplacement,
   getTotalSimplePayback,
   getTotalValueAnnualEnergySavings,
   totalAnnualSavingState,
@@ -140,7 +141,7 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
       getLightingSystemInfo(id).then(r => {
 
         //console.log(totalAnnualSavingState)
-        if(totalAnnualSaving === []) {
+        if (totalAnnualSaving === []) {
           let temp = []
           for (let i = 0; i < r.length; i++) {
             temp.push({
@@ -178,7 +179,10 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
   const updateLightingSystemImprove = async (data) => {
     const idToken = await user.getIdToken()
-    return await updateLightingSystemImprovement(data, idToken)
+    console.log(user.uid)
+    let tmp = data.map(d => { return { userExternalId: user.uid, ...d }})
+    console.log('totalAnnualSaving: ', tmp)
+    return await updateLightingSystemImprovement(tmp, idToken)
   }
 
   const subSystemRows = lightingSystemInfo?.map(x => {
@@ -192,7 +196,8 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
   })
 
   const saveHandle = (e) => {
-   //updateLightingSystemImprove()
+    updateLightingSystemImprove(totalAnnualSaving)
+
   }
 
   return (

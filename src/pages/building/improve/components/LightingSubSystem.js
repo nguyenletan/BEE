@@ -50,7 +50,8 @@ const LightingSubSystem = ({ subSystem }) => {
   const [totalAnnualSaving, setTotalAnnualSavingState] = useRecoilState(totalAnnualSavingState)
 
   useEffect(() => {
-    if (wattRatingOfBulb === undefined || numberOfBulbs === undefined) {
+
+    if (wattRatingOfBulb === undefined || numberOfBulbs === undefined || costPerBulb === undefined) {
       return
     }
 
@@ -101,6 +102,7 @@ const LightingSubSystem = ({ subSystem }) => {
       IRR: _IRR,
       percentageOfLEDReplacement: _percentageOfLEDReplacement,
       numberOfReplacingBulbs: numberOfBulbs,
+      costPerBulb: costPerBulb,
       numberOfOldBulbs: subSystem.numberOfBulbs,
     })
 

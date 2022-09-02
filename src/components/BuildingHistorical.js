@@ -8,16 +8,17 @@ import {
   calculateSameThingLastYear,
   formatNumber,
   getMonthName,
-} from '../Utilities'
+} from 'Utilities'
 import EnergyConsumptionLineChartForGroupByDayOrWeek from './EnergyConsumptionLineChartForGroupByDayOrWeek'
-import { getBreakdownByTime } from '../api/BuildidingAPI'
+import { getBreakdownByTime } from 'api/BuildidingAPI'
 import { useParams } from 'react-router-dom'
-import { useAuth } from '../AuthenticateProvider'
-import { breakdownState, originalConsumptionBreakdownState } from '../atoms'
+import { useAuth } from 'AuthenticateProvider'
+import { breakdownState, originalConsumptionBreakdownState } from 'atoms'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import HistoricalComparison from '../pages/building/components/HistoricalComparison'
 import "../style/context-menu.css"
 import { useTranslation } from 'react-i18next'
+import { EuiAccordion, EuiPanel } from '@elastic/eui';
 
 //Performance please - Reason since we are looking at the Energy, CO2, and Building U-Value and Energy Cost ($) it would be more appropriate.
 // Thanks this is related to the Energy Performance, Comparison, Improve, Asset Reliability section of the Application -
@@ -152,6 +153,8 @@ const BuildingHistorical = (props) => {
 
   const [breakdown, setBreakdown] = useRecoilState(breakdownState)
   const originalConsumptionBreakdown = useRecoilValue(originalConsumptionBreakdownState)
+
+
 
   useEffect(() => {
     if (electricConsumptionsFromHistorizedLogs &&
@@ -336,7 +339,7 @@ const BuildingHistorical = (props) => {
     groupMode: 'group',
     borderRadius: '6px',
     borderColor: { from: 'color', modifiers: [['darker', 2.6]] },
-    padding: 0.39,
+    padding: 0.59,
     labelTextColor: 'white', // 'inherit:lighter(1.4)',
     labelSkipWidth: 0,
     labelSkipHeight: 16,

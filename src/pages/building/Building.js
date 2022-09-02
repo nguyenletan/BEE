@@ -8,7 +8,7 @@ import BuildingInfo from '../../components/BuildingInfo'
 import { useParams } from 'react-router'
 import BuildingHistoricalNav from '../../components/BuildingHistoricalNav'
 import EnergyPerformance from './energyPerformance/EnergyPerformance'
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Comparison from './comparision/Comparison'
 import Improve from './improve/Improve'
 import AssetReliability from './assetReliability/AssetReliability'
@@ -27,7 +27,7 @@ import {
   shortMonthOptions,
 } from 'Utilities'
 import moment from 'moment'
-import { EuiDatePicker, EuiDatePickerRange, EuiFieldNumber, EuiSelect } from '@elastic/eui'
+import { EuiAccordion, EuiDatePicker, EuiDatePickerRange, EuiFieldNumber, EuiPanel, EuiSelect } from '@elastic/eui'
 import BuildingSkeleton from '../../components/BuildingSkeleton'
 import {
   energyPerformanceEndTimeState,
@@ -38,6 +38,7 @@ import {
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import ChartType from './components/ChartType'
 import { useTranslation } from 'react-i18next'
+import BuildingWeatherInformation from 'pages/building/components/BuildingWeatherInformation'
 
 const BuildingWrapper = styled.div`
 
@@ -269,7 +270,7 @@ const Building = () => {
       setOriginalConsumptionBreakdown([...tmp?.consumptionBreakdown])
       setEnergyPerformanceGroupBy(groupBy)
       setGeneralBuildingInformation(tmp)
-
+      console.log(tmp)
       setIsLoading(false)
     }
   }
@@ -362,6 +363,8 @@ const Building = () => {
                   : printDateTime(generalBuildingInformation.prop.createdAt, 'en-GB')}
                 totalOperatingHours={generalBuildingInformation.totalOperatingHours}
               />
+
+              <BuildingWeatherInformation lat={generalBuildingInformation?.prop?.latitude} lon={generalBuildingInformation?.prop?.longitude}/>
 
               <BuildingHistoricalNav/>
 
@@ -544,7 +547,7 @@ const Building = () => {
                 <Route path="asset-reliability/*"
                        element={<AssetReliability data={generalBuildingInformation.energyPerformance}/>}/>
                 {/*<Redirect to={`${path}/energy-performance`}/>*/}
-                <Route path="/" element={<Navigate to="energy-performance" replace />} />
+                <Route path="/" element={<Navigate to="energy-performance" replace/>}/>
               </Routes>
 
             </BuildingWrapper>

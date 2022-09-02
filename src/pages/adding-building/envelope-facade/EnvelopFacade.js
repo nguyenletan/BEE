@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import StepNav from '../step-nav/StepNav'
 import { Controller, useForm } from 'react-hook-form'
 import styled from 'styled-components'
