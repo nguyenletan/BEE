@@ -1,7 +1,3 @@
-import rainIcon from './assets/images/weather/rain.png'
-import sunIcon from './assets/images/weather/sun.png'
-import icyIcon from './assets/images/weather/icy.png'
-
 import clearDay from './assets/images/weather/clear-day.svg'
 import clearNight from './assets/images/weather/clear-night.svg'
 import cloudy from './assets/images/weather/cloudy.svg'
