@@ -52,6 +52,7 @@ const BuildingHistoricalNav = () => {
       <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to="asset-reliability">
         {t('Asset Reliability')}
       </NavLink>
+      <NavLink to="weather" className="flex-sm-fill text-sm-center nav-link" activeClassName="active">Weather Information</NavLink>
     </SubNav>
   )
 }

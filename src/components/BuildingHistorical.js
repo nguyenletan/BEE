@@ -18,7 +18,6 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import HistoricalComparison from '../pages/building/components/HistoricalComparison'
 import "../style/context-menu.css"
 import { useTranslation } from 'react-i18next'
-import { EuiAccordion, EuiPanel } from '@elastic/eui';
 
 //Performance please - Reason since we are looking at the Energy, CO2, and Building U-Value and Energy Cost ($) it would be more appropriate.
 // Thanks this is related to the Energy Performance, Comparison, Improve, Asset Reliability section of the Application -

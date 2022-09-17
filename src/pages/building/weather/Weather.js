@@ -1,0 +1,37 @@
+import { useSetRecoilState } from 'recoil'
+import { isDisplayPerformanceFilterState } from '../../../atoms'
+import { useAuth } from '../../../AuthenticateProvider'
+import { useEffect } from 'react'
+import { trackingUser } from '../../../api/UserAPI'
+import CurrentWeatherInformation from './components/CurrentWeatherInformation'
+import styled from 'styled-components'
+import Full15DayForecastWeather from './components/Full15DayForecastWeather'
+
+const Wrapper = styled.div`
+  margin: 30px 15px 50px 15px;
+`
+
+const Weather = (props) => {
+  const {lat, lon} = props
+  const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
+  setIsDisplayPerformanceFilter(false)
+
+  const { user } = useAuth()
+
+  useEffect(() => {
+    async function tracking () {
+      const idToken = await user.getIdToken()
+      trackingUser(user.uid, 'Improve', idToken)
+    }
+
+    tracking()
+  }, [])
+  return (
+    <Wrapper>
+      <CurrentWeatherInformation lat={lat} lon={lon} />
+      <Full15DayForecastWeather lat={lat} lon={lon}/>
+    </Wrapper>
+  )
+}
+
+export default Weather

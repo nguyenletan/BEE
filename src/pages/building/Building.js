@@ -27,7 +27,7 @@ import {
   shortMonthOptions,
 } from 'Utilities'
 import moment from 'moment'
-import { EuiAccordion, EuiDatePicker, EuiDatePickerRange, EuiFieldNumber, EuiPanel, EuiSelect } from '@elastic/eui'
+import {  EuiDatePicker, EuiDatePickerRange, EuiFieldNumber, EuiSelect } from '@elastic/eui'
 import BuildingSkeleton from '../../components/BuildingSkeleton'
 import {
   energyPerformanceEndTimeState,
@@ -38,7 +38,7 @@ import {
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import ChartType from './components/ChartType'
 import { useTranslation } from 'react-i18next'
-import BuildingWeatherInformation from 'pages/building/components/BuildingWeatherInformation'
+import Weather from './weather/Weather'
 
 const BuildingWrapper = styled.div`
 
@@ -364,8 +364,6 @@ const Building = () => {
                 totalOperatingHours={generalBuildingInformation.totalOperatingHours}
               />
 
-              <BuildingWeatherInformation lat={generalBuildingInformation?.prop?.latitude} lon={generalBuildingInformation?.prop?.longitude}/>
-
               <BuildingHistoricalNav/>
 
               {isDisplayPerformanceFilter && (
@@ -546,6 +544,8 @@ const Building = () => {
                 {/*</Route>*/}
                 <Route path="asset-reliability/*"
                        element={<AssetReliability data={generalBuildingInformation.energyPerformance}/>}/>
+                <Route path="weather/*"
+                       element={<Weather lat={generalBuildingInformation?.prop?.latitude} lon={generalBuildingInformation?.prop?.longitude}/>} />
                 {/*<Redirect to={`${path}/energy-performance`}/>*/}
                 <Route path="/" element={<Navigate to="energy-performance" replace/>}/>
               </Routes>

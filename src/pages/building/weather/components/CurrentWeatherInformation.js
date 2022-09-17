@@ -37,7 +37,7 @@ const Information = styled.p`
   }
 `
 
-const BuildingWeatherInformation = (props) => {
+const CurrentWeatherInformation = (props) => {
   const { lat, lon } = props
 
   const [weatherInfo, setWeatherInfo] = React.useState({})
@@ -57,7 +57,7 @@ const BuildingWeatherInformation = (props) => {
     <div className="d-flex align-items-center">
       {weatherInfo && weatherInfo?.days && weatherInfo?.days.length > 0 && (
         <img className="me-3" src={getWeatherIcon(weatherInfo?.days[0].icon)} alt={weatherInfo?.days[0].icon} width="32px"/>)}
-      <H4 className="font-bold">Weather Information</H4>
+      <H4 className="font-bold">Current Weather</H4>
 
     </div>
   )
@@ -101,4 +101,4 @@ const BuildingWeatherInformation = (props) => {
   )
 }
 
-export default BuildingWeatherInformation
+export default CurrentWeatherInformation
