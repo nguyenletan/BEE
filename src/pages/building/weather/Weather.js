@@ -27,7 +27,7 @@ const Weather = (props) => {
     }
 
     tracking()
-  }, [])
+  }, [user])
   return (
     <Wrapper>
       <CurrentWeatherInformation lat={lat} lon={lon}/>
