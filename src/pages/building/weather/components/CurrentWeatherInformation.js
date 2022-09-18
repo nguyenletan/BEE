@@ -43,12 +43,10 @@ const CurrentWeatherInformation = (props) => {
   const [weatherInfo, setWeatherInfo] = React.useState({})
 
   useEffect(() => {
-    console.log(lat)
 
     if (lat && lon) {
       getTodayWeather(lat, lon).then((res) => {
         setWeatherInfo(res)
-        console.log(res)
       })
     }
   }, [lat, lon])
@@ -64,7 +62,7 @@ const CurrentWeatherInformation = (props) => {
 
   return (
 
-    <EuiAccordion className="mb-5" buttonContent={buttonContent}>
+    <EuiAccordion initialIsOpen={true} className="mb-5" buttonContent={buttonContent}>
       <EuiPanel color="subdued">
         {weatherInfo && weatherInfo?.days && (
           <Wrapper>

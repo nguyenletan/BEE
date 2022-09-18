@@ -28,7 +28,7 @@ export const getTodayWeather = async (lat, lon) => {
 export const get15DayForecastWeather = async (lat, lon) => {
   let result
   let tomorrow = moment().add(1, 'days').format('YYYY-MM-DD')
-  let toDate = moment().add(8, 'days').format('YYYY-MM-DD')
+  let toDate = moment().add(7, 'days').format('YYYY-MM-DD')
 
   await axios({
     method: 'get',
