@@ -358,275 +358,305 @@ const PerformanceComparison2 = () => {
 
     const onSelectBuilding = (e) => {
       if (e.target.checked) {
-        selectedBuildings = [...new Set([...selectedBuildings, e.target.value])]
+        selectedBuildings = [
+          ...new Set([...selectedBuildings, e.target.value])]
       } else {
-        selectedBuildings = selectedBuildings.filter((value) => e.target.value !== value)
+        selectedBuildings = selectedBuildings.filter(
+          (value) => e.target.value !== value)
       }
     }
 
     const onSelectSubSystem = (e) => {
       if (e.target.checked) {
-        selectedSubSystems = [...new Set([...selectedSubSystems, e.target.value])]
+        selectedSubSystems = [
+          ...new Set([...selectedSubSystems, e.target.value])]
       } else {
-        selectedSubSystems = selectedSubSystems.filter((value) => e.target.value !== value)
+        selectedSubSystems = selectedSubSystems.filter(
+          (value) => e.target.value !== value)
       }
     }
 
     const buildingItems = data.map((item, index) => {
       return (
-          <ParameterItem key={item.id}>
-            {/*<FormCheck*/}
-            {/*  type="checkbox" id={'checkbox_building_' + index} label={item.id} onChange={onSelectBuilding}*/}
-            {/*  value={item.id} defaultChecked*/}
-            {/*/>*/}
-            <div className="custom-control custom-checkbox">
-              <input
-                  onChange={onSelectBuilding} type="checkbox" className="custom-control-input me-1"
-                  id={'checkbox_building_' + index} value={item.id} defaultChecked/>
-              <label className="custom-control-label" htmlFor={'checkbox_building_' + index}>
-                {t(item.id)}
-              </label>
-            </div>
-          </ParameterItem>
+        <ParameterItem key={item.id}>
+          {/*<FormCheck*/}
+          {/*  type="checkbox" id={'checkbox_building_' + index} label={item.id} onChange={onSelectBuilding}*/}
+          {/*  value={item.id} defaultChecked*/}
+          {/*/>*/}
+          <div className="custom-control custom-checkbox">
+            <input
+              onChange={onSelectBuilding} type="checkbox"
+              className="custom-control-input me-1"
+              id={'checkbox_building_' + index} value={item.id}
+              defaultChecked/>
+            <label className="custom-control-label"
+                   htmlFor={'checkbox_building_' + index}>
+              {t(item.id)}
+            </label>
+          </div>
+        </ParameterItem>
       )
     })
 
     const subSystemItems = data[0].data.map((item, index) => {
       return (
-          <ParameterItem key={item.id} className="sub-systems">
-            <div className="custom-control custom-checkbox">
-              <input
-                  onChange={onSelectSubSystem} type="checkbox" className="custom-control-input me-1"
-                  id={'checkbox_subsystem_' + index} value={item.x} defaultChecked
-              />
-              <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + index}>
-                <ParameterItemIcon src={getIcon(item.x)} alt={item.x} title={item.x}/>
-                {t(item.x)}
-              </label>
-            </div>
-          </ParameterItem>
+        <ParameterItem key={item.id} className="sub-systems">
+          <div className="custom-control custom-checkbox">
+            <input
+              onChange={onSelectSubSystem} type="checkbox"
+              className="custom-control-input me-1"
+              id={'checkbox_subsystem_' + index} value={item.x}
+              defaultChecked
+            />
+            <label className="custom-control-label"
+                   htmlFor={'checkbox_subsystem_' + index}>
+              <ParameterItemIcon src={getIcon(item.x)} alt={item.x}
+                                 title={item.x}/>
+              {t(item.x)}
+            </label>
+          </div>
+        </ParameterItem>
       )
     })
 
-    const otherMonitoredEquipmentItems = otherMonitoredEquipments.map((item, index) => {
-      return (
+    const otherMonitoredEquipmentItems = otherMonitoredEquipments.map(
+      (item, index) => {
+        return (
           <ParameterItem key={item.id}>
             <div className="custom-control custom-checkbox">
               <input
-                  type="checkbox" className="custom-control-input me-1"
-                  id={'checkbox_otherMonitoredEquipments_' + index}
+                type="checkbox" className="custom-control-input me-1"
+                id={'checkbox_otherMonitoredEquipments_' + index}
               />
               <label
-                  className="custom-control-label"
-                  htmlFor={'checkbox_otherMonitoredEquipments_' + index}
+                className="custom-control-label"
+                htmlFor={'checkbox_otherMonitoredEquipments_' + index}
               >{t(item)}
               </label>
             </div>
           </ParameterItem>
-      )
-    })
+        )
+      })
 
     return (
-        <Modal show={show} onHide={handleClose} size="sm">
-          <Modal.Body>
-            <Container className="mt-4">
-              <PopupTitle>{t('Comparison Parameters')}</PopupTitle>
-              <PopupCategory>
-                <PopupCategoryTitle>{t('Building')}</PopupCategoryTitle>
-                <ParameterList>
-                  {buildingItems}
-                </ParameterList>
-              </PopupCategory>
+      <Modal show={show} onHide={handleClose} size="sm">
+        <Modal.Body>
+          <Container className="mt-4">
+            <PopupTitle>{t('Comparison Parameters')}</PopupTitle>
+            <PopupCategory>
+              <PopupCategoryTitle>{t('Building')}</PopupCategoryTitle>
+              <ParameterList>
+                {buildingItems}
+              </ParameterList>
+            </PopupCategory>
 
-              <PopupCategory>
-                <PopupCategoryTitle>{t('Sub-Systems')}</PopupCategoryTitle>
-                <ParameterList>
-                  {subSystemItems}
-                </ParameterList>
-              </PopupCategory>
+            <PopupCategory>
+              <PopupCategoryTitle>{t('Sub-Systems')}</PopupCategoryTitle>
+              <ParameterList>
+                {subSystemItems}
+              </ParameterList>
+            </PopupCategory>
 
-              <PopupCategory>
-                <PopupCategoryTitle>{t('Other Monitored Equipment')}</PopupCategoryTitle>
-                <ParameterList>
-                  {otherMonitoredEquipmentItems}
-                </ParameterList>
-              </PopupCategory>
+            <PopupCategory>
+              <PopupCategoryTitle>{t(
+                'Other Monitored Equipment')}</PopupCategoryTitle>
+              <ParameterList>
+                {otherMonitoredEquipmentItems}
+              </ParameterList>
+            </PopupCategory>
 
-              <div className="d-flex justify-content-center mb-2 mt-5">
-                <UpdateBtn
-                    className="btn btn-primary btn-sm"
-                    onClick={() => onUpdate(selectedBuildings, selectedSubSystems)}
-                >{t('Update')}
-                </UpdateBtn>
-                <CancelBtn className="btn btn-outline-primary btn-sm" onClick={handleClose}>{t('Cancel')}</CancelBtn>
-              </div>
-            </Container>
-          </Modal.Body>
-        </Modal>
+            <div className="d-flex justify-content-center mb-2 mt-5">
+              <UpdateBtn
+                className="btn btn-primary btn-sm"
+                onClick={() => onUpdate(selectedBuildings,
+                  selectedSubSystems)}
+              >{t('Update')}
+              </UpdateBtn>
+              <CancelBtn className="btn btn-outline-primary btn-sm"
+                         onClick={handleClose}>{t('Cancel')}</CancelBtn>
+            </div>
+          </Container>
+        </Modal.Body>
+      </Modal>
     )
   }
 
   const IconLayer = (props) => {
-    //console.log(props)
     const { xScale, innerHeight } = props
     const y = innerHeight + 15
-    const xCooling = xScale('Cooling')
-    const xHeating = xScale('Heating')
-    const xLighting = xScale('Lighting')
-    const xMechanicalVentilation = xScale('Mechanical Ventilation')
-    const xRoof = xScale('Roof')
-    const xWall = xScale('Wall')
-    const xOpenings = xScale('Openings')
-    const xFloor = xScale('Floor')
-    const xRenewable = xScale('Renewable')
-    const xPlugLoads = xScale('Plug Loads')
+    const xCooling = xScale(t('Cooling'))
+    const xHeating = xScale(t('Heating'))
+    const xLighting = xScale(t('Lighting'))
+    const xMechanicalVentilation = xScale(t('Mechanical Ventilation'))
+    const xRoof = xScale(t('Roof'))
+    const xWall = xScale(t('Wall'))
+    const xOpenings = xScale(t('Openings'))
+    const xFloor = xScale(t('Floor'))
+    const xRenewable = xScale(t('Renewable'))
+    const xPlugLoads = xScale(('Plug Loads'))
     return (
-        <>
-          {(xCooling !== undefined) && <g transform={`translate(${xCooling - 16}, ${y})`}>
+      <>
+        {(xCooling !== undefined) &&
+          <g transform={`translate(${xCooling - 16}, ${y})`}>
             {coolingSVG()}
           </g>}
-          {(xHeating !== undefined) && <g transform={`translate(${xHeating - 8}, ${y})`}>
+        {(xHeating !== undefined) &&
+          <g transform={`translate(${xHeating - 8}, ${y})`}>
             {heatingSVG()}
           </g>}
-          {(xLighting !== undefined) && <g transform={`translate(${xLighting - 12}, ${y})`}>
+        {(xLighting !== undefined) &&
+          <g transform={`translate(${xLighting - 12}, ${y})`}>
             {lightingSVG()}
           </g>}
-          {(xMechanicalVentilation !== undefined) && <g transform={`translate(${xMechanicalVentilation - 18}, ${y})`}>
+        {(xMechanicalVentilation !== undefined) &&
+          <g transform={`translate(${xMechanicalVentilation - 18}, ${y})`}>
             {mechVentSVG()}
           </g>}
-          {(xRoof !== undefined) && <g transform={`translate(${xRoof - 26}, ${y})`}>
+        {(xRoof !== undefined) &&
+          <g transform={`translate(${xRoof - 26}, ${y})`}>
             {roofSVG()}
           </g>}
-          {(xWall !== undefined) && <g transform={`translate(${xWall - 28}, ${y})`}>
+        {(xWall !== undefined) &&
+          <g transform={`translate(${xWall - 28}, ${y})`}>
             {wallSVG()}
           </g>}
-          {(xOpenings !== undefined) && <g transform={`translate(${xOpenings - 28}, ${y})`}>
+        {(xOpenings !== undefined) &&
+          <g transform={`translate(${xOpenings - 28}, ${y})`}>
             {openingsSVG()}
           </g>}
-          {(xFloor !== undefined) && <g transform={`translate(${xFloor - 28}, ${y})`}>
+        {(xFloor !== undefined) &&
+          <g transform={`translate(${xFloor - 28}, ${y})`}>
             {floorSVG()}
           </g>}
-          {(xRenewable !== undefined) && <g transform={`translate(${xRenewable - 20}, ${y})`}>
+        {(xRenewable !== undefined) &&
+          <g transform={`translate(${xRenewable - 20}, ${y})`}>
             {renewableSVG()}
           </g>}
-          {(xPlugLoads !== undefined) && <g transform={`translate(${xPlugLoads - 20}, ${y})`}>
+        {(xPlugLoads !== undefined) &&
+          <g transform={`translate(${xPlugLoads - 20}, ${y})`}>
             {plugLoadSVG()}
           </g>}
-        </>
+      </>
     )
   }
 
   return (
-      <PerformanceComparisonWrapper>
-        <ChartHeader className="d-flex justify-content-between mb-5 flex-wrap">
-          <PerformanceComparisonTitle className="mb-2 mb-md-0">{t(
-              'Building Energy - Sub-System Performance')}</PerformanceComparisonTitle>
-          <div className="d-flex">
-            <EditConfigurationButton
-                type="button"
-                onClick={onClick}
-                className="btn btn-primary btn-sm ms-1"
-            >{t('Edit Comparison')}
-            </EditConfigurationButton>
-          </div>
-        </ChartHeader>
+    <PerformanceComparisonWrapper>
+      <ChartHeader className="d-flex justify-content-between mb-5 flex-wrap">
+        <PerformanceComparisonTitle className="mb-2 mb-md-0">{t(
+          'Building Energy - Sub-System Performance')}</PerformanceComparisonTitle>
         <div className="d-flex">
-          <div className="me-2">
-            <BarBlock width="36px" marginBottom="30px" backgroundColor="#478D58" text="A"/>
-            <BarBlock width="36px" marginBottom="30px" backgroundColor="#63AE62" text="B"/>
-            <BarBlock width="36px" marginBottom="30px" backgroundColor="#AACC72" text="C"/>
-            <BarBlock width="36px" marginBottom="31px" backgroundColor="#F0EA6F" text="D"/>
-            <BarBlock width="36px" marginBottom="31px" backgroundColor="#ECB75F" text="E"/>
-            <BarBlock width="36px" marginBottom="31px" backgroundColor="#DF7F4F" text="F"/>
-            <BarBlock width="36px" backgroundColor="#D94545" text="G"/>
-          </div>
-          <LineChartWrapper>
-            <ResponsiveLine
-                {...commonProperties}
-                curve="monotoneX"
-                data={chartData}
-                useMesh={false}
-                enableSlices={false}
-                enablePoint
-                pointSize={12}
-                //pointColor="#fff"
-                pointBorderWidth={1}
-                enableGridX={false}
-                lineWidth={2}
-                isInteractive={true}
-                layers={[
-                  'grid',
-                  'markers',
-                  'areas',
-                  IconLayer,
-                  'lines',
-                  'slices',
-                  'axes',
-                  'points',
-                  'legends',
-                ]}
-                yScale={
-                  {
-                    type: 'linear',
-                    min: 1,
-                    max: 7,
-                  }
-                }
-                axisLeft={null
-                  // {
-                  //   tickValues: [1, 2, 3, 4, 5, 6, 7],
-                  //   format: value => {
-                  //     const labels = ['G', 'F', 'E', 'D', 'C', 'B', 'A']
-                  //     return labels[value - 1]
-                  //   },
-                  // }
-                }
-                pointBorderColor={
-                  { from: 'serieColor' }
-                }
-                xScale={
-                  { type: 'point' }
-                }
-                axisBottom={{
-                  orient: 'bottom',
-                  tickSize: 6,
-                  tickPadding: 52,
-                  tickRotation: 0,
-                  legend: '',
-                  legendOffset: 36,
-                  legendPosition: 'middle',
-                }}
-                colors={['#AACC72', '#44D7B6', '#478D58']}
-                legends={
-                  [
-                    {
-                      anchor: 'top',
-                      direction: 'row',
-                      justify: false,
-                      translateX: 0,
-                      translateY: -35,
-                      itemWidth: 180,
-                      itemHeight: 20,
-                      itemsSpacing: 4,
-                      symbolSize: 20,
-                      symbolShape: 'circle',
-                      itemDirection: 'left-to-right',
-                      itemTextColor: '#777',
-                      effects: [
-                        {
-                          on: 'hover',
-                          style: {
-                            itemBackground: 'rgba(0, 0, 0, .03)',
-                            itemOpacity: 1,
-                          },
-                        }],
-                    }]
-                }
-            />
-          </LineChartWrapper>
+          <EditConfigurationButton
+            type="button"
+            onClick={onClick}
+            className="btn btn-primary btn-sm ms-1"
+          >{t('Edit Comparison')}
+          </EditConfigurationButton>
         </div>
-        <Popup/>
-      </PerformanceComparisonWrapper>
+      </ChartHeader>
+      <div className="d-flex">
+        <div className="me-2">
+          <BarBlock width="36px" marginBottom="30px" backgroundColor="#478D58"
+                    text="A"/>
+          <BarBlock width="36px" marginBottom="30px" backgroundColor="#63AE62"
+                    text="B"/>
+          <BarBlock width="36px" marginBottom="30px" backgroundColor="#AACC72"
+                    text="C"/>
+          <BarBlock width="36px" marginBottom="31px" backgroundColor="#F0EA6F"
+                    text="D"/>
+          <BarBlock width="36px" marginBottom="31px" backgroundColor="#ECB75F"
+                    text="E"/>
+          <BarBlock width="36px" marginBottom="31px" backgroundColor="#DF7F4F"
+                    text="F"/>
+          <BarBlock width="36px" backgroundColor="#D94545" text="G"/>
+        </div>
+        <LineChartWrapper>
+          <ResponsiveLine
+            {...commonProperties}
+            curve="monotoneX"
+            data={chartData}
+            useMesh={false}
+            enableSlices={false}
+            enablePoint
+            pointSize={12}
+            //pointColor="#fff"
+            pointBorderWidth={1}
+            enableGridX={false}
+            lineWidth={2}
+            isInteractive={true}
+            layers={[
+              'grid',
+              'markers',
+              'areas',
+              IconLayer,
+              'lines',
+              'slices',
+              'axes',
+              'points',
+              'legends',
+            ]}
+            yScale={
+              {
+                type: 'linear',
+                min: 1,
+                max: 7,
+              }
+            }
+            axisLeft={null
+              // {
+              //   tickValues: [1, 2, 3, 4, 5, 6, 7],
+              //   format: value => {
+              //     const labels = ['G', 'F', 'E', 'D', 'C', 'B', 'A']
+              //     return labels[value - 1]
+              //   },
+              // }
+            }
+            pointBorderColor={
+              { from: 'serieColor' }
+            }
+            xScale={
+              { type: 'point' }
+            }
+            axisBottom={{
+              orient: 'bottom',
+              tickSize: 6,
+              tickPadding: 52,
+              tickRotation: 0,
+              legend: '',
+              legendOffset: 36,
+              legendPosition: 'middle',
+            }}
+            colors={['#AACC72', '#44D7B6', '#478D58']}
+            legends={
+              [
+                {
+                  anchor: 'top',
+                  direction: 'row',
+                  justify: false,
+                  translateX: 0,
+                  translateY: -35,
+                  itemWidth: 180,
+                  itemHeight: 20,
+                  itemsSpacing: 4,
+                  symbolSize: 20,
+                  symbolShape: 'circle',
+                  itemDirection: 'left-to-right',
+                  itemTextColor: '#777',
+                  effects: [
+                    {
+                      on: 'hover',
+                      style: {
+                        itemBackground: 'rgba(0, 0, 0, .03)',
+                        itemOpacity: 1,
+                      },
+                    }],
+                }]
+            }
+          />
+        </LineChartWrapper>
+      </div>
+      <Popup/>
+    </PerformanceComparisonWrapper>
   )
 }
 
