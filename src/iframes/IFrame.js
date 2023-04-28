@@ -5,6 +5,8 @@ import ImproveBuildingEnergyPerformance from 'iframes/improve/Improve_BuildingEn
 import ImproveCO2EmissionsPerformance from 'iframes/improve/Improve_CO2EmissionsPerformance'
 import ComparisonPerformanceComparison from 'iframes/comparison/Comparison_PerformanceComparison'
 import ImprovePayback from 'iframes/improve/Improve_Payback'
+import ComparisonSubSystemPerformance
+  from './comparison/Comparison_SubSystemPerformance'
 // import { useAuth } from 'AuthenticateProvider'
 
 
@@ -21,6 +23,10 @@ const Iframe = () => {
       <Route path={`improve-co2-emission-performance`} element={<ImproveCO2EmissionsPerformance />} />
 
       <Route path={`comparison-building-subsystem-performance`} element={<ComparisonPerformanceComparison />} />
+
+
+      <Route path={`comparison-subsystem-performance`} element={<ComparisonSubSystemPerformance />} />
+
 
       <Route path={`improve-payback`} element={<ImprovePayback />} />
 

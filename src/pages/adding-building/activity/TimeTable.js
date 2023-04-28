@@ -6,8 +6,11 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { buildingActivityState } from 'atoms'
 import { replaceItemAtIndex } from 'Utilities'
 import { useTranslation } from 'react-i18next'
-import { LocalizationProvider, TimePicker } from '@mui/lab'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+
 
 const Header = styled.div`
   margin-bottom: 20px;
@@ -65,7 +68,7 @@ const Row = ({ data, control, setValue }) => {
             field: { onChange },
             fieldState: { error },
           }) => (
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
               <TimePicker
                 variant="inline"
                 margin="normal"
@@ -101,7 +104,7 @@ const Row = ({ data, control, setValue }) => {
             field: { onChange },
             fieldState: { error },
           }) => (
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
               <TimePicker
                 variant="inline"
                 margin="normal"

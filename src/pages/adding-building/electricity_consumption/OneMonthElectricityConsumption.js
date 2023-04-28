@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import 'date-fns'
-import { DatePicker, LocalizationProvider } from '@mui/lab'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import RemoveIcon from '@mui/icons-material/Remove'
 import { Input, Grid, FormHelperText, TextField } from '@mui/material'
 import { useRecoilState } from 'recoil'
@@ -11,7 +11,9 @@ import { removeItemAtIndex, replaceItemAtIndex } from 'Utilities'
 import { useTranslation } from 'react-i18next'
 import de from "date-fns/locale/de";
 import enGB from "date-fns/locale/en-GB";
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs'
 
 const Subtraction = styled(RemoveIcon)`
   cursor: pointer;
@@ -20,7 +22,7 @@ const Subtraction = styled(RemoveIcon)`
 
 const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
 
-  const [selectedDate, setSelectedDate] = React.useState(`${data.year}/${data.month + 1}/01`,
+  const [selectedDate, setSelectedDate] = React.useState(dayjs(`${data.year}/${data.month + 1}/01`),
     // new Date("2014-08-18T21:11:54")
   )
   const { t, i18n } = useTranslation('buildingInput')
@@ -36,8 +38,7 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
   }
 
   const onDateChange = (date) => {
-
-    setSelectedDate(date)
+    setSelectedDate(dayjs(`${data.year}/${data.month + 1}/01`))
     const index = electricityConsumptionList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(electricityConsumptionList, index, {
       ...data,
@@ -86,12 +87,11 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
             field: { onChange },
             fieldState: { error },
           }) => (
-            <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={locale}>
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={locale}>
               <Grid container justifyContent="flex-start">
                 <DatePicker
-                  variant="inline"
-                  openTo="year"
                   views={['year', 'month']}
+                  format={'MMM/YYYY'}
                   value={selectedDate}
                   error={!!error}
                   helperText={error ? error.message : null}

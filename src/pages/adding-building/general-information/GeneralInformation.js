@@ -20,9 +20,8 @@ import {
   TextField,
   Grid,
 } from '@mui/material'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Countries from '../../../reference-tables/Country'
 import UseType from '../../../reference-tables/UseType'
 import { useRecoilState } from 'recoil'
@@ -33,6 +32,9 @@ import Period from '../../../reference-tables/Period'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from 'AuthenticateProvider'
 import { trackingUser } from 'api/UserAPI'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs'
 
 const UploadImage = styled.div`
   width: 400px;
@@ -68,7 +70,7 @@ const GeneralInformation = () => {
 
   const [latestYearForRefurbishmentOrExtension, setLatestYearForRefurbishmentOrExtension] = React.useState(
     generalBuildingInformation.latestYearForRefurbishmentOrExtension
-      ? `${generalBuildingInformation.latestYearForRefurbishmentOrExtension}/01/01`
+      ? dayjs(`${generalBuildingInformation.latestYearForRefurbishmentOrExtension}/01/01`)
       : null,
     // new Date("2014-08-18T21:11:54")
   )
@@ -81,10 +83,10 @@ const GeneralInformation = () => {
   }
 
   const onLatestYearForRefurbishmentOrExtensionChange = (date) => {
-    setLatestYearForRefurbishmentOrExtension(date)
+    setLatestYearForRefurbishmentOrExtension(dayjs(`${date.year()}/01/01`))
     setGeneralBuildingInformation({
       ...generalBuildingInformation,
-      latestYearForRefurbishmentOrExtension: date.getFullYear(),
+      latestYearForRefurbishmentOrExtension: date.year(),
     })
   }
 
@@ -918,7 +920,7 @@ const GeneralInformation = () => {
 
 
             {generalBuildingInformation.hasMajorRefurbishmentOrExtensionsDone === true && (
-              <div className="col-12 col-lg-6 d-flex justify-content-start mb-3">
+              <div className="col-12 col-lg-6 d-flex justify-content-start mb-8">
                 <Controller
                   name="latestYearForRefurbishmentOrExtension"
                   control={control}
@@ -928,11 +930,11 @@ const GeneralInformation = () => {
                   }) => (
                     <FormControl className={classes.formControl}>
                       <label className={error && 'text-danger'}>{t('Latest Year for Refurbishment or Extension')}</label>
-                      <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <Grid container justifyContent="flex-start">
                           <DatePicker
-                            maxDate={Date()}
-                            openTo="year"
+                            maxDate={dayjs()}
+
                             views={['year']}
                             value={latestYearForRefurbishmentOrExtension}
                             onChange={(date) => {

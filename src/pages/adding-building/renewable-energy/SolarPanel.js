@@ -194,7 +194,7 @@ const SolarPanel = ({ data, control, setValue }) => {
   useEffect(() => {
     setValue(`installedCapacity${data.id}`, data.installedCapacity, {shouldValidate: true})
     setValue(`trackingTypeId${data.id}`, data.trackingTypeId, {shouldValidate: true})
-    setValue(`pv-tech-choice-label${data.id}`, data.pvTechChoiceId, {shouldValidate: true})
+    setValue(`pvTechChoiceId${data.id}`, data.pvTechChoiceId, {shouldValidate: true})
     setValue(`mountingTypeId${data.id}`, data.mountingTypeId, {shouldValidate: true})
   }, [data.id, data.installedCapacity, data.mountingTypeId, data.pvTechChoiceId, data.trackingTypeId, setValue])
 

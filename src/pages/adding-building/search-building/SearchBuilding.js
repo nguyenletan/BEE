@@ -15,7 +15,11 @@ import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import StepNav from '../step-nav/StepNav'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
-import { addingBuildingProgressState, generalBuildingInformationState } from 'atoms'
+import {
+  addingBuildingProgressState,
+  defaultGeneralBuildingInformationState,
+  generalBuildingInformationState,
+} from 'atoms'
 import { useTranslation } from 'react-i18next'
 import { trackingUser } from 'api/UserAPI'
 import { useAuth } from 'AuthenticateProvider'
@@ -58,6 +62,8 @@ const SearchBuilding = () => {
     generalBuildingInformationState)
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
+
+
 
   const [isShowTheMap, setIsShowTheMap] = useState(false)
 
