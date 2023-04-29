@@ -270,7 +270,6 @@ const Building = () => {
       setOriginalConsumptionBreakdown([...tmp?.consumptionBreakdown])
       setEnergyPerformanceGroupBy(groupBy)
       setGeneralBuildingInformation(tmp)
-      console.log(tmp)
       setIsLoading(false)
     }
   }
