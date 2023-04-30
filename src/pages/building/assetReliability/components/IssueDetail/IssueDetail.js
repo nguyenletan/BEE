@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { getImpactTitle, getLikelihoodTitle, getSubSystemIcon } from '../../../../../Utilities'
+import { getImpactTitle, getLikelihoodTitle, getSubSystemIcon } from 'Utilities'
 
 const Wrapper = styled.div`
   background-color: #fafafa;
@@ -40,7 +40,7 @@ const Image = styled.img`
 const IssueDetailOverall = ({ data }) => {
   const subSystemIconObj = getSubSystemIcon(data.subSystem)
 
-  console.log(subSystemIconObj)
+  //console.log(subSystemIconObj)
 
   return (
     <Wrapper>

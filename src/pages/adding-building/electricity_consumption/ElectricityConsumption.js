@@ -1,17 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import _ from 'lodash'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
 
-import AddIcon from '@material-ui/icons/Add'
+import {Add} from '@mui/icons-material'
 import StepNav from '../step-nav/StepNav'
 import OneMonthElectricityConsumption from './OneMonthElectricityConsumption'
 
 import { addingBuildingProgressState, electricityConsumptionListState } from 'atoms'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
-import { Redirect, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { getPrevMonthYear } from 'Utilities'
 import { useTranslation } from 'react-i18next'
 import { trackingUser } from 'api/UserAPI'
@@ -43,7 +43,7 @@ const UL = styled.ul`
   padding: 0;
 `
 
-const Adding = styled(AddIcon)`
+const Adding = styled(Add)`
   cursor: pointer;
   color: var(--bs-primary);
 `
@@ -52,12 +52,17 @@ const ElectricityConsumption = () => {
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
   const { t } = useTranslation('buildingInput')
-  const [isMovingNext, setIsMovingNext] = useState(false)
+
+  const { id } = useParams()
+  const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
+  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/hvac')
+  const { user } = useAuth()
+  const navigate = useNavigate()
 
   const onSubmit = (data) => {
     // console.log(data)
     setAddingBuildingProgressState(55)
-    setIsMovingNext(true)
+    navigate(moveNextUrl)
   }
 
   const {
@@ -112,10 +117,6 @@ const ElectricityConsumption = () => {
     />,
   )
 
-  const { id } = useParams()
-  const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
-  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/hvac')
-  const { user } = useAuth()
 
   useEffect(() => {
     async function tracking() {
@@ -127,8 +128,6 @@ const ElectricityConsumption = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to={moveNextUrl}/>}
-
       <div className="d-flex mt-5 mb-4">
         <Title>{t('New Building')}</Title>
 

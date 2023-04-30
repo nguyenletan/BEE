@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import StepNav from '../step-nav/StepNav'
 import { useForm } from 'react-hook-form'
@@ -8,7 +8,7 @@ import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState, solarPanelSystemListState } from 'atoms'
 import _ from 'lodash'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
-import { Redirect, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from 'AuthenticateProvider'
 import { trackingUser } from 'api/UserAPI'
@@ -38,13 +38,13 @@ const Ul = styled.ul`
 `
 
 const RenewableEnergy = () => {
+  const navigate = useNavigate();
+
   const [solarSystemList, setSolarSystemList] = useRecoilState(
     solarPanelSystemListState)
 
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
-
-  const [isMovingNext, setIsMovingNext] = useState(false)
 
   const { t } = useTranslation('buildingInput')
 
@@ -68,7 +68,7 @@ const RenewableEnergy = () => {
   const onSubmit = () => {
     // console.log(data)
     setAddingBuildingProgressState(100)
-    setIsMovingNext(true)
+    navigate(parentUrl + '/adding-building-successfully')
   }
 
   const { handleSubmit, control, setValue } = useForm({
@@ -103,8 +103,6 @@ const RenewableEnergy = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext &&
-      <Redirect to={parentUrl + '/adding-building-successfully'}/>}
       <div className="d-flex mt-5 mb-4">
 
         <Title>{t('New Building')}</Title>

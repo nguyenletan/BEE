@@ -1,8 +1,8 @@
 
 const MaterialFormStyle = {
   formControl: {
-    marginBottom: '1.25em',
-    minWidth: '100%'
+    marginBottom: '1.25em !important',
+    minWidth: '100% !important'
   },
   mediumFormControl: {
     marginBottom: '1.25em',

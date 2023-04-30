@@ -167,8 +167,6 @@ const DrillDownDonutChart = (props) => {
   }
 
   const handleClick = (e) => {
-    console.log(e)
-    console.log(data)
     if (e.data?.subBreakdown) {
       setSelectedSubBreakdown(e.id)
       setDataSource(e.data.subBreakdown)

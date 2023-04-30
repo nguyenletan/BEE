@@ -30,11 +30,12 @@ const SubSystemPerformanceWrapper = styled.div`
   //margin-right: 20px;
   //min-height: 500px;
   margin-bottom: 50px;
-  height: 430px;
+  //height: 400px;
   //max-width: 900px;
-  @media (min-width: 768px) {
-    height: max(550px, calc(100vw / 3.2));
-  }
+  height: max(550px, calc(100vw / 3.2));
+  //@media (min-width: 768px) {
+  //  height: max(550px, calc(100vw / 3.2));
+  //}
 `
 
 const SubSystemPerformance = ({ data }) => {

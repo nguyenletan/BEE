@@ -5,14 +5,14 @@ import { useTranslation } from 'react-i18next'
 
 const BuildingBlock = ({ data }) => {
 
-  const [address, setAddress] = useState();
+  const [address, setAddress] = useState('');
   const { i18n } = useTranslation();
 
   useEffect(()=> {
     if(i18n.language === 'de') {
-      setAddress(data.streetName + ' ' + data.streetNumber)
+      setAddress(`${data.streetName} ${data.streetNumber}`)
     } else {
-      setAddress(data.streetNumber + ' ' + data.streetName)
+      setAddress(`${data.streetNumber} ${data.streetName}`)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, i18n.language])

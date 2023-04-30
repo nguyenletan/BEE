@@ -6,7 +6,7 @@ import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import cameraImg from '../../../assets/images/camera.jpg'
 import { Controller, useForm } from 'react-hook-form'
 import { SustainabilityRatingScheme } from 'reference-tables/GreenBuildingRatingSystem'
-import { Redirect, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import StepNav from '../step-nav/StepNav'
 import {
@@ -18,20 +18,23 @@ import {
   MenuItem,
   Select,
   TextField,
-} from '@material-ui/core'
+  Grid,
+} from '@mui/material'
+
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import Countries from '../../../reference-tables/Country'
 import UseType from '../../../reference-tables/UseType'
 import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState, generalBuildingInformationState } from 'atoms'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/styles'
 import Orientation from '../../../reference-tables/Orientation'
 import Period from '../../../reference-tables/Period'
-import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
-import DateFnsUtils from '@date-io/date-fns'
-import Grid from '@material-ui/core/Grid'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from 'AuthenticateProvider'
 import { trackingUser } from 'api/UserAPI'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs'
 
 const UploadImage = styled.div`
   width: 400px;
@@ -67,7 +70,7 @@ const GeneralInformation = () => {
 
   const [latestYearForRefurbishmentOrExtension, setLatestYearForRefurbishmentOrExtension] = React.useState(
     generalBuildingInformation.latestYearForRefurbishmentOrExtension
-      ? `${generalBuildingInformation.latestYearForRefurbishmentOrExtension}/01/01`
+      ? dayjs(`${generalBuildingInformation.latestYearForRefurbishmentOrExtension}/01/01`)
       : null,
     // new Date("2014-08-18T21:11:54")
   )
@@ -80,16 +83,15 @@ const GeneralInformation = () => {
   }
 
   const onLatestYearForRefurbishmentOrExtensionChange = (date) => {
-    setLatestYearForRefurbishmentOrExtension(date)
+    setLatestYearForRefurbishmentOrExtension(dayjs(`${date.year()}/01/01`))
     setGeneralBuildingInformation({
       ...generalBuildingInformation,
-      latestYearForRefurbishmentOrExtension: date.getFullYear(),
+      latestYearForRefurbishmentOrExtension: date.year(),
     })
   }
 
   const classes = makeStyles(() => (MaterialFormStyle))()
 
-  const [isMovingNext, setIsMovingNext] = useState(false)
 
   const {
     control,
@@ -190,6 +192,7 @@ const GeneralInformation = () => {
     SustainabilityRatingScheme[0].ratingLevels)
 
   const { id } = useParams()
+  const navigate = useNavigate()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
   const moveNextUrl = parentUrl + (id ? '/activity' : '/activity')
 
@@ -198,13 +201,11 @@ const GeneralInformation = () => {
     if (!id) {
       setAddingBuildingProgressState(25)
     }
-    setIsMovingNext(true)
+    navigate(moveNextUrl)
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to={moveNextUrl}/>}
-
       <div className="d-flex mt-5 mb-4">
 
         <Title>{t('New Building')}</Title>
@@ -236,6 +237,7 @@ const GeneralInformation = () => {
                 }) => (
                   <FormControl className={classes.formControl}>
                     <TextField
+                      variant="standard"
                       label={t('Building Name')}
                       value={generalBuildingInformation?.buildingName}
                       onChange={(e) => {
@@ -270,7 +272,9 @@ const GeneralInformation = () => {
                     <InputLabel id="building-orientation-label" className={error && 'text-danger'}>
                       {t('Building Orientation')}
                     </InputLabel>
-                    <Select labelId="building-orientation-label"
+                    <Select
+                      variant="standard"
+                      labelId="building-orientation-label"
                             value={generalBuildingInformation?.buildingOrientedId}
                             onChange={(e) => {
                               onChange(e)
@@ -300,7 +304,7 @@ const GeneralInformation = () => {
             <div className="col-12 col-lg-6">
 
               <Controller
-                name="street-number"
+                name="streetNumber"
                 control={control}
                 render={({
                   field: { onChange },
@@ -308,6 +312,7 @@ const GeneralInformation = () => {
                 }) => (
                   <FormControl className={classes.formControl}>
                     <TextField type="text"
+                               variant="standard"
                                id="street-number"
                                label={t('Building Number')}
                                value={generalBuildingInformation?.streetNumber}
@@ -328,7 +333,7 @@ const GeneralInformation = () => {
             <div className="col-12 col-lg-6">
 
               <Controller
-                name="street-name"
+                name="streetName"
                 control={control}
                 render={({
                   field: { onChange },
@@ -336,6 +341,7 @@ const GeneralInformation = () => {
                 }) => (
                   <FormControl className={classes.formControl}>
                     <TextField type="text"
+                               variant="standard"
                                id="street-name"
                                label={t('Street Name')}
                                value={generalBuildingInformation?.streetName}
@@ -367,6 +373,7 @@ const GeneralInformation = () => {
                 }) => (
                   <FormControl className={classes.formControl}>
                     <TextField type="text"
+                               variant="standard"
                                label={t('Postal Code')}
                                id="postal-code"
                                value={generalBuildingInformation?.postalCode}
@@ -395,6 +402,7 @@ const GeneralInformation = () => {
                   <FormControl className={classes.formControl}>
                     <InputLabel id="sustainability-rating-scheme-label">{t('Sustainability Rating Scheme')}</InputLabel>
                     <Select id="sustainability-rating-scheme"
+                            variant="standard"
                             labelId="sustainability-rating-scheme-label"
                             value={generalBuildingInformation?.sustainabilityRatingSchemeId || ''}
                             onChange={(e) => {
@@ -429,6 +437,7 @@ const GeneralInformation = () => {
                 }) => (
                   <FormControl className={classes.formControl}>
                     <TextField type="text"
+                               variant="standard"
                                id="city-select"
                                aria-describedby="City"
                                label={t('City')}
@@ -453,6 +462,7 @@ const GeneralInformation = () => {
                     <InputLabel id="sustainability-rating-label">
                       {t('Sustainability Rating')}</InputLabel>
                     <Select id="sustainability-rating-select"
+                            variant="standard"
                             labelId="sustainability-rating-label"
                             value={generalBuildingInformation?.sustainabilityRatingId || ''}
                             onChange={(e) => {
@@ -489,6 +499,7 @@ const GeneralInformation = () => {
                 }) => (
                   <FormControl className={classes.formControl}>
                     <TextField type="text"
+                               variant="standard"
                                id="state"
                                aria-describedby="State"
                                label={t('State')}
@@ -515,6 +526,7 @@ const GeneralInformation = () => {
                 }) => (
                   <FormControl className={classes.formControl}>
                     <TextField type="number"
+                               variant="standard"
                                id="storeys-above-ground"
                                aria-describedby="Storeys Above Ground"
                                label={t('Storeys Above Ground')}
@@ -553,6 +565,7 @@ const GeneralInformation = () => {
                       {t('Country')}
                     </InputLabel>
                     <Select id="country-code"
+                            variant="standard"
                             labelId="country-code-label"
                             value={generalBuildingInformation?.countryCode}
                             onChange={(e) => {
@@ -587,6 +600,7 @@ const GeneralInformation = () => {
                 }) => (
                   <FormControl className={classes.formControl}>
                     <TextField type="number"
+                               variant="standard"
                                id="storeys-below-ground"
                                aria-describedby="Storeys Below Ground"
                                label={t('Storeys Below Ground')}
@@ -623,6 +637,7 @@ const GeneralInformation = () => {
                       {t('Construction Period')}
                     </InputLabel>
                     <Select id="construction-period"
+                            variant="standard"
                             label="construction-period-label"
                             value={generalBuildingInformation?.constructionPeriodValue}
                             onChange={(e) => {
@@ -658,6 +673,7 @@ const GeneralInformation = () => {
                   fieldState: { error },
                 }) => (
                   <TextField type="number"
+                             variant="standard"
                              id="gross-interior-area"
                              aria-describedby="Total Floor Area Gross"
                              label={t('Total Floor Area Gross')}
@@ -686,6 +702,7 @@ const GeneralInformation = () => {
                   <FormControl className={classes.smallFormControl}>
                     <InputLabel id="gross-interior-area-unit-label"/>
                     <Select id="gross-interior-area-unit-select"
+                            variant="standard"
                             labelId="gross-interior-area-unit-label"
                             className={classes.unit}
                             defaultValue="m2"
@@ -720,6 +737,7 @@ const GeneralInformation = () => {
                       {t('Use Type')}
                     </InputLabel>
                     <Select id="use-type"
+                            variant="standard"
                             labelId="use-type-label"
                             value={generalBuildingInformation?.useTypeId}
                             onChange={(e) => {
@@ -755,6 +773,7 @@ const GeneralInformation = () => {
                 }) => (
 
                   <TextField type="number"
+                             variant="standard"
                              id="net-usable-area"
                              aria-describedby="Net Usable Area"
                              label={t('Net Usable Area')}
@@ -786,6 +805,7 @@ const GeneralInformation = () => {
                   <FormControl className={classes.smallFormControl}>
                     <InputLabel id="net-usable-area-unit-label"/>
                     <Select id="net-usable-area-unit-select"
+                            variant="standard"
                             labelId="net-usable-area-unit-label"
                             className={classes.unit}
                             value={generalBuildingInformation?.netUsableAreaUnit}
@@ -841,8 +861,8 @@ const GeneralInformation = () => {
                   field: { onChange },
                   fieldState: { error },
                 }) => (
-
                   <TextField type="number"
+                             variant="standard"
                              id="avg-internal-floor-to-ceiling-height"
                              aria-describedby="Avg. Internal Floor to Ceiling Height"
                              className={classes.valueUnit}
@@ -874,6 +894,7 @@ const GeneralInformation = () => {
                     <InputLabel
                       id="avg-internal-floor-to-ceiling-height-unit-label"/>
                     <Select
+                      variant="standard"
                       id="avg-internal-floor-to-ceiling-height-unit-select"
                       labelId="avg-internal-floor-to-ceiling-height-unit-label"
                       className={classes.unit}
@@ -899,7 +920,7 @@ const GeneralInformation = () => {
 
 
             {generalBuildingInformation.hasMajorRefurbishmentOrExtensionsDone === true && (
-              <div className="col-12 col-lg-6 d-flex justify-content-start mb-3">
+              <div className="col-12 col-lg-6 d-flex justify-content-start mb-8">
                 <Controller
                   name="latestYearForRefurbishmentOrExtension"
                   control={control}
@@ -909,12 +930,11 @@ const GeneralInformation = () => {
                   }) => (
                     <FormControl className={classes.formControl}>
                       <label className={error && 'text-danger'}>{t('Latest Year for Refurbishment or Extension')}</label>
-                      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <Grid container justifyContent="flex-start">
-                          <KeyboardDatePicker
-                            maxDate={Date()}
-                            variant="inline"
-                            openTo="year"
+                          <DatePicker
+                            maxDate={dayjs()}
+
                             views={['year']}
                             value={latestYearForRefurbishmentOrExtension}
                             onChange={(date) => {
@@ -923,9 +943,9 @@ const GeneralInformation = () => {
                             }}
                             error={!!error}
                             helperText={error ? error.message : null}
-                          />
+                            renderInput={(params) => <TextField  variant="standard" {...params} />}/>
                         </Grid>
-                      </MuiPickersUtilsProvider>
+                      </LocalizationProvider>
                     </FormControl>
                   )}
                   rules={{

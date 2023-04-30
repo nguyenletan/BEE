@@ -640,7 +640,7 @@ const AssetHealth = () => {
       item.id = t(item.id)
       for(let item2 of item.data) {
         item2.x = t(item2.x)
-        console.log(item2.x)
+        //console.log(item2.x)
       }
     }
     selectData(tmp)

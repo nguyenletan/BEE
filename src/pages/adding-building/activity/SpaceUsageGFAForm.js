@@ -4,8 +4,8 @@ import ClimateControlType from '../../../reference-tables/ClimateControlType'
 import { Controller } from 'react-hook-form'
 import FanType from '../../../reference-tables/FanType'
 import { useRecoilState } from 'recoil'
-import { spaceUsageGFAListState } from '../../../atoms'
-import { removeItemAtIndex, replaceItemAtIndex } from '../../../Utilities'
+import { spaceUsageGFAListState } from 'atoms'
+import { removeItemAtIndex, replaceItemAtIndex } from 'Utilities'
 import {
   Checkbox,
   FormControl,
@@ -15,10 +15,10 @@ import {
   MenuItem,
   Select,
   TextField,
-} from '@material-ui/core'
+} from '@mui/material'
 import SpaceUsageType from '../../../reference-tables/SpaceUsageType'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/styles'
 import { useTranslation } from 'react-i18next'
 
 const Wrapper = styled.div`
@@ -163,6 +163,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
           }) => (
             <FormControl className={classes.mediumFormControl}>
               <TextField label={t('Title')}
+                         variant="standard"
                          type="text"
                          value={t(title)}
                          onChange={(e) => {
@@ -196,6 +197,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                 'Space Usage Type')}</InputLabel>
               <Select
                 labelId={`space-usage-type-label${data.id}`}
+                variant="standard"
                 error={!!error}
                 value={spaceUsageType}
                 onChange={(e) => {
@@ -230,6 +232,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
           }) => (
             <FormControl className={classes.formControl}>
               <TextField min={0} max={100}
+                         variant="standard"
                          label={t('% of Total Floor Area (Internal)')}
                          type="number"
                          value={percentage}
@@ -260,6 +263,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                 {t('Climate Control')}
               </InputLabel>
               <Select
+                variant="standard"
                 labelId={`climate-control-label${data.id}`}
                 value={climateControl}
                 error={!!error}
@@ -295,6 +299,7 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                     <InputLabel id={`fan-type-label${data.id}`} className={error && 'text-danger'}>{t(
                       'Fan Type')}</InputLabel>
                     <Select
+                      variant="standard"
                       labelId={`fan-type-label${data.id}`}
                       value={fanTypeId}
                       error={!!error}

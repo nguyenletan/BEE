@@ -6,6 +6,7 @@ import wallImg from './assets/images/wall.svg'
 import mechVentImg from './assets/images/mechanical-ventilation.svg'
 import { addMonths, eachWeekOfInterval, lastDayOfMonth, lastDayOfQuarter, startOfQuarter } from 'date-fns'
 import moment from 'moment'
+import IRR from 'IRR'
 
 export const getCurrentColor = (type) => {
   switch (type) {
@@ -158,7 +159,6 @@ export const getLatLngFromAddress = async (address) => {
   let location = null
   const url = googleMapAPIEndPoint + '?address=' + address + '&key=' + process.env.REACT_APP_GOOGLE_API_KEY
   await fetch(url).then(response => response.json()).then(data => {
-    console.log(data)
     location = data
     return true
   })
@@ -173,7 +173,7 @@ export const getPlaceDetail = async (placeId) => {
   await fetch(url, {
     mode: 'cors',
   }).then(response => response.json()).then(data => {
-    console.log(data)
+    //console.log(data)
     placeDetail = data
     return true
   })
@@ -213,12 +213,10 @@ export const printDateTime = (dateString, localeString) => {
 
 export const formatNumber = (num, decimal = 2, unit = '') => {
   if (num && typeof num === 'number') {
-    return (
-      num.toFixed(decimal) // always two decimal digits
-        .replace('.', ',') // replace decimal point character with ,
-        .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
-      + ' ' + unit
-    ) // use . as a separator
+    return num.toFixed(decimal) // always two decimal digits
+      .replace('.', ',') // replace decimal point character with ,
+      .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+    + ' ' + unit; // use . as a separator
   }
   return '---'
 }
@@ -428,7 +426,6 @@ export const calculateAverageSameDayInLast4Week = (
   prev12MonthsElectricityConsumptionsFromHistorizedLogs,
   electricConsumptionsFromHistorizedLogs) => {
 
-  console.log(electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay)
 
   if (index >= 21) {
     return (value + electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay[index - 7].value
@@ -626,4 +623,46 @@ export const getTheTimeDifference = (datetime1, datetime2, measurement='days') =
 
 export const deepClone = (source) => {
   return JSON.parse(JSON.stringify(source))
+}
+
+export const calculateIRRValue = (firstValue, secondValue, loopTime = 20) => {
+  const IRRvalues = new Array(loopTime - 1)
+  for (let i = 0; i < IRRvalues.length; i++) {
+    IRRvalues[i] = secondValue
+  }
+
+  let internalRateOfReturn = IRR([firstValue, ...IRRvalues])
+  if (internalRateOfReturn !== '#NUM!') {
+    internalRateOfReturn = +(internalRateOfReturn.toFixed(2) * 100)
+  }
+  return internalRateOfReturn
+}
+
+export const calculateEnergyConsumption = (
+  numberOfBulb,
+  wattRatingOfBulb,
+  numberOfWeeksAYear,
+  numberOfDaysUsedPerWeek=6,
+  numberOfHoursUsedPerDay=8) => {
+  return numberOfBulb * wattRatingOfBulb * numberOfDaysUsedPerWeek * numberOfHoursUsedPerDay * numberOfWeeksAYear / 1000
+}
+
+export const calculateEnergyCost = (
+  numberOfBulb,
+  wattRatingOfBulb,
+  numberOfWeeksAYear,
+  numberOfDaysUsedPerWeek=6,
+  numberOfHoursUsedPerDay=8,
+  tariffRate=0.023) => {
+  return calculateEnergyConsumption(numberOfBulb, wattRatingOfBulb, numberOfDaysUsedPerWeek, numberOfHoursUsedPerDay, numberOfWeeksAYear) * tariffRate
+}
+
+export const calculateEmissions = (
+  numberOfBulb,
+  wattRatingOfBulb,
+  numberOfWeeksAYear,
+  numberOfDaysUsedPerWeek=6,
+  numberOfHoursUsedPerDay=8,
+  gridEmissionRate=0.1) => {
+  return calculateEnergyConsumption(numberOfBulb, wattRatingOfBulb, numberOfDaysUsedPerWeek, numberOfHoursUsedPerDay, numberOfWeeksAYear) * gridEmissionRate
 }

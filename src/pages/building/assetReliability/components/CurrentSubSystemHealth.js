@@ -48,7 +48,7 @@ const CurrentSubSystemHealth = ({ data }) => {
     let iconSVG = ''
     let translateX = anchor === 'end' ? -50 : anchor === 'middle' ? -20 : -10
     let translateY = angle < 0 ? -60 : -30
-    console.log(id)
+    //console.log(id)
     switch (id) {
       case 'Cooling':
         iconSVG = coolingSVG()
