@@ -17,7 +17,6 @@ import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
 import {
   addingBuildingProgressState,
-  defaultGeneralBuildingInformationState,
   generalBuildingInformationState,
 } from 'atoms'
 import { useTranslation } from 'react-i18next'

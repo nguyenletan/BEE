@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Controller } from 'react-hook-form'
 import SpaceUsageGFAForm from './SpaceUsageGFAForm'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { spaceUsageGFAListState, totalPercentageOfSpaceUsageGFAListState } from '../../../atoms'
@@ -27,7 +26,7 @@ const UL = styled.ul`
 
 const SpaceUsageGFA = ({ control, setValue}) => {
   const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(spaceUsageGFAListState)
-  const totalPercentageOfSpaceUsageGFAList = useRecoilValue(totalPercentageOfSpaceUsageGFAListState)
+  //const totalPercentageOfSpaceUsageGFAList = useRecoilValue(totalPercentageOfSpaceUsageGFAListState)
   const { t } = useTranslation('buildingInput')
   const onAddSpaceUsageGFA = () => {
     setSpaceUsageGFAList((oldSpaceUsageGFAList) => [
