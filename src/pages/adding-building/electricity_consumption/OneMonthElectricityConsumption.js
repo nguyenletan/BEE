@@ -38,15 +38,20 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
   }
 
   const onDateChange = (date) => {
-    setSelectedDate(dayjs(`${data.year}/${data.month + 1}/01`))
-    const index = electricityConsumptionList.findIndex((o) => o.id === data.id)
-    const newList = replaceItemAtIndex(electricityConsumptionList, index, {
-      ...data,
-      month: date?.getMonth(),
-      year: date?.getFullYear(),
-    })
 
-    setElectricityConsumptionList(newList)
+    if(date) {
+      setSelectedDate(dayjs(`${data.year}/${data.month + 1}/01`))
+      const day = dayjs(date)
+      const index = electricityConsumptionList.findIndex(
+        (o) => o.id === data.id)
+      const newList = replaceItemAtIndex(electricityConsumptionList, index, {
+        ...data,
+        month: day.get('month'),
+        year: day.get('year'),
+      })
+
+      setElectricityConsumptionList(newList)
+    }
   }
 
   const handleChange = (e) => {
