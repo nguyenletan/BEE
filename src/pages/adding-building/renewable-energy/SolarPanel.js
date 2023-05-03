@@ -12,11 +12,11 @@ import {
   Slider,
   TextField,
   Typography,
-} from '@material-ui/core'
-import Grid from '@material-ui/core/Grid'
+  Grid,
+  Select
+} from '@mui/material'
 import { useRecoilState } from 'recoil'
-import { makeStyles } from '@material-ui/core/styles'
-import Select from '@material-ui/core/Select'
+import { makeStyles } from '@mui/styles'
 import { Controller } from 'react-hook-form'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import { removeItemAtIndex, replaceItemAtIndex } from 'Utilities'
@@ -194,7 +194,7 @@ const SolarPanel = ({ data, control, setValue }) => {
   useEffect(() => {
     setValue(`installedCapacity${data.id}`, data.installedCapacity, {shouldValidate: true})
     setValue(`trackingTypeId${data.id}`, data.trackingTypeId, {shouldValidate: true})
-    setValue(`pv-tech-choice-label${data.id}`, data.pvTechChoiceId, {shouldValidate: true})
+    setValue(`pvTechChoiceId${data.id}`, data.pvTechChoiceId, {shouldValidate: true})
     setValue(`mountingTypeId${data.id}`, data.mountingTypeId, {shouldValidate: true})
   }, [data.id, data.installedCapacity, data.mountingTypeId, data.pvTechChoiceId, data.trackingTypeId, setValue])
 
@@ -226,6 +226,7 @@ const SolarPanel = ({ data, control, setValue }) => {
           }) => (
             <FormControl className={classes.formControl}>
               <TextField
+                variant="standard"
                 type="number"
                 label={t("Installed Capacity (kWp)")}
                 name={`installedCapacity`}
@@ -256,6 +257,7 @@ const SolarPanel = ({ data, control, setValue }) => {
             <FormControl className={classes.formControl}>
               <InputLabel id={`tracking-type-label${data.id}`} className={error && 'text-danger'}>{t('Tracking Type')}</InputLabel>
               <Select
+                variant="standard"
                 labelId={`tracking-type-label${data.id}`}
                 name="trackingTypeId"
                 onChange={(e) => {
@@ -462,6 +464,7 @@ const SolarPanel = ({ data, control, setValue }) => {
                 {t('P.V. Panel Type')}
               </InputLabel>
               <Select
+                variant="standard"
                 labelId={`pv-tech-choice-label${data.id}`}
                 name="pvTechChoiceId"
                 value={data.pvTechChoiceId}
@@ -496,6 +499,7 @@ const SolarPanel = ({ data, control, setValue }) => {
                 {t('Mounting Type')}
               </InputLabel>
               <Select
+                variant="standard"
                 labelId={`mounting-type-label${data.id}`}
                 name="mountingTypeId"
                 value={data.mountingTypeId}

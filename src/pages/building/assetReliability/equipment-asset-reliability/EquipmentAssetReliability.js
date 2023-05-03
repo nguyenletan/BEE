@@ -9,7 +9,7 @@ import {
   isDisplayPerformanceFilterState,
 } from 'atoms'
 import { useParams } from 'react-router'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import AlertChart from 'pages/building/assetReliability/equipment-asset-reliability/components/AlertChart'
 import EnergyConsumption from 'pages/building/assetReliability/equipment-asset-reliability/components/EnergyConsumption'
 import EnergyConsumptionPercentage from 'pages/building/assetReliability/equipment-asset-reliability/components/EnergyConsumptionPercentage'
@@ -196,7 +196,7 @@ const EquipmentAssetReliability = () => {
   const [equipment, setEquipment] = useState()
   setIsDisplayPerformanceFilter(false)
   const { equipmentId } = useParams()
-  const history = useHistory()
+  const navigate = useNavigate();
   const { user } = useAuth()
 
   const { t } = useTranslation('equipmentAssetReliability')
@@ -239,7 +239,7 @@ const EquipmentAssetReliability = () => {
         <>
           <Nav aria-label="breadcrumb">
             <ol className="breadcrumb">
-              <BreadcrumbItem onClick={() => history.goBack()}><ArrowLeft color="#87972f" size={28}/></BreadcrumbItem>
+              <BreadcrumbItem onClick={() => navigate(-1)}><ArrowLeft color="#87972f" size={28}/></BreadcrumbItem>
               <BreadcrumbItem className="breadcrumb-item">{t('Equipment')}</BreadcrumbItem>
               <BreadcrumbItem className="breadcrumb-item">{t(subSystemName)}</BreadcrumbItem>
               <BreadcrumbItem className="breadcrumb-item">{t(equipment?.R_EquipmentTypes?.name)}</BreadcrumbItem>
@@ -251,7 +251,7 @@ const EquipmentAssetReliability = () => {
               <h3>{t('Equipment Details')}</h3>
               <EquipmentDetailContent>
                 <div>
-                  <EquipmentPhoto src={equipment?.EquipmentDetail[0]?.imageUrl} alt="Chiller "/>
+                  <EquipmentPhoto src={equipment?.EquipmentDetail[0]?.imageUrl} alt="Chiller"/>
                 </div>
                 <EquipmentDetailInformation>
                   {/*row 1*/}

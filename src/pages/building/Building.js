@@ -8,7 +8,7 @@ import BuildingInfo from '../../components/BuildingInfo'
 import { useParams } from 'react-router'
 import BuildingHistoricalNav from '../../components/BuildingHistoricalNav'
 import EnergyPerformance from './energyPerformance/EnergyPerformance'
-import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Comparison from './comparision/Comparison'
 import Improve from './improve/Improve'
 import AssetReliability from './assetReliability/AssetReliability'
@@ -27,7 +27,7 @@ import {
   shortMonthOptions,
 } from 'Utilities'
 import moment from 'moment'
-import { EuiDatePicker, EuiDatePickerRange, EuiFieldNumber, EuiSelect } from '@elastic/eui'
+import {  EuiDatePicker, EuiDatePickerRange, EuiFieldNumber, EuiSelect } from '@elastic/eui'
 import BuildingSkeleton from '../../components/BuildingSkeleton'
 import {
   energyPerformanceEndTimeState,
@@ -38,6 +38,7 @@ import {
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import ChartType from './components/ChartType'
 import { useTranslation } from 'react-i18next'
+import Weather from './weather/Weather'
 
 const BuildingWrapper = styled.div`
 
@@ -84,9 +85,9 @@ const Building = () => {
   const { user } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
   // const [startTime, setStartTime] = useState(moment().subtract(1, 'y'))
-  const  [startTime, setStartTime] = useRecoilState(energyPerformanceStartTimeState)
+  const [startTime, setStartTime] = useRecoilState(energyPerformanceStartTimeState)
   // const [endTime, setEndTime] = useState(moment())
-  const  [endTime, setEndTime] = useRecoilState(energyPerformanceEndTimeState)
+  const [endTime, setEndTime] = useRecoilState(energyPerformanceEndTimeState)
   const [startDate, setStartDate] = useState(moment().subtract(1, 'y'))
   const [endDate, setEndDate] = useState(moment())
   const [startMonth, setStartMonth] = useState(moment().month() + 1)
@@ -269,7 +270,6 @@ const Building = () => {
       setOriginalConsumptionBreakdown([...tmp?.consumptionBreakdown])
       setEnergyPerformanceGroupBy(groupBy)
       setGeneralBuildingInformation(tmp)
-
       setIsLoading(false)
     }
   }
@@ -319,9 +319,7 @@ const Building = () => {
 
   //const BuildingInfoData = id < 3 ? BuildingInfoDataArray[id - 1] : null
 
-  const { t } = useTranslation('buildingPerformance');
-
-  const { path } = useRouteMatch()
+  const { t } = useTranslation('buildingPerformance')
 
   return (
     <>
@@ -342,9 +340,9 @@ const Building = () => {
                 streetNumber={generalBuildingInformation.prop.streetNumber}
                 streetName={generalBuildingInformation.prop.streetName}
                 address={generalBuildingInformation.prop.streetAddress + ', ' + generalBuildingInformation.prop.city +
-                ', ' +
-                findCountryByCountryCode(generalBuildingInformation.prop.countryCode)?.name + ', ' +
-                generalBuildingInformation.prop.postCode}
+                  ', ' +
+                  findCountryByCountryCode(generalBuildingInformation.prop.countryCode)?.name + ', ' +
+                  generalBuildingInformation.prop.postCode}
                 city={generalBuildingInformation.prop.city}
                 state={generalBuildingInformation.prop.state}
                 postCode={generalBuildingInformation.prop.postCode}
@@ -353,11 +351,11 @@ const Building = () => {
                 tfa={generalBuildingInformation.prop.grossInteriorArea}
                 tfaUnit={generalBuildingInformation.prop.grossInteriorAreaUnit}
                 storey={generalBuildingInformation.prop.storeysAboveGround +
-                generalBuildingInformation.prop.storeysBelowGround}
+                  generalBuildingInformation.prop.storeysBelowGround}
                 constructed={generalBuildingInformation.prop.completionYear + ' - ' +
-                (generalBuildingInformation.prop.completionYear + 10)}
+                  (generalBuildingInformation.prop.completionYear + 10)}
                 greenBuildingRating={generalBuildingInformation.prop.sustainabilityRatingSchemeName + ' - ' +
-                generalBuildingInformation.prop.sustainabilityRatingName}
+                  generalBuildingInformation.prop.sustainabilityRatingName}
                 email={generalBuildingInformation.prop.email}
                 buildingInfoLastEdited={generalBuildingInformation.prop.updatedAt
                   ? printDateTime(generalBuildingInformation.prop.updatedAt, 'en-GB')
@@ -509,8 +507,8 @@ const Building = () => {
                   </div>
                 </FilterWrapper>)}
 
-              <Switch>
-                <Route path={`${path}/energy-performance`}>
+              <Routes>
+                <Route path="energy-performance" element={
                   <EnergyPerformance electricConsumptions={generalBuildingInformation.electricConsumptions}
                                      electricConsumptionsFromHistorizedLogs={generalBuildingInformation.electricConsumptionsFromHistorizedLogs}
                                      prev12MonthsElectricityConsumptionsFromHistorizedLogs={generalBuildingInformation.prev12MonthsElectricityConsumptionsFromHistorizedLogs}
@@ -531,25 +529,25 @@ const Building = () => {
                                      costBreakdown={generalBuildingInformation.costBreakdown}
                                      co2EmissionsBreakdown={generalBuildingInformation.co2EmissionsBreakdown}
                                      incidentalGainsOtherInformation={generalBuildingInformation.incidentalGainsOtherInformation}
-                  />
-                </Route>
-                <Route path={`${path}/comparison`}>
-                  <Comparison data={{ buildingName: generalBuildingInformation.name, id: id }}/>
-                </Route>
-                <Route path={`${path}/improve`}>
-                  <Improve consumptionBreakdown={generalBuildingInformation.consumptionBreakdown}
-                           costBreakdown={generalBuildingInformation.consumptionBreakdown}
-                           co2EmissionsBreakdown={generalBuildingInformation.consumptionBreakdown}
-                           data={generalBuildingInformation.consumptionBreakdown}/>
-                </Route>
+                  />}/>
+                <Route path="comparison"
+                       element={<Comparison data={{ buildingName: generalBuildingInformation.name, id: id }}/>}/>
+                <Route path="improve"
+                       element={<Improve consumptionBreakdown={generalBuildingInformation.consumptionBreakdown}
+                                         costBreakdown={generalBuildingInformation.consumptionBreakdown}
+                                         co2EmissionsBreakdown={generalBuildingInformation.consumptionBreakdown}
+                                         data={generalBuildingInformation.consumptionBreakdown}/>}/>
+
                 {/*<Route path={`${path}/equipment-asset-reliability/:equipmentId/:subBreakdownName`}>*/}
                 {/*  <EquipmentAssetReliability />*/}
                 {/*</Route>*/}
-                <Route path={`${path}/asset-reliability`}>
-                  <AssetReliability data={generalBuildingInformation.energyPerformance}/>
-                </Route>
-                <Redirect to={`${path}/energy-performance`}/>
-              </Switch>
+                <Route path="asset-reliability/*"
+                       element={<AssetReliability data={generalBuildingInformation.energyPerformance}/>}/>
+                <Route path="weather/*"
+                       element={<Weather lat={generalBuildingInformation?.prop?.latitude} lon={generalBuildingInformation?.prop?.longitude}/>} />
+                {/*<Redirect to={`${path}/energy-performance`}/>*/}
+                <Route path="/" element={<Navigate to="energy-performance" replace/>}/>
+              </Routes>
 
             </BuildingWrapper>
           )}

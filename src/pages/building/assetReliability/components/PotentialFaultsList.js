@@ -6,7 +6,7 @@ import lightingImg from '../../../../assets/images/lighting.svg'
 import heatingImg from '../../../../assets/images/heating.svg'
 import wallImg from '../../../../assets/images/wall.svg'
 import mechVentImg from '../../../../assets/images/mechanical-ventilation.svg'
-import { Link, useRouteMatch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 const ImprovementMeasuresWrapper = styled.div`
@@ -83,7 +83,6 @@ const InfoButton = styled.button`
 `
 
 const PotentialFaultList = ({ data }) => {
-  const { url } = useRouteMatch()
   const { t } = useTranslation('assetReliability')
   const rows = data.map(item => {
     let imgSrc
@@ -128,7 +127,7 @@ const PotentialFaultList = ({ data }) => {
         <td width='12%'>{item.sparePartsLeadTime}</td>
         <td width='15%'>{item.estimatedTimeToFailure}</td>
         <td width='10%'>
-          <InfoButton className='btn btn-primary btn-sm'><Link to={url + '/issue/' + item.id}>Info</Link></InfoButton>
+          <InfoButton className='btn btn-primary btn-sm'><Link to={'issue/' + item.id}>Info</Link></InfoButton>
         </td>
       </tr>
     )

@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import Progress from './Progress'
-import { Button } from '@material-ui/core'
-import { ArrowBack, ArrowForward, DoneAll, Save } from '@material-ui/icons'
+import { Button } from '@mui/material'
+import { ArrowBack, ArrowForward, DoneAll, Save } from '@mui/icons-material'
 import { Link, useParams } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import {
@@ -112,7 +112,7 @@ const BackNextGroupButton = ({
             {backLink && <Link to={backLink}>
               <Button
                 startIcon={<ArrowBack/>} variant="contained"
-                color="default"
+                color="primary"
                 className="me-2"
               >{t('Back')}
               </Button>

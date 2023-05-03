@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Controller } from 'react-hook-form'
 import SpaceUsageGFAForm from './SpaceUsageGFAForm'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { spaceUsageGFAListState, totalPercentageOfSpaceUsageGFAListState } from '../../../atoms'
@@ -27,7 +26,7 @@ const UL = styled.ul`
 
 const SpaceUsageGFA = ({ control, setValue}) => {
   const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(spaceUsageGFAListState)
-  const totalPercentageOfSpaceUsageGFAList = useRecoilValue(totalPercentageOfSpaceUsageGFAListState)
+  //const totalPercentageOfSpaceUsageGFAList = useRecoilValue(totalPercentageOfSpaceUsageGFAListState)
   const { t } = useTranslation('buildingInput')
   const onAddSpaceUsageGFA = () => {
     setSpaceUsageGFAList((oldSpaceUsageGFAList) => [
@@ -58,29 +57,29 @@ const SpaceUsageGFA = ({ control, setValue}) => {
           <i className="bi bi-plus-lg font-weight-bolder"/>
         </Adding>
       </Header>
-      <Controller
-        name={`total`}
-        control={control}
-        setValue={setValue}
-        render={({
-          field: { onChange }
-        }) => (
-          <>
-            <input
-              type="hidden"
-              onChange={onChange}
-              value={totalPercentageOfSpaceUsageGFAList}/>
-            {totalPercentageOfSpaceUsageGFAList !== 100 && <p className="text-danger">{t('Total Space Usage')} ({totalPercentageOfSpaceUsageGFAList}%) {t('should be 100% (All space usage added together)')})</p>}
-          </>
-        )}
-        rules={{
-          validate: () => {
-            //console.log(totalPercentageOfSpaceUsageGFAList)
-            return totalPercentageOfSpaceUsageGFAList === 100
-          },
-          message: `Total Space Usage (${totalPercentageOfSpaceUsageGFAList}) should be 100% (All space usage added together)`,
-        }}
-      />
+      {/*<Controller*/}
+      {/*  name={`total`}*/}
+      {/*  control={control}*/}
+      {/*  setValue={setValue}*/}
+      {/*  render={({*/}
+      {/*    field: { onChange }*/}
+      {/*  }) => (*/}
+      {/*    <>*/}
+      {/*      <input*/}
+      {/*        type="hidden"*/}
+      {/*        onChange={onChange}*/}
+      {/*        value={totalPercentageOfSpaceUsageGFAList}/>*/}
+      {/*      {totalPercentageOfSpaceUsageGFAList !== 100 && <p className="text-danger">{t('Total Space Usage')} ({totalPercentageOfSpaceUsageGFAList}%) {t('should be 100% (All space usage added together)')})</p>}*/}
+      {/*    </>*/}
+      {/*  )}*/}
+      {/*  rules={{*/}
+      {/*    validate: () => {*/}
+      {/*      //console.log(totalPercentageOfSpaceUsageGFAList)*/}
+      {/*      return totalPercentageOfSpaceUsageGFAList === 100*/}
+      {/*    },*/}
+      {/*    message: `Total Space Usage (${totalPercentageOfSpaceUsageGFAList}) should be 100% (All space usage added together)`,*/}
+      {/*  }}*/}
+      {/*/>*/}
 
       <UL className="row">
         {lis}

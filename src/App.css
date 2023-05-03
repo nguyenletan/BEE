@@ -1,3 +1,7 @@
+.App {
+    background-color: var(--bs-body-bg);
+}
+
 .MuiFormControl-root {
     min-width: 100%;
     margin-bottom: 24px;
@@ -51,6 +55,14 @@
 
 .skeleton-line-box {
     width: 200px;
+    height: 1rem;
+    margin-right: 50px;
+    margin-top: 1rem;
+    border-radius: 6px;
+}
+
+.skeleton-line-box1 {
+    width: 100px;
     height: 1rem;
     margin-right: 50px;
     margin-top: 1rem;

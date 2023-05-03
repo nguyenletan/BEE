@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import 'date-fns'
-import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
-import RemoveIcon from '@material-ui/icons/Remove'
-import Input from '@material-ui/core/Input'
-import Grid from '@material-ui/core/Grid'
-import DateFnsUtils from '@date-io/date-fns'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import RemoveIcon from '@mui/icons-material/Remove'
+import { Input, Grid, FormHelperText, TextField } from '@mui/material'
 import { useRecoilState } from 'recoil'
 import { Controller } from 'react-hook-form'
 import { electricityConsumptionListState } from 'atoms'
 import { removeItemAtIndex, replaceItemAtIndex } from 'Utilities'
-import { FormHelperText } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
 import de from "date-fns/locale/de";
 import enGB from "date-fns/locale/en-GB";
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs'
 
 const Subtraction = styled(RemoveIcon)`
   cursor: pointer;
@@ -22,7 +22,7 @@ const Subtraction = styled(RemoveIcon)`
 
 const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
 
-  const [selectedDate, setSelectedDate] = React.useState(`${data.year}/${data.month + 1}/01`,
+  const [selectedDate, setSelectedDate] = React.useState(dayjs(`${data.year}/${data.month + 1}/01`),
     // new Date("2014-08-18T21:11:54")
   )
   const { t, i18n } = useTranslation('buildingInput')
@@ -39,15 +39,19 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
 
   const onDateChange = (date) => {
 
-    setSelectedDate(date)
-    const index = electricityConsumptionList.findIndex((o) => o.id === data.id)
-    const newList = replaceItemAtIndex(electricityConsumptionList, index, {
-      ...data,
-      month: date?.getMonth(),
-      year: date?.getFullYear(),
-    })
+    if(date) {
+      setSelectedDate(dayjs(`${data.year}/${data.month + 1}/01`))
+      const day = dayjs(date)
+      const index = electricityConsumptionList.findIndex(
+        (o) => o.id === data.id)
+      const newList = replaceItemAtIndex(electricityConsumptionList, index, {
+        ...data,
+        month: day.get('month'),
+        year: day.get('year'),
+      })
 
-    setElectricityConsumptionList(newList)
+      setElectricityConsumptionList(newList)
+    }
   }
 
   const handleChange = (e) => {
@@ -88,12 +92,11 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
             field: { onChange },
             fieldState: { error },
           }) => (
-            <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={locale}>
               <Grid container justifyContent="flex-start">
-                <KeyboardDatePicker
-                  variant="inline"
-                  openTo="year"
+                <DatePicker
                   views={['year', 'month']}
+                  format={'MMM/YYYY'}
                   value={selectedDate}
                   error={!!error}
                   helperText={error ? error.message : null}
@@ -101,9 +104,9 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
                     onDateChange(date)
                     onChange(date)
                   }}
-                />
+                  renderInput={(params) => <TextField variant="standard" {...params} />}/>
               </Grid>
-            </MuiPickersUtilsProvider>
+            </LocalizationProvider>
           )}
           rules={{
             required: t(`This field is not empty`)

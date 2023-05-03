@@ -15,7 +15,7 @@ export const trackingUser = async(externalUID, pageName, idToken) => {
     },
     body: {},
   }).then((response) => {
-    console.log(response)
+    //console.log(response)
     // result = response
     result = 'Saving successfully!'
   }).catch(error => {

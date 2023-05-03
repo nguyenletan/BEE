@@ -1,17 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import StepNav from '../step-nav/StepNav'
 import { Controller, useForm } from 'react-hook-form'
 import styled from 'styled-components'
-import { Box, FormControl, FormHelperText, Input, InputLabel, MenuItem, Select, Slider, Typography } from '@material-ui/core'
-import Grid from '@material-ui/core/Grid'
+import { Box, FormControl, FormHelperText, Input, InputLabel, MenuItem, Select, Slider, Typography, Grid } from '@mui/material'
+
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import ExternalWindowType from '../../../reference-tables/ExternalWindowType'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/styles'
 import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState, envelopFacadeState } from 'atoms'
-import { Redirect, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import RoofType from '../../../reference-tables/RoofType'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from 'AuthenticateProvider'
@@ -26,12 +26,13 @@ const Title = styled.h2`
 const EnvelopFacade = () => {
   const classes = makeStyles(() => (MaterialFormStyle))()
   const { t } = useTranslation(['buildingInput', 'common'])
+  const navigate = useNavigate()
+
+  console.log('envelopFacade')
   const [envelopFacade, setEnvelopFacade] = useRecoilState(envelopFacadeState)
 
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
-
-  const [isMovingNext, setIsMovingNext] = useState(false)
 
   const { handleSubmit, control, setValue } = useForm({
     mode: 'onSubmit',
@@ -60,7 +61,7 @@ const EnvelopFacade = () => {
   const onSubmit = () => {
     // console.log(data)
     setAddingBuildingProgressState(80)
-    setIsMovingNext(true)
+    navigate(moveNextUrl)
   }
 
   const handleChange = (e) => {
@@ -135,8 +136,6 @@ const EnvelopFacade = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext &&
-      <Redirect to={moveNextUrl}/>}
 
       <div className="d-flex mt-5 mb-4">
 
@@ -204,6 +203,7 @@ const EnvelopFacade = () => {
               <FormControl className={classes.formControl}>
                 <InputLabel id="external-roof-type-label" className={error && 'text-danger'}>{t('Roof Type')}</InputLabel>
                 <Select
+                  variant="standard"
                   id="external-roof-type-select"
                   labelId="external-roof-type-label"
                   error={!!error}
@@ -246,6 +246,7 @@ const EnvelopFacade = () => {
                   id="external-window-type-select"
                   labelId="external-window-type-label"
                   name="externalWindowInsulationTypeId"
+                  variant="standard"
                   onChange={(e) => {
                     onChange(e)
                     handleChange(e)

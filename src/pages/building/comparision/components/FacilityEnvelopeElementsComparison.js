@@ -196,8 +196,6 @@ const FacilityEnvelopeElementsComparison = () => {
       supplementaryText
     } = props?.data
     const { t } = useTranslation(['comparisonInfoPopup'])
-    console.log(type)
-
 
     let icon = ''
     switch (type) {

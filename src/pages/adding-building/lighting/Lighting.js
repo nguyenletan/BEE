@@ -1,18 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import StepNav from '../step-nav/StepNav'
 import styled from 'styled-components'
-import { Controller, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   addingBuildingProgressState,
-  lightingSubSystemListState, totalPercentageOfLightingSubSystemListState,
+  lightingSubSystemListSelectorState,
+  lightingSubSystemListState,
+  totalEfficacyOfLightingSubSystemListState,
+  totalWattOfLightingSubSystemListState,
 } from 'atoms'
 import _ from 'lodash'
 
 import LightingSubSystem from './LightingSubSystem'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
-import { Redirect, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from 'AuthenticateProvider'
 import { trackingUser } from 'api/UserAPI'
@@ -53,17 +56,22 @@ const Lighting = () => {
     addingBuildingProgressState)
 
   const { t } = useTranslation('buildingInput')
+  const navigate = useNavigate()
+  const { id } = useParams()
+  const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
+  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/envelope-facade')
+  const lightingSubSystemListSelector = useRecoilValue(lightingSubSystemListSelectorState)
+  const totalWatt = useRecoilValue(totalWattOfLightingSubSystemListState)
+  const overallEfficacy = useRecoilValue(totalEfficacyOfLightingSubSystemListState)
 
-  const totalPercentageOfLightingSubSystemList = useRecoilValue(totalPercentageOfLightingSubSystemListState)
-
-  const [isMovingNext, setIsMovingNext] = useState(false)
 
   const { user } = useAuth()
   useEffect(() => {
-    async function tracking() {
+    async function tracking () {
       const idToken = await user.getIdToken()
-      trackingUser(user.uid, 'Lighting - Adding Building', idToken)
+      await trackingUser(user.uid, 'Lighting - Adding Building', idToken)
     }
+
     tracking()
   }, [])
 
@@ -72,9 +80,12 @@ const Lighting = () => {
       ...oldLightingSubSystemList,
       {
         id: parseInt(_.uniqueId()),
-        title: 'Fitting ',
+        title: 'Light ',
         indoorLightingSystemTypeId: '',
         percentage: '',
+        numberOfBulbs: 0,
+        wattRatingOfBulb: 0,
+        lumensOfBulb: 0,
       },
     ])
   }
@@ -82,7 +93,7 @@ const Lighting = () => {
   const onSubmit = () => {
     // console.log(data)
     setAddingBuildingProgressState(75)
-    setIsMovingNext(true)
+    navigate(moveNextUrl)
   }
 
   const { handleSubmit, control, setValue } = useForm({
@@ -96,20 +107,20 @@ const Lighting = () => {
     shouldUnregister: false,
   })
 
-  const lis = lightingSubSystemList.map(item =>
-
-    <li className="col-12 col-lg-6 mb-4" key={item.id}>
-      <LightingSubSystem data={item} control={control} setValue={setValue}/>
+  const lis = lightingSubSystemList.map((item, index) =>
+    <li className="col-12 col-lg-6 col-xl-4 mb-4" key={item.id}>
+      <LightingSubSystem data={item}
+                         totalWatt={lightingSubSystemListSelector[index]?.totalWatt}
+                         percentage={lightingSubSystemListSelector[index]?.percentage}
+                         efficacy={lightingSubSystemListSelector[index]?.efficacy}
+                         control={control}
+                         order={index}
+                         setValue={setValue}/>
     </li>,
   )
 
-  const { id } = useParams()
-  const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
-  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/envelope-facade')
-
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {isMovingNext && <Redirect to={moveNextUrl}/>}
       <div className="d-flex mt-5 mb-4">
 
         <Title>{t('New Building')}</Title>
@@ -126,16 +137,19 @@ const Lighting = () => {
       <StepNav/>
 
       <div className="row">
-        <div className="col-12 col-lg-8">
+        <div className="col-12">
           <Header className="d-flex justify-content-between">
             <h6>{t('Lighting Subsystem')}</h6>
-            <Adding onClick={onAddLightingSubSystemList} title={t("Add new item")}><i
+
+            <Adding onClick={onAddLightingSubSystemList} title={t('Add new item')}><i
               className="bi bi-plus-lg font-weight-bolder"
             />
             </Adding>
           </Header>
-          <p>{t('Total light fitting usage')}: {totalPercentageOfLightingSubSystemList}%</p>
-          <Controller
+          <p>Total Watt (W): <strong className="text-primary">{totalWatt}</strong></p>
+          <p>Overall Efficacy (lm/W): <strong className="text-success">{overallEfficacy}</strong></p>
+          {/* <p>{t('Total light fitting usage')}: {totalPercentageOfLightingSubSystemList}%</p> */}
+          {/* <Controller
             name={`total`}
             control={control}
             setValue={setValue}
@@ -156,7 +170,7 @@ const Lighting = () => {
                 return totalPercentageOfLightingSubSystemList === 100
               }
             }}
-          />
+          /> */}
 
           <Ul className="row">
             {lis}

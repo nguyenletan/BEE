@@ -60,4 +60,17 @@ const IRR = (values, guess) => {
   return resultRate
 }
 
+export const calculateIRRValue = (firstValue, secondValue, loopTime = 20) => {
+  const IRRvalues = new Array(loopTime - 1)
+  for (let i = 0; i < IRRvalues.length; i++) {
+    IRRvalues[i] = secondValue
+  }
+
+  let internalRateOfReturn = IRR([firstValue, ...IRRvalues])
+  if (internalRateOfReturn !== '#NUM!') {
+    internalRateOfReturn = +(internalRateOfReturn.toFixed(2) * 100)
+  }
+  return internalRateOfReturn
+}
+
 export default IRR

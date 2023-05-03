@@ -5,7 +5,7 @@ import {
   createContext
 } from 'react'
 import { firebase } from './Firebase'
-import Analytics from 'Analytics';
+import Analytics from 'analytics';
 import { trackingUser } from 'api/UserAPI'
 const AuthContext = createContext({
   user: null,

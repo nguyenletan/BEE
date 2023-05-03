@@ -4,13 +4,14 @@ import styled from 'styled-components'
 import PotentialSavings from '../comparision/components/PotentialSavings'
 import BreakDown from '../../../components/BreakDown'
 import SubSystemPerformance from '../comparision/components/SubSystemPerformance'
-import ImprovementMeasures from '../comparision/components/ImprovementMeasures'
-import PayBack from '../comparision/components/PayBack'
+import ImprovementMeasures from 'pages/building/improve/components/ImprovementMeasures'
+import PayBack from 'pages/building/improve/components/PayBack'
 import { useSetRecoilState } from 'recoil'
 import { isDisplayPerformanceFilterState } from 'atoms'
 import { useTranslation } from 'react-i18next'
 import { trackingUser } from 'api/UserAPI'
 import { useAuth } from 'AuthenticateProvider'
+import { deepClone } from 'Utilities'
 
 const ImproveWrapper = styled.div`
   margin-bottom: 40px;
@@ -24,7 +25,7 @@ const Improve = (props) => {
   const {
     consumptionBreakdown,
     costBreakdown,
-    co2EmissionsBreakdown
+    co2EmissionsBreakdown,
   } = props
 
   const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
@@ -41,7 +42,9 @@ const Improve = (props) => {
         energyCostSavings: 19300,
         co2EmissionsAvoided: 65,
         paybackPeriod: 2.7,
-        internalRateOfReturn: 32
+        usagePercent: 32,
+        oldUsagePercent: 32,
+        internalRateOfReturn: 32,
       },
       {
         measures: 'Chiller Unit Replacement',
@@ -51,7 +54,9 @@ const Improve = (props) => {
         energyCostSavings: 46000,
         co2EmissionsAvoided: 154.92,
         paybackPeriod: 5.1,
-        internalRateOfReturn: 21
+        internalRateOfReturn: 21,
+        usagePercent: 21,
+        oldUsagePercent: 21,
       },
       {
         measures: 'Double Glaze Low-E Windows',
@@ -61,7 +66,9 @@ const Improve = (props) => {
         energyCostSavings: 27650,
         co2EmissionsAvoided: 93.12,
         paybackPeriod: 3.7,
-        internalRateOfReturn: 21
+        internalRateOfReturn: 21,
+        usagePercent: 21,
+        oldUsagePercent: 21,
       },
       {
         measures: 'Install Variable Speed Drive Pumps',
@@ -71,7 +78,9 @@ const Improve = (props) => {
         energyCostSavings: 18277.31,
         co2EmissionsAvoided: 61.55,
         paybackPeriod: 4.76,
-        internalRateOfReturn: 18
+        internalRateOfReturn: 18,
+        usagePercent: 18,
+        oldUsagePercent: 18,
       },
       {
         measures: 'Install Air Distribution Control System',
@@ -81,7 +90,9 @@ const Improve = (props) => {
         energyCostSavings: 14715,
         co2EmissionsAvoided: 49.56,
         paybackPeriod: 8.97,
-        internalRateOfReturn: 14
+        internalRateOfReturn: 14,
+        usagePercent: 14,
+        oldUsagePercent: 14,
       },
       {
         measures: 'Curtain Wall Insulation Blocks',
@@ -91,7 +102,9 @@ const Improve = (props) => {
         energyCostSavings: 4008,
         co2EmissionsAvoided: 13.5,
         paybackPeriod: 9.9,
-        internalRateOfReturn: 3
+        internalRateOfReturn: 3,
+        usagePercent: 3,
+        oldUsagePercent: 3,
       },
       {
         measures: 'Solar Film Installation',
@@ -101,7 +114,9 @@ const Improve = (props) => {
         energyCostSavings: 6200,
         co2EmissionsAvoided: 20.9,
         paybackPeriod: 6.96,
-        internalRateOfReturn: 7
+        internalRateOfReturn: 7,
+        usagePercent: 7,
+        oldUsagePercent: 7,
       },
       {
         measures: 'Electric Air Source Heat Pump (Boiler Replacement)',
@@ -111,7 +126,9 @@ const Improve = (props) => {
         energyCostSavings: 67260,
         co2EmissionsAvoided: 226.73,
         paybackPeriod: 3.72,
-        internalRateOfReturn: 24
+        internalRateOfReturn: 24,
+        usagePercent: 24,
+        oldUsagePercent: 24,
       },
       {
         measures: 'Install Heating Central Time Control',
@@ -121,9 +138,11 @@ const Improve = (props) => {
         energyCostSavings: 33793,
         co2EmissionsAvoided: 113.91,
         paybackPeriod: 2.9,
-        internalRateOfReturn: 30
-      }
-    ]
+        internalRateOfReturn: 30,
+        usagePercent: 30,
+        oldUsagePercent: 30,
+      },
+    ],
   }
 
   const subSystemPerformanceDataEN = {
@@ -238,39 +257,40 @@ const Improve = (props) => {
         {
           title: 'Annual Energy Savings',
           unit: 'MWh',
-          value: -618
+          value: -618,
         },
         {
           title: 'Annual Energy Cost Savings',
           unit: '$1000',
-          value: -68.2
+          value: -68.2,
         },
         {
           title: 'Annual CO2 Emissions Avoided',
           unit: 'Tons',
-          value: -189
+          value: -189,
         },
         {
           title: 'Investment Cost',
           unit: '$1000',
-          value: 460
+          value: 460,
         },
         {
           title: 'Simple Payback',
           unit: 'Years',
-          value: 6.7
+          value: 6.7,
         },
         {
           title: 'Energy Usage Intensity Reduction',
           unit: 'kWh/m2/yr',
-          value: -23.8
-        }
-      ]
+          value: -23.8,
+        },
+      ],
   })
   const [breakDownConsumption, setBreakDownConsumption] = useState([...consumptionBreakdown])
   const [breakDownCost, setBreakDownCost] = useState([...costBreakdown])
   const [breakDownCO2Emissions, setBreakDownCO2Emissions] = useState([...co2EmissionsBreakdown])
   const [subSystemPerformance, setSubSystemPerformanceData] = useState({ ...subSystemPerformanceDataEN })
+  const [improvementMeasuresData, setImprovementMeasuresData] = useState(improveData.improvementMeasuresData)
 
   useEffect(() => {
     if (i18n.language === 'en') {
@@ -282,17 +302,14 @@ const Improve = (props) => {
 
   }, [i18n.language])
 
-
-
   useEffect(() => {
-    async function tracking() {
+    async function tracking () {
       const idToken = await user.getIdToken()
       trackingUser(user.uid, 'Improve', idToken)
     }
+
     tracking()
   }, [])
-
-
 
   const updateValue = () => {
     let investmentCost = 0
@@ -300,6 +317,7 @@ const Improve = (props) => {
     let annualEnergySavings = 0
 
     if (popupResult) {
+
       let tmp = potentialSavingsData
       for (let i = 0; i < tmp.saving.length; i++) {
         switch (tmp.saving[i].title) {
@@ -340,7 +358,8 @@ const Improve = (props) => {
 
       setPotentialSavingsData({ ...tmp })
 
-      tmp = breakDownConsumption
+      tmp = deepClone(breakDownConsumption)
+
       let total = tmp[0].value + tmp[1].value + tmp[2].value + tmp[3].value
       for (let i = 0; i < tmp.length; i++) {
         switch (tmp[i].id) {
@@ -365,7 +384,7 @@ const Improve = (props) => {
       }
       setBreakDownConsumption([...tmp])
 
-      tmp = breakDownCost
+      tmp = deepClone(breakDownCost)
       total = tmp[0].value + tmp[1].value + tmp[3].value + tmp[4].value
       for (let i = 0; i < tmp.length; i++) {
         switch (tmp[i].id) {
@@ -390,7 +409,7 @@ const Improve = (props) => {
       }
       setBreakDownCost([...tmp])
 
-      tmp = breakDownCO2Emissions
+      tmp = deepClone(breakDownCO2Emissions)
       total = tmp[0].value + tmp[1].value + tmp[3].value + tmp[4].value + popupResult.co2EmissionsAvoided
       for (let i = 0; i < tmp.length; i++) {
         switch (tmp[i].id) {
@@ -415,13 +434,22 @@ const Improve = (props) => {
       }
       setBreakDownCO2Emissions([...tmp])
 
-      tmp = subSystemPerformance
-      tmp.data[3].Potential_Best_In_Class = (((0.54 - 0.38) / 0.6) * popupResult.percentageLEDUsage) + 0.38
+      tmp = deepClone(subSystemPerformance)
+
+      tmp.data[3]['Potential Best In Class'] = (((0.54 - 0.38) / 0.6) * popupResult.percentageLEDUsage) + 0.38
       setSubSystemPerformanceData(tmp)
+
+      let idx = improvementMeasuresData.findIndex(({ measures }) => measures === popupResult.measures)
+
+      improvementMeasuresData[idx] = { ...improvementMeasuresData[idx], ...popupResult}
+
+      setImprovementMeasuresData([...improvementMeasuresData])
+
     }
   }
 
   useEffect(() => {
+
     updateValue()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [popupResult])
@@ -429,13 +457,13 @@ const Improve = (props) => {
   return (
     <ImproveWrapper>
 
-      <PotentialSavings data={potentialSavingsData} />
+      <PotentialSavings data={potentialSavingsData}/>
 
-      <BreakDownWrapper className='d-flex row justify-content-center'>
+      <BreakDownWrapper className="d-flex row justify-content-center">
         <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
           <BreakDown
-            title='Energy Savings'
-            subTitle='MWH/Yr'
+            title="Energy Savings"
+            subTitle="MWH/Yr"
             data={breakDownConsumption}
             informationFontSize="16px"
             hasDescription
@@ -444,8 +472,8 @@ const Improve = (props) => {
 
         <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
           <BreakDown
-            title='Energy Cost Savings'
-            subTitle='$/Yr'
+            title="Energy Cost Savings"
+            subTitle="$/Yr"
             data={breakDownCost}
             informationFontSize="16px"
             hasDescription
@@ -454,8 +482,8 @@ const Improve = (props) => {
 
         <div className="col col-12 col-md-8 col-xl-4">
           <BreakDown
-            title='CO2 Emissions Avoided'
-            subTitle='Tons/Yr'
+            title="CO2 Emissions Avoided"
+            subTitle="Tons/Yr"
             data={breakDownCO2Emissions}
             hasDescription
             informationFontSize="16px"
@@ -463,19 +491,18 @@ const Improve = (props) => {
         </div>
       </BreakDownWrapper>
 
-      <div className='row mb-5'>
-        <div className='col-12 col-xl-4'>
-          <SubSystemPerformance data={subSystemPerformance} />
+      <div className="row mb-5">
+        <div className="col-12 col-xl-4">
+          <SubSystemPerformance data={subSystemPerformance}/>
         </div>
-        <div className='col-12 col-xl-8'>
-          <PayBack data={improveData.improvementMeasuresData} />
+        <div className="col-12 col-xl-8">
+          <PayBack data={improvementMeasuresData} setResult={setResult}/>
         </div>
       </div>
 
-      <ImprovementMeasures data={improveData.improvementMeasuresData} setResult={setResult} />
+      <ImprovementMeasures data={improvementMeasuresData} setResult={setResult}/>
 
     </ImproveWrapper>
-
   )
 }
 

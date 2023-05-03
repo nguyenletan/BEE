@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { ArrowLeft } from 'react-bootstrap-icons'
 import { useParams } from 'react-router'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import DoubleDecliningBalanceDepreciation from './components/IssueDetail/DoubleDecliningBalanceDepreciation'
 import EquipmentDetail from './components/IssueDetail/EquipmentDetail'
@@ -34,7 +34,8 @@ const BreadcrumbItemActive = styled.span`
 
 const IssueDetail = ({ data }) => {
   const { id } = useParams()
-  const history = useHistory()
+  //const history = useHistory()
+  const navigate = useNavigate();
   const { user } = useAuth()
   const annualMaintenanceCost = [
     {
@@ -211,7 +212,7 @@ const IssueDetail = ({ data }) => {
   return (
     <>
       <Breadcrumb>
-        <BreadcrumbItem onClick={() => history.goBack()}><ArrowLeft
+        <BreadcrumbItem onClick={() => navigate(-1)}><ArrowLeft
           color="#87972f" size={28}
         /> Asset Reliability /
         </BreadcrumbItem><BreadcrumbItemActive>{data[id].asset} Issue</BreadcrumbItemActive>

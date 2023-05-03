@@ -14,10 +14,12 @@ const config = {
   measurementId: 'G-R9QD4GM2JV',
 }
 
+
+
 // Your web app's Firebase configuration
 
-// // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// // For develop environment
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// For develop environment
 // const config = {
 //   apiKey: 'AIzaSyB1JXd98Cdm8rygRJVvXwRCXFET-Xik2eQ',
 //   authDomain: 'bee-dev-180f5.firebaseapp.com',
@@ -27,6 +29,7 @@ const config = {
 //   appId: '1:388806936633:web:3094cc5bfc58b92ede65e8',
 //   measurementId: 'G-GCSJY2C78H',
 // }
+//
 
 // const config = {
 //   apiKey: "AIzaSyCRcYIb-XSar4mQ2t1OvOeAIa1l5XtyU1c",

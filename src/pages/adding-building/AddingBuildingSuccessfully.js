@@ -2,9 +2,9 @@ import React from 'react'
 import BackNextGroupButton from '../../components/BackNextGroupButton'
 
 import styled from 'styled-components'
-import Typography from '@material-ui/core/Typography'
+import {Typography} from '@mui/material'
 
-import BusinessRoundedIcon from '@material-ui/icons/BusinessRounded'
+import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded'
 import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState } from 'atoms'
 import { useTranslation } from 'react-i18next'

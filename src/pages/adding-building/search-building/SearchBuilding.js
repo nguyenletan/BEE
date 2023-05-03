@@ -2,20 +2,23 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { getLatLngFromAddress } from 'Utilities'
 import { GoogleMap, Marker, OverlayView } from '@react-google-maps/api'
-import { Redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 
 import { Controller, useForm } from 'react-hook-form'
 
 import Countries, { findCountryByCountryCode } from '../../../reference-tables/Country'
-import { Button, FormControl, InputLabel, NativeSelect, TextField } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Button, FormControl, InputLabel, NativeSelect, TextField } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import StepNav from '../step-nav/StepNav'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
-import { addingBuildingProgressState, generalBuildingInformationState } from 'atoms'
+import {
+  addingBuildingProgressState,
+  generalBuildingInformationState,
+} from 'atoms'
 import { useTranslation } from 'react-i18next'
 import { trackingUser } from 'api/UserAPI'
 import { useAuth } from 'AuthenticateProvider'
@@ -49,16 +52,17 @@ const SearchBuilding = () => {
 
   const { t } = useTranslation('buildingInput')
   const { user } = useAuth()
+  const navigate = useNavigate()
   const classes = makeStyles(() => (MaterialFormStyle))()
 
   const [searchValue, setSearchValue] = useState('')
-
-  const [isMovingNext, setIsMovingNext] = useState(false)
 
   const [generalBuildingInformation, setGeneralBuildingInformation] = useRecoilState(
     generalBuildingInformationState)
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
+
+
 
   const [isShowTheMap, setIsShowTheMap] = useState(false)
 
@@ -171,13 +175,11 @@ const SearchBuilding = () => {
     // console.log(generalBuildingInformation)
     setGeneralBuildingInformation({ ...generalBuildingInformation, ...data })
     setAddingBuildingProgressState(5)
-    setIsMovingNext(true)
+    navigate('/adding-building/general-information')
   }
 
   return (
     <>
-      {isMovingNext && <Redirect to="/adding-building/general-information"/>}
-
       <div className="d-flex mt-5 mb-4">
 
         <Title>{t('Search Online')}</Title>
@@ -271,6 +273,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
+                    variant="standard"
                     label={t("Building Name")}
                     value={value}
                     onChange={onChange}
@@ -290,6 +293,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
+                    variant="standard"
                     label={t("Building Number")}
                     value={value}
                     onChange={onChange}
@@ -309,6 +313,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
+                    variant="standard"
                     label={t("Street Name")}
                     value={value}
                     onChange={onChange}
@@ -328,6 +333,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
+                    variant="standard"
                     label={t("Address")}
                     aria-describedby="Address"
                     value={value}
@@ -348,6 +354,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
+                    variant="standard"
                     label={t("Post Code")}
                     aria-describedby="Postal Code"
                     value={value}
@@ -368,6 +375,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
+                    variant="standard"
                     aria-describedby="City"
                     label={t("City")}
                     value={value}
@@ -388,6 +396,7 @@ const SearchBuilding = () => {
                   fieldState: { error },
                 }) => (
                   <TextField
+                    variant="standard"
                     aria-describedby="State"
                     label={t("State")}
                     value={value}

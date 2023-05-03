@@ -1,8 +1,10 @@
 import './App.css'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { useAuth } from 'AuthenticateProvider'
 import FirebaseAuth from './FirebaseAuthenticate'
-import { createTheme , ThemeProvider } from '@material-ui/core/styles'
+import { EuiProvider } from '@elastic/eui'
+
+import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles'
 import 'analytics_log_event'
 // import Login from './pages/login/Login';
 import Portfolio from './pages/portfolio/Portfolio'
@@ -12,23 +14,7 @@ import TermOfService from './pages/TermsOfService'
 import AddingBuilding from './pages/adding-building/AddingBuilding'
 import { RecoilRoot, useRecoilCallback, useRecoilSnapshot } from 'recoil'
 import { useEffect } from 'react'
-
-const theme = createTheme ({
-  palette: {
-    primary: {
-      light: '#aed581',
-      main: '#87972f',
-      dark: '#33691e',
-      contrastText: '#fff'
-    },
-    secondary: {
-      light: '#ff7961',
-      main: '#f44336',
-      dark: '#ba000d',
-      contrastText: '#000'
-    }
-  }
-})
+import IFrame from 'iframes/IFrame'
 
 function DebugObserver () {
   const snapshot = useRecoilSnapshot()
@@ -51,35 +37,61 @@ function DebugButton () {
     }
   }, [])
 
-  return <button onClick={onClick} className='visually-hidden'>Dump State</button>
+  return <button onClick={onClick} className="visually-hidden">Dump State</button>
 }
 
 function App () {
   const { user, loading } = useAuth()
+  const { pathname } = useLocation()
+
+  let theme = createTheme({
+    palette: {
+      primary: {
+        light: '#aed581',
+        main: '#87972f',
+        dark: '#33691e',
+        contrastText: '#fff',
+      },
+      secondary: {
+        light: '#ff7961',
+        main: '#f44336',
+        dark: '#ba000d',
+        contrastText: '#000',
+      },
+    },
+  })
+
+  theme = responsiveFontSizes(theme)
 
   if (loading) return null
-  if (!user) return <FirebaseAuth />
+
+  // const noAuthList = ['/iframe']
+
+  if (!pathname.includes('/iframe') && !user) {
+    return <FirebaseAuth/>
+  }
 
   return (
     <ThemeProvider theme={theme}>
-      <RecoilRoot>
-        <DebugObserver />
-        <div className='App container-fluid gx-0'>
-          <Router>
-            <Switch>
-              <Route path='/' component={Portfolio} exact />
-              <Route path='/register' component={Register} />
-              <Route path='/terms-of-service' component={TermOfService} />
-              <Route path='/building' component={Portfolio} exact/>
-              <Route path='/building/:id' component={Building} />
-              <Route path='/adding-building' component={AddingBuilding} />
-              <Route path='/editing-building/:id' component={AddingBuilding} />
-            </Switch>
-          </Router>
-          <DebugButton />
-        </div>
-
-      </RecoilRoot>
+      <EuiProvider colorMode="light">
+        <RecoilRoot>
+          <DebugObserver/>
+          <div className="App container-fluid gx-0">
+            <Routes>
+              <Route path="/" element={<Portfolio/>} exact/>
+              <Route path="/register" element={<Register/>}/>
+              <Route path="/terms-of-service" element={<TermOfService/>}/>
+              <Route path="/building" element={<Portfolio/>} exact/>
+              <Route path="/building/:id/*" element={<Building/>}/>
+              <Route path="/adding-building/*" element={<AddingBuilding/>}/>
+              <Route path="/editing-building/:id/*" element={<AddingBuilding/>}/>
+              <Route path="/iframe/*" element={<IFrame/>}/>
+            </Routes>
+            <DebugButton/>
+            <footer className="mt-5">&nbsp;</footer>
+          </div>
+        </RecoilRoot>
+      </EuiProvider>
     </ThemeProvider>
   )
 }

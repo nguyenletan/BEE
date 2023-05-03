@@ -7,13 +7,19 @@ import { AddBuildingText, AddingIcon, BuildingBlocks, Description, PortfolioWrap
 import { Link } from 'react-router-dom'
 import { getAllBuilding } from 'api/BuildidingAPI'
 import { useAuth } from 'AuthenticateProvider'
-import { useTranslation  } from 'react-i18next';
+import { useTranslation } from 'react-i18next'
 import { trackingUser } from 'api/UserAPI'
 
 const BuildingListBlocks = ({ buildings }) => {
 
   const buildingList = buildings?.map(b => {
-    return <BuildingBlock key={b.id} data={{ streetNumber: b.streetNumber, streetName: b.streetName, photo: b.photo, id: b.id, title: b.name }}/>
+    return <BuildingBlock key={b.id} data={{
+      streetNumber: b.streetNumber,
+      streetName: b.streetName,
+      photo: b.photo,
+      id: b.id,
+      title: b.name,
+    }}/>
   })
 
   return (
@@ -24,14 +30,12 @@ const BuildingListBlocks = ({ buildings }) => {
 }
 
 const Portfolio = () => {
-  const { t } = useTranslation('portfolio');
+  const { t } = useTranslation('portfolio')
   const { user } = useAuth()
 
   const [buildings, setBuildings] = useState([])
 
   const [isLoading, setIsLoading] = useState(false)
-
-
 
   useEffect(() => {
     async function fetchMyAPI () {
@@ -48,13 +52,13 @@ const Portfolio = () => {
     fetchMyAPI()
 
     //  eslint-disable-next-line
-    async function tracking() {
+    async function tracking () {
       const idToken = await user.getIdToken()
       trackingUser(user.uid, 'Portfolio', idToken)
     }
+
     tracking()
   }, [])
-
 
   return (
     <>
@@ -62,7 +66,8 @@ const Portfolio = () => {
       <PortfolioWrapper className="container-fluid container-md">
 
         <div className="d-flex justify-content-between">
-          <Description className="">{t('Please select a building to see it’s energy performance and asset health')}</Description>
+          <Description className="">{t(
+            'Please select a building to see it’s energy performance and asset health')}</Description>
 
           <div>
             <Link to="/adding-building">
