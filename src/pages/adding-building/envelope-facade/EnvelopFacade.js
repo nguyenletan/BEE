@@ -65,7 +65,7 @@ const EnvelopFacade = () => {
   }
 
   const handleChange = (e) => {
-    setEnvelopFacade({ ...envelopFacade, [e.target.name]: e.target.value })
+    setEnvelopFacade({ ...envelopFacade, [e.target.name]: parseFloat(e.target.value) })
   }
 
   const { user } = useAuth()
