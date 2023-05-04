@@ -128,7 +128,7 @@ const SolarPanel = ({ data, control, setValue }) => {
     const index = solarSystemList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(solarSystemList, index, {
       ...data,
-      [e.target.name]: e.target.value,
+      [e.target.name]: +e.target.value,
     })
 
     setSolarSystemList(newList)
