@@ -167,7 +167,7 @@ const DrillDownDonutChart3Lv = (props) => {
           dominantBaseline="central"
           style={{
             fontSize: valueFontSize ?? '16px',
-            stroke: dataSource[0].color ?? '#5F5283',
+            stroke: dataSource[0]?.color ?? '#5F5283',
           }}
         >
           Mechanical
@@ -179,7 +179,7 @@ const DrillDownDonutChart3Lv = (props) => {
           dominantBaseline="central"
           style={{
             fontSize: valueFontSize ?? '16px',
-            stroke: dataSource[0].color ?? '#5F5283',
+            stroke: dataSource[0]?.color ?? '#5F5283',
           }}
         >
           Ventilation
@@ -195,7 +195,7 @@ const DrillDownDonutChart3Lv = (props) => {
         style={{
           fontSize: valueFontSize ?? '18px',
           textTransform: 'capitalize',
-          stroke: dataSource[0].color ?? '#5F5283',
+          stroke: dataSource[0]?.color ?? '#5F5283',
         }}
       >
         {selectedSubBreakdown}
