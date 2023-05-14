@@ -736,7 +736,6 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
                 ]}
                 value={period}
                 onChange={(e) => { setPeriod(e.target.value)}}
-                aria-label="Use aria labels when no actual label is in use"
               />
             </EuiFormRow>
 

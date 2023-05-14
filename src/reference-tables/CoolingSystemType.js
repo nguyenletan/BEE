@@ -7,10 +7,10 @@ const CoolingSystemType = [
     id: 2,
     name: 'Water-Cooled Chiller'
   },
-  {
-    id: 3,
-    name: 'District Cooling System'
-  },
+  // {
+  //   id: 3,
+  //   name: 'District Cooling System'
+  // },
   {
     id: 4,
     name: 'Split Unit AC'
