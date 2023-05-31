@@ -59,6 +59,13 @@ const Title = styled.h2`
   margin-bottom: 0;
 `
 
+const Message = styled.p`
+  color: var(--bs-primary);
+  font: var(--bs-font-s);
+  font-weight: 500;
+  margin-left: 10px;
+`;
+
 const GeneralInformation = () => {
   //const complexityWeight = 15
 
@@ -69,8 +76,8 @@ const GeneralInformation = () => {
     addingBuildingProgressState)
 
   const [latestYearForRefurbishmentOrExtension, setLatestYearForRefurbishmentOrExtension] = React.useState(
-    generalBuildingInformation.latestYearForRefurbishmentOrExtension
-      ? dayjs(`${generalBuildingInformation.latestYearForRefurbishmentOrExtension}/01/01`)
+    generalBuildingInformation?.latestYearForRefurbishmentOrExtension
+      ? dayjs(`${generalBuildingInformation?.latestYearForRefurbishmentOrExtension}/01/01`)
       : null,
     // new Date("2014-08-18T21:11:54")
   )
@@ -196,19 +203,23 @@ const GeneralInformation = () => {
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
   const moveNextUrl = parentUrl + (id ? '/activity' : '/activity')
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
     //setGeneralBuildingInformation({ ...generalBuildingInformation, ...data })
     if (!id) {
       setAddingBuildingProgressState(25)
     }
-    navigate(moveNextUrl)
+    //navigate(moveNextUrl)
   }
+
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="d-flex mt-5 mb-4">
+      <div className="d-flex mt-5 mb-4 align-items-baseline">
 
         <Title>{t('New Building')}</Title>
+        {/*<Message role="alert">*/}
+        {/*  A simple success alert—check it out!*/}
+        {/*</Message>*/}
 
         <BackNextGroupButton
           backLink={parentUrl + '/search-building'}
@@ -464,14 +475,14 @@ const GeneralInformation = () => {
                     <Select id="sustainability-rating-select"
                             variant="standard"
                             labelId="sustainability-rating-label"
-                            value={generalBuildingInformation?.sustainabilityRatingId || ''}
+                            value={generalBuildingInformation.sustainabilityRatingId || ''}
                             onChange={(e) => {
                               onChange(e)
                               onInputChange('sustainabilityRatingId',
                                 e.target.value)
                             }}
                     >
-                      {sustainabilityRating.map((o) => (
+                      {sustainabilityRating?.map((o) => (
                         <MenuItem
                           key={o.id}
                           value={o.id}
@@ -838,7 +849,7 @@ const GeneralInformation = () => {
                     <FormControlLabel
                       control={
                         <Checkbox
-                          checked={generalBuildingInformation.hasMajorRefurbishmentOrExtensionsDone}
+                          checked={generalBuildingInformation?.hasMajorRefurbishmentOrExtensionsDone}
                           onChange={(e) => {
                             onChange(e)
                             onHasMajorRefurbishmentOrExtensionsDoneChange(e)

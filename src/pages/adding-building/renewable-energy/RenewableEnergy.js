@@ -68,7 +68,7 @@ const RenewableEnergy = () => {
   const onSubmit = () => {
     // console.log(data)
     setAddingBuildingProgressState(100)
-    navigate(parentUrl + '/adding-building-successfully')
+    //navigate(parentUrl + '/adding-building-successfully')
   }
 
   const { handleSubmit, control, setValue } = useForm({

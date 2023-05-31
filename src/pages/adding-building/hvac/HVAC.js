@@ -51,7 +51,7 @@ const HVAC = () => {
   const onSubmit = (data) => {
     // console.log(data)
     setAddingBuildingProgressState(65)
-    navigate(moveNextUrl, { replace: true })
+    //navigate(moveNextUrl, { replace: true })
   }
 
   useEffect(() => {

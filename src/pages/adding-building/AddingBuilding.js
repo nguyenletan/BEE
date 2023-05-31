@@ -100,7 +100,6 @@ const AddingBuilding = () => {
     // eslint-disable-line
   }, [])
 
-  console.log('adding building')
 
   return (
     <>
