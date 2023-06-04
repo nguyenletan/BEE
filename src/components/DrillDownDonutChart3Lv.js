@@ -120,6 +120,10 @@ const DrillDownDonutChart3Lv = (props) => {
 
   const { id } = useParams()
 
+  const { show } = useContextMenu({
+    id: 'MENU_ID',
+  })
+
   const CenteredPercentage = ({ dataWithArc, centerX, centerY }) => {
     const total = dataWithArc[0].value + dataWithArc[1].value
     const percentage = (dataWithArc[0].value / total) * 100
@@ -204,6 +208,8 @@ const DrillDownDonutChart3Lv = (props) => {
   }
 
   const handleClick = (node, event) => {
+
+    console.log(breakDownLevel)
     if (node.data?.subBreakdown) {
       setBreakDownLevel(breakDownLevel + 1)
       setSelectedSubBreakdown(node.id)
@@ -211,8 +217,11 @@ const DrillDownDonutChart3Lv = (props) => {
       setConsumptionBreakdownSt(node.data.subBreakdown)
     } else {
       if (breakDownLevel === 2) {
+        console.log(event)
         setEquipmentId(node?.data.equipmentId)
         setSelectedBreakdownItemMenuItem({ name: node.label, id: node.label })
+
+
         show(event, {
           props: {
             key: 'value',
@@ -229,9 +238,7 @@ const DrillDownDonutChart3Lv = (props) => {
     setConsumptionBreakdownSt(breakdownSt.consumptionBreakdown)
   }
 
-  const { show } = useContextMenu({
-    id: 'MENU_ID',
-  })
+
 
   const getValue = (value, title) => {
     if (title === t('Consumption Breakdown')) {
