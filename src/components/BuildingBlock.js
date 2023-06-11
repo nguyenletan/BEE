@@ -16,9 +16,11 @@ const BuildingBlock = ({ data }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, i18n.language])
+
+  const url = data.statusId === 3 ? `/editing-building/${data.id}/general-information/` : `/building/${data.id}`
   return (
     <li>
-      <Link to={'/building/' + data.id}>
+      <Link to={url}>
         <BuildingImage className="shadow-lg" src={data.photo} alt={data.title} />
         <Title>{data.title}</Title>
         <Address>{address}</Address>

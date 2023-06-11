@@ -61,7 +61,7 @@ const EnvelopFacade = () => {
   const onSubmit = () => {
     // console.log(data)
     setAddingBuildingProgressState(80)
-    navigate(moveNextUrl)
+    //navigate(moveNextUrl)
   }
 
   const handleChange = (e) => {

@@ -165,6 +165,8 @@ export const defaultGeneralBuildingInformationState = {
   propId: null,
   id: null,
   buildingName: '',
+  streetName: '',
+  streetNumber: '',
   address: '',
   city: '',
   state: '',

@@ -107,6 +107,7 @@ const Wrapper = styled.div`
 const BuildingHistorical = (props) => {
 
   const {
+    energyConsumptions,
     electricConsumptionsFromHistorizedLogs,
     energyPerformanceGroupBy,
     overallEnergyConsumptionInformation,
@@ -122,7 +123,7 @@ const BuildingHistorical = (props) => {
 
   let buildingEnergyUsageData = []
 
-  if (props.energyConsumptions && props.energyConsumptions.length > 0) {
+  if (energyConsumptions && energyConsumptions.length > 0) {
     buildingEnergyUsageData = _.reverse(_.take(props.energyConsumptions, 12)).map(x => {
       return {
         ...x,

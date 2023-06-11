@@ -93,7 +93,7 @@ const Lighting = () => {
   const onSubmit = () => {
     // console.log(data)
     setAddingBuildingProgressState(75)
-    navigate(moveNextUrl)
+    //navigate(moveNextUrl)
   }
 
   const { handleSubmit, control, setValue } = useForm({

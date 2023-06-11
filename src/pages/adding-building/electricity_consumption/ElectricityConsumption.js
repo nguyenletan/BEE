@@ -62,7 +62,7 @@ const ElectricityConsumption = () => {
   const onSubmit = (data) => {
     // console.log(data)
     setAddingBuildingProgressState(55)
-    navigate(moveNextUrl)
+    //navigate(moveNextUrl)
   }
 
   const {

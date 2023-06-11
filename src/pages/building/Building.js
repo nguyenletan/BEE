@@ -394,7 +394,7 @@ const Building = () => {
                           min={1960}
                         />
 
-                        <EndLabel className="">{t('Start')}</EndLabel>
+                        <EndLabel className="">{t('End')}</EndLabel>
                         <EuiSelect
                           compressed
                           fullWidth={false}

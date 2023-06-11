@@ -45,8 +45,7 @@ const Activity = () => {
     if (!id) {
       setAddingBuildingProgressState(45)
     }
-
-    navigate(moveNextUrl, { replace: true });
+    //navigate(moveNextUrl, { replace: true });
    // setIsMovingNext(true)
   }
 

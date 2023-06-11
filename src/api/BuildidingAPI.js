@@ -8,7 +8,7 @@ export const createBuilding = async (data, idToken) => {
   let result
   await axios({
     method: 'post',
-    url: process.env.REACT_APP_BACKEND_API + '/buildings/',
+    url: process.env.REACT_APP_BACKEND_API + '/buildings/create-partial',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,

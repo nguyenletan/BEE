@@ -507,7 +507,7 @@ export const calculateSameThingLastPeriod = (
       }
     case 'month':
     default:
-      if (index > 0) {
+      if (index > 0 && electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth.length > 0) {
         return value - electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth[index - 1].value
       } else {
         return value -

@@ -7,9 +7,11 @@ import {
   EuiFlexItem,
   EuiFormRow,
   EuiText,
-  EuiTitle,
+  EuiTitle
 } from '@elastic/eui'
-import { getLightingFittingTypeImage, getLightingFittingTypeName } from 'reference-tables/LightingFittingType'
+
+import { EuiSelect } from '@elastic/eui';
+import LightingFittingType, { getLightingFittingTypeImage, getLightingFittingTypeName } from 'reference-tables/LightingFittingType'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { calculateEnergyConsumption, formatNumber, replaceItemAtIndex } from 'Utilities'
@@ -123,6 +125,11 @@ const LightingSubSystem = ({ subSystem }) => {
 
   const onChanges = (e) => {
     switch (e.target.name) {
+      case 'lightingFittingTypeId':
+        console.log(e.target.value)
+
+        break
+
       case 'numberOfBulbs':
         setNumberOfBulbs(+e.target.value)
         break
@@ -218,20 +225,22 @@ const LightingSubSystem = ({ subSystem }) => {
       </EuiText>
 
       <EuiFormRow label="Replacement Bulb Type" className="mt-4">
-        <EuiFieldText compressed eadOnly value="LED"/>
-        {/*<EuiSuperSelect*/}
-        {/*  compressed*/}
-        {/*  options={LightingFittingType.map(t => {*/}
-        {/*      if (t.id === subSystem.id) return null*/}
-        {/*      return {*/}
-        {/*        value: t.id,*/}
-        {/*        text: t.name,*/}
-        {/*      }*/}
-        {/*    },*/}
-        {/*  )}*/}
-        {/*  value={{ value: "LED", text: "LED" }}*/}
-        {/*  aria-label="Use aria labels when no actual label is in use"*/}
-        {/*/>*/}
+        {/*<EuiFieldText compressed eadOnly value="LED"/>*/}
+        <EuiSelect
+          compressed
+          options={LightingFittingType.map(t => {
+              if (t.id === subSystem.id) return null
+              return {
+                value: t.id,
+                text: t.name,
+              }
+            },
+          )}
+          name="lightingFittingTypeId"
+          onChange={onChanges}
+          value={{ value: "LED", text: "LED" }}
+          aria-label="Use aria labels when no actual label is in use"
+        />
       </EuiFormRow>
       <EuiFormRow label="Number Of Bulbs" className="mt-4">
         <EuiFieldNumber
