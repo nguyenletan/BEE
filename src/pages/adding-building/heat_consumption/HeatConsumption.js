@@ -7,9 +7,9 @@ import { useRecoilState } from 'recoil'
 
 import {Add} from '@mui/icons-material'
 import StepNav from '../step-nav/StepNav'
-import OneMonthElectricityConsumption from './OneMonthElectricityConsumption'
+import OneMonthHeatConsumption from './OneMonthHeatConsumption'
 
-import { addingBuildingProgressState, electricityConsumptionListState } from 'atoms'
+import { addingBuildingProgressState, heatConsumptionListState } from 'atoms'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getPrevMonthYear } from 'Utilities'
@@ -48,7 +48,7 @@ const Adding = styled(Add)`
   color: var(--bs-primary);
 `
 
-const ElectricityConsumption = () => {
+const HeatConsumption = () => {
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
     addingBuildingProgressState)
   const { t } = useTranslation('buildingInput')
@@ -61,7 +61,7 @@ const ElectricityConsumption = () => {
 
   const onSubmit = (data) => {
     // console.log(data)
-    setAddingBuildingProgressState(50)
+    setAddingBuildingProgressState(55)
     //navigate(moveNextUrl)
   }
 
@@ -80,37 +80,38 @@ const ElectricityConsumption = () => {
     shouldUnregister: false,
   })
 
-  const [electricityConsumptionList, setElectricityConsumptionList] = useRecoilState(
-    electricityConsumptionListState)
+  const [heatConsumptionList, setHeatConsumptionList] = useRecoilState(
+    heatConsumptionListState)
 
-  const onAddElectricityConsumption = () => {
+  const onAddHeatConsumption = () => {
     let nextMonthYear = {
       month: new Date().getMonth(),
       year: new Date().getFullYear(),
     }
-    if (electricityConsumptionList !== null &&
-      electricityConsumptionList.length > 0) {
-      //console.log(electricityConsumptionList[electricityConsumptionList.length - 1])
+    if (heatConsumptionList !== null &&
+      heatConsumptionList.length > 0) {
+      
       nextMonthYear = getPrevMonthYear(
-        electricityConsumptionList[electricityConsumptionList.length - 1].month,
-        electricityConsumptionList[electricityConsumptionList.length - 1].year)
+        heatConsumptionList[heatConsumptionList.length - 1].month,
+        heatConsumptionList[heatConsumptionList.length - 1].year)
     }
 
-    setElectricityConsumptionList((oldElectricityConsumptionList) => [
-      ...oldElectricityConsumptionList,
+    setHeatConsumptionList((oldHeatConsumptionList) => [
+      ...oldHeatConsumptionList,
       {
         id: parseInt(_.uniqueId()),
         month: nextMonthYear.month,
         year: nextMonthYear.year,
+        heattype: '',
         value: '',
         cost: '',
       },
     ])
   }
 
-  const lis = electricityConsumptionList.map(item =>
-    <OneMonthElectricityConsumption
-      key={'ElectricityConsumption' + item.id}
+  const lis = heatConsumptionList.map(item =>
+    <OneMonthHeatConsumption
+      key={'HeatConsumption' + item.id}
       data={item}
       control={control}
       setValue={setValue}
@@ -121,7 +122,7 @@ const ElectricityConsumption = () => {
   useEffect(() => {
     async function tracking() {
       const idToken = await user.getIdToken()
-      trackingUser(user.uid, 'Electricity Consumption - Adding Building', idToken)
+      trackingUser(user.uid, 'Heating Consumption - Adding Building', idToken)
     }
     tracking()
   }, [])
@@ -132,8 +133,8 @@ const ElectricityConsumption = () => {
         <Title>{t('New Building')}</Title>
 
         <BackNextGroupButton
-          backLink={parentUrl + '/activity'}
-          nextLink="/adding-building/heat-consumption"
+          backLink={parentUrl + '/electricity-consumption'}
+          nextLink="/adding-building/hvac"
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
@@ -146,16 +147,22 @@ const ElectricityConsumption = () => {
           <div className="col-3">
             {t('Month / Year')}
           </div>
+
           <div className="col-3">
+            {t('Heating Type')}
+          </div>
+
+          <div className="col-2">
             {t('Cost ($)')}
           </div>
+
           <div className="col-3">
             {t('Consumption (kWh)')}
           </div>
-          <div className="col-3">
+          <div className="col-1">
             <Adding
               titleAccess={t("Add new item")} fontSize="large"
-              onClick={onAddElectricityConsumption}
+              onClick={onAddHeatConsumption}
             />
           </div>
         </Header>
@@ -168,4 +175,4 @@ const ElectricityConsumption = () => {
   )
 }
 
-export default ElectricityConsumption
+export default HeatConsumption

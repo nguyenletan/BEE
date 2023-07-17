@@ -37,6 +37,9 @@
   "General Information":"Stammdaten",
   "Activity":"Nutzung",
   "Electricity Consumption":"Stromverbrauch",
+  "Heating Consumption":"Heizungverbrauch",
+  "District Heating":"Fernwärme",
+  "Heating Type" :"Heizungsart",
   "HVAC":"HKL",
   "Lighting":"Beleuchtung",
   "Envelope & Facade":"Gebäudehülle & Fassade",
@@ -61,6 +64,8 @@
   "Has Major Refurbishment or Extension Done?":"Wurden größere Renovierungen oder Erweiterungen durchgeführt?",
   "Latest Year for Refurbishment or Extension":"Jahr der letzten  Renovierung oder Erweiterung",
   "This field is required": "Dieses Feld wird benötigt",
+  "This field must be selected":"Dieses Feld muss ausgewählt werden",
+
 
   "_comment6":"//New Building Input - Activity",
   "Operates on":"Genutzt am",

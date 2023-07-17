@@ -9,6 +9,7 @@ import {
   buildingActivityState,
   coolingSystemState,
   electricityConsumptionListState,
+  heatConsumptionListState,
   envelopFacadeState,
   generalBuildingInformationState,
   heatingSystemState,
@@ -63,6 +64,10 @@ const BackNextGroupButton = ({
   const solarPanelSystemList = useRecoilValue(solarPanelSystemListState)
   const electricityConsumptionList = useRecoilValue(
     electricityConsumptionListState)
+
+  const heatConsumptionList = useRecoilValue(
+      heatConsumptionListState)
+
   const coolingSystem = useRecoilValue(coolingSystemState)
   const heatingSystem = useRecoilValue(heatingSystemState)
   const envelopFacade = useRecoilValue(envelopFacadeState)
@@ -86,6 +91,8 @@ const BackNextGroupButton = ({
       lightingSubSystemList: lightingSubSystemList,
       solarPanelSystemList: solarPanelSystemList,
       electricityConsumptionList: electricityConsumptionList,
+      heatConsumptionList: heatConsumptionList,
+
       coolingSystem: coolingSystem,
       heatingSystem: heatingSystem,
       envelopFacade: envelopFacade,
