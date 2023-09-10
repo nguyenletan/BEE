@@ -109,6 +109,8 @@
   "Steam": "Dampf",
   "Exhaust": "Abluft",
   "Electricity": "Strom",
+  "Gas": "Gas",
+
 
   "Warm Air Heating": "Warmluftheizung",
   "Destratification Heating": "Thermische Entmischung",
@@ -125,6 +127,8 @@
   "Absorption Heat Pump": "Absorptionswärmepumpe",
 
   "_Electricity": "Strom",
+  "_Gas": "Gas",
+
   "District Steam": "Fernwärme (Dampf)",
   "Natural Gas": "Erdgas",
   "Fuel Oil": "Erdöl",

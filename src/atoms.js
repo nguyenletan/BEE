@@ -156,10 +156,28 @@ export const defaultElectricityConsumptionListState = [
     value: '',
     cost: '',
   }]
+
+export const defaultHeatConsumptionListState = [
+    {
+      id: parseInt(_.uniqueId()),
+      month: new Date().getMonth(),
+      year: new Date().getFullYear(),
+      heattype: '',
+      value: '',
+      cost: '',
+    }]
+  
+
 export const electricityConsumptionListState = atom({
   key: 'electricityConsumption',
   default: defaultElectricityConsumptionListState,
 })
+
+export const heatConsumptionListState = atom({
+  key: 'heatConsumption',
+  default: defaultHeatConsumptionListState,
+})
+
 
 export const defaultGeneralBuildingInformationState = {
   propId: null,
