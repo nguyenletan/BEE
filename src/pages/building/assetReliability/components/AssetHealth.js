@@ -713,7 +713,7 @@ const AssetHealth = () => {
         }}
         pointBorderColor={{ from: 'serieColor' }}
         xScale={{ type: 'point' }}
-        colors={['#636c2e', '#87972F', '#c1cf74']}
+        colors={['#636c2e', '#87972f', '#c1cf74']}
         legends={[
           {
             anchor: 'top left',

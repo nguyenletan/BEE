@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next'
 
 const BuildingInfoWrapper = styled.div`
   margin-bottom: 30px;
-  margin-top: 50px;
+  margin-top: 30px;
 `
 
 const BuildingImage = styled.img`

@@ -14,6 +14,7 @@ import {
   UserName, LangWrapper,
 } from './HeaderStyle'
 import { useTranslation } from 'react-i18next'
+import HeaderButton from './HeaderButton';
 
 const Header = () => {
   const { logout } = useAuth()
@@ -28,13 +29,19 @@ const Header = () => {
 
   return (
     <HeaderWrapper className=''>
-      <LogoHeader><Link to='/'>BEE</Link></LogoHeader>
+      <LogoHeader><Link to='/' className="text-bold">Contasa</Link></LogoHeader>
       <Menu className='flex-fill'>
-        <MenuItem><NavLink activeClassName='active' to={'/building'}>{t('Building')}</NavLink></MenuItem>
-        {/*<MenuItem>Messages <NumberMessage>3</NumberMessage></MenuItem>*/}
-        <MenuItem>{t('Message')}</MenuItem>
-        <MenuItem>{t('Setting')}</MenuItem>
-        <MenuItem onClick={logout}>{t('Logout')}</MenuItem>
+        {/*<MenuItem><NavLink activeClassName='active' to={'/building'}>{t('Building')}</NavLink></MenuItem>*/}
+        {/*/!*<MenuItem>Messages <NumberMessage>3</NumberMessage></MenuItem>*!/*/}
+        {/*<MenuItem>{t('Message')}</MenuItem>*/}
+        {/*<MenuItem>{t('Setting')}</MenuItem>*/}
+        {/*<MenuItem onClick={logout}>{t('Logout')}</MenuItem>*/}
+        <HeaderButton text="Dashboard & Report" color="primary">Dashboard & Report</HeaderButton>
+        <HeaderButton text="Building Performance" color="info"></HeaderButton>
+        <HeaderButton text="Performance Comparison" color="danger"></HeaderButton>
+        <HeaderButton text="Performance Improvement" color="warning"></HeaderButton>
+        <HeaderButton text="Asset Reliability" color="success"></HeaderButton>
+        <HeaderButton text="Building Input" color="secondary"></HeaderButton>
       </Menu>
 
       <LangWrapper className="d-flex justify-content-between">
@@ -45,14 +52,14 @@ const Header = () => {
           DE
         </span>
       </LangWrapper>
-      <SearchMenu>
-        <InputGroup className='input-group'>
-          <SearchInput type='text' className='form-control' aria-label='Amount (to the nearest dollar)' />
-          <SearchIcon className='input-group-text'><i className='bi bi-search' /></SearchIcon>
-        </InputGroup>
-      </SearchMenu>
+      {/*<SearchMenu>*/}
+      {/*  <InputGroup className='input-group'>*/}
+      {/*    <SearchInput type='text' className='form-control' aria-label='Amount (to the nearest dollar)' />*/}
+      {/*    <SearchIcon className='input-group-text'><i className='bi bi-search' /></SearchIcon>*/}
+      {/*  </InputGroup>*/}
+      {/*</SearchMenu>*/}
       {/* <UserNameAvatar><UserName>JC</UserName></UserNameAvatar> */}
-      <UserNameAvatar><UserNameAvatar><UserName>JC</UserName></UserNameAvatar></UserNameAvatar>
+      {/*<UserNameAvatar><UserNameAvatar><UserName>JC</UserName></UserNameAvatar></UserNameAvatar>*/}
     </HeaderWrapper>
   )
 }

@@ -1,27 +1,27 @@
 import styled from 'styled-components'
 
 export const LogoHeader = styled.span`
-  color: var(--white);
-  background-color: var(--bs-primary);
-  width: 80px;
+    
+  width: 245px;
   display: inline-block;
   line-height: 80px;
   text-align: center;
-  font-size: 26px;
+  font-size: 48px;
+  font-weight: 900;
 `
 
 export const HeaderWrapper = styled.header`
   background-color: #fafafa;
   line-height: 80px;
   height: 80px;
-  margin-bottom: 40px;
+  margin-bottom: 0px;
   display: flex;
   @media (max-width: 620px) {
     height: auto;
   }
 
   a {
-    color: var(--white);
+      color: var(--bs-primary);
 
     &:hover {
       text-decoration: none;

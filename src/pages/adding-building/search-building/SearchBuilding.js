@@ -122,6 +122,8 @@ const SearchBuilding = () => {
 
     }
 
+    console.log('information:', information)
+
     setGeneralBuildingInformation({ ...generalBuildingInformation, ...information })
     setValueToForm(information)
     setIsShowTheMap(true)
