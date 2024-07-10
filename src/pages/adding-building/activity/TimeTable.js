@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import dayjs from "dayjs";
 
 
 const Header = styled.div`
@@ -38,6 +39,8 @@ const Row = ({ data, control, setValue }) => {
     })
     setBuildingActivity(newList)
   }
+
+  console.log(data.startTime, data.endTime)
 
   return (
     <div className="row mt-2" key={`${data.name}`}>
@@ -79,7 +82,7 @@ const Row = ({ data, control, setValue }) => {
                 fullWidth
                 ampm
                 name="startTime"
-                value={data.isEnable ? data.startTime : null}
+                value={data.isEnable ? dayjs(data.startTime) : null}
                 error={!!error}
                 helperText={error ? error.message : null}
                 onChange={(date) => {
@@ -111,7 +114,7 @@ const Row = ({ data, control, setValue }) => {
                 label={t("End Time")}
                 disabled={!data.isEnable}
                 mask="__:__ _M"
-                value={data.isEnable ? data.endTime : null}
+                value={data.isEnable ? dayjs(data.endTime) : null}
                 error={!!error}
                 helperText={error ? error.message : null}
                 onChange={(date) => {

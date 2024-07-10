@@ -29,6 +29,31 @@ export const createBuilding = async (data, idToken) => {
   return result
 }
 
+export const deleteBuilding = async (propertyId, idToken) => {
+  let result
+  await axios({
+    method: 'delete',
+    url: process.env.REACT_APP_BACKEND_API + '/buildings/' + propertyId,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${idToken}`,
+    },
+    data: {},
+    body: {},
+  }).then((response) => {
+    //console.log(response)
+    // result = response
+    result = 'Delete successfully!'
+  }).catch(error => {
+    if (error.response) {
+      // setErrorMsg(error.response.data.message)
+      result = error.response.data.message
+    }
+  })
+
+  return result
+}
+
 export const updateBuilding = async (id, data, idToken) => {
   let result
   //console.log(data)

@@ -9,6 +9,8 @@ import AskQuestion from './search-building/AskQuestion'
 import Activity from './activity/Activity'
 import ElectricityConsumption
   from './electricity_consumption/ElectricityConsumption'
+import HeatConsumption
+  from './heat_consumption/HeatConsumption'
 import HVAC from './hvac/HVAC'
 import Lighting from './lighting/Lighting'
 import EnvelopFacade from './envelope-facade/EnvelopFacade'
@@ -22,12 +24,15 @@ import {
   coolingSystemState,
   defaultBuildingActivityState,
   defaultCoolingSystemState,
-  defaultElectricityConsumptionListState, defaultEnvelopFacadeState,
+  defaultElectricityConsumptionListState, 
+  defaultHeatConsumptionListState, 
+  defaultEnvelopFacadeState,
   defaultGeneralBuildingInformationState,
   defaultHeatingSystemState,
   defaultLightingSubSystemListState, defaultSolarPanelSystemListState,
   defaultSpaceUsageGFAListState,
   electricityConsumptionListState,
+  heatConsumptionListState,
   envelopFacadeState,
   generalBuildingInformationState,
   heatingSystemState,
@@ -49,6 +54,8 @@ const AddingBuilding = () => {
   const setSpaceUsageGFAList = useSetRecoilState(spaceUsageGFAListState)
   const setElectricityConsumptionList = useSetRecoilState(
     electricityConsumptionListState)
+  const setHeatConsumptionList = useSetRecoilState(
+      heatConsumptionListState)
   const setCoolingSystem = useSetRecoilState(coolingSystemState)
   const setHeatingSystem = useSetRecoilState(heatingSystemState)
   const setLightingSubSystemList = useSetRecoilState(lightingSubSystemListState)
@@ -66,6 +73,8 @@ const AddingBuilding = () => {
       setBuildingActivity(building?.buildingActivity)
       setSpaceUsageGFAList(building?.spaceUsageGFAList)
       setElectricityConsumptionList(building?.electricityConsumptionList)
+      setHeatConsumptionList(building?.heatConsumptionList)
+
       if (building?.coolingSystem) {
         setCoolingSystem(building?.coolingSystem)
       }
@@ -89,6 +98,7 @@ const AddingBuilding = () => {
       setBuildingActivity(defaultBuildingActivityState)
       setSpaceUsageGFAList(defaultSpaceUsageGFAListState)
       setElectricityConsumptionList(defaultElectricityConsumptionListState)
+      setHeatConsumptionList(defaultHeatConsumptionListState)
       setCoolingSystem(defaultCoolingSystemState)
       setHeatingSystem(defaultHeatingSystemState)
       setLightingSubSystemList(defaultLightingSubSystemListState)
@@ -124,6 +134,12 @@ const AddingBuilding = () => {
             path={`electricity-consumption`}
             element={<ElectricityConsumption/>}
           />
+
+          <Route
+            path={`heat-consumption`}
+            element={<HeatConsumption/>}
+          />
+
           <Route
             path={`hvac`}
             element={<HVAC/>}

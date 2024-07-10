@@ -61,6 +61,7 @@ const RenewableEnergy = () => {
         systemLoss: 14,
         pvTechChoiceId: '',
         mountingTypeId: '',
+        isNewItem: true,
       },
     ])
   }

@@ -35,6 +35,7 @@ import { trackingUser } from 'api/UserAPI'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs'
+import building from "../../building/Building";
 
 const UploadImage = styled.div`
   width: 400px;
@@ -55,8 +56,9 @@ const LeftCol = styled.div`
 
 const Title = styled.h2`
   color: var(--bs-primary);
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 0;
+  text-transform: uppercase;
 `
 
 const Message = styled.p`
@@ -216,10 +218,7 @@ const GeneralInformation = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="d-flex mt-5 mb-4 align-items-baseline">
 
-        <Title>{t('New Building')}</Title>
-        {/*<Message role="alert">*/}
-        {/*  A simple success alert—check it out!*/}
-        {/*</Message>*/}
+        <Title>{`${generalBuildingInformation.buildingName} building` ?? t('New Building')}</Title>
 
         <BackNextGroupButton
           backLink={parentUrl + '/search-building'}

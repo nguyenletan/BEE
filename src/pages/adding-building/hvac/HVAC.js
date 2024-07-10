@@ -70,7 +70,7 @@ const HVAC = () => {
         <Title>{t('New Building')}</Title>
 
         <BackNextGroupButton
-          backLink={parentUrl + '/electricity-consumption'}
+          backLink={parentUrl + '/heat-consumption'}
           nextLink="/adding-building/lighting"
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}

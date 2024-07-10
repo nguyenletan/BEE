@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@mui/styles'
 import {LinearProgress, Typography, Box} from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import CircularProgressWithLabel from "./CircularProgressBarWithLabel";
 
 // const BeeLinearProgress = withStyles((theme) => ({
 //   root: {
@@ -72,6 +73,7 @@ const Progress = ({ value }) => {
 
   return (
     <Box className={classes.root + ' me-1'}>
+      {/*<CircularProgressWithLabel value={value} />*/}
       <LinearProgressWithLabel value={value} />
     </Box>
   )

@@ -1,14 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
-import Progress from './Progress'
+import CircularProgressBarWithLabel from './CircularProgressBarWithLabel'
 import { Button, CircularProgress } from '@mui/material'
-import { ArrowBack, ArrowForward, DoneAll, Save } from '@mui/icons-material'
+import { ArrowBack, ArrowForward, DoneAll, Save, Delete } from '@mui/icons-material'
 import { Link, useParams } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import {
   buildingActivityState,
   coolingSystemState,
   electricityConsumptionListState,
+  heatConsumptionListState,
   envelopFacadeState,
   generalBuildingInformationState,
   heatingSystemState,
@@ -63,6 +64,10 @@ const BackNextGroupButton = ({
   const solarPanelSystemList = useRecoilValue(solarPanelSystemListState)
   const electricityConsumptionList = useRecoilValue(
     electricityConsumptionListState)
+
+  const heatConsumptionList = useRecoilValue(
+      heatConsumptionListState)
+
   const coolingSystem = useRecoilValue(coolingSystemState)
   const heatingSystem = useRecoilValue(heatingSystemState)
   const envelopFacade = useRecoilValue(envelopFacadeState)
@@ -86,6 +91,8 @@ const BackNextGroupButton = ({
       lightingSubSystemList: lightingSubSystemList,
       solarPanelSystemList: solarPanelSystemList,
       electricityConsumptionList: electricityConsumptionList,
+      heatConsumptionList: heatConsumptionList,
+
       coolingSystem: coolingSystem,
       heatingSystem: heatingSystem,
       envelopFacade: envelopFacade,
@@ -144,7 +151,7 @@ const BackNextGroupButton = ({
       {
         isInDoneStep === true ? (
           <div className="d-flex ms-auto align-items-center">
-            {progressValue !== undefined && <Progress value={progressValue}/>}
+            {/*{progressValue !== undefined && <CircularProgressBarWithLabel value={progressValue}/>}*/}
             {backLink && <Link to={backLink}>
               <Button
                 startIcon={<ArrowBack/>}
@@ -165,7 +172,7 @@ const BackNextGroupButton = ({
 
           <div className="d-flex ms-auto align-items-center">
 
-            {progressValue !== undefined && <Progress value={progressValue}/>}
+            {/*{progressValue !== undefined && <CircularProgressBarWithLabel value={progressValue}/>}*/}
 
             <Button
               onClick={onSave}
@@ -174,9 +181,17 @@ const BackNextGroupButton = ({
               startIcon={<Save/>}
               variant="contained"
               // disabled={isDisabledSave}
-              color="primary" className="me-5"
+              color="primary" className="me-2"
             >{t('Save')}
             </Button>
+
+            {/*<Button to={nextLink}*/}
+            {/*  // type="submit"*/}
+            {/*        endIcon={<Delete/>} variant="contained"*/}
+            {/*        color="warning" className="me-5"*/}
+            {/*>Delete*/}
+            {/*</Button>*/}
+
 
             {backLink && <Link to={backLink}>
               <Button
@@ -195,7 +210,6 @@ const BackNextGroupButton = ({
               >{t('Next')}
               </Button></Link>
             }
-
           </div>
         )
       }

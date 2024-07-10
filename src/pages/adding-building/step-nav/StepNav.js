@@ -59,6 +59,17 @@ const StepNav = () => {
         >{t('Electricity Consumption')}
         </NavLink>
       </li>
+
+
+      <li className="nav-item">
+        <NavLink
+          activeClassName="active" className="nav-link"
+          to={parentUrl + '/heat-consumption'}
+        >{t('Heating Consumption')}
+        </NavLink>
+      </li>
+
+
       <li className="nav-item">
         <NavLink
           activeClassName="active" className="nav-link"
