@@ -171,8 +171,6 @@ const SearchBuilding = () => {
   })
 
   const onSubmit = (data) => {
-    // console.log(data)
-    // console.log(generalBuildingInformation)
     setGeneralBuildingInformation({ ...generalBuildingInformation, ...data })
     setAddingBuildingProgressState(5)
     navigate('/adding-building/general-information')

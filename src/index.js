@@ -13,8 +13,8 @@ import './i18n';
 
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
-//const container = document.getElementById('root');
-//const root = createRoot(container); // createRoot(container!) if you use TypeScript
+// const container = document.getElementById('root');
+// const root = createRoot(container); // createRoot(container!) if you use TypeScript
 // root.render(<React.StrictMode>
 //   <AuthProvider>
 //     <BrowserRouter>
@@ -22,6 +22,7 @@ import './i18n';
 //     </BrowserRouter>
 //   </AuthProvider>
 // </React.StrictMode>);
+
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>

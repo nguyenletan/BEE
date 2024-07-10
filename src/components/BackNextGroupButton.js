@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
-import Progress from './Progress'
+import CircularProgressBarWithLabel from './CircularProgressBarWithLabel'
 import { Button, CircularProgress } from '@mui/material'
-import { ArrowBack, ArrowForward, DoneAll, Save } from '@mui/icons-material'
+import { ArrowBack, ArrowForward, DoneAll, Save, Delete } from '@mui/icons-material'
 import { Link, useParams } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import {
@@ -151,7 +151,7 @@ const BackNextGroupButton = ({
       {
         isInDoneStep === true ? (
           <div className="d-flex ms-auto align-items-center">
-            {progressValue !== undefined && <Progress value={progressValue}/>}
+            {/*{progressValue !== undefined && <CircularProgressBarWithLabel value={progressValue}/>}*/}
             {backLink && <Link to={backLink}>
               <Button
                 startIcon={<ArrowBack/>}
@@ -172,7 +172,7 @@ const BackNextGroupButton = ({
 
           <div className="d-flex ms-auto align-items-center">
 
-            {progressValue !== undefined && <Progress value={progressValue}/>}
+            {/*{progressValue !== undefined && <CircularProgressBarWithLabel value={progressValue}/>}*/}
 
             <Button
               onClick={onSave}
@@ -181,9 +181,17 @@ const BackNextGroupButton = ({
               startIcon={<Save/>}
               variant="contained"
               // disabled={isDisabledSave}
-              color="primary" className="me-5"
+              color="primary" className="me-2"
             >{t('Save')}
             </Button>
+
+            {/*<Button to={nextLink}*/}
+            {/*  // type="submit"*/}
+            {/*        endIcon={<Delete/>} variant="contained"*/}
+            {/*        color="warning" className="me-5"*/}
+            {/*>Delete*/}
+            {/*</Button>*/}
+
 
             {backLink && <Link to={backLink}>
               <Button
@@ -202,7 +210,6 @@ const BackNextGroupButton = ({
               >{t('Next')}
               </Button></Link>
             }
-
           </div>
         )
       }
