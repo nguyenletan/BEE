@@ -4,16 +4,13 @@ import { ResponsiveLine } from '@nivo/line'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 
-const Wrapper = styled.div`
-
-`
+const Wrapper = styled.div``
 
 const ChartWrapper = styled.div`
   height: 350px;
 `
 
 const Cost = () => {
-
   let costDataEN = [
     {
       id: 'Maintenance',
@@ -34,7 +31,6 @@ const Cost = () => {
         { x: 2019, y: 720000 },
         { x: 2020, y: 750000 },
         { x: 2021, y: 770000 },
-
       ],
     },
     {
@@ -56,7 +52,6 @@ const Cost = () => {
         { x: 2019, y: 472000 },
         { x: 2020, y: 475000 },
         { x: 2021, y: 527000 },
-
       ],
     },
     {
@@ -78,7 +73,6 @@ const Cost = () => {
         { x: 2019, y: 820000 },
         { x: 2020, y: 850000 },
         { x: 2021, y: 970000 },
-
       ],
     },
   ]
@@ -102,7 +96,6 @@ const Cost = () => {
         { x: 2019, y: 720000 },
         { x: 2020, y: 750000 },
         { x: 2021, y: 770000 },
-
       ],
     },
     {
@@ -124,7 +117,6 @@ const Cost = () => {
         { x: 2019, y: 472000 },
         { x: 2020, y: 475000 },
         { x: 2021, y: 527000 },
-
       ],
     },
     {
@@ -146,7 +138,6 @@ const Cost = () => {
         { x: 2019, y: 820000 },
         { x: 2020, y: 850000 },
         { x: 2021, y: 970000 },
-
       ],
     },
   ]
@@ -156,7 +147,7 @@ const Cost = () => {
   const [costData, setCostData] = useState(costDataEN)
 
   useEffect(() => {
-    if(i18n.language === 'en') {
+    if (i18n.language === 'en') {
       setCostData(costDataEN)
     } else {
       setCostData(costDataDE)
@@ -191,7 +182,7 @@ const Cost = () => {
     ],
     data: costData,
     animate: true,
-    colors: ['#3D511B','#87972f','#B9D787'],
+    colors: ['#3D511B', '#87972f', '#B9D787'],
     enableSlices: 'x',
     enableGridX: false,
     enableGridY: true,
@@ -220,21 +211,28 @@ const Cost = () => {
       legendOffset: 36,
       legendPosition: 'middle',
     },
-    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends'],
-
+    layers: [
+      'grid',
+      'markers',
+      'axes',
+      'areas',
+      'crosshair',
+      'lines',
+      'points',
+      'slices',
+      'mesh',
+      'legends',
+    ],
   }
 
   return (
     <Wrapper>
       <h5>{t('Cost ($)')}</h5>
       <ChartWrapper>
-        <ResponsiveLine
-          {...commonProperties}
-        />
+        <ResponsiveLine {...commonProperties} />
       </ChartWrapper>
     </Wrapper>
   )
-
 }
 
 export default Cost

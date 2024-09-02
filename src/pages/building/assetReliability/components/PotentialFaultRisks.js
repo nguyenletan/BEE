@@ -1,7 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ScatterPlot } from '@nivo/scatterplot'
-import { coolingSVG, heatingSVG, lightingSVG, mechVentSVG, openingsSVG, wallSVG } from '../../../../SvgConstants'
+import {
+  coolingSVG,
+  heatingSVG,
+  lightingSVG,
+  mechVentSVG,
+  openingsSVG,
+  wallSVG,
+} from '../../../../SvgConstants'
 import { area, curveMonotoneX } from 'd3-shape'
 
 const PotentialFaultRiskWrapper = styled.div`
@@ -112,14 +119,16 @@ const PotentialFaultRisk = ({ data }) => {
   //     }
   //   ]
 
-  const payBackData = data.map(item => {
+  const payBackData = data.map((item) => {
     return {
       id: item.asset,
-      data: [{
-        x: item.potentialDownTime,
-        y: item.sparePartsLeadTime,
-        subSystem: item.subSystem
-      }]
+      data: [
+        {
+          x: item.potentialDownTime,
+          y: item.sparePartsLeadTime,
+          subSystem: item.subSystem,
+        },
+      ],
     }
   })
 
@@ -129,93 +138,96 @@ const PotentialFaultRisk = ({ data }) => {
   const marginTop = 0
   const marginLeft = 0
   const marginRight = 0
-  const areaHeight = ((height - (marginTop + marginBottom)) / 2)
-  const areaWidth = ((width - (marginLeft + marginRight)) / 2) + 16
+  const areaHeight = (height - (marginTop + marginBottom)) / 2
+  const areaWidth = (width - (marginLeft + marginRight)) / 2 + 16
 
   const commonProps = {
     width: width,
     height: height,
-    margin: { top: marginTop, right: marginRight, bottom: marginBottom, left: marginLeft },
+    margin: {
+      top: marginTop,
+      right: marginRight,
+      bottom: marginBottom,
+      left: marginLeft,
+    },
     nodeSize: 10,
     blendMode: 'multiply',
-    xFormat: d => `${d}%`,
-    yFormat: d => `${d} Yr`,
+    xFormat: (d) => `${d}%`,
+    yFormat: (d) => `${d} Yr`,
     axisBottom: {
-      format: d => `${d}`,
+      format: (d) => `${d}`,
       legend: 'Potential Downtime (Weeks)',
-      legendOffset: 40
+      legendOffset: 40,
     },
     axisLeft: {
-      format: d => `${d}`,
+      format: (d) => `${d}`,
       legend: 'Spare Parts Lead Time (Weeks)',
-      legendOffset: -35
+      legendOffset: -35,
     },
-    data: payBackData
-
+    data: payBackData,
   }
 
   const areaLayer = ({ nodes, xScale, yScale }) => {
     return (
-      <g transform='translate(0,0)' className='Quadrant__Background' opacity={1}>
+      <g
+        transform="translate(0,0)"
+        className="Quadrant__Background"
+        opacity={1}
+      >
         <g>
-          <rect x='0' y='0' width={areaWidth} height={areaHeight} fill='#f7e2d8' />
+          <rect
+            x="0"
+            y="0"
+            width={areaWidth}
+            height={areaHeight}
+            fill="#f7e2d8"
+          />
         </g>
         <g>
-          <rect x={areaWidth} y='0' width={areaWidth} height={areaHeight} fill='#f5d7d7' />
+          <rect
+            x={areaWidth}
+            y="0"
+            width={areaWidth}
+            height={areaHeight}
+            fill="#f5d7d7"
+          />
         </g>
         <g>
-          <rect x='0' y={areaHeight} width={areaWidth} height={areaHeight} fill='#e4e7d3' />
+          <rect
+            x="0"
+            y={areaHeight}
+            width={areaWidth}
+            height={areaHeight}
+            fill="#e4e7d3"
+          />
         </g>
         <g>
-          <rect x={areaWidth} y={areaHeight} width={areaWidth} height={areaHeight} fill='#f7e2d5' />
+          <rect
+            x={areaWidth}
+            y={areaHeight}
+            width={areaWidth}
+            height={areaHeight}
+            fill="#f7e2d5"
+          />
         </g>
-
       </g>
     )
   }
 
-  const customNode = ({
-    node,
-    x,
-    y
-  }) => {
+  const customNode = ({ node, x, y }) => {
     switch (node.data.subSystem) {
       case 'Cooling':
-        return (
-          <g transform={`translate(${x},${y})`}>
-            {coolingSVG()}
-          </g>
-        )
+        return <g transform={`translate(${x},${y})`}>{coolingSVG()}</g>
       case 'Heating':
-        return (
-          <g transform={`translate(${x},${y - 36})`}>
-            {heatingSVG()}
-          </g>
-        )
+        return <g transform={`translate(${x},${y - 36})`}>{heatingSVG()}</g>
       case 'Lighting':
-        return (
-          <g transform={`translate(${x},${y})`}>
-            {lightingSVG()}
-          </g>
-        )
+        return <g transform={`translate(${x},${y})`}>{lightingSVG()}</g>
       case 'Openings':
-        return (
-          <g transform={`translate(${x},${y})`}>
-            {openingsSVG()}
-          </g>
-        )
+        return <g transform={`translate(${x},${y})`}>{openingsSVG()}</g>
       case 'Walls':
-        return (
-          <g transform={`translate(${x},${y})`}>
-            {wallSVG()}
-          </g>
-        )
+        return <g transform={`translate(${x},${y})`}>{wallSVG()}</g>
       case 'Mechanical Ventilation':
-        return (
-          <g transform={`translate(${x},${y})`}>
-            {mechVentSVG()}
-          </g>
-        )
+        return <g transform={`translate(${x},${y})`}>{mechVentSVG()}</g>
       default:
         return null
     }
@@ -236,7 +248,7 @@ const PotentialFaultRisk = ({ data }) => {
           'markers',
           'mesh',
           'legends',
-          'annotations'
+          'annotations',
         ]}
       />
     </PotentialFaultRiskWrapper>

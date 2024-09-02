@@ -9,7 +9,7 @@
   "Apply": "Anwenden",
   "Start date should be greater than End date": "Das Startdatum sollte größer als das Enddatum sein",
 
-  "_comment2:":  "//Building Energy Usage Chart",
+  "_comment2:": "//Building Energy Usage Chart",
   "Building Energy Usage (MWh)": "Gebäudeenergieverbrauch (MWh)",
   "Total Energy Consumption (MWh)": "Gesamtenergieverbrauch (MWh)",
   "Total Energy Cost ($)": "Gesamtenergiekosten (€)",
@@ -25,11 +25,11 @@
   "Previous 12 Month Period": "Die letzte 12 Monate",
   "$": "€",
 
-  "_comment4" : "//Comsumption Breakdown MWh Chart  //Cost Breakdown $ Chart   //CO2 Emissions Breakdown Ton Chart",
+  "_comment4": "//Comsumption Breakdown MWh Chart  //Cost Breakdown $ Chart   //CO2 Emissions Breakdown Ton Chart",
   "Consumption Breakdown": "Verbrauchsaufschlüsselung",
   "Cost Breakdown": "Kostenaufschlüsselung",
   "CO2 Emissions Breakdown": "CO2-Emissionen",
-  "Ton" : "Tonnen",
+  "Ton": "Tonnen",
   "Cooling": "Kühlung",
   "Heating": "Heizung",
   "Lighting": "Beleuchtung",
@@ -42,14 +42,14 @@
   "Mechanical Ventilation Ton": "Lüftung Tonne",
   "Others Ton": "Sonstiges Tonne",
 
-  "_comment5" : "////Electrical System Information",
+  "_comment5": "////Electrical System Information",
   "Electrical System Information": "Informationen zur elektr. Leistung",
   "Cooling Load": "Kühllast",
   "Heating Load": "Heizlast",
 
   "P.V. System": "Erneuerbare Energien",
 
-  "_comment6" : "//Incidental Gains & Other Information",
+  "_comment6": "//Incidental Gains & Other Information",
   "Incidental Gains & Other Information": "Unbeabsichtigte Aufwände und andere Informationen",
   "Roof": "Dach",
   "Wall": "Wände",

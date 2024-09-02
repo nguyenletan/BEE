@@ -7,10 +7,8 @@ import GeneralInformation from './general-information/GeneralInformation'
 import SearchBuilding from './search-building/SearchBuilding'
 import AskQuestion from './search-building/AskQuestion'
 import Activity from './activity/Activity'
-import ElectricityConsumption
-  from './electricity_consumption/ElectricityConsumption'
-import HeatConsumption
-  from './heat_consumption/HeatConsumption'
+import ElectricityConsumption from './electricity_consumption/ElectricityConsumption'
+import HeatConsumption from './heat_consumption/HeatConsumption'
 import HVAC from './hvac/HVAC'
 import Lighting from './lighting/Lighting'
 import EnvelopFacade from './envelope-facade/EnvelopFacade'
@@ -24,12 +22,13 @@ import {
   coolingSystemState,
   defaultBuildingActivityState,
   defaultCoolingSystemState,
-  defaultElectricityConsumptionListState, 
-  defaultHeatConsumptionListState, 
+  defaultElectricityConsumptionListState,
+  defaultHeatConsumptionListState,
   defaultEnvelopFacadeState,
   defaultGeneralBuildingInformationState,
   defaultHeatingSystemState,
-  defaultLightingSubSystemListState, defaultSolarPanelSystemListState,
+  defaultLightingSubSystemListState,
+  defaultSolarPanelSystemListState,
   defaultSpaceUsageGFAListState,
   electricityConsumptionListState,
   heatConsumptionListState,
@@ -44,25 +43,26 @@ import {
 export const BuildingInformationContext = React.createContext()
 
 const AddingBuilding = () => {
-
   const { id } = useParams()
 
   const setBuildingActivity = useSetRecoilState(buildingActivityState)
 
   const setGeneralBuildingInformation = useSetRecoilState(
-    generalBuildingInformationState)
+    generalBuildingInformationState
+  )
   const setSpaceUsageGFAList = useSetRecoilState(spaceUsageGFAListState)
   const setElectricityConsumptionList = useSetRecoilState(
-    electricityConsumptionListState)
-  const setHeatConsumptionList = useSetRecoilState(
-      heatConsumptionListState)
+    electricityConsumptionListState
+  )
+  const setHeatConsumptionList = useSetRecoilState(heatConsumptionListState)
   const setCoolingSystem = useSetRecoilState(coolingSystemState)
   const setHeatingSystem = useSetRecoilState(heatingSystemState)
   const setLightingSubSystemList = useSetRecoilState(lightingSubSystemListState)
   const setEnvelopFacade = useSetRecoilState(envelopFacadeState)
   const setSolarPanelSystemList = useSetRecoilState(solarPanelSystemListState)
   const setAddingBuildingProgressState = useSetRecoilState(
-    addingBuildingProgressState)
+    addingBuildingProgressState
+  )
 
   //console.log(id)
 
@@ -110,59 +110,36 @@ const AddingBuilding = () => {
     // eslint-disable-line
   }, [])
 
-
   return (
     <>
-      <Header/>
+      <Header />
 
       <div className="container">
         <Routes>
-          <Route path={`/`} element={<AskQuestion/>} exact/>
-          <Route
-            path={`search-building`}
-            element={<SearchBuilding/>}
-          />
+          <Route path={`/`} element={<AskQuestion />} exact />
+          <Route path={`search-building`} element={<SearchBuilding />} />
           <Route
             path={`general-information`}
-            element={<GeneralInformation/>}
+            element={<GeneralInformation />}
           />
-          <Route
-            path={`activity`}
-            element={<Activity/>}
-          />
+          <Route path={`activity`} element={<Activity />} />
           <Route
             path={`electricity-consumption`}
-            element={<ElectricityConsumption/>}
+            element={<ElectricityConsumption />}
           />
 
-          <Route
-            path={`heat-consumption`}
-            element={<HeatConsumption/>}
-          />
+          <Route path={`heat-consumption`} element={<HeatConsumption />} />
 
-          <Route
-            path={`hvac`}
-            element={<HVAC/>}
-          />
-          <Route
-            path={`lighting`}
-            element={<Lighting/>}
-          />
-          <Route
-            path={`envelope-facade`}
-            element={<EnvelopFacade/>}
-          />
-          <Route
-            path={`renewable-energy`}
-            element={<RenewableEnergy/>}
-          />
+          <Route path={`hvac`} element={<HVAC />} />
+          <Route path={`lighting`} element={<Lighting />} />
+          <Route path={`envelope-facade`} element={<EnvelopFacade />} />
+          <Route path={`renewable-energy`} element={<RenewableEnergy />} />
           <Route
             path={`adding-building-successfully`}
-            element={<AddingBuildingSuccessfully/>}
+            element={<AddingBuildingSuccessfully />}
           />
         </Routes>
       </div>
-
     </>
   )
 }

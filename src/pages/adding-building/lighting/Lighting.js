@@ -20,9 +20,7 @@ import { useTranslation } from 'react-i18next'
 import { useAuth } from 'AuthenticateProvider'
 import { trackingUser } from 'api/UserAPI'
 
-const Form = styled.form`
-
-`
+const Form = styled.form``
 
 const Title = styled.h2`
   color: var(--bs-primary);
@@ -50,24 +48,29 @@ const Ul = styled.ul`
 
 const Lighting = () => {
   const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
-    lightingSubSystemListState)
+    lightingSubSystemListState
+  )
 
-  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
-    addingBuildingProgressState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] =
+    useRecoilState(addingBuildingProgressState)
 
   const { t } = useTranslation('buildingInput')
   const navigate = useNavigate()
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
-  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/envelope-facade')
-  const lightingSubSystemListSelector = useRecoilValue(lightingSubSystemListSelectorState)
+  const moveNextUrl =
+    parentUrl + (id ? '/adding-building-successfully' : '/envelope-facade')
+  const lightingSubSystemListSelector = useRecoilValue(
+    lightingSubSystemListSelectorState
+  )
   const totalWatt = useRecoilValue(totalWattOfLightingSubSystemListState)
-  const overallEfficacy = useRecoilValue(totalEfficacyOfLightingSubSystemListState)
-
+  const overallEfficacy = useRecoilValue(
+    totalEfficacyOfLightingSubSystemListState
+  )
 
   const { user } = useAuth()
   useEffect(() => {
-    async function tracking () {
+    async function tracking() {
       const idToken = await user.getIdToken()
       await trackingUser(user.uid, 'Lighting - Adding Building', idToken)
     }
@@ -107,22 +110,23 @@ const Lighting = () => {
     shouldUnregister: false,
   })
 
-  const lis = lightingSubSystemList.map((item, index) =>
+  const lis = lightingSubSystemList.map((item, index) => (
     <li className="col-12 col-lg-6 col-xl-4 mb-4" key={item.id}>
-      <LightingSubSystem data={item}
-                         totalWatt={lightingSubSystemListSelector[index]?.totalWatt}
-                         percentage={lightingSubSystemListSelector[index]?.percentage}
-                         efficacy={lightingSubSystemListSelector[index]?.efficacy}
-                         control={control}
-                         order={index}
-                         setValue={setValue}/>
-    </li>,
-  )
+      <LightingSubSystem
+        data={item}
+        totalWatt={lightingSubSystemListSelector[index]?.totalWatt}
+        percentage={lightingSubSystemListSelector[index]?.percentage}
+        efficacy={lightingSubSystemListSelector[index]?.efficacy}
+        control={control}
+        order={index}
+        setValue={setValue}
+      />
+    </li>
+  ))
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <div className="d-flex mt-5 mb-4">
-
         <Title>{t('New Building')}</Title>
 
         <BackNextGroupButton
@@ -131,23 +135,30 @@ const Lighting = () => {
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
-
       </div>
 
-      <StepNav/>
+      <StepNav />
 
       <div className="row">
         <div className="col-12">
           <Header className="d-flex justify-content-between">
             <h6>{t('Lighting Subsystem')}</h6>
 
-            <Adding onClick={onAddLightingSubSystemList} title={t('Add new item')}><i
-              className="bi bi-plus-lg font-weight-bolder"
-            />
+            <Adding
+              onClick={onAddLightingSubSystemList}
+              title={t('Add new item')}
+            >
+              <i className="bi bi-plus-lg font-weight-bolder" />
             </Adding>
           </Header>
-          <p>Total Watt (W): <strong className="text-primary">{totalWatt}</strong></p>
-          <p>Overall Efficacy (lm/W): <strong className="text-success">{overallEfficacy}</strong></p>
+          <p>
+            Total Watt (W):{' '}
+            <strong className="text-primary">{totalWatt}</strong>
+          </p>
+          <p>
+            Overall Efficacy (lm/W):{' '}
+            <strong className="text-success">{overallEfficacy}</strong>
+          </p>
           {/* <p>{t('Total light fitting usage')}: {totalPercentageOfLightingSubSystemList}%</p> */}
           {/* <Controller
             name={`total`}
@@ -172,9 +183,7 @@ const Lighting = () => {
             }}
           /> */}
 
-          <Ul className="row">
-            {lis}
-          </Ul>
+          <Ul className="row">{lis}</Ul>
         </div>
       </div>
     </Form>

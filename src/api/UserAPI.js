@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const trackingUser = async(externalUID, pageName, idToken) => {
+export const trackingUser = async (externalUID, pageName, idToken) => {
   let result
   await axios({
     method: 'post',
@@ -11,19 +11,21 @@ export const trackingUser = async(externalUID, pageName, idToken) => {
     },
     data: {
       externalUID: externalUID,
-      pageName: pageName
+      pageName: pageName,
     },
     body: {},
-  }).then((response) => {
-    //console.log(response)
-    // result = response
-    result = 'Saving successfully!'
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      //console.log(response)
+      // result = response
+      result = 'Saving successfully!'
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
 
   return result
 }

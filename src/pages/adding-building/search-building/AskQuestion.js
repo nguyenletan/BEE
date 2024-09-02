@@ -21,31 +21,44 @@ const Wrapper = styled.div`
 `
 
 const AskQuestion = () => {
-
   const { t } = useTranslation('buildingInput')
   return (
     <>
-      <Title>{t('You are adding building into your portfolio. Would you like to do this?')}</Title>
-      <Wrapper className='row mt-6'>
-        <div className='col-12 col-md-5 m-auto'>
-          <div className='w-50 m-auto text-center'>
-            <label htmlFor='' className='font-bold mb-3'>{t('Search building online')}</label>
-            <Link to='/adding-building/search-building'>
-              <div className='input-group'>
-                <input type='text' className='form-control' />
-                <div className='input-group-append'>
-                  <img className='input-group-text' src={SearchIcon} alt='Search' />
+      <Title>
+        {t(
+          'You are adding building into your portfolio. Would you like to do this?'
+        )}
+      </Title>
+      <Wrapper className="row mt-6">
+        <div className="col-12 col-md-5 m-auto">
+          <div className="w-50 m-auto text-center">
+            <label htmlFor="" className="font-bold mb-3">
+              {t('Search building online')}
+            </label>
+            <Link to="/adding-building/search-building">
+              <div className="input-group">
+                <input type="text" className="form-control" />
+                <div className="input-group-append">
+                  <img
+                    className="input-group-text"
+                    src={SearchIcon}
+                    alt="Search"
+                  />
                 </div>
               </div>
             </Link>
           </div>
         </div>
-        <ORLabel className='col-11 col-md-1 text-center m-auto font-bold'>{t('OR')}</ORLabel>
-        <div className='col-12 col-md-5  m-auto'>
-          <div className='w-50 m-auto text-center'>
+        <ORLabel className="col-11 col-md-1 text-center m-auto font-bold">
+          {t('OR')}
+        </ORLabel>
+        <div className="col-12 col-md-5  m-auto">
+          <div className="w-50 m-auto text-center">
             <p>{t('Enter Information Manually')}</p>
-            <Link to='/adding-building/general-information'>
-              <Button variant='contained' color='primary'>{t('Enter Manually')}</Button>
+            <Link to="/adding-building/general-information">
+              <Button variant="contained" color="primary">
+                {t('Enter Manually')}
+              </Button>
             </Link>
           </div>
         </div>

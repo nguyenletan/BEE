@@ -1,6 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
-import { FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import {
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from '@mui/material'
 import styled from 'styled-components'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import LightingFittingType from '../../../reference-tables/LightingFittingType'
@@ -11,9 +18,7 @@ import { makeStyles } from '@mui/styles'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
-const Title = styled.h6`
-
-`
+const Title = styled.h6``
 
 const Header = styled.div`
   display: flex;
@@ -25,9 +30,7 @@ const Subtraction = styled.span`
   cursor: pointer;
   color: var(--bs-primary);
 `
-const Content = styled.div`
-
-`
+const Content = styled.div``
 
 const Total = styled.p`
   color: var(--bs-primary);
@@ -39,11 +42,20 @@ const Total = styled.p`
 //   margin-left: .5em;
 // `
 
-const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, control, setValue }) => {
-  const classes = makeStyles(() => (MaterialFormStyle))()
+const LightingSubSystem = ({
+  data,
+  totalWatt,
+  percentage,
+  efficacy,
+  order,
+  control,
+  setValue,
+}) => {
+  const classes = makeStyles(() => MaterialFormStyle)()
   const { t } = useTranslation(['buildingInput', 'common'])
   const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
-    lightingSubSystemListState)
+    lightingSubSystemListState
+  )
 
   const handleChange = (e) => {
     const index = lightingSubSystemList.findIndex((o) => o.id === data.id)
@@ -57,7 +69,6 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
   }
 
   const onIndoorLightingSystemTypeIdChange = (e) => {
-
     const index = lightingSubSystemList.findIndex((o) => o.id === data.id)
     const newList = replaceItemAtIndex(lightingSubSystemList, index, {
       ...data,
@@ -68,21 +79,42 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
 
   const onRemoveItem = () => {
     const index = lightingSubSystemList.findIndex(
-      (listItem) => listItem.id === data.id)
+      (listItem) => listItem.id === data.id
+    )
 
     const newList = removeItemAtIndex(lightingSubSystemList, index)
     setLightingSubSystemList(newList)
   }
 
   useEffect(() => {
-    setValue(`lighting-fitting-type${data.id}`, data.indoorLightingSystemTypeId, { shouldValidate: true })
-    setValue(`percentage-of-all-light-fittings${data.id}`, data.percentage, { shouldValidate: true })
-    setValue(`wattRatingOfBulb${data.id}`, data.wattRatingOfBulb, { shouldValidate: true })
-    setValue(`numberOfBulbs${data.id}`, data.numberOfBulbs, { shouldValidate: true })
-    setValue(`lumensOfBulb${data.id}`, data.lumensOfBulb, { shouldValidate: true })
+    setValue(
+      `lighting-fitting-type${data.id}`,
+      data.indoorLightingSystemTypeId,
+      { shouldValidate: true }
+    )
+    setValue(`percentage-of-all-light-fittings${data.id}`, data.percentage, {
+      shouldValidate: true,
+    })
+    setValue(`wattRatingOfBulb${data.id}`, data.wattRatingOfBulb, {
+      shouldValidate: true,
+    })
+    setValue(`numberOfBulbs${data.id}`, data.numberOfBulbs, {
+      shouldValidate: true,
+    })
+    setValue(`lumensOfBulb${data.id}`, data.lumensOfBulb, {
+      shouldValidate: true,
+    })
     setValue(`title${data.id}`, data.title, { shouldValidate: true })
-    setValue(`numberOfDaysUsedPerWeek${data.id}`, data.numberOfDaysUsedPerWeek, { shouldValidate: true })
-    setValue(`numberOfHoursUsedPerDay${data.id}`, data.numberOfHoursUsedPerDay, { shouldValidate: true })
+    setValue(
+      `numberOfDaysUsedPerWeek${data.id}`,
+      data.numberOfDaysUsedPerWeek,
+      { shouldValidate: true }
+    )
+    setValue(
+      `numberOfHoursUsedPerDay${data.id}`,
+      data.numberOfHoursUsedPerDay,
+      { shouldValidate: true }
+    )
   }, [
     data.id,
     data.title,
@@ -92,7 +124,8 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
     data.percentage,
     data.wattRatingOfBulb,
     data.numberOfDaysUsedPerWeek,
-    data.numberOfHoursUsedPerDay])
+    data.numberOfHoursUsedPerDay,
+  ])
 
   useEffect(() => {
     //console.log(percentage)
@@ -110,9 +143,11 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
   return (
     <div className="p-3 shadow-sm border rounded">
       <Header>
-        <Title>{order + 1}. {t(data.title)} </Title>
+        <Title>
+          {order + 1}. {t(data.title)}{' '}
+        </Title>
         <Subtraction title={t('Remove Item')} onClick={onRemoveItem}>
-          <i className="bi bi-dash-lg"/>
+          <i className="bi bi-dash-lg" />
         </Subtraction>
       </Header>
       <Content>
@@ -120,10 +155,7 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           name={`title${data.id}`}
           control={control}
           setValue={setValue}
-          render={({
-            field: { onChange },
-            fieldState: { error },
-          }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl className={classes.formControl}>
               <TextField
                 variant="standard"
@@ -141,19 +173,22 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           )}
           rules={{
             required: t(`This field is required`),
-            min: { value: 0, message: t('The value should be >= 0') },
+            min: {
+              value: 0,
+              message: t('The value should be >= 0'),
+            },
           }}
         />
         <Controller
           name={`lighting-fitting-type${data.id}`}
           control={control}
           setValue={setValue}
-          render={({
-            field: { onChange },
-            fieldState: { error },
-          }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl className={classes.formControl}>
-              <InputLabel id={`lighting-fitting-type-label${data.id}`} className={error && 'text-danger'}>
+              <InputLabel
+                id={`lighting-fitting-type-label${data.id}`}
+                className={error && 'text-danger'}
+              >
                 {t('Light Bulb Type')}
               </InputLabel>
               <Select
@@ -168,15 +203,16 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
                 }}
               >
                 {LightingFittingType.map((o) => (
-                  <MenuItem
-                    key={o.id}
-                    value={o.id}
-                  >
+                  <MenuItem key={o.id} value={o.id}>
                     {t(o.name, { ns: 'common' })}
                   </MenuItem>
                 ))}
               </Select>
-              {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
+              {error && (
+                <FormHelperText className="text-danger">
+                  {t('This field is required')}
+                </FormHelperText>
+              )}
             </FormControl>
           )}
           rules={{
@@ -188,10 +224,7 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           name={`numberOfBulbs${data.id}`}
           control={control}
           setValue={setValue}
-          render={({
-            field: { onChange },
-            fieldState: { error },
-          }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl className={classes.formControl}>
               <TextField
                 variant="standard"
@@ -210,7 +243,10 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           )}
           rules={{
             required: t(`This field is required`),
-            min: { value: 0, message: t('The value should be >= 0') },
+            min: {
+              value: 0,
+              message: t('The value should be >= 0'),
+            },
           }}
         />
 
@@ -218,10 +254,7 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           name={`wattRatingOfBulb${data.id}`}
           control={control}
           setValue={setValue}
-          render={({
-            field: { onChange },
-            fieldState: { error },
-          }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl className={classes.formControl}>
               <TextField
                 variant="standard"
@@ -240,7 +273,10 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           )}
           rules={{
             required: t(`This field is required`),
-            min: { value: 0, message: t('The value should be >= 0') },
+            min: {
+              value: 0,
+              message: t('The value should be >= 0'),
+            },
           }}
         />
 
@@ -248,10 +284,7 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           name={`lumensOfBulb${data.id}`}
           control={control}
           setValue={setValue}
-          render={({
-            field: { onChange },
-            fieldState: { error },
-          }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl className={classes.formControl}>
               <TextField
                 variant="standard"
@@ -270,7 +303,10 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           )}
           rules={{
             required: t(`This field is required`),
-            min: { value: 0, message: t('The value should be >= 0') },
+            min: {
+              value: 0,
+              message: t('The value should be >= 0'),
+            },
           }}
         />
 
@@ -278,10 +314,7 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           name={`numberOfDaysUsedPerWeek${data.id}`}
           control={control}
           setValue={setValue}
-          render={({
-            field: { onChange },
-            fieldState: { error },
-          }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl className={classes.formControl}>
               <TextField
                 variant="standard"
@@ -300,7 +333,10 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           )}
           rules={{
             required: t(`This field is required`),
-            min: { value: 0, message: t('The value should be >= 0') },
+            min: {
+              value: 0,
+              message: t('The value should be >= 0'),
+            },
           }}
         />
 
@@ -308,10 +344,7 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           name={`numberOfHoursUsedPerDay${data.id}`}
           control={control}
           setValue={setValue}
-          render={({
-            field: { onChange },
-            fieldState: { error },
-          }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl className={classes.formControl}>
               <TextField
                 variant="standard"
@@ -330,10 +363,12 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
           )}
           rules={{
             required: t(`This field is required`),
-            min: { value: 0, message: t('The value should be >= 0') },
+            min: {
+              value: 0,
+              message: t('The value should be >= 0'),
+            },
           }}
         />
-
 
         <Total className="font-bold primary">Percentage: {percentage} %</Total>
         <Total className="font-bold primary">Efficacy: {efficacy} lm/W</Total>
@@ -365,8 +400,6 @@ const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, contr
         {/*    min: { value: 0, message: t('The value should be >= 0') },*/}
         {/*  }}*/}
         {/*/>*/}
-
-
       </Content>
     </div>
   )

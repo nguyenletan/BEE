@@ -10,14 +10,16 @@ export const getEquipmentById = async (id, idToken) => {
       Authorization: `Bearer ${idToken}`,
     },
     body: {},
-  }).then((response) => {
-    result = response.data
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      result = response.data
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
 
   return result
 }
@@ -32,14 +34,16 @@ export const getEquipmentByIdAndGroupByYear = async (id, idToken) => {
       Authorization: `Bearer ${idToken}`,
     },
     body: {},
-  }).then((response) => {
-    result = response.data
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      result = response.data
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
 
   return result
 }
@@ -54,20 +58,26 @@ export const getProjectPeakDemand = async (id, numberOfNextDays, idToken) => {
       Authorization: `Bearer ${idToken}`,
     },
     body: {},
-  }).then((response) => {
-    result = response.data
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      result = response.data
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
 
   return result
 }
 
-
-export const getEnergyConsumptionEquipmentByIdAndDatePeriod = async (id, startDate, endDate, idToken) => {
+export const getEnergyConsumptionEquipmentByIdAndDatePeriod = async (
+  id,
+  startDate,
+  endDate,
+  idToken
+) => {
   let result
   await axios({
     method: 'get',
@@ -77,20 +87,29 @@ export const getEnergyConsumptionEquipmentByIdAndDatePeriod = async (id, startDa
       Authorization: `Bearer ${idToken}`,
     },
     body: {},
-  }).then((response) => {
-    result = response.data
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      result = response.data
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
 
   return result
 }
 
 export const getEnergyConsumptionPercentage = async (
-  equipmentId, equipmentTypeId, subSystemId, buildingId, startDate, endDate, idToken) => {
+  equipmentId,
+  equipmentTypeId,
+  subSystemId,
+  buildingId,
+  startDate,
+  endDate,
+  idToken
+) => {
   let result
   await axios({
     method: 'get',
@@ -100,14 +119,16 @@ export const getEnergyConsumptionPercentage = async (
       Authorization: `Bearer ${idToken}`,
     },
     body: {},
-  }).then((response) => {
-    result = response.data
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      result = response.data
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
 
   return result
 }

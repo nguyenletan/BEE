@@ -11,7 +11,7 @@ import {
   lightingSVG,
   mechVentSVG,
   plugLoadSVG,
-  renewableSVG
+  renewableSVG,
 } from 'SvgConstants'
 import { useTranslation } from 'react-i18next'
 
@@ -42,14 +42,17 @@ const Legend = styled.ul`
 `
 
 const LegendBox = styled.span`
-  background-color: ${props => props.backgroundColor ? props.backgroundColor : 'var(--bs-primary)'};
-  border-radius: ${props => props.borderRadius ? props.borderRadius : '50%;'};
-  width: ${props => props.weight ? props.weight : '12px'};
-  height: ${props => props.height ? props.height : '12px'};
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : 'var(--bs-primary)'};
+  border-radius: ${(props) =>
+    props.borderRadius ? props.borderRadius : '50%;'};
+  width: ${(props) => (props.weight ? props.weight : '12px')};
+  height: ${(props) => (props.height ? props.height : '12px')};
   display: inline-block;
   line-height: 12px;
   margin-right: 6px;
-  vertical-align: ${props => props.verticleAlign ? props.verticleAlign : 'bottom'};
+  vertical-align: ${(props) =>
+    props.verticleAlign ? props.verticleAlign : 'bottom'};
 `
 
 const ResponsiveBarWrapper = styled.div`
@@ -63,45 +66,43 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
   const keysEN = ['used', 'accrued']
   const keysDE = ['verwendet', 'erwachsen']
 
-
   const [chartKeys, setChartKey] = useState(keys)
   const { t, i18n } = useTranslation('assetReliability')
 
-
   useEffect(() => {
-
-    if(i18n.language === 'en') {
+    if (i18n.language === 'en') {
       setChartKey(keysEN)
     } else {
       setChartKey(keysDE)
     }
-
   }, [i18n.language])
 
-
   const commonProps = {
-
     margin: { top: 0, right: 0, bottom: 0, left: 20 },
     data: data,
     indexBy: 'id',
     keys: chartKeys,
     padding: 0.75,
     enableLabel: false,
-    groupMode: 'stacked'
+    groupMode: 'stacked',
   }
 
   const Line = ({ bars, xScale, yScale }) => {
     const lineGenerator = line()
-      .x(bar => {
-        if (bar.data.id !== t('used')) { return null }
+      .x((bar) => {
+        if (bar.data.id !== t('used')) {
+          return null
+        }
 
         return xScale(bar.data.index) + bar.width / 2
       })
-      .y(bar => {
-        if (bar.data.id !== t('used')) { return null }
+      .y((bar) => {
+        if (bar.data.id !== t('used')) {
+          return null
+        }
 
         return yScale(bar.data.data[t('allocated')])
-      })//.curve(monotoneX)
+      }) //.curve(monotoneX)
 
     const pathString = lineGenerator(bars).replaceAll('L0,0', '')
 
@@ -109,40 +110,40 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
       <>
         <path
           d={pathString}
-          fill='none'
+          fill="none"
           stroke={lineColor}
           strokeWidth={2.5}
-          strokeDasharray='18'
+          strokeDasharray="18"
           style={{ pointerEvents: 'none' }}
         />
 
-        {
-          bars.map(bar => {
-            if (bar.data.id !== t('accrued')) { return null }
-            return (
-              <>
-                {/* <text x={xScale(bar.data.index) + bar.width / 2} y={yScale(bar.data.data.allocated)}></text> */}
-                <circle
-                  key={bar.key}
-                  cx={xScale(bar.data.index) + bar.width / 2}
-                  cy={yScale(bar.data.data[t('allocated')])}
-                  r={4}
-                  fill='white'
-                  stroke={lineColor}
-                  style={{ pointerEvents: 'none' }}
-                />
-              </>
-            )
-          })
-}
+        {bars.map((bar) => {
+          if (bar.data.id !== t('accrued')) {
+            return null
+          }
+          return (
+            <>
+              {/* <text x={xScale(bar.data.index) + bar.width / 2} y={yScale(bar.data.data.allocated)}></text> */}
+              <circle
+                key={bar.key}
+                cx={xScale(bar.data.index) + bar.width / 2}
+                cy={yScale(bar.data.data[t('allocated')])}
+                r={4}
+                fill="white"
+                stroke={lineColor}
+                style={{ pointerEvents: 'none' }}
+              />
+            </>
+          )
+        })}
       </>
     )
   }
 
-  const CustomTick = tick => {
+  const CustomTick = (tick) => {
     const x = 18
     const y = 50
-    const item = data.find(i => i.id === tick.value)
+    const item = data.find((i) => i.id === tick.value)
 
     const icon = (subSystem) => {
       let imgX = 0
@@ -150,57 +151,39 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
 
       switch (subSystem) {
         case t('cooling'):
-          return (
-            <g transform={`translate(${imgX}, ${imgY})`}>
-              {coolingSVG()}
-            </g>
-          )
+          return <g transform={`translate(${imgX}, ${imgY})`}>{coolingSVG()}</g>
 
         case t('heating'):
           imgX = 10
-          return (
-            <g transform={`translate(${imgX}, ${imgY})`}>
-              {heatingSVG()}
-            </g>
-          )
+          return <g transform={`translate(${imgX}, ${imgY})`}>{heatingSVG()}</g>
 
         case t('mechanical ventilation'):
           return (
-            <g transform={`translate(${imgX}, ${imgY})`}>
-              {mechVentSVG()}
-            </g>
+            <g transform={`translate(${imgX}, ${imgY})`}>{mechVentSVG()}</g>
           )
 
         case t('lighting'):
           imgX = 6
           return (
-            <g transform={`translate(${imgX}, ${imgY})`}>
-              {lightingSVG()}
-            </g>
+            <g transform={`translate(${imgX}, ${imgY})`}>{lightingSVG()}</g>
           )
         case t('facility envelope'):
           imgX = -8
           return (
-            <g transform={`translate(${imgX}, ${imgY})`}>
-              {envelopeSVG()}
-            </g>
+            <g transform={`translate(${imgX}, ${imgY})`}>{envelopeSVG()}</g>
           )
 
         case t('renewables'):
           imgX = -5
           return (
-            <g transform={`translate(${imgX}, ${imgY})`}>
-              {renewableSVG()}
-            </g>
+            <g transform={`translate(${imgX}, ${imgY})`}>{renewableSVG()}</g>
           )
 
         case t('others'):
           imgX = 3
           imgY = 3
           return (
-            <g transform={`translate(${imgX}, ${imgY})`}>
-              {plugLoadSVG()}
-            </g>
+            <g transform={`translate(${imgX}, ${imgY})`}>{plugLoadSVG()}</g>
           )
 
         default:
@@ -210,16 +193,15 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
 
     return (
       <g transform={`translate(${tick.x - 18},${tick.y + 6})`}>
-
         {icon(item.subSystem)}
 
         <text
           transform={`translate(${x},${y})`}
-          textAnchor='middle'
-          dominantBaseline='middle'
+          textAnchor="middle"
+          dominantBaseline="middle"
           style={{
             fill: '#333',
-            fontSize: 10
+            fontSize: 10,
           }}
         >
           {item.subSystem}
@@ -230,27 +212,40 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
 
   return (
     <MaintenanceBudgetBySubSystemWrapper>
-      <MaintenanceBudgetBySubSystemTitle>{t('Maintenance Budget By Sub-System')}</MaintenanceBudgetBySubSystemTitle>
+      <MaintenanceBudgetBySubSystemTitle>
+        {t('Maintenance Budget By Sub-System')}
+      </MaintenanceBudgetBySubSystemTitle>
       <ResponsiveBarWrapper>
         <ResponsiveBar
           {...commonProps}
           colors={['#87972f', '#d3dca1', '#636c2e']}
-          layers={[
-            'grid', 'axes', 'bars', 'markers', 'legends', Line
-          ]}
+          layers={['grid', 'axes', 'bars', 'markers', 'legends', Line]}
           borderRadius={1}
           axisBottom={{
-            renderTick: CustomTick
+            renderTick: CustomTick,
           }}
         />
       </ResponsiveBarWrapper>
-      <Legend className='d-flex justify-content-center'>
-        <li><LegendBox backgroundColor='#87972f' />{t('Used')}</li>
-        <li><LegendBox backgroundColor='#d3dca1' />{t('Accrued')}</li>
-        <li><LegendBox backgroundColor='#636c2e' height='3px' weight='20px' borderRadius='20%' verticleAlign='middle' />{t('Allocated')}
+      <Legend className="d-flex justify-content-center">
+        <li>
+          <LegendBox backgroundColor="#87972f" />
+          {t('Used')}
+        </li>
+        <li>
+          <LegendBox backgroundColor="#d3dca1" />
+          {t('Accrued')}
+        </li>
+        <li>
+          <LegendBox
+            backgroundColor="#636c2e"
+            height="3px"
+            weight="20px"
+            borderRadius="20%"
+            verticleAlign="middle"
+          />
+          {t('Allocated')}
         </li>
       </Legend>
-
     </MaintenanceBudgetBySubSystemWrapper>
   )
 }

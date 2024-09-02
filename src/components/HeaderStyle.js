@@ -41,7 +41,7 @@ export const MenuItem = styled.span`
   margin-right: 30px;
   font-size: 1.1rem;
   cursor: pointer;
-  
+
   @media (max-width: 768px) {
     margin-right: 10px;
   }
@@ -98,10 +98,7 @@ export const UserName = styled.span`
   vertical-align: middle;
 `
 
-export const SignOutButton = styled.button`
-
-
-`
+export const SignOutButton = styled.button``
 
 export const LangWrapper = styled.div`
   width: 72px;
@@ -132,12 +129,10 @@ export const InputGroup = styled.div`
 export const SearchInput = styled.input`
   border-radius: 18px 0 0 18px;
   border-right: none;
-
 `
 
 export const SearchIcon = styled.span`
   border-radius: 0 18px 18px 0;
   background-color: var(--white);
   border-left: none;
-
 `

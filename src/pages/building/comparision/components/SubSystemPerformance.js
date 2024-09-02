@@ -78,15 +78,11 @@ const SubSystemPerformance = ({ data }) => {
         translateX = -15
         texts = (
           <>
-            <text
-              y={-25} x={-25}
-              style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Energy Usage')}
+            <text y={-25} x={-25} style={{ fontSize: 12, fill: '#343a40' }}>
+              {t('Energy Usage')}
             </text>
-            <text
-              y={-10} x={-25}
-              style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Intensity')}
+            <text y={-10} x={-25} style={{ fontSize: 12, fill: '#343a40' }}>
+              {t('Intensity')}
             </text>
           </>
         )
@@ -97,15 +93,11 @@ const SubSystemPerformance = ({ data }) => {
         iconSVG = coolingSVG()
         texts = (
           <>
-            <text
-              y={15} x={38}
-              style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Cooling')}
+            <text y={15} x={38} style={{ fontSize: 12, fill: '#343a40' }}>
+              {t('Cooling')}
             </text>
-            <text
-              y={30} x={38}
-              style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Efficiency')}
+            <text y={30} x={38} style={{ fontSize: 12, fill: '#343a40' }}>
+              {t('Efficiency')}
             </text>
           </>
         )
@@ -116,15 +108,11 @@ const SubSystemPerformance = ({ data }) => {
         iconSVG = heatingSVG()
         texts = (
           <>
-            <text
-              y={15} x={20}
-              style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Heating')}
+            <text y={15} x={20} style={{ fontSize: 12, fill: '#343a40' }}>
+              {t('Heating')}
             </text>
-            <text
-              y={30} x={20}
-              style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Efficiency')}
+            <text y={30} x={20} style={{ fontSize: 12, fill: '#343a40' }}>
+              {t('Efficiency')}
             </text>
           </>
         )
@@ -135,15 +123,11 @@ const SubSystemPerformance = ({ data }) => {
         iconSVG = lightingSVG()
         texts = (
           <>
-            <text
-              y={50} x={-13}
-              style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Lighting')}
+            <text y={50} x={-13} style={{ fontSize: 12, fill: '#343a40' }}>
+              {t('Lighting')}
             </text>
-            <text
-              y={66} x={-13}
-              style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Efficiency')}
+            <text y={66} x={-13} style={{ fontSize: 12, fill: '#343a40' }}>
+              {t('Efficiency')}
             </text>
           </>
         )
@@ -154,15 +138,11 @@ const SubSystemPerformance = ({ data }) => {
         iconSVG = mechVentSVG()
         texts = (
           <>
-            <text
-              y={50} x={-30}
-              style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Mechanical Ventilation')}
+            <text y={50} x={-30} style={{ fontSize: 12, fill: '#343a40' }}>
+              {t('Mechanical Ventilation')}
             </text>
-            <text
-              y={66} x={0}
-              style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Efficiency')}
+            <text y={66} x={0} style={{ fontSize: 12, fill: '#343a40' }}>
+              {t('Efficiency')}
             </text>
           </>
         )
@@ -173,15 +153,11 @@ const SubSystemPerformance = ({ data }) => {
         iconSVG = envelopeSVG()
         texts = (
           <>
-            <text
-              y={50} x={0}
-              style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Envelope')}
+            <text y={50} x={0} style={{ fontSize: 12, fill: '#343a40' }}>
+              {t('Envelope')}
             </text>
-            <text
-              y={66} x={-10}
-              style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('_Performance')}
+            <text y={66} x={-10} style={{ fontSize: 12, fill: '#343a40' }}>
+              {t('_Performance')}
             </text>
           </>
         )
@@ -192,15 +168,11 @@ const SubSystemPerformance = ({ data }) => {
         iconSVG = renewableSVG()
         texts = (
           <>
-            <text
-              y={50} x={-10}
-              style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Renewables')}
+            <text y={50} x={-10} style={{ fontSize: 12, fill: '#343a40' }}>
+              {t('Renewables')}
             </text>
-            <text
-              y={66} x={0}
-              style={{ fontSize: 12, fill: '#343a40' }}
-            >{t('Usage')}
+            <text y={66} x={0} style={{ fontSize: 12, fill: '#343a40' }}>
+              {t('Usage')}
             </text>
           </>
         )
@@ -221,7 +193,9 @@ const SubSystemPerformance = ({ data }) => {
 
   return (
     <SubSystemPerformanceWrapper>
-      <SubSystemPerformanceTitle>{t('Sub-System Performance')}</SubSystemPerformanceTitle>
+      <SubSystemPerformanceTitle>
+        {t('Sub-System Performance')}
+      </SubSystemPerformanceTitle>
 
       <ResponsiveRadar
         {...commonProperties}

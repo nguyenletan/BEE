@@ -8,7 +8,7 @@
   "Tons": "Tonnen",
   "Investment Cost": "Investitionskosten ",
   "Simple Payback": "Amortisation",
-  "Years" : "Jahre",
+  "Years": "Jahre",
   "Energy Usage Intensity Reduction": "Reduzierung der Energie verbrauchsintensität",
   "kWh/m2/yr": "kWh/m2/Jr",
 
@@ -58,10 +58,10 @@
   "Payback": "Amortisierung",
   "Simple Payback (Yr)": "Amortisierung (Jahre)",
   "Internal Rate of Return (%)": "Interner Zinsfuß (%)",
-  "Sub-System Comparison":"Bewertung der Teilsysteme",
+  "Sub-System Comparison": "Bewertung der Teilsysteme",
   "Sub-System Performance": "Subsystemleistung",
-  "Current CO2 Performance":"Aktueller CO2-Ausstoß",
-  "Potential CO2 Best in Class":"Potential CO2/Klassenbester",
+  "Current CO2 Performance": "Aktueller CO2-Ausstoß",
+  "Potential CO2 Best in Class": "Potential CO2/Klassenbester",
   "Efficiency": "Effizienz",
 
   "_comment9": "//Improvement Measures Chart",
@@ -95,7 +95,6 @@
   "Solar Film Installation": "Vorhangfassaden-Dämmblöcke",
   "Electric Air Source Heat Pump (Boiler Replacement)": "Elektrische Luftwärmepumpe (Kesselaustausch)",
   "Install Heating Central Time Control": "Heizungszentrale Zeitsteuerung installieren",
-
 
   "Info": "Info"
 }

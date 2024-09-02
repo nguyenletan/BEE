@@ -14,7 +14,6 @@ const Title = styled.h4`
 `
 
 const ImprovementRaidalBarChart = ({ title, data }) => {
-
   const commonProps = {
     data: data,
     padding: 0.5,
@@ -24,18 +23,19 @@ const ImprovementRaidalBarChart = ({ title, data }) => {
     radialAxisStart: { tickSize: 5, tickPadding: 5, tickRotation: 0 },
     circularAxisOuter: { tickSize: 5, tickPadding: 12, tickRotation: 0 },
     colors: ({ id, data }) => {
-      if(data.x === 'Min(0%)') {
+      if (data.x === 'Min(0%)') {
         return '#d5dfa3'
       }
       if (data.x.includes('Before')) {
         return '#d5dfa3'
       }
-      if(data.x.includes('After')) {
+      if (data.x.includes('After')) {
         return '#acbf42'
       }
       return '#636c2e'
     },
-    legends: [{
+    legends: [
+      {
         anchor: 'top-right',
         direction: 'column',
         justify: false,
@@ -63,7 +63,7 @@ const ImprovementRaidalBarChart = ({ title, data }) => {
   return (
     <Wrapper>
       <Title>{title}</Title>
-      <ResponsiveRadialBar {...commonProps}/>
+      <ResponsiveRadialBar {...commonProps} />
     </Wrapper>
   )
 }

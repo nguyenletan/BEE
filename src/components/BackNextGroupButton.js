@@ -2,7 +2,13 @@
 import React, { useState } from 'react'
 import CircularProgressBarWithLabel from './CircularProgressBarWithLabel'
 import { Button, CircularProgress } from '@mui/material'
-import { ArrowBack, ArrowForward, DoneAll, Save, Delete } from '@mui/icons-material'
+import {
+  ArrowBack,
+  ArrowForward,
+  DoneAll,
+  Save,
+  Delete,
+} from '@mui/icons-material'
 import { Link, useParams } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import {
@@ -55,7 +61,8 @@ const BackNextGroupButton = ({
   // submitFunc,
 }) => {
   const generalBuildingInformation = useRecoilValue(
-    generalBuildingInformationState)
+    generalBuildingInformationState
+  )
 
   const buildingActivity = useRecoilValue(buildingActivityState)
 
@@ -63,10 +70,10 @@ const BackNextGroupButton = ({
   const lightingSubSystemList = useRecoilValue(lightingSubSystemListState)
   const solarPanelSystemList = useRecoilValue(solarPanelSystemListState)
   const electricityConsumptionList = useRecoilValue(
-    electricityConsumptionListState)
+    electricityConsumptionListState
+  )
 
-  const heatConsumptionList = useRecoilValue(
-      heatConsumptionListState)
+  const heatConsumptionList = useRecoilValue(heatConsumptionListState)
 
   const coolingSystem = useRecoilValue(coolingSystemState)
   const heatingSystem = useRecoilValue(heatingSystemState)
@@ -105,7 +112,6 @@ const BackNextGroupButton = ({
       : await createBuilding(submitData, idToken)
     setIsSaving(false)
 
-
     //setSavingMessage(message)
   }
 
@@ -126,8 +132,8 @@ const BackNextGroupButton = ({
         },
       }}
     >
-
-      {!isSaving ? <Box sx={popupStyle}>
+      {!isSaving ? (
+        <Box sx={popupStyle}>
           <Typography id="transition-modal-title" variant="h6" component="h2">
             {title}
           </Typography>
@@ -135,10 +141,12 @@ const BackNextGroupButton = ({
             {description}
           </Typography>
           <Button onClick={handleClosePopup}>Close</Button>
-        </Box> :
-
-        <Box sx={loadingStyle}><CircularProgress size="8rem"
-                                                 color="success"/></Box>}
+        </Box>
+      ) : (
+        <Box sx={loadingStyle}>
+          <CircularProgress size="8rem" color="success" />
+        </Box>
+      )}
       {/*<CircularProgress size="8rem" color="success"/>*/}
     </Modal>
   )
@@ -147,72 +155,85 @@ const BackNextGroupButton = ({
     <>
       {/* {savingMessage && <Message text={savingMessage}/>} */}
 
-      <Popup title="Your building has been saved"/>
-      {
-        isInDoneStep === true ? (
-          <div className="d-flex ms-auto align-items-center">
-            {/*{progressValue !== undefined && <CircularProgressBarWithLabel value={progressValue}/>}*/}
-            {backLink && <Link to={backLink}>
+      <Popup title="Your building has been saved" />
+      {isInDoneStep === true ? (
+        <div className="d-flex ms-auto align-items-center">
+          {/*{progressValue !== undefined && <CircularProgressBarWithLabel value={progressValue}/>}*/}
+          {backLink && (
+            <Link to={backLink}>
               <Button
-                startIcon={<ArrowBack/>}
+                startIcon={<ArrowBack />}
                 variant="contained"
                 color="default"
                 className="me-2"
-              >{t('Back')}
-              </Button>
-            </Link>}
-            <Link to="/building">
-              <Button
-                endIcon={<DoneAll/>} variant="contained" color="primary"
-                className="me-2"
-              >{t('Done')}
+              >
+                {t('Back')}
               </Button>
             </Link>
-          </div>) : (
-
-          <div className="d-flex ms-auto align-items-center">
-
-            {/*{progressValue !== undefined && <CircularProgressBarWithLabel value={progressValue}/>}*/}
-
+          )}
+          <Link to="/building">
             <Button
-              onClick={onSave}
-              type="submit"
-              size="medium"
-              startIcon={<Save/>}
+              endIcon={<DoneAll />}
               variant="contained"
-              // disabled={isDisabledSave}
-              color="primary" className="me-2"
-            >{t('Save')}
+              color="primary"
+              className="me-2"
+            >
+              {t('Done')}
             </Button>
+          </Link>
+        </div>
+      ) : (
+        <div className="d-flex ms-auto align-items-center">
+          {/*{progressValue !== undefined && <CircularProgressBarWithLabel value={progressValue}/>}*/}
 
-            {/*<Button to={nextLink}*/}
-            {/*  // type="submit"*/}
-            {/*        endIcon={<Delete/>} variant="contained"*/}
-            {/*        color="warning" className="me-5"*/}
-            {/*>Delete*/}
-            {/*</Button>*/}
+          <Button
+            onClick={onSave}
+            type="submit"
+            size="medium"
+            startIcon={<Save />}
+            variant="contained"
+            // disabled={isDisabledSave}
+            color="primary"
+            className="me-2"
+          >
+            {t('Save')}
+          </Button>
 
+          {/*<Button to={nextLink}*/}
+          {/*  // type="submit"*/}
+          {/*        endIcon={<Delete/>} variant="contained"*/}
+          {/*        color="warning" className="me-5"*/}
+          {/*>Delete*/}
+          {/*</Button>*/}
 
-            {backLink && <Link to={backLink}>
+          {backLink && (
+            <Link to={backLink}>
               <Button
-                startIcon={<ArrowBack/>} variant="contained"
+                startIcon={<ArrowBack />}
+                variant="contained"
                 color="primary"
                 className="me-2"
-              >{t('Back')}
+              >
+                {t('Back')}
               </Button>
-            </Link>}
+            </Link>
+          )}
 
-            {!noNextLink && <Link to={nextLink}>
-              <Button to={nextLink}
+          {!noNextLink && (
+            <Link to={nextLink}>
+              <Button
+                to={nextLink}
                 // type="submit"
-                      endIcon={<ArrowForward/>} variant="contained"
-                      color="primary"
-              >{t('Next')}
-              </Button></Link>
-            }
-          </div>
-        )
-      }
+                endIcon={<ArrowForward />}
+                variant="contained"
+                color="primary"
+              >
+                {t('Next')}
+              </Button>
+            </Link>
+          )}
+        </div>
+      )}
     </>
   )
 }

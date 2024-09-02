@@ -102,10 +102,15 @@ const PotentialFaultRisks = ({ data }) => {
 
   const MsgModal = () => {
     return (
-      <Modal show={showMsgModal} onHide={() => setShowMsgModal(false)} size='md'>
-
+      <Modal
+        show={showMsgModal}
+        onHide={() => setShowMsgModal(false)}
+        size="md"
+      >
         <Modal.Body>
-          <div className='text-center text-warning'>{t('No Fault Risk on this cell')}</div>
+          <div className="text-center text-warning">
+            {t('No Fault Risk on this cell')}
+          </div>
         </Modal.Body>
       </Modal>
     )
@@ -115,7 +120,7 @@ const PotentialFaultRisks = ({ data }) => {
     const ImprovementMeasuresTableWrapper = styled.div`
       height: 350px;
       overflow: auto;
-      font-size: .8rem;
+      font-size: 0.8rem;
     `
     const ImprovementMeasuresTable = styled.table`
       border-top: none;
@@ -144,14 +149,12 @@ const PotentialFaultRisks = ({ data }) => {
       }
     `
     const FirstTh = styled.th`
-      text-align: left !important
+      text-align: left !important;
     `
     const FirstTd = styled.td`
       text-align: left !important;
     `
-    const Image = styled.img`
-
-    `
+    const Image = styled.img``
     const ImageWrapper = styled.span`
       width: 45px;
       text-align: center;
@@ -165,7 +168,7 @@ const PotentialFaultRisks = ({ data }) => {
       text-transform: uppercase;
     `
     const TypeListWrapper = styled.div`
-      font-size: .9rem;
+      font-size: 0.9rem;
       margin-left: 10px;
     `
     const TypeItem = styled.div`
@@ -177,9 +180,7 @@ const PotentialFaultRisks = ({ data }) => {
       font-weight: 700;
       margin-bottom: 0;
     `
-    const HeaderGroupButton = styled.div`
-
-    `
+    const HeaderGroupButton = styled.div``
     const HeaderButton = styled.a`
       color: var(--bs-primary);
       font-weight: 500;
@@ -195,7 +196,7 @@ const PotentialFaultRisks = ({ data }) => {
       }
     `
 
-    const rows = props.data?.list?.map(item => {
+    const rows = props.data?.list?.map((item) => {
       let imgSrc
       let width
 
@@ -232,61 +233,83 @@ const PotentialFaultRisks = ({ data }) => {
 
       return (
         <tr key={item.measures}>
-          <FirstTd width='21%'>
-            <ImageWrapper><Image src={imgSrc} alt={item.measures} width={width} /></ImageWrapper>
+          <FirstTd width="21%">
+            <ImageWrapper>
+              <Image src={imgSrc} alt={item.measures} width={width} />
+            </ImageWrapper>
             {t(item.subSystem)}
           </FirstTd>
-          <td width='15%'>{t(item.fault)}</td>
-          <td width='15%'>{t(item.asset)}</td>
-          <td width='12%'>{item.potentialDownTime}</td>
-          <td width='12%'>{item.sparePartsLeadTime}</td>
-          <td width='12%'>{item.estimatedTimeToFailure}</td>
+          <td width="15%">{t(item.fault)}</td>
+          <td width="15%">{t(item.asset)}</td>
+          <td width="12%">{item.potentialDownTime}</td>
+          <td width="12%">{item.sparePartsLeadTime}</td>
+          <td width="12%">{item.estimatedTimeToFailure}</td>
           <td>
-            <InfoButton className='btn btn-primary btn-sm'>{t('Info')}</InfoButton>
+            <InfoButton className="btn btn-primary btn-sm">
+              {t('Info')}
+            </InfoButton>
           </td>
         </tr>
       )
     })
 
     return (
-      <Modal show={showListFaultRisksModal} onHide={() => setShowListFaultRisksModal(false)} size='xl'>
+      <Modal
+        show={showListFaultRisksModal}
+        onHide={() => setShowListFaultRisksModal(false)}
+        size="xl"
+      >
         <Modal.Header>
-          <Container className='mt-0'>
-            <div className='d-flex justify-content-between align-items-center'>
+          <Container className="mt-0">
+            <div className="d-flex justify-content-between align-items-center">
               <Header>{t('Potential Fault')}</Header>
               <HeaderGroupButton>
-                <HeaderButton className='' onClick={() => { setShowListFaultRisksModal(false) }}>
-                  <XIcon size={24} className='me-0' /><span>{t('Close')}</span>
+                <HeaderButton
+                  className=""
+                  onClick={() => {
+                    setShowListFaultRisksModal(false)
+                  }}
+                >
+                  <XIcon size={24} className="me-0" />
+                  <span>{t('Close')}</span>
                 </HeaderButton>
               </HeaderGroupButton>
             </div>
-
           </Container>
         </Modal.Header>
         <Modal.Body>
-          <Container className='mt-4'>
-            <TypeListWrapper className='d-flex'>
-              <TypeItem>{t('Likelihood')} - <strong>{t(props.data?.likelihoodTitle)}</strong></TypeItem>
-              <TypeItem>{t('Impact')} - <strong>{t(props.data?.impactTitle)}</strong></TypeItem>
+          <Container className="mt-4">
+            <TypeListWrapper className="d-flex">
+              <TypeItem>
+                {t('Likelihood')} -{' '}
+                <strong>{t(props.data?.likelihoodTitle)}</strong>
+              </TypeItem>
+              <TypeItem>
+                {t('Impact')} - <strong>{t(props.data?.impactTitle)}</strong>
+              </TypeItem>
             </TypeListWrapper>
-            <ImprovementMeasuresTable className='table'>
+            <ImprovementMeasuresTable className="table">
               <thead>
                 <tr>
-                  <FirstTh width='21%'>{t('System')}</FirstTh>
-                  <th width='15%'>{t('Fault')}</th>
-                  <th width='15%'>{t('Asset')}</th>
-                  <th width='12%'>{t('Potential Downtime')} ({t('Days')})</th>
-                  <th width='12%'>{t('Spare Parts Lead Time')} ({t('Days')})</th>
-                  <th width='12%'>{t('Estimated Time to Failure')} ({t('Days')})</th>
+                  <FirstTh width="21%">{t('System')}</FirstTh>
+                  <th width="15%">{t('Fault')}</th>
+                  <th width="15%">{t('Asset')}</th>
+                  <th width="12%">
+                    {t('Potential Downtime')} ({t('Days')})
+                  </th>
+                  <th width="12%">
+                    {t('Spare Parts Lead Time')} ({t('Days')})
+                  </th>
+                  <th width="12%">
+                    {t('Estimated Time to Failure')} ({t('Days')})
+                  </th>
                   <th>{t('Details')}</th>
                 </tr>
               </thead>
             </ImprovementMeasuresTable>
             <ImprovementMeasuresTableWrapper>
-              <ImprovementMeasuresTable className='table'>
-                <tbody>
-                  {rows}
-                </tbody>
+              <ImprovementMeasuresTable className="table">
+                <tbody>{rows}</tbody>
               </ImprovementMeasuresTable>
             </ImprovementMeasuresTableWrapper>
           </Container>
@@ -302,15 +325,17 @@ const PotentialFaultRisks = ({ data }) => {
       setListFaultRisksModalProps({
         likelihoodTitle: getRowTitle(likelihood - 1),
         impactTitle: getColTitle(impact - 1),
-        list: data.filter(item => item.impact === impact && item.likelihood === likelihood)
+        list: data.filter(
+          (item) => item.impact === impact && item.likelihood === likelihood
+        ),
       })
       setShowListFaultRisksModal(true)
     }
   }
 
-  const likelihoodList = data.map(item => item.likelihood)
+  const likelihoodList = data.map((item) => item.likelihood)
 
-  const impactList = data.map(item => item.impact)
+  const impactList = data.map((item) => item.impact)
 
   const riskMatrix = []
   for (let i = 0; i < 5; i++) {
@@ -330,7 +355,7 @@ const PotentialFaultRisks = ({ data }) => {
       ['#d8debf', '#f7e7cb', '#f7e7cb', '#f2c4c3', '#f2c4c3'],
       ['#f7e7cb', '#f7e7cb', '#f2c4c3', '#f2c4c3', '#f2c4c3'],
       ['#f7e7cb', '#f2c4c3', '#f2c4c3', '#f2c4c3', '#d1c3f2'],
-      ['#f7e7cb', '#f2c4c3', '#f2c4c3', '#d1c3f2', '#d1c3f2']
+      ['#f7e7cb', '#f2c4c3', '#f2c4c3', '#d1c3f2', '#d1c3f2'],
     ]
 
     const activeColorMatrix = [
@@ -338,50 +363,82 @@ const PotentialFaultRisks = ({ data }) => {
       ['#87972f', '#edb857', '#edb857', '#db4404', '#db4404'],
       ['#edb857', '#edb857', '#db4404', '#db4404', '#db4404'],
       ['#edb857', '#db4404', '#db4404', '#db4404', '#703ddc'],
-      ['#edb857', '#db4404', '#db4404', '#703ddc', '#703ddc']
+      ['#edb857', '#db4404', '#db4404', '#703ddc', '#703ddc'],
     ]
 
     const cols = row.map((col, index) => {
-      const color = col > 0 ? activeColorMatrix[idx][index] : inactiveColorMatrix[idx][index]
+      const color =
+        col > 0
+          ? activeColorMatrix[idx][index]
+          : inactiveColorMatrix[idx][index]
 
       return (
-        <PotentialFaultRiskBlock key={index} color={color} value={col} onClick={() => onClick(col, idx + 1, index + 1)} />
+        <PotentialFaultRiskBlock
+          key={index}
+          color={color}
+          value={col}
+          onClick={() => onClick(col, idx + 1, index + 1)}
+        />
       )
-    }
-    )
+    })
 
     const indexRowTitle = getRowTitle(idx)
 
     return (
-      <PotentialFaultRiskRow className='row' key={idx}>
-        <PotentialFaultRiskBlock key={indexRowTitle} isIndexCol value={t(indexRowTitle)} />
+      <PotentialFaultRiskRow className="row" key={idx}>
+        <PotentialFaultRiskBlock
+          key={indexRowTitle}
+          isIndexCol
+          value={t(indexRowTitle)}
+        />
         {cols}
       </PotentialFaultRiskRow>
     )
   })
 
   return (
-    <PotentialFaultRiskWrapper className='mb-4'>
-
-      <PotentialFaultRiskTitle>{t('Potential Fault Risks')}</PotentialFaultRiskTitle>
-      <PotentialFaultRiskSubTopTitle>{t('Impact')}</PotentialFaultRiskSubTopTitle>
-      <div className='d-flex'>
-        <PotentialFaultRiskSubLeftTitle><h4>{t('Likelihood')}</h4></PotentialFaultRiskSubLeftTitle>
+    <PotentialFaultRiskWrapper className="mb-4">
+      <PotentialFaultRiskTitle>
+        {t('Potential Fault Risks')}
+      </PotentialFaultRiskTitle>
+      <PotentialFaultRiskSubTopTitle>
+        {t('Impact')}
+      </PotentialFaultRiskSubTopTitle>
+      <div className="d-flex">
+        <PotentialFaultRiskSubLeftTitle>
+          <h4>{t('Likelihood')}</h4>
+        </PotentialFaultRiskSubLeftTitle>
         <div>
-          <PotentialFaultRiskRow className='row'>
-            <PotentialFaultRiskBlock key='empty' isIndexCol height={40} value='' />
-            <PotentialFaultRiskBlock key='Negligible' isHeader value={t('Negligible')} />
-            <PotentialFaultRiskBlock key='Minor' isHeader value={t('Minor')} />
-            <PotentialFaultRiskBlock key='Moderate' isHeader value={t('Moderate')} />
-            <PotentialFaultRiskBlock key='Major' isHeader value={t('Major')} />
-            <PotentialFaultRiskBlock key='Critical' isHeader value={t('Critical')} />
+          <PotentialFaultRiskRow className="row">
+            <PotentialFaultRiskBlock
+              key="empty"
+              isIndexCol
+              height={40}
+              value=""
+            />
+            <PotentialFaultRiskBlock
+              key="Negligible"
+              isHeader
+              value={t('Negligible')}
+            />
+            <PotentialFaultRiskBlock key="Minor" isHeader value={t('Minor')} />
+            <PotentialFaultRiskBlock
+              key="Moderate"
+              isHeader
+              value={t('Moderate')}
+            />
+            <PotentialFaultRiskBlock key="Major" isHeader value={t('Major')} />
+            <PotentialFaultRiskBlock
+              key="Critical"
+              isHeader
+              value={t('Critical')}
+            />
           </PotentialFaultRiskRow>
           {rows}
         </div>
       </div>
       <MsgModal />
       <ListFaultRisksModal data={listFaultRisksModalProps} />
-
     </PotentialFaultRiskWrapper>
   )
 }

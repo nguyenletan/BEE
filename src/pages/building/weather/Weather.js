@@ -15,13 +15,15 @@ const Wrapper = styled.div`
 
 const Weather = (props) => {
   const { lat, lon } = props
-  const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
+  const setIsDisplayPerformanceFilter = useSetRecoilState(
+    isDisplayPerformanceFilterState
+  )
   setIsDisplayPerformanceFilter(false)
 
   const { user } = useAuth()
 
   useEffect(() => {
-    async function tracking () {
+    async function tracking() {
       const idToken = await user.getIdToken()
       trackingUser(user.uid, 'Improve', idToken)
     }
@@ -30,10 +32,10 @@ const Weather = (props) => {
   }, [user])
   return (
     <Wrapper>
-      <CurrentWeatherInformation lat={lat} lon={lon}/>
-      <AlertWeatherInformation lat={lat} lon={lon}/>
-      <Full15DayForecastWeather lat={lat} lon={lon}/>
-      <AvgWeatherInformation lat={lat} lon={lon}/>
+      <CurrentWeatherInformation lat={lat} lon={lon} />
+      <AlertWeatherInformation lat={lat} lon={lon} />
+      <Full15DayForecastWeather lat={lat} lon={lon} />
+      <AvgWeatherInformation lat={lat} lon={lon} />
     </Wrapper>
   )
 }

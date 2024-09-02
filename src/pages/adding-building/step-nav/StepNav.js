@@ -22,7 +22,6 @@ const UL = styled.ul`
 `
 
 const StepNav = () => {
-
   const { id } = useParams()
 
   const { t } = useTranslation('buildingInput')
@@ -31,78 +30,98 @@ const StepNav = () => {
 
   return (
     <UL className="nav d-flex justify-content-between">
-      {!id && <li className="nav-item">
-        <NavLink
-          activeClassName="active" className="nav-link"
-          to={parentUrl + '/search-building'}
-        >{t('Search Building')}
-        </NavLink>
-      </li> }
+      {!id && (
+        <li className="nav-item">
+          <NavLink
+            activeClassName="active"
+            className="nav-link"
+            to={parentUrl + '/search-building'}
+          >
+            {t('Search Building')}
+          </NavLink>
+        </li>
+      )}
       <li className="nav-item">
         <NavLink
-          activeClassName="active" className="nav-link"
+          activeClassName="active"
+          className="nav-link"
           to={parentUrl + '/general-information'}
-        >{t('General Information')}
+        >
+          {t('General Information')}
         </NavLink>
       </li>
       <li className="nav-item">
         <NavLink
-          activeClassName="active" className="nav-link"
+          activeClassName="active"
+          className="nav-link"
           to={parentUrl + '/activity'}
-        >{t('Activity')}
+        >
+          {t('Activity')}
         </NavLink>
       </li>
       <li className="nav-item">
         <NavLink
-          activeClassName="active" className="nav-link"
+          activeClassName="active"
+          className="nav-link"
           to={parentUrl + '/electricity-consumption'}
-        >{t('Electricity Consumption')}
+        >
+          {t('Electricity Consumption')}
         </NavLink>
       </li>
 
-
       <li className="nav-item">
         <NavLink
-          activeClassName="active" className="nav-link"
+          activeClassName="active"
+          className="nav-link"
           to={parentUrl + '/heat-consumption'}
-        >{t('Heating Consumption')}
+        >
+          {t('Heating Consumption')}
         </NavLink>
       </li>
 
-
       <li className="nav-item">
         <NavLink
-          activeClassName="active" className="nav-link"
+          activeClassName="active"
+          className="nav-link"
           to={parentUrl + '/hvac'}
-        >{t('HVAC')}
+        >
+          {t('HVAC')}
         </NavLink>
       </li>
       <li className="nav-item">
         <NavLink
-          activeClassName="active" className="nav-link"
+          activeClassName="active"
+          className="nav-link"
           to={parentUrl + '/lighting'}
-        >{t('Lighting')}
+        >
+          {t('Lighting')}
         </NavLink>
       </li>
       <li className="nav-item">
         <NavLink
-          activeClassName="active" className="nav-link"
+          activeClassName="active"
+          className="nav-link"
           to={parentUrl + '/envelope-facade'}
-        >{t('Envelope & Facade')}
+        >
+          {t('Envelope & Facade')}
         </NavLink>
       </li>
       <li className="nav-item">
         <NavLink
-          activeClassName="active" className="nav-link"
+          activeClassName="active"
+          className="nav-link"
           to={parentUrl + '/renewable-energy'}
-        >{t('Renewable Energy')}
+        >
+          {t('Renewable Energy')}
         </NavLink>
       </li>
       <li className="nav-item">
         <NavLink
-          activeClassName="active" className="nav-link"
+          activeClassName="active"
+          className="nav-link"
           to={parentUrl + '/adding-building-successfully'}
-        >{t('Done')}
+        >
+          {t('Done')}
         </NavLink>
       </li>
     </UL>

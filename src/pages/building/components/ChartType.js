@@ -25,21 +25,40 @@ const Wrapper = styled.div`
   }
 `
 
-const ChartType = ({onChange, type}) => {
+const ChartType = ({ onChange, type }) => {
   const onClick = (value) => {
     onChange(value)
   }
 
-
-  const { t } = useTranslation('buildingPerformance');
+  const { t } = useTranslation('buildingPerformance')
 
   return (
     <Wrapper className="d-flex">
-      <span onClick={() => onClick('year')} className={type==='year' ? 'active' : ''}>{t('Year')}</span>
-      <span onClick={() => onClick('quarter')} className={type==='quarter' ? 'active' : ''}>{t('Quarter')}</span>
-      <span onClick={() => onClick('month')} className={type==='month' ? 'active' : ''}>{t('Month')}</span>
+      <span
+        onClick={() => onClick('year')}
+        className={type === 'year' ? 'active' : ''}
+      >
+        {t('Year')}
+      </span>
+      <span
+        onClick={() => onClick('quarter')}
+        className={type === 'quarter' ? 'active' : ''}
+      >
+        {t('Quarter')}
+      </span>
+      <span
+        onClick={() => onClick('month')}
+        className={type === 'month' ? 'active' : ''}
+      >
+        {t('Month')}
+      </span>
       {/*<span onClick={() => onClick('week')} className={type==='week' ? 'active' : ''}>Week</span>*/}
-      <span onClick={() => onClick('day')} className={type==='day' ? 'active' : ''}>{t('Day')}</span>
+      <span
+        onClick={() => onClick('day')}
+        className={type === 'day' ? 'active' : ''}
+      >
+        {t('Day')}
+      </span>
     </Wrapper>
   )
 }

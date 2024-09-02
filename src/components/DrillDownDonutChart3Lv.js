@@ -19,9 +19,8 @@ const BreakDownBlock = styled.div`
   background-color: #fafafa;
   border-radius: 20px;
   padding: 30px;
-  margin-right: ${props => props.marginRight ? props.marginRight : '0px'};
+  margin-right: ${(props) => (props.marginRight ? props.marginRight : '0px')};
   width: 100%;
-
 `
 
 const ResponsivePieWrapper = styled.div`
@@ -47,7 +46,7 @@ const Ul = styled.ul`
   margin-block-start: 0;
   margin-block-end: 0;
   padding-inline-start: 0;
-  font-size: ${props => props.fontSize ? props.fontSize : '0.85rem'};
+  font-size: ${(props) => (props.fontSize ? props.fontSize : '0.85rem')};
   margin-bottom: 0;
   margin-top: 30px;
 
@@ -88,12 +87,18 @@ const DrillDownDonutChart3Lv = (props) => {
   } = props
 
   const [dataSource, setDataSource] = useState(data)
-  const [selectedSubBreakdown, setSelectedSubBreakdown] = useRecoilState(selectedSubBreakdownState)
-  const [isBreakDownDrillDown, setIsBreakDownDrillDown] = useRecoilState(isBreakDownDrillDownState)
-  const [breakDownLevel, setBreakDownLevel] = useRecoilState(breakDownLevelState)
+  const [selectedSubBreakdown, setSelectedSubBreakdown] = useRecoilState(
+    selectedSubBreakdownState
+  )
+  const [isBreakDownDrillDown, setIsBreakDownDrillDown] = useRecoilState(
+    isBreakDownDrillDownState
+  )
+  const [breakDownLevel, setBreakDownLevel] =
+    useRecoilState(breakDownLevelState)
   const breakdownSt = useRecoilValue(breakdownState)
   const setConsumptionBreakdownSt = useSetRecoilState(consumptionBreakdownState)
-  const [selectedBreakdownItemMenuItem, setSelectedBreakdownItemMenuItem] = useState()
+  const [selectedBreakdownItemMenuItem, setSelectedBreakdownItemMenuItem] =
+    useState()
   const [equipmentId, setEquipmentId] = useState()
 
   const { t, i18n } = useTranslation('buildingPerformance')
@@ -144,71 +149,75 @@ const DrillDownDonutChart3Lv = (props) => {
         >
           {percentage.toFixed(1)} %
         </text>
-        {!noCenterText && <text
-          x={centerX}
-          y={centerY + 15}
-          textAnchor="middle"
-          dominantBaseline="central"
-          style={{
-            fontSize: valueFontSize ?? '24px',
-            fontWeight: '700',
-          }}
-        >
-          t('Used')
-        </text>}
+        {!noCenterText && (
+          <text
+            x={centerX}
+            y={centerY + 15}
+            textAnchor="middle"
+            dominantBaseline="central"
+            style={{
+              fontSize: valueFontSize ?? '24px',
+              fontWeight: '700',
+            }}
+          >
+            t('Used')
+          </text>
+        )}
       </>
     )
   }
 
   const SubCategoryName = ({ centerX, centerY }) => {
-
     if (selectedSubBreakdown === 'mechanical ventilation') {
-      return <>
-        <text
-          x={centerX}
-          y={centerY - 12}
-          textAnchor="middle"
-          dominantBaseline="central"
-          style={{
-            fontSize: valueFontSize ?? '16px',
-            stroke: dataSource[0]?.color ?? '#5F5283',
-          }}
-        >
-          Mechanical
-        </text>
-        <text
-          x={centerX}
-          y={centerY + 12}
-          textAnchor="middle"
-          dominantBaseline="central"
-          style={{
-            fontSize: valueFontSize ?? '16px',
-            stroke: dataSource[0]?.color ?? '#5F5283',
-          }}
-        >
-          Ventilation
-        </text>
-      </>
+      return (
+        <>
+          <text
+            x={centerX}
+            y={centerY - 12}
+            textAnchor="middle"
+            dominantBaseline="central"
+            style={{
+              fontSize: valueFontSize ?? '16px',
+              stroke: dataSource[0]?.color ?? '#5F5283',
+            }}
+          >
+            Mechanical
+          </text>
+          <text
+            x={centerX}
+            y={centerY + 12}
+            textAnchor="middle"
+            dominantBaseline="central"
+            style={{
+              fontSize: valueFontSize ?? '16px',
+              stroke: dataSource[0]?.color ?? '#5F5283',
+            }}
+          >
+            Ventilation
+          </text>
+        </>
+      )
     }
     return (
-      selectedSubBreakdown && <text
-        x={centerX}
-        y={centerY}
-        textAnchor="middle"
-        dominantBaseline="central"
-        style={{
-          fontSize: valueFontSize ?? '18px',
-          textTransform: 'capitalize',
-          stroke: dataSource[0]?.color ?? '#5F5283',
-        }}
-      >
-        {selectedSubBreakdown}
-      </text>
+      selectedSubBreakdown && (
+        <text
+          x={centerX}
+          y={centerY}
+          textAnchor="middle"
+          dominantBaseline="central"
+          style={{
+            fontSize: valueFontSize ?? '18px',
+            textTransform: 'capitalize',
+            stroke: dataSource[0]?.color ?? '#5F5283',
+          }}
+        >
+          {selectedSubBreakdown}
+        </text>
+      )
     )
   }
 
   const handleClick = (node, event) => {
-
     console.log(breakDownLevel)
     if (node.data?.subBreakdown) {
       setBreakDownLevel(breakDownLevel + 1)
@@ -219,8 +228,10 @@ const DrillDownDonutChart3Lv = (props) => {
       if (breakDownLevel === 2) {
         console.log(event)
         setEquipmentId(node?.data.equipmentId)
-        setSelectedBreakdownItemMenuItem({ name: node.label, id: node.label })
-
+        setSelectedBreakdownItemMenuItem({
+          name: node.label,
+          id: node.label,
+        })
 
         show(event, {
           props: {
@@ -238,8 +249,6 @@ const DrillDownDonutChart3Lv = (props) => {
     setConsumptionBreakdownSt(breakdownSt.consumptionBreakdown)
   }
 
-
-
   const getValue = (value, title) => {
     if (title === t('Consumption Breakdown')) {
       return formatNumber(value / 1000, 2, 'MWh')
@@ -256,11 +265,13 @@ const DrillDownDonutChart3Lv = (props) => {
     const colors = getColorPattern(isBreakDownDrillDown ? 1 : 0)
     return (
       <li className="d-flex justify-content-between" key={x.id}>
-      <span className="d-flex">
-        <ColorBlock bgColor={colors[index]}/>
-        <Label fontSize={informationFontSize}>{x.id}:</Label>
-      </span>
-        <Value fontSize={informationFontSize}>{getValue(x.consumption, title)}</Value>
+        <span className="d-flex">
+          <ColorBlock bgColor={colors[index]} />
+          <Label fontSize={informationFontSize}>{x.id}:</Label>
+        </span>
+        <Value fontSize={informationFontSize}>
+          {getValue(x.consumption, title)}
+        </Value>
       </li>
     )
   })
@@ -270,22 +281,31 @@ const DrillDownDonutChart3Lv = (props) => {
       <div className="d-flex justify-content-between">
         <div>
           <BreakDownTitle>{t(title)}</BreakDownTitle>
-          {subTitle ?? (<BreakDownSubTitle>{t(subTitle)}</BreakDownSubTitle>)}
+          {subTitle ?? <BreakDownSubTitle>{t(subTitle)}</BreakDownSubTitle>}
         </div>
         <div>
-          {isBreakDownDrillDown === true &&
-            <button className="btn btn-sm btn-outline-primary" onClick={handleBackBtn}>{t('Reset')}</button>}
+          {isBreakDownDrillDown === true && (
+            <button
+              className="btn btn-sm btn-outline-primary"
+              onClick={handleBackBtn}
+            >
+              {t('Reset')}
+            </button>
+          )}
         </div>
       </div>
 
       <Menu id="MENU_ID">
-        {selectedBreakdownItemMenuItem &&
+        {selectedBreakdownItemMenuItem && (
           <Item>
-            <Link to={`/building/${id}/asset-reliability/equipment/${equipmentId}/${selectedSubBreakdown}`}>
-              {t('Go to Asset Reliability')} - {selectedBreakdownItemMenuItem?.name}
+            <Link
+              to={`/building/${id}/asset-reliability/equipment/${equipmentId}/${selectedSubBreakdown}`}
+            >
+              {t('Go to Asset Reliability')} -{' '}
+              {selectedBreakdownItemMenuItem?.name}
             </Link>
-          </Item>}
-
+          </Item>
+        )}
       </Menu>
       <ResponsivePieWrapper height={chartHeight}>
         <ResponsivePie
@@ -306,8 +326,13 @@ const DrillDownDonutChart3Lv = (props) => {
               {id}: {value} %
             </div>
           )}
-          arcLabel={function (e) {return e.value + '%'}}
-          arcLabelsTextColor={{ from: 'color', modifiers: [['brighter', 3]] }}
+          arcLabel={function (e) {
+            return e.value + '%'
+          }}
+          arcLabelsTextColor={{
+            from: 'color',
+            modifiers: [['brighter', 3]],
+          }}
           // enableSliceLabels={false}
           // enableRadialLabels={enableRadialLabels ?? true}
           onClick={handleClick}
@@ -316,15 +341,11 @@ const DrillDownDonutChart3Lv = (props) => {
             'arcLabels',
             'legends',
             SubCategoryName,
-            isCenteredPercentage === true ? CenteredPercentage : '']}
+            isCenteredPercentage === true ? CenteredPercentage : '',
+          ]}
         />
       </ResponsivePieWrapper>
-      {
-        hasDescription && <Ul>
-          {list}
-        </Ul>
-      }
-
+      {hasDescription && <Ul>{list}</Ul>}
     </BreakDownBlock>
   )
 }

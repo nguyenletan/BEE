@@ -14,11 +14,11 @@ export const BuildingImage = styled.img`
 
 export const Title = styled.h3`
   line-height: 1.5;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   margin-bottom: 0.2rem;
   font-weight: 700;
   font-size: 1.2rem;
-  color: var(--bs-primary)
+  color: var(--bs-primary);
 `
 
 export const Address = styled.p`

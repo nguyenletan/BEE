@@ -8,16 +8,13 @@ import { getEquipmentByIdAndGroupByYear } from 'api/EquipmentAPI'
 import { useTranslation } from 'react-i18next'
 import { deepClone } from 'Utilities'
 
-const Wrapper = styled.div`
-
-`
+const Wrapper = styled.div``
 
 const ChartWrapper = styled.div`
   height: 350px;
 `
 
 const EnergyConsumption = (props) => {
-
   const { t, i18n } = useTranslation('equipmentAssetReliability')
 
   const { equipmentId } = props
@@ -47,13 +44,14 @@ const EnergyConsumption = (props) => {
     const dataSource = [
       {
         id: 'Energy Consumption',
-        data: rawData.map(d => {
+        data: rawData.map((d) => {
           return {
             x: d.year,
             y: +d.sum.toFixed(2),
           }
         }),
-      }]
+      },
+    ]
     setData(dataSource)
   }
 
@@ -66,7 +64,7 @@ const EnergyConsumption = (props) => {
 
   useEffect(() => {
     const tmp = deepClone(data)
-    for(let item of tmp) {
+    for (let item of tmp) {
       item.id = t(item.id)
     }
 
@@ -119,17 +117,25 @@ const EnergyConsumption = (props) => {
       legendOffset: 36,
       legendPosition: 'middle',
     },
-    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends'],
-
+    layers: [
+      'grid',
+      'markers',
+      'axes',
+      'areas',
+      'crosshair',
+      'lines',
+      'points',
+      'slices',
+      'mesh',
+      'legends',
+    ],
   }
 
   return (
     <Wrapper>
       <h5>{t('Energy Consumption (mWh)')}</h5>
       <ChartWrapper>
-        <ResponsiveLine
-          {...commonProperties}
-        />
+        <ResponsiveLine {...commonProperties} />
       </ChartWrapper>
     </Wrapper>
   )

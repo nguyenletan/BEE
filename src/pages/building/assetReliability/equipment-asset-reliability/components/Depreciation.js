@@ -5,9 +5,7 @@ import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { deepClone } from 'Utilities'
 
-const Wrapper = styled.div`
-
-`
+const Wrapper = styled.div``
 
 const ChartWrapper = styled.div`
   height: 350px;
@@ -41,7 +39,6 @@ const Depreciation = () => {
         { x: 18, y: 50000 },
         { x: 19, y: 25000 },
         { x: 20, y: 0 },
-
       ],
     },
     {
@@ -66,7 +63,7 @@ const Depreciation = () => {
         { x: 15, y: 100200 },
         { x: 16, y: 75200 },
         { x: 17, y: 41000 },
-        { x: 18, y: 0 }
+        { x: 18, y: 0 },
       ],
     },
   ]
@@ -77,77 +74,74 @@ const Depreciation = () => {
 
   useEffect(() => {
     const tmp = deepClone(depreciationData)
-    for(let item of tmp) {
+    for (let item of tmp) {
       item.id = t(item.id)
     }
 
     setData(tmp)
-
   }, [i18n.language])
 
   const style = {
     dashed: {
       strokeDasharray: '12, 6',
-      strokeWidth: 3
+      strokeWidth: 3,
     },
     default: {
-      strokeWidth: 3
-    }
+      strokeWidth: 3,
+    },
   }
-
 
   const DashedLine = ({ series, lineGenerator, xScale, yScale }) => {
     return series.map(({ id, data, color }) => {
-        if (id === 'Condition Value') {
-          const data1 = data.filter(d => d.data.x <= 16)
-          const data2 = data.filter(d => d.data.x >= 16)
+      if (id === 'Condition Value') {
+        const data1 = data.filter((d) => d.data.x <= 16)
+        const data2 = data.filter((d) => d.data.x >= 16)
 
-          return (
-            <>
-              <path
-                key={id}
-                d={lineGenerator(
-                  data1.map(d => ({
-                    x: xScale(d.data.x),
-                    y: yScale(d.data.y)
-                  }))
-                )}
-                fill='none'
-                stroke={color}
-                style={style.default}
-              />
-              <path
-                key={id}
-                d={lineGenerator(
-                  data2.map(d => ({
-                    x: xScale(d.data.x),
-                    y: yScale(d.data.y)
-                  }))
-                )}
-                fill='none'
-                stroke={color}
-                style={style.dashed}
-              />
-            </>
-          )
-        } else {
-          return (
+        return (
+          <>
             <path
               key={id}
               d={lineGenerator(
-                data.map(d => ({
+                data1.map((d) => ({
                   x: xScale(d.data.x),
-                  y: yScale(d.data.y)
+                  y: yScale(d.data.y),
                 }))
               )}
-              fill='none'
+              fill="none"
               stroke={color}
               style={style.default}
             />
-          )
-        }
+            <path
+              key={id}
+              d={lineGenerator(
+                data2.map((d) => ({
+                  x: xScale(d.data.x),
+                  y: yScale(d.data.y),
+                }))
+              )}
+              fill="none"
+              stroke={color}
+              style={style.dashed}
+            />
+          </>
+        )
+      } else {
+        return (
+          <path
+            key={id}
+            d={lineGenerator(
+              data.map((d) => ({
+                x: xScale(d.data.x),
+                y: yScale(d.data.y),
+              }))
+            )}
+            fill="none"
+            stroke={color}
+            style={style.default}
+          />
+        )
       }
-    )
+    })
   }
 
   const Line = ({ series, innerHeight, margin }) => {
@@ -164,9 +158,16 @@ const Depreciation = () => {
 
     return (
       <>
-        <text x={x - 40} y="-5" className="small">{t('Current Age')}</text>
+        <text x={x - 40} y="-5" className="small">
+          {t('Current Age')}
+        </text>
         <line
-          x1={x} y1={0} x2={x} y2={innerHeight} stroke="#87972f" strokeDasharray="3"
+          x1={x}
+          y1={0}
+          x2={x}
+          y2={innerHeight}
+          stroke="#87972f"
+          strokeDasharray="3"
           strokeWidth={1}
         />
         {/*<line x1="300" y1="10" x2="300" y2="285" stroke="#87972f" strokeDasharray="2" strokeWidth={1}/>*/}
@@ -231,21 +232,29 @@ const Depreciation = () => {
       legendOffset: 36,
       legendPosition: 'middle',
     },
-    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair',  'points', 'slices', 'mesh', 'legends', Line, DashedLine],
-
+    layers: [
+      'grid',
+      'markers',
+      'axes',
+      'areas',
+      'crosshair',
+      'points',
+      'slices',
+      'mesh',
+      'legends',
+      Line,
+      DashedLine,
+    ],
   }
 
   return (
     <Wrapper>
       <h5>{t('Depreciation')}</h5>
       <ChartWrapper>
-        <ResponsiveLine
-          {...commonProperties}
-        />
+        <ResponsiveLine {...commonProperties} />
       </ChartWrapper>
     </Wrapper>
   )
-
 }
 
 export default Depreciation

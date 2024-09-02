@@ -11,7 +11,8 @@ import {
   MenuItem,
   UserNameAvatar,
   SearchMenu,
-  UserName, LangWrapper,
+  UserName,
+  LangWrapper,
 } from './HeaderStyle'
 import { useTranslation } from 'react-i18next'
 
@@ -24,13 +25,19 @@ const Header = () => {
     i18n.changeLanguage(lng).then(() => {
       console.log(i18n.resolvedLanguage)
     })
-  };
+  }
 
   return (
-    <HeaderWrapper className=''>
-      <LogoHeader><Link to='/'>BEE</Link></LogoHeader>
-      <Menu className='flex-fill'>
-        <MenuItem><NavLink activeClassName='active' to={'/building'}>{t('Building')}</NavLink></MenuItem>
+    <HeaderWrapper className="">
+      <LogoHeader>
+        <Link to="/">BEE</Link>
+      </LogoHeader>
+      <Menu className="flex-fill">
+        <MenuItem>
+          <NavLink activeClassName="active" to={'/building'}>
+            {t('Building')}
+          </NavLink>
+        </MenuItem>
         {/*<MenuItem>Messages <NumberMessage>3</NumberMessage></MenuItem>*/}
         <MenuItem>{t('Message')}</MenuItem>
         <MenuItem>{t('Setting')}</MenuItem>
@@ -38,21 +45,38 @@ const Header = () => {
       </Menu>
 
       <LangWrapper className="d-flex justify-content-between">
-        <span onClick={() => changeLanguage('en')} style={{fontWeight: i18n.language === 'en' ? 'bold' : '' }}>
+        <span
+          onClick={() => changeLanguage('en')}
+          style={{ fontWeight: i18n.language === 'en' ? 'bold' : '' }}
+        >
           EN
-        </span> /
-        <span onClick={() => changeLanguage('de')} style={{fontWeight: i18n.language === 'de' ? 'bold' : '' }}>
+        </span>{' '}
+        /
+        <span
+          onClick={() => changeLanguage('de')}
+          style={{ fontWeight: i18n.language === 'de' ? 'bold' : '' }}
+        >
           DE
         </span>
       </LangWrapper>
       <SearchMenu>
-        <InputGroup className='input-group'>
-          <SearchInput type='text' className='form-control' aria-label='Amount (to the nearest dollar)' />
-          <SearchIcon className='input-group-text'><i className='bi bi-search' /></SearchIcon>
+        <InputGroup className="input-group">
+          <SearchInput
+            type="text"
+            className="form-control"
+            aria-label="Amount (to the nearest dollar)"
+          />
+          <SearchIcon className="input-group-text">
+            <i className="bi bi-search" />
+          </SearchIcon>
         </InputGroup>
       </SearchMenu>
       {/* <UserNameAvatar><UserName>JC</UserName></UserNameAvatar> */}
-      <UserNameAvatar><UserNameAvatar><UserName>JC</UserName></UserNameAvatar></UserNameAvatar>
+      <UserNameAvatar>
+        <UserNameAvatar>
+          <UserName>JC</UserName>
+        </UserNameAvatar>
+      </UserNameAvatar>
     </HeaderWrapper>
   )
 }

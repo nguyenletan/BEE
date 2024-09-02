@@ -5,11 +5,14 @@ import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
 
-import {Add} from '@mui/icons-material'
+import { Add } from '@mui/icons-material'
 import StepNav from '../step-nav/StepNav'
 import OneMonthElectricityConsumption from './OneMonthElectricityConsumption'
 
-import { addingBuildingProgressState, electricityConsumptionListState } from 'atoms'
+import {
+  addingBuildingProgressState,
+  electricityConsumptionListState,
+} from 'atoms'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getPrevMonthYear } from 'Utilities'
@@ -17,9 +20,7 @@ import { useTranslation } from 'react-i18next'
 import { trackingUser } from 'api/UserAPI'
 import { useAuth } from 'AuthenticateProvider'
 
-const Form = styled.form`
-
-`
+const Form = styled.form``
 
 const Title = styled.h2`
   color: var(--bs-primary);
@@ -32,7 +33,7 @@ const Header = styled.div`
   font-weight: 500;
 
   span {
-    font-size: .95em;
+    font-size: 0.95em;
     font-weight: 400;
     color: var(--bs-primary);
   }
@@ -49,13 +50,14 @@ const Adding = styled(Add)`
 `
 
 const ElectricityConsumption = () => {
-  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
-    addingBuildingProgressState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] =
+    useRecoilState(addingBuildingProgressState)
   const { t } = useTranslation('buildingInput')
 
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
-  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/hvac')
+  const moveNextUrl =
+    parentUrl + (id ? '/adding-building-successfully' : '/hvac')
   const { user } = useAuth()
   const navigate = useNavigate()
 
@@ -65,11 +67,7 @@ const ElectricityConsumption = () => {
     //navigate(moveNextUrl)
   }
 
-  const {
-    handleSubmit,
-    control,
-    setValue,
-  } = useForm({
+  const { handleSubmit, control, setValue } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     defaultValues: {},
@@ -80,20 +78,23 @@ const ElectricityConsumption = () => {
     shouldUnregister: false,
   })
 
-  const [electricityConsumptionList, setElectricityConsumptionList] = useRecoilState(
-    electricityConsumptionListState)
+  const [electricityConsumptionList, setElectricityConsumptionList] =
+    useRecoilState(electricityConsumptionListState)
 
   const onAddElectricityConsumption = () => {
     let nextMonthYear = {
       month: new Date().getMonth(),
       year: new Date().getFullYear(),
     }
-    if (electricityConsumptionList !== null &&
-      electricityConsumptionList.length > 0) {
+    if (
+      electricityConsumptionList !== null &&
+      electricityConsumptionList.length > 0
+    ) {
       //console.log(electricityConsumptionList[electricityConsumptionList.length - 1])
       nextMonthYear = getPrevMonthYear(
         electricityConsumptionList[electricityConsumptionList.length - 1].month,
-        electricityConsumptionList[electricityConsumptionList.length - 1].year)
+        electricityConsumptionList[electricityConsumptionList.length - 1].year
+      )
     }
 
     setElectricityConsumptionList((oldElectricityConsumptionList) => [
@@ -108,20 +109,23 @@ const ElectricityConsumption = () => {
     ])
   }
 
-  const lis = electricityConsumptionList.map(item =>
+  const lis = electricityConsumptionList.map((item) => (
     <OneMonthElectricityConsumption
       key={'ElectricityConsumption' + item.id}
       data={item}
       control={control}
       setValue={setValue}
-    />,
-  )
-
+    />
+  ))
 
   useEffect(() => {
     async function tracking() {
       const idToken = await user.getIdToken()
-      trackingUser(user.uid, 'Electricity Consumption - Adding Building', idToken)
+      trackingUser(
+        user.uid,
+        'Electricity Consumption - Adding Building',
+        idToken
+      )
     }
     tracking()
   }, [])
@@ -137,32 +141,23 @@ const ElectricityConsumption = () => {
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
-
       </div>
 
-      <StepNav activePositon={2}/>
+      <StepNav activePositon={2} />
       <div className="">
         <Header className="row">
-          <div className="col-3">
-            {t('Month / Year')}
-          </div>
-          <div className="col-3">
-            {t('Cost ($)')}
-          </div>
-          <div className="col-3">
-            {t('Consumption (kWh)')}
-          </div>
+          <div className="col-3">{t('Month / Year')}</div>
+          <div className="col-3">{t('Cost ($)')}</div>
+          <div className="col-3">{t('Consumption (kWh)')}</div>
           <div className="col-3">
             <Adding
-              titleAccess={t("Add new item")} fontSize="large"
+              titleAccess={t('Add new item')}
+              fontSize="large"
               onClick={onAddElectricityConsumption}
             />
           </div>
         </Header>
-        <UL>
-          {lis}
-        </UL>
-
+        <UL>{lis}</UL>
       </div>
     </Form>
   )

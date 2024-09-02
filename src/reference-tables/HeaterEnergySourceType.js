@@ -1,32 +1,32 @@
 const HeaterEnergySource = [
   {
     id: 1,
-    name: 'Electricity'
+    name: 'Electricity',
   },
   {
     id: 2,
-    name: 'District Steam'
+    name: 'District Steam',
   },
   {
     id: 3,
-    name: 'Natural Gas'
+    name: 'Natural Gas',
   },
   {
     id: 4,
-    name: 'Fuel Oil'
+    name: 'Fuel Oil',
   },
   {
     id: 5,
-    name: 'Propane'
+    name: 'Propane',
   },
   {
     id: 6,
-    name: 'District Hot Water'
+    name: 'District Hot Water',
   },
-	{
-		id: 7,
-		name: 'Geothermal Hot Water'
-	}
+  {
+    id: 7,
+    name: 'Geothermal Hot Water',
+  },
 ]
 
 export default HeaterEnergySource

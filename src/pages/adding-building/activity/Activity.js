@@ -20,17 +20,18 @@ const Title = styled.h2`
 `
 
 const Activity = () => {
+  const [addingBuildingProgress, setAddingBuildingProgressState] =
+    useRecoilState(addingBuildingProgressState)
 
-  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
-    addingBuildingProgressState)
-
- // const [isMovingNext, setIsMovingNext] = useState(false)
+  // const [isMovingNext, setIsMovingNext] = useState(false)
 
   const { id } = useParams()
   const { user } = useAuth()
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
-  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/electricity-consumption')
+  const moveNextUrl =
+    parentUrl +
+    (id ? '/adding-building-successfully' : '/electricity-consumption')
   const { t } = useTranslation('buildingInput')
 
   useEffect(() => {
@@ -46,14 +47,10 @@ const Activity = () => {
       setAddingBuildingProgressState(45)
     }
     //navigate(moveNextUrl, { replace: true });
-   // setIsMovingNext(true)
+    // setIsMovingNext(true)
   }
 
-  const {
-    control,
-    handleSubmit,
-    setValue,
-  } = useForm({
+  const { control, handleSubmit, setValue } = useForm({
     mode: 'onBlur',
     reValidateMode: 'onChange',
     context: undefined,
@@ -65,7 +62,6 @@ const Activity = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="d-flex mt-5 mb-4">
-
         <Title>{t('New Building')}</Title>
 
         <BackNextGroupButton
@@ -74,23 +70,18 @@ const Activity = () => {
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
-
       </div>
 
-      <StepNav/>
+      <StepNav />
 
       <div className="row">
         <div className="col-6">
-          <TimeTable
-            control={control}
-            setValue={setValue}
-          />
+          <TimeTable control={control} setValue={setValue} />
         </div>
         <div className="col-6">
-          <SpaceUsageGFA control={control} setValue={setValue}/>
+          <SpaceUsageGFA control={control} setValue={setValue} />
         </div>
       </div>
-
     </form>
   )
 }

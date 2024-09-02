@@ -2,23 +2,23 @@ const PVPanelType = [
   {
     id: 1,
     shortName: 'crystSi',
-    name: 'Crystal Silicon'
+    name: 'Crystal Silicon',
   },
   {
     id: 2,
     shortName: 'CIS',
-    name: 'Copper Indium Selenide'
+    name: 'Copper Indium Selenide',
   },
   {
     id: 3,
     shortName: 'CdTe',
-    name: 'Cadmium Telluride'
+    name: 'Cadmium Telluride',
   },
   {
     id: 4,
     shortName: 'Unknown',
-    name: 'Unknown'
-  }
+    name: 'Unknown',
+  },
 ]
 
 export default PVPanelType

@@ -4,16 +4,13 @@ import { ResponsiveLine } from '@nivo/line'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 
-const Wrapper = styled.div`
-
-`
+const Wrapper = styled.div``
 
 const ChartWrapper = styled.div`
   height: 350px;
 `
 
 const MaintenanceCostReplacementValue = () => {
-
   let dataEN = [
     {
       id: 'Maintenance Cost vs Replacement Value',
@@ -34,7 +31,6 @@ const MaintenanceCostReplacementValue = () => {
         { x: 2019, y: 72 },
         { x: 2020, y: 75 },
         { x: 2021, y: 77 },
-
       ],
     },
   ]
@@ -58,7 +54,6 @@ const MaintenanceCostReplacementValue = () => {
         { x: 2019, y: 72 },
         { x: 2020, y: 75 },
         { x: 2021, y: 77 },
-
       ],
     },
   ]
@@ -68,7 +63,7 @@ const MaintenanceCostReplacementValue = () => {
   const [data, setData] = useState(dataEN)
 
   useEffect(() => {
-    if(i18n.language === 'en') {
+    if (i18n.language === 'en') {
       setData(dataEN)
     } else {
       setData(dataDE)
@@ -88,7 +83,7 @@ const MaintenanceCostReplacementValue = () => {
     yScale: {
       type: 'linear',
       stacked: false,
-      max: 100
+      max: 100,
     },
     curve: 'linear',
     axisLeft: {
@@ -109,21 +104,28 @@ const MaintenanceCostReplacementValue = () => {
       legendOffset: 36,
       legendPosition: 'middle',
     },
-    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends'],
-
+    layers: [
+      'grid',
+      'markers',
+      'axes',
+      'areas',
+      'crosshair',
+      'lines',
+      'points',
+      'slices',
+      'mesh',
+      'legends',
+    ],
   }
 
   return (
     <Wrapper>
       <h5>{t('Maintenance Cost vs Replacement Value (%)')}</h5>
       <ChartWrapper>
-        <ResponsiveLine
-          {...commonProperties}
-        />
+        <ResponsiveLine {...commonProperties} />
       </ChartWrapper>
     </Wrapper>
   )
-
 }
 
 export default MaintenanceCostReplacementValue

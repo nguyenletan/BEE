@@ -8,9 +8,8 @@
   "Shading Coefficient": "Shading Coefficient",
   "Decreasing the U-Value of the windows in turn reduces heating and cooling loads.": "Decreasing the U-Value of the windows in turn reduces heating and cooling loads",
 
-
   "Roof Insulation Type": "Roof Insulation Type",
-  "Wall Insulation Type" : "Wall Insulation Type",
+  "Wall Insulation Type": "Wall Insulation Type",
   "Single Glazed Window": "Single Glazed Window",
   "Double Glazed": "Doppelglasiert",
   "Floor Insulation Type": "Floor Insulation Type",
@@ -20,16 +19,13 @@
   "Concrete Slab - Insulated": "Concrete Slab - Insulated",
   "Solid Ground Floor w/ Edge Insulation": "Solid Ground Floor w/ Edge Insulation",
 
-
   "Reinforced Concrete Wall": "Reinforced Concrete Wall",
   "Precast Concrete Wall": "Precast Concrete Wall",
-
 
   "Decreasing the U-Value of the windows in turn reduces heating and cooling loads": "Decreasing the U-Value of the windows in turn reduces heating and cooling loads",
   "Decreasing the U-Value of the roof insulation in turn reduces heating and cooling loads": "Decreasing the U-Value of the roof insulation in turn reduces heating and cooling loads",
   "Decreasing the U-Value of the wall insulation in turn reduces heating and cooling loads": "Decreasing the U-Value of the wall insulation in turn reduces heating and cooling loads",
   "Decreasing the U-Value of the floor insulation in turn reduces heating and cooling loads": "Decreasing the U-Value of the floor insulation in turn reduces heating and cooling loads",
-
 
   "Current CO2 Emission": "Current CO2 Emission",
   "Energy Performance": " Energy Performance",
@@ -48,10 +44,10 @@
   "Fixed Speed Fan": "Fixed Speed Fan",
   "Variable Speed Drive Fan": "Variable Speed Drive Fan",
 
-  "Improving the fan energy efficiency reduces the energy consumption of the mechanical ventilation system":"Improving the fan energy efficiency reduces the energy consumption of the mechanical ventilation system",
+  "Improving the fan energy efficiency reduces the energy consumption of the mechanical ventilation system": "Improving the fan energy efficiency reduces the energy consumption of the mechanical ventilation system",
   "Solar Panel Capacity Installed": "Solar Panel Capacity Installed",
   "No Solar Panel System": "No Solar Panel System\"",
-  "Solar Panel":"Solar Panel",
+  "Solar Panel": "Solar Panel",
   "Capacity kWp": "Capacity kWp",
 
   "Improving the solar panel capacity reduces the energy consumption of the building from the grid": "Improving the solar panel capacity reduces the energy consumption of the building from the grid",
@@ -61,10 +57,9 @@
   "Energy Usage kWh": "Energy Usage kWh",
   "Managing the plug loads and switching them off when not in use reduces the energy consumption": "Managing the plug loads and switching them off when not in use reduces the energy consumption",
 
-
   "Close": "Close",
-  "roof":"Dach",
-  "wall":"Wände",
-  "openings":"Öffnungen",
-  "floor":"Bodenplatte"
+  "roof": "Dach",
+  "wall": "Wände",
+  "openings": "Öffnungen",
+  "floor": "Bodenplatte"
 }

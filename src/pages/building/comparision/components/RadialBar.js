@@ -21,108 +21,107 @@ const RadialBarWrapper = styled.div`
   max-width: 50%;
 `
 
-
 const RadialBar = () => {
   const data = [
     {
-      "id": "F+E Campus",
-      "data": [
+      id: 'F+E Campus',
+      data: [
         {
-          "x": "Energy Usage Intensity",
-          "y": 229
+          x: 'Energy Usage Intensity',
+          y: 229,
         },
         {
-          "x": "Cooling Efficiency",
-          "y": 203
+          x: 'Cooling Efficiency',
+          y: 203,
         },
         {
-          "x": "Heating Efficiency",
-          "y": 279
+          x: 'Heating Efficiency',
+          y: 279,
         },
         {
-          "x": "Lighting Efficiency",
-          "y": 290
+          x: 'Lighting Efficiency',
+          y: 290,
         },
         {
-          "x": "Mechanical Ventilation Efficiency",
-          "y": 210
+          x: 'Mechanical Ventilation Efficiency',
+          y: 210,
         },
         {
-          "x": "Envelope Performance",
-          "y": 180
+          x: 'Envelope Performance',
+          y: 180,
         },
         {
-          "x": "Renewables Usage",
-          "y": 110
+          x: 'Renewables Usage',
+          y: 110,
         },
-      ]
+      ],
     },
     {
-      "id": "Hill Bay Central Bank Center",
-      "data": [
+      id: 'Hill Bay Central Bank Center',
+      data: [
         {
-          "x": "Energy Usage Intensity",
-          "y": 258
+          x: 'Energy Usage Intensity',
+          y: 258,
         },
         {
-          "x": "Cooling Efficiency",
-          "y": 119
+          x: 'Cooling Efficiency',
+          y: 119,
         },
         {
-          "x": "Heating Efficiency",
-          "y": 289
+          x: 'Heating Efficiency',
+          y: 289,
         },
         {
-          "x": "Lighting Efficiency",
-          "y": 264
+          x: 'Lighting Efficiency',
+          y: 264,
         },
         {
-          "x": "Mechanical Ventilation Efficiency",
-          "y": 200
+          x: 'Mechanical Ventilation Efficiency',
+          y: 200,
         },
         {
-          "x": "Envelope Performance",
-          "y": 190
+          x: 'Envelope Performance',
+          y: 190,
         },
         {
-          "x": "Renewables Usage",
-          "y": 80
+          x: 'Renewables Usage',
+          y: 80,
         },
-      ]
+      ],
     },
     {
-      "id": "Design Excellent Center",
-      "data": [
+      id: 'Design Excellent Center',
+      data: [
         {
-          "x": "Energy Usage Intensity",
-          "y": 235
+          x: 'Energy Usage Intensity',
+          y: 235,
         },
         {
-          "x": "Cooling Efficiency",
-          "y": 126
+          x: 'Cooling Efficiency',
+          y: 126,
         },
         {
-          "x": "Heating Efficiency",
-          "y": 232
+          x: 'Heating Efficiency',
+          y: 232,
         },
         {
-          "x": "Lighting Efficiency",
-          "y": 189
+          x: 'Lighting Efficiency',
+          y: 189,
         },
         {
-          "x": "Mechanical Ventilation Efficiency",
-          "y": 150
+          x: 'Mechanical Ventilation Efficiency',
+          y: 150,
         },
         {
-          "x": "Envelope Performance",
-          "y": 120
+          x: 'Envelope Performance',
+          y: 120,
         },
         {
-          "x": "Renewables Usage",
-          "y": 160
+          x: 'Renewables Usage',
+          y: 160,
         },
-      ]
-    }
+      ],
+    },
   ]
 
   return (
@@ -137,11 +136,27 @@ const RadialBar = () => {
           padding={0.4}
           enableRadialGrid={true}
           enableCircularGrid={false}
-          colors={["#2d6a4f","#40916c","#52b788","#74c69d","#95d5b2","#b7e4c7","#d8f3dc"]}
+          colors={[
+            '#2d6a4f',
+            '#40916c',
+            '#52b788',
+            '#74c69d',
+            '#95d5b2',
+            '#b7e4c7',
+            '#d8f3dc',
+          ]}
           cornerRadius={0}
           margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
-          radialAxisStart={{ tickSize: 5, tickPadding: 5, tickRotation: 0 }}
-          circularAxisOuter={{ tickSize: 5, tickPadding: 12, tickRotation: 0 }}
+          radialAxisStart={{
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+          }}
+          circularAxisOuter={{
+            tickSize: 5,
+            tickPadding: 12,
+            tickRotation: 0,
+          }}
           legends={[
             {
               anchor: 'bottom-right',
@@ -160,11 +175,11 @@ const RadialBar = () => {
                 {
                   on: 'hover',
                   style: {
-                    itemTextColor: '#000'
-                  }
-                }
-              ]
-            }
+                    itemTextColor: '#000',
+                  },
+                },
+              ],
+            },
           ]}
         />
       </RadialBarWrapper>

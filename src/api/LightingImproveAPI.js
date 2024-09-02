@@ -11,17 +11,19 @@ export const updateLightingSystemImprovement = async (data, idToken) => {
     },
     data: data,
     body: {},
-  }).then((response) => {
-    //console.log('getLightingSystemByBuildingId: ', response.data)
-    result = response.data
-    //result = 'Retrieve successfully!'
-    //return response.data
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      //console.log('getLightingSystemByBuildingId: ', response.data)
+      result = response.data
+      //result = 'Retrieve successfully!'
+      //return response.data
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
 
   return result
 }

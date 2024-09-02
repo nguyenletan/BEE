@@ -4,9 +4,10 @@ import styled from 'styled-components'
 const Block = styled.div`
   width: 141px;
   height: 58px;
-  color: ${props => props.textColor ? props.textColor : '#fff'};
-  height: ${props => props.height ? props.height : '58px'};
-  background-color: ${props => props.backgroundColor ? props.backgroundColor : 'transparent'};
+  color: ${(props) => (props.textColor ? props.textColor : '#fff')};
+  height: ${(props) => (props.height ? props.height : '58px')};
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : 'transparent'};
   text-align: center;
   line-height: 58px;
   font-size: 1.1rem;
@@ -17,9 +18,8 @@ const Block = styled.div`
   transition: background-color 500ms ease-in-out;
   :hover {
     box-shadow: 1px 1px 10px 1px rgba(50, 80, 50, 0.5);
-    transition: box-shadow 200ms ease-in-out
+    transition: box-shadow 200ms ease-in-out;
   }
-
 `
 
 const HeaderBlock = styled.div`
@@ -38,7 +38,7 @@ const HeaderBlock = styled.div`
 const IndexBlock = styled.div`
   width: 100px;
   color: #707070;
-  height: ${props => props.height ? props.height : '58px'};
+  height: ${(props) => (props.height ? props.height : '58px')};
   background-color: transparent;
   border-radius: 8px;
   margin-right: 15px;
@@ -58,11 +58,17 @@ const IndexBlock = styled.div`
 const PotentialFaultRiskBlock = (props) => {
   const { color, value, isHeader, isIndexCol, height, onClick } = props
 
-  return isIndexCol === true
-    ? <IndexBlock onClick={onClick} height={height}><span>{value}</span></IndexBlock>
-    : isHeader === true
-      ? <HeaderBlock>{value}</HeaderBlock>
-      : <Block onClick={onClick} backgroundColor={color}>{value === 0 ? '' : value}</Block>
+  return isIndexCol === true ? (
+    <IndexBlock onClick={onClick} height={height}>
+      <span>{value}</span>
+    </IndexBlock>
+  ) : isHeader === true ? (
+    <HeaderBlock>{value}</HeaderBlock>
+  ) : (
+    <Block onClick={onClick} backgroundColor={color}>
+      {value === 0 ? '' : value}
+    </Block>
+  )
 }
 
 export default PotentialFaultRiskBlock

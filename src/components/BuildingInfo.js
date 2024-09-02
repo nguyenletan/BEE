@@ -38,16 +38,16 @@ const BuildingTitle = styled.h2`
   font-weight: 700;
   padding-left: 0;
   width: 100%;
-  
+
   @media (min-width: 1024px) {
     padding-left: 15px;
-    padding-bottom: .5em;
+    padding-bottom: 0.5em;
   }
 `
 
 const TypeCol = styled.p`
   display: inline;
-  padding-right: .5em;
+  padding-right: 0.5em;
   @media (min-width: 740px) {
     display: block;
   }
@@ -75,10 +75,10 @@ const BuildingInfo = (props) => {
     totalOperatingHours,
   } = props
 
-  const { t, i18n } = useTranslation(['generalBuildingInformation', 'common']);
+  const { t, i18n } = useTranslation(['generalBuildingInformation', 'common'])
   const [countryName, setCountryName] = useState()
 
-  useEffect(()=> {
+  useEffect(() => {
     setCountryName(findCountryNameByCountryCode(countryCode, i18n.language))
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -86,70 +86,104 @@ const BuildingInfo = (props) => {
 
   return (
     <BuildingInfoWrapper className="d-flex justify-content-start flex-wrap">
-      <BuildingImage src={image}/>
+      <BuildingImage src={image} />
       <GeneralInformation className="flex-grow-1">
         <BuildingTitle>{name}</BuildingTitle>
 
         <div className="row ms-2 mb-4 w-100">
           <div className="col-12 col-md-4 col-lg-3">
-            <TypeCol className="mb-1"><Label>{t('Building No')}.</Label> {streetNumber}</TypeCol>
-            <TypeCol className="mb-0"><Label>State.</Label> {state}</TypeCol>
+            <TypeCol className="mb-1">
+              <Label>{t('Building No')}.</Label> {streetNumber}
+            </TypeCol>
+            <TypeCol className="mb-0">
+              <Label>State.</Label> {state}
+            </TypeCol>
           </div>
           <div className="col-12 col-md-4 col-lg-3">
-            <TypeCol className="mb-1"><Label>{t('Street')}.</Label> {streetName} </TypeCol>
-            <TypeCol className="mb-0"><Label>{t('Post Code')}.</Label> {postCode}</TypeCol>
+            <TypeCol className="mb-1">
+              <Label>{t('Street')}.</Label> {streetName}{' '}
+            </TypeCol>
+            <TypeCol className="mb-0">
+              <Label>{t('Post Code')}.</Label> {postCode}
+            </TypeCol>
           </div>
           <div className="col-12 col-md-4 col-lg-6">
-            <TypeCol className="mb-1"><Label>{t('City')}.</Label> {city}</TypeCol>
-            <TypeCol className="mb-0"><Label>{t('Country')}.</Label> {countryName}</TypeCol>
+            <TypeCol className="mb-1">
+              <Label>{t('City')}.</Label> {city}
+            </TypeCol>
+            <TypeCol className="mb-0">
+              <Label>{t('Country')}.</Label> {countryName}
+            </TypeCol>
           </div>
         </div>
 
         <div className="row ms-2 mb-1 w-100">
           <div className="col-12 col-md-4 col-lg-3">
-            <TypeCol className="mb-1"><Label>{t('Use Type')}</Label></TypeCol>
-            <TypeCol className="mb-0">{t(useType, {ns: 'common'})}</TypeCol>
+            <TypeCol className="mb-1">
+              <Label>{t('Use Type')}</Label>
+            </TypeCol>
+            <TypeCol className="mb-0">{t(useType, { ns: 'common' })}</TypeCol>
           </div>
           <div className="col-12 col-md-4 col-lg-3">
-            <TypeCol className="mb-1"><Label>{t('Total Floor Area (Internal)')}</Label></TypeCol>
-            <TypeCol className="mb-0">{formatNumber(tfa, 0)} {tfaUnit}</TypeCol>
+            <TypeCol className="mb-1">
+              <Label>{t('Total Floor Area (Internal)')}</Label>
+            </TypeCol>
+            <TypeCol className="mb-0">
+              {formatNumber(tfa, 0)} {tfaUnit}
+            </TypeCol>
           </div>
           <div className="col-12 col-md-4 col-lg-6">
-            <TypeCol className="mb-1"><Label>{t('Green Building Rating')}</Label></TypeCol>
+            <TypeCol className="mb-1">
+              <Label>{t('Green Building Rating')}</Label>
+            </TypeCol>
             <TypeCol className="mb-0">{greenBuildingRating}</TypeCol>
           </div>
         </div>
 
         <div className="row ms-2 mb-4 w-100">
           <div className="col-12 col-md-4 col-lg-3">
-            <TypeCol className="mb-1"><Label>{t('Storey')}</Label></TypeCol>
+            <TypeCol className="mb-1">
+              <Label>{t('Storey')}</Label>
+            </TypeCol>
             <TypeCol className="mb-0">{storey}</TypeCol>
           </div>
           <div className="col-12 col-md-4 col-lg-3">
-            <TypeCol className="mb-1"><Label>{t('Constructed')}</Label></TypeCol>
+            <TypeCol className="mb-1">
+              <Label>{t('Constructed')}</Label>
+            </TypeCol>
             <TypeCol className="mb-0">{constructed}</TypeCol>
           </div>
           <div className="col-12 col-md-4 col-lg-3">
-            <TypeCol className="mb-1"><Label>{t('Total operating hours')}</Label></TypeCol>
-            <TypeCol className="mb-0">{totalOperatingHours?.toFixed(0)}</TypeCol>
+            <TypeCol className="mb-1">
+              <Label>{t('Total operating hours')}</Label>
+            </TypeCol>
+            <TypeCol className="mb-0">
+              {totalOperatingHours?.toFixed(0)}
+            </TypeCol>
           </div>
         </div>
 
         <div className="row ms-2 w-100">
           <div className="col-12 col-md-4 col-lg-3">
-            <TypeCol className="mb-1"><Label>{t('Last Edited')}:</Label></TypeCol>
+            <TypeCol className="mb-1">
+              <Label>{t('Last Edited')}:</Label>
+            </TypeCol>
             <TypeCol className="mb-0">{buildingInfoLastEdited}</TypeCol>
           </div>
           <div className="col-12 col-md-4 col-lg-3">
-            <TypeCol className="mb-1"><Label>{t('Edited by')}:</Label></TypeCol>
+            <TypeCol className="mb-1">
+              <Label>{t('Edited by')}:</Label>
+            </TypeCol>
             <TypeCol className="mb-0">{email}</TypeCol>
           </div>
         </div>
-
       </GeneralInformation>
       <div>
         <button className="btn btn-sm btn-outline-primary mt-3">
-          <Link to={"/editing-building/" + id + "/general-information"} >{t('Edit')}</Link></button>
+          <Link to={'/editing-building/' + id + '/general-information'}>
+            {t('Edit')}
+          </Link>
+        </button>
       </div>
     </BuildingInfoWrapper>
   )

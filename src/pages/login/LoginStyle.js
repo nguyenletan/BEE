@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const LoginPage = styled.div`
   height: 100vh;
-
 `
 
 export const Title = styled.h1`

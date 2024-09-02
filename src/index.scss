@@ -5,8 +5,18 @@ $dark: #373637;
 $border-radius: 3px;
 $euiColorPrimary: #87972f;
 
-$font-family-sans-serif: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
+$font-family-sans-serif:
+  'Inter',
+  -apple-system,
+  BlinkMacSystemFont,
+  'Segoe UI',
+  Roboto,
+  'Helvetica Neue',
+  Arial,
+  sans-serif,
+  'Apple Color Emoji',
+  'Segoe UI Emoji',
+  'Segoe UI Symbol';
 
 //@import '~@elastic/eui/dist/eui_theme_light.css';
 @import '~@elastic/eui/src/themes/amsterdam/theme_light';
@@ -14,16 +24,14 @@ $font-family-sans-serif: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI"
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
 
-
 :root {
   --inkydark: #373637;
   --offwhite: #f9f3f2;
   --white: #f9f3f2;
-  --lightgreen: #CDEAE5;
-  --normalgreen: #A8D4CC;
-  --purple: #5F5283;
-  --darkgray: #9B9A9B;
-
+  --lightgreen: #cdeae5;
+  --normalgreen: #a8d4cc;
+  --purple: #5f5283;
+  --darkgray: #9b9a9b;
 }
 
 html {
@@ -42,7 +50,6 @@ body {
 }
 
 #root {
-
 }
 
 footer {
@@ -58,18 +65,18 @@ footer {
   color: var(--gray);
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
   color: var(--primary);
   background-color: var(--white);
   border-bottom: 4px solid var(--primary);
   border-radius: 0;
   font-weight: 700;
 }
-.btn-primary, .btn-primary:hover{
+.btn-primary,
+.btn-primary:hover {
   color: var(--offwhite);
 }
-
-
 
 svg {
   overflow: visible;
@@ -84,17 +91,22 @@ svg {
   opacity: 1;
 }
 
-.form-control:disabled, .form-control[readonly] {
+.form-control:disabled,
+.form-control[readonly] {
   background-color: #e9ecef;
   opacity: 0.5;
 }
 
-.react-contexify__item:not(.react-contexify__item--disabled):hover > .react-contexify__item__content, .react-contexify__item:not(.react-contexify__item--disabled):focus > .react-contexify__item__content {
+.react-contexify__item:not(.react-contexify__item--disabled):hover
+  > .react-contexify__item__content,
+.react-contexify__item:not(.react-contexify__item--disabled):focus
+  > .react-contexify__item__content {
   color: var(--dark) !important;
   background-color: white !important;
 }
 
-.react-contexify__submenu--is-open, .react-contexify__submenu--is-open > .react-contexify__item__content {
+.react-contexify__submenu--is-open,
+.react-contexify__submenu--is-open > .react-contexify__item__content {
   color: var(--dark) !important;
   background-color: white !important;
 }

@@ -8,9 +8,8 @@ const BreakDownBlock = styled.div`
   background-color: #fafafa;
   border-radius: 20px;
   padding: 0;
-  margin-right: ${props => props.marginRight ? props.marginRight : '0px'};
+  margin-right: ${(props) => (props.marginRight ? props.marginRight : '0px')};
   width: 100%;
-
 `
 
 const ResponsivePieWrapper = styled.div`
@@ -102,34 +101,41 @@ const TotalBreakDownPieChart = (props) => {
         >
           {percentage.toFixed(1)} %
         </text>
-        {!noCenterText && <text
-          x={centerX}
-          y={centerY + 15}
-          textAnchor="middle"
-          dominantBaseline="central"
-          style={{
-            fontSize: valueFontSize ?? '24px',
-            fontWeight: '700',
-          }}
-        >
-          {t('Used')}
-        </text>}
+        {!noCenterText && (
+          <text
+            x={centerX}
+            y={centerY + 15}
+            textAnchor="middle"
+            dominantBaseline="central"
+            style={{
+              fontSize: valueFontSize ?? '24px',
+              fontWeight: '700',
+            }}
+          >
+            {t('Used')}
+          </text>
+        )}
       </>
     )
   }
 
-  const list = data.map(x => <li className="d-flex justify-content-between" key={x.id}>
-    <span className="d-flex">
-      <ColorBlock bgColor={x.color}/>
-      <Label fontSize={informationFontSize}>{x.id}:</Label>
-    </span>
-    <Value fontSize={informationFontSize}>{t('$')}{formatNumber(x.pureValue, 0)}</Value>
-  </li>)
+  const list = data.map((x) => (
+    <li className="d-flex justify-content-between" key={x.id}>
+      <span className="d-flex">
+        <ColorBlock bgColor={x.color} />
+        <Label fontSize={informationFontSize}>{x.id}:</Label>
+      </span>
+      <Value fontSize={informationFontSize}>
+        {t('$')}
+        {formatNumber(x.pureValue, 0)}
+      </Value>
+    </li>
+  ))
 
   return (
     <BreakDownBlock marginRight={marginRight}>
       <BreakDownTitle>{title}</BreakDownTitle>
-      {subTitle ?? (<BreakDownSubTitle>{subTitle}</BreakDownSubTitle>)}
+      {subTitle ?? <BreakDownSubTitle>{subTitle}</BreakDownSubTitle>}
       <ResponsivePieWrapper height={chartHeight}>
         <ResponsivePie
           {...commonProperties}
@@ -149,21 +155,18 @@ const TotalBreakDownPieChart = (props) => {
               {id}: {value} %
             </div>
           )}
-          arcLabel={function (e) {return e.value + '%'}}
-
+          arcLabel={function (e) {
+            return e.value + '%'
+          }}
           layers={[
             'arcs',
             'arcLabels',
             'legends',
-            isCenteredPercentage === true ? CenteredPercentage : '']}
+            isCenteredPercentage === true ? CenteredPercentage : '',
+          ]}
         />
       </ResponsivePieWrapper>
-      {
-        hasDescription && <Ul>
-          {list}
-        </Ul>
-      }
-
+      {hasDescription && <Ul>{list}</Ul>}
     </BreakDownBlock>
   )
 }

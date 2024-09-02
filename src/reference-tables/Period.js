@@ -1,4 +1,3 @@
-
 const Period = [
   { id: 0, name: '2021-Now', value: '2021' },
   { id: 1, name: '2011-2020', value: '2011' },

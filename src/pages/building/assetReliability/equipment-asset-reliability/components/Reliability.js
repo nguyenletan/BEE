@@ -4,16 +4,13 @@ import { ResponsiveLine } from '@nivo/line'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 
-const Wrapper = styled.div`
-
-`
+const Wrapper = styled.div``
 
 const ChartWrapper = styled.div`
   height: 350px;
 `
 
 const Reliability = () => {
-
   let reliabilityDataEN = [
     {
       id: 'Mean Time to Repair',
@@ -34,7 +31,6 @@ const Reliability = () => {
         { x: 2019, y: 81720 },
         { x: 2020, y: 97500 },
         { x: 2021, y: 107000 },
-
       ],
     },
     {
@@ -79,7 +75,6 @@ const Reliability = () => {
         { x: 2019, y: 81720 },
         { x: 2020, y: 97500 },
         { x: 2021, y: 107000 },
-
       ],
     },
     {
@@ -110,7 +105,7 @@ const Reliability = () => {
   const [reliabilityData, setReliabilityData] = useState(reliabilityDataEN)
 
   useEffect(() => {
-    if(i18n.language === 'en') {
+    if (i18n.language === 'en') {
       setReliabilityData(reliabilityDataEN)
     } else {
       setReliabilityData(reliabilityDataDE)
@@ -174,21 +169,28 @@ const Reliability = () => {
       legendOffset: 36,
       legendPosition: 'middle',
     },
-    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends'],
-
+    layers: [
+      'grid',
+      'markers',
+      'axes',
+      'areas',
+      'crosshair',
+      'lines',
+      'points',
+      'slices',
+      'mesh',
+      'legends',
+    ],
   }
 
   return (
     <Wrapper>
       <h5>{t('Reliability (Hours)')}</h5>
       <ChartWrapper>
-        <ResponsiveLine
-          {...commonProperties}
-        />
+        <ResponsiveLine {...commonProperties} />
       </ChartWrapper>
     </Wrapper>
   )
-
 }
 
 export default Reliability

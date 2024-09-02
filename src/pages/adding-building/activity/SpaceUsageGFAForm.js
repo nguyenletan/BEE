@@ -35,29 +35,33 @@ const Subtraction = styled.span`
   cursor: pointer;
   color: var(--bs-primary);
 `
-const Content = styled.div`
-
-`
+const Content = styled.div``
 
 const SpaceUsageGFAForm = ({ data, control, setValue }) => {
   const [title, setTitle] = useState(data.title ?? `Usage ${data.id}`)
-  const [climateControl, selectedClimateControl] = useState(data.climateControlId ?? 0)
+  const [climateControl, selectedClimateControl] = useState(
+    data.climateControlId ?? 0
+  )
   const [spaceUsageType, selectSpaceUsageType] = useState(data.typeId ?? 0)
   const [percentage, setPercentage] = useState(data.percentage ?? 0)
   const [fanTypeId, selectFanTypeId] = useState(data.fanTypeId ?? 0)
-  const [hasReheatRecovery, setHasReheatRecovery] = useState(data.hasReheatRecovery ?? false)
+  const [hasReheatRecovery, setHasReheatRecovery] = useState(
+    data.hasReheatRecovery ?? false
+  )
   const { t } = useTranslation(['buildingInput', 'common'])
-  const [isShowFanTypeAndHeatRecovery, setIsShowFanTypeAndHeatRecovery] = useState(
-    data.climateControlId === 4)
+  const [isShowFanTypeAndHeatRecovery, setIsShowFanTypeAndHeatRecovery] =
+    useState(data.climateControlId === 4)
 
   const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(
-    spaceUsageGFAListState)
+    spaceUsageGFAListState
+  )
 
-  const classes = makeStyles(() => (MaterialFormStyle))()
+  const classes = makeStyles(() => MaterialFormStyle)()
 
   const onRemoveItem = () => {
     const index = spaceUsageGFAList.findIndex(
-      (listItem) => listItem.id === data.id)
+      (listItem) => listItem.id === data.id
+    )
 
     const newList = removeItemAtIndex(spaceUsageGFAList, index)
     setSpaceUsageGFAList(newList)
@@ -144,11 +148,27 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
 
   useEffect(() => {
     setValue(`title${data.id}`, title, { shouldValidate: true })
-    setValue(`space-usage-type${data.id}`, spaceUsageType, { shouldValidate: true })
-    setValue(`percentage-of-GFA${data.id}`, percentage, { shouldValidate: true })
-    setValue(`climate-control-select${data.id}`, climateControl, { shouldValidate: true })
-    setValue(`fan-type-select${data.id}`, fanTypeId, { shouldValidate: true })
-  }, [climateControl, data.id, fanTypeId, percentage, setValue, spaceUsageType, title])
+    setValue(`space-usage-type${data.id}`, spaceUsageType, {
+      shouldValidate: true,
+    })
+    setValue(`percentage-of-GFA${data.id}`, percentage, {
+      shouldValidate: true,
+    })
+    setValue(`climate-control-select${data.id}`, climateControl, {
+      shouldValidate: true,
+    })
+    setValue(`fan-type-select${data.id}`, fanTypeId, {
+      shouldValidate: true,
+    })
+  }, [
+    climateControl,
+    data.id,
+    fanTypeId,
+    percentage,
+    setValue,
+    spaceUsageType,
+    title,
+  ])
 
   return (
     <Wrapper className="shadow-sm rounded border">
@@ -157,30 +177,28 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
           name={`title${data.id}`}
           control={control}
           setValue={setValue}
-          render={({
-            field: { onChange },
-            fieldState: { error },
-          }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl className={classes.mediumFormControl}>
-              <TextField label={t('Title')}
-                         variant="standard"
-                         type="text"
-                         value={t(title)}
-                         onChange={(e) => {
-                           onTitleChange(e)
-                           onChange(e)
-                         }}
-                         error={!!error}
-                         helperText={error ? error.message : null}/>
+              <TextField
+                label={t('Title')}
+                variant="standard"
+                type="text"
+                value={t(title)}
+                onChange={(e) => {
+                  onTitleChange(e)
+                  onChange(e)
+                }}
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
             </FormControl>
           )}
           rules={{
             required: t(`The Title is not empty`),
           }}
         />
-        <Subtraction onClick={onRemoveItem} title={t("Remove Item")}><i
-          className="bi bi-dash-lg"
-        />
+        <Subtraction onClick={onRemoveItem} title={t('Remove Item')}>
+          <i className="bi bi-dash-lg" />
         </Subtraction>
       </Header>
       <Content>
@@ -188,13 +206,14 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
           name={`space-usage-type${data.id}`}
           control={control}
           setValue={setValue}
-          render={({
-            field: { onChange },
-            fieldState: { error },
-          }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl className={classes.formControl}>
-              <InputLabel id={`space-usage-type-label${data.id}`} className={error && 'text-danger'}>{t(
-                'Space Usage Type')}</InputLabel>
+              <InputLabel
+                id={`space-usage-type-label${data.id}`}
+                className={error && 'text-danger'}
+              >
+                {t('Space Usage Type')}
+              </InputLabel>
               <Select
                 labelId={`space-usage-type-label${data.id}`}
                 variant="standard"
@@ -206,15 +225,16 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                 }}
               >
                 {SpaceUsageType.map((o) => (
-                  <MenuItem
-                    key={o.id}
-                    value={o.id}
-                  >
-                    {t(o.name, {ns: 'common'})}
+                  <MenuItem key={o.id} value={o.id}>
+                    {t(o.name, { ns: 'common' })}
                   </MenuItem>
                 ))}
               </Select>
-              {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
+              {error && (
+                <FormHelperText className="text-danger">
+                  {t('This field is required')}
+                </FormHelperText>
+              )}
             </FormControl>
           )}
           rules={{
@@ -226,27 +246,30 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
           name={`percentage-of-GFA${data.id}`}
           control={control}
           setValue={setValue}
-          render={({
-            field: { onChange },
-            fieldState: { error },
-          }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl className={classes.formControl}>
-              <TextField min={0} max={100}
-                         variant="standard"
-                         label={t('% of Total Floor Area (Internal)')}
-                         type="number"
-                         value={percentage}
-                         error={!!error}
-                         helperText={error ? error.message : null}
-                         onChange={(e) => {
-                           onPercentageChange(e)
-                           onChange(e)
-                         }}/>
+              <TextField
+                min={0}
+                max={100}
+                variant="standard"
+                label={t('% of Total Floor Area (Internal)')}
+                type="number"
+                value={percentage}
+                error={!!error}
+                helperText={error ? error.message : null}
+                onChange={(e) => {
+                  onPercentageChange(e)
+                  onChange(e)
+                }}
+              />
             </FormControl>
           )}
           rules={{
             required: t('This field is required'),
-            min: { value: 0, message: t('The value should be >= 0') },
+            min: {
+              value: 0,
+              message: t('The value should be >= 0'),
+            },
           }}
         />
 
@@ -254,12 +277,12 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
           name={`climate-control-select${data.id}`}
           control={control}
           setValue={setValue}
-          render={({
-            field: { onChange },
-            fieldState: { error },
-          }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl className={classes.formControl}>
-              <InputLabel id={`climate-control-label${data.id}`} className={error && 'text-danger'}>
+              <InputLabel
+                id={`climate-control-label${data.id}`}
+                className={error && 'text-danger'}
+              >
                 {t('Climate Control')}
               </InputLabel>
               <Select
@@ -273,10 +296,16 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
                 }}
               >
                 {ClimateControlType.map((o) => (
-                  <MenuItem key={o.id} value={o.id}>{t(o.name, {ns: 'common'})}</MenuItem>
+                  <MenuItem key={o.id} value={o.id}>
+                    {t(o.name, { ns: 'common' })}
+                  </MenuItem>
                 ))}
               </Select>
-              {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
+              {error && (
+                <FormHelperText className="text-danger">
+                  {t('This field is required')}
+                </FormHelperText>
+              )}
             </FormControl>
           )}
           rules={{
@@ -284,63 +313,65 @@ const SpaceUsageGFAForm = ({ data, control, setValue }) => {
           }}
         />
 
-        {
-          isShowFanTypeAndHeatRecovery && (
-            <>
-              <Controller
-                name={`fan-type-select${data.id}`}
-                control={control}
-                setValue={setValue}
-                render={({
-                  field: { onChange },
-                  fieldState: { error },
-                }) => (
-                  <FormControl className={classes.formControl}>
-                    <InputLabel id={`fan-type-label${data.id}`} className={error && 'text-danger'}>{t(
-                      'Fan Type')}</InputLabel>
-                    <Select
-                      variant="standard"
-                      labelId={`fan-type-label${data.id}`}
-                      value={fanTypeId}
-                      error={!!error}
-                      onChange={(e) => {
-                        onFanTypeChange(e)
-                        onChange(e)
-                      }}
-                    >
-                      {FanType.map((o) => (
-                        <MenuItem
-                          key={o.id}
-                          value={o.id}
-                        >
-                          {t(o.name, {ns: 'common'})}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                    {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
-                  </FormControl>
-                )}
-                rules={{
-                  required: t(`The Fan Type is not empty`),
-                }}
+        {isShowFanTypeAndHeatRecovery && (
+          <>
+            <Controller
+              name={`fan-type-select${data.id}`}
+              control={control}
+              setValue={setValue}
+              render={({ field: { onChange }, fieldState: { error } }) => (
+                <FormControl className={classes.formControl}>
+                  <InputLabel
+                    id={`fan-type-label${data.id}`}
+                    className={error && 'text-danger'}
+                  >
+                    {t('Fan Type')}
+                  </InputLabel>
+                  <Select
+                    variant="standard"
+                    labelId={`fan-type-label${data.id}`}
+                    value={fanTypeId}
+                    error={!!error}
+                    onChange={(e) => {
+                      onFanTypeChange(e)
+                      onChange(e)
+                    }}
+                  >
+                    {FanType.map((o) => (
+                      <MenuItem key={o.id} value={o.id}>
+                        {t(o.name, { ns: 'common' })}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  {error && (
+                    <FormHelperText className="text-danger">
+                      {t('This field is required')}
+                    </FormHelperText>
+                  )}
+                </FormControl>
+              )}
+              rules={{
+                required: t(`The Fan Type is not empty`),
+              }}
+            />
+            <div className="form-group">
+              <label className="form-label d-block mb-0">
+                {t('Has Heat Recovery?')}
+              </label>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={hasReheatRecovery}
+                    onChange={onHasReheatRecoveryChange}
+                    name="checkedB"
+                    color="primary"
+                  />
+                }
+                label={t('Yes')}
               />
-              <div className="form-group">
-                <label className="form-label d-block mb-0">{t('Has Heat Recovery?')}
-                </label>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={hasReheatRecovery}
-                      onChange={onHasReheatRecoveryChange}
-                      name="checkedB"
-                      color="primary"
-                    />
-                  }
-                  label={t('Yes')}
-                />
-              </div>
-            </>)
-        }
+            </div>
+          </>
+        )}
       </Content>
     </Wrapper>
   )

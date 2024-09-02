@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Alert = (message) => {
-  return(
+  return (
     <div className="alert alert-danger" role="alert">
       {message}
     </div>

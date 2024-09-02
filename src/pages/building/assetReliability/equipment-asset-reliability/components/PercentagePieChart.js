@@ -42,7 +42,6 @@ const PercentagePieChart = ({ data }) => {
       <ResponsivePie
         {...commonProperties}
         innerRadius={0.88}
-
         startAngle={0}
         colors={{ datum: 'data.color' }}
         tooltip={({ datum: { id, value, color } }) => (
@@ -57,13 +56,9 @@ const PercentagePieChart = ({ data }) => {
             {id}: {value} %
           </div>
         )}
-
         enableSliceLabels={true}
         enableRadialLabels={true}
-        layers={[
-          'arcs',
-          'legends',
-          CenteredPercentage]}
+        layers={['arcs', 'legends', CenteredPercentage]}
       />
     </Wrapper>
   )

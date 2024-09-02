@@ -1,53 +1,52 @@
 const SpaceUsageType = [
   {
     id: 1,
-    name: 'Store Room'
+    name: 'Store Room',
   },
   {
     id: 2,
-    name: 'Circulation Area'
+    name: 'Circulation Area',
   },
   {
     id: 3,
-    name: 'Toilet'
+    name: 'Toilet',
   },
   {
     id: 4,
-    name: 'Reception'
+    name: 'Reception',
   },
   {
     id: 5,
-    name: 'Plant Room'
+    name: 'Plant Room',
   },
   {
     id: 6,
-    name: 'Office'
+    name: 'Office',
   },
   {
     id: 7,
-    name: 'Gym'
+    name: 'Gym',
   },
   {
     id: 8,
-    name: 'Changing Room with Showers'
+    name: 'Changing Room with Showers',
   },
   {
     id: 9,
-    name: 'Food Preparation Area'
+    name: 'Food Preparation Area',
   },
   {
     id: 10,
-    name:
-      'Eating/Drinking Area'
+    name: 'Eating/Drinking Area',
   },
   {
     id: 11,
-    name: 'Workshop - small scale'
+    name: 'Workshop - small scale',
   },
   {
     id: 12,
-    name: 'Car Park'
-  }
+    name: 'Car Park',
+  },
 ]
 
 export default SpaceUsageType

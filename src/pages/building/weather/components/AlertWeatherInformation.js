@@ -17,13 +17,22 @@ const H4 = styled.h4`
 const AlertWeatherInformation = () => {
   const buttonContent = (
     <div className="d-flex align-items-center">
-      <img className="me-3" src={getWeatherIcon('snow')} alt="snow" width="32px"/>
+      <img
+        className="me-3"
+        src={getWeatherIcon('snow')}
+        alt="snow"
+        width="32px"
+      />
       <H4 className="font-bold">Alert Weather</H4>
     </div>
   )
 
   return (
-    <EuiAccordion initialIsOpen={true} className="mb-5" buttonContent={buttonContent}>
+    <EuiAccordion
+      initialIsOpen={true}
+      className="mb-5"
+      buttonContent={buttonContent}
+    >
       <EuiPanel color="subdued">
         <Wrapper>
           <p>Temperature that was 13.4℃ above last 5 years average.</p>

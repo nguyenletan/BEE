@@ -5,12 +5,12 @@ const RoofType = [
   },
   {
     id: 2,
-    name: 'Flat Roof'
+    name: 'Flat Roof',
   },
   {
     id: 3,
-    name: 'Other'
-  }
+    name: 'Other',
+  },
 ]
 
 export default RoofType

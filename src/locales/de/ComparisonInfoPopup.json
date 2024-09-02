@@ -6,7 +6,7 @@
   "U-Value (W/m2K)": "U-Wert (W/m2K)",
 
   "Roof Insulation Type": "Dachisolierungstyp",
-  "Wall Insulation Type" : "Wanddämmungstyp",
+  "Wall Insulation Type": "Wanddämmungstyp",
   "Window Glazing Type": "Fensterverglasungstyp",
   "Single Glazed Window": "Einfach verglastes Fenster",
   "Double Glazed": "Doppelglasiert",
@@ -18,16 +18,13 @@
   "Shading Coefficient": "Beschattungskoeffizient (b-Faktor)",
   "Solid Ground Floor w/ Edge Insulation": "Solid Erdgeschoss mit Randdämmung",
 
-
   "Reinforced Concrete Wall": "Stahlbetonwand",
   "Precast Concrete Wall": "Betonfertigteilwand",
-
 
   "Decreasing the U-Value of the windows in turn reduces heating and cooling loads": "Eine Reduzierung des U-Wertes der Fenster verringert wiederum Heiz- und Kühllasten",
   "Decreasing the U-Value of the roof insulation in turn reduces heating and cooling loads": "Eine Reduzierung des U-Wertes der dach verringert wiederum Heiz- und Kühllasten",
   "Decreasing the U-Value of the wall insulation in turn reduces heating and cooling loads": "Eine Reduzierung des U-Wertes der ưände verringert wiederum Heiz- und Kühllasten",
   "Decreasing the U-Value of the floor insulation in turn reduces heating and cooling loads": "Eine Reduzierung des U-Wertes der bodenplatte verringert wiederum Heiz- und Kühllasten",
-
 
   "Current CO2 Emission": "Aktueller CO2-Ausstoß",
   "Energy Performance": " Energieeffizienz",
@@ -46,16 +43,16 @@
   "Fixed Speed Fan": "Lüfter mit fester Geschwindigkeit",
   "Variable Speed Drive Fan": "Lüfter mit variabler Geschwindigkeit",
 
-  "Improving the fan energy efficiency reduces the energy consumption of the mechanical ventilation system":"Die Verbesserung der Energieeffizienz des Ventilators reduziert den Energieverbrauch der mechanischen Lüftungsanlage",
+  "Improving the fan energy efficiency reduces the energy consumption of the mechanical ventilation system": "Die Verbesserung der Energieeffizienz des Ventilators reduziert den Energieverbrauch der mechanischen Lüftungsanlage",
   "Solar Panel Capacity Installed": "Solarmodul-Kapazität installiert",
   "No Solar Panel System": "Kein Solarpanel-System",
-  "Solar Panel":"Sonnenkollektor",
+  "Solar Panel": "Sonnenkollektor",
   "Capacity kWp": "Kapazität kWp",
 
   "Improving the solar panel capacity reduces the energy consumption of the building from the grid": "Die Verbesserung der Solarmodulkapazität reduziert den Energieverbrauch des Gebäudes aus dem Netz",
   "Plug Loads": "Steckerlast",
   "plug loads": "Steckerlast",
-  "mechanical ventilation":"Mechanische Lüftung",
+  "mechanical ventilation": "Mechanische Lüftung",
   "NA": "Nicht verfügbar",
   "Smart Plugs": "Smart Plugs",
   "Energy Usage kWh": "Energieverbrauch kWh",
@@ -63,17 +60,14 @@
 
   "Performance": "Effizienz",
 
-
-
-
   "Close": "Schließen",
 
-  "cooling":"kühlung",
-  "heating":"heizung",
-  "lighting":"beleuchtung",
-  "mechanical Ventilation":"mechanische lüftung",
-  "roof":"dach",
-  "wall":"ưände",
-  "openings":"öffnungen",
-  "floor":"bodenplatte"
+  "cooling": "kühlung",
+  "heating": "heizung",
+  "lighting": "beleuchtung",
+  "mechanical Ventilation": "mechanische lüftung",
+  "roof": "dach",
+  "wall": "ưände",
+  "openings": "öffnungen",
+  "floor": "bodenplatte"
 }

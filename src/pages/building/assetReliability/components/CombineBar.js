@@ -18,7 +18,7 @@ const data = [
   { x: '4', v: 4, v1: 4.0, v2: 2.6 },
   { x: '5', v: 4, v1: 3.9, v2: 2.7 },
   { x: '6', v: 49, v1: 2.9, v2: 2.3 },
-  { x: '7', v: 52, v1: 3.3, v2: 1.8 }
+  { x: '7', v: 52, v1: 3.3, v2: 1.8 },
 ]
 
 const data2 = [
@@ -27,68 +27,72 @@ const data2 = [
     id: 0,
     used: 5000,
     accrued: 1300,
-    allocated: 7300
+    allocated: 7300,
   },
   {
     subSystem: 'heating',
     used: 3000,
     accrued: 5100,
     id: 1,
-    allocated: 6500
-  }, {
+    allocated: 6500,
+  },
+  {
     subSystem: 'lighting',
     used: 3100,
     accrued: 200,
     allocated: 4300,
-    id: 2
-  }, {
+    id: 2,
+  },
+  {
     subSystem: 'mechanical ventilation',
     used: 5900,
     accrued: 900,
     allocated: 7200,
-    id: 3
-  }, {
+    id: 3,
+  },
+  {
     subSystem: 'facility envelope',
     used: 4000,
     accrued: 5900,
     allocated: 4300,
-    id: 4
-  }, {
+    id: 4,
+  },
+  {
     subSystem: 'renewables',
     used: 1800,
     accrued: 500,
     allocated: 3100,
-    id: 5
+    id: 5,
   },
   {
     subSystem: 'others',
     id: 6,
     used: 2100,
     accrued: 300,
-    allocated: 3100
-  }
+    allocated: 3100,
+  },
 ]
 
 const Line = ({ bars, xScale, yScale }) => {
   const lineGenerator = line()
-    .x(bar => xScale(bar.data.index) + bar.width / 2)
-    .y(bar => yScale(bar.data.data.allocated))
+    .x((bar) => xScale(bar.data.index) + bar.width / 2)
+    .y((bar) => yScale(bar.data.data.allocated))
 
   return (
     <>
       <path
         d={lineGenerator(bars)}
-        fill='none'
+        fill="none"
         stroke={lineColor}
         style={{ pointerEvents: 'none' }}
       />
-      {bars.map(bar => (
+      {bars.map((bar) => (
         <circle
           key={bar.key}
           cx={xScale(bar.data.index) + bar.width / 2}
           cy={yScale(bar.data.data.v1)}
           r={4}
-          fill='white'
+          fill="white"
           stroke={lineColor}
           style={{ pointerEvents: 'none' }}
         />
@@ -98,22 +102,21 @@ const Line = ({ bars, xScale, yScale }) => {
 }
 
 const CombineBar = () => (
-  <div className='App'>
+  <div className="App">
     <Bar
       width={500}
       height={400}
       data={data2}
       keys={['used', 'accrued']}
-
       padding={0.6}
-      groupMode='stacked'
+      groupMode="stacked"
       margin={{
         top: 10,
         right: 10,
         bottom: 36,
-        left: 36
+        left: 36,
       }}
-      indexBy='id'
+      indexBy="id"
       enableLabel={false}
       colors={['#87972f', '#d3dca1', '#636c2e']}
       borderRadius={2}

@@ -7,7 +7,8 @@ import { useTranslation } from 'react-i18next'
 import { deepClone, formatNumber } from 'Utilities'
 import { useRecoilValue } from 'recoil'
 import {
-  getTotalInvestmentCost, getTotalIRR,
+  getTotalInvestmentCost,
+  getTotalIRR,
   getTotalSimplePayback,
   getTotalValueAnnualEnergySavings,
   totalAnnualSavingState,
@@ -50,11 +51,12 @@ const PotentialSavingItemValue = styled.h4`
 const PotentialSavings = ({ data }) => {
   const { t, i18n } = useTranslation('improvement')
   const totalAnnualSaving = useRecoilValue(totalAnnualSavingState)
-  const valueAnnualEnergySavingsSelector = useRecoilValue(getTotalValueAnnualEnergySavings)
+  const valueAnnualEnergySavingsSelector = useRecoilValue(
+    getTotalValueAnnualEnergySavings
+  )
   const getTotalInvestmentCostSelector = useRecoilValue(getTotalInvestmentCost)
   const getTotalSimplePaybackSelector = useRecoilValue(getTotalSimplePayback)
   const getTotalIRRSelector = useRecoilValue(getTotalIRR)
-
 
   const [dataSource, setDataScource] = useState(data)
 
@@ -63,16 +65,17 @@ const PotentialSavings = ({ data }) => {
 
     if (totalAnnualSaving !== []) {
       for (let item of tmp.saving) {
-
         switch (item.title) {
           case 'Annual Energy Savings':
-            item.value = formatNumber(valueAnnualEnergySavingsSelector /1000)
+            item.value = formatNumber(valueAnnualEnergySavingsSelector / 1000)
             break
           case 'Investment Cost':
-            item.value = formatNumber(getTotalInvestmentCostSelector /1000)
+            item.value = formatNumber(getTotalInvestmentCostSelector / 1000)
             break
           case 'Annual Energy Cost Savings':
-            item.value = formatNumber(valueAnnualEnergySavingsSelector * 0.23 / 1000)
+            item.value = formatNumber(
+              (valueAnnualEnergySavingsSelector * 0.23) / 1000
+            )
             break
           case 'Annual CO2 Emissions Avoided':
             item.value = formatNumber(valueAnnualEnergySavingsSelector * 0.1)
@@ -95,13 +98,24 @@ const PotentialSavings = ({ data }) => {
     }
 
     setDataScource(tmp)
-  }, [i18n.language, totalAnnualSaving, data, valueAnnualEnergySavingsSelector, getTotalInvestmentCostSelector, getTotalSimplePaybackSelector, getTotalIRRSelector])
+  }, [
+    i18n.language,
+    totalAnnualSaving,
+    data,
+    valueAnnualEnergySavingsSelector,
+    getTotalInvestmentCostSelector,
+    getTotalSimplePaybackSelector,
+    getTotalIRRSelector,
+  ])
 
-  const PotentialSavingItems = dataSource.saving.map(item => (
+  const PotentialSavingItems = dataSource.saving.map((item) => (
     <PotentialSavingItem key={t(item.title)} className="d-flex flex-column">
-      <PotentialSavingItemTitle>{item.title} ({item.unit})</PotentialSavingItemTitle>
+      <PotentialSavingItemTitle>
+        {item.title} ({item.unit})
+      </PotentialSavingItemTitle>
       <PotentialSavingItemValue>{item.value}</PotentialSavingItemValue>
-    </PotentialSavingItem>))
+    </PotentialSavingItem>
+  ))
 
   return (
     <PotentialSavingsWrapper className="row">
@@ -114,11 +128,14 @@ const PotentialSavings = ({ data }) => {
 
       <div className="col-7">
         <div className="d-flex">
-          <BuildingEnergyPerformance improved={data.energyPerformance.improved}/>
-          <CO2EmissionsPerformance improved={data.CO2EmissionsPerformance.improved}/>
+          <BuildingEnergyPerformance
+            improved={data.energyPerformance.improved}
+          />
+          <CO2EmissionsPerformance
+            improved={data.CO2EmissionsPerformance.improved}
+          />
         </div>
       </div>
-
     </PotentialSavingsWrapper>
   )
 }

@@ -1,20 +1,20 @@
 const PVTechChoiceType = [
   {
     id: 1,
-    name: 'crystSi'
+    name: 'crystSi',
   },
   {
     id: 2,
-    name: 'CIS'
+    name: 'CIS',
   },
   {
     id: 3,
-    name: 'CdTe'
+    name: 'CdTe',
   },
   {
     id: 4,
-    name: 'Unknown'
-  }
+    name: 'Unknown',
+  },
 ]
 
 export default PVTechChoiceType

@@ -3,14 +3,17 @@ import { ResponsiveLine } from '@nivo/line'
 import _ from 'lodash'
 import moment from 'moment'
 
-const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy, onSelectDay }) => {
-
+const EnergyConsumptionLineChartForGroupByDayOrWeek = ({
+  data,
+  groupBy,
+  onSelectDay,
+}) => {
   const groupByYear = Object.entries(_.groupBy(data, 'year'))
 
-  const datasource = groupByYear.map(g => {
+  const datasource = groupByYear.map((g) => {
     return {
       id: g[0],
-      data: g[1].map(d => {
+      data: g[1].map((d) => {
         return {
           x: d.label,
           y: d.value,
@@ -69,7 +72,7 @@ const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy, onSelect
             border: '1px solid #ccc',
           }}
         >
-          {slice.points.map(point => (
+          {slice.points.map((point) => (
             <div
               key={point.id}
               style={{
@@ -77,7 +80,8 @@ const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy, onSelect
                 padding: '3px 0',
               }}
             >
-              <strong>{point.data.xFormatted}: </strong> {point.data.yFormatted} mWh
+              <strong>{point.data.xFormatted}: </strong> {point.data.yFormatted}{' '}
+              mWh
             </div>
           ))}
         </div>
@@ -102,7 +106,11 @@ const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy, onSelect
 
   const onSelectLine = (point, event) => {
     // console.log(event)
-    onSelectDay(moment(point.data.x, "DD/MM/YYYY").toDate(), point.data.y, point.index)
+    onSelectDay(
+      moment(point.data.x, 'DD/MM/YYYY').toDate(),
+      point.data.y,
+      point.index
+    )
   }
 
   return (
@@ -117,7 +125,6 @@ const EnergyConsumptionLineChartForGroupByDayOrWeek = ({ data, groupBy, onSelect
       // curve="natural"
     />
   )
-
 }
 
 export default EnergyConsumptionLineChartForGroupByDayOrWeek

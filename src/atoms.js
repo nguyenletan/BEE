@@ -20,10 +20,12 @@ export const spaceUsageGFAListState = atom({
 export const totalPercentageOfSpaceUsageGFAListState = selector({
   key: 'totalPercentageOfSpaceUsageGFAList',
   get: ({ get }) => {
-
     const spaceUsageGFAList = get(spaceUsageGFAListState)
     let total = 0
-    console.log('totalPercentageOfSpaceUsageGFAListState', spaceUsageGFAList.length)
+    console.log(
+      'totalPercentageOfSpaceUsageGFAListState',
+      spaceUsageGFAList.length
+    )
     // for (let i = 0; i < spaceUsageGFAList.length; i++) {
     //   if (spaceUsageGFAList[i] && typeof spaceUsageGFAList[i].percentage ===
     //     'number') {
@@ -47,7 +49,8 @@ export const defaultLightingSubSystemListState = [
     numberOfDaysUsedPerWeek: 0,
     numberOfHoursUsedPerDay: 0,
     totalWatt: 0,
-  }]
+  },
+]
 export const lightingSubSystemListState = atom({
   key: 'lightingSubSystemList',
   default: defaultLightingSubSystemListState,
@@ -60,7 +63,7 @@ export const lightingSubSystemListSelectorState = selector({
 
     const totalOfBulbs = _.sumBy(lightingSubSystemList, (item) => {
       if (item && typeof +item.numberOfBulbs === 'number') {
-        return (+item.numberOfBulbs)
+        return +item.numberOfBulbs
       }
       return 0
     })
@@ -68,13 +71,13 @@ export const lightingSubSystemListSelectorState = selector({
     for (let lightingSubSystem of lightingSubSystemList) {
       let efficacy = 0
       let percentage = 0
-      let watt = lightingSubSystem.numberOfBulbs *
-        lightingSubSystem.wattRatingOfBulb
+      let watt =
+        lightingSubSystem.numberOfBulbs * lightingSubSystem.wattRatingOfBulb
       if (totalOfBulbs > 0) {
         percentage = (lightingSubSystem.numberOfBulbs / totalOfBulbs) * 100
       }
       if (lightingSubSystem.lumensOfBulb > 0) {
-        efficacy = (watt / lightingSubSystem.lumensOfBulb)
+        efficacy = watt / lightingSubSystem.lumensOfBulb
       }
       result.push({
         totalWatt: watt,
@@ -105,9 +108,12 @@ export const totalWattOfLightingSubSystemListState = selector({
   get: ({ get }) => {
     const lightingSubSystemList = get(lightingSubSystemListState)
     return _.sumBy(lightingSubSystemList, (item) => {
-      if (item && typeof +item.wattRatingOfBulb === 'number' &&
-        typeof +item.numberOfBulbs === 'number') {
-        return (+item.wattRatingOfBulb) * (+item.numberOfBulbs)
+      if (
+        item &&
+        typeof +item.wattRatingOfBulb === 'number' &&
+        typeof +item.numberOfBulbs === 'number'
+      ) {
+        return +item.wattRatingOfBulb * +item.numberOfBulbs
       }
       return 0
     })
@@ -119,10 +125,13 @@ export const totalEfficacyOfLightingSubSystemListState = selector({
   get: ({ get }) => {
     const lightingSubSystemList = get(lightingSubSystemListState)
     return _.sumBy(lightingSubSystemList, (item) => {
-      if (item && typeof +item.wattRatingOfBulb === 'number' &&
-        typeof +item.lumensOfBulb === 'number') {
+      if (
+        item &&
+        typeof +item.wattRatingOfBulb === 'number' &&
+        typeof +item.lumensOfBulb === 'number'
+      ) {
         if (+item.lumensOfBulb > 0)
-          return +((+item.wattRatingOfBulb) / (+item.lumensOfBulb)).toFixed(2)
+          return +(+item.wattRatingOfBulb / +item.lumensOfBulb).toFixed(2)
       }
       return 0
     })
@@ -142,7 +151,8 @@ export const defaultSolarPanelSystemListState = [
     systemLoss: 14,
     pvTechChoiceId: '',
     mountingTypeId: '',
-  }]
+  },
+]
 export const solarPanelSystemListState = atom({
   key: 'solarPanelSystemList',
   default: defaultSolarPanelSystemListState,
@@ -155,18 +165,19 @@ export const defaultElectricityConsumptionListState = [
     year: new Date().getFullYear(),
     value: '',
     cost: '',
-  }]
+  },
+]
 
 export const defaultHeatConsumptionListState = [
-    {
-      id: parseInt(_.uniqueId()),
-      month: new Date().getMonth(),
-      year: new Date().getFullYear(),
-      heattype: '',
-      value: '',
-      cost: '',
-    }]
-  
+  {
+    id: parseInt(_.uniqueId()),
+    month: new Date().getMonth(),
+    year: new Date().getFullYear(),
+    heattype: '',
+    value: '',
+    cost: '',
+  },
+]
 
 export const electricityConsumptionListState = atom({
   key: 'electricityConsumption',
@@ -177,7 +188,6 @@ export const heatConsumptionListState = atom({
   key: 'heatConsumption',
   default: defaultHeatConsumptionListState,
 })
-
 
 export const defaultGeneralBuildingInformationState = {
   propId: null,
@@ -315,7 +325,8 @@ export const defaultBuildingActivityState = [
     startTime: new Date('2014-08-18T09:00:00'),
     endTime: new Date('2014-08-18T17:00:00'),
     isEnable: false,
-  }]
+  },
+]
 export const buildingActivityState = atom({
   key: 'buildingActivity',
   default: defaultBuildingActivityState,
@@ -439,14 +450,16 @@ export const getTotalPercentageOfLEDReplacement = selector({
     let numberOfReplacingBulbs = 0
     let numberOfOldBulbs = 0
     for (let i = 0; i < arr.length; i++) {
-      if (!isNaN(arr[i].numberOfReplacingBulbs) &&
-        !isNaN(arr[i].numberOfOldBulbs)) {
+      if (
+        !isNaN(arr[i].numberOfReplacingBulbs) &&
+        !isNaN(arr[i].numberOfOldBulbs)
+      ) {
         numberOfReplacingBulbs += arr[i].numberOfReplacingBulbs
         numberOfOldBulbs += arr[i].numberOfOldBulbs
       }
     }
     if (numberOfOldBulbs > 0) {
-      total = numberOfReplacingBulbs * 100 / numberOfOldBulbs
+      total = (numberOfReplacingBulbs * 100) / numberOfOldBulbs
     }
     return total
   },

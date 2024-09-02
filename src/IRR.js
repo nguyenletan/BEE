@@ -15,7 +15,7 @@ const IRR = (values, guess) => {
     let result = 0
     for (let i = 1; i < values.length; i++) {
       const frac = (dates[i] - dates[0]) / 365
-      result -= frac * values[i] / Math.pow(r, frac + 1)
+      result -= (frac * values[i]) / Math.pow(r, frac + 1)
     }
     return result
   }
@@ -25,7 +25,7 @@ const IRR = (values, guess) => {
   let positive = false
   let negative = false
   for (let i = 0; i < values.length; i++) {
-    dates[i] = (i === 0) ? 0 : dates[i - 1] + 365
+    dates[i] = i === 0 ? 0 : dates[i - 1] + 365
     if (values[i] > 0) positive = true
     if (values[i] < 0) negative = true
   }
@@ -34,7 +34,7 @@ const IRR = (values, guess) => {
   if (!positive || !negative) return '#NUM!'
 
   // Initialize guess and resultRate
-  let resultRate = (typeof guess === 'undefined') ? 0.1 : guess
+  let resultRate = typeof guess === 'undefined' ? 0.1 : guess
 
   // Set maximum epsilon for end of iteration
   const epsMax = 1e-10
@@ -48,11 +48,12 @@ const IRR = (values, guess) => {
   let contLoop = true
   do {
     resultValue = irrResult(values, dates, resultRate)
-    newRate = resultRate - resultValue / irrResultDeriv(values, dates, resultRate)
+    newRate =
+      resultRate - resultValue / irrResultDeriv(values, dates, resultRate)
     epsRate = Math.abs(newRate - resultRate)
     resultRate = newRate
-    contLoop = (epsRate > epsMax) && (Math.abs(resultValue) > epsMax)
-  } while (contLoop && (++iteration < iterMax))
+    contLoop = epsRate > epsMax && Math.abs(resultValue) > epsMax
+  } while (contLoop && ++iteration < iterMax)
 
   if (contLoop) return '#NUM!'
 

@@ -37,7 +37,6 @@ const ImprovementMeasuresTable = styled.table`
   }
 
   thead tr {
-
     border-bottom: 1px solid #eaeaea;
   }
 
@@ -65,9 +64,7 @@ const FirstTd = styled.td`
   align-items: center;
 `
 
-const Image = styled.img`
-
-`
+const Image = styled.img``
 
 const ImprovementMeasuresTableWrapper = styled.div`
   height: 350px;
@@ -90,7 +87,8 @@ const InfoButton = styled.button`
 
 const ImprovementMeasures = ({ data, setResult }) => {
   const [showOtherSubSystemPopup, setShowOtherSubSystemPopup] = useState(false)
-  const [showLightingSubSystemPopup, setShowLightingSubSystemPopup] = useState(false)
+  const [showLightingSubSystemPopup, setShowLightingSubSystemPopup] =
+    useState(false)
   const [popUpProps, setPopupProps] = useState({})
   const { t } = useTranslation('improvement')
 
@@ -110,18 +108,16 @@ const ImprovementMeasures = ({ data, setResult }) => {
     setShowLightingSubSystemPopup(false)
   }
 
-
   const openPopup = (data) => {
-
     setPopupProps(data)
-    if(data.subSystem === t('Lighting')) {
+    if (data.subSystem === t('Lighting')) {
       setShowLightingSubSystemPopup(true)
     } else {
       setShowOtherSubSystemPopup(true)
     }
   }
 
-  const rows = data.map(item => {
+  const rows = data.map((item) => {
     let imgSrc
     let width
     switch (item.subSystem) {
@@ -153,7 +149,9 @@ const ImprovementMeasures = ({ data, setResult }) => {
     return (
       <tr key={item.measures}>
         <FirstTd>
-          <ImageWrapper><Image src={imgSrc} alt={item.measures} width={width}/></ImageWrapper>
+          <ImageWrapper>
+            <Image src={imgSrc} alt={item.measures} width={width} />
+          </ImageWrapper>
           {t(item.measures)}
         </FirstTd>
         <td width="18%">{formatNumber(item.investmentCost)}</td>
@@ -164,18 +162,20 @@ const ImprovementMeasures = ({ data, setResult }) => {
         <td width="10%">
           <InfoButton
             className="btn btn-primary btn-sm"
-            onClick={() => openPopup({
-              icon: imgSrc,
-              subSystem: item.subSystem,
-              measures: item.measures,
-              investmentCost: item.investmentCost,
-              energyCostSavings: item.energyCostSavings,
-              energySavings: item.energySavings,
-              paybackPeriod: item.paybackPeriod,
-              co2EmissionsAvoided: item.co2EmissionsAvoided,
-              internalRateOfReturn: item.internalRateOfReturn,
-              usagePercent: item.usagePercent,
-            })}
+            onClick={() =>
+              openPopup({
+                icon: imgSrc,
+                subSystem: item.subSystem,
+                measures: item.measures,
+                investmentCost: item.investmentCost,
+                energyCostSavings: item.energyCostSavings,
+                energySavings: item.energySavings,
+                paybackPeriod: item.paybackPeriod,
+                co2EmissionsAvoided: item.co2EmissionsAvoided,
+                internalRateOfReturn: item.internalRateOfReturn,
+                usagePercent: item.usagePercent,
+              })
+            }
           >
             {t('Info')}
           </InfoButton>
@@ -186,32 +186,58 @@ const ImprovementMeasures = ({ data, setResult }) => {
 
   return (
     <ImprovementMeasuresWrapper>
-      <ImprovementMeasuresTitle>{t('Improvement Measures')}</ImprovementMeasuresTitle>
+      <ImprovementMeasuresTitle>
+        {t('Improvement Measures')}
+      </ImprovementMeasuresTitle>
       <ImprovementMeasuresTable className="table">
         <thead>
-        <tr>
-          <FirstTh>{t('MEASURES')}</FirstTh>
-          <th width="18%">{t('INVESTMENT COST')}<br/>({t('$')})</th>
-          <th width="12%">{t('ENERGY SAVINGS')}<br/>({t('MWH/YR')})</th>
-          <th width="12%">{t('ENERGY COST SAVINGS')}<br/>({t('$/YR')})</th>
-          <th width="12%">{t('PAYBACK PERIOD')}<br/>({t('YR')})</th>
-          <th width="12%">{t('CO2 EMISSIONS AVOIDED')}<br/>({t('TONS/YR')})</th>
-          <th width="10%"/>
-        </tr>
+          <tr>
+            <FirstTh>{t('MEASURES')}</FirstTh>
+            <th width="18%">
+              {t('INVESTMENT COST')}
+              <br />({t('$')})
+            </th>
+            <th width="12%">
+              {t('ENERGY SAVINGS')}
+              <br />({t('MWH/YR')})
+            </th>
+            <th width="12%">
+              {t('ENERGY COST SAVINGS')}
+              <br />({t('$/YR')})
+            </th>
+            <th width="12%">
+              {t('PAYBACK PERIOD')}
+              <br />({t('YR')})
+            </th>
+            <th width="12%">
+              {t('CO2 EMISSIONS AVOIDED')}
+              <br />({t('TONS/YR')})
+            </th>
+            <th width="10%" />
+          </tr>
         </thead>
       </ImprovementMeasuresTable>
       <ImprovementMeasuresTableWrapper>
         <ImprovementMeasuresTable className="table">
-          <tbody>
-          {rows}
-          </tbody>
+          <tbody>{rows}</tbody>
         </ImprovementMeasuresTable>
       </ImprovementMeasuresTableWrapper>
 
-      {showOtherSubSystemPopup && <ImprovementMeasurePopup data={popUpProps} handleClose={handleCloseOtherSubSystemPopup} show={true}/>}
-      {showLightingSubSystemPopup && <LightingImprovementMeasurePopup data={popUpProps} handleClose={handleCloseLightingSubSystemPopup} show={true}/>}
+      {showOtherSubSystemPopup && (
+        <ImprovementMeasurePopup
+          data={popUpProps}
+          handleClose={handleCloseOtherSubSystemPopup}
+          show={true}
+        />
+      )}
+      {showLightingSubSystemPopup && (
+        <LightingImprovementMeasurePopup
+          data={popUpProps}
+          handleClose={handleCloseLightingSubSystemPopup}
+          show={true}
+        />
+      )}
     </ImprovementMeasuresWrapper>
-
   )
 }
 

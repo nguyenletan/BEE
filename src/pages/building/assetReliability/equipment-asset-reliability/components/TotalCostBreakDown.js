@@ -4,12 +4,9 @@ import styled from 'styled-components'
 import TotalBreakDownPieChart from 'pages/building/assetReliability/equipment-asset-reliability/components/TotalBreakDownPieChart'
 import { useTranslation } from 'react-i18next'
 
-const Wrapper = styled.div`
-
-`
+const Wrapper = styled.div``
 
 const TotalCostBreakDown = () => {
-
   const { t, i18n } = useTranslation('equipmentAssetReliability')
 
   const dataEN = [
@@ -18,21 +15,21 @@ const TotalCostBreakDown = () => {
       label: 'Energy',
       value: 40,
       color: '#87972f',
-      pureValue:  400000
+      pureValue: 400000,
     },
     {
       id: 'Maintenance',
       label: 'Maintenance',
       value: 23,
       color: '#acbf42',
-      pureValue: 230000
+      pureValue: 230000,
     },
     {
       id: 'Parts',
       label: 'Parts',
       value: 27,
       color: '#d5dfa3',
-      pureValue: 270000
+      pureValue: 270000,
     },
   ]
 
@@ -42,29 +39,28 @@ const TotalCostBreakDown = () => {
       label: 'Energy',
       value: 40,
       color: '#87972f',
-      pureValue:  400000
+      pureValue: 400000,
     },
     {
       id: 'Ersatzteile',
       label: 'Parts',
       value: 27,
       color: '#d5dfa3',
-      pureValue: 270000
+      pureValue: 270000,
     },
     {
       id: 'Instandhaltung',
       label: 'Maintenance',
       value: 23,
       color: '#acbf42',
-      pureValue: 230000
+      pureValue: 230000,
     },
-
   ]
 
   const [data, setData] = useState(dataEN)
 
   useEffect(() => {
-    if(i18n.language === 'en') {
+    if (i18n.language === 'en') {
       setData(dataEN)
     } else {
       setData(dataDE)
@@ -85,7 +81,6 @@ const TotalCostBreakDown = () => {
       />
     </Wrapper>
   )
-
 }
 
 export default TotalCostBreakDown

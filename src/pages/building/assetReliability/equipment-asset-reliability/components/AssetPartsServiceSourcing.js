@@ -2,9 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 
-const Wrapper = styled.div`
-
-`
+const Wrapper = styled.div``
 
 const Content = styled.div`
   margin-top: 20px;
@@ -24,7 +22,6 @@ const Value = styled.span`
 `
 
 const AssetPartsServiceSourcing = () => {
-
   const { t } = useTranslation('equipmentAssetReliability')
 
   return (
@@ -40,10 +37,11 @@ const AssetPartsServiceSourcing = () => {
         <Label>{t('Potential Replacement Options')}</Label>
         <Value>{t('Yes')}</Value>
       </Content>
-      <button className="btn btn-primary btn-sm float-end">{t('Details')}</button>
+      <button className="btn btn-primary btn-sm float-end">
+        {t('Details')}
+      </button>
     </Wrapper>
   )
-
 }
 
 export default AssetPartsServiceSourcing

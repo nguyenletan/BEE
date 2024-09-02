@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@mui/styles'
-import {LinearProgress, Typography, Box} from '@mui/material'
+import { LinearProgress, Typography, Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import CircularProgressWithLabel from "./CircularProgressBarWithLabel";
+import CircularProgressWithLabel from './CircularProgressBarWithLabel'
 
 // const BeeLinearProgress = withStyles((theme) => ({
 //   root: {
@@ -25,20 +25,24 @@ const textStyles = makeStyles({
     top: '8px',
     left: '53px',
     color: '#f9f9f9',
-    fontWeight: '500'
-  }
+    fontWeight: '500',
+  },
 })
 
-function LinearProgressWithLabel (props) {
+function LinearProgressWithLabel(props) {
   const classes = textStyles()
   const { t } = useTranslation('buildingInput')
   return (
-    <Box display='flex' alignItems='center'>
-      <Box width='100%' mr={1} className='position-relative'>
-        <LinearProgress variant='determinate' {...props} />
-        <Typography variant='body2' color='textSecondary' className={classes.root}>{`${Math.round(
-          props.value
-        )}% `}{t('Complete')}
+    <Box display="flex" alignItems="center">
+      <Box width="100%" mr={1} className="position-relative">
+        <LinearProgress variant="determinate" {...props} />
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          className={classes.root}
+        >
+          {`${Math.round(props.value)}% `}
+          {t('Complete')}
         </Typography>
       </Box>
     </Box>
@@ -50,13 +54,13 @@ LinearProgressWithLabel.propTypes = {
    * The value of the progress indicator for the determinate and buffer variants.
    * Value between 0 and 100.
    */
-  value: PropTypes.number.isRequired
+  value: PropTypes.number.isRequired,
 }
 
 const useStyles = makeStyles({
   root: {
-    width: 200
-  }
+    width: 200,
+  },
 })
 
 const Progress = ({ value }) => {

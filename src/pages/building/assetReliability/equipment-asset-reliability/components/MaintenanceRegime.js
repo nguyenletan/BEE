@@ -2,9 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 
-const Wrapper = styled.div`
-
-`
+const Wrapper = styled.div``
 
 const Content = styled.div`
   margin-top: 20px;
@@ -37,10 +35,11 @@ const MaintenanceRegime = () => {
         <Label>{t('Tasks Missed in Past 2 Weeks')}</Label>
         <Value>1</Value>
       </Content>
-      <button className="btn btn-primary btn-sm float-end">{t('Details')}</button>
+      <button className="btn btn-primary btn-sm float-end">
+        {t('Details')}
+      </button>
     </Wrapper>
   )
-
 }
 
 export default MaintenanceRegime

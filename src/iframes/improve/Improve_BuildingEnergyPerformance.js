@@ -4,9 +4,6 @@ import BuildingEnergyPerformance from 'pages/building/comparision/components/Bui
 const ImproveBuildingEnergyPerformance = () => {
   const energyPerformance = { current: 'D', improved: 'C' }
 
-  return (
-    <BuildingEnergyPerformance improved={energyPerformance.improved}/>
-  )
+  return <BuildingEnergyPerformance improved={energyPerformance.improved} />
 }
 export default ImproveBuildingEnergyPerformance
-

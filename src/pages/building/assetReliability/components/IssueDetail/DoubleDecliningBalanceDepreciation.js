@@ -26,89 +26,89 @@ const DoubleDecliningBalanceDepreciation = () => {
       data: [
         {
           y: 1500000,
-          x: 0
+          x: 0,
         },
         {
           y: 1462500,
-          x: 1
+          x: 1,
         },
         {
           y: 1398000,
-          x: 2
+          x: 2,
         },
         {
           y: 1302000,
-          x: 3
+          x: 3,
         },
         {
           y: 1240500,
-          x: 4
+          x: 4,
         },
         {
           y: 1145250,
-          x: 5
+          x: 5,
         },
         {
           y: 1095000,
-          x: 6
+          x: 6,
         },
         {
           y: 993750,
-          x: 7
+          x: 7,
         },
         {
           y: 893250,
-          x: 8
+          x: 8,
         },
         {
           y: 799500,
-          x: 9
+          x: 9,
         },
         {
           y: 742500,
-          x: 10
+          x: 10,
         },
         {
           y: 630000,
-          x: 11
+          x: 11,
         },
         {
           y: 560250,
-          x: 12
+          x: 12,
         },
         {
           y: 474000,
-          x: 13
+          x: 13,
         },
         {
           y: 429750,
-          x: 14
+          x: 14,
         },
         {
           y: 386250,
-          x: 15
+          x: 15,
         },
         {
           y: 333750,
-          x: 16
+          x: 16,
         },
         {
           y: 255750,
-          x: 17
+          x: 17,
         },
         {
           y: 189750,
-          x: 18
+          x: 18,
         },
         {
           y: 132750,
-          x: 19
+          x: 19,
         },
         {
           y: 0,
-          x: 20
-        }
-      ]
+          x: 20,
+        },
+      ],
     },
     {
       id: 'Condition Based Depreciation',
@@ -116,99 +116,107 @@ const DoubleDecliningBalanceDepreciation = () => {
       data: [
         {
           y: 1500000,
-          x: 0
+          x: 0,
         },
         {
           y: 1412647,
-          x: 1
+          x: 1,
         },
         {
           y: 1290882,
-          x: 2
+          x: 2,
         },
         {
           y: 1237941,
-          x: 3
+          x: 3,
         },
         {
           y: 1132059,
-          x: 4
+          x: 4,
         },
         {
           y: 1058824,
-          x: 5
+          x: 5,
         },
         {
           y: 1059706,
-          x: 6
+          x: 6,
         },
         {
           y: 940588,
-          x: 7
+          x: 7,
         },
         {
           y: 894706,
-          x: 8
+          x: 8,
         },
         {
           y: 786176,
-          x: 9
+          x: 9,
         },
         {
           y: 726176,
-          x: 10
+          x: 10,
         },
         {
           y: 675882,
-          x: 11
+          x: 11,
         },
         {
           y: 562941,
-          x: 12
+          x: 12,
         },
         {
           y: 480000,
-          x: 13
+          x: 13,
         },
         {
           y: 370588,
-          x: 14
+          x: 14,
         },
         {
           y: 323824,
-          x: 15
+          x: 15,
         },
         {
           y: 213529,
-          x: 16
+          x: 16,
         },
         {
           y: 103235,
-          x: 17
+          x: 17,
         },
         {
           y: 0,
-          x: 17
-        }
-      ]
-    }
-
+          x: 17,
+        },
+      ],
+    },
   ]
 
   const Line = ({ series, innerHeight }) => {
-    const data0 = series[0]?.data.filter(d => d.data.x === 17)
+    const data0 = series[0]?.data.filter((d) => d.data.x === 17)
     const x = data0[0]?.position?.x
 
     return (
       <>
-        <text x={x - 30} y='0' className='small'>Current Age</text>
-        <line x1={x} y1={8} x2={x} y2={innerHeight} stroke='#5F5283' strokeDasharray='8' strokeWidth={1} />
+        <text x={x - 30} y="0" className="small">
+          Current Age
+        </text>
+        <line
+          x1={x}
+          y1={8}
+          x2={x}
+          y2={innerHeight}
+          stroke="#5F5283"
+          strokeDasharray="8"
+          strokeWidth={1}
+        />
       </>
     )
   }
 
   const commonProperties = {
-
     margin: { top: 30, right: 10, bottom: 35, left: 55 },
     data,
     animate: true,
@@ -225,7 +233,7 @@ const DoubleDecliningBalanceDepreciation = () => {
       tickRotation: 0,
       legend: 'Asset Value ($)',
       legendOffset: -65,
-      legendPosition: 'middle'
+      legendPosition: 'middle',
     },
     axisBottom: {
       orient: 'bottom',
@@ -234,9 +242,21 @@ const DoubleDecliningBalanceDepreciation = () => {
       tickRotation: 0,
       legend: 'Equipment Age (Yrs)',
       legendOffset: 36,
-      legendPosition: 'middle'
+      legendPosition: 'middle',
     },
-    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends', Line],
+    layers: [
+      'grid',
+      'markers',
+      'axes',
+      'areas',
+      'crosshair',
+      'lines',
+      'points',
+      'slices',
+      'mesh',
+      'legends',
+      Line,
+    ],
     legends: [
       {
         anchor: 'top middle',
@@ -257,12 +277,12 @@ const DoubleDecliningBalanceDepreciation = () => {
             on: 'hover',
             style: {
               itemBackground: 'rgba(0, 0, 0, .03)',
-              itemOpacity: 1
-            }
-          }
-        ]
-      }
-    ]
+              itemOpacity: 1,
+            },
+          },
+        ],
+      },
+    ],
   }
 
   return (
@@ -272,13 +292,11 @@ const DoubleDecliningBalanceDepreciation = () => {
       <ChartWrapper>
         <ResponsiveLine
           {...commonProperties}
-
           yScale={{
             type: 'linear',
-            stacked: false
+            stacked: false,
           }}
         />
-
       </ChartWrapper>
     </Wrapper>
   )

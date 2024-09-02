@@ -9,16 +9,13 @@ const MaintenanceBudget = ({ data }) => {
   const [dataSource, setDataSource] = useState(data)
 
   useEffect(() => {
-
     const tmp = deepClone(data)
 
-    for(let item of tmp) {
+    for (let item of tmp) {
       item.id = t(item.id)
     }
 
-
     setDataSource(tmp)
-
   }, [data, i18n.language, t])
 
   return (
@@ -28,7 +25,7 @@ const MaintenanceBudget = ({ data }) => {
       data={dataSource}
       innerRadius={0.58}
       isCenteredPercentage
-      marginRight='0px'
+      marginRight="0px"
       hasDescription
       hasArcLabels={false}
     />

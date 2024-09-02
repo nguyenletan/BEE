@@ -14,8 +14,6 @@ const config = {
   measurementId: 'G-R9QD4GM2JV',
 }
 
-
-
 // Your web app's Firebase configuration
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional

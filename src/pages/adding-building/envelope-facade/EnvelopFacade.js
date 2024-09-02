@@ -3,7 +3,18 @@ import React, { useEffect } from 'react'
 import StepNav from '../step-nav/StepNav'
 import { Controller, useForm } from 'react-hook-form'
 import styled from 'styled-components'
-import { Box, FormControl, FormHelperText, Input, InputLabel, MenuItem, Select, Slider, Typography, Grid } from '@mui/material'
+import {
+  Box,
+  FormControl,
+  FormHelperText,
+  Input,
+  InputLabel,
+  MenuItem,
+  Select,
+  Slider,
+  Typography,
+  Grid,
+} from '@mui/material'
 
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import ExternalWindowType from '../../../reference-tables/ExternalWindowType'
@@ -24,15 +35,15 @@ const Title = styled.h2`
 `
 
 const EnvelopFacade = () => {
-  const classes = makeStyles(() => (MaterialFormStyle))()
+  const classes = makeStyles(() => MaterialFormStyle)()
   const { t } = useTranslation(['buildingInput', 'common'])
   const navigate = useNavigate()
 
   console.log('envelopFacade')
   const [envelopFacade, setEnvelopFacade] = useRecoilState(envelopFacadeState)
 
-  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
-    addingBuildingProgressState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] =
+    useRecoilState(addingBuildingProgressState)
 
   const { handleSubmit, control, setValue } = useForm({
     mode: 'onSubmit',
@@ -46,12 +57,18 @@ const EnvelopFacade = () => {
   })
 
   const onExternalWindowToWallRatioSliderChange = (event, newValue) => {
-    setEnvelopFacade({ ...envelopFacade, externalWindowToWallRatio: newValue })
+    setEnvelopFacade({
+      ...envelopFacade,
+      externalWindowToWallRatio: newValue,
+    })
   }
 
   const onExternalWindowToWallRatioInputBlur = () => {
-    if (envelopFacade.externalWindowToWallRatio < 0 || envelopFacade.externalWindowToWallRatio === '' ||
-      envelopFacade.externalWindowToWallRatio === null) {
+    if (
+      envelopFacade.externalWindowToWallRatio < 0 ||
+      envelopFacade.externalWindowToWallRatio === '' ||
+      envelopFacade.externalWindowToWallRatio === null
+    ) {
       setEnvelopFacade({ ...envelopFacade, externalWindowToWallRatio: 0 })
     } else if (envelopFacade.externalWindowToWallRatio > 1) {
       setEnvelopFacade({ ...envelopFacade, externalWindowToWallRatio: 1 })
@@ -65,7 +82,10 @@ const EnvelopFacade = () => {
   }
 
   const handleChange = (e) => {
-    setEnvelopFacade({ ...envelopFacade, [e.target.name]: parseFloat(e.target.value) })
+    setEnvelopFacade({
+      ...envelopFacade,
+      [e.target.name]: parseFloat(e.target.value),
+    })
   }
 
   const { user } = useAuth()
@@ -79,9 +99,21 @@ const EnvelopFacade = () => {
   }, [])
 
   useEffect(() => {
-    setValue(`externalRoofInsulationTypeId`, envelopFacade.externalRoofInsulationTypeId, {shouldValidate: true})
-    setValue(`externalWindowInsulationTypeId`, envelopFacade.externalWindowInsulationTypeId, {shouldValidate: true})
-  }, [envelopFacade.externalRoofInsulationTypeId, envelopFacade.externalWindowInsulationTypeId, setValue])
+    setValue(
+      `externalRoofInsulationTypeId`,
+      envelopFacade.externalRoofInsulationTypeId,
+      { shouldValidate: true }
+    )
+    setValue(
+      `externalWindowInsulationTypeId`,
+      envelopFacade.externalWindowInsulationTypeId,
+      { shouldValidate: true }
+    )
+  }, [
+    envelopFacade.externalRoofInsulationTypeId,
+    envelopFacade.externalWindowInsulationTypeId,
+    setValue,
+  ])
 
   const marks = [
     {
@@ -90,19 +122,15 @@ const EnvelopFacade = () => {
     },
     {
       value: 0.1,
-
     },
     {
       value: 0.2,
-
     },
     {
       value: 0.3,
-
     },
     {
       value: 0.4,
-
     },
     {
       value: 0.5,
@@ -110,19 +138,15 @@ const EnvelopFacade = () => {
     },
     {
       value: 0.6,
-
     },
     {
       value: 0.7,
-
     },
     {
       value: 0.8,
-
     },
     {
       value: 0.9,
-
     },
     {
       value: 1,
@@ -132,13 +156,12 @@ const EnvelopFacade = () => {
 
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
-  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/renewable-energy')
+  const moveNextUrl =
+    parentUrl + (id ? '/adding-building-successfully' : '/renewable-energy')
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-
       <div className="d-flex mt-5 mb-4">
-
         <Title>{t('New Building')}</Title>
 
         <BackNextGroupButton
@@ -147,10 +170,9 @@ const EnvelopFacade = () => {
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
-
       </div>
 
-      <StepNav/>
+      <StepNav />
 
       <div className="row">
         <div className="col-12 col-lg-6 col-xxl-4">
@@ -159,7 +181,6 @@ const EnvelopFacade = () => {
               {t('External Window to Wall Ratio')}
             </Typography>
             <Grid container spacing={2} alignItems="flex-start">
-
               <Grid item xs>
                 <Slider
                   min={0}
@@ -189,19 +210,20 @@ const EnvelopFacade = () => {
                   }}
                 />
               </Grid>
-
             </Grid>
           </Box>
           <Controller
             name={`externalRoofInsulationTypeId`}
             control={control}
             setValue={setValue}
-            render={({
-              field: { onChange },
-              fieldState: { error },
-            }) => (
+            render={({ field: { onChange }, fieldState: { error } }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel id="external-roof-type-label" className={error && 'text-danger'}>{t('Roof Type')}</InputLabel>
+                <InputLabel
+                  id="external-roof-type-label"
+                  className={error && 'text-danger'}
+                >
+                  {t('Roof Type')}
+                </InputLabel>
                 <Select
                   variant="standard"
                   id="external-roof-type-select"
@@ -215,15 +237,16 @@ const EnvelopFacade = () => {
                   value={envelopFacade.externalRoofInsulationTypeId}
                 >
                   {RoofType.map((o) => (
-                    <MenuItem
-                      key={o.id}
-                      value={o.id}
-                    >
-                      {t(o.name, {ns: "common"})}
+                    <MenuItem key={o.id} value={o.id}>
+                      {t(o.name, { ns: 'common' })}
                     </MenuItem>
                   ))}
                 </Select>
-                {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
+                {error && (
+                  <FormHelperText className="text-danger">
+                    {t('This field is required')}
+                  </FormHelperText>
+                )}
               </FormControl>
             )}
             rules={{
@@ -234,12 +257,12 @@ const EnvelopFacade = () => {
             name={`externalWindowInsulationTypeId`}
             control={control}
             setValue={setValue}
-            render={({
-              field: { onChange },
-              fieldState: { error },
-            }) => (
+            render={({ field: { onChange }, fieldState: { error } }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel id="external-window-type-label" className={error && 'text-danger'}>
+                <InputLabel
+                  id="external-window-type-label"
+                  className={error && 'text-danger'}
+                >
                   {t('External Window Insulation Type')}
                 </InputLabel>
                 <Select
@@ -255,16 +278,16 @@ const EnvelopFacade = () => {
                   value={envelopFacade.externalWindowInsulationTypeId}
                 >
                   {ExternalWindowType.map((o) => (
-                    <MenuItem
-                      key={o.id}
-                      value={o.id}
-                    >
-                      {t(o.name, {ns: 'common'})}
+                    <MenuItem key={o.id} value={o.id}>
+                      {t(o.name, { ns: 'common' })}
                     </MenuItem>
                   ))}
                 </Select>
-                {error &&
-                <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
+                {error && (
+                  <FormHelperText className="text-danger">
+                    {t('This field is required')}
+                  </FormHelperText>
+                )}
               </FormControl>
             )}
             rules={{
@@ -272,7 +295,6 @@ const EnvelopFacade = () => {
             }}
           />
         </div>
-
       </div>
     </form>
   )

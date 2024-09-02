@@ -24,20 +24,21 @@ const Countries = [
         iso639_1: 'ps',
         iso639_2: 'pus',
         name: 'Pashto',
-        nativeName: 'پښتو'
+        nativeName: 'پښتو',
       },
       {
         iso639_1: 'uz',
         iso639_2: 'uzb',
         name: 'Uzbek',
-        nativeName: 'Oʻzbek'
+        nativeName: 'Oʻzbek',
       },
       {
         iso639_1: 'tk',
         iso639_2: 'tuk',
         name: 'Turkmen',
-        nativeName: 'Türkmen'
-      }],
+        nativeName: 'Türkmen',
+      },
+    ],
     translations: {
       de: 'Afghanistan',
       es: 'Afganistán',
@@ -48,7 +49,7 @@ const Countries = [
       pt: 'Afeganistão',
       nl: 'Afghanistan',
       hr: 'Afganistan',
-      fa: 'افغانستان'
+      fa: 'افغانستان',
     },
     flag: 'https://restcountries.eu/data/afg.svg',
     regionalBlocs: [
@@ -56,9 +57,10 @@ const Countries = [
         acronym: 'SAARC',
         name: 'South Asian Association for Regional Cooperation',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'AFG'
+        otherNames: [],
+      },
+    ],
+    cioc: 'AFG',
   },
   {
     name: 'Åland Islands',
@@ -85,8 +87,9 @@ const Countries = [
         iso639_1: 'sv',
         iso639_2: 'swe',
         name: 'Swedish',
-        nativeName: 'svenska'
-      }],
+        nativeName: 'svenska',
+      },
+    ],
     translations: {
       de: 'Åland',
       es: 'Alandia',
@@ -97,7 +100,7 @@ const Countries = [
       pt: 'Ilhas de Aland',
       nl: 'Ålandeilanden',
       hr: 'Ålandski otoci',
-      fa: 'جزایر الند'
+      fa: 'جزایر الند',
     },
     flag: 'https://restcountries.eu/data/ala.svg',
     regionalBlocs: [
@@ -105,9 +108,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: ''
+        otherNames: [],
+      },
+    ],
+    cioc: '',
   },
   {
     name: 'Albania',
@@ -134,8 +138,9 @@ const Countries = [
         iso639_1: 'sq',
         iso639_2: 'sqi',
         name: 'Albanian',
-        nativeName: 'Shqip'
-      }],
+        nativeName: 'Shqip',
+      },
+    ],
     translations: {
       de: 'Albanien',
       es: 'Albania',
@@ -146,7 +151,7 @@ const Countries = [
       pt: 'Albânia',
       nl: 'Albanië',
       hr: 'Albanija',
-      fa: 'آلبانی'
+      fa: 'آلبانی',
     },
     flag: 'https://restcountries.eu/data/alb.svg',
     regionalBlocs: [
@@ -154,9 +159,10 @@ const Countries = [
         acronym: 'CEFTA',
         name: 'Central European Free Trade Agreement',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'ALB'
+        otherNames: [],
+      },
+    ],
+    cioc: 'ALB',
   },
   {
     name: 'Algeria',
@@ -181,15 +187,17 @@ const Countries = [
       {
         code: 'DZD',
         name: 'Algerian dinar',
-        symbol: 'د.ج'
-      }],
+        symbol: 'د.ج',
+      },
+    ],
     languages: [
       {
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Algerien',
       es: 'Argelia',
@@ -200,7 +208,7 @@ const Countries = [
       pt: 'Argélia',
       nl: 'Algerije',
       hr: 'Alžir',
-      fa: 'الجزایر'
+      fa: 'الجزایر',
     },
     flag: 'https://restcountries.eu/data/dza.svg',
     regionalBlocs: [
@@ -213,7 +221,8 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
+          'Umoja wa Afrika',
+        ],
       },
       {
         acronym: 'AL',
@@ -222,9 +231,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'ALG'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'ALG',
   },
   {
     name: 'American Samoa',
@@ -249,21 +260,23 @@ const Countries = [
       {
         code: 'USD',
         name: 'United State Dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'sm',
         iso639_2: 'smo',
         name: 'Samoan',
-        nativeName: 'gagana fa\'a Samoa'
-      }],
+        nativeName: "gagana fa'a Samoa",
+      },
+    ],
     translations: {
       de: 'Amerikanisch-Samoa',
       es: 'Samoa Americana',
@@ -274,11 +287,11 @@ const Countries = [
       pt: 'Samoa Americana',
       nl: 'Amerikaans Samoa',
       hr: 'Američka Samoa',
-      fa: 'ساموآی آمریکا'
+      fa: 'ساموآی آمریکا',
     },
     flag: 'https://restcountries.eu/data/asm.svg',
     regionalBlocs: [],
-    cioc: 'ASA'
+    cioc: 'ASA',
   },
   {
     name: 'Andorra',
@@ -287,7 +300,7 @@ const Countries = [
     alpha3Code: 'AND',
     callingCodes: ['376'],
     capital: 'Andorra la Vella',
-    altSpellings: ['AD', 'Principality of Andorra', 'Principat d\'Andorra'],
+    altSpellings: ['AD', 'Principality of Andorra', "Principat d'Andorra"],
     region: 'Europe',
     subregion: 'Southern Europe',
     population: 78014,
@@ -305,8 +318,9 @@ const Countries = [
         iso639_1: 'ca',
         iso639_2: 'cat',
         name: 'Catalan',
-        nativeName: 'català'
-      }],
+        nativeName: 'català',
+      },
+    ],
     translations: {
       de: 'Andorra',
       es: 'Andorra',
@@ -317,11 +331,11 @@ const Countries = [
       pt: 'Andorra',
       nl: 'Andorra',
       hr: 'Andora',
-      fa: 'آندورا'
+      fa: 'آندورا',
     },
     flag: 'https://restcountries.eu/data/and.svg',
     regionalBlocs: [],
-    cioc: 'AND'
+    cioc: 'AND',
   },
   {
     name: 'Angola',
@@ -330,7 +344,7 @@ const Countries = [
     alpha3Code: 'AGO',
     callingCodes: ['244'],
     capital: 'Luanda',
-    altSpellings: ['AO', 'República de Angola', 'ʁɛpublika de an\'ɡɔla'],
+    altSpellings: ['AO', 'República de Angola', "ʁɛpublika de an'ɡɔla"],
     region: 'Africa',
     subregion: 'Middle Africa',
     population: 25868000,
@@ -348,8 +362,9 @@ const Countries = [
         iso639_1: 'pt',
         iso639_2: 'por',
         name: 'Portuguese',
-        nativeName: 'Português'
-      }],
+        nativeName: 'Português',
+      },
+    ],
     translations: {
       de: 'Angola',
       es: 'Angola',
@@ -360,7 +375,7 @@ const Countries = [
       pt: 'Angola',
       nl: 'Angola',
       hr: 'Angola',
-      fa: 'آنگولا'
+      fa: 'آنگولا',
     },
     flag: 'https://restcountries.eu/data/ago.svg',
     regionalBlocs: [
@@ -373,9 +388,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'ANG'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'ANG',
   },
   {
     name: 'Anguilla',
@@ -400,15 +417,17 @@ const Countries = [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Anguilla',
       es: 'Anguilla',
@@ -419,11 +438,11 @@ const Countries = [
       pt: 'Anguila',
       nl: 'Anguilla',
       hr: 'Angvila',
-      fa: 'آنگویلا'
+      fa: 'آنگویلا',
     },
     flag: 'https://restcountries.eu/data/aia.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Antarctica',
@@ -438,7 +457,7 @@ const Countries = [
     population: 1000,
     latlng: [-74.65, 4.48],
     demonym: '',
-    area: 1.4E7,
+    area: 1.4e7,
     gini: null,
     timezones: [
       'UTC-03:00',
@@ -448,7 +467,8 @@ const Countries = [
       'UTC+07:00',
       'UTC+08:00',
       'UTC+10:00',
-      'UTC+12:00'],
+      'UTC+12:00',
+    ],
     borders: [],
     nativeName: 'Antarctica',
     numericCode: '010',
@@ -456,21 +476,24 @@ const Countries = [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
-      }, { code: 'GBP', name: 'British pound', symbol: '£' }],
+        symbol: '$',
+      },
+      { code: 'GBP', name: 'British pound', symbol: '£' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'ru',
         iso639_2: 'rus',
         name: 'Russian',
-        nativeName: 'Русский'
-      }],
+        nativeName: 'Русский',
+      },
+    ],
     translations: {
       de: 'Antarktika',
       es: 'Antártida',
@@ -481,11 +504,11 @@ const Countries = [
       pt: 'Antárctida',
       nl: 'Antarctica',
       hr: 'Antarktika',
-      fa: 'جنوبگان'
+      fa: 'جنوبگان',
     },
     flag: 'https://restcountries.eu/data/ata.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Antigua and Barbuda',
@@ -493,7 +516,7 @@ const Countries = [
     alpha2Code: 'AG',
     alpha3Code: 'ATG',
     callingCodes: ['1268'],
-    capital: 'Saint John\'s',
+    capital: "Saint John's",
     altSpellings: ['AG'],
     region: 'Americas',
     subregion: 'Caribbean',
@@ -510,15 +533,17 @@ const Countries = [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Antigua und Barbuda',
       es: 'Antigua y Barbuda',
@@ -529,7 +554,7 @@ const Countries = [
       pt: 'Antígua e Barbuda',
       nl: 'Antigua en Barbuda',
       hr: 'Antigva i Barbuda',
-      fa: 'آنتیگوا و باربودا'
+      fa: 'آنتیگوا و باربودا',
     },
     flag: 'https://restcountries.eu/data/atg.svg',
     regionalBlocs: [
@@ -540,9 +565,11 @@ const Countries = [
         otherNames: [
           'Comunidad del Caribe',
           'Communauté Caribéenne',
-          'Caribische Gemeenschap']
-      }],
-    cioc: 'ANT'
+          'Caribische Gemeenschap',
+        ],
+      },
+    ],
+    cioc: 'ANT',
   },
   {
     name: 'Argentina',
@@ -569,14 +596,15 @@ const Countries = [
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
+        nativeName: 'Español',
       },
       {
         iso639_1: 'gn',
         iso639_2: 'grn',
         name: 'Guaraní',
-        nativeName: 'Avañe\'ẽ'
-      }],
+        nativeName: "Avañe'ẽ",
+      },
+    ],
     translations: {
       de: 'Argentinien',
       es: 'Argentina',
@@ -587,7 +615,7 @@ const Countries = [
       pt: 'Argentina',
       nl: 'Argentinië',
       hr: 'Argentina',
-      fa: 'آرژانتین'
+      fa: 'آرژانتین',
     },
     flag: 'https://restcountries.eu/data/arg.svg',
     regionalBlocs: [
@@ -599,9 +627,11 @@ const Countries = [
           'Unión de Naciones Suramericanas',
           'União de Nações Sul-Americanas',
           'Unie van Zuid-Amerikaanse Naties',
-          'South American Union']
-      }],
-    cioc: 'ARG'
+          'South American Union',
+        ],
+      },
+    ],
+    cioc: 'ARG',
   },
   {
     name: 'Armenia',
@@ -614,7 +644,8 @@ const Countries = [
       'AM',
       'Hayastan',
       'Republic of Armenia',
-      'Հայաստանի Հանրապետություն'],
+      'Հայաստանի Հանրապետություն',
+    ],
     region: 'Asia',
     subregion: 'Western Asia',
     population: 2994400,
@@ -632,14 +663,15 @@ const Countries = [
         iso639_1: 'hy',
         iso639_2: 'hye',
         name: 'Armenian',
-        nativeName: 'Հայերեն'
+        nativeName: 'Հայերեն',
       },
       {
         iso639_1: 'ru',
         iso639_2: 'rus',
         name: 'Russian',
-        nativeName: 'Русский'
-      }],
+        nativeName: 'Русский',
+      },
+    ],
     translations: {
       de: 'Armenien',
       es: 'Armenia',
@@ -650,7 +682,7 @@ const Countries = [
       pt: 'Arménia',
       nl: 'Armenië',
       hr: 'Armenija',
-      fa: 'ارمنستان'
+      fa: 'ارمنستان',
     },
     flag: 'https://restcountries.eu/data/arm.svg',
     regionalBlocs: [
@@ -658,9 +690,10 @@ const Countries = [
         acronym: 'EEU',
         name: 'Eurasian Economic Union',
         otherAcronyms: ['EAEU'],
-        otherNames: []
-      }],
-    cioc: 'ARM'
+        otherNames: [],
+      },
+    ],
+    cioc: 'ARM',
   },
   {
     name: 'Aruba',
@@ -687,14 +720,15 @@ const Countries = [
         iso639_1: 'nl',
         iso639_2: 'nld',
         name: 'Dutch',
-        nativeName: 'Nederlands'
+        nativeName: 'Nederlands',
       },
       {
         iso639_1: 'pa',
         iso639_2: 'pan',
         name: '(Eastern) Punjabi',
-        nativeName: 'ਪੰਜਾਬੀ'
-      }],
+        nativeName: 'ਪੰਜਾਬੀ',
+      },
+    ],
     translations: {
       de: 'Aruba',
       es: 'Aruba',
@@ -705,11 +739,11 @@ const Countries = [
       pt: 'Aruba',
       nl: 'Aruba',
       hr: 'Aruba',
-      fa: 'آروبا'
+      fa: 'آروبا',
     },
     flag: 'https://restcountries.eu/data/abw.svg',
     regionalBlocs: [],
-    cioc: 'ARU'
+    cioc: 'ARU',
   },
   {
     name: 'Australia',
@@ -734,7 +768,8 @@ const Countries = [
       'UTC+09:30',
       'UTC+10:00',
       'UTC+10:30',
-      'UTC+11:30'],
+      'UTC+11:30',
+    ],
     borders: [],
     nativeName: 'Australia',
     numericCode: '036',
@@ -742,15 +777,17 @@ const Countries = [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Australien',
       es: 'Australia',
@@ -761,11 +798,11 @@ const Countries = [
       pt: 'Austrália',
       nl: 'Australië',
       hr: 'Australija',
-      fa: 'استرالیا'
+      fa: 'استرالیا',
     },
     flag: 'https://restcountries.eu/data/aus.svg',
     regionalBlocs: [],
-    cioc: 'AUS'
+    cioc: 'AUS',
   },
   {
     name: 'Austria',
@@ -792,8 +829,9 @@ const Countries = [
         iso639_1: 'de',
         iso639_2: 'deu',
         name: 'German',
-        nativeName: 'Deutsch'
-      }],
+        nativeName: 'Deutsch',
+      },
+    ],
     translations: {
       de: 'Österreich',
       es: 'Austria',
@@ -804,7 +842,7 @@ const Countries = [
       pt: 'áustria',
       nl: 'Oostenrijk',
       hr: 'Austrija',
-      fa: 'اتریش'
+      fa: 'اتریش',
     },
     flag: 'https://restcountries.eu/data/aut.svg',
     regionalBlocs: [
@@ -812,9 +850,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'AUT'
+        otherNames: [],
+      },
+    ],
+    cioc: 'AUT',
   },
   {
     name: 'Azerbaijan',
@@ -839,15 +878,17 @@ const Countries = [
       {
         code: 'AZN',
         name: 'Azerbaijani manat',
-        symbol: null
-      }],
+        symbol: null,
+      },
+    ],
     languages: [
       {
         iso639_1: 'az',
         iso639_2: 'aze',
         name: 'Azerbaijani',
-        nativeName: 'azərbaycan dili'
-      }],
+        nativeName: 'azərbaycan dili',
+      },
+    ],
     translations: {
       de: 'Aserbaidschan',
       es: 'Azerbaiyán',
@@ -858,11 +899,11 @@ const Countries = [
       pt: 'Azerbaijão',
       nl: 'Azerbeidzjan',
       hr: 'Azerbajdžan',
-      fa: 'آذربایجان'
+      fa: 'آذربایجان',
     },
     flag: 'https://restcountries.eu/data/aze.svg',
     regionalBlocs: [],
-    cioc: 'AZE'
+    cioc: 'AZE',
   },
   {
     name: 'Bahamas',
@@ -889,8 +930,9 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Bahamas',
       es: 'Bahamas',
@@ -901,7 +943,7 @@ const Countries = [
       pt: 'Baamas',
       nl: 'Bahama’s',
       hr: 'Bahami',
-      fa: 'باهاما'
+      fa: 'باهاما',
     },
     flag: 'https://restcountries.eu/data/bhs.svg',
     regionalBlocs: [
@@ -912,9 +954,11 @@ const Countries = [
         otherNames: [
           'Comunidad del Caribe',
           'Communauté Caribéenne',
-          'Caribische Gemeenschap']
-      }],
-    cioc: 'BAH'
+          'Caribische Gemeenschap',
+        ],
+      },
+    ],
+    cioc: 'BAH',
   },
   {
     name: 'Bahrain',
@@ -939,15 +983,17 @@ const Countries = [
       {
         code: 'BHD',
         name: 'Bahraini dinar',
-        symbol: '.د.ب'
-      }],
+        symbol: '.د.ب',
+      },
+    ],
     languages: [
       {
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Bahrain',
       es: 'Bahrein',
@@ -958,7 +1004,7 @@ const Countries = [
       pt: 'Barém',
       nl: 'Bahrein',
       hr: 'Bahrein',
-      fa: 'بحرین'
+      fa: 'بحرین',
     },
     flag: 'https://restcountries.eu/data/bhr.svg',
     regionalBlocs: [
@@ -969,9 +1015,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'BRN'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'BRN',
   },
   {
     name: 'Bangladesh',
@@ -982,8 +1030,9 @@ const Countries = [
     capital: 'Dhaka',
     altSpellings: [
       'BD',
-      'People\'s Republic of Bangladesh',
-      'Gônôprôjatôntri Bangladesh'],
+      "People's Republic of Bangladesh",
+      'Gônôprôjatôntri Bangladesh',
+    ],
     region: 'Asia',
     subregion: 'Southern Asia',
     population: 161006790,
@@ -999,15 +1048,17 @@ const Countries = [
       {
         code: 'BDT',
         name: 'Bangladeshi taka',
-        symbol: '৳'
-      }],
+        symbol: '৳',
+      },
+    ],
     languages: [
       {
         iso639_1: 'bn',
         iso639_2: 'ben',
         name: 'Bengali',
-        nativeName: 'বাংলা'
-      }],
+        nativeName: 'বাংলা',
+      },
+    ],
     translations: {
       de: 'Bangladesch',
       es: 'Bangladesh',
@@ -1018,7 +1069,7 @@ const Countries = [
       pt: 'Bangladeche',
       nl: 'Bangladesh',
       hr: 'Bangladeš',
-      fa: 'بنگلادش'
+      fa: 'بنگلادش',
     },
     flag: 'https://restcountries.eu/data/bgd.svg',
     regionalBlocs: [
@@ -1026,9 +1077,10 @@ const Countries = [
         acronym: 'SAARC',
         name: 'South Asian Association for Regional Cooperation',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'BAN'
+        otherNames: [],
+      },
+    ],
+    cioc: 'BAN',
   },
   {
     name: 'Barbados',
@@ -1053,15 +1105,17 @@ const Countries = [
       {
         code: 'BBD',
         name: 'Barbadian dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Barbados',
       es: 'Barbados',
@@ -1072,7 +1126,7 @@ const Countries = [
       pt: 'Barbados',
       nl: 'Barbados',
       hr: 'Barbados',
-      fa: 'باربادوس'
+      fa: 'باربادوس',
     },
     flag: 'https://restcountries.eu/data/brb.svg',
     regionalBlocs: [
@@ -1083,9 +1137,11 @@ const Countries = [
         otherNames: [
           'Comunidad del Caribe',
           'Communauté Caribéenne',
-          'Caribische Gemeenschap']
-      }],
-    cioc: 'BAR'
+          'Caribische Gemeenschap',
+        ],
+      },
+    ],
+    cioc: 'BAR',
   },
   {
     name: 'Belarus',
@@ -1101,7 +1157,8 @@ const Countries = [
       'Белоруссия',
       'Республика Беларусь',
       'Belorussiya',
-      'Respublika Belarus’'],
+      'Respublika Belarus’',
+    ],
     region: 'Europe',
     subregion: 'Eastern Europe',
     population: 9498700,
@@ -1117,21 +1174,24 @@ const Countries = [
       {
         code: 'BYN',
         name: 'New Belarusian ruble',
-        symbol: 'Br'
-      }, { code: 'BYR', name: 'Old Belarusian ruble', symbol: 'Br' }],
+        symbol: 'Br',
+      },
+      { code: 'BYR', name: 'Old Belarusian ruble', symbol: 'Br' },
+    ],
     languages: [
       {
         iso639_1: 'be',
         iso639_2: 'bel',
         name: 'Belarusian',
-        nativeName: 'беларуская мова'
+        nativeName: 'беларуская мова',
       },
       {
         iso639_1: 'ru',
         iso639_2: 'rus',
         name: 'Russian',
-        nativeName: 'Русский'
-      }],
+        nativeName: 'Русский',
+      },
+    ],
     translations: {
       de: 'Weißrussland',
       es: 'Bielorrusia',
@@ -1142,7 +1202,7 @@ const Countries = [
       pt: 'Bielorrússia',
       nl: 'Wit-Rusland',
       hr: 'Bjelorusija',
-      fa: 'بلاروس'
+      fa: 'بلاروس',
     },
     flag: 'https://restcountries.eu/data/blr.svg',
     regionalBlocs: [
@@ -1150,9 +1210,10 @@ const Countries = [
         acronym: 'EEU',
         name: 'Eurasian Economic Union',
         otherAcronyms: ['EAEU'],
-        otherNames: []
-      }],
-    cioc: 'BLR'
+        otherNames: [],
+      },
+    ],
+    cioc: 'BLR',
   },
   {
     name: 'Belgium',
@@ -1170,7 +1231,8 @@ const Countries = [
       'Kingdom of Belgium',
       'Koninkrijk België',
       'Royaume de Belgique',
-      'Königreich Belgien'],
+      'Königreich Belgien',
+    ],
     region: 'Europe',
     subregion: 'Western Europe',
     population: 11319511,
@@ -1188,20 +1250,21 @@ const Countries = [
         iso639_1: 'nl',
         iso639_2: 'nld',
         name: 'Dutch',
-        nativeName: 'Nederlands'
+        nativeName: 'Nederlands',
       },
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'de',
         iso639_2: 'deu',
         name: 'German',
-        nativeName: 'Deutsch'
-      }],
+        nativeName: 'Deutsch',
+      },
+    ],
     translations: {
       de: 'Belgien',
       es: 'Bélgica',
@@ -1212,7 +1275,7 @@ const Countries = [
       pt: 'Bélgica',
       nl: 'België',
       hr: 'Belgija',
-      fa: 'بلژیک'
+      fa: 'بلژیک',
     },
     flag: 'https://restcountries.eu/data/bel.svg',
     regionalBlocs: [
@@ -1220,9 +1283,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'BEL'
+        otherNames: [],
+      },
+    ],
+    cioc: 'BEL',
   },
   {
     name: 'Belize',
@@ -1249,14 +1313,15 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Belize',
       es: 'Belice',
@@ -1267,7 +1332,7 @@ const Countries = [
       pt: 'Belize',
       nl: 'Belize',
       hr: 'Belize',
-      fa: 'بلیز'
+      fa: 'بلیز',
     },
     flag: 'https://restcountries.eu/data/blz.svg',
     regionalBlocs: [
@@ -1278,15 +1343,17 @@ const Countries = [
         otherNames: [
           'Comunidad del Caribe',
           'Communauté Caribéenne',
-          'Caribische Gemeenschap']
+          'Caribische Gemeenschap',
+        ],
       },
       {
         acronym: 'CAIS',
         name: 'Central American Integration System',
         otherAcronyms: ['SICA'],
-        otherNames: ['Sistema de la Integración Centroamericana,']
-      }],
-    cioc: 'BIZ'
+        otherNames: ['Sistema de la Integración Centroamericana,'],
+      },
+    ],
+    cioc: 'BIZ',
   },
   {
     name: 'Benin',
@@ -1311,15 +1378,17 @@ const Countries = [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Benin',
       es: 'Benín',
@@ -1330,7 +1399,7 @@ const Countries = [
       pt: 'Benim',
       nl: 'Benin',
       hr: 'Benin',
-      fa: 'بنین'
+      fa: 'بنین',
     },
     flag: 'https://restcountries.eu/data/ben.svg',
     regionalBlocs: [
@@ -1343,9 +1412,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'BEN'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'BEN',
   },
   {
     name: 'Bermuda',
@@ -1358,7 +1429,8 @@ const Countries = [
       'BM',
       'The Islands of Bermuda',
       'The Bermudas',
-      'Somers Isles'],
+      'Somers Isles',
+    ],
     region: 'Americas',
     subregion: 'Northern America',
     population: 61954,
@@ -1374,15 +1446,17 @@ const Countries = [
       {
         code: 'BMD',
         name: 'Bermudian dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Bermuda',
       es: 'Bermudas',
@@ -1393,11 +1467,11 @@ const Countries = [
       pt: 'Bermudas',
       nl: 'Bermuda',
       hr: 'Bermudi',
-      fa: 'برمودا'
+      fa: 'برمودا',
     },
     flag: 'https://restcountries.eu/data/bmu.svg',
     regionalBlocs: [],
-    cioc: 'BER'
+    cioc: 'BER',
   },
   {
     name: 'Bhutan',
@@ -1422,15 +1496,18 @@ const Countries = [
       {
         code: 'BTN',
         name: 'Bhutanese ngultrum',
-        symbol: 'Nu.'
-      }, { code: 'INR', name: 'Indian rupee', symbol: '₹' }],
+        symbol: 'Nu.',
+      },
+      { code: 'INR', name: 'Indian rupee', symbol: '₹' },
+    ],
     languages: [
       {
         iso639_1: 'dz',
         iso639_2: 'dzo',
         name: 'Dzongkha',
-        nativeName: 'རྫོང་ཁ'
-      }],
+        nativeName: 'རྫོང་ཁ',
+      },
+    ],
     translations: {
       de: 'Bhutan',
       es: 'Bután',
@@ -1441,7 +1518,7 @@ const Countries = [
       pt: 'Butão',
       nl: 'Bhutan',
       hr: 'Butan',
-      fa: 'بوتان'
+      fa: 'بوتان',
     },
     flag: 'https://restcountries.eu/data/btn.svg',
     regionalBlocs: [
@@ -1449,9 +1526,10 @@ const Countries = [
         acronym: 'SAARC',
         name: 'South Asian Association for Regional Cooperation',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'BHU'
+        otherNames: [],
+      },
+    ],
+    cioc: 'BHU',
   },
   {
     name: 'Bolivia (Plurinational State of)',
@@ -1468,7 +1546,8 @@ const Countries = [
       'Estado Plurinacional de Bolivia',
       'Buliwya Mamallaqta',
       'Wuliwya Suyu',
-      'Tetã Volívia'],
+      'Tetã Volívia',
+    ],
     region: 'Americas',
     subregion: 'South America',
     population: 10985059,
@@ -1484,27 +1563,29 @@ const Countries = [
       {
         code: 'BOB',
         name: 'Bolivian boliviano',
-        symbol: 'Bs.'
-      }],
+        symbol: 'Bs.',
+      },
+    ],
     languages: [
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
+        nativeName: 'Español',
       },
       {
         iso639_1: 'ay',
         iso639_2: 'aym',
         name: 'Aymara',
-        nativeName: 'aymar aru'
+        nativeName: 'aymar aru',
       },
       {
         iso639_1: 'qu',
         iso639_2: 'que',
         name: 'Quechua',
-        nativeName: 'Runa Simi'
-      }],
+        nativeName: 'Runa Simi',
+      },
+    ],
     translations: {
       de: 'Bolivien',
       es: 'Bolivia',
@@ -1515,7 +1596,7 @@ const Countries = [
       pt: 'Bolívia',
       nl: 'Bolivia',
       hr: 'Bolivija',
-      fa: 'بولیوی'
+      fa: 'بولیوی',
     },
     flag: 'https://restcountries.eu/data/bol.svg',
     regionalBlocs: [
@@ -1527,9 +1608,11 @@ const Countries = [
           'Unión de Naciones Suramericanas',
           'União de Nações Sul-Americanas',
           'Unie van Zuid-Amerikaanse Naties',
-          'South American Union']
-      }],
-    cioc: 'BOL'
+          'South American Union',
+        ],
+      },
+    ],
+    cioc: 'BOL',
   },
   {
     name: 'Bonaire, Sint Eustatius and Saba',
@@ -1554,15 +1637,17 @@ const Countries = [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'nl',
         iso639_2: 'nld',
         name: 'Dutch',
-        nativeName: 'Nederlands'
-      }],
+        nativeName: 'Nederlands',
+      },
+    ],
     translations: {
       de: 'Bonaire, Sint Eustatius und Saba',
       es: null,
@@ -1573,11 +1658,11 @@ const Countries = [
       pt: 'Bonaire',
       nl: null,
       hr: null,
-      fa: 'بونیر'
+      fa: 'بونیر',
     },
     flag: 'https://restcountries.eu/data/bes.svg',
     regionalBlocs: [],
-    cioc: null
+    cioc: null,
   },
   {
     name: 'Bosnia and Herzegovina',
@@ -1602,27 +1687,29 @@ const Countries = [
       {
         code: 'BAM',
         name: 'Bosnia and Herzegovina convertible mark',
-        symbol: null
-      }],
+        symbol: null,
+      },
+    ],
     languages: [
       {
         iso639_1: 'bs',
         iso639_2: 'bos',
         name: 'Bosnian',
-        nativeName: 'bosanski jezik'
+        nativeName: 'bosanski jezik',
       },
       {
         iso639_1: 'hr',
         iso639_2: 'hrv',
         name: 'Croatian',
-        nativeName: 'hrvatski jezik'
+        nativeName: 'hrvatski jezik',
       },
       {
         iso639_1: 'sr',
         iso639_2: 'srp',
         name: 'Serbian',
-        nativeName: 'српски језик'
-      }],
+        nativeName: 'српски језик',
+      },
+    ],
     translations: {
       de: 'Bosnien und Herzegowina',
       es: 'Bosnia y Herzegovina',
@@ -1633,7 +1720,7 @@ const Countries = [
       pt: 'Bósnia e Herzegovina',
       nl: 'Bosnië en Herzegovina',
       hr: 'Bosna i Hercegovina',
-      fa: 'بوسنی و هرزگوین'
+      fa: 'بوسنی و هرزگوین',
     },
     flag: 'https://restcountries.eu/data/bih.svg',
     regionalBlocs: [
@@ -1641,9 +1728,10 @@ const Countries = [
         acronym: 'CEFTA',
         name: 'Central European Free Trade Agreement',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'BIH'
+        otherNames: [],
+      },
+    ],
+    cioc: 'BIH',
   },
   {
     name: 'Botswana',
@@ -1670,14 +1758,15 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'tn',
         iso639_2: 'tsn',
         name: 'Tswana',
-        nativeName: 'Setswana'
-      }],
+        nativeName: 'Setswana',
+      },
+    ],
     translations: {
       de: 'Botswana',
       es: 'Botswana',
@@ -1688,7 +1777,7 @@ const Countries = [
       pt: 'Botsuana',
       nl: 'Botswana',
       hr: 'Bocvana',
-      fa: 'بوتسوانا'
+      fa: 'بوتسوانا',
     },
     flag: 'https://restcountries.eu/data/bwa.svg',
     regionalBlocs: [
@@ -1701,9 +1790,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'BOT'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'BOT',
   },
   {
     name: 'Bouvet Island',
@@ -1728,27 +1819,29 @@ const Countries = [
       {
         code: 'NOK',
         name: 'Norwegian krone',
-        symbol: 'kr'
-      }],
+        symbol: 'kr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'no',
         iso639_2: 'nor',
         name: 'Norwegian',
-        nativeName: 'Norsk'
+        nativeName: 'Norsk',
       },
       {
         iso639_1: 'nb',
         iso639_2: 'nob',
         name: 'Norwegian Bokmål',
-        nativeName: 'Norsk bokmål'
+        nativeName: 'Norsk bokmål',
       },
       {
         iso639_1: 'nn',
         iso639_2: 'nno',
         name: 'Norwegian Nynorsk',
-        nativeName: 'Norsk nynorsk'
-      }],
+        nativeName: 'Norsk nynorsk',
+      },
+    ],
     translations: {
       de: 'Bouvetinsel',
       es: 'Isla Bouvet',
@@ -1759,11 +1852,11 @@ const Countries = [
       pt: 'Ilha Bouvet',
       nl: 'Bouveteiland',
       hr: 'Otok Bouvet',
-      fa: 'جزیره بووه'
+      fa: 'جزیره بووه',
     },
     flag: 'https://restcountries.eu/data/bvt.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Brazil',
@@ -1776,7 +1869,8 @@ const Countries = [
       'BR',
       'Brasil',
       'Federative Republic of Brazil',
-      'República Federativa do Brasil'],
+      'República Federativa do Brasil',
+    ],
     region: 'Americas',
     subregion: 'South America',
     population: 206135893,
@@ -1795,7 +1889,8 @@ const Countries = [
       'PER',
       'SUR',
       'URY',
-      'VEN'],
+      'VEN',
+    ],
     nativeName: 'Brasil',
     numericCode: '076',
     currencies: [{ code: 'BRL', name: 'Brazilian real', symbol: 'R$' }],
@@ -1804,8 +1899,9 @@ const Countries = [
         iso639_1: 'pt',
         iso639_2: 'por',
         name: 'Portuguese',
-        nativeName: 'Português'
-      }],
+        nativeName: 'Português',
+      },
+    ],
     translations: {
       de: 'Brasilien',
       es: 'Brasil',
@@ -1816,7 +1912,7 @@ const Countries = [
       pt: 'Brasil',
       nl: 'Brazilië',
       hr: 'Brazil',
-      fa: 'برزیل'
+      fa: 'برزیل',
     },
     flag: 'https://restcountries.eu/data/bra.svg',
     regionalBlocs: [
@@ -1828,9 +1924,11 @@ const Countries = [
           'Unión de Naciones Suramericanas',
           'União de Nações Sul-Americanas',
           'Unie van Zuid-Amerikaanse Naties',
-          'South American Union']
-      }],
-    cioc: 'BRA'
+          'South American Union',
+        ],
+      },
+    ],
+    cioc: 'BRA',
   },
   {
     name: 'British Indian Ocean Territory',
@@ -1855,26 +1953,28 @@ const Countries = [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Britisches Territorium im Indischen Ozean',
       es: 'Territorio Británico del Océano Índico',
-      fr: 'Territoire britannique de l\'océan Indien',
+      fr: "Territoire britannique de l'océan Indien",
       ja: 'イギリス領インド洋地域',
-      it: 'Territorio britannico dell\'oceano indiano',
+      it: "Territorio britannico dell'oceano indiano",
       br: 'Território Britânico do Oceano íÍdico',
       pt: 'Território Britânico do Oceano Índico',
       nl: 'Britse Gebieden in de Indische Oceaan',
       hr: 'Britanski Indijskooceanski teritorij',
-      fa: 'قلمرو بریتانیا در اقیانوس هند'
+      fa: 'قلمرو بریتانیا در اقیانوس هند',
     },
     flag: 'https://restcountries.eu/data/iot.svg',
     regionalBlocs: [
@@ -1887,9 +1987,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: ''
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: '',
   },
   {
     name: 'United States Minor Outlying Islands',
@@ -1914,30 +2016,32 @@ const Countries = [
       {
         code: 'USD',
         name: 'United States Dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Kleinere Inselbesitzungen der Vereinigten Staaten',
       es: 'Islas Ultramarinas Menores de Estados Unidos',
       fr: 'Îles mineures éloignées des États-Unis',
       ja: '合衆国領有小離島',
-      it: 'Isole minori esterne degli Stati Uniti d\'America',
+      it: "Isole minori esterne degli Stati Uniti d'America",
       br: 'Ilhas Menores Distantes dos Estados Unidos',
       pt: 'Ilhas Menores Distantes dos Estados Unidos',
       nl: 'Kleine afgelegen eilanden van de Verenigde Staten',
       hr: 'Mali udaljeni otoci SAD-a',
-      fa: 'جزایر کوچک حاشیه‌ای ایالات متحده آمریکا'
+      fa: 'جزایر کوچک حاشیه‌ای ایالات متحده آمریکا',
     },
     flag: 'https://restcountries.eu/data/umi.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Virgin Islands (British)',
@@ -1960,14 +2064,16 @@ const Countries = [
     numericCode: '092',
     currencies: [
       { code: null, name: '[D]', symbol: '$' },
-      { code: 'USD', name: 'United States dollar', symbol: '$' }],
+      { code: 'USD', name: 'United States dollar', symbol: '$' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Britische Jungferninseln',
       es: 'Islas Vírgenes del Reino Unido',
@@ -1978,11 +2084,11 @@ const Countries = [
       pt: 'Ilhas Virgens Britânicas',
       nl: 'Britse Maagdeneilanden',
       hr: 'Britanski Djevičanski Otoci',
-      fa: 'جزایر ویرجین بریتانیا'
+      fa: 'جزایر ویرجین بریتانیا',
     },
     flag: 'https://restcountries.eu/data/vgb.svg',
     regionalBlocs: [],
-    cioc: 'IVB'
+    cioc: 'IVB',
   },
   {
     name: 'Virgin Islands (U.S.)',
@@ -1995,7 +2101,8 @@ const Countries = [
       'VI',
       'USVI',
       'American Virgin Islands',
-      'U.S. Virgin Islands'],
+      'U.S. Virgin Islands',
+    ],
     region: 'Americas',
     subregion: 'Caribbean',
     population: 114743,
@@ -2011,15 +2118,17 @@ const Countries = [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Amerikanische Jungferninseln',
       es: 'Islas Vírgenes de los Estados Unidos',
@@ -2030,11 +2139,11 @@ const Countries = [
       pt: 'Ilhas Virgens Americanas',
       nl: 'Verenigde Staten Maagdeneilanden',
       hr: null,
-      fa: 'جزایر ویرجین آمریکا'
+      fa: 'جزایر ویرجین آمریکا',
     },
     flag: 'https://restcountries.eu/data/vir.svg',
     regionalBlocs: [],
-    cioc: 'ISV'
+    cioc: 'ISV',
   },
   {
     name: 'Brunei Darussalam',
@@ -2057,14 +2166,16 @@ const Countries = [
     numericCode: '096',
     currencies: [
       { code: 'BND', name: 'Brunei dollar', symbol: '$' },
-      { code: 'SGD', name: 'Singapore dollar', symbol: '$' }],
+      { code: 'SGD', name: 'Singapore dollar', symbol: '$' },
+    ],
     languages: [
       {
         iso639_1: 'ms',
         iso639_2: 'msa',
         name: 'Malay',
-        nativeName: 'bahasa Melayu'
-      }],
+        nativeName: 'bahasa Melayu',
+      },
+    ],
     translations: {
       de: 'Brunei',
       es: 'Brunei',
@@ -2075,7 +2186,7 @@ const Countries = [
       pt: 'Brunei',
       nl: 'Brunei',
       hr: 'Brunej',
-      fa: 'برونئی'
+      fa: 'برونئی',
     },
     flag: 'https://restcountries.eu/data/brn.svg',
     regionalBlocs: [
@@ -2083,9 +2194,10 @@ const Countries = [
         acronym: 'ASEAN',
         name: 'Association of Southeast Asian Nations',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'BRU'
+        otherNames: [],
+      },
+    ],
+    cioc: 'BRU',
   },
   {
     name: 'Bulgaria',
@@ -2112,8 +2224,9 @@ const Countries = [
         iso639_1: 'bg',
         iso639_2: 'bul',
         name: 'Bulgarian',
-        nativeName: 'български език'
-      }],
+        nativeName: 'български език',
+      },
+    ],
     translations: {
       de: 'Bulgarien',
       es: 'Bulgaria',
@@ -2124,7 +2237,7 @@ const Countries = [
       pt: 'Bulgária',
       nl: 'Bulgarije',
       hr: 'Bugarska',
-      fa: 'بلغارستان'
+      fa: 'بلغارستان',
     },
     flag: 'https://restcountries.eu/data/bgr.svg',
     regionalBlocs: [
@@ -2132,9 +2245,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'BUL'
+        otherNames: [],
+      },
+    ],
+    cioc: 'BUL',
   },
   {
     name: 'Burkina Faso',
@@ -2159,21 +2273,23 @@ const Countries = [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'ff',
         iso639_2: 'ful',
         name: 'Fula',
-        nativeName: 'Fulfulde'
-      }],
+        nativeName: 'Fulfulde',
+      },
+    ],
     translations: {
       de: 'Burkina Faso',
       es: 'Burkina Faso',
@@ -2184,7 +2300,7 @@ const Countries = [
       pt: 'Burquina Faso',
       nl: 'Burkina Faso',
       hr: 'Burkina Faso',
-      fa: 'بورکینافاسو'
+      fa: 'بورکینافاسو',
     },
     flag: 'https://restcountries.eu/data/bfa.svg',
     regionalBlocs: [
@@ -2197,9 +2313,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'BUR'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'BUR',
   },
   {
     name: 'Burundi',
@@ -2211,8 +2329,9 @@ const Countries = [
     altSpellings: [
       'BI',
       'Republic of Burundi',
-      'Republika y\'Uburundi',
-      'République du Burundi'],
+      "Republika y'Uburundi",
+      'République du Burundi',
+    ],
     region: 'Africa',
     subregion: 'Eastern Africa',
     population: 10114505,
@@ -2228,21 +2347,23 @@ const Countries = [
       {
         code: 'BIF',
         name: 'Burundian franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'rn',
         iso639_2: 'run',
         name: 'Kirundi',
-        nativeName: 'Ikirundi'
-      }],
+        nativeName: 'Ikirundi',
+      },
+    ],
     translations: {
       de: 'Burundi',
       es: 'Burundi',
@@ -2253,7 +2374,7 @@ const Countries = [
       pt: 'Burúndi',
       nl: 'Burundi',
       hr: 'Burundi',
-      fa: 'بوروندی'
+      fa: 'بوروندی',
     },
     flag: 'https://restcountries.eu/data/bdi.svg',
     regionalBlocs: [
@@ -2266,9 +2387,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'BDI'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'BDI',
   },
   {
     name: 'Cambodia',
@@ -2291,14 +2414,16 @@ const Countries = [
     numericCode: '116',
     currencies: [
       { code: 'KHR', name: 'Cambodian riel', symbol: '៛' },
-      { code: 'USD', name: 'United States dollar', symbol: '$' }],
+      { code: 'USD', name: 'United States dollar', symbol: '$' },
+    ],
     languages: [
       {
         iso639_1: 'km',
         iso639_2: 'khm',
         name: 'Khmer',
-        nativeName: 'ខ្មែរ'
-      }],
+        nativeName: 'ខ្មែរ',
+      },
+    ],
     translations: {
       de: 'Kambodscha',
       es: 'Camboya',
@@ -2309,7 +2434,7 @@ const Countries = [
       pt: 'Camboja',
       nl: 'Cambodja',
       hr: 'Kambodža',
-      fa: 'کامبوج'
+      fa: 'کامبوج',
     },
     flag: 'https://restcountries.eu/data/khm.svg',
     regionalBlocs: [
@@ -2317,9 +2442,10 @@ const Countries = [
         acronym: 'ASEAN',
         name: 'Association of Southeast Asian Nations',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'CAM'
+        otherNames: [],
+      },
+    ],
+    cioc: 'CAM',
   },
   {
     name: 'Cameroon',
@@ -2344,21 +2470,23 @@ const Countries = [
       {
         code: 'XAF',
         name: 'Central African CFA franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Kamerun',
       es: 'Camerún',
@@ -2369,7 +2497,7 @@ const Countries = [
       pt: 'Camarões',
       nl: 'Kameroen',
       hr: 'Kamerun',
-      fa: 'کامرون'
+      fa: 'کامرون',
     },
     flag: 'https://restcountries.eu/data/cmr.svg',
     regionalBlocs: [
@@ -2382,9 +2510,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'CMR'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'CMR',
   },
   {
     name: 'Canada',
@@ -2407,7 +2537,8 @@ const Countries = [
       'UTC-06:00',
       'UTC-05:00',
       'UTC-04:00',
-      'UTC-03:30'],
+      'UTC-03:30',
+    ],
     borders: ['USA'],
     nativeName: 'Canada',
     numericCode: '124',
@@ -2417,14 +2548,15 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Kanada',
       es: 'Canadá',
@@ -2435,7 +2567,7 @@ const Countries = [
       pt: 'Canadá',
       nl: 'Canada',
       hr: 'Kanada',
-      fa: 'کانادا'
+      fa: 'کانادا',
     },
     flag: 'https://restcountries.eu/data/can.svg',
     regionalBlocs: [
@@ -2445,9 +2577,11 @@ const Countries = [
         otherAcronyms: [],
         otherNames: [
           'Tratado de Libre Comercio de América del Norte',
-          'Accord de Libre-échange Nord-Américain']
-      }],
-    cioc: 'CAN'
+          'Accord de Libre-échange Nord-Américain',
+        ],
+      },
+    ],
+    cioc: 'CAN',
   },
   {
     name: 'Cabo Verde',
@@ -2472,15 +2606,17 @@ const Countries = [
       {
         code: 'CVE',
         name: 'Cape Verdean escudo',
-        symbol: 'Esc'
-      }],
+        symbol: 'Esc',
+      },
+    ],
     languages: [
       {
         iso639_1: 'pt',
         iso639_2: 'por',
         name: 'Portuguese',
-        nativeName: 'Português'
-      }],
+        nativeName: 'Português',
+      },
+    ],
     translations: {
       de: 'Kap Verde',
       es: 'Cabo Verde',
@@ -2491,7 +2627,7 @@ const Countries = [
       pt: 'Cabo Verde',
       nl: 'Kaapverdië',
       hr: 'Zelenortska Republika',
-      fa: 'کیپ ورد'
+      fa: 'کیپ ورد',
     },
     flag: 'https://restcountries.eu/data/cpv.svg',
     regionalBlocs: [
@@ -2504,9 +2640,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'CPV'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'CPV',
   },
   {
     name: 'Cayman Islands',
@@ -2531,15 +2669,17 @@ const Countries = [
       {
         code: 'KYD',
         name: 'Cayman Islands dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Kaimaninseln',
       es: 'Islas Caimán',
@@ -2550,11 +2690,11 @@ const Countries = [
       pt: 'Ilhas Caimão',
       nl: 'Caymaneilanden',
       hr: 'Kajmanski otoci',
-      fa: 'جزایر کیمن'
+      fa: 'جزایر کیمن',
     },
     flag: 'https://restcountries.eu/data/cym.svg',
     regionalBlocs: [],
-    cioc: 'CAY'
+    cioc: 'CAY',
   },
   {
     name: 'Central African Republic',
@@ -2566,7 +2706,8 @@ const Countries = [
     altSpellings: [
       'CF',
       'Central African Republic',
-      'République centrafricaine'],
+      'République centrafricaine',
+    ],
     region: 'Africa',
     subregion: 'Middle Africa',
     population: 4998000,
@@ -2582,21 +2723,23 @@ const Countries = [
       {
         code: 'XAF',
         name: 'Central African CFA franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'sg',
         iso639_2: 'sag',
         name: 'Sango',
-        nativeName: 'yângâ tî sängö'
-      }],
+        nativeName: 'yângâ tî sängö',
+      },
+    ],
     translations: {
       de: 'Zentralafrikanische Republik',
       es: 'República Centroafricana',
@@ -2607,7 +2750,7 @@ const Countries = [
       pt: 'República Centro-Africana',
       nl: 'Centraal-Afrikaanse Republiek',
       hr: 'Srednjoafrička Republika',
-      fa: 'جمهوری آفریقای مرکزی'
+      fa: 'جمهوری آفریقای مرکزی',
     },
     flag: 'https://restcountries.eu/data/caf.svg',
     regionalBlocs: [
@@ -2620,9 +2763,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'CAF'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'CAF',
   },
   {
     name: 'Chad',
@@ -2630,7 +2775,7 @@ const Countries = [
     alpha2Code: 'TD',
     alpha3Code: 'TCD',
     callingCodes: ['235'],
-    capital: 'N\'Djamena',
+    capital: "N'Djamena",
     altSpellings: ['TD', 'Tchad', 'Republic of Chad', 'République du Tchad'],
     region: 'Africa',
     subregion: 'Middle Africa',
@@ -2647,21 +2792,23 @@ const Countries = [
       {
         code: 'XAF',
         name: 'Central African CFA franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Tschad',
       es: 'Chad',
@@ -2672,7 +2819,7 @@ const Countries = [
       pt: 'Chade',
       nl: 'Tsjaad',
       hr: 'Čad',
-      fa: 'چاد'
+      fa: 'چاد',
     },
     flag: 'https://restcountries.eu/data/tcd.svg',
     regionalBlocs: [
@@ -2685,9 +2832,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'CHA'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'CHA',
   },
   {
     name: 'Chile',
@@ -2714,8 +2863,9 @@ const Countries = [
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Chile',
       es: 'Chile',
@@ -2726,7 +2876,7 @@ const Countries = [
       pt: 'Chile',
       nl: 'Chili',
       hr: 'Čile',
-      fa: 'شیلی'
+      fa: 'شیلی',
     },
     flag: 'https://restcountries.eu/data/chl.svg',
     regionalBlocs: [
@@ -2734,7 +2884,7 @@ const Countries = [
         acronym: 'PA',
         name: 'Pacific Alliance',
         otherAcronyms: [],
-        otherNames: ['Alianza del Pacífico']
+        otherNames: ['Alianza del Pacífico'],
       },
       {
         acronym: 'USAN',
@@ -2744,9 +2894,11 @@ const Countries = [
           'Unión de Naciones Suramericanas',
           'União de Nações Sul-Americanas',
           'Unie van Zuid-Amerikaanse Naties',
-          'South American Union']
-      }],
-    cioc: 'CHI'
+          'South American Union',
+        ],
+      },
+    ],
+    cioc: 'CHI',
   },
   {
     name: 'China',
@@ -2760,9 +2912,10 @@ const Countries = [
       'Zhōngguó',
       'Zhongguo',
       'Zhonghua',
-      'People\'s Republic of China',
+      "People's Republic of China",
       '中华人民共和国',
-      'Zhōnghuá Rénmín Gònghéguó'],
+      'Zhōnghuá Rénmín Gònghéguó',
+    ],
     region: 'Asia',
     subregion: 'Eastern Asia',
     population: 1377422166,
@@ -2786,7 +2939,8 @@ const Countries = [
       'PAK',
       'RUS',
       'TJK',
-      'VNM'],
+      'VNM',
+    ],
     nativeName: '中国',
     numericCode: '156',
     currencies: [{ code: 'CNY', name: 'Chinese yuan', symbol: '¥' }],
@@ -2795,8 +2949,9 @@ const Countries = [
         iso639_1: 'zh',
         iso639_2: 'zho',
         name: 'Chinese',
-        nativeName: '中文 (Zhōngwén)'
-      }],
+        nativeName: '中文 (Zhōngwén)',
+      },
+    ],
     translations: {
       de: 'China',
       es: 'China',
@@ -2807,11 +2962,11 @@ const Countries = [
       pt: 'China',
       nl: 'China',
       hr: 'Kina',
-      fa: 'چین'
+      fa: 'چین',
     },
     flag: 'https://restcountries.eu/data/chn.svg',
     regionalBlocs: [],
-    cioc: 'CHN'
+    cioc: 'CHN',
   },
   {
     name: 'Christmas Island',
@@ -2836,15 +2991,17 @@ const Countries = [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Weihnachtsinsel',
       es: 'Isla de Navidad',
@@ -2855,11 +3012,11 @@ const Countries = [
       pt: 'Ilha do Natal',
       nl: 'Christmaseiland',
       hr: 'Božićni otok',
-      fa: 'جزیره کریسمس'
+      fa: 'جزیره کریسمس',
     },
     flag: 'https://restcountries.eu/data/cxr.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Cocos (Keeling) Islands',
@@ -2871,7 +3028,8 @@ const Countries = [
     altSpellings: [
       'CC',
       'Territory of the Cocos (Keeling) Islands',
-      'Keeling Islands'],
+      'Keeling Islands',
+    ],
     region: 'Oceania',
     subregion: 'Australia and New Zealand',
     population: 550,
@@ -2887,15 +3045,17 @@ const Countries = [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Kokosinseln',
       es: 'Islas Cocos o Islas Keeling',
@@ -2906,11 +3066,11 @@ const Countries = [
       pt: 'Ilhas dos Cocos',
       nl: 'Cocoseilanden',
       hr: 'Kokosovi Otoci',
-      fa: 'جزایر کوکوس'
+      fa: 'جزایر کوکوس',
     },
     flag: 'https://restcountries.eu/data/cck.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Colombia',
@@ -2937,8 +3097,9 @@ const Countries = [
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Kolumbien',
       es: 'Colombia',
@@ -2949,7 +3110,7 @@ const Countries = [
       pt: 'Colômbia',
       nl: 'Colombia',
       hr: 'Kolumbija',
-      fa: 'کلمبیا'
+      fa: 'کلمبیا',
     },
     flag: 'https://restcountries.eu/data/col.svg',
     regionalBlocs: [
@@ -2957,7 +3118,7 @@ const Countries = [
         acronym: 'PA',
         name: 'Pacific Alliance',
         otherAcronyms: [],
-        otherNames: ['Alianza del Pacífico']
+        otherNames: ['Alianza del Pacífico'],
       },
       {
         acronym: 'USAN',
@@ -2967,9 +3128,11 @@ const Countries = [
           'Unión de Naciones Suramericanas',
           'União de Nações Sul-Americanas',
           'Unie van Zuid-Amerikaanse Naties',
-          'South American Union']
-      }],
-    cioc: 'COL'
+          'South American Union',
+        ],
+      },
+    ],
+    cioc: 'COL',
   },
   {
     name: 'Comoros',
@@ -2983,7 +3146,8 @@ const Countries = [
       'Union of the Comoros',
       'Union des Comores',
       'Udzima wa Komori',
-      'al-Ittiḥād al-Qumurī'],
+      'al-Ittiḥād al-Qumurī',
+    ],
     region: 'Africa',
     subregion: 'Eastern Africa',
     population: 806153,
@@ -3001,14 +3165,15 @@ const Countries = [
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
+        nativeName: 'العربية',
       },
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Union der Komoren',
       es: 'Comoras',
@@ -3019,7 +3184,7 @@ const Countries = [
       pt: 'Comores',
       nl: 'Comoren',
       hr: 'Komori',
-      fa: 'کومور'
+      fa: 'کومور',
     },
     flag: 'https://restcountries.eu/data/com.svg',
     regionalBlocs: [
@@ -3032,7 +3197,8 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
+          'Umoja wa Afrika',
+        ],
       },
       {
         acronym: 'AL',
@@ -3041,9 +3207,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'COM'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'COM',
   },
   {
     name: 'Congo',
@@ -3068,21 +3236,23 @@ const Countries = [
       {
         code: 'XAF',
         name: 'Central African CFA franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'ln',
         iso639_2: 'lin',
         name: 'Lingala',
-        nativeName: 'Lingála'
-      }],
+        nativeName: 'Lingála',
+      },
+    ],
     translations: {
       de: 'Kongo',
       es: 'Congo',
@@ -3093,7 +3263,7 @@ const Countries = [
       pt: 'Congo',
       nl: 'Congo [Republiek]',
       hr: 'Kongo',
-      fa: 'کنگو'
+      fa: 'کنگو',
     },
     flag: 'https://restcountries.eu/data/cog.svg',
     regionalBlocs: [
@@ -3106,9 +3276,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'CGO'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'CGO',
   },
   {
     name: 'Congo (Democratic Republic of the)',
@@ -3133,39 +3305,41 @@ const Countries = [
       {
         code: 'CDF',
         name: 'Congolese franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'ln',
         iso639_2: 'lin',
         name: 'Lingala',
-        nativeName: 'Lingála'
+        nativeName: 'Lingála',
       },
       {
         iso639_1: 'kg',
         iso639_2: 'kon',
         name: 'Kongo',
-        nativeName: 'Kikongo'
+        nativeName: 'Kikongo',
       },
       {
         iso639_1: 'sw',
         iso639_2: 'swa',
         name: 'Swahili',
-        nativeName: 'Kiswahili'
+        nativeName: 'Kiswahili',
       },
       {
         iso639_1: 'lu',
         iso639_2: 'lub',
         name: 'Luba-Katanga',
-        nativeName: 'Tshiluba'
-      }],
+        nativeName: 'Tshiluba',
+      },
+    ],
     translations: {
       de: 'Kongo (Dem. Rep.)',
       es: 'Congo (Rep. Dem.)',
@@ -3176,7 +3350,7 @@ const Countries = [
       pt: 'RD Congo',
       nl: 'Congo [DRC]',
       hr: 'Kongo, Demokratska Republika',
-      fa: 'جمهوری کنگو'
+      fa: 'جمهوری کنگو',
     },
     flag: 'https://restcountries.eu/data/cod.svg',
     regionalBlocs: [
@@ -3189,9 +3363,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'COD'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'COD',
   },
   {
     name: 'Cook Islands',
@@ -3200,7 +3376,7 @@ const Countries = [
     alpha3Code: 'COK',
     callingCodes: ['682'],
     capital: 'Avarua',
-    altSpellings: ['CK', 'Kūki \'Āirani'],
+    altSpellings: ['CK', "Kūki 'Āirani"],
     region: 'Oceania',
     subregion: 'Polynesia',
     population: 18100,
@@ -3216,15 +3392,18 @@ const Countries = [
       {
         code: 'NZD',
         name: 'New Zealand dollar',
-        symbol: '$'
-      }, { code: 'CKD', name: 'Cook Islands dollar', symbol: '$' }],
+        symbol: '$',
+      },
+      { code: 'CKD', name: 'Cook Islands dollar', symbol: '$' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Cookinseln',
       es: 'Islas Cook',
@@ -3235,11 +3414,11 @@ const Countries = [
       pt: 'Ilhas Cook',
       nl: 'Cookeilanden',
       hr: 'Cookovo Otočje',
-      fa: 'جزایر کوک'
+      fa: 'جزایر کوک',
     },
     flag: 'https://restcountries.eu/data/cok.svg',
     regionalBlocs: [],
-    cioc: 'COK'
+    cioc: 'COK',
   },
   {
     name: 'Costa Rica',
@@ -3264,15 +3443,17 @@ const Countries = [
       {
         code: 'CRC',
         name: 'Costa Rican colón',
-        symbol: '₡'
-      }],
+        symbol: '₡',
+      },
+    ],
     languages: [
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Costa Rica',
       es: 'Costa Rica',
@@ -3283,7 +3464,7 @@ const Countries = [
       pt: 'Costa Rica',
       nl: 'Costa Rica',
       hr: 'Kostarika',
-      fa: 'کاستاریکا'
+      fa: 'کاستاریکا',
     },
     flag: 'https://restcountries.eu/data/cri.svg',
     regionalBlocs: [
@@ -3291,9 +3472,10 @@ const Countries = [
         acronym: 'CAIS',
         name: 'Central American Integration System',
         otherAcronyms: ['SICA'],
-        otherNames: ['Sistema de la Integración Centroamericana,']
-      }],
-    cioc: 'CRC'
+        otherNames: ['Sistema de la Integración Centroamericana,'],
+      },
+    ],
+    cioc: 'CRC',
   },
   {
     name: 'Croatia',
@@ -3306,7 +3488,8 @@ const Countries = [
       'HR',
       'Hrvatska',
       'Republic of Croatia',
-      'Republika Hrvatska'],
+      'Republika Hrvatska',
+    ],
     region: 'Europe',
     subregion: 'Southern Europe',
     population: 4190669,
@@ -3324,8 +3507,9 @@ const Countries = [
         iso639_1: 'hr',
         iso639_2: 'hrv',
         name: 'Croatian',
-        nativeName: 'hrvatski jezik'
-      }],
+        nativeName: 'hrvatski jezik',
+      },
+    ],
     translations: {
       de: 'Kroatien',
       es: 'Croacia',
@@ -3336,7 +3520,7 @@ const Countries = [
       pt: 'Croácia',
       nl: 'Kroatië',
       hr: 'Hrvatska',
-      fa: 'کرواسی'
+      fa: 'کرواسی',
     },
     flag: 'https://restcountries.eu/data/hrv.svg',
     regionalBlocs: [
@@ -3344,9 +3528,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'CRO'
+        otherNames: [],
+      },
+    ],
+    cioc: 'CRO',
   },
   {
     name: 'Cuba',
@@ -3371,15 +3556,18 @@ const Countries = [
       {
         code: 'CUC',
         name: 'Cuban convertible peso',
-        symbol: '$'
-      }, { code: 'CUP', name: 'Cuban peso', symbol: '$' }],
+        symbol: '$',
+      },
+      { code: 'CUP', name: 'Cuban peso', symbol: '$' },
+    ],
     languages: [
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Kuba',
       es: 'Cuba',
@@ -3390,11 +3578,11 @@ const Countries = [
       pt: 'Cuba',
       nl: 'Cuba',
       hr: 'Kuba',
-      fa: 'کوبا'
+      fa: 'کوبا',
     },
     flag: 'https://restcountries.eu/data/cub.svg',
     regionalBlocs: [],
-    cioc: 'CUB'
+    cioc: 'CUB',
   },
   {
     name: 'Curaçao',
@@ -3409,7 +3597,8 @@ const Countries = [
       'Kòrsou',
       'Country of Curaçao',
       'Land Curaçao',
-      'Pais Kòrsou'],
+      'Pais Kòrsou',
+    ],
     region: 'Americas',
     subregion: 'Caribbean',
     population: 154843,
@@ -3425,27 +3614,29 @@ const Countries = [
       {
         code: 'ANG',
         name: 'Netherlands Antillean guilder',
-        symbol: 'ƒ'
-      }],
+        symbol: 'ƒ',
+      },
+    ],
     languages: [
       {
         iso639_1: 'nl',
         iso639_2: 'nld',
         name: 'Dutch',
-        nativeName: 'Nederlands'
+        nativeName: 'Nederlands',
       },
       {
         iso639_1: 'pa',
         iso639_2: 'pan',
         name: '(Eastern) Punjabi',
-        nativeName: 'ਪੰਜਾਬੀ'
+        nativeName: 'ਪੰਜਾਬੀ',
       },
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Curaçao',
       es: null,
@@ -3456,11 +3647,11 @@ const Countries = [
       pt: 'Curaçao',
       nl: 'Curaçao',
       hr: null,
-      fa: 'کوراسائو'
+      fa: 'کوراسائو',
     },
     flag: 'https://restcountries.eu/data/cuw.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Cyprus',
@@ -3475,7 +3666,8 @@ const Countries = [
       'Kıbrıs',
       'Republic of Cyprus',
       'Κυπριακή Δημοκρατία',
-      'Kıbrıs Cumhuriyeti'],
+      'Kıbrıs Cumhuriyeti',
+    ],
     region: 'Europe',
     subregion: 'Southern Europe',
     population: 847000,
@@ -3493,20 +3685,21 @@ const Countries = [
         iso639_1: 'el',
         iso639_2: 'ell',
         name: 'Greek (modern)',
-        nativeName: 'ελληνικά'
+        nativeName: 'ελληνικά',
       },
       {
         iso639_1: 'tr',
         iso639_2: 'tur',
         name: 'Turkish',
-        nativeName: 'Türkçe'
+        nativeName: 'Türkçe',
       },
       {
         iso639_1: 'hy',
         iso639_2: 'hye',
         name: 'Armenian',
-        nativeName: 'Հայերեն'
-      }],
+        nativeName: 'Հայերեն',
+      },
+    ],
     translations: {
       de: 'Zypern',
       es: 'Chipre',
@@ -3517,7 +3710,7 @@ const Countries = [
       pt: 'Chipre',
       nl: 'Cyprus',
       hr: 'Cipar',
-      fa: 'قبرس'
+      fa: 'قبرس',
     },
     flag: 'https://restcountries.eu/data/cyp.svg',
     regionalBlocs: [
@@ -3525,9 +3718,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'CYP'
+        otherNames: [],
+      },
+    ],
+    cioc: 'CYP',
   },
   {
     name: 'Czech Republic',
@@ -3554,14 +3748,15 @@ const Countries = [
         iso639_1: 'cs',
         iso639_2: 'ces',
         name: 'Czech',
-        nativeName: 'čeština'
+        nativeName: 'čeština',
       },
       {
         iso639_1: 'sk',
         iso639_2: 'slk',
         name: 'Slovak',
-        nativeName: 'slovenčina'
-      }],
+        nativeName: 'slovenčina',
+      },
+    ],
     translations: {
       de: 'Tschechische Republik',
       es: 'República Checa',
@@ -3572,7 +3767,7 @@ const Countries = [
       pt: 'República Checa',
       nl: 'Tsjechië',
       hr: 'Češka',
-      fa: 'جمهوری چک'
+      fa: 'جمهوری چک',
     },
     flag: 'https://restcountries.eu/data/cze.svg',
     regionalBlocs: [
@@ -3580,9 +3775,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'CZE'
+        otherNames: [],
+      },
+    ],
+    cioc: 'CZE',
   },
   {
     name: 'Denmark',
@@ -3591,11 +3787,7 @@ const Countries = [
     alpha3Code: 'DNK',
     callingCodes: ['45'],
     capital: 'Copenhagen',
-    altSpellings: [
-      'DK',
-      'Danmark',
-      'Kingdom of Denmark',
-      'Kongeriget Danmark'],
+    altSpellings: ['DK', 'Danmark', 'Kingdom of Denmark', 'Kongeriget Danmark'],
     region: 'Europe',
     subregion: 'Northern Europe',
     population: 5717014,
@@ -3613,8 +3805,9 @@ const Countries = [
         iso639_1: 'da',
         iso639_2: 'dan',
         name: 'Danish',
-        nativeName: 'dansk'
-      }],
+        nativeName: 'dansk',
+      },
+    ],
     translations: {
       de: 'Dänemark',
       es: 'Dinamarca',
@@ -3625,7 +3818,7 @@ const Countries = [
       pt: 'Dinamarca',
       nl: 'Denemarken',
       hr: 'Danska',
-      fa: 'دانمارک'
+      fa: 'دانمارک',
     },
     flag: 'https://restcountries.eu/data/dnk.svg',
     regionalBlocs: [
@@ -3633,9 +3826,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'DEN'
+        otherNames: [],
+      },
+    ],
+    cioc: 'DEN',
   },
   {
     name: 'Djibouti',
@@ -3651,7 +3845,8 @@ const Countries = [
       'Republic of Djibouti',
       'République de Djibouti',
       'Gabuutih Ummuuno',
-      'Jamhuuriyadda Jabuuti'],
+      'Jamhuuriyadda Jabuuti',
+    ],
     region: 'Africa',
     subregion: 'Eastern Africa',
     population: 900000,
@@ -3667,21 +3862,23 @@ const Countries = [
       {
         code: 'DJF',
         name: 'Djiboutian franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Dschibuti',
       es: 'Yibuti',
@@ -3692,7 +3889,7 @@ const Countries = [
       pt: 'Djibuti',
       nl: 'Djibouti',
       hr: 'Džibuti',
-      fa: 'جیبوتی'
+      fa: 'جیبوتی',
     },
     flag: 'https://restcountries.eu/data/dji.svg',
     regionalBlocs: [
@@ -3705,7 +3902,8 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
+          'Umoja wa Afrika',
+        ],
       },
       {
         acronym: 'AL',
@@ -3714,9 +3912,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'DJI'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'DJI',
   },
   {
     name: 'Dominica',
@@ -3729,7 +3929,8 @@ const Countries = [
       'DM',
       'Dominique',
       'Wai‘tu kubuli',
-      'Commonwealth of Dominica'],
+      'Commonwealth of Dominica',
+    ],
     region: 'Americas',
     subregion: 'Caribbean',
     population: 71293,
@@ -3745,15 +3946,17 @@ const Countries = [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Dominica',
       es: 'Dominica',
@@ -3764,11 +3967,11 @@ const Countries = [
       pt: 'Dominica',
       nl: 'Dominica',
       hr: 'Dominika',
-      fa: 'دومینیکا'
+      fa: 'دومینیکا',
     },
     flag: 'https://restcountries.eu/data/dma.svg',
     regionalBlocs: [],
-    cioc: 'DMA'
+    cioc: 'DMA',
   },
   {
     name: 'Dominican Republic',
@@ -3795,8 +3998,9 @@ const Countries = [
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Dominikanische Republik',
       es: 'República Dominicana',
@@ -3807,7 +4011,7 @@ const Countries = [
       pt: 'República Dominicana',
       nl: 'Dominicaanse Republiek',
       hr: 'Dominikanska Republika',
-      fa: 'جمهوری دومینیکن'
+      fa: 'جمهوری دومینیکن',
     },
     flag: 'https://restcountries.eu/data/dom.svg',
     regionalBlocs: [
@@ -3818,15 +4022,17 @@ const Countries = [
         otherNames: [
           'Comunidad del Caribe',
           'Communauté Caribéenne',
-          'Caribische Gemeenschap']
+          'Caribische Gemeenschap',
+        ],
       },
       {
         acronym: 'CAIS',
         name: 'Central American Integration System',
         otherAcronyms: ['SICA'],
-        otherNames: ['Sistema de la Integración Centroamericana,']
-      }],
-    cioc: 'DOM'
+        otherNames: ['Sistema de la Integración Centroamericana,'],
+      },
+    ],
+    cioc: 'DOM',
   },
   {
     name: 'Ecuador',
@@ -3851,15 +4057,17 @@ const Countries = [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Ecuador',
       es: 'Ecuador',
@@ -3870,7 +4078,7 @@ const Countries = [
       pt: 'Equador',
       nl: 'Ecuador',
       hr: 'Ekvador',
-      fa: 'اکوادور'
+      fa: 'اکوادور',
     },
     flag: 'https://restcountries.eu/data/ecu.svg',
     regionalBlocs: [
@@ -3882,9 +4090,11 @@ const Countries = [
           'Unión de Naciones Suramericanas',
           'União de Nações Sul-Americanas',
           'Unie van Zuid-Amerikaanse Naties',
-          'South American Union']
-      }],
-    cioc: 'ECU'
+          'South American Union',
+        ],
+      },
+    ],
+    cioc: 'ECU',
   },
   {
     name: 'Egypt',
@@ -3911,8 +4121,9 @@ const Countries = [
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Ägypten',
       es: 'Egipto',
@@ -3923,7 +4134,7 @@ const Countries = [
       pt: 'Egipto',
       nl: 'Egypte',
       hr: 'Egipat',
-      fa: 'مصر'
+      fa: 'مصر',
     },
     flag: 'https://restcountries.eu/data/egy.svg',
     regionalBlocs: [
@@ -3936,7 +4147,8 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
+          'Umoja wa Afrika',
+        ],
       },
       {
         acronym: 'AL',
@@ -3945,9 +4157,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'EGY'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'EGY',
   },
   {
     name: 'El Salvador',
@@ -3956,10 +4170,7 @@ const Countries = [
     alpha3Code: 'SLV',
     callingCodes: ['503'],
     capital: 'San Salvador',
-    altSpellings: [
-      'SV',
-      'Republic of El Salvador',
-      'República de El Salvador'],
+    altSpellings: ['SV', 'Republic of El Salvador', 'República de El Salvador'],
     region: 'Americas',
     subregion: 'Central America',
     population: 6520675,
@@ -3975,15 +4186,17 @@ const Countries = [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'El Salvador',
       es: 'El Salvador',
@@ -3994,7 +4207,7 @@ const Countries = [
       pt: 'El Salvador',
       nl: 'El Salvador',
       hr: 'Salvador',
-      fa: 'السالوادور'
+      fa: 'السالوادور',
     },
     flag: 'https://restcountries.eu/data/slv.svg',
     regionalBlocs: [
@@ -4002,9 +4215,10 @@ const Countries = [
         acronym: 'CAIS',
         name: 'Central American Integration System',
         otherAcronyms: ['SICA'],
-        otherNames: ['Sistema de la Integración Centroamericana,']
-      }],
-    cioc: 'ESA'
+        otherNames: ['Sistema de la Integración Centroamericana,'],
+      },
+    ],
+    cioc: 'ESA',
   },
   {
     name: 'Equatorial Guinea',
@@ -4018,7 +4232,8 @@ const Countries = [
       'Republic of Equatorial Guinea',
       'República de Guinea Ecuatorial',
       'République de Guinée équatoriale',
-      'República da Guiné Equatorial'],
+      'República da Guiné Equatorial',
+    ],
     region: 'Africa',
     subregion: 'Middle Africa',
     population: 1222442,
@@ -4034,21 +4249,23 @@ const Countries = [
       {
         code: 'XAF',
         name: 'Central African CFA franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
+        nativeName: 'Español',
       },
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Äquatorial-Guinea',
       es: 'Guinea Ecuatorial',
@@ -4059,7 +4276,7 @@ const Countries = [
       pt: 'Guiné Equatorial',
       nl: 'Equatoriaal-Guinea',
       hr: 'Ekvatorijalna Gvineja',
-      fa: 'گینه استوایی'
+      fa: 'گینه استوایی',
     },
     flag: 'https://restcountries.eu/data/gnq.svg',
     regionalBlocs: [
@@ -4072,9 +4289,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'GEQ'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'GEQ',
   },
   {
     name: 'Eritrea',
@@ -4090,7 +4309,8 @@ const Countries = [
       'Dawlat Iritriyá',
       'ʾErtrā',
       'Iritriyā',
-      ''],
+      '',
+    ],
     region: 'Africa',
     subregion: 'Eastern Africa',
     population: 5352000,
@@ -4106,27 +4326,29 @@ const Countries = [
       {
         code: 'ERN',
         name: 'Eritrean nakfa',
-        symbol: 'Nfk'
-      }],
+        symbol: 'Nfk',
+      },
+    ],
     languages: [
       {
         iso639_1: 'ti',
         iso639_2: 'tir',
         name: 'Tigrinya',
-        nativeName: 'ትግርኛ'
+        nativeName: 'ትግርኛ',
       },
       {
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
+        nativeName: 'العربية',
       },
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Eritrea',
       es: 'Eritrea',
@@ -4137,7 +4359,7 @@ const Countries = [
       pt: 'Eritreia',
       nl: 'Eritrea',
       hr: 'Eritreja',
-      fa: 'اریتره'
+      fa: 'اریتره',
     },
     flag: 'https://restcountries.eu/data/eri.svg',
     regionalBlocs: [
@@ -4150,9 +4372,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'ERI'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'ERI',
   },
   {
     name: 'Estonia',
@@ -4179,8 +4403,9 @@ const Countries = [
         iso639_1: 'et',
         iso639_2: 'est',
         name: 'Estonian',
-        nativeName: 'eesti'
-      }],
+        nativeName: 'eesti',
+      },
+    ],
     translations: {
       de: 'Estland',
       es: 'Estonia',
@@ -4191,7 +4416,7 @@ const Countries = [
       pt: 'Estónia',
       nl: 'Estland',
       hr: 'Estonija',
-      fa: 'استونی'
+      fa: 'استونی',
     },
     flag: 'https://restcountries.eu/data/est.svg',
     regionalBlocs: [
@@ -4199,9 +4424,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'EST'
+        otherNames: [],
+      },
+    ],
+    cioc: 'EST',
   },
   {
     name: 'Ethiopia',
@@ -4214,7 +4440,8 @@ const Countries = [
       'ET',
       'ʾĪtyōṗṗyā',
       'Federal Democratic Republic of Ethiopia',
-      'የኢትዮጵያ ፌዴራላዊ ዲሞክራሲያዊ ሪፐብሊክ'],
+      'የኢትዮጵያ ፌዴራላዊ ዲሞክራሲያዊ ሪፐብሊክ',
+    ],
     region: 'Africa',
     subregion: 'Eastern Africa',
     population: 92206005,
@@ -4232,8 +4459,9 @@ const Countries = [
         iso639_1: 'am',
         iso639_2: 'amh',
         name: 'Amharic',
-        nativeName: 'አማርኛ'
-      }],
+        nativeName: 'አማርኛ',
+      },
+    ],
     translations: {
       de: 'Äthiopien',
       es: 'Etiopía',
@@ -4244,7 +4472,7 @@ const Countries = [
       pt: 'Etiópia',
       nl: 'Ethiopië',
       hr: 'Etiopija',
-      fa: 'اتیوپی'
+      fa: 'اتیوپی',
     },
     flag: 'https://restcountries.eu/data/eth.svg',
     regionalBlocs: [
@@ -4257,9 +4485,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'ETH'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'ETH',
   },
   {
     name: 'Falkland Islands (Malvinas)',
@@ -4284,15 +4514,17 @@ const Countries = [
       {
         code: 'FKP',
         name: 'Falkland Islands pound',
-        symbol: '£'
-      }],
+        symbol: '£',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Falklandinseln',
       es: 'Islas Malvinas',
@@ -4303,7 +4535,7 @@ const Countries = [
       pt: 'Ilhas Falkland',
       nl: 'Falklandeilanden [Islas Malvinas]',
       hr: 'Falklandski Otoci',
-      fa: 'جزایر فالکلند'
+      fa: 'جزایر فالکلند',
     },
     flag: 'https://restcountries.eu/data/flk.svg',
     regionalBlocs: [
@@ -4315,9 +4547,11 @@ const Countries = [
           'Unión de Naciones Suramericanas',
           'União de Nações Sul-Americanas',
           'Unie van Zuid-Amerikaanse Naties',
-          'South American Union']
-      }],
-    cioc: ''
+          'South American Union',
+        ],
+      },
+    ],
+    cioc: '',
   },
   {
     name: 'Faroe Islands',
@@ -4340,14 +4574,16 @@ const Countries = [
     numericCode: '234',
     currencies: [
       { code: 'DKK', name: 'Danish krone', symbol: 'kr' },
-      { code: '(none)', name: 'Faroese króna', symbol: 'kr' }],
+      { code: '(none)', name: 'Faroese króna', symbol: 'kr' },
+    ],
     languages: [
       {
         iso639_1: 'fo',
         iso639_2: 'fao',
         name: 'Faroese',
-        nativeName: 'føroyskt'
-      }],
+        nativeName: 'føroyskt',
+      },
+    ],
     translations: {
       de: 'Färöer-Inseln',
       es: 'Islas Faroe',
@@ -4358,7 +4594,7 @@ const Countries = [
       pt: 'Ilhas Faroé',
       nl: 'Faeröer',
       hr: 'Farski Otoci',
-      fa: 'جزایر فارو'
+      fa: 'جزایر فارو',
     },
     flag: 'https://restcountries.eu/data/fro.svg',
     regionalBlocs: [
@@ -4366,9 +4602,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: ''
+        otherNames: [],
+      },
+    ],
+    cioc: '',
   },
   {
     name: 'Fiji',
@@ -4382,7 +4619,8 @@ const Countries = [
       'Viti',
       'Republic of Fiji',
       'Matanitu ko Viti',
-      'Fijī Gaṇarājya'],
+      'Fijī Gaṇarājya',
+    ],
     region: 'Oceania',
     subregion: 'Melanesia',
     population: 867000,
@@ -4400,26 +4638,27 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'fj',
         iso639_2: 'fij',
         name: 'Fijian',
-        nativeName: 'vosa Vakaviti'
+        nativeName: 'vosa Vakaviti',
       },
       {
         iso639_1: 'hi',
         iso639_2: 'hin',
         name: 'Hindi',
-        nativeName: 'हिन्दी'
+        nativeName: 'हिन्दी',
       },
       {
         iso639_1: 'ur',
         iso639_2: 'urd',
         name: 'Urdu',
-        nativeName: 'اردو'
-      }],
+        nativeName: 'اردو',
+      },
+    ],
     translations: {
       de: 'Fidschi',
       es: 'Fiyi',
@@ -4430,11 +4669,11 @@ const Countries = [
       pt: 'Fiji',
       nl: 'Fiji',
       hr: 'Fiđi',
-      fa: 'فیجی'
+      fa: 'فیجی',
     },
     flag: 'https://restcountries.eu/data/fji.svg',
     regionalBlocs: [],
-    cioc: 'FIJ'
+    cioc: 'FIJ',
   },
   {
     name: 'Finland',
@@ -4448,7 +4687,8 @@ const Countries = [
       'Suomi',
       'Republic of Finland',
       'Suomen tasavalta',
-      'Republiken Finland'],
+      'Republiken Finland',
+    ],
     region: 'Europe',
     subregion: 'Northern Europe',
     population: 5491817,
@@ -4466,14 +4706,15 @@ const Countries = [
         iso639_1: 'fi',
         iso639_2: 'fin',
         name: 'Finnish',
-        nativeName: 'suomi'
+        nativeName: 'suomi',
       },
       {
         iso639_1: 'sv',
         iso639_2: 'swe',
         name: 'Swedish',
-        nativeName: 'svenska'
-      }],
+        nativeName: 'svenska',
+      },
+    ],
     translations: {
       de: 'Finnland',
       es: 'Finlandia',
@@ -4484,7 +4725,7 @@ const Countries = [
       pt: 'Finlândia',
       nl: 'Finland',
       hr: 'Finska',
-      fa: 'فنلاند'
+      fa: 'فنلاند',
     },
     flag: 'https://restcountries.eu/data/fin.svg',
     regionalBlocs: [
@@ -4492,9 +4733,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'FIN'
+        otherNames: [],
+      },
+    ],
+    cioc: 'FIN',
   },
   {
     name: 'France',
@@ -4523,7 +4765,8 @@ const Countries = [
       'UTC+04:00',
       'UTC+05:00',
       'UTC+11:00',
-      'UTC+12:00'],
+      'UTC+12:00',
+    ],
     borders: ['AND', 'BEL', 'DEU', 'ITA', 'LUX', 'MCO', 'ESP', 'CHE'],
     nativeName: 'France',
     numericCode: '250',
@@ -4533,8 +4776,9 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Frankreich',
       es: 'Francia',
@@ -4545,7 +4789,7 @@ const Countries = [
       pt: 'França',
       nl: 'Frankrijk',
       hr: 'Francuska',
-      fa: 'فرانسه'
+      fa: 'فرانسه',
     },
     flag: 'https://restcountries.eu/data/fra.svg',
     regionalBlocs: [
@@ -4553,9 +4797,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'FRA'
+        otherNames: [],
+      },
+    ],
+    cioc: 'FRA',
   },
   {
     name: 'French Guiana',
@@ -4582,8 +4827,9 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Französisch Guyana',
       es: 'Guayana Francesa',
@@ -4594,7 +4840,7 @@ const Countries = [
       pt: 'Guiana Francesa',
       nl: 'Frans-Guyana',
       hr: 'Francuska Gvajana',
-      fa: 'گویان فرانسه'
+      fa: 'گویان فرانسه',
     },
     flag: 'https://restcountries.eu/data/guf.svg',
     regionalBlocs: [
@@ -4606,15 +4852,17 @@ const Countries = [
           'Unión de Naciones Suramericanas',
           'União de Nações Sul-Americanas',
           'Unie van Zuid-Amerikaanse Naties',
-          'South American Union']
+          'South American Union',
+        ],
       },
       {
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: ''
+        otherNames: [],
+      },
+    ],
+    cioc: '',
   },
   {
     name: 'French Polynesia',
@@ -4627,7 +4875,8 @@ const Countries = [
       'PF',
       'Polynésie française',
       'French Polynesia',
-      'Pōrīnetia Farāni'],
+      'Pōrīnetia Farāni',
+    ],
     region: 'Oceania',
     subregion: 'Polynesia',
     population: 271800,
@@ -4645,8 +4894,9 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Französisch-Polynesien',
       es: 'Polinesia Francesa',
@@ -4657,11 +4907,11 @@ const Countries = [
       pt: 'Polinésia Francesa',
       nl: 'Frans-Polynesië',
       hr: 'Francuska Polinezija',
-      fa: 'پلی‌نزی فرانسه'
+      fa: 'پلی‌نزی فرانسه',
     },
     flag: 'https://restcountries.eu/data/pyf.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'French Southern Territories',
@@ -4688,8 +4938,9 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Französische Süd- und Antarktisgebiete',
       es: 'Tierras Australes y Antárticas Francesas',
@@ -4700,7 +4951,7 @@ const Countries = [
       pt: 'Terras Austrais e Antárticas Francesas',
       nl: 'Franse Gebieden in de zuidelijke Indische Oceaan',
       hr: 'Francuski južni i antarktički teritoriji',
-      fa: 'سرزمین‌های جنوبی و جنوبگانی فرانسه'
+      fa: 'سرزمین‌های جنوبی و جنوبگانی فرانسه',
     },
     flag: 'https://restcountries.eu/data/atf.svg',
     regionalBlocs: [
@@ -4713,9 +4964,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: ''
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: '',
   },
   {
     name: 'Gabon',
@@ -4740,15 +4993,17 @@ const Countries = [
       {
         code: 'XAF',
         name: 'Central African CFA franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Gabun',
       es: 'Gabón',
@@ -4759,7 +5014,7 @@ const Countries = [
       pt: 'Gabão',
       nl: 'Gabon',
       hr: 'Gabon',
-      fa: 'گابن'
+      fa: 'گابن',
     },
     flag: 'https://restcountries.eu/data/gab.svg',
     regionalBlocs: [
@@ -4772,9 +5027,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'GAB'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'GAB',
   },
   {
     name: 'Gambia',
@@ -4801,8 +5058,9 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Gambia',
       es: 'Gambia',
@@ -4813,7 +5071,7 @@ const Countries = [
       pt: 'Gâmbia',
       nl: 'Gambia',
       hr: 'Gambija',
-      fa: 'گامبیا'
+      fa: 'گامبیا',
     },
     flag: 'https://restcountries.eu/data/gmb.svg',
     regionalBlocs: [
@@ -4826,9 +5084,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'GAM'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'GAM',
   },
   {
     name: 'Georgia',
@@ -4855,8 +5115,9 @@ const Countries = [
         iso639_1: 'ka',
         iso639_2: 'kat',
         name: 'Georgian',
-        nativeName: 'ქართული'
-      }],
+        nativeName: 'ქართული',
+      },
+    ],
     translations: {
       de: 'Georgien',
       es: 'Georgia',
@@ -4867,11 +5128,11 @@ const Countries = [
       pt: 'Geórgia',
       nl: 'Georgië',
       hr: 'Gruzija',
-      fa: 'گرجستان'
+      fa: 'گرجستان',
     },
     flag: 'https://restcountries.eu/data/geo.svg',
     regionalBlocs: [],
-    cioc: 'GEO'
+    cioc: 'GEO',
   },
   {
     name: 'Germany',
@@ -4883,7 +5144,8 @@ const Countries = [
     altSpellings: [
       'DE',
       'Federal Republic of Germany',
-      'Bundesrepublik Deutschland'],
+      'Bundesrepublik Deutschland',
+    ],
     region: 'Europe',
     subregion: 'Western Europe',
     population: 81770900,
@@ -4901,8 +5163,9 @@ const Countries = [
         iso639_1: 'de',
         iso639_2: 'deu',
         name: 'German',
-        nativeName: 'Deutsch'
-      }],
+        nativeName: 'Deutsch',
+      },
+    ],
     translations: {
       de: 'Deutschland',
       es: 'Alemania',
@@ -4913,7 +5176,7 @@ const Countries = [
       pt: 'Alemanha',
       nl: 'Duitsland',
       hr: 'Njemačka',
-      fa: 'آلمان'
+      fa: 'آلمان',
     },
     flag: 'https://restcountries.eu/data/deu.svg',
     regionalBlocs: [
@@ -4921,9 +5184,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'GER'
+        otherNames: [],
+      },
+    ],
+    cioc: 'GER',
   },
   {
     name: 'Ghana',
@@ -4950,8 +5214,9 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Ghana',
       es: 'Ghana',
@@ -4962,7 +5227,7 @@ const Countries = [
       pt: 'Gana',
       nl: 'Ghana',
       hr: 'Gana',
-      fa: 'غنا'
+      fa: 'غنا',
     },
     flag: 'https://restcountries.eu/data/gha.svg',
     regionalBlocs: [
@@ -4975,9 +5240,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'GHA'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'GHA',
   },
   {
     name: 'Gibraltar',
@@ -5004,8 +5271,9 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Gibraltar',
       es: 'Gibraltar',
@@ -5016,7 +5284,7 @@ const Countries = [
       pt: 'Gibraltar',
       nl: 'Gibraltar',
       hr: 'Gibraltar',
-      fa: 'جبل‌طارق'
+      fa: 'جبل‌طارق',
     },
     flag: 'https://restcountries.eu/data/gib.svg',
     regionalBlocs: [
@@ -5024,9 +5292,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: ''
+        otherNames: [],
+      },
+    ],
+    cioc: '',
   },
   {
     name: 'Greece',
@@ -5035,11 +5304,7 @@ const Countries = [
     alpha3Code: 'GRC',
     callingCodes: ['30'],
     capital: 'Athens',
-    altSpellings: [
-      'GR',
-      'Elláda',
-      'Hellenic Republic',
-      'Ελληνική Δημοκρατία'],
+    altSpellings: ['GR', 'Elláda', 'Hellenic Republic', 'Ελληνική Δημοκρατία'],
     region: 'Europe',
     subregion: 'Southern Europe',
     population: 10858018,
@@ -5057,8 +5322,9 @@ const Countries = [
         iso639_1: 'el',
         iso639_2: 'ell',
         name: 'Greek (modern)',
-        nativeName: 'ελληνικά'
-      }],
+        nativeName: 'ελληνικά',
+      },
+    ],
     translations: {
       de: 'Griechenland',
       es: 'Grecia',
@@ -5069,7 +5335,7 @@ const Countries = [
       pt: 'Grécia',
       nl: 'Griekenland',
       hr: 'Grčka',
-      fa: 'یونان'
+      fa: 'یونان',
     },
     flag: 'https://restcountries.eu/data/grc.svg',
     regionalBlocs: [
@@ -5077,9 +5343,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'GRE'
+        otherNames: [],
+      },
+    ],
+    cioc: 'GRE',
   },
   {
     name: 'Greenland',
@@ -5106,8 +5373,9 @@ const Countries = [
         iso639_1: 'kl',
         iso639_2: 'kal',
         name: 'Kalaallisut',
-        nativeName: 'kalaallisut'
-      }],
+        nativeName: 'kalaallisut',
+      },
+    ],
     translations: {
       de: 'Grönland',
       es: 'Groenlandia',
@@ -5118,11 +5386,11 @@ const Countries = [
       pt: 'Gronelândia',
       nl: 'Groenland',
       hr: 'Grenland',
-      fa: 'گرینلند'
+      fa: 'گرینلند',
     },
     flag: 'https://restcountries.eu/data/grl.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Grenada',
@@ -5130,7 +5398,7 @@ const Countries = [
     alpha2Code: 'GD',
     alpha3Code: 'GRD',
     callingCodes: ['1473'],
-    capital: 'St. George\'s',
+    capital: "St. George's",
     altSpellings: ['GD'],
     region: 'Americas',
     subregion: 'Caribbean',
@@ -5147,15 +5415,17 @@ const Countries = [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Grenada',
       es: 'Grenada',
@@ -5166,7 +5436,7 @@ const Countries = [
       pt: 'Granada',
       nl: 'Grenada',
       hr: 'Grenada',
-      fa: 'گرنادا'
+      fa: 'گرنادا',
     },
     flag: 'https://restcountries.eu/data/grd.svg',
     regionalBlocs: [
@@ -5177,9 +5447,11 @@ const Countries = [
         otherNames: [
           'Comunidad del Caribe',
           'Communauté Caribéenne',
-          'Caribische Gemeenschap']
-      }],
-    cioc: 'GRN'
+          'Caribische Gemeenschap',
+        ],
+      },
+    ],
+    cioc: 'GRN',
   },
   {
     name: 'Guadeloupe',
@@ -5206,8 +5478,9 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Guadeloupe',
       es: 'Guadalupe',
@@ -5218,11 +5491,11 @@ const Countries = [
       pt: 'Guadalupe',
       nl: 'Guadeloupe',
       hr: 'Gvadalupa',
-      fa: 'جزیره گوادلوپ'
+      fa: 'جزیره گوادلوپ',
     },
     flag: 'https://restcountries.eu/data/glp.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Guam',
@@ -5247,27 +5520,29 @@ const Countries = [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'ch',
         iso639_2: 'cha',
         name: 'Chamorro',
-        nativeName: 'Chamoru'
+        nativeName: 'Chamoru',
       },
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Guam',
       es: 'Guam',
@@ -5278,11 +5553,11 @@ const Countries = [
       pt: 'Guame',
       nl: 'Guam',
       hr: 'Guam',
-      fa: 'گوام'
+      fa: 'گوام',
     },
     flag: 'https://restcountries.eu/data/gum.svg',
     regionalBlocs: [],
-    cioc: 'GUM'
+    cioc: 'GUM',
   },
   {
     name: 'Guatemala',
@@ -5307,15 +5582,17 @@ const Countries = [
       {
         code: 'GTQ',
         name: 'Guatemalan quetzal',
-        symbol: 'Q'
-      }],
+        symbol: 'Q',
+      },
+    ],
     languages: [
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Guatemala',
       es: 'Guatemala',
@@ -5326,7 +5603,7 @@ const Countries = [
       pt: 'Guatemala',
       nl: 'Guatemala',
       hr: 'Gvatemala',
-      fa: 'گواتمالا'
+      fa: 'گواتمالا',
     },
     flag: 'https://restcountries.eu/data/gtm.svg',
     regionalBlocs: [
@@ -5334,9 +5611,10 @@ const Countries = [
         acronym: 'CAIS',
         name: 'Central American Integration System',
         otherAcronyms: ['SICA'],
-        otherNames: ['Sistema de la Integración Centroamericana,']
-      }],
-    cioc: 'GUA'
+        otherNames: ['Sistema de la Integración Centroamericana,'],
+      },
+    ],
+    cioc: 'GUA',
   },
   {
     name: 'Guernsey',
@@ -5359,20 +5637,22 @@ const Countries = [
     numericCode: '831',
     currencies: [
       { code: 'GBP', name: 'British pound', symbol: '£' },
-      { code: '(none)', name: 'Guernsey pound', symbol: '£' }],
+      { code: '(none)', name: 'Guernsey pound', symbol: '£' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Guernsey',
       es: 'Guernsey',
@@ -5383,11 +5663,11 @@ const Countries = [
       pt: 'Guernsey',
       nl: 'Guernsey',
       hr: 'Guernsey',
-      fa: 'گرنزی'
+      fa: 'گرنزی',
     },
     flag: 'https://restcountries.eu/data/ggy.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Guinea',
@@ -5414,14 +5694,15 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'ff',
         iso639_2: 'ful',
         name: 'Fula',
-        nativeName: 'Fulfulde'
-      }],
+        nativeName: 'Fulfulde',
+      },
+    ],
     translations: {
       de: 'Guinea',
       es: 'Guinea',
@@ -5432,7 +5713,7 @@ const Countries = [
       pt: 'Guiné',
       nl: 'Guinee',
       hr: 'Gvineja',
-      fa: 'گینه'
+      fa: 'گینه',
     },
     flag: 'https://restcountries.eu/data/gin.svg',
     regionalBlocs: [
@@ -5445,9 +5726,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'GUI'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'GUI',
   },
   {
     name: 'Guinea-Bissau',
@@ -5459,7 +5742,8 @@ const Countries = [
     altSpellings: [
       'GW',
       'Republic of Guinea-Bissau',
-      'República da Guiné-Bissau'],
+      'República da Guiné-Bissau',
+    ],
     region: 'Africa',
     subregion: 'Western Africa',
     population: 1547777,
@@ -5475,15 +5759,17 @@ const Countries = [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'pt',
         iso639_2: 'por',
         name: 'Portuguese',
-        nativeName: 'Português'
-      }],
+        nativeName: 'Português',
+      },
+    ],
     translations: {
       de: 'Guinea-Bissau',
       es: 'Guinea-Bisáu',
@@ -5494,7 +5780,7 @@ const Countries = [
       pt: 'Guiné-Bissau',
       nl: 'Guinee-Bissau',
       hr: 'Gvineja Bisau',
-      fa: 'گینه بیسائو'
+      fa: 'گینه بیسائو',
     },
     flag: 'https://restcountries.eu/data/gnb.svg',
     regionalBlocs: [
@@ -5507,9 +5793,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'GBS'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'GBS',
   },
   {
     name: 'Guyana',
@@ -5536,8 +5824,9 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Guyana',
       es: 'Guyana',
@@ -5548,7 +5837,7 @@ const Countries = [
       pt: 'Guiana',
       nl: 'Guyana',
       hr: 'Gvajana',
-      fa: 'گویان'
+      fa: 'گویان',
     },
     flag: 'https://restcountries.eu/data/guy.svg',
     regionalBlocs: [
@@ -5559,7 +5848,8 @@ const Countries = [
         otherNames: [
           'Comunidad del Caribe',
           'Communauté Caribéenne',
-          'Caribische Gemeenschap']
+          'Caribische Gemeenschap',
+        ],
       },
       {
         acronym: 'USAN',
@@ -5569,9 +5859,11 @@ const Countries = [
           'Unión de Naciones Suramericanas',
           'União de Nações Sul-Americanas',
           'Unie van Zuid-Amerikaanse Naties',
-          'South American Union']
-      }],
-    cioc: 'GUY'
+          'South American Union',
+        ],
+      },
+    ],
+    cioc: 'GUY',
   },
   {
     name: 'Haiti',
@@ -5583,8 +5875,9 @@ const Countries = [
     altSpellings: [
       'HT',
       'Republic of Haiti',
-      'République d\'Haïti',
-      'Repiblik Ayiti'],
+      "République d'Haïti",
+      'Repiblik Ayiti',
+    ],
     region: 'Americas',
     subregion: 'Caribbean',
     population: 11078033,
@@ -5602,14 +5895,15 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'ht',
         iso639_2: 'hat',
         name: 'Haitian',
-        nativeName: 'Kreyòl ayisyen'
-      }],
+        nativeName: 'Kreyòl ayisyen',
+      },
+    ],
     translations: {
       de: 'Haiti',
       es: 'Haiti',
@@ -5620,7 +5914,7 @@ const Countries = [
       pt: 'Haiti',
       nl: 'Haïti',
       hr: 'Haiti',
-      fa: 'هائیتی'
+      fa: 'هائیتی',
     },
     flag: 'https://restcountries.eu/data/hti.svg',
     regionalBlocs: [
@@ -5631,9 +5925,11 @@ const Countries = [
         otherNames: [
           'Comunidad del Caribe',
           'Communauté Caribéenne',
-          'Caribische Gemeenschap']
-      }],
-    cioc: 'HAI'
+          'Caribische Gemeenschap',
+        ],
+      },
+    ],
+    cioc: 'HAI',
   },
   {
     name: 'Heard Island and McDonald Islands',
@@ -5658,15 +5954,17 @@ const Countries = [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Heard und die McDonaldinseln',
       es: 'Islas Heard y McDonald',
@@ -5677,11 +5975,11 @@ const Countries = [
       pt: 'Ilha Heard e Ilhas McDonald',
       nl: 'Heard- en McDonaldeilanden',
       hr: 'Otok Heard i otočje McDonald',
-      fa: 'جزیره هرد و جزایر مک‌دونالد'
+      fa: 'جزیره هرد و جزایر مک‌دونالد',
     },
     flag: 'https://restcountries.eu/data/hmd.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Holy See',
@@ -5708,26 +6006,27 @@ const Countries = [
         iso639_1: 'la',
         iso639_2: 'lat',
         name: 'Latin',
-        nativeName: 'latine'
+        nativeName: 'latine',
       },
       {
         iso639_1: 'it',
         iso639_2: 'ita',
         name: 'Italian',
-        nativeName: 'Italiano'
+        nativeName: 'Italiano',
       },
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'de',
         iso639_2: 'deu',
         name: 'German',
-        nativeName: 'Deutsch'
-      }],
+        nativeName: 'Deutsch',
+      },
+    ],
     translations: {
       de: 'Heiliger Stuhl',
       es: 'Santa Sede',
@@ -5738,11 +6037,11 @@ const Countries = [
       pt: 'Vaticano',
       nl: 'Heilige Stoel',
       hr: 'Sveta Stolica',
-      fa: 'سریر مقدس'
+      fa: 'سریر مقدس',
     },
     flag: 'https://restcountries.eu/data/vat.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Honduras',
@@ -5767,15 +6066,17 @@ const Countries = [
       {
         code: 'HNL',
         name: 'Honduran lempira',
-        symbol: 'L'
-      }],
+        symbol: 'L',
+      },
+    ],
     languages: [
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Honduras',
       es: 'Honduras',
@@ -5786,7 +6087,7 @@ const Countries = [
       pt: 'Honduras',
       nl: 'Honduras',
       hr: 'Honduras',
-      fa: 'هندوراس'
+      fa: 'هندوراس',
     },
     flag: 'https://restcountries.eu/data/hnd.svg',
     regionalBlocs: [
@@ -5794,9 +6095,10 @@ const Countries = [
         acronym: 'CAIS',
         name: 'Central American Integration System',
         otherAcronyms: ['SICA'],
-        otherNames: ['Sistema de la Integración Centroamericana,']
-      }],
-    cioc: 'HON'
+        otherNames: ['Sistema de la Integración Centroamericana,'],
+      },
+    ],
+    cioc: 'HON',
   },
   {
     name: 'Hong Kong (SAR)',
@@ -5821,21 +6123,23 @@ const Countries = [
       {
         code: 'HKD',
         name: 'Hong Kong dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'zh',
         iso639_2: 'zho',
         name: 'Chinese',
-        nativeName: '中文 (Zhōngwén)'
-      }],
+        nativeName: '中文 (Zhōngwén)',
+      },
+    ],
     translations: {
       de: 'Hong Kong',
       es: 'Hong Kong',
@@ -5846,11 +6150,11 @@ const Countries = [
       pt: 'Hong Kong',
       nl: 'Hongkong',
       hr: 'Hong Kong',
-      fa: 'هنگ‌کنگ'
+      fa: 'هنگ‌کنگ',
     },
     flag: 'https://restcountries.eu/data/hkg.svg',
     regionalBlocs: [],
-    cioc: 'HKG'
+    cioc: 'HKG',
   },
   {
     name: 'Hungary',
@@ -5875,15 +6179,17 @@ const Countries = [
       {
         code: 'HUF',
         name: 'Hungarian forint',
-        symbol: 'Ft'
-      }],
+        symbol: 'Ft',
+      },
+    ],
     languages: [
       {
         iso639_1: 'hu',
         iso639_2: 'hun',
         name: 'Hungarian',
-        nativeName: 'magyar'
-      }],
+        nativeName: 'magyar',
+      },
+    ],
     translations: {
       de: 'Ungarn',
       es: 'Hungría',
@@ -5894,7 +6200,7 @@ const Countries = [
       pt: 'Hungria',
       nl: 'Hongarije',
       hr: 'Mađarska',
-      fa: 'مجارستان'
+      fa: 'مجارستان',
     },
     flag: 'https://restcountries.eu/data/hun.svg',
     regionalBlocs: [
@@ -5902,9 +6208,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'HUN'
+        otherNames: [],
+      },
+    ],
+    cioc: 'HUN',
   },
   {
     name: 'Iceland',
@@ -5929,15 +6236,17 @@ const Countries = [
       {
         code: 'ISK',
         name: 'Icelandic króna',
-        symbol: 'kr'
-      }],
+        symbol: 'kr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'is',
         iso639_2: 'isl',
         name: 'Icelandic',
-        nativeName: 'Íslenska'
-      }],
+        nativeName: 'Íslenska',
+      },
+    ],
     translations: {
       de: 'Island',
       es: 'Islandia',
@@ -5948,7 +6257,7 @@ const Countries = [
       pt: 'Islândia',
       nl: 'IJsland',
       hr: 'Island',
-      fa: 'ایسلند'
+      fa: 'ایسلند',
     },
     flag: 'https://restcountries.eu/data/isl.svg',
     regionalBlocs: [
@@ -5956,9 +6265,10 @@ const Countries = [
         acronym: 'EFTA',
         name: 'European Free Trade Association',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'ISL'
+        otherNames: [],
+      },
+    ],
+    cioc: 'ISL',
   },
   {
     name: 'India',
@@ -5985,14 +6295,15 @@ const Countries = [
         iso639_1: 'hi',
         iso639_2: 'hin',
         name: 'Hindi',
-        nativeName: 'हिन्दी'
+        nativeName: 'हिन्दी',
       },
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Indien',
       es: 'India',
@@ -6003,7 +6314,7 @@ const Countries = [
       pt: 'Índia',
       nl: 'India',
       hr: 'Indija',
-      fa: 'هند'
+      fa: 'هند',
     },
     flag: 'https://restcountries.eu/data/ind.svg',
     regionalBlocs: [
@@ -6011,9 +6322,10 @@ const Countries = [
         acronym: 'SAARC',
         name: 'South Asian Association for Regional Cooperation',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'IND'
+        otherNames: [],
+      },
+    ],
+    cioc: 'IND',
   },
   {
     name: 'Indonesia',
@@ -6038,15 +6350,17 @@ const Countries = [
       {
         code: 'IDR',
         name: 'Indonesian rupiah',
-        symbol: 'Rp'
-      }],
+        symbol: 'Rp',
+      },
+    ],
     languages: [
       {
         iso639_1: 'id',
         iso639_2: 'ind',
         name: 'Indonesian',
-        nativeName: 'Bahasa Indonesia'
-      }],
+        nativeName: 'Bahasa Indonesia',
+      },
+    ],
     translations: {
       de: 'Indonesien',
       es: 'Indonesia',
@@ -6057,7 +6371,7 @@ const Countries = [
       pt: 'Indonésia',
       nl: 'Indonesië',
       hr: 'Indonezija',
-      fa: 'اندونزی'
+      fa: 'اندونزی',
     },
     flag: 'https://restcountries.eu/data/idn.svg',
     regionalBlocs: [
@@ -6065,12 +6379,13 @@ const Countries = [
         acronym: 'ASEAN',
         name: 'Association of Southeast Asian Nations',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'INA'
+        otherNames: [],
+      },
+    ],
+    cioc: 'INA',
   },
   {
-    name: 'Côte d\'Ivoire',
+    name: "Côte d'Ivoire",
     topLevelDomain: ['.ci'],
     alpha2Code: 'CI',
     alpha3Code: 'CIV',
@@ -6079,8 +6394,9 @@ const Countries = [
     altSpellings: [
       'CI',
       'Ivory Coast',
-      'Republic of Côte d\'Ivoire',
-      'République de Côte d\'Ivoire'],
+      "Republic of Côte d'Ivoire",
+      "République de Côte d'Ivoire",
+    ],
     region: 'Africa',
     subregion: 'Western Africa',
     population: 22671331,
@@ -6090,32 +6406,34 @@ const Countries = [
     gini: 41.5,
     timezones: ['UTC'],
     borders: ['BFA', 'GHA', 'GIN', 'LBR', 'MLI'],
-    nativeName: 'Côte d\'Ivoire',
+    nativeName: "Côte d'Ivoire",
     numericCode: '384',
     currencies: [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Elfenbeinküste',
       es: 'Costa de Marfil',
-      fr: 'Côte d\'Ivoire',
+      fr: "Côte d'Ivoire",
       ja: 'コートジボワール',
-      it: 'Costa D\'Avorio',
+      it: "Costa D'Avorio",
       br: 'Costa do Marfim',
       pt: 'Costa do Marfim',
       nl: 'Ivoorkust',
       hr: 'Obala Bjelokosti',
-      fa: 'ساحل عاج'
+      fa: 'ساحل عاج',
     },
     flag: 'https://restcountries.eu/data/civ.svg',
     regionalBlocs: [
@@ -6128,9 +6446,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'CIV'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'CIV',
   },
   {
     name: 'Iran (Islamic Republic of)',
@@ -6142,7 +6462,8 @@ const Countries = [
     altSpellings: [
       'IR',
       'Islamic Republic of Iran',
-      'Jomhuri-ye Eslāmi-ye Irān'],
+      'Jomhuri-ye Eslāmi-ye Irān',
+    ],
     region: 'Asia',
     subregion: 'Southern Asia',
     population: 79369900,
@@ -6160,8 +6481,9 @@ const Countries = [
         iso639_1: 'fa',
         iso639_2: 'fas',
         name: 'Persian (Farsi)',
-        nativeName: 'فارسی'
-      }],
+        nativeName: 'فارسی',
+      },
+    ],
     translations: {
       de: 'Iran',
       es: 'Iran',
@@ -6172,11 +6494,11 @@ const Countries = [
       pt: 'Irão',
       nl: 'Iran',
       hr: 'Iran',
-      fa: 'ایران'
+      fa: 'ایران',
     },
     flag: 'https://restcountries.eu/data/irn.svg',
     regionalBlocs: [],
-    cioc: 'IRI'
+    cioc: 'IRI',
   },
   {
     name: 'Iraq',
@@ -6203,14 +6525,15 @@ const Countries = [
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
+        nativeName: 'العربية',
       },
       {
         iso639_1: 'ku',
         iso639_2: 'kur',
         name: 'Kurdish',
-        nativeName: 'Kurdî'
-      }],
+        nativeName: 'Kurdî',
+      },
+    ],
     translations: {
       de: 'Irak',
       es: 'Irak',
@@ -6221,7 +6544,7 @@ const Countries = [
       pt: 'Iraque',
       nl: 'Irak',
       hr: 'Irak',
-      fa: 'عراق'
+      fa: 'عراق',
     },
     flag: 'https://restcountries.eu/data/irq.svg',
     regionalBlocs: [
@@ -6232,9 +6555,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'IRQ'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'IRQ',
   },
   {
     name: 'Ireland',
@@ -6243,11 +6568,7 @@ const Countries = [
     alpha3Code: 'IRL',
     callingCodes: ['353'],
     capital: 'Dublin',
-    altSpellings: [
-      'IE',
-      'Éire',
-      'Republic of Ireland',
-      'Poblacht na hÉireann'],
+    altSpellings: ['IE', 'Éire', 'Republic of Ireland', 'Poblacht na hÉireann'],
     region: 'Europe',
     subregion: 'Northern Europe',
     population: 6378000,
@@ -6265,14 +6586,15 @@ const Countries = [
         iso639_1: 'ga',
         iso639_2: 'gle',
         name: 'Irish',
-        nativeName: 'Gaeilge'
+        nativeName: 'Gaeilge',
       },
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Irland',
       es: 'Irlanda',
@@ -6283,7 +6605,7 @@ const Countries = [
       pt: 'Irlanda',
       nl: 'Ierland',
       hr: 'Irska',
-      fa: 'ایرلند'
+      fa: 'ایرلند',
     },
     flag: 'https://restcountries.eu/data/irl.svg',
     regionalBlocs: [
@@ -6291,9 +6613,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'IRL'
+        otherNames: [],
+      },
+    ],
+    cioc: 'IRL',
   },
   {
     name: 'Isle of Man',
@@ -6316,20 +6639,22 @@ const Countries = [
     numericCode: '833',
     currencies: [
       { code: 'GBP', name: 'British pound', symbol: '£' },
-      { code: 'IMP[G]', name: 'Manx pound', symbol: '£' }],
+      { code: 'IMP[G]', name: 'Manx pound', symbol: '£' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'gv',
         iso639_2: 'glv',
         name: 'Manx',
-        nativeName: 'Gaelg'
-      }],
+        nativeName: 'Gaelg',
+      },
+    ],
     translations: {
       de: 'Insel Man',
       es: 'Isla de Man',
@@ -6340,7 +6665,7 @@ const Countries = [
       pt: 'Ilha de Man',
       nl: 'Isle of Man',
       hr: 'Otok Man',
-      fa: 'جزیره من'
+      fa: 'جزیره من',
     },
     flag: 'https://restcountries.eu/data/imn.svg',
     regionalBlocs: [
@@ -6348,9 +6673,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: ''
+        otherNames: [],
+      },
+    ],
+    cioc: '',
   },
   {
     name: 'Israel',
@@ -6359,7 +6685,7 @@ const Countries = [
     alpha3Code: 'ISR',
     callingCodes: ['972'],
     capital: 'Jerusalem',
-    altSpellings: ['IL', 'State of Israel', 'Medīnat Yisrā\'el'],
+    altSpellings: ['IL', 'State of Israel', "Medīnat Yisrā'el"],
     region: 'Asia',
     subregion: 'Western Asia',
     population: 8527400,
@@ -6375,21 +6701,23 @@ const Countries = [
       {
         code: 'ILS',
         name: 'Israeli new shekel',
-        symbol: '₪'
-      }],
+        symbol: '₪',
+      },
+    ],
     languages: [
       {
         iso639_1: 'he',
         iso639_2: 'heb',
         name: 'Hebrew (modern)',
-        nativeName: 'עברית'
+        nativeName: 'עברית',
       },
       {
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Israel',
       es: 'Israel',
@@ -6400,11 +6728,11 @@ const Countries = [
       pt: 'Israel',
       nl: 'Israël',
       hr: 'Izrael',
-      fa: 'اسرائیل'
+      fa: 'اسرائیل',
     },
     flag: 'https://restcountries.eu/data/isr.svg',
     regionalBlocs: [],
-    cioc: 'ISR'
+    cioc: 'ISR',
   },
   {
     name: 'Italy',
@@ -6431,8 +6759,9 @@ const Countries = [
         iso639_1: 'it',
         iso639_2: 'ita',
         name: 'Italian',
-        nativeName: 'Italiano'
-      }],
+        nativeName: 'Italiano',
+      },
+    ],
     translations: {
       de: 'Italien',
       es: 'Italia',
@@ -6443,7 +6772,7 @@ const Countries = [
       pt: 'Itália',
       nl: 'Italië',
       hr: 'Italija',
-      fa: 'ایتالیا'
+      fa: 'ایتالیا',
     },
     flag: 'https://restcountries.eu/data/ita.svg',
     regionalBlocs: [
@@ -6451,9 +6780,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'ITA'
+        otherNames: [],
+      },
+    ],
+    cioc: 'ITA',
   },
   {
     name: 'Jamaica',
@@ -6480,8 +6810,9 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Jamaika',
       es: 'Jamaica',
@@ -6492,7 +6823,7 @@ const Countries = [
       pt: 'Jamaica',
       nl: 'Jamaica',
       hr: 'Jamajka',
-      fa: 'جامائیکا'
+      fa: 'جامائیکا',
     },
     flag: 'https://restcountries.eu/data/jam.svg',
     regionalBlocs: [
@@ -6503,9 +6834,11 @@ const Countries = [
         otherNames: [
           'Comunidad del Caribe',
           'Communauté Caribéenne',
-          'Caribische Gemeenschap']
-      }],
-    cioc: 'JAM'
+          'Caribische Gemeenschap',
+        ],
+      },
+    ],
+    cioc: 'JAM',
   },
   {
     name: 'Japan',
@@ -6532,8 +6865,9 @@ const Countries = [
         iso639_1: 'ja',
         iso639_2: 'jpn',
         name: 'Japanese',
-        nativeName: '日本語 (にほんご)'
-      }],
+        nativeName: '日本語 (にほんご)',
+      },
+    ],
     translations: {
       de: 'Japan',
       es: 'Japón',
@@ -6544,11 +6878,11 @@ const Countries = [
       pt: 'Japão',
       nl: 'Japan',
       hr: 'Japan',
-      fa: 'ژاپن'
+      fa: 'ژاپن',
     },
     flag: 'https://restcountries.eu/data/jpn.svg',
     regionalBlocs: [],
-    cioc: 'JPN'
+    cioc: 'JPN',
   },
   {
     name: 'Jersey',
@@ -6561,7 +6895,8 @@ const Countries = [
       'JE',
       'Bailiwick of Jersey',
       'Bailliage de Jersey',
-      'Bailliage dé Jèrri'],
+      'Bailliage dé Jèrri',
+    ],
     region: 'Europe',
     subregion: 'Northern Europe',
     population: 100800,
@@ -6575,20 +6910,22 @@ const Countries = [
     numericCode: '832',
     currencies: [
       { code: 'GBP', name: 'British pound', symbol: '£' },
-      { code: 'JEP[G]', name: 'Jersey pound', symbol: '£' }],
+      { code: 'JEP[G]', name: 'Jersey pound', symbol: '£' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Jersey',
       es: 'Jersey',
@@ -6599,11 +6936,11 @@ const Countries = [
       pt: 'Jersey',
       nl: 'Jersey',
       hr: 'Jersey',
-      fa: 'جرزی'
+      fa: 'جرزی',
     },
     flag: 'https://restcountries.eu/data/jey.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Jordan',
@@ -6615,7 +6952,8 @@ const Countries = [
     altSpellings: [
       'JO',
       'Hashemite Kingdom of Jordan',
-      'al-Mamlakah al-Urdunīyah al-Hāshimīyah'],
+      'al-Mamlakah al-Urdunīyah al-Hāshimīyah',
+    ],
     region: 'Asia',
     subregion: 'Western Asia',
     population: 9531712,
@@ -6631,15 +6969,17 @@ const Countries = [
       {
         code: 'JOD',
         name: 'Jordanian dinar',
-        symbol: 'د.ا'
-      }],
+        symbol: 'د.ا',
+      },
+    ],
     languages: [
       {
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Jordanien',
       es: 'Jordania',
@@ -6650,7 +6990,7 @@ const Countries = [
       pt: 'Jordânia',
       nl: 'Jordanië',
       hr: 'Jordan',
-      fa: 'اردن'
+      fa: 'اردن',
     },
     flag: 'https://restcountries.eu/data/jor.svg',
     regionalBlocs: [
@@ -6661,9 +7001,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'JOR'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'JOR',
   },
   {
     name: 'Kazakhstan',
@@ -6680,7 +7022,8 @@ const Countries = [
       'Қазақстан Республикасы',
       'Qazaqstan Respublïkası',
       'Республика Казахстан',
-      'Respublika Kazakhstan'],
+      'Respublika Kazakhstan',
+    ],
     region: 'Asia',
     subregion: 'Central Asia',
     population: 17753200,
@@ -6696,21 +7039,23 @@ const Countries = [
       {
         code: 'KZT',
         name: 'Kazakhstani tenge',
-        symbol: null
-      }],
+        symbol: null,
+      },
+    ],
     languages: [
       {
         iso639_1: 'kk',
         iso639_2: 'kaz',
         name: 'Kazakh',
-        nativeName: 'қазақ тілі'
+        nativeName: 'қазақ тілі',
       },
       {
         iso639_1: 'ru',
         iso639_2: 'rus',
         name: 'Russian',
-        nativeName: 'Русский'
-      }],
+        nativeName: 'Русский',
+      },
+    ],
     translations: {
       de: 'Kasachstan',
       es: 'Kazajistán',
@@ -6721,7 +7066,7 @@ const Countries = [
       pt: 'Cazaquistão',
       nl: 'Kazachstan',
       hr: 'Kazahstan',
-      fa: 'قزاقستان'
+      fa: 'قزاقستان',
     },
     flag: 'https://restcountries.eu/data/kaz.svg',
     regionalBlocs: [
@@ -6729,9 +7074,10 @@ const Countries = [
         acronym: 'EEU',
         name: 'Eurasian Economic Union',
         otherAcronyms: ['EAEU'],
-        otherNames: []
-      }],
-    cioc: 'KAZ'
+        otherNames: [],
+      },
+    ],
+    cioc: 'KAZ',
   },
   {
     name: 'Kenya',
@@ -6756,21 +7102,23 @@ const Countries = [
       {
         code: 'KES',
         name: 'Kenyan shilling',
-        symbol: 'Sh'
-      }],
+        symbol: 'Sh',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'sw',
         iso639_2: 'swa',
         name: 'Swahili',
-        nativeName: 'Kiswahili'
-      }],
+        nativeName: 'Kiswahili',
+      },
+    ],
     translations: {
       de: 'Kenia',
       es: 'Kenia',
@@ -6781,7 +7129,7 @@ const Countries = [
       pt: 'Quénia',
       nl: 'Kenia',
       hr: 'Kenija',
-      fa: 'کنیا'
+      fa: 'کنیا',
     },
     flag: 'https://restcountries.eu/data/ken.svg',
     regionalBlocs: [
@@ -6794,9 +7142,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'KEN'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'KEN',
   },
   {
     name: 'Kiribati',
@@ -6821,15 +7171,18 @@ const Countries = [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
-      }, { code: '(none)', name: 'Kiribati dollar', symbol: '$' }],
+        symbol: '$',
+      },
+      { code: '(none)', name: 'Kiribati dollar', symbol: '$' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Kiribati',
       es: 'Kiribati',
@@ -6840,11 +7193,11 @@ const Countries = [
       pt: 'Quiribáti',
       nl: 'Kiribati',
       hr: 'Kiribati',
-      fa: 'کیریباتی'
+      fa: 'کیریباتی',
     },
     flag: 'https://restcountries.eu/data/kir.svg',
     regionalBlocs: [],
-    cioc: 'KIR'
+    cioc: 'KIR',
   },
   {
     name: 'Kuwait',
@@ -6871,8 +7224,9 @@ const Countries = [
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Kuwait',
       es: 'Kuwait',
@@ -6883,7 +7237,7 @@ const Countries = [
       pt: 'Kuwait',
       nl: 'Koeweit',
       hr: 'Kuvajt',
-      fa: 'کویت'
+      fa: 'کویت',
     },
     flag: 'https://restcountries.eu/data/kwt.svg',
     regionalBlocs: [
@@ -6894,9 +7248,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'KUW'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'KUW',
   },
   {
     name: 'Kyrgyzstan',
@@ -6910,7 +7266,8 @@ const Countries = [
       'Киргизия',
       'Kyrgyz Republic',
       'Кыргыз Республикасы',
-      'Kyrgyz Respublikasy'],
+      'Kyrgyz Respublikasy',
+    ],
     region: 'Asia',
     subregion: 'Central Asia',
     population: 6047800,
@@ -6928,14 +7285,15 @@ const Countries = [
         iso639_1: 'ky',
         iso639_2: 'kir',
         name: 'Kyrgyz',
-        nativeName: 'Кыргызча'
+        nativeName: 'Кыргызча',
       },
       {
         iso639_1: 'ru',
         iso639_2: 'rus',
         name: 'Russian',
-        nativeName: 'Русский'
-      }],
+        nativeName: 'Русский',
+      },
+    ],
     translations: {
       de: 'Kirgisistan',
       es: 'Kirguizistán',
@@ -6946,7 +7304,7 @@ const Countries = [
       pt: 'Quirguizistão',
       nl: 'Kirgizië',
       hr: 'Kirgistan',
-      fa: 'قرقیزستان'
+      fa: 'قرقیزستان',
     },
     flag: 'https://restcountries.eu/data/kgz.svg',
     regionalBlocs: [
@@ -6954,12 +7312,13 @@ const Countries = [
         acronym: 'EEU',
         name: 'Eurasian Economic Union',
         otherAcronyms: ['EAEU'],
-        otherNames: []
-      }],
-    cioc: 'KGZ'
+        otherNames: [],
+      },
+    ],
+    cioc: 'KGZ',
   },
   {
-    name: 'Lao People\'s Democratic Republic',
+    name: "Lao People's Democratic Republic",
     topLevelDomain: ['.la'],
     alpha2Code: 'LA',
     alpha3Code: 'LAO',
@@ -6969,8 +7328,9 @@ const Countries = [
       'LA',
       'Lao',
       'Laos',
-      'Lao People\'s Democratic Republic',
-      'Sathalanalat Paxathipatai Paxaxon Lao'],
+      "Lao People's Democratic Republic",
+      'Sathalanalat Paxathipatai Paxaxon Lao',
+    ],
     region: 'Asia',
     subregion: 'South-Eastern Asia',
     population: 6492400,
@@ -6988,8 +7348,9 @@ const Countries = [
         iso639_1: 'lo',
         iso639_2: 'lao',
         name: 'Lao',
-        nativeName: 'ພາສາລາວ'
-      }],
+        nativeName: 'ພາສາລາວ',
+      },
+    ],
     translations: {
       de: 'Laos',
       es: 'Laos',
@@ -7000,7 +7361,7 @@ const Countries = [
       pt: 'Laos',
       nl: 'Laos',
       hr: 'Laos',
-      fa: 'لائوس'
+      fa: 'لائوس',
     },
     flag: 'https://restcountries.eu/data/lao.svg',
     regionalBlocs: [
@@ -7008,9 +7369,10 @@ const Countries = [
         acronym: 'ASEAN',
         name: 'Association of Southeast Asian Nations',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'LAO'
+        otherNames: [],
+      },
+    ],
+    cioc: 'LAO',
   },
   {
     name: 'Latvia',
@@ -7037,8 +7399,9 @@ const Countries = [
         iso639_1: 'lv',
         iso639_2: 'lav',
         name: 'Latvian',
-        nativeName: 'latviešu valoda'
-      }],
+        nativeName: 'latviešu valoda',
+      },
+    ],
     translations: {
       de: 'Lettland',
       es: 'Letonia',
@@ -7049,7 +7412,7 @@ const Countries = [
       pt: 'Letónia',
       nl: 'Letland',
       hr: 'Latvija',
-      fa: 'لتونی'
+      fa: 'لتونی',
     },
     flag: 'https://restcountries.eu/data/lva.svg',
     regionalBlocs: [
@@ -7057,9 +7420,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'LAT'
+        otherNames: [],
+      },
+    ],
+    cioc: 'LAT',
   },
   {
     name: 'Lebanon',
@@ -7084,21 +7448,23 @@ const Countries = [
       {
         code: 'LBP',
         name: 'Lebanese pound',
-        symbol: 'ل.ل'
-      }],
+        symbol: 'ل.ل',
+      },
+    ],
     languages: [
       {
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
+        nativeName: 'العربية',
       },
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Libanon',
       es: 'Líbano',
@@ -7109,7 +7475,7 @@ const Countries = [
       pt: 'Líbano',
       nl: 'Libanon',
       hr: 'Libanon',
-      fa: 'لبنان'
+      fa: 'لبنان',
     },
     flag: 'https://restcountries.eu/data/lbn.svg',
     regionalBlocs: [
@@ -7120,9 +7486,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'LIB'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'LIB',
   },
   {
     name: 'Lesotho',
@@ -7145,20 +7513,22 @@ const Countries = [
     numericCode: '426',
     currencies: [
       { code: 'LSL', name: 'Lesotho loti', symbol: 'L' },
-      { code: 'ZAR', name: 'South African rand', symbol: 'R' }],
+      { code: 'ZAR', name: 'South African rand', symbol: 'R' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'st',
         iso639_2: 'sot',
         name: 'Southern Sotho',
-        nativeName: 'Sesotho'
-      }],
+        nativeName: 'Sesotho',
+      },
+    ],
     translations: {
       de: 'Lesotho',
       es: 'Lesotho',
@@ -7169,7 +7539,7 @@ const Countries = [
       pt: 'Lesoto',
       nl: 'Lesotho',
       hr: 'Lesoto',
-      fa: 'لسوتو'
+      fa: 'لسوتو',
     },
     flag: 'https://restcountries.eu/data/lso.svg',
     regionalBlocs: [
@@ -7182,9 +7552,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'LES'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'LES',
   },
   {
     name: 'Liberia',
@@ -7211,8 +7583,9 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Liberia',
       es: 'Liberia',
@@ -7223,7 +7596,7 @@ const Countries = [
       pt: 'Libéria',
       nl: 'Liberia',
       hr: 'Liberija',
-      fa: 'لیبریا'
+      fa: 'لیبریا',
     },
     flag: 'https://restcountries.eu/data/lbr.svg',
     regionalBlocs: [
@@ -7236,9 +7609,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'LBR'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'LBR',
   },
   {
     name: 'Libya',
@@ -7265,8 +7640,9 @@ const Countries = [
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Libyen',
       es: 'Libia',
@@ -7277,7 +7653,7 @@ const Countries = [
       pt: 'Líbia',
       nl: 'Libië',
       hr: 'Libija',
-      fa: 'لیبی'
+      fa: 'لیبی',
     },
     flag: 'https://restcountries.eu/data/lby.svg',
     regionalBlocs: [
@@ -7290,7 +7666,8 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
+          'Umoja wa Afrika',
+        ],
       },
       {
         acronym: 'AL',
@@ -7299,9 +7676,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'LBA'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'LBA',
   },
   {
     name: 'Liechtenstein',
@@ -7313,7 +7692,8 @@ const Countries = [
     altSpellings: [
       'LI',
       'Principality of Liechtenstein',
-      'Fürstentum Liechtenstein'],
+      'Fürstentum Liechtenstein',
+    ],
     region: 'Europe',
     subregion: 'Western Europe',
     population: 37623,
@@ -7331,8 +7711,9 @@ const Countries = [
         iso639_1: 'de',
         iso639_2: 'deu',
         name: 'German',
-        nativeName: 'Deutsch'
-      }],
+        nativeName: 'Deutsch',
+      },
+    ],
     translations: {
       de: 'Liechtenstein',
       es: 'Liechtenstein',
@@ -7343,7 +7724,7 @@ const Countries = [
       pt: 'Listenstaine',
       nl: 'Liechtenstein',
       hr: 'Lihtenštajn',
-      fa: 'لیختن‌اشتاین'
+      fa: 'لیختن‌اشتاین',
     },
     flag: 'https://restcountries.eu/data/lie.svg',
     regionalBlocs: [
@@ -7351,9 +7732,10 @@ const Countries = [
         acronym: 'EFTA',
         name: 'European Free Trade Association',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'LIE'
+        otherNames: [],
+      },
+    ],
+    cioc: 'LIE',
   },
   {
     name: 'Lithuania',
@@ -7380,8 +7762,9 @@ const Countries = [
         iso639_1: 'lt',
         iso639_2: 'lit',
         name: 'Lithuanian',
-        nativeName: 'lietuvių kalba'
-      }],
+        nativeName: 'lietuvių kalba',
+      },
+    ],
     translations: {
       de: 'Litauen',
       es: 'Lituania',
@@ -7392,7 +7775,7 @@ const Countries = [
       pt: 'Lituânia',
       nl: 'Litouwen',
       hr: 'Litva',
-      fa: 'لیتوانی'
+      fa: 'لیتوانی',
     },
     flag: 'https://restcountries.eu/data/ltu.svg',
     regionalBlocs: [
@@ -7400,9 +7783,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'LTU'
+        otherNames: [],
+      },
+    ],
+    cioc: 'LTU',
   },
   {
     name: 'Luxembourg',
@@ -7416,7 +7800,8 @@ const Countries = [
       'Grand Duchy of Luxembourg',
       'Grand-Duché de Luxembourg',
       'Großherzogtum Luxemburg',
-      'Groussherzogtum Lëtzebuerg'],
+      'Groussherzogtum Lëtzebuerg',
+    ],
     region: 'Europe',
     subregion: 'Western Europe',
     population: 576200,
@@ -7434,20 +7819,21 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'de',
         iso639_2: 'deu',
         name: 'German',
-        nativeName: 'Deutsch'
+        nativeName: 'Deutsch',
       },
       {
         iso639_1: 'lb',
         iso639_2: 'ltz',
         name: 'Luxembourgish',
-        nativeName: 'Lëtzebuergesch'
-      }],
+        nativeName: 'Lëtzebuergesch',
+      },
+    ],
     translations: {
       de: 'Luxemburg',
       es: 'Luxemburgo',
@@ -7458,7 +7844,7 @@ const Countries = [
       pt: 'Luxemburgo',
       nl: 'Luxemburg',
       hr: 'Luksemburg',
-      fa: 'لوکزامبورگ'
+      fa: 'لوکزامبورگ',
     },
     flag: 'https://restcountries.eu/data/lux.svg',
     regionalBlocs: [
@@ -7466,9 +7852,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'LUX'
+        otherNames: [],
+      },
+    ],
+    cioc: 'LUX',
   },
   {
     name: 'Macao (SAR)',
@@ -7480,9 +7867,10 @@ const Countries = [
     altSpellings: [
       'MO',
       '澳门',
-      'Macao Special Administrative Region of the People\'s Republic of China',
+      "Macao Special Administrative Region of the People's Republic of China",
       '中華人民共和國澳門特別行政區',
-      'Região Administrativa Especial de Macau da República Popular da China'],
+      'Região Administrativa Especial de Macau da República Popular da China',
+    ],
     region: 'Asia',
     subregion: 'Eastern Asia',
     population: 649100,
@@ -7500,14 +7888,15 @@ const Countries = [
         iso639_1: 'zh',
         iso639_2: 'zho',
         name: 'Chinese',
-        nativeName: '中文 (Zhōngwén)'
+        nativeName: '中文 (Zhōngwén)',
       },
       {
         iso639_1: 'pt',
         iso639_2: 'por',
         name: 'Portuguese',
-        nativeName: 'Português'
-      }],
+        nativeName: 'Português',
+      },
+    ],
     translations: {
       de: 'Macao',
       es: 'Macao',
@@ -7518,11 +7907,11 @@ const Countries = [
       pt: 'Macau',
       nl: 'Macao',
       hr: 'Makao',
-      fa: 'مکائو'
+      fa: 'مکائو',
     },
     flag: 'https://restcountries.eu/data/mac.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Macedonia (the former Yugoslav Republic of)',
@@ -7547,15 +7936,17 @@ const Countries = [
       {
         code: 'MKD',
         name: 'Macedonian denar',
-        symbol: 'ден'
-      }],
+        symbol: 'ден',
+      },
+    ],
     languages: [
       {
         iso639_1: 'mk',
         iso639_2: 'mkd',
         name: 'Macedonian',
-        nativeName: 'македонски јазик'
-      }],
+        nativeName: 'македонски јазик',
+      },
+    ],
     translations: {
       de: 'Mazedonien',
       es: 'Macedonia',
@@ -7566,7 +7957,7 @@ const Countries = [
       pt: 'Macedónia',
       nl: 'Macedonië',
       hr: 'Makedonija',
-      fa: ''
+      fa: '',
     },
     flag: 'https://restcountries.eu/data/mkd.svg',
     regionalBlocs: [
@@ -7574,9 +7965,10 @@ const Countries = [
         acronym: 'CEFTA',
         name: 'Central European Free Trade Agreement',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'MKD'
+        otherNames: [],
+      },
+    ],
+    cioc: 'MKD',
   },
   {
     name: 'Madagascar',
@@ -7588,8 +7980,9 @@ const Countries = [
     altSpellings: [
       'MG',
       'Republic of Madagascar',
-      'Repoblikan\'i Madagasikara',
-      'République de Madagascar'],
+      "Repoblikan'i Madagasikara",
+      'République de Madagascar',
+    ],
     region: 'Africa',
     subregion: 'Eastern Africa',
     population: 22434363,
@@ -7605,21 +7998,23 @@ const Countries = [
       {
         code: 'MGA',
         name: 'Malagasy ariary',
-        symbol: 'Ar'
-      }],
+        symbol: 'Ar',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'mg',
         iso639_2: 'mlg',
         name: 'Malagasy',
-        nativeName: 'fiteny malagasy'
-      }],
+        nativeName: 'fiteny malagasy',
+      },
+    ],
     translations: {
       de: 'Madagaskar',
       es: 'Madagascar',
@@ -7630,7 +8025,7 @@ const Countries = [
       pt: 'Madagáscar',
       nl: 'Madagaskar',
       hr: 'Madagaskar',
-      fa: 'ماداگاسکار'
+      fa: 'ماداگاسکار',
     },
     flag: 'https://restcountries.eu/data/mdg.svg',
     regionalBlocs: [
@@ -7643,9 +8038,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'MAD'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'MAD',
   },
   {
     name: 'Malawi',
@@ -7670,21 +8067,23 @@ const Countries = [
       {
         code: 'MWK',
         name: 'Malawian kwacha',
-        symbol: 'MK'
-      }],
+        symbol: 'MK',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'ny',
         iso639_2: 'nya',
         name: 'Chichewa',
-        nativeName: 'chiCheŵa'
-      }],
+        nativeName: 'chiCheŵa',
+      },
+    ],
     translations: {
       de: 'Malawi',
       es: 'Malawi',
@@ -7695,7 +8094,7 @@ const Countries = [
       pt: 'Malávi',
       nl: 'Malawi',
       hr: 'Malavi',
-      fa: 'مالاوی'
+      fa: 'مالاوی',
     },
     flag: 'https://restcountries.eu/data/mwi.svg',
     regionalBlocs: [
@@ -7708,9 +8107,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'MAW'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'MAW',
   },
   {
     name: 'Malaysia',
@@ -7735,15 +8136,17 @@ const Countries = [
       {
         code: 'MYR',
         name: 'Malaysian ringgit',
-        symbol: 'RM'
-      }],
+        symbol: 'RM',
+      },
+    ],
     languages: [
       {
         iso639_1: null,
         iso639_2: 'zsm',
         name: 'Malaysian',
-        nativeName: 'بهاس مليسيا'
-      }],
+        nativeName: 'بهاس مليسيا',
+      },
+    ],
     translations: {
       de: 'Malaysia',
       es: 'Malasia',
@@ -7754,7 +8157,7 @@ const Countries = [
       pt: 'Malásia',
       nl: 'Maleisië',
       hr: 'Malezija',
-      fa: 'مالزی'
+      fa: 'مالزی',
     },
     flag: 'https://restcountries.eu/data/mys.svg',
     regionalBlocs: [
@@ -7762,9 +8165,10 @@ const Countries = [
         acronym: 'ASEAN',
         name: 'Association of Southeast Asian Nations',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'MAS'
+        otherNames: [],
+      },
+    ],
+    cioc: 'MAS',
   },
   {
     name: 'Maldives',
@@ -7777,7 +8181,8 @@ const Countries = [
       'MV',
       'Maldive Islands',
       'Republic of the Maldives',
-      'Dhivehi Raajjeyge Jumhooriyya'],
+      'Dhivehi Raajjeyge Jumhooriyya',
+    ],
     region: 'Asia',
     subregion: 'Southern Asia',
     population: 344023,
@@ -7793,15 +8198,17 @@ const Countries = [
       {
         code: 'MVR',
         name: 'Maldivian rufiyaa',
-        symbol: '.ރ'
-      }],
+        symbol: '.ރ',
+      },
+    ],
     languages: [
       {
         iso639_1: 'dv',
         iso639_2: 'div',
         name: 'Divehi',
-        nativeName: 'ދިވެހި'
-      }],
+        nativeName: 'ދިވެހި',
+      },
+    ],
     translations: {
       de: 'Malediven',
       es: 'Maldivas',
@@ -7812,7 +8219,7 @@ const Countries = [
       pt: 'Maldivas',
       nl: 'Maldiven',
       hr: 'Maldivi',
-      fa: 'مالدیو'
+      fa: 'مالدیو',
     },
     flag: 'https://restcountries.eu/data/mdv.svg',
     regionalBlocs: [
@@ -7820,9 +8227,10 @@ const Countries = [
         acronym: 'SAARC',
         name: 'South Asian Association for Regional Cooperation',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'MDV'
+        otherNames: [],
+      },
+    ],
+    cioc: 'MDV',
   },
   {
     name: 'Mali',
@@ -7847,15 +8255,17 @@ const Countries = [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Mali',
       es: 'Mali',
@@ -7866,7 +8276,7 @@ const Countries = [
       pt: 'Mali',
       nl: 'Mali',
       hr: 'Mali',
-      fa: 'مالی'
+      fa: 'مالی',
     },
     flag: 'https://restcountries.eu/data/mli.svg',
     regionalBlocs: [
@@ -7879,9 +8289,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'MLI'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'MLI',
   },
   {
     name: 'Malta',
@@ -7890,7 +8302,7 @@ const Countries = [
     alpha3Code: 'MLT',
     callingCodes: ['356'],
     capital: 'Valletta',
-    altSpellings: ['MT', 'Republic of Malta', 'Repubblika ta\' Malta'],
+    altSpellings: ['MT', 'Republic of Malta', "Repubblika ta' Malta"],
     region: 'Europe',
     subregion: 'Southern Europe',
     population: 425384,
@@ -7908,14 +8320,15 @@ const Countries = [
         iso639_1: 'mt',
         iso639_2: 'mlt',
         name: 'Maltese',
-        nativeName: 'Malti'
+        nativeName: 'Malti',
       },
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Malta',
       es: 'Malta',
@@ -7926,7 +8339,7 @@ const Countries = [
       pt: 'Malta',
       nl: 'Malta',
       hr: 'Malta',
-      fa: 'مالت'
+      fa: 'مالت',
     },
     flag: 'https://restcountries.eu/data/mlt.svg',
     regionalBlocs: [
@@ -7934,9 +8347,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'MLT'
+        otherNames: [],
+      },
+    ],
+    cioc: 'MLT',
   },
   {
     name: 'Marshall Islands',
@@ -7948,7 +8362,8 @@ const Countries = [
     altSpellings: [
       'MH',
       'Republic of the Marshall Islands',
-      'Aolepān Aorōkin M̧ajeļ'],
+      'Aolepān Aorōkin M̧ajeļ',
+    ],
     region: 'Oceania',
     subregion: 'Micronesia',
     population: 54880,
@@ -7964,21 +8379,23 @@ const Countries = [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'mh',
         iso639_2: 'mah',
         name: 'Marshallese',
-        nativeName: 'Kajin M̧ajeļ'
-      }],
+        nativeName: 'Kajin M̧ajeļ',
+      },
+    ],
     translations: {
       de: 'Marshallinseln',
       es: 'Islas Marshall',
@@ -7989,11 +8406,11 @@ const Countries = [
       pt: 'Ilhas Marshall',
       nl: 'Marshalleilanden',
       hr: 'Maršalovi Otoci',
-      fa: 'جزایر مارشال'
+      fa: 'جزایر مارشال',
     },
     flag: 'https://restcountries.eu/data/mhl.svg',
     regionalBlocs: [],
-    cioc: 'MHL'
+    cioc: 'MHL',
   },
   {
     name: 'Martinique',
@@ -8020,8 +8437,9 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Martinique',
       es: 'Martinica',
@@ -8032,11 +8450,11 @@ const Countries = [
       pt: 'Martinica',
       nl: 'Martinique',
       hr: 'Martinique',
-      fa: 'مونتسرات'
+      fa: 'مونتسرات',
     },
     flag: 'https://restcountries.eu/data/mtq.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Mauritania',
@@ -8048,7 +8466,8 @@ const Countries = [
     altSpellings: [
       'MR',
       'Islamic Republic of Mauritania',
-      'al-Jumhūriyyah al-ʾIslāmiyyah al-Mūrītāniyyah'],
+      'al-Jumhūriyyah al-ʾIslāmiyyah al-Mūrītāniyyah',
+    ],
     region: 'Africa',
     subregion: 'Western Africa',
     population: 3718678,
@@ -8064,15 +8483,17 @@ const Countries = [
       {
         code: 'MRO',
         name: 'Mauritanian ouguiya',
-        symbol: 'UM'
-      }],
+        symbol: 'UM',
+      },
+    ],
     languages: [
       {
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Mauretanien',
       es: 'Mauritania',
@@ -8083,7 +8504,7 @@ const Countries = [
       pt: 'Mauritânia',
       nl: 'Mauritanië',
       hr: 'Mauritanija',
-      fa: 'موریتانی'
+      fa: 'موریتانی',
     },
     flag: 'https://restcountries.eu/data/mrt.svg',
     regionalBlocs: [
@@ -8096,7 +8517,8 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
+          'Umoja wa Afrika',
+        ],
       },
       {
         acronym: 'AL',
@@ -8105,9 +8527,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'MTN'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'MTN',
   },
   {
     name: 'Mauritius',
@@ -8134,8 +8558,9 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Mauritius',
       es: 'Mauricio',
@@ -8146,7 +8571,7 @@ const Countries = [
       pt: 'Maurícia',
       nl: 'Mauritius',
       hr: 'Mauricijus',
-      fa: 'موریس'
+      fa: 'موریس',
     },
     flag: 'https://restcountries.eu/data/mus.svg',
     regionalBlocs: [
@@ -8159,9 +8584,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'MRI'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'MRI',
   },
   {
     name: 'Mayotte',
@@ -8188,8 +8615,9 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Mayotte',
       es: 'Mayotte',
@@ -8200,7 +8628,7 @@ const Countries = [
       pt: 'Mayotte',
       nl: 'Mayotte',
       hr: 'Mayotte',
-      fa: 'مایوت'
+      fa: 'مایوت',
     },
     flag: 'https://restcountries.eu/data/myt.svg',
     regionalBlocs: [
@@ -8213,9 +8641,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: ''
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: '',
   },
   {
     name: 'Mexico',
@@ -8228,7 +8658,8 @@ const Countries = [
       'MX',
       'Mexicanos',
       'United Mexican States',
-      'Estados Unidos Mexicanos'],
+      'Estados Unidos Mexicanos',
+    ],
     region: 'Americas',
     subregion: 'Central America',
     population: 122273473,
@@ -8246,8 +8677,9 @@ const Countries = [
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Mexiko',
       es: 'México',
@@ -8258,7 +8690,7 @@ const Countries = [
       pt: 'México',
       nl: 'Mexico',
       hr: 'Meksiko',
-      fa: 'مکزیک'
+      fa: 'مکزیک',
     },
     flag: 'https://restcountries.eu/data/mex.svg',
     regionalBlocs: [
@@ -8266,7 +8698,7 @@ const Countries = [
         acronym: 'PA',
         name: 'Pacific Alliance',
         otherAcronyms: [],
-        otherNames: ['Alianza del Pacífico']
+        otherNames: ['Alianza del Pacífico'],
       },
       {
         acronym: 'NAFTA',
@@ -8274,9 +8706,11 @@ const Countries = [
         otherAcronyms: [],
         otherNames: [
           'Tratado de Libre Comercio de América del Norte',
-          'Accord de Libre-échange Nord-Américain']
-      }],
-    cioc: 'MEX'
+          'Accord de Libre-échange Nord-Américain',
+        ],
+      },
+    ],
+    cioc: 'MEX',
   },
   {
     name: 'Micronesia (Federated States of)',
@@ -8299,14 +8733,16 @@ const Countries = [
     numericCode: '583',
     currencies: [
       { code: null, name: '[D]', symbol: '$' },
-      { code: 'USD', name: 'United States dollar', symbol: '$' }],
+      { code: 'USD', name: 'United States dollar', symbol: '$' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Mikronesien',
       es: 'Micronesia',
@@ -8317,11 +8753,11 @@ const Countries = [
       pt: 'Micronésia',
       nl: 'Micronesië',
       hr: 'Mikronezija',
-      fa: 'ایالات فدرال میکرونزی'
+      fa: 'ایالات فدرال میکرونزی',
     },
     flag: 'https://restcountries.eu/data/fsm.svg',
     regionalBlocs: [],
-    cioc: 'FSM'
+    cioc: 'FSM',
   },
   {
     name: 'Moldova (Republic of)',
@@ -8348,8 +8784,9 @@ const Countries = [
         iso639_1: 'ro',
         iso639_2: 'ron',
         name: 'Romanian',
-        nativeName: 'Română'
-      }],
+        nativeName: 'Română',
+      },
+    ],
     translations: {
       de: 'Moldawie',
       es: 'Moldavia',
@@ -8360,7 +8797,7 @@ const Countries = [
       pt: 'Moldávia',
       nl: 'Moldavië',
       hr: 'Moldova',
-      fa: 'مولداوی'
+      fa: 'مولداوی',
     },
     flag: 'https://restcountries.eu/data/mda.svg',
     regionalBlocs: [
@@ -8368,9 +8805,10 @@ const Countries = [
         acronym: 'CEFTA',
         name: 'Central European Free Trade Agreement',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'MDA'
+        otherNames: [],
+      },
+    ],
+    cioc: 'MDA',
   },
   {
     name: 'Monaco',
@@ -8397,8 +8835,9 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Monaco',
       es: 'Mónaco',
@@ -8409,11 +8848,11 @@ const Countries = [
       pt: 'Mónaco',
       nl: 'Monaco',
       hr: 'Monako',
-      fa: 'موناکو'
+      fa: 'موناکو',
     },
     flag: 'https://restcountries.eu/data/mco.svg',
     regionalBlocs: [],
-    cioc: 'MON'
+    cioc: 'MON',
   },
   {
     name: 'Mongolia',
@@ -8438,15 +8877,17 @@ const Countries = [
       {
         code: 'MNT',
         name: 'Mongolian tögrög',
-        symbol: '₮'
-      }],
+        symbol: '₮',
+      },
+    ],
     languages: [
       {
         iso639_1: 'mn',
         iso639_2: 'mon',
         name: 'Mongolian',
-        nativeName: 'Монгол хэл'
-      }],
+        nativeName: 'Монгол хэл',
+      },
+    ],
     translations: {
       de: 'Mongolei',
       es: 'Mongolia',
@@ -8457,11 +8898,11 @@ const Countries = [
       pt: 'Mongólia',
       nl: 'Mongolië',
       hr: 'Mongolija',
-      fa: 'مغولستان'
+      fa: 'مغولستان',
     },
     flag: 'https://restcountries.eu/data/mng.svg',
     regionalBlocs: [],
-    cioc: 'MGL'
+    cioc: 'MGL',
   },
   {
     name: 'Montenegro',
@@ -8488,26 +8929,27 @@ const Countries = [
         iso639_1: 'sr',
         iso639_2: 'srp',
         name: 'Serbian',
-        nativeName: 'српски језик'
+        nativeName: 'српски језик',
       },
       {
         iso639_1: 'bs',
         iso639_2: 'bos',
         name: 'Bosnian',
-        nativeName: 'bosanski jezik'
+        nativeName: 'bosanski jezik',
       },
       {
         iso639_1: 'sq',
         iso639_2: 'sqi',
         name: 'Albanian',
-        nativeName: 'Shqip'
+        nativeName: 'Shqip',
       },
       {
         iso639_1: 'hr',
         iso639_2: 'hrv',
         name: 'Croatian',
-        nativeName: 'hrvatski jezik'
-      }],
+        nativeName: 'hrvatski jezik',
+      },
+    ],
     translations: {
       de: 'Montenegro',
       es: 'Montenegro',
@@ -8518,7 +8960,7 @@ const Countries = [
       pt: 'Montenegro',
       nl: 'Montenegro',
       hr: 'Crna Gora',
-      fa: 'مونته‌نگرو'
+      fa: 'مونته‌نگرو',
     },
     flag: 'https://restcountries.eu/data/mne.svg',
     regionalBlocs: [
@@ -8526,9 +8968,10 @@ const Countries = [
         acronym: 'CEFTA',
         name: 'Central European Free Trade Agreement',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'MNE'
+        otherNames: [],
+      },
+    ],
+    cioc: 'MNE',
   },
   {
     name: 'Montserrat',
@@ -8553,15 +8996,17 @@ const Countries = [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Montserrat',
       es: 'Montserrat',
@@ -8572,7 +9017,7 @@ const Countries = [
       pt: 'Monserrate',
       nl: 'Montserrat',
       hr: 'Montserrat',
-      fa: 'مایوت'
+      fa: 'مایوت',
     },
     flag: 'https://restcountries.eu/data/msr.svg',
     regionalBlocs: [
@@ -8583,9 +9028,11 @@ const Countries = [
         otherNames: [
           'Comunidad del Caribe',
           'Communauté Caribéenne',
-          'Caribische Gemeenschap']
-      }],
-    cioc: ''
+          'Caribische Gemeenschap',
+        ],
+      },
+    ],
+    cioc: '',
   },
   {
     name: 'Morocco',
@@ -8610,15 +9057,17 @@ const Countries = [
       {
         code: 'MAD',
         name: 'Moroccan dirham',
-        symbol: 'د.م.'
-      }],
+        symbol: 'د.م.',
+      },
+    ],
     languages: [
       {
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Marokko',
       es: 'Marruecos',
@@ -8629,7 +9078,7 @@ const Countries = [
       pt: 'Marrocos',
       nl: 'Marokko',
       hr: 'Maroko',
-      fa: 'مراکش'
+      fa: 'مراکش',
     },
     flag: 'https://restcountries.eu/data/mar.svg',
     regionalBlocs: [
@@ -8642,7 +9091,8 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
+          'Umoja wa Afrika',
+        ],
       },
       {
         acronym: 'AL',
@@ -8651,9 +9101,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'MAR'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'MAR',
   },
   {
     name: 'Mozambique',
@@ -8678,15 +9130,17 @@ const Countries = [
       {
         code: 'MZN',
         name: 'Mozambican metical',
-        symbol: 'MT'
-      }],
+        symbol: 'MT',
+      },
+    ],
     languages: [
       {
         iso639_1: 'pt',
         iso639_2: 'por',
         name: 'Portuguese',
-        nativeName: 'Português'
-      }],
+        nativeName: 'Português',
+      },
+    ],
     translations: {
       de: 'Mosambik',
       es: 'Mozambique',
@@ -8697,7 +9151,7 @@ const Countries = [
       pt: 'Moçambique',
       nl: 'Mozambique',
       hr: 'Mozambik',
-      fa: 'موزامبیک'
+      fa: 'موزامبیک',
     },
     flag: 'https://restcountries.eu/data/moz.svg',
     regionalBlocs: [
@@ -8710,9 +9164,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'MOZ'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'MOZ',
   },
   {
     name: 'Myanmar',
@@ -8725,7 +9181,8 @@ const Countries = [
       'MM',
       'Burma',
       'Republic of the Union of Myanmar',
-      'Pyidaunzu Thanmăda Myăma Nainngandaw'],
+      'Pyidaunzu Thanmăda Myăma Nainngandaw',
+    ],
     region: 'Asia',
     subregion: 'South-Eastern Asia',
     population: 51419420,
@@ -8743,8 +9200,9 @@ const Countries = [
         iso639_1: 'my',
         iso639_2: 'mya',
         name: 'Burmese',
-        nativeName: 'ဗမာစာ'
-      }],
+        nativeName: 'ဗမာစာ',
+      },
+    ],
     translations: {
       de: 'Myanmar',
       es: 'Myanmar',
@@ -8755,7 +9213,7 @@ const Countries = [
       pt: 'Myanmar',
       nl: 'Myanmar',
       hr: 'Mijanmar',
-      fa: 'میانمار'
+      fa: 'میانمار',
     },
     flag: 'https://restcountries.eu/data/mmr.svg',
     regionalBlocs: [
@@ -8763,9 +9221,10 @@ const Countries = [
         acronym: 'ASEAN',
         name: 'Association of Southeast Asian Nations',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'MYA'
+        otherNames: [],
+      },
+    ],
+    cioc: 'MYA',
   },
   {
     name: 'Namibia',
@@ -8788,20 +9247,22 @@ const Countries = [
     numericCode: '516',
     currencies: [
       { code: 'NAD', name: 'Namibian dollar', symbol: '$' },
-      { code: 'ZAR', name: 'South African rand', symbol: 'R' }],
+      { code: 'ZAR', name: 'South African rand', symbol: 'R' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'af',
         iso639_2: 'afr',
         name: 'Afrikaans',
-        nativeName: 'Afrikaans'
-      }],
+        nativeName: 'Afrikaans',
+      },
+    ],
     translations: {
       de: 'Namibia',
       es: 'Namibia',
@@ -8812,7 +9273,7 @@ const Countries = [
       pt: 'Namíbia',
       nl: 'Namibië',
       hr: 'Namibija',
-      fa: 'نامیبیا'
+      fa: 'نامیبیا',
     },
     flag: 'https://restcountries.eu/data/nam.svg',
     regionalBlocs: [
@@ -8825,9 +9286,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'NAM'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'NAM',
   },
   {
     name: 'Nauru',
@@ -8841,7 +9304,8 @@ const Countries = [
       'Naoero',
       'Pleasant Island',
       'Republic of Nauru',
-      'Ripublik Naoero'],
+      'Ripublik Naoero',
+    ],
     region: 'Oceania',
     subregion: 'Micronesia',
     population: 10084,
@@ -8857,21 +9321,24 @@ const Countries = [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
-      }, { code: '(none)', name: null, symbol: '$' }],
+        symbol: '$',
+      },
+      { code: '(none)', name: null, symbol: '$' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'na',
         iso639_2: 'nau',
         name: 'Nauruan',
-        nativeName: 'Dorerin Naoero'
-      }],
+        nativeName: 'Dorerin Naoero',
+      },
+    ],
     translations: {
       de: 'Nauru',
       es: 'Nauru',
@@ -8882,11 +9349,11 @@ const Countries = [
       pt: 'Nauru',
       nl: 'Nauru',
       hr: 'Nauru',
-      fa: 'نائورو'
+      fa: 'نائورو',
     },
     flag: 'https://restcountries.eu/data/nru.svg',
     regionalBlocs: [],
-    cioc: 'NRU'
+    cioc: 'NRU',
   },
   {
     name: 'Nepal',
@@ -8898,7 +9365,8 @@ const Countries = [
     altSpellings: [
       'NP',
       'Federal Democratic Republic of Nepal',
-      'Loktāntrik Ganatantra Nepāl'],
+      'Loktāntrik Ganatantra Nepāl',
+    ],
     region: 'Asia',
     subregion: 'Southern Asia',
     population: 28431500,
@@ -8916,8 +9384,9 @@ const Countries = [
         iso639_1: 'ne',
         iso639_2: 'nep',
         name: 'Nepali',
-        nativeName: 'नेपाली'
-      }],
+        nativeName: 'नेपाली',
+      },
+    ],
     translations: {
       de: 'Népal',
       es: 'Nepal',
@@ -8928,7 +9397,7 @@ const Countries = [
       pt: 'Nepal',
       nl: 'Nepal',
       hr: 'Nepal',
-      fa: 'نپال'
+      fa: 'نپال',
     },
     flag: 'https://restcountries.eu/data/npl.svg',
     regionalBlocs: [
@@ -8936,9 +9405,10 @@ const Countries = [
         acronym: 'SAARC',
         name: 'South Asian Association for Regional Cooperation',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'NEP'
+        otherNames: [],
+      },
+    ],
+    cioc: 'NEP',
   },
   {
     name: 'Netherlands',
@@ -8965,8 +9435,9 @@ const Countries = [
         iso639_1: 'nl',
         iso639_2: 'nld',
         name: 'Dutch',
-        nativeName: 'Nederlands'
-      }],
+        nativeName: 'Nederlands',
+      },
+    ],
     translations: {
       de: 'Niederlande',
       es: 'Países Bajos',
@@ -8977,7 +9448,7 @@ const Countries = [
       pt: 'Países Baixos',
       nl: 'Nederland',
       hr: 'Nizozemska',
-      fa: 'پادشاهی هلند'
+      fa: 'پادشاهی هلند',
     },
     flag: 'https://restcountries.eu/data/nld.svg',
     regionalBlocs: [
@@ -8985,9 +9456,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'NED'
+        otherNames: [],
+      },
+    ],
+    cioc: 'NED',
   },
   {
     name: 'New Caledonia',
@@ -9014,8 +9486,9 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Neukaledonien',
       es: 'Nueva Caledonia',
@@ -9026,11 +9499,11 @@ const Countries = [
       pt: 'Nova Caledónia',
       nl: 'Nieuw-Caledonië',
       hr: 'Nova Kaledonija',
-      fa: 'کالدونیای جدید'
+      fa: 'کالدونیای جدید',
     },
     flag: 'https://restcountries.eu/data/ncl.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'New Zealand',
@@ -9052,7 +9525,8 @@ const Countries = [
       'UTC-10:00',
       'UTC+12:00',
       'UTC+12:45',
-      'UTC+13:00'],
+      'UTC+13:00',
+    ],
     borders: [],
     nativeName: 'New Zealand',
     numericCode: '554',
@@ -9060,21 +9534,23 @@ const Countries = [
       {
         code: 'NZD',
         name: 'New Zealand dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'mi',
         iso639_2: 'mri',
         name: 'Māori',
-        nativeName: 'te reo Māori'
-      }],
+        nativeName: 'te reo Māori',
+      },
+    ],
     translations: {
       de: 'Neuseeland',
       es: 'Nueva Zelanda',
@@ -9085,11 +9561,11 @@ const Countries = [
       pt: 'Nova Zelândia',
       nl: 'Nieuw-Zeeland',
       hr: 'Novi Zeland',
-      fa: 'نیوزیلند'
+      fa: 'نیوزیلند',
     },
     flag: 'https://restcountries.eu/data/nzl.svg',
     regionalBlocs: [],
-    cioc: 'NZL'
+    cioc: 'NZL',
   },
   {
     name: 'Nicaragua',
@@ -9114,15 +9590,17 @@ const Countries = [
       {
         code: 'NIO',
         name: 'Nicaraguan córdoba',
-        symbol: 'C$'
-      }],
+        symbol: 'C$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Nicaragua',
       es: 'Nicaragua',
@@ -9133,7 +9611,7 @@ const Countries = [
       pt: 'Nicarágua',
       nl: 'Nicaragua',
       hr: 'Nikaragva',
-      fa: 'نیکاراگوئه'
+      fa: 'نیکاراگوئه',
     },
     flag: 'https://restcountries.eu/data/nic.svg',
     regionalBlocs: [
@@ -9141,9 +9619,10 @@ const Countries = [
         acronym: 'CAIS',
         name: 'Central American Integration System',
         otherAcronyms: ['SICA'],
-        otherNames: ['Sistema de la Integración Centroamericana,']
-      }],
-    cioc: 'NCA'
+        otherNames: ['Sistema de la Integración Centroamericana,'],
+      },
+    ],
+    cioc: 'NCA',
   },
   {
     name: 'Niger',
@@ -9168,15 +9647,17 @@ const Countries = [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Niger',
       es: 'Níger',
@@ -9187,7 +9668,7 @@ const Countries = [
       pt: 'Níger',
       nl: 'Niger',
       hr: 'Niger',
-      fa: 'نیجر'
+      fa: 'نیجر',
     },
     flag: 'https://restcountries.eu/data/ner.svg',
     regionalBlocs: [
@@ -9200,9 +9681,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'NIG'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'NIG',
   },
   {
     name: 'Nigeria',
@@ -9211,11 +9694,7 @@ const Countries = [
     alpha3Code: 'NGA',
     callingCodes: ['234'],
     capital: 'Abuja',
-    altSpellings: [
-      'NG',
-      'Nijeriya',
-      'Naíjíríà',
-      'Federal Republic of Nigeria'],
+    altSpellings: ['NG', 'Nijeriya', 'Naíjíríà', 'Federal Republic of Nigeria'],
     region: 'Africa',
     subregion: 'Western Africa',
     population: 186988000,
@@ -9233,8 +9712,9 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Nigeria',
       es: 'Nigeria',
@@ -9245,7 +9725,7 @@ const Countries = [
       pt: 'Nigéria',
       nl: 'Nigeria',
       hr: 'Nigerija',
-      fa: 'نیجریه'
+      fa: 'نیجریه',
     },
     flag: 'https://restcountries.eu/data/nga.svg',
     regionalBlocs: [
@@ -9258,9 +9738,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'NGR'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'NGR',
   },
   {
     name: 'Niue',
@@ -9285,15 +9767,18 @@ const Countries = [
       {
         code: 'NZD',
         name: 'New Zealand dollar',
-        symbol: '$'
-      }, { code: '(none)', name: 'Niue dollar', symbol: '$' }],
+        symbol: '$',
+      },
+      { code: '(none)', name: 'Niue dollar', symbol: '$' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Niue',
       es: 'Niue',
@@ -9304,11 +9789,11 @@ const Countries = [
       pt: 'Niue',
       nl: 'Niue',
       hr: 'Niue',
-      fa: 'نیووی'
+      fa: 'نیووی',
     },
     flag: 'https://restcountries.eu/data/niu.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Norfolk Island',
@@ -9320,7 +9805,8 @@ const Countries = [
     altSpellings: [
       'NF',
       'Territory of Norfolk Island',
-      'Teratri of Norf\'k Ailen'],
+      "Teratri of Norf'k Ailen",
+    ],
     region: 'Oceania',
     subregion: 'Australia and New Zealand',
     population: 2302,
@@ -9336,15 +9822,17 @@ const Countries = [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Norfolkinsel',
       es: 'Isla de Norfolk',
@@ -9355,14 +9843,14 @@ const Countries = [
       pt: 'Ilha Norfolk',
       nl: 'Norfolkeiland',
       hr: 'Otok Norfolk',
-      fa: 'جزیره نورفک'
+      fa: 'جزیره نورفک',
     },
     flag: 'https://restcountries.eu/data/nfk.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
-    name: 'Korea (Democratic People\'s Republic of)',
+    name: "Korea (Democratic People's Republic of)",
     topLevelDomain: ['.kp'],
     alpha2Code: 'KP',
     alpha3Code: 'PRK',
@@ -9370,9 +9858,10 @@ const Countries = [
     capital: 'Pyongyang',
     altSpellings: [
       'KP',
-      'Democratic People\'s Republic of Korea',
+      "Democratic People's Republic of Korea",
       '조선민주주의인민공화국',
-      'Chosŏn Minjujuŭi Inmin Konghwaguk'],
+      'Chosŏn Minjujuŭi Inmin Konghwaguk',
+    ],
     region: 'Asia',
     subregion: 'Eastern Asia',
     population: 25281000,
@@ -9388,15 +9877,17 @@ const Countries = [
       {
         code: 'KPW',
         name: 'North Korean won',
-        symbol: '₩'
-      }],
+        symbol: '₩',
+      },
+    ],
     languages: [
       {
         iso639_1: 'ko',
         iso639_2: 'kor',
         name: 'Korean',
-        nativeName: '한국어'
-      }],
+        nativeName: '한국어',
+      },
+    ],
     translations: {
       de: 'Nordkorea',
       es: 'Corea del Norte',
@@ -9407,11 +9898,11 @@ const Countries = [
       pt: 'Coreia do Norte',
       nl: 'Noord-Korea',
       hr: 'Sjeverna Koreja',
-      fa: 'کره جنوبی'
+      fa: 'کره جنوبی',
     },
     flag: 'https://restcountries.eu/data/prk.svg',
     regionalBlocs: [],
-    cioc: 'PRK'
+    cioc: 'PRK',
   },
   {
     name: 'Northern Mariana Islands',
@@ -9423,7 +9914,8 @@ const Countries = [
     altSpellings: [
       'MP',
       'Commonwealth of the Northern Mariana Islands',
-      'Sankattan Siha Na Islas Mariånas'],
+      'Sankattan Siha Na Islas Mariånas',
+    ],
     region: 'Oceania',
     subregion: 'Micronesia',
     population: 56940,
@@ -9439,21 +9931,23 @@ const Countries = [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'ch',
         iso639_2: 'cha',
         name: 'Chamorro',
-        nativeName: 'Chamoru'
-      }],
+        nativeName: 'Chamoru',
+      },
+    ],
     translations: {
       de: 'Nördliche Marianen',
       es: 'Islas Marianas del Norte',
@@ -9464,11 +9958,11 @@ const Countries = [
       pt: 'Ilhas Marianas',
       nl: 'Noordelijke Marianeneilanden',
       hr: 'Sjevernomarijanski otoci',
-      fa: 'جزایر ماریانای شمالی'
+      fa: 'جزایر ماریانای شمالی',
     },
     flag: 'https://restcountries.eu/data/mnp.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Norway',
@@ -9483,7 +9977,8 @@ const Countries = [
       'Noreg',
       'Kingdom of Norway',
       'Kongeriket Norge',
-      'Kongeriket Noreg'],
+      'Kongeriket Noreg',
+    ],
     region: 'Europe',
     subregion: 'Northern Europe',
     population: 5223256,
@@ -9499,27 +9994,29 @@ const Countries = [
       {
         code: 'NOK',
         name: 'Norwegian krone',
-        symbol: 'kr'
-      }],
+        symbol: 'kr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'no',
         iso639_2: 'nor',
         name: 'Norwegian',
-        nativeName: 'Norsk'
+        nativeName: 'Norsk',
       },
       {
         iso639_1: 'nb',
         iso639_2: 'nob',
         name: 'Norwegian Bokmål',
-        nativeName: 'Norsk bokmål'
+        nativeName: 'Norsk bokmål',
       },
       {
         iso639_1: 'nn',
         iso639_2: 'nno',
         name: 'Norwegian Nynorsk',
-        nativeName: 'Norsk nynorsk'
-      }],
+        nativeName: 'Norsk nynorsk',
+      },
+    ],
     translations: {
       de: 'Norwegen',
       es: 'Noruega',
@@ -9530,7 +10027,7 @@ const Countries = [
       pt: 'Noruega',
       nl: 'Noorwegen',
       hr: 'Norveška',
-      fa: 'نروژ'
+      fa: 'نروژ',
     },
     flag: 'https://restcountries.eu/data/nor.svg',
     regionalBlocs: [
@@ -9538,9 +10035,10 @@ const Countries = [
         acronym: 'EFTA',
         name: 'European Free Trade Association',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'NOR'
+        otherNames: [],
+      },
+    ],
+    cioc: 'NOR',
   },
   {
     name: 'Oman',
@@ -9567,8 +10065,9 @@ const Countries = [
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Oman',
       es: 'Omán',
@@ -9579,7 +10078,7 @@ const Countries = [
       pt: 'Omã',
       nl: 'Oman',
       hr: 'Oman',
-      fa: 'عمان'
+      fa: 'عمان',
     },
     flag: 'https://restcountries.eu/data/omn.svg',
     regionalBlocs: [
@@ -9590,9 +10089,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'OMA'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'OMA',
   },
   {
     name: 'Pakistan',
@@ -9605,7 +10106,8 @@ const Countries = [
       'PK',
       'Pākistān',
       'Islamic Republic of Pakistan',
-      'Islāmī Jumhūriya\'eh Pākistān'],
+      "Islāmī Jumhūriya'eh Pākistān",
+    ],
     region: 'Asia',
     subregion: 'Southern Asia',
     population: 194125062,
@@ -9623,14 +10125,15 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'ur',
         iso639_2: 'urd',
         name: 'Urdu',
-        nativeName: 'اردو'
-      }],
+        nativeName: 'اردو',
+      },
+    ],
     translations: {
       de: 'Pakistan',
       es: 'Pakistán',
@@ -9641,7 +10144,7 @@ const Countries = [
       pt: 'Paquistão',
       nl: 'Pakistan',
       hr: 'Pakistan',
-      fa: 'پاکستان'
+      fa: 'پاکستان',
     },
     flag: 'https://restcountries.eu/data/pak.svg',
     regionalBlocs: [
@@ -9649,9 +10152,10 @@ const Countries = [
         acronym: 'SAARC',
         name: 'South Asian Association for Regional Cooperation',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'PAK'
+        otherNames: [],
+      },
+    ],
+    cioc: 'PAK',
   },
   {
     name: 'Palau',
@@ -9674,14 +10178,16 @@ const Countries = [
     numericCode: '585',
     currencies: [
       { code: '(none)', name: '[E]', symbol: '$' },
-      { code: 'USD', name: 'United States dollar', symbol: '$' }],
+      { code: 'USD', name: 'United States dollar', symbol: '$' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Palau',
       es: 'Palau',
@@ -9692,11 +10198,11 @@ const Countries = [
       pt: 'Palau',
       nl: 'Palau',
       hr: 'Palau',
-      fa: 'پالائو'
+      fa: 'پالائو',
     },
     flag: 'https://restcountries.eu/data/plw.svg',
     regionalBlocs: [],
-    cioc: 'PLW'
+    cioc: 'PLW',
   },
   {
     name: 'Palestine, State of',
@@ -9721,15 +10227,17 @@ const Countries = [
       {
         code: 'ILS',
         name: 'Israeli new sheqel',
-        symbol: '₪'
-      }],
+        symbol: '₪',
+      },
+    ],
     languages: [
       {
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Palästina',
       es: 'Palestina',
@@ -9740,7 +10248,7 @@ const Countries = [
       pt: 'Palestina',
       nl: 'Palestijnse gebieden',
       hr: 'Palestina',
-      fa: 'فلسطین'
+      fa: 'فلسطین',
     },
     flag: 'https://restcountries.eu/data/pse.svg',
     regionalBlocs: [
@@ -9751,9 +10259,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'PLE'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'PLE',
   },
   {
     name: 'Panama',
@@ -9778,15 +10288,18 @@ const Countries = [
       {
         code: 'PAB',
         name: 'Panamanian balboa',
-        symbol: 'B/.'
-      }, { code: 'USD', name: 'United States dollar', symbol: '$' }],
+        symbol: 'B/.',
+      },
+      { code: 'USD', name: 'United States dollar', symbol: '$' },
+    ],
     languages: [
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Panama',
       es: 'Panamá',
@@ -9797,7 +10310,7 @@ const Countries = [
       pt: 'Panamá',
       nl: 'Panama',
       hr: 'Panama',
-      fa: 'پاناما'
+      fa: 'پاناما',
     },
     flag: 'https://restcountries.eu/data/pan.svg',
     regionalBlocs: [
@@ -9805,9 +10318,10 @@ const Countries = [
         acronym: 'CAIS',
         name: 'Central American Integration System',
         otherAcronyms: ['SICA'],
-        otherNames: ['Sistema de la Integración Centroamericana,']
-      }],
-    cioc: 'PAN'
+        otherNames: ['Sistema de la Integración Centroamericana,'],
+      },
+    ],
+    cioc: 'PAN',
   },
   {
     name: 'Papua New Guinea',
@@ -9819,7 +10333,8 @@ const Countries = [
     altSpellings: [
       'PG',
       'Independent State of Papua New Guinea',
-      'Independen Stet bilong Papua Niugini'],
+      'Independen Stet bilong Papua Niugini',
+    ],
     region: 'Oceania',
     subregion: 'Melanesia',
     population: 8083700,
@@ -9835,15 +10350,17 @@ const Countries = [
       {
         code: 'PGK',
         name: 'Papua New Guinean kina',
-        symbol: 'K'
-      }],
+        symbol: 'K',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Papua-Neuguinea',
       es: 'Papúa Nueva Guinea',
@@ -9854,11 +10371,11 @@ const Countries = [
       pt: 'Papua Nova Guiné',
       nl: 'Papoea-Nieuw-Guinea',
       hr: 'Papua Nova Gvineja',
-      fa: 'پاپوآ گینه نو'
+      fa: 'پاپوآ گینه نو',
     },
     flag: 'https://restcountries.eu/data/png.svg',
     regionalBlocs: [],
-    cioc: 'PNG'
+    cioc: 'PNG',
   },
   {
     name: 'Paraguay',
@@ -9871,7 +10388,8 @@ const Countries = [
       'PY',
       'Republic of Paraguay',
       'República del Paraguay',
-      'Tetã Paraguái'],
+      'Tetã Paraguái',
+    ],
     region: 'Americas',
     subregion: 'South America',
     population: 6854536,
@@ -9887,21 +10405,23 @@ const Countries = [
       {
         code: 'PYG',
         name: 'Paraguayan guaraní',
-        symbol: '₲'
-      }],
+        symbol: '₲',
+      },
+    ],
     languages: [
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
+        nativeName: 'Español',
       },
       {
         iso639_1: 'gn',
         iso639_2: 'grn',
         name: 'Guaraní',
-        nativeName: 'Avañe\'ẽ'
-      }],
+        nativeName: "Avañe'ẽ",
+      },
+    ],
     translations: {
       de: 'Paraguay',
       es: 'Paraguay',
@@ -9912,7 +10432,7 @@ const Countries = [
       pt: 'Paraguai',
       nl: 'Paraguay',
       hr: 'Paragvaj',
-      fa: 'پاراگوئه'
+      fa: 'پاراگوئه',
     },
     flag: 'https://restcountries.eu/data/pry.svg',
     regionalBlocs: [
@@ -9924,9 +10444,11 @@ const Countries = [
           'Unión de Naciones Suramericanas',
           'União de Nações Sul-Americanas',
           'Unie van Zuid-Amerikaanse Naties',
-          'South American Union']
-      }],
-    cioc: 'PAR'
+          'South American Union',
+        ],
+      },
+    ],
+    cioc: 'PAR',
   },
   {
     name: 'Peru',
@@ -9953,8 +10475,9 @@ const Countries = [
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Peru',
       es: 'Perú',
@@ -9965,7 +10488,7 @@ const Countries = [
       pt: 'Peru',
       nl: 'Peru',
       hr: 'Peru',
-      fa: 'پرو'
+      fa: 'پرو',
     },
     flag: 'https://restcountries.eu/data/per.svg',
     regionalBlocs: [
@@ -9973,7 +10496,7 @@ const Countries = [
         acronym: 'PA',
         name: 'Pacific Alliance',
         otherAcronyms: [],
-        otherNames: ['Alianza del Pacífico']
+        otherNames: ['Alianza del Pacífico'],
       },
       {
         acronym: 'USAN',
@@ -9983,9 +10506,11 @@ const Countries = [
           'Unión de Naciones Suramericanas',
           'União de Nações Sul-Americanas',
           'Unie van Zuid-Amerikaanse Naties',
-          'South American Union']
-      }],
-    cioc: 'PER'
+          'South American Union',
+        ],
+      },
+    ],
+    cioc: 'PER',
   },
   {
     name: 'Philippines',
@@ -9997,7 +10522,8 @@ const Countries = [
     altSpellings: [
       'PH',
       'Republic of the Philippines',
-      'Repúblika ng Pilipinas'],
+      'Repúblika ng Pilipinas',
+    ],
     region: 'Asia',
     subregion: 'South-Eastern Asia',
     population: 103279800,
@@ -10015,8 +10541,9 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Philippinen',
       es: 'Filipinas',
@@ -10027,7 +10554,7 @@ const Countries = [
       pt: 'Filipinas',
       nl: 'Filipijnen',
       hr: 'Filipini',
-      fa: 'جزایر الندفیلیپین'
+      fa: 'جزایر الندفیلیپین',
     },
     flag: 'https://restcountries.eu/data/phl.svg',
     regionalBlocs: [
@@ -10035,9 +10562,10 @@ const Countries = [
         acronym: 'ASEAN',
         name: 'Association of Southeast Asian Nations',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'PHI'
+        otherNames: [],
+      },
+    ],
+    cioc: 'PHI',
   },
   {
     name: 'Pitcairn',
@@ -10062,15 +10590,18 @@ const Countries = [
       {
         code: 'NZD',
         name: 'New Zealand dollar',
-        symbol: '$'
-      }, { code: null, name: 'Pitcairn Islands dollar', symbol: '$' }],
+        symbol: '$',
+      },
+      { code: null, name: 'Pitcairn Islands dollar', symbol: '$' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Pitcairn',
       es: 'Islas Pitcairn',
@@ -10081,11 +10612,11 @@ const Countries = [
       pt: 'Ilhas Picárnia',
       nl: 'Pitcairneilanden',
       hr: 'Pitcairnovo otočje',
-      fa: 'پیتکرن'
+      fa: 'پیتکرن',
     },
     flag: 'https://restcountries.eu/data/pcn.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Poland',
@@ -10112,8 +10643,9 @@ const Countries = [
         iso639_1: 'pl',
         iso639_2: 'pol',
         name: 'Polish',
-        nativeName: 'język polski'
-      }],
+        nativeName: 'język polski',
+      },
+    ],
     translations: {
       de: 'Polen',
       es: 'Polonia',
@@ -10124,7 +10656,7 @@ const Countries = [
       pt: 'Polónia',
       nl: 'Polen',
       hr: 'Poljska',
-      fa: 'لهستان'
+      fa: 'لهستان',
     },
     flag: 'https://restcountries.eu/data/pol.svg',
     regionalBlocs: [
@@ -10132,9 +10664,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'POL'
+        otherNames: [],
+      },
+    ],
+    cioc: 'POL',
   },
   {
     name: 'Portugal',
@@ -10147,7 +10680,8 @@ const Countries = [
       'PT',
       'Portuguesa',
       'Portuguese Republic',
-      'República Portuguesa'],
+      'República Portuguesa',
+    ],
     region: 'Europe',
     subregion: 'Southern Europe',
     population: 10374822,
@@ -10165,8 +10699,9 @@ const Countries = [
         iso639_1: 'pt',
         iso639_2: 'por',
         name: 'Portuguese',
-        nativeName: 'Português'
-      }],
+        nativeName: 'Português',
+      },
+    ],
     translations: {
       de: 'Portugal',
       es: 'Portugal',
@@ -10177,7 +10712,7 @@ const Countries = [
       pt: 'Portugal',
       nl: 'Portugal',
       hr: 'Portugal',
-      fa: 'پرتغال'
+      fa: 'پرتغال',
     },
     flag: 'https://restcountries.eu/data/prt.svg',
     regionalBlocs: [
@@ -10185,9 +10720,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'POR'
+        otherNames: [],
+      },
+    ],
+    cioc: 'POR',
   },
   {
     name: 'Puerto Rico',
@@ -10199,7 +10735,8 @@ const Countries = [
     altSpellings: [
       'PR',
       'Commonwealth of Puerto Rico',
-      'Estado Libre Asociado de Puerto Rico'],
+      'Estado Libre Asociado de Puerto Rico',
+    ],
     region: 'Americas',
     subregion: 'Caribbean',
     population: 3474182,
@@ -10215,21 +10752,23 @@ const Countries = [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
+        nativeName: 'Español',
       },
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Puerto Rico',
       es: 'Puerto Rico',
@@ -10240,11 +10779,11 @@ const Countries = [
       pt: 'Porto Rico',
       nl: 'Puerto Rico',
       hr: 'Portoriko',
-      fa: 'پورتو ریکو'
+      fa: 'پورتو ریکو',
     },
     flag: 'https://restcountries.eu/data/pri.svg',
     regionalBlocs: [],
-    cioc: 'PUR'
+    cioc: 'PUR',
   },
   {
     name: 'Qatar',
@@ -10271,8 +10810,9 @@ const Countries = [
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Katar',
       es: 'Catar',
@@ -10283,7 +10823,7 @@ const Countries = [
       pt: 'Catar',
       nl: 'Qatar',
       hr: 'Katar',
-      fa: 'قطر'
+      fa: 'قطر',
     },
     flag: 'https://restcountries.eu/data/qat.svg',
     regionalBlocs: [
@@ -10294,9 +10834,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'QAT'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'QAT',
   },
   {
     name: 'Republic of Kosovo',
@@ -10323,14 +10865,15 @@ const Countries = [
         iso639_1: 'sq',
         iso639_2: 'sqi',
         name: 'Albanian',
-        nativeName: 'Shqip'
+        nativeName: 'Shqip',
       },
       {
         iso639_1: 'sr',
         iso639_2: 'srp',
         name: 'Serbian',
-        nativeName: 'српски језик'
-      }],
+        nativeName: 'српски језик',
+      },
+    ],
     translations: {
       de: null,
       es: 'Kosovo',
@@ -10341,7 +10884,7 @@ const Countries = [
       pt: 'Kosovo',
       nl: null,
       hr: 'Kosovo',
-      fa: 'کوزوو'
+      fa: 'کوزوو',
     },
     flag: 'https://restcountries.eu/data/kos.svg',
     regionalBlocs: [
@@ -10349,9 +10892,10 @@ const Countries = [
         acronym: 'CEFTA',
         name: 'Central European Free Trade Agreement',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: null
+        otherNames: [],
+      },
+    ],
+    cioc: null,
   },
   {
     name: 'Réunion',
@@ -10378,8 +10922,9 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Réunion',
       es: 'Reunión',
@@ -10390,7 +10935,7 @@ const Countries = [
       pt: 'Reunião',
       nl: 'Réunion',
       hr: 'Réunion',
-      fa: 'رئونیون'
+      fa: 'رئونیون',
     },
     flag: 'https://restcountries.eu/data/reu.svg',
     regionalBlocs: [
@@ -10403,9 +10948,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: ''
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: '',
   },
   {
     name: 'Romania',
@@ -10432,8 +10979,9 @@ const Countries = [
         iso639_1: 'ro',
         iso639_2: 'ron',
         name: 'Romanian',
-        nativeName: 'Română'
-      }],
+        nativeName: 'Română',
+      },
+    ],
     translations: {
       de: 'Rumänien',
       es: 'Rumania',
@@ -10444,7 +10992,7 @@ const Countries = [
       pt: 'Roménia',
       nl: 'Roemenië',
       hr: 'Rumunjska',
-      fa: 'رومانی'
+      fa: 'رومانی',
     },
     flag: 'https://restcountries.eu/data/rou.svg',
     regionalBlocs: [
@@ -10452,9 +11000,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'ROU'
+        otherNames: [],
+      },
+    ],
+    cioc: 'ROU',
   },
   {
     name: 'Russian Federation',
@@ -10468,13 +11017,14 @@ const Countries = [
       'Rossiya',
       'Russian Federation',
       'Российская Федерация',
-      'Rossiyskaya Federatsiya'],
+      'Rossiyskaya Federatsiya',
+    ],
     region: 'Europe',
     subregion: 'Eastern Europe',
     population: 146599183,
     latlng: [60.0, 100.0],
     demonym: 'Russian',
-    area: 1.7124442E7,
+    area: 1.7124442e7,
     gini: 40.1,
     timezones: [
       'UTC+03:00',
@@ -10485,7 +11035,8 @@ const Countries = [
       'UTC+09:00',
       'UTC+10:00',
       'UTC+11:00',
-      'UTC+12:00'],
+      'UTC+12:00',
+    ],
     borders: [
       'AZE',
       'BLR',
@@ -10500,7 +11051,8 @@ const Countries = [
       'MNG',
       'NOR',
       'POL',
-      'UKR'],
+      'UKR',
+    ],
     nativeName: 'Россия',
     numericCode: '643',
     currencies: [{ code: 'RUB', name: 'Russian ruble', symbol: '₽' }],
@@ -10509,8 +11061,9 @@ const Countries = [
         iso639_1: 'ru',
         iso639_2: 'rus',
         name: 'Russian',
-        nativeName: 'Русский'
-      }],
+        nativeName: 'Русский',
+      },
+    ],
     translations: {
       de: 'Russland',
       es: 'Rusia',
@@ -10521,7 +11074,7 @@ const Countries = [
       pt: 'Rússia',
       nl: 'Rusland',
       hr: 'Rusija',
-      fa: 'روسیه'
+      fa: 'روسیه',
     },
     flag: 'https://restcountries.eu/data/rus.svg',
     regionalBlocs: [
@@ -10529,9 +11082,10 @@ const Countries = [
         acronym: 'EEU',
         name: 'Eurasian Economic Union',
         otherAcronyms: ['EAEU'],
-        otherNames: []
-      }],
-    cioc: 'RUS'
+        otherNames: [],
+      },
+    ],
+    cioc: 'RUS',
   },
   {
     name: 'Rwanda',
@@ -10543,8 +11097,9 @@ const Countries = [
     altSpellings: [
       'RW',
       'Republic of Rwanda',
-      'Repubulika y\'u Rwanda',
-      'République du Rwanda'],
+      "Repubulika y'u Rwanda",
+      'République du Rwanda',
+    ],
     region: 'Africa',
     subregion: 'Eastern Africa',
     population: 11553188,
@@ -10562,20 +11117,21 @@ const Countries = [
         iso639_1: 'rw',
         iso639_2: 'kin',
         name: 'Kinyarwanda',
-        nativeName: 'Ikinyarwanda'
+        nativeName: 'Ikinyarwanda',
       },
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Ruanda',
       es: 'Ruanda',
@@ -10586,7 +11142,7 @@ const Countries = [
       pt: 'Ruanda',
       nl: 'Rwanda',
       hr: 'Ruanda',
-      fa: 'رواندا'
+      fa: 'رواندا',
     },
     flag: 'https://restcountries.eu/data/rwa.svg',
     regionalBlocs: [
@@ -10599,9 +11155,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'RWA'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'RWA',
   },
   {
     name: 'Saint Barthélemy',
@@ -10614,7 +11172,8 @@ const Countries = [
       'BL',
       'St. Barthelemy',
       'Collectivity of Saint Barthélemy',
-      'Collectivité de Saint-Barthélemy'],
+      'Collectivité de Saint-Barthélemy',
+    ],
     region: 'Americas',
     subregion: 'Caribbean',
     population: 9417,
@@ -10632,8 +11191,9 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Saint-Barthélemy',
       es: 'San Bartolomé',
@@ -10644,11 +11204,11 @@ const Countries = [
       pt: 'São Bartolomeu',
       nl: 'Saint Barthélemy',
       hr: 'Saint Barthélemy',
-      fa: 'سن-بارتلمی'
+      fa: 'سن-بارتلمی',
     },
     flag: 'https://restcountries.eu/data/blm.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Saint Helena, Ascension and Tristan da Cunha',
@@ -10673,26 +11233,28 @@ const Countries = [
       {
         code: 'SHP',
         name: 'Saint Helena pound',
-        symbol: '£'
-      }],
+        symbol: '£',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Sankt Helena',
       es: 'Santa Helena',
       fr: 'Sainte-Hélène',
       ja: 'セントヘレナ・アセンションおよびトリスタンダクーニャ',
-      it: 'Sant\'Elena',
+      it: "Sant'Elena",
       br: 'Santa Helena',
       pt: 'Santa Helena',
       nl: 'Sint-Helena',
       hr: 'Sveta Helena',
-      fa: 'سنت هلنا، اسنشن و تریستان دا کونا'
+      fa: 'سنت هلنا، اسنشن و تریستان دا کونا',
     },
     flag: 'https://restcountries.eu/data/shn.svg',
     regionalBlocs: [
@@ -10705,9 +11267,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: null
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: null,
   },
   {
     name: 'Saint Kitts and Nevis',
@@ -10732,15 +11296,17 @@ const Countries = [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'St. Kitts und Nevis',
       es: 'San Cristóbal y Nieves',
@@ -10751,7 +11317,7 @@ const Countries = [
       pt: 'São Cristóvão e Neves',
       nl: 'Saint Kitts en Nevis',
       hr: 'Sveti Kristof i Nevis',
-      fa: 'سنت کیتس و نویس'
+      fa: 'سنت کیتس و نویس',
     },
     flag: 'https://restcountries.eu/data/kna.svg',
     regionalBlocs: [
@@ -10762,9 +11328,11 @@ const Countries = [
         otherNames: [
           'Comunidad del Caribe',
           'Communauté Caribéenne',
-          'Caribische Gemeenschap']
-      }],
-    cioc: 'SKN'
+          'Caribische Gemeenschap',
+        ],
+      },
+    ],
+    cioc: 'SKN',
   },
   {
     name: 'Saint Lucia',
@@ -10789,15 +11357,17 @@ const Countries = [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Saint Lucia',
       es: 'Santa Lucía',
@@ -10808,7 +11378,7 @@ const Countries = [
       pt: 'Santa Lúcia',
       nl: 'Saint Lucia',
       hr: 'Sveta Lucija',
-      fa: 'سنت لوسیا'
+      fa: 'سنت لوسیا',
     },
     flag: 'https://restcountries.eu/data/lca.svg',
     regionalBlocs: [
@@ -10819,9 +11389,11 @@ const Countries = [
         otherNames: [
           'Comunidad del Caribe',
           'Communauté Caribéenne',
-          'Caribische Gemeenschap']
-      }],
-    cioc: 'LCA'
+          'Caribische Gemeenschap',
+        ],
+      },
+    ],
+    cioc: 'LCA',
   },
   {
     name: 'Saint Martin (French part)',
@@ -10833,7 +11405,8 @@ const Countries = [
     altSpellings: [
       'MF',
       'Collectivity of Saint Martin',
-      'Collectivité de Saint-Martin'],
+      'Collectivité de Saint-Martin',
+    ],
     region: 'Americas',
     subregion: 'Caribbean',
     population: 36979,
@@ -10851,20 +11424,21 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'nl',
         iso639_2: 'nld',
         name: 'Dutch',
-        nativeName: 'Nederlands'
-      }],
+        nativeName: 'Nederlands',
+      },
+    ],
     translations: {
       de: 'Saint Martin',
       es: 'Saint Martin',
@@ -10875,11 +11449,11 @@ const Countries = [
       pt: 'Ilha São Martinho',
       nl: 'Saint-Martin',
       hr: 'Sveti Martin',
-      fa: 'سینت مارتن'
+      fa: 'سینت مارتن',
     },
     flag: 'https://restcountries.eu/data/maf.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Saint Pierre and Miquelon',
@@ -10890,7 +11464,8 @@ const Countries = [
     capital: 'Saint-Pierre',
     altSpellings: [
       'PM',
-      'Collectivité territoriale de Saint-Pierre-et-Miquelon'],
+      'Collectivité territoriale de Saint-Pierre-et-Miquelon',
+    ],
     region: 'Americas',
     subregion: 'Northern America',
     population: 6069,
@@ -10908,8 +11483,9 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Saint-Pierre und Miquelon',
       es: 'San Pedro y Miquelón',
@@ -10920,11 +11496,11 @@ const Countries = [
       pt: 'São Pedro e Miquelon',
       nl: 'Saint Pierre en Miquelon',
       hr: 'Sveti Petar i Mikelon',
-      fa: 'سن پیر و میکلن'
+      fa: 'سن پیر و میکلن',
     },
     flag: 'https://restcountries.eu/data/spm.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Saint Vincent and the Grenadines',
@@ -10949,15 +11525,17 @@ const Countries = [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Saint Vincent und die Grenadinen',
       es: 'San Vicente y Granadinas',
@@ -10968,7 +11546,7 @@ const Countries = [
       pt: 'São Vicente e Granadinas',
       nl: 'Saint Vincent en de Grenadines',
       hr: 'Sveti Vincent i Grenadini',
-      fa: 'سنت وینسنت و گرنادین‌ها'
+      fa: 'سنت وینسنت و گرنادین‌ها',
     },
     flag: 'https://restcountries.eu/data/vct.svg',
     regionalBlocs: [
@@ -10979,9 +11557,11 @@ const Countries = [
         otherNames: [
           'Comunidad del Caribe',
           'Communauté Caribéenne',
-          'Caribische Gemeenschap']
-      }],
-    cioc: 'VIN'
+          'Caribische Gemeenschap',
+        ],
+      },
+    ],
+    cioc: 'VIN',
   },
   {
     name: 'Samoa',
@@ -10993,7 +11573,8 @@ const Countries = [
     altSpellings: [
       'WS',
       'Independent State of Samoa',
-      'Malo Saʻoloto Tutoʻatasi o Sāmoa'],
+      'Malo Saʻoloto Tutoʻatasi o Sāmoa',
+    ],
     region: 'Oceania',
     subregion: 'Polynesia',
     population: 194899,
@@ -11011,14 +11592,15 @@ const Countries = [
         iso639_1: 'sm',
         iso639_2: 'smo',
         name: 'Samoan',
-        nativeName: 'gagana fa\'a Samoa'
+        nativeName: "gagana fa'a Samoa",
       },
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Samoa',
       es: 'Samoa',
@@ -11029,11 +11611,11 @@ const Countries = [
       pt: 'Samoa',
       nl: 'Samoa',
       hr: 'Samoa',
-      fa: 'ساموآ'
+      fa: 'ساموآ',
     },
     flag: 'https://restcountries.eu/data/wsm.svg',
     regionalBlocs: [],
-    cioc: 'SAM'
+    cioc: 'SAM',
   },
   {
     name: 'San Marino',
@@ -11042,10 +11624,7 @@ const Countries = [
     alpha3Code: 'SMR',
     callingCodes: ['378'],
     capital: 'City of San Marino',
-    altSpellings: [
-      'SM',
-      'Republic of San Marino',
-      'Repubblica di San Marino'],
+    altSpellings: ['SM', 'Republic of San Marino', 'Repubblica di San Marino'],
     region: 'Europe',
     subregion: 'Southern Europe',
     population: 33005,
@@ -11063,8 +11642,9 @@ const Countries = [
         iso639_1: 'it',
         iso639_2: 'ita',
         name: 'Italian',
-        nativeName: 'Italiano'
-      }],
+        nativeName: 'Italiano',
+      },
+    ],
     translations: {
       de: 'San Marino',
       es: 'San Marino',
@@ -11075,11 +11655,11 @@ const Countries = [
       pt: 'São Marinho',
       nl: 'San Marino',
       hr: 'San Marino',
-      fa: 'سان مارینو'
+      fa: 'سان مارینو',
     },
     flag: 'https://restcountries.eu/data/smr.svg',
     regionalBlocs: [],
-    cioc: 'SMR'
+    cioc: 'SMR',
   },
   {
     name: 'Sao Tome and Principe',
@@ -11091,7 +11671,8 @@ const Countries = [
     altSpellings: [
       'ST',
       'Democratic Republic of São Tomé and Príncipe',
-      'República Democrática de São Tomé e Príncipe'],
+      'República Democrática de São Tomé e Príncipe',
+    ],
     region: 'Africa',
     subregion: 'Middle Africa',
     population: 187356,
@@ -11107,15 +11688,17 @@ const Countries = [
       {
         code: 'STD',
         name: 'São Tomé and Príncipe dobra',
-        symbol: 'Db'
-      }],
+        symbol: 'Db',
+      },
+    ],
     languages: [
       {
         iso639_1: 'pt',
         iso639_2: 'por',
         name: 'Portuguese',
-        nativeName: 'Português'
-      }],
+        nativeName: 'Português',
+      },
+    ],
     translations: {
       de: 'São Tomé und Príncipe',
       es: 'Santo Tomé y Príncipe',
@@ -11126,7 +11709,7 @@ const Countries = [
       pt: 'São Tomé e Príncipe',
       nl: 'Sao Tomé en Principe',
       hr: 'Sveti Toma i Princip',
-      fa: 'کواترو دو فرویرو'
+      fa: 'کواترو دو فرویرو',
     },
     flag: 'https://restcountries.eu/data/stp.svg',
     regionalBlocs: [
@@ -11139,9 +11722,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'STP'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'STP',
   },
   {
     name: 'Saudi Arabia',
@@ -11153,7 +11738,8 @@ const Countries = [
     altSpellings: [
       'SA',
       'Kingdom of Saudi Arabia',
-      'Al-Mamlakah al-‘Arabiyyah as-Su‘ūdiyyah'],
+      'Al-Mamlakah al-‘Arabiyyah as-Su‘ūdiyyah',
+    ],
     region: 'Asia',
     subregion: 'Western Asia',
     population: 32248200,
@@ -11171,8 +11757,9 @@ const Countries = [
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Saudi-Arabien',
       es: 'Arabia Saudí',
@@ -11183,7 +11770,7 @@ const Countries = [
       pt: 'Arábia Saudita',
       nl: 'Saoedi-Arabië',
       hr: 'Saudijska Arabija',
-      fa: 'عربستان سعودی'
+      fa: 'عربستان سعودی',
     },
     flag: 'https://restcountries.eu/data/sau.svg',
     regionalBlocs: [
@@ -11194,9 +11781,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'KSA'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'KSA',
   },
   {
     name: 'Senegal',
@@ -11221,15 +11810,17 @@ const Countries = [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Senegal',
       es: 'Senegal',
@@ -11240,7 +11831,7 @@ const Countries = [
       pt: 'Senegal',
       nl: 'Senegal',
       hr: 'Senegal',
-      fa: 'سنگال'
+      fa: 'سنگال',
     },
     flag: 'https://restcountries.eu/data/sen.svg',
     regionalBlocs: [
@@ -11253,9 +11844,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'SEN'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'SEN',
   },
   {
     name: 'Serbia',
@@ -11269,7 +11862,8 @@ const Countries = [
       'Srbija',
       'Republic of Serbia',
       'Република Србија',
-      'Republika Srbija'],
+      'Republika Srbija',
+    ],
     region: 'Europe',
     subregion: 'Southern Europe',
     population: 7076372,
@@ -11285,15 +11879,17 @@ const Countries = [
       {
         code: 'RSD',
         name: 'Serbian dinar',
-        symbol: 'дин.'
-      }],
+        symbol: 'дин.',
+      },
+    ],
     languages: [
       {
         iso639_1: 'sr',
         iso639_2: 'srp',
         name: 'Serbian',
-        nativeName: 'српски језик'
-      }],
+        nativeName: 'српски језик',
+      },
+    ],
     translations: {
       de: 'Serbien',
       es: 'Serbia',
@@ -11304,7 +11900,7 @@ const Countries = [
       pt: 'Sérvia',
       nl: 'Servië',
       hr: 'Srbija',
-      fa: 'صربستان'
+      fa: 'صربستان',
     },
     flag: 'https://restcountries.eu/data/srb.svg',
     regionalBlocs: [
@@ -11312,9 +11908,10 @@ const Countries = [
         acronym: 'CEFTA',
         name: 'Central European Free Trade Agreement',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'SRB'
+        otherNames: [],
+      },
+    ],
+    cioc: 'SRB',
   },
   {
     name: 'Seychelles',
@@ -11327,7 +11924,8 @@ const Countries = [
       'SC',
       'Republic of Seychelles',
       'Repiblik Sesel',
-      'République des Seychelles'],
+      'République des Seychelles',
+    ],
     region: 'Africa',
     subregion: 'Eastern Africa',
     population: 91400,
@@ -11343,21 +11941,23 @@ const Countries = [
       {
         code: 'SCR',
         name: 'Seychellois rupee',
-        symbol: '₨'
-      }],
+        symbol: '₨',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Seychellen',
       es: 'Seychelles',
@@ -11368,7 +11968,7 @@ const Countries = [
       pt: 'Seicheles',
       nl: 'Seychellen',
       hr: 'Sejšeli',
-      fa: 'سیشل'
+      fa: 'سیشل',
     },
     flag: 'https://restcountries.eu/data/syc.svg',
     regionalBlocs: [
@@ -11381,9 +11981,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'SEY'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'SEY',
   },
   {
     name: 'Sierra Leone',
@@ -11408,15 +12010,17 @@ const Countries = [
       {
         code: 'SLL',
         name: 'Sierra Leonean leone',
-        symbol: 'Le'
-      }],
+        symbol: 'Le',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Sierra Leone',
       es: 'Sierra Leone',
@@ -11427,7 +12031,7 @@ const Countries = [
       pt: 'Serra Leoa',
       nl: 'Sierra Leone',
       hr: 'Sijera Leone',
-      fa: 'سیرالئون'
+      fa: 'سیرالئون',
     },
     flag: 'https://restcountries.eu/data/sle.svg',
     regionalBlocs: [
@@ -11440,9 +12044,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'SLE'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'SLE',
   },
   {
     name: 'Singapore',
@@ -11465,32 +12071,34 @@ const Countries = [
     numericCode: '702',
     currencies: [
       { code: 'BND', name: 'Brunei dollar', symbol: '$' },
-      { code: 'SGD', name: 'Singapore dollar', symbol: '$' }],
+      { code: 'SGD', name: 'Singapore dollar', symbol: '$' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'ms',
         iso639_2: 'msa',
         name: 'Malay',
-        nativeName: 'bahasa Melayu'
+        nativeName: 'bahasa Melayu',
       },
       {
         iso639_1: 'ta',
         iso639_2: 'tam',
         name: 'Tamil',
-        nativeName: 'தமிழ்'
+        nativeName: 'தமிழ்',
       },
       {
         iso639_1: 'zh',
         iso639_2: 'zho',
         name: 'Chinese',
-        nativeName: '中文 (Zhōngwén)'
-      }],
+        nativeName: '中文 (Zhōngwén)',
+      },
+    ],
     translations: {
       de: 'Singapur',
       es: 'Singapur',
@@ -11501,7 +12109,7 @@ const Countries = [
       pt: 'Singapura',
       nl: 'Singapore',
       hr: 'Singapur',
-      fa: 'سنگاپور'
+      fa: 'سنگاپور',
     },
     flag: 'https://restcountries.eu/data/sgp.svg',
     regionalBlocs: [
@@ -11509,9 +12117,10 @@ const Countries = [
         acronym: 'ASEAN',
         name: 'Association of Southeast Asian Nations',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'SIN'
+        otherNames: [],
+      },
+    ],
+    cioc: 'SIN',
   },
   {
     name: 'Sint Maarten (Dutch part)',
@@ -11536,21 +12145,23 @@ const Countries = [
       {
         code: 'ANG',
         name: 'Netherlands Antillean guilder',
-        symbol: 'ƒ'
-      }],
+        symbol: 'ƒ',
+      },
+    ],
     languages: [
       {
         iso639_1: 'nl',
         iso639_2: 'nld',
         name: 'Dutch',
-        nativeName: 'Nederlands'
+        nativeName: 'Nederlands',
       },
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Sint Maarten (niederl. Teil)',
       es: null,
@@ -11561,11 +12172,11 @@ const Countries = [
       pt: 'São Martinho',
       nl: 'Sint Maarten',
       hr: null,
-      fa: 'سینت مارتن'
+      fa: 'سینت مارتن',
     },
     flag: 'https://restcountries.eu/data/sxm.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Slovakia',
@@ -11592,8 +12203,9 @@ const Countries = [
         iso639_1: 'sk',
         iso639_2: 'slk',
         name: 'Slovak',
-        nativeName: 'slovenčina'
-      }],
+        nativeName: 'slovenčina',
+      },
+    ],
     translations: {
       de: 'Slowakei',
       es: 'República Eslovaca',
@@ -11604,7 +12216,7 @@ const Countries = [
       pt: 'Eslováquia',
       nl: 'Slowakije',
       hr: 'Slovačka',
-      fa: 'اسلواکی'
+      fa: 'اسلواکی',
     },
     flag: 'https://restcountries.eu/data/svk.svg',
     regionalBlocs: [
@@ -11612,9 +12224,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'SVK'
+        otherNames: [],
+      },
+    ],
+    cioc: 'SVK',
   },
   {
     name: 'Slovenia',
@@ -11641,8 +12254,9 @@ const Countries = [
         iso639_1: 'sl',
         iso639_2: 'slv',
         name: 'Slovene',
-        nativeName: 'slovenski jezik'
-      }],
+        nativeName: 'slovenski jezik',
+      },
+    ],
     translations: {
       de: 'Slowenien',
       es: 'Eslovenia',
@@ -11653,7 +12267,7 @@ const Countries = [
       pt: 'Eslovénia',
       nl: 'Slovenië',
       hr: 'Slovenija',
-      fa: 'اسلوونی'
+      fa: 'اسلوونی',
     },
     flag: 'https://restcountries.eu/data/svn.svg',
     regionalBlocs: [
@@ -11661,9 +12275,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'SLO'
+        otherNames: [],
+      },
+    ],
+    cioc: 'SLO',
   },
   {
     name: 'Solomon Islands',
@@ -11688,15 +12303,17 @@ const Countries = [
       {
         code: 'SBD',
         name: 'Solomon Islands dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Salomonen',
       es: 'Islas Salomón',
@@ -11707,11 +12324,11 @@ const Countries = [
       pt: 'Ilhas Salomão',
       nl: 'Salomonseilanden',
       hr: 'Solomonski Otoci',
-      fa: 'جزایر سلیمان'
+      fa: 'جزایر سلیمان',
     },
     flag: 'https://restcountries.eu/data/slb.svg',
     regionalBlocs: [],
-    cioc: 'SOL'
+    cioc: 'SOL',
   },
   {
     name: 'Somalia',
@@ -11725,7 +12342,8 @@ const Countries = [
       'aṣ-Ṣūmāl',
       'Federal Republic of Somalia',
       'Jamhuuriyadda Federaalka Soomaaliya',
-      'Jumhūriyyat aṣ-Ṣūmāl al-Fiderāliyya'],
+      'Jumhūriyyat aṣ-Ṣūmāl al-Fiderāliyya',
+    ],
     region: 'Africa',
     subregion: 'Eastern Africa',
     population: 11079000,
@@ -11741,21 +12359,23 @@ const Countries = [
       {
         code: 'SOS',
         name: 'Somali shilling',
-        symbol: 'Sh'
-      }],
+        symbol: 'Sh',
+      },
+    ],
     languages: [
       {
         iso639_1: 'so',
         iso639_2: 'som',
         name: 'Somali',
-        nativeName: 'Soomaaliga'
+        nativeName: 'Soomaaliga',
       },
       {
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Somalia',
       es: 'Somalia',
@@ -11766,7 +12386,7 @@ const Countries = [
       pt: 'Somália',
       nl: 'Somalië',
       hr: 'Somalija',
-      fa: 'سومالی'
+      fa: 'سومالی',
     },
     flag: 'https://restcountries.eu/data/som.svg',
     regionalBlocs: [
@@ -11779,7 +12399,8 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
+          'Umoja wa Afrika',
+        ],
       },
       {
         acronym: 'AL',
@@ -11788,9 +12409,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'SOM'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'SOM',
   },
   {
     name: 'South Africa',
@@ -11815,69 +12438,71 @@ const Countries = [
       {
         code: 'ZAR',
         name: 'South African rand',
-        symbol: 'R'
-      }],
+        symbol: 'R',
+      },
+    ],
     languages: [
       {
         iso639_1: 'af',
         iso639_2: 'afr',
         name: 'Afrikaans',
-        nativeName: 'Afrikaans'
+        nativeName: 'Afrikaans',
       },
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'nr',
         iso639_2: 'nbl',
         name: 'Southern Ndebele',
-        nativeName: 'isiNdebele'
+        nativeName: 'isiNdebele',
       },
       {
         iso639_1: 'st',
         iso639_2: 'sot',
         name: 'Southern Sotho',
-        nativeName: 'Sesotho'
+        nativeName: 'Sesotho',
       },
       {
         iso639_1: 'ss',
         iso639_2: 'ssw',
         name: 'Swati',
-        nativeName: 'SiSwati'
+        nativeName: 'SiSwati',
       },
       {
         iso639_1: 'tn',
         iso639_2: 'tsn',
         name: 'Tswana',
-        nativeName: 'Setswana'
+        nativeName: 'Setswana',
       },
       {
         iso639_1: 'ts',
         iso639_2: 'tso',
         name: 'Tsonga',
-        nativeName: 'Xitsonga'
+        nativeName: 'Xitsonga',
       },
       {
         iso639_1: 've',
         iso639_2: 'ven',
         name: 'Venda',
-        nativeName: 'Tshivenḓa'
+        nativeName: 'Tshivenḓa',
       },
       {
         iso639_1: 'xh',
         iso639_2: 'xho',
         name: 'Xhosa',
-        nativeName: 'isiXhosa'
+        nativeName: 'isiXhosa',
       },
       {
         iso639_1: 'zu',
         iso639_2: 'zul',
         name: 'Zulu',
-        nativeName: 'isiZulu'
-      }],
+        nativeName: 'isiZulu',
+      },
+    ],
     translations: {
       de: 'Republik Südafrika',
       es: 'República de Sudáfrica',
@@ -11888,7 +12513,7 @@ const Countries = [
       pt: 'República Sul-Africana',
       nl: 'Zuid-Afrika',
       hr: 'Južnoafrička Republika',
-      fa: 'آفریقای جنوبی'
+      fa: 'آفریقای جنوبی',
     },
     flag: 'https://restcountries.eu/data/zaf.svg',
     regionalBlocs: [
@@ -11901,9 +12526,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'RSA'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'RSA',
   },
   {
     name: 'South Georgia and the South Sandwich Islands',
@@ -11926,14 +12553,16 @@ const Countries = [
     numericCode: '239',
     currencies: [
       { code: 'GBP', name: 'British pound', symbol: '£' },
-      { code: '(none)', name: null, symbol: '£' }],
+      { code: '(none)', name: null, symbol: '£' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Südgeorgien und die Südlichen Sandwichinseln',
       es: 'Islas Georgias del Sur y Sandwich del Sur',
@@ -11944,7 +12573,7 @@ const Countries = [
       pt: 'Ilhas Geórgia do Sul e Sanduíche do Sul',
       nl: 'Zuid-Georgia en Zuidelijke Sandwicheilanden',
       hr: 'Južna Georgija i otočje Južni Sandwich',
-      fa: 'جزایر جورجیای جنوبی و ساندویچ جنوبی'
+      fa: 'جزایر جورجیای جنوبی و ساندویچ جنوبی',
     },
     flag: 'https://restcountries.eu/data/sgs.svg',
     regionalBlocs: [
@@ -11956,9 +12585,11 @@ const Countries = [
           'Unión de Naciones Suramericanas',
           'União de Nações Sul-Americanas',
           'Unie van Zuid-Amerikaanse Naties',
-          'South American Union']
-      }],
-    cioc: ''
+          'South American Union',
+        ],
+      },
+    ],
+    cioc: '',
   },
   {
     name: 'Korea (Republic of)',
@@ -11983,15 +12614,17 @@ const Countries = [
       {
         code: 'KRW',
         name: 'South Korean won',
-        symbol: '₩'
-      }],
+        symbol: '₩',
+      },
+    ],
     languages: [
       {
         iso639_1: 'ko',
         iso639_2: 'kor',
         name: 'Korean',
-        nativeName: '한국어'
-      }],
+        nativeName: '한국어',
+      },
+    ],
     translations: {
       de: 'Südkorea',
       es: 'Corea del Sur',
@@ -12002,11 +12635,11 @@ const Countries = [
       pt: 'Coreia do Sul',
       nl: 'Zuid-Korea',
       hr: 'Južna Koreja',
-      fa: 'کره شمالی'
+      fa: 'کره شمالی',
     },
     flag: 'https://restcountries.eu/data/kor.svg',
     regionalBlocs: [],
-    cioc: 'KOR'
+    cioc: 'KOR',
   },
   {
     name: 'South Sudan',
@@ -12031,15 +12664,17 @@ const Countries = [
       {
         code: 'SSP',
         name: 'South Sudanese pound',
-        symbol: '£'
-      }],
+        symbol: '£',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Südsudan',
       es: 'Sudán del Sur',
@@ -12050,7 +12685,7 @@ const Countries = [
       pt: 'Sudão do Sul',
       nl: 'Zuid-Soedan',
       hr: 'Južni Sudan',
-      fa: 'سودان جنوبی'
+      fa: 'سودان جنوبی',
     },
     flag: 'https://restcountries.eu/data/ssd.svg',
     regionalBlocs: [
@@ -12063,9 +12698,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: ''
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: '',
   },
   {
     name: 'Spain',
@@ -12092,8 +12729,9 @@ const Countries = [
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Spanien',
       es: 'España',
@@ -12104,7 +12742,7 @@ const Countries = [
       pt: 'Espanha',
       nl: 'Spanje',
       hr: 'Španjolska',
-      fa: 'اسپانیا'
+      fa: 'اسپانیا',
     },
     flag: 'https://restcountries.eu/data/esp.svg',
     regionalBlocs: [
@@ -12112,9 +12750,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'ESP'
+        otherNames: [],
+      },
+    ],
+    cioc: 'ESP',
   },
   {
     name: 'Sri Lanka',
@@ -12126,7 +12765,8 @@ const Countries = [
     altSpellings: [
       'LK',
       'ilaṅkai',
-      'Democratic Socialist Republic of Sri Lanka'],
+      'Democratic Socialist Republic of Sri Lanka',
+    ],
     region: 'Asia',
     subregion: 'Southern Asia',
     population: 20966000,
@@ -12142,21 +12782,23 @@ const Countries = [
       {
         code: 'LKR',
         name: 'Sri Lankan rupee',
-        symbol: 'Rs'
-      }],
+        symbol: 'Rs',
+      },
+    ],
     languages: [
       {
         iso639_1: 'si',
         iso639_2: 'sin',
         name: 'Sinhalese',
-        nativeName: 'සිංහල'
+        nativeName: 'සිංහල',
       },
       {
         iso639_1: 'ta',
         iso639_2: 'tam',
         name: 'Tamil',
-        nativeName: 'தமிழ்'
-      }],
+        nativeName: 'தமிழ்',
+      },
+    ],
     translations: {
       de: 'Sri Lanka',
       es: 'Sri Lanka',
@@ -12167,7 +12809,7 @@ const Countries = [
       pt: 'Sri Lanka',
       nl: 'Sri Lanka',
       hr: 'Šri Lanka',
-      fa: 'سری‌لانکا'
+      fa: 'سری‌لانکا',
     },
     flag: 'https://restcountries.eu/data/lka.svg',
     regionalBlocs: [
@@ -12175,9 +12817,10 @@ const Countries = [
         acronym: 'SAARC',
         name: 'South Asian Association for Regional Cooperation',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'SRI'
+        otherNames: [],
+      },
+    ],
+    cioc: 'SRI',
   },
   {
     name: 'Sudan',
@@ -12202,21 +12845,23 @@ const Countries = [
       {
         code: 'SDG',
         name: 'Sudanese pound',
-        symbol: 'ج.س.'
-      }],
+        symbol: 'ج.س.',
+      },
+    ],
     languages: [
       {
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
+        nativeName: 'العربية',
       },
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Sudan',
       es: 'Sudán',
@@ -12227,7 +12872,7 @@ const Countries = [
       pt: 'Sudão',
       nl: 'Soedan',
       hr: 'Sudan',
-      fa: 'سودان'
+      fa: 'سودان',
     },
     flag: 'https://restcountries.eu/data/sdn.svg',
     regionalBlocs: [
@@ -12240,7 +12885,8 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
+          'Umoja wa Afrika',
+        ],
       },
       {
         acronym: 'AL',
@@ -12249,9 +12895,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'SUD'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'SUD',
   },
   {
     name: 'Suriname',
@@ -12265,7 +12913,8 @@ const Countries = [
       'Sarnam',
       'Sranangron',
       'Republic of Suriname',
-      'Republiek Suriname'],
+      'Republiek Suriname',
+    ],
     region: 'Americas',
     subregion: 'South America',
     population: 541638,
@@ -12281,15 +12930,17 @@ const Countries = [
       {
         code: 'SRD',
         name: 'Surinamese dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'nl',
         iso639_2: 'nld',
         name: 'Dutch',
-        nativeName: 'Nederlands'
-      }],
+        nativeName: 'Nederlands',
+      },
+    ],
     translations: {
       de: 'Suriname',
       es: 'Surinam',
@@ -12300,7 +12951,7 @@ const Countries = [
       pt: 'Suriname',
       nl: 'Suriname',
       hr: 'Surinam',
-      fa: 'سورینام'
+      fa: 'سورینام',
     },
     flag: 'https://restcountries.eu/data/sur.svg',
     regionalBlocs: [
@@ -12311,7 +12962,8 @@ const Countries = [
         otherNames: [
           'Comunidad del Caribe',
           'Communauté Caribéenne',
-          'Caribische Gemeenschap']
+          'Caribische Gemeenschap',
+        ],
       },
       {
         acronym: 'USAN',
@@ -12321,9 +12973,11 @@ const Countries = [
           'Unión de Naciones Suramericanas',
           'União de Nações Sul-Americanas',
           'Unie van Zuid-Amerikaanse Naties',
-          'South American Union']
-      }],
-    cioc: 'SUR'
+          'South American Union',
+        ],
+      },
+    ],
+    cioc: 'SUR',
   },
   {
     name: 'Svalbard and Jan Mayen',
@@ -12348,15 +13002,17 @@ const Countries = [
       {
         code: 'NOK',
         name: 'Norwegian krone',
-        symbol: 'kr'
-      }],
+        symbol: 'kr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'no',
         iso639_2: 'nor',
         name: 'Norwegian',
-        nativeName: 'Norsk'
-      }],
+        nativeName: 'Norsk',
+      },
+    ],
     translations: {
       de: 'Svalbard und Jan Mayen',
       es: 'Islas Svalbard y Jan Mayen',
@@ -12367,11 +13023,11 @@ const Countries = [
       pt: 'Svalbard',
       nl: 'Svalbard en Jan Mayen',
       hr: 'Svalbard i Jan Mayen',
-      fa: 'سوالبارد و یان ماین'
+      fa: 'سوالبارد و یان ماین',
     },
     flag: 'https://restcountries.eu/data/sjm.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Swaziland',
@@ -12386,7 +13042,8 @@ const Countries = [
       'Swatini',
       'Ngwane',
       'Kingdom of Swaziland',
-      'Umbuso waseSwatini'],
+      'Umbuso waseSwatini',
+    ],
     region: 'Africa',
     subregion: 'Southern Africa',
     population: 1132657,
@@ -12404,14 +13061,15 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'ss',
         iso639_2: 'ssw',
         name: 'Swati',
-        nativeName: 'SiSwati'
-      }],
+        nativeName: 'SiSwati',
+      },
+    ],
     translations: {
       de: 'Swasiland',
       es: 'Suazilandia',
@@ -12422,7 +13080,7 @@ const Countries = [
       pt: 'Suazilândia',
       nl: 'Swaziland',
       hr: 'Svazi',
-      fa: 'سوازیلند'
+      fa: 'سوازیلند',
     },
     flag: 'https://restcountries.eu/data/swz.svg',
     regionalBlocs: [
@@ -12435,9 +13093,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'SWZ'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'SWZ',
   },
   {
     name: 'Sweden',
@@ -12464,8 +13124,9 @@ const Countries = [
         iso639_1: 'sv',
         iso639_2: 'swe',
         name: 'Swedish',
-        nativeName: 'svenska'
-      }],
+        nativeName: 'svenska',
+      },
+    ],
     translations: {
       de: 'Schweden',
       es: 'Suecia',
@@ -12476,7 +13137,7 @@ const Countries = [
       pt: 'Suécia',
       nl: 'Zweden',
       hr: 'Švedska',
-      fa: 'سوئد'
+      fa: 'سوئد',
     },
     flag: 'https://restcountries.eu/data/swe.svg',
     regionalBlocs: [
@@ -12484,9 +13145,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'SWE'
+        otherNames: [],
+      },
+    ],
+    cioc: 'SWE',
   },
   {
     name: 'Switzerland',
@@ -12501,7 +13163,8 @@ const Countries = [
       'Schweiz',
       'Suisse',
       'Svizzera',
-      'Svizra'],
+      'Svizra',
+    ],
     region: 'Europe',
     subregion: 'Western Europe',
     population: 8341600,
@@ -12519,20 +13182,21 @@ const Countries = [
         iso639_1: 'de',
         iso639_2: 'deu',
         name: 'German',
-        nativeName: 'Deutsch'
+        nativeName: 'Deutsch',
       },
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
+        nativeName: 'français',
       },
       {
         iso639_1: 'it',
         iso639_2: 'ita',
         name: 'Italian',
-        nativeName: 'Italiano'
-      }],
+        nativeName: 'Italiano',
+      },
+    ],
     translations: {
       de: 'Schweiz',
       es: 'Suiza',
@@ -12543,7 +13207,7 @@ const Countries = [
       pt: 'Suíça',
       nl: 'Zwitserland',
       hr: 'Švicarska',
-      fa: 'سوئیس'
+      fa: 'سوئیس',
     },
     flag: 'https://restcountries.eu/data/che.svg',
     regionalBlocs: [
@@ -12551,9 +13215,10 @@ const Countries = [
         acronym: 'EFTA',
         name: 'European Free Trade Association',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'SUI'
+        otherNames: [],
+      },
+    ],
+    cioc: 'SUI',
   },
   {
     name: 'Syrian Arab Republic',
@@ -12565,7 +13230,8 @@ const Countries = [
     altSpellings: [
       'SY',
       'Syrian Arab Republic',
-      'Al-Jumhūrīyah Al-ʻArabīyah As-Sūrīyah'],
+      'Al-Jumhūrīyah Al-ʻArabīyah As-Sūrīyah',
+    ],
     region: 'Asia',
     subregion: 'Western Asia',
     population: 18564000,
@@ -12583,8 +13249,9 @@ const Countries = [
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Syrien',
       es: 'Siria',
@@ -12595,7 +13262,7 @@ const Countries = [
       pt: 'Síria',
       nl: 'Syrië',
       hr: 'Sirija',
-      fa: 'سوریه'
+      fa: 'سوریه',
     },
     flag: 'https://restcountries.eu/data/syr.svg',
     regionalBlocs: [
@@ -12606,9 +13273,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'SYR'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'SYR',
   },
   {
     name: 'Taiwan (China)',
@@ -12622,7 +13291,8 @@ const Countries = [
       'Táiwān',
       'Republic of China',
       '中華民國',
-      'Zhōnghuá Mínguó'],
+      'Zhōnghuá Mínguó',
+    ],
     region: 'Asia',
     subregion: 'Eastern Asia',
     population: 23503349,
@@ -12638,15 +13308,17 @@ const Countries = [
       {
         code: 'TWD',
         name: 'New Taiwan dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'zh',
         iso639_2: 'zho',
         name: 'Chinese',
-        nativeName: '中文 (Zhōngwén)'
-      }],
+        nativeName: '中文 (Zhōngwén)',
+      },
+    ],
     translations: {
       de: 'Taiwan',
       es: 'Taiwán',
@@ -12657,11 +13329,11 @@ const Countries = [
       pt: 'Taiwan',
       nl: 'Taiwan',
       hr: 'Tajvan',
-      fa: 'تایوان'
+      fa: 'تایوان',
     },
     flag: 'https://restcountries.eu/data/twn.svg',
     regionalBlocs: [],
-    cioc: 'TPE'
+    cioc: 'TPE',
   },
   {
     name: 'Tajikistan',
@@ -12675,7 +13347,8 @@ const Countries = [
       'Toçikiston',
       'Republic of Tajikistan',
       'Ҷумҳурии Тоҷикистон',
-      'Çumhuriyi Toçikiston'],
+      'Çumhuriyi Toçikiston',
+    ],
     region: 'Asia',
     subregion: 'Central Asia',
     population: 8593600,
@@ -12691,21 +13364,23 @@ const Countries = [
       {
         code: 'TJS',
         name: 'Tajikistani somoni',
-        symbol: 'ЅМ'
-      }],
+        symbol: 'ЅМ',
+      },
+    ],
     languages: [
       {
         iso639_1: 'tg',
         iso639_2: 'tgk',
         name: 'Tajik',
-        nativeName: 'тоҷикӣ'
+        nativeName: 'тоҷикӣ',
       },
       {
         iso639_1: 'ru',
         iso639_2: 'rus',
         name: 'Russian',
-        nativeName: 'Русский'
-      }],
+        nativeName: 'Русский',
+      },
+    ],
     translations: {
       de: 'Tadschikistan',
       es: 'Tayikistán',
@@ -12716,11 +13391,11 @@ const Countries = [
       pt: 'Tajiquistão',
       nl: 'Tadzjikistan',
       hr: 'Tađikistan',
-      fa: 'تاجیکستان'
+      fa: 'تاجیکستان',
     },
     flag: 'https://restcountries.eu/data/tjk.svg',
     regionalBlocs: [],
-    cioc: 'TJK'
+    cioc: 'TJK',
   },
   {
     name: 'Tanzania, United Republic of',
@@ -12732,7 +13407,8 @@ const Countries = [
     altSpellings: [
       'TZ',
       'United Republic of Tanzania',
-      'Jamhuri ya Muungano wa Tanzania'],
+      'Jamhuri ya Muungano wa Tanzania',
+    ],
     region: 'Africa',
     subregion: 'Eastern Africa',
     population: 55155000,
@@ -12748,21 +13424,23 @@ const Countries = [
       {
         code: 'TZS',
         name: 'Tanzanian shilling',
-        symbol: 'Sh'
-      }],
+        symbol: 'Sh',
+      },
+    ],
     languages: [
       {
         iso639_1: 'sw',
         iso639_2: 'swa',
         name: 'Swahili',
-        nativeName: 'Kiswahili'
+        nativeName: 'Kiswahili',
       },
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Tansania',
       es: 'Tanzania',
@@ -12773,7 +13451,7 @@ const Countries = [
       pt: 'Tanzânia',
       nl: 'Tanzania',
       hr: 'Tanzanija',
-      fa: 'تانزانیا'
+      fa: 'تانزانیا',
     },
     flag: 'https://restcountries.eu/data/tza.svg',
     regionalBlocs: [
@@ -12786,9 +13464,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'TAN'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'TAN',
   },
   {
     name: 'Thailand',
@@ -12803,7 +13483,8 @@ const Countries = [
       'Thai',
       'Kingdom of Thailand',
       'ราชอาณาจักรไทย',
-      'Ratcha Anachak Thai'],
+      'Ratcha Anachak Thai',
+    ],
     region: 'Asia',
     subregion: 'South-Eastern Asia',
     population: 65327652,
@@ -12821,8 +13502,9 @@ const Countries = [
         iso639_1: 'th',
         iso639_2: 'tha',
         name: 'Thai',
-        nativeName: 'ไทย'
-      }],
+        nativeName: 'ไทย',
+      },
+    ],
     translations: {
       de: 'Thailand',
       es: 'Tailandia',
@@ -12833,7 +13515,7 @@ const Countries = [
       pt: 'Tailândia',
       nl: 'Thailand',
       hr: 'Tajland',
-      fa: 'تایلند'
+      fa: 'تایلند',
     },
     flag: 'https://restcountries.eu/data/tha.svg',
     regionalBlocs: [
@@ -12841,9 +13523,10 @@ const Countries = [
         acronym: 'ASEAN',
         name: 'Association of Southeast Asian Nations',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'THA'
+        otherNames: [],
+      },
+    ],
+    cioc: 'THA',
   },
   {
     name: 'Timor-Leste',
@@ -12857,7 +13540,8 @@ const Countries = [
       'East Timor',
       'Democratic Republic of Timor-Leste',
       'República Democrática de Timor-Leste',
-      'Repúblika Demokrátika Timór-Leste'],
+      'Repúblika Demokrátika Timór-Leste',
+    ],
     region: 'Asia',
     subregion: 'South-Eastern Asia',
     population: 1167242,
@@ -12873,15 +13557,18 @@ const Countries = [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }, { code: null, name: null, symbol: null }],
+        symbol: '$',
+      },
+      { code: null, name: null, symbol: null },
+    ],
     languages: [
       {
         iso639_1: 'pt',
         iso639_2: 'por',
         name: 'Portuguese',
-        nativeName: 'Português'
-      }],
+        nativeName: 'Português',
+      },
+    ],
     translations: {
       de: 'Timor-Leste',
       es: 'Timor Oriental',
@@ -12892,11 +13579,11 @@ const Countries = [
       pt: 'Timor Leste',
       nl: 'Oost-Timor',
       hr: 'Istočni Timor',
-      fa: 'تیمور شرقی'
+      fa: 'تیمور شرقی',
     },
     flag: 'https://restcountries.eu/data/tls.svg',
     regionalBlocs: [],
-    cioc: 'TLS'
+    cioc: 'TLS',
   },
   {
     name: 'Togo',
@@ -12909,7 +13596,8 @@ const Countries = [
       'TG',
       'Togolese',
       'Togolese Republic',
-      'République Togolaise'],
+      'République Togolaise',
+    ],
     region: 'Africa',
     subregion: 'Western Africa',
     population: 7143000,
@@ -12925,15 +13613,17 @@ const Countries = [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }],
+        symbol: 'Fr',
+      },
+    ],
     languages: [
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Togo',
       es: 'Togo',
@@ -12944,7 +13634,7 @@ const Countries = [
       pt: 'Togo',
       nl: 'Togo',
       hr: 'Togo',
-      fa: 'توگو'
+      fa: 'توگو',
     },
     flag: 'https://restcountries.eu/data/tgo.svg',
     regionalBlocs: [
@@ -12957,9 +13647,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'TOG'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'TOG',
   },
   {
     name: 'Tokelau',
@@ -12984,15 +13676,17 @@ const Countries = [
       {
         code: 'NZD',
         name: 'New Zealand dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Tokelau',
       es: 'Islas Tokelau',
@@ -13003,11 +13697,11 @@ const Countries = [
       pt: 'Toquelau',
       nl: 'Tokelau',
       hr: 'Tokelau',
-      fa: 'توکلائو'
+      fa: 'توکلائو',
     },
     flag: 'https://restcountries.eu/data/tkl.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Tonga',
@@ -13015,7 +13709,7 @@ const Countries = [
     alpha2Code: 'TO',
     alpha3Code: 'TON',
     callingCodes: ['676'],
-    capital: 'Nuku\'alofa',
+    capital: "Nuku'alofa",
     altSpellings: ['TO'],
     region: 'Oceania',
     subregion: 'Polynesia',
@@ -13034,14 +13728,15 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'to',
         iso639_2: 'ton',
         name: 'Tonga (Tonga Islands)',
-        nativeName: 'faka Tonga'
-      }],
+        nativeName: 'faka Tonga',
+      },
+    ],
     translations: {
       de: 'Tonga',
       es: 'Tonga',
@@ -13052,11 +13747,11 @@ const Countries = [
       pt: 'Tonga',
       nl: 'Tonga',
       hr: 'Tonga',
-      fa: 'تونگا'
+      fa: 'تونگا',
     },
     flag: 'https://restcountries.eu/data/ton.svg',
     regionalBlocs: [],
-    cioc: 'TGA'
+    cioc: 'TGA',
   },
   {
     name: 'Trinidad and Tobago',
@@ -13081,15 +13776,17 @@ const Countries = [
       {
         code: 'TTD',
         name: 'Trinidad and Tobago dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Trinidad und Tobago',
       es: 'Trinidad y Tobago',
@@ -13100,7 +13797,7 @@ const Countries = [
       pt: 'Trindade e Tobago',
       nl: 'Trinidad en Tobago',
       hr: 'Trinidad i Tobago',
-      fa: 'ترینیداد و توباگو'
+      fa: 'ترینیداد و توباگو',
     },
     flag: 'https://restcountries.eu/data/tto.svg',
     regionalBlocs: [
@@ -13111,9 +13808,11 @@ const Countries = [
         otherNames: [
           'Comunidad del Caribe',
           'Communauté Caribéenne',
-          'Caribische Gemeenschap']
-      }],
-    cioc: 'TTO'
+          'Caribische Gemeenschap',
+        ],
+      },
+    ],
+    cioc: 'TTO',
   },
   {
     name: 'Tunisia',
@@ -13122,10 +13821,7 @@ const Countries = [
     alpha3Code: 'TUN',
     callingCodes: ['216'],
     capital: 'Tunis',
-    altSpellings: [
-      'TN',
-      'Republic of Tunisia',
-      'al-Jumhūriyyah at-Tūnisiyyah'],
+    altSpellings: ['TN', 'Republic of Tunisia', 'al-Jumhūriyyah at-Tūnisiyyah'],
     region: 'Africa',
     subregion: 'Northern Africa',
     population: 11154400,
@@ -13141,15 +13837,17 @@ const Countries = [
       {
         code: 'TND',
         name: 'Tunisian dinar',
-        symbol: 'د.ت'
-      }],
+        symbol: 'د.ت',
+      },
+    ],
     languages: [
       {
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Tunesien',
       es: 'Túnez',
@@ -13160,7 +13858,7 @@ const Countries = [
       pt: 'Tunísia',
       nl: 'Tunesië',
       hr: 'Tunis',
-      fa: 'تونس'
+      fa: 'تونس',
     },
     flag: 'https://restcountries.eu/data/tun.svg',
     regionalBlocs: [
@@ -13173,7 +13871,8 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
+          'Umoja wa Afrika',
+        ],
       },
       {
         acronym: 'AL',
@@ -13182,9 +13881,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'TUN'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'TUN',
   },
   {
     name: 'Turkey',
@@ -13197,7 +13898,8 @@ const Countries = [
       'TR',
       'Turkiye',
       'Republic of Turkey',
-      'Türkiye Cumhuriyeti'],
+      'Türkiye Cumhuriyeti',
+    ],
     region: 'Asia',
     subregion: 'Western Asia',
     population: 78741053,
@@ -13215,8 +13917,9 @@ const Countries = [
         iso639_1: 'tr',
         iso639_2: 'tur',
         name: 'Turkish',
-        nativeName: 'Türkçe'
-      }],
+        nativeName: 'Türkçe',
+      },
+    ],
     translations: {
       de: 'Türkei',
       es: 'Turquía',
@@ -13227,11 +13930,11 @@ const Countries = [
       pt: 'Turquia',
       nl: 'Turkije',
       hr: 'Turska',
-      fa: 'ترکیه'
+      fa: 'ترکیه',
     },
     flag: 'https://restcountries.eu/data/tur.svg',
     regionalBlocs: [],
-    cioc: 'TUR'
+    cioc: 'TUR',
   },
   {
     name: 'Turkmenistan',
@@ -13256,21 +13959,23 @@ const Countries = [
       {
         code: 'TMT',
         name: 'Turkmenistan manat',
-        symbol: 'm'
-      }],
+        symbol: 'm',
+      },
+    ],
     languages: [
       {
         iso639_1: 'tk',
         iso639_2: 'tuk',
         name: 'Turkmen',
-        nativeName: 'Türkmen'
+        nativeName: 'Türkmen',
       },
       {
         iso639_1: 'ru',
         iso639_2: 'rus',
         name: 'Russian',
-        nativeName: 'Русский'
-      }],
+        nativeName: 'Русский',
+      },
+    ],
     translations: {
       de: 'Turkmenistan',
       es: 'Turkmenistán',
@@ -13281,11 +13986,11 @@ const Countries = [
       pt: 'Turquemenistão',
       nl: 'Turkmenistan',
       hr: 'Turkmenistan',
-      fa: 'ترکمنستان'
+      fa: 'ترکمنستان',
     },
     flag: 'https://restcountries.eu/data/tkm.svg',
     regionalBlocs: [],
-    cioc: 'TKM'
+    cioc: 'TKM',
   },
   {
     name: 'Turks and Caicos Islands',
@@ -13310,15 +14015,17 @@ const Countries = [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Turks- und Caicosinseln',
       es: 'Islas Turks y Caicos',
@@ -13329,11 +14036,11 @@ const Countries = [
       pt: 'Ilhas Turcas e Caicos',
       nl: 'Turks- en Caicoseilanden',
       hr: 'Otoci Turks i Caicos',
-      fa: 'جزایر تورکس و کایکوس'
+      fa: 'جزایر تورکس و کایکوس',
     },
     flag: 'https://restcountries.eu/data/tca.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Tuvalu',
@@ -13358,15 +14065,18 @@ const Countries = [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
-      }, { code: 'TVD[G]', name: 'Tuvaluan dollar', symbol: '$' }],
+        symbol: '$',
+      },
+      { code: 'TVD[G]', name: 'Tuvaluan dollar', symbol: '$' },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Tuvalu',
       es: 'Tuvalu',
@@ -13377,11 +14087,11 @@ const Countries = [
       pt: 'Tuvalu',
       nl: 'Tuvalu',
       hr: 'Tuvalu',
-      fa: 'تووالو'
+      fa: 'تووالو',
     },
     flag: 'https://restcountries.eu/data/tuv.svg',
     regionalBlocs: [],
-    cioc: 'TUV'
+    cioc: 'TUV',
   },
   {
     name: 'Uganda',
@@ -13406,21 +14116,23 @@ const Countries = [
       {
         code: 'UGX',
         name: 'Ugandan shilling',
-        symbol: 'Sh'
-      }],
+        symbol: 'Sh',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'sw',
         iso639_2: 'swa',
         name: 'Swahili',
-        nativeName: 'Kiswahili'
-      }],
+        nativeName: 'Kiswahili',
+      },
+    ],
     translations: {
       de: 'Uganda',
       es: 'Uganda',
@@ -13431,7 +14143,7 @@ const Countries = [
       pt: 'Uganda',
       nl: 'Oeganda',
       hr: 'Uganda',
-      fa: 'اوگاندا'
+      fa: 'اوگاندا',
     },
     flag: 'https://restcountries.eu/data/uga.svg',
     regionalBlocs: [
@@ -13444,9 +14156,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'UGA'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'UGA',
   },
   {
     name: 'Ukraine',
@@ -13471,15 +14185,17 @@ const Countries = [
       {
         code: 'UAH',
         name: 'Ukrainian hryvnia',
-        symbol: '₴'
-      }],
+        symbol: '₴',
+      },
+    ],
     languages: [
       {
         iso639_1: 'uk',
         iso639_2: 'ukr',
         name: 'Ukrainian',
-        nativeName: 'Українська'
-      }],
+        nativeName: 'Українська',
+      },
+    ],
     translations: {
       de: 'Ukraine',
       es: 'Ucrania',
@@ -13490,11 +14206,11 @@ const Countries = [
       pt: 'Ucrânia',
       nl: 'Oekraïne',
       hr: 'Ukrajina',
-      fa: 'وکراین'
+      fa: 'وکراین',
     },
     flag: 'https://restcountries.eu/data/ukr.svg',
     regionalBlocs: [],
-    cioc: 'UKR'
+    cioc: 'UKR',
   },
   {
     name: 'United Arab Emirates',
@@ -13519,15 +14235,17 @@ const Countries = [
       {
         code: 'AED',
         name: 'United Arab Emirates dirham',
-        symbol: 'د.إ'
-      }],
+        symbol: 'د.إ',
+      },
+    ],
     languages: [
       {
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Vereinigte Arabische Emirate',
       es: 'Emiratos Árabes Unidos',
@@ -13538,7 +14256,7 @@ const Countries = [
       pt: 'Emirados árabes Unidos',
       nl: 'Verenigde Arabische Emiraten',
       hr: 'Ujedinjeni Arapski Emirati',
-      fa: 'امارات متحده عربی'
+      fa: 'امارات متحده عربی',
     },
     flag: 'https://restcountries.eu/data/are.svg',
     regionalBlocs: [
@@ -13549,9 +14267,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'UAE'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'UAE',
   },
   {
     name: 'United Kingdom of Great Britain and Northern Ireland',
@@ -13577,7 +14297,8 @@ const Countries = [
       'UTC',
       'UTC+01:00',
       'UTC+02:00',
-      'UTC+06:00'],
+      'UTC+06:00',
+    ],
     borders: ['IRL'],
     nativeName: 'United Kingdom',
     numericCode: '826',
@@ -13587,8 +14308,9 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Vereinigtes Königreich',
       es: 'Reino Unido',
@@ -13599,7 +14321,7 @@ const Countries = [
       pt: 'Reino Unido',
       nl: 'Verenigd Koninkrijk',
       hr: 'Ujedinjeno Kraljevstvo',
-      fa: 'بریتانیای کبیر و ایرلند شمالی'
+      fa: 'بریتانیای کبیر و ایرلند شمالی',
     },
     flag: 'https://restcountries.eu/data/gbr.svg',
     regionalBlocs: [
@@ -13607,9 +14329,10 @@ const Countries = [
         acronym: 'EU',
         name: 'European Union',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'GBR'
+        otherNames: [],
+      },
+    ],
+    cioc: 'GBR',
   },
   {
     name: 'United States of America',
@@ -13637,7 +14360,8 @@ const Countries = [
       'UTC-05:00',
       'UTC-04:00',
       'UTC+10:00',
-      'UTC+12:00'],
+      'UTC+12:00',
+    ],
     borders: ['CAN', 'MEX'],
     nativeName: 'United States',
     numericCode: '840',
@@ -13645,26 +14369,28 @@ const Countries = [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }],
+        symbol: '$',
+      },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Vereinigte Staaten von Amerika',
       es: 'Estados Unidos',
       fr: 'États-Unis',
       ja: 'アメリカ合衆国',
-      it: 'Stati Uniti D\'America',
+      it: "Stati Uniti D'America",
       br: 'Estados Unidos',
       pt: 'Estados Unidos',
       nl: 'Verenigde Staten',
       hr: 'Sjedinjene Američke Države',
-      fa: 'ایالات متحده آمریکا'
+      fa: 'ایالات متحده آمریکا',
     },
     flag: 'https://restcountries.eu/data/usa.svg',
     regionalBlocs: [
@@ -13674,9 +14400,11 @@ const Countries = [
         otherAcronyms: [],
         otherNames: [
           'Tratado de Libre Comercio de América del Norte',
-          'Accord de Libre-échange Nord-Américain']
-      }],
-    cioc: 'USA'
+          'Accord de Libre-échange Nord-Américain',
+        ],
+      },
+    ],
+    cioc: 'USA',
   },
   {
     name: 'Uruguay',
@@ -13688,7 +14416,8 @@ const Countries = [
     altSpellings: [
       'UY',
       'Oriental Republic of Uruguay',
-      'República Oriental del Uruguay'],
+      'República Oriental del Uruguay',
+    ],
     region: 'Americas',
     subregion: 'South America',
     population: 3480222,
@@ -13706,8 +14435,9 @@ const Countries = [
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Uruguay',
       es: 'Uruguay',
@@ -13718,7 +14448,7 @@ const Countries = [
       pt: 'Uruguai',
       nl: 'Uruguay',
       hr: 'Urugvaj',
-      fa: 'اروگوئه'
+      fa: 'اروگوئه',
     },
     flag: 'https://restcountries.eu/data/ury.svg',
     regionalBlocs: [
@@ -13730,9 +14460,11 @@ const Countries = [
           'Unión de Naciones Suramericanas',
           'União de Nações Sul-Americanas',
           'Unie van Zuid-Amerikaanse Naties',
-          'South American Union']
-      }],
-    cioc: 'URU'
+          'South American Union',
+        ],
+      },
+    ],
+    cioc: 'URU',
   },
   {
     name: 'Uzbekistan',
@@ -13745,7 +14477,8 @@ const Countries = [
       'UZ',
       'Republic of Uzbekistan',
       'O‘zbekiston Respublikasi',
-      'Ўзбекистон Республикаси'],
+      'Ўзбекистон Республикаси',
+    ],
     region: 'Asia',
     subregion: 'Central Asia',
     population: 31576400,
@@ -13760,22 +14493,24 @@ const Countries = [
     currencies: [
       {
         code: 'UZS',
-        name: 'Uzbekistani so\'m',
-        symbol: null
-      }],
+        name: "Uzbekistani so'm",
+        symbol: null,
+      },
+    ],
     languages: [
       {
         iso639_1: 'uz',
         iso639_2: 'uzb',
         name: 'Uzbek',
-        nativeName: 'Oʻzbek'
+        nativeName: 'Oʻzbek',
       },
       {
         iso639_1: 'ru',
         iso639_2: 'rus',
         name: 'Russian',
-        nativeName: 'Русский'
-      }],
+        nativeName: 'Русский',
+      },
+    ],
     translations: {
       de: 'Usbekistan',
       es: 'Uzbekistán',
@@ -13786,11 +14521,11 @@ const Countries = [
       pt: 'Usbequistão',
       nl: 'Oezbekistan',
       hr: 'Uzbekistan',
-      fa: 'ازبکستان'
+      fa: 'ازبکستان',
     },
     flag: 'https://restcountries.eu/data/uzb.svg',
     regionalBlocs: [],
-    cioc: 'UZB'
+    cioc: 'UZB',
   },
   {
     name: 'Vanuatu',
@@ -13803,7 +14538,8 @@ const Countries = [
       'VU',
       'Republic of Vanuatu',
       'Ripablik blong Vanuatu',
-      'République de Vanuatu'],
+      'République de Vanuatu',
+    ],
     region: 'Oceania',
     subregion: 'Melanesia',
     population: 277500,
@@ -13821,20 +14557,21 @@ const Countries = [
         iso639_1: 'bi',
         iso639_2: 'bis',
         name: 'Bislama',
-        nativeName: 'Bislama'
+        nativeName: 'Bislama',
       },
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Vanuatu',
       es: 'Vanuatu',
@@ -13845,11 +14582,11 @@ const Countries = [
       pt: 'Vanuatu',
       nl: 'Vanuatu',
       hr: 'Vanuatu',
-      fa: 'وانواتو'
+      fa: 'وانواتو',
     },
     flag: 'https://restcountries.eu/data/vut.svg',
     regionalBlocs: [],
-    cioc: 'VAN'
+    cioc: 'VAN',
   },
   {
     name: 'Venezuela (Bolivarian Republic of)',
@@ -13861,7 +14598,8 @@ const Countries = [
     altSpellings: [
       'VE',
       'Bolivarian Republic of Venezuela',
-      'República Bolivariana de Venezuela'],
+      'República Bolivariana de Venezuela',
+    ],
     region: 'Americas',
     subregion: 'South America',
     population: 31028700,
@@ -13877,15 +14615,17 @@ const Countries = [
       {
         code: 'VEF',
         name: 'Venezuelan bolívar',
-        symbol: 'Bs F'
-      }],
+        symbol: 'Bs F',
+      },
+    ],
     languages: [
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Venezuela',
       es: 'Venezuela',
@@ -13896,7 +14636,7 @@ const Countries = [
       pt: 'Venezuela',
       nl: 'Venezuela',
       hr: 'Venezuela',
-      fa: 'ونزوئلا'
+      fa: 'ونزوئلا',
     },
     flag: 'https://restcountries.eu/data/ven.svg',
     regionalBlocs: [
@@ -13908,9 +14648,11 @@ const Countries = [
           'Unión de Naciones Suramericanas',
           'União de Nações Sul-Americanas',
           'Unie van Zuid-Amerikaanse Naties',
-          'South American Union']
-      }],
-    cioc: 'VEN'
+          'South American Union',
+        ],
+      },
+    ],
+    cioc: 'VEN',
   },
   {
     name: 'Viet Nam',
@@ -13922,7 +14664,8 @@ const Countries = [
     altSpellings: [
       'VN',
       'Socialist Republic of Vietnam',
-      'Cộng hòa Xã hội chủ nghĩa Việt Nam'],
+      'Cộng hòa Xã hội chủ nghĩa Việt Nam',
+    ],
     region: 'Asia',
     subregion: 'South-Eastern Asia',
     population: 92700000,
@@ -13940,8 +14683,9 @@ const Countries = [
         iso639_1: 'vi',
         iso639_2: 'vie',
         name: 'Vietnamese',
-        nativeName: 'Tiếng Việt'
-      }],
+        nativeName: 'Tiếng Việt',
+      },
+    ],
     translations: {
       de: 'Vietnam',
       es: 'Vietnam',
@@ -13952,7 +14696,7 @@ const Countries = [
       pt: 'Vietname',
       nl: 'Vietnam',
       hr: 'Vijetnam',
-      fa: 'ویتنام'
+      fa: 'ویتنام',
     },
     flag: 'https://restcountries.eu/data/vnm.svg',
     regionalBlocs: [
@@ -13960,9 +14704,10 @@ const Countries = [
         acronym: 'ASEAN',
         name: 'Association of Southeast Asian Nations',
         otherAcronyms: [],
-        otherNames: []
-      }],
-    cioc: 'VIE'
+        otherNames: [],
+      },
+    ],
+    cioc: 'VIE',
   },
   {
     name: 'Wallis and Futuna',
@@ -13974,7 +14719,8 @@ const Countries = [
     altSpellings: [
       'WF',
       'Territory of the Wallis and Futuna Islands',
-      'Territoire des îles Wallis et Futuna'],
+      'Territoire des îles Wallis et Futuna',
+    ],
     region: 'Oceania',
     subregion: 'Polynesia',
     population: 11750,
@@ -13992,8 +14738,9 @@ const Countries = [
         iso639_1: 'fr',
         iso639_2: 'fra',
         name: 'French',
-        nativeName: 'français'
-      }],
+        nativeName: 'français',
+      },
+    ],
     translations: {
       de: 'Wallis und Futuna',
       es: 'Wallis y Futuna',
@@ -14004,11 +14751,11 @@ const Countries = [
       pt: 'Wallis e Futuna',
       nl: 'Wallis en Futuna',
       hr: 'Wallis i Fortuna',
-      fa: 'والیس و فوتونا'
+      fa: 'والیس و فوتونا',
     },
     flag: 'https://restcountries.eu/data/wlf.svg',
     regionalBlocs: [],
-    cioc: ''
+    cioc: '',
   },
   {
     name: 'Western Sahara',
@@ -14033,15 +14780,18 @@ const Countries = [
       {
         code: 'MAD',
         name: 'Moroccan dirham',
-        symbol: 'د.م.'
-      }, { code: 'DZD', name: 'Algerian dinar', symbol: 'د.ج' }],
+        symbol: 'د.م.',
+      },
+      { code: 'DZD', name: 'Algerian dinar', symbol: 'د.ج' },
+    ],
     languages: [
       {
         iso639_1: 'es',
         iso639_2: 'spa',
         name: 'Spanish',
-        nativeName: 'Español'
-      }],
+        nativeName: 'Español',
+      },
+    ],
     translations: {
       de: 'Westsahara',
       es: 'Sahara Occidental',
@@ -14052,7 +14802,7 @@ const Countries = [
       pt: 'Saara Ocidental',
       nl: 'Westelijke Sahara',
       hr: 'Zapadna Sahara',
-      fa: 'جمهوری دموکراتیک عربی صحرا'
+      fa: 'جمهوری دموکراتیک عربی صحرا',
     },
     flag: 'https://restcountries.eu/data/esh.svg',
     regionalBlocs: [
@@ -14065,9 +14815,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: ''
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: '',
   },
   {
     name: 'Yemen',
@@ -14075,7 +14827,7 @@ const Countries = [
     alpha2Code: 'YE',
     alpha3Code: 'YEM',
     callingCodes: ['967'],
-    capital: 'Sana\'a',
+    capital: "Sana'a",
     altSpellings: ['YE', 'Yemeni Republic', 'al-Jumhūriyyah al-Yamaniyyah'],
     region: 'Asia',
     subregion: 'Western Asia',
@@ -14094,8 +14846,9 @@ const Countries = [
         iso639_1: 'ar',
         iso639_2: 'ara',
         name: 'Arabic',
-        nativeName: 'العربية'
-      }],
+        nativeName: 'العربية',
+      },
+    ],
     translations: {
       de: 'Jemen',
       es: 'Yemen',
@@ -14106,7 +14859,7 @@ const Countries = [
       pt: 'Iémen',
       nl: 'Jemen',
       hr: 'Jemen',
-      fa: 'یمن'
+      fa: 'یمن',
     },
     flag: 'https://restcountries.eu/data/yem.svg',
     regionalBlocs: [
@@ -14117,9 +14870,11 @@ const Countries = [
         otherNames: [
           'جامعة الدول العربية',
           'Jāmiʻat ad-Duwal al-ʻArabīyah',
-          'League of Arab States']
-      }],
-    cioc: 'YEM'
+          'League of Arab States',
+        ],
+      },
+    ],
+    cioc: 'YEM',
   },
   {
     name: 'Zambia',
@@ -14146,8 +14901,9 @@ const Countries = [
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
-      }],
+        nativeName: 'English',
+      },
+    ],
     translations: {
       de: 'Sambia',
       es: 'Zambia',
@@ -14158,7 +14914,7 @@ const Countries = [
       pt: 'Zâmbia',
       nl: 'Zambia',
       hr: 'Zambija',
-      fa: 'زامبیا'
+      fa: 'زامبیا',
     },
     flag: 'https://restcountries.eu/data/zmb.svg',
     regionalBlocs: [
@@ -14171,9 +14927,11 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'ZAM'
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'ZAM',
   },
   {
     name: 'Zimbabwe',
@@ -14203,26 +14961,28 @@ const Countries = [
       { code: 'JPY', name: 'Japanese yen', symbol: '¥' },
       { code: 'ZAR', name: 'South African rand', symbol: 'Rs' },
       { code: 'USD', name: 'United States dollar', symbol: '$' },
-      { code: '(none)', name: null, symbol: null }],
+      { code: '(none)', name: null, symbol: null },
+    ],
     languages: [
       {
         iso639_1: 'en',
         iso639_2: 'eng',
         name: 'English',
-        nativeName: 'English'
+        nativeName: 'English',
       },
       {
         iso639_1: 'sn',
         iso639_2: 'sna',
         name: 'Shona',
-        nativeName: 'chiShona'
+        nativeName: 'chiShona',
       },
       {
         iso639_1: 'nd',
         iso639_2: 'nde',
         name: 'Northern Ndebele',
-        nativeName: 'isiNdebele'
-      }],
+        nativeName: 'isiNdebele',
+      },
+    ],
     translations: {
       de: 'Simbabwe',
       es: 'Zimbabue',
@@ -14233,7 +14993,7 @@ const Countries = [
       pt: 'Zimbabué',
       nl: 'Zimbabwe',
       hr: 'Zimbabve',
-      fa: 'زیمباوه'
+      fa: 'زیمباوه',
     },
     flag: 'https://restcountries.eu/data/zwe.svg',
     regionalBlocs: [
@@ -14246,28 +15006,33 @@ const Countries = [
           'Union africaine',
           'União Africana',
           'Unión Africana',
-          'Umoja wa Afrika']
-      }],
-    cioc: 'ZIM'
-  }]
+          'Umoja wa Afrika',
+        ],
+      },
+    ],
+    cioc: 'ZIM',
+  },
+]
 
 export default Countries
 
 export const findCountryByCountryCode = (code) => {
   if (typeof code === 'string') {
-    return Countries.find(c => c.alpha2Code.toUpperCase() === code.toUpperCase())
+    return Countries.find(
+      (c) => c.alpha2Code.toUpperCase() === code.toUpperCase()
+    )
   }
   return null
 }
 
 export const findCountryNameByCountryCode = (code, languageCode) => {
-  const country = Countries.find(c => c.alpha2Code.toUpperCase() === code.toUpperCase())
+  const country = Countries.find(
+    (c) => c.alpha2Code.toUpperCase() === code.toUpperCase()
+  )
 
-  if(!languageCode || languageCode === 'en') {
+  if (!languageCode || languageCode === 'en') {
     return country.name
   }
 
   return country.translations[languageCode]
-
 }
-

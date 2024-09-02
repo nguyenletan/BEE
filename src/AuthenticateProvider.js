@@ -1,30 +1,23 @@
-import {
-  useEffect,
-  useState,
-  useContext,
-  createContext
-} from 'react'
+import { useEffect, useState, useContext, createContext } from 'react'
 import { firebase } from './Firebase'
-import Analytics from 'analytics';
+import Analytics from 'analytics'
 import { trackingUser } from 'api/UserAPI'
 const AuthContext = createContext({
   user: null,
   loading: true,
-  logout: () => {}
+  logout: () => {},
 })
-
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
-
   useEffect(() => {
     const cancelAuthListener = firebase.auth().onIdTokenChanged((u) => {
       setUser(u)
-      if(u) {
+      if (u) {
         Analytics.setUser(u.uid, { action: 'IdTokenChanged' })
-        trackingUser(u.uid, "Sign In")
+        trackingUser(u.uid, 'Sign In')
       }
       setLoading(false)
     })
@@ -41,7 +34,7 @@ const AuthProvider = ({ children }) => {
   )
 }
 
-function useAuth () {
+function useAuth() {
   return useContext(AuthContext)
 }
 

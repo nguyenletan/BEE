@@ -7,7 +7,7 @@ const Wrapper = styled.div`
 `
 
 const RowItem = styled.div`
-  font-size: .9rem;
+  font-size: 0.9rem;
 `
 
 const ColItem = styled.div``
@@ -20,30 +20,31 @@ const ObsolescenceMoreInfo = () => {
         label: 'Used',
         value: 16850,
         color: '#87972f',
-        remaining: 77691
+        remaining: 77691,
       },
       {
         id: 'remaining',
         label: 'Remaining',
         value: 77691,
         color: '#ecedef',
-        remaining: 77691
-      }],
+        remaining: 77691,
+      },
+    ],
     annualEnergyCostSavings: [
       {
         id: 'used',
         label: 'Used',
         value: 56850,
         color: '#87972f',
-        remaining: 77691
+        remaining: 77691,
       },
       {
         id: 'remaining',
         label: 'Remaining',
         value: 77691,
         color: '#ecedef',
-        remaining: 77691
-      }
+        remaining: 77691,
+      },
     ],
     annualCO2EmissionsAvoided: [
       {
@@ -51,15 +52,15 @@ const ObsolescenceMoreInfo = () => {
         label: 'Used',
         value: 106850,
         color: '#87972f',
-        remaining: 77691
+        remaining: 77691,
       },
       {
         id: 'remaining',
         label: 'Remaining',
         value: 77691,
         color: '#ecedef',
-        remaining: 77691
-      }
+        remaining: 77691,
+      },
     ],
     currentEfficiency: [
       {
@@ -67,15 +68,15 @@ const ObsolescenceMoreInfo = () => {
         label: 'Used',
         value: 96850,
         color: '#87972f',
-        remaining: 77691
+        remaining: 77691,
       },
       {
         id: 'remaining',
         label: 'Remaining',
         value: 77691,
         color: '#ecedef',
-        remaining: 77691
-      }
+        remaining: 77691,
+      },
     ],
     newEfficiency: [
       {
@@ -83,15 +84,15 @@ const ObsolescenceMoreInfo = () => {
         label: 'Used',
         value: 46850,
         color: '#87972f',
-        remaining: 77691
+        remaining: 77691,
       },
       {
         id: 'remaining',
         label: 'Remaining',
         value: 77691,
         color: '#ecedef',
-        remaining: 77691
-      }
+        remaining: 77691,
+      },
     ],
     annualMaintenanceCostSavings: [
       {
@@ -99,95 +100,95 @@ const ObsolescenceMoreInfo = () => {
         label: 'Used',
         value: 236850,
         color: '#87972f',
-        remaining: 77691
+        remaining: 77691,
       },
       {
         id: 'remaining',
         label: 'Remaining',
         value: 77691,
         color: '#ecedef',
-        remaining: 77691
-      }
-    ]
+        remaining: 77691,
+      },
+    ],
   }
 
   return (
     <Wrapper>
-      <RowItem className='row'>
-        <ColItem className='col col-4 mb-4'>
+      <RowItem className="row">
+        <ColItem className="col col-4 mb-4">
           <SmallBreakDown
-            title='Annual Energy Savings (MWh)'
+            title="Annual Energy Savings (MWh)"
             startAngle={-0}
             data={data.annualEnergySavings}
             innerRadius={0.82}
             isCenteredPercentage
-            marginRight='0px'
-            valueFontSize='18px'
+            marginRight="0px"
+            valueFontSize="18px"
             enableRadialLabels={false}
             noCenterText
           />
         </ColItem>
-        <ColItem className='col col-4 mb-4'>
+        <ColItem className="col col-4 mb-4">
           <SmallBreakDown
-            title='Annual Energy Cost Savings ($1000)'
+            title="Annual Energy Cost Savings ($1000)"
             startAngle={-0}
             data={data.annualEnergyCostSavings}
             innerRadius={0.82}
             isCenteredPercentage
-            marginRight='0px'
-            valueFontSize='18px'
+            marginRight="0px"
+            valueFontSize="18px"
             enableRadialLabels={false}
             noCenterText
           />
         </ColItem>
-        <ColItem className='col col-4 mb-4'>
+        <ColItem className="col col-4 mb-4">
           <SmallBreakDown
-            title='Annual CO2 Emissions Avoided (Tons/yr)'
+            title="Annual CO2 Emissions Avoided (Tons/yr)"
             startAngle={-0}
             data={data.annualCO2EmissionsAvoided}
             innerRadius={0.82}
             isCenteredPercentage
-            marginRight='0px'
-            valueFontSize='18px'
+            marginRight="0px"
+            valueFontSize="18px"
             enableRadialLabels={false}
             noCenterText
           />
         </ColItem>
-        <ColItem className='col col-4 mb-4'>
+        <ColItem className="col col-4 mb-4">
           <SmallBreakDown
-            title='Current Efficiency'
+            title="Current Efficiency"
             startAngle={-0}
             data={data.currentEfficiency}
             innerRadius={0.82}
             isCenteredPercentage
-            marginRight='0px'
-            valueFontSize='18px'
+            marginRight="0px"
+            valueFontSize="18px"
             enableRadialLabels={false}
             noCenterText
           />
         </ColItem>
-        <ColItem className='col col-4 mb-4'>
+        <ColItem className="col col-4 mb-4">
           <SmallBreakDown
-            title='New Efficiency'
+            title="New Efficiency"
             startAngle={-0}
             data={data.newEfficiency}
             innerRadius={0.82}
             isCenteredPercentage
-            marginRight='0px'
-            valueFontSize='18px'
+            marginRight="0px"
+            valueFontSize="18px"
             enableRadialLabels={false}
             noCenterText
           />
         </ColItem>
-        <ColItem className='col col-4'>
+        <ColItem className="col col-4">
           <SmallBreakDown
-            title='Annual Maintenance Cost Savings ($1000/Yr)'
+            title="Annual Maintenance Cost Savings ($1000/Yr)"
             startAngle={-0}
             data={data.annualMaintenanceCostSavings}
             innerRadius={0.82}
             isCenteredPercentage
-            marginRight='0px'
-            valueFontSize='18px'
+            marginRight="0px"
+            valueFontSize="18px"
             enableRadialLabels={false}
             noCenterText
           />

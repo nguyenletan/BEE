@@ -15,42 +15,47 @@ const BreakdownWrapper = styled.div`
 `
 
 const BreakDown = (props) => {
-
-  const {
-    consumptionBreakdown,
-  } = props
+  const { consumptionBreakdown } = props
 
   const { t } = useTranslation('buildingPerformance')
 
   const setBreakDownLevel = useSetRecoilState(breakDownLevelState)
   const setIsBreakDownDrillDown = useSetRecoilState(isBreakDownDrillDownState)
-  const setSelectedSubBreakdown =  useSetRecoilState(selectedSubBreakdownState)
-  const [consumptionBreakdownSt, setConsumptionBreakdownSt] =  useRecoilState(consumptionBreakdownState)
+  const setSelectedSubBreakdown = useSetRecoilState(selectedSubBreakdownState)
+  const [consumptionBreakdownSt, setConsumptionBreakdownSt] = useRecoilState(
+    consumptionBreakdownState
+  )
 
   useEffect(() => {
     setConsumptionBreakdownSt(consumptionBreakdown)
     setSelectedSubBreakdown(null)
     setBreakDownLevel(0)
     setIsBreakDownDrillDown(false)
-  }, [consumptionBreakdown, setBreakDownLevel, setConsumptionBreakdownSt, setIsBreakDownDrillDown, setSelectedSubBreakdown])
+  }, [
+    consumptionBreakdown,
+    setBreakDownLevel,
+    setConsumptionBreakdownSt,
+    setIsBreakDownDrillDown,
+    setSelectedSubBreakdown,
+  ])
 
   return (
     <BreakdownWrapper className="d-flex row justify-content-center">
       {consumptionBreakdownSt && (
         <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
           <DrillDownDonutChart3Lv
-            title={t("Consumption Breakdown")}
+            title={t('Consumption Breakdown')}
             subTitle="MWh"
             hasDescription
             data={consumptionBreakdownSt}
           />
-        </div>)
-      }
+        </div>
+      )}
 
       {consumptionBreakdownSt && (
         <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
           <DrillDownDonutChart3Lv
-            title={t("Cost Breakdown")}
+            title={t('Cost Breakdown')}
             subTitle={t('$')}
             data={consumptionBreakdownSt}
             hasDescription
@@ -61,8 +66,8 @@ const BreakDown = (props) => {
       {consumptionBreakdownSt && (
         <div className="col col-12 col-md-8 col-xl-4">
           <DrillDownDonutChart3Lv
-            title={t("CO2 Emissions Breakdown")}
-            subTitle={t("Ton")}
+            title={t('CO2 Emissions Breakdown')}
+            subTitle={t('Ton')}
             data={consumptionBreakdownSt}
             hasDescription
           />

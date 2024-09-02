@@ -2,8 +2,8 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
-import PortfolioEN from "locales/en/Portfolio.json"
-import PortfolioDE from "locales/de/Portfolio.json"
+import PortfolioEN from 'locales/en/Portfolio.json'
+import PortfolioDE from 'locales/de/Portfolio.json'
 import CommonEN from 'locales/en/Common.json'
 import CommonDE from 'locales/de/Common.json'
 import GeneralBuildingInformationEN from 'locales/en/GeneralBuildingInformation.json'
@@ -26,7 +26,6 @@ import EquipmentAssetReliabilityEN from 'locales/en/EquipmentAssetReliability.js
 import EquipmentAssetReliabilityDE from 'locales/de/EquipmentAssetReliability.json'
 import BuildingInputDE from 'locales/de/BuildingInput.json'
 import BuildingInputEN from 'locales/en/BuildingInput.json'
-
 
 i18n
   // detect user language
@@ -57,7 +56,7 @@ i18n
         ImprovementDetailPopup: ImprovementDetailPopupEN,
         assetReliability: AssetReliabilityEN,
         equipmentAssetReliability: EquipmentAssetReliabilityEN,
-        buildingInput: BuildingInputEN
+        buildingInput: BuildingInputEN,
       },
       de: {
         common: CommonDE,
@@ -71,7 +70,7 @@ i18n
         ImprovementDetailPopup: ImprovementDetailPopupDE,
         assetReliability: AssetReliabilityDE,
         equipmentAssetReliability: EquipmentAssetReliabilityDE,
-        buildingInput: BuildingInputDE
+        buildingInput: BuildingInputDE,
       },
     },
   })

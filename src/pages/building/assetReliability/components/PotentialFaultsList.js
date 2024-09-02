@@ -33,7 +33,6 @@ const ImprovementMeasuresTable = styled.table`
   }
 
   thead tr {
-
     border-bottom: 1px solid #eaeaea;
   }
 
@@ -50,15 +49,13 @@ const ImprovementMeasuresTable = styled.table`
   }
 `
 const FirstTh = styled.th`
-  text-align: left !important
+  text-align: left !important;
 `
 const FirstTd = styled.td`
   text-align: left !important;
 `
 
-const Image = styled.img`
-
-`
+const Image = styled.img``
 
 const ImprovementMeasuresTableWrapper = styled.div`
   height: 350px;
@@ -84,7 +81,7 @@ const InfoButton = styled.button`
 
 const PotentialFaultList = ({ data }) => {
   const { t } = useTranslation('assetReliability')
-  const rows = data.map(item => {
+  const rows = data.map((item) => {
     let imgSrc
     let width
     switch (item.subSystem) {
@@ -119,15 +116,21 @@ const PotentialFaultList = ({ data }) => {
     }
     return (
       <tr key={item.asset}>
-        <FirstTd><ImageWrapper><Image src={imgSrc} alt={item.subSystem} width={width} /></ImageWrapper>{t(item.subSystem)}
+        <FirstTd>
+          <ImageWrapper>
+            <Image src={imgSrc} alt={item.subSystem} width={width} />
+          </ImageWrapper>
+          {t(item.subSystem)}
         </FirstTd>
-        <td width='18%'>{t(item.asset)}</td>
-        <td width='12%'>{t(item.fault)}</td>
-        <td width='12%'>{item.potentialDownTime}</td>
-        <td width='12%'>{item.sparePartsLeadTime}</td>
-        <td width='15%'>{item.estimatedTimeToFailure}</td>
-        <td width='10%'>
-          <InfoButton className='btn btn-primary btn-sm'><Link to={'issue/' + item.id}>Info</Link></InfoButton>
+        <td width="18%">{t(item.asset)}</td>
+        <td width="12%">{t(item.fault)}</td>
+        <td width="12%">{item.potentialDownTime}</td>
+        <td width="12%">{item.sparePartsLeadTime}</td>
+        <td width="15%">{item.estimatedTimeToFailure}</td>
+        <td width="10%">
+          <InfoButton className="btn btn-primary btn-sm">
+            <Link to={'issue/' + item.id}>Info</Link>
+          </InfoButton>
         </td>
       </tr>
     )
@@ -135,29 +138,28 @@ const PotentialFaultList = ({ data }) => {
 
   return (
     <ImprovementMeasuresWrapper>
-      <ImprovementMeasuresTitle>{t('Improvement Measures')}</ImprovementMeasuresTitle>
-      <ImprovementMeasuresTable className='table'>
+      <ImprovementMeasuresTitle>
+        {t('Improvement Measures')}
+      </ImprovementMeasuresTitle>
+      <ImprovementMeasuresTable className="table">
         <thead>
           <tr>
             <FirstTh>{t('Sub-System')}</FirstTh>
-            <th width='18%'>{t('Asset')}</th>
-            <th width='12%'>{t('Fault')}</th>
-            <th width='12%'>{t('Potential Downtime')}</th>
-            <th width='12%'>{t('Spare Parts Lead Time')}</th>
-            <th width='15%'>{t('Estimated Time To Failure')}</th>
-            <th width='10%'></th>
+            <th width="18%">{t('Asset')}</th>
+            <th width="12%">{t('Fault')}</th>
+            <th width="12%">{t('Potential Downtime')}</th>
+            <th width="12%">{t('Spare Parts Lead Time')}</th>
+            <th width="15%">{t('Estimated Time To Failure')}</th>
+            <th width="10%"></th>
           </tr>
         </thead>
       </ImprovementMeasuresTable>
       <ImprovementMeasuresTableWrapper>
-        <ImprovementMeasuresTable className='table'>
-          <tbody>
-            {rows}
-          </tbody>
+        <ImprovementMeasuresTable className="table">
+          <tbody>{rows}</tbody>
         </ImprovementMeasuresTable>
       </ImprovementMeasuresTableWrapper>
     </ImprovementMeasuresWrapper>
-
   )
 }
 

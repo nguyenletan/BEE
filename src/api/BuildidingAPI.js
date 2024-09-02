@@ -15,16 +15,18 @@ export const createBuilding = async (data, idToken) => {
     },
     data: data,
     body: {},
-  }).then((response) => {
-    //console.log(response)
-    // result = response
-    result = 'Saving successfully!'
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      //console.log(response)
+      // result = response
+      result = 'Saving successfully!'
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
 
   return result
 }
@@ -40,16 +42,18 @@ export const deleteBuilding = async (propertyId, idToken) => {
     },
     data: {},
     body: {},
-  }).then((response) => {
-    //console.log(response)
-    // result = response
-    result = 'Delete successfully!'
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      //console.log(response)
+      // result = response
+      result = 'Delete successfully!'
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
 
   return result
 }
@@ -66,16 +70,18 @@ export const updateBuilding = async (id, data, idToken) => {
     },
     data: data,
     body: {},
-  }).then((response) => {
-    console.log(response)
-    // result = response
-    result = 'Saving successfully!'
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      console.log(response)
+      // result = response
+      result = 'Saving successfully!'
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
 
   return result
 }
@@ -91,17 +97,19 @@ export const getAllBuilding = async (idToken) => {
     },
     //data: data,
     body: {},
-  }).then((response) => {
-    console.log(response.data)
-    result = response.data
-    //result = 'Retrieve successfully!'
-    //return response.data
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      console.log(response.data)
+      result = response.data
+      //result = 'Retrieve successfully!'
+      //return response.data
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
 
   return result
 }
@@ -116,14 +124,16 @@ export const getBuildingById = async (id, startDay, endDay, idToken) => {
       Authorization: `Bearer ${idToken}`,
     },
     body: {},
-  }).then((response) => {
-    result = response.data
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      result = response.data
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
 
   return result
 }
@@ -138,36 +148,57 @@ export const getBuildingByIdForEditing = async (id, idToken) => {
       Authorization: `Bearer ${idToken}`,
     },
     body: {},
-  }).then((response) => {
-    result = response.data
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      result = response.data
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
 
   return result
 }
 
-export const getBreakdownByTime = async (idToken, id, type, firstParam, secondParam, thirdParam) => {
+export const getBreakdownByTime = async (
+  idToken,
+  id,
+  type,
+  firstParam,
+  secondParam,
+  thirdParam
+) => {
   let result
   await axios({
     method: 'get',
-    url: process.env.REACT_APP_BACKEND_API + '/buildings/get-breakdown/' + id + '/' + type + '/' + firstParam + '/' +
-      secondParam + '/' + thirdParam,
+    url:
+      process.env.REACT_APP_BACKEND_API +
+      '/buildings/get-breakdown/' +
+      id +
+      '/' +
+      type +
+      '/' +
+      firstParam +
+      '/' +
+      secondParam +
+      '/' +
+      thirdParam,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,
     },
     body: {},
-  }).then((response) => {
-    result = response.data
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      result = response.data
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
   return result
 }

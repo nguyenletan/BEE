@@ -8,9 +8,8 @@ const BreakDownBlock = styled.div`
   background-color: #fafafa;
   border-radius: 20px;
   padding: 30px;
-  margin-right: ${props => props.marginRight ? props.marginRight : '0px'};
+  margin-right: ${(props) => (props.marginRight ? props.marginRight : '0px')};
   width: 100%;
-
 `
 
 const ResponsivePieWrapper = styled.div`
@@ -34,7 +33,7 @@ const Ul = styled.ul`
   margin-block-start: 0;
   margin-block-end: 0;
   padding-inline-start: 0;
-  font-size: ${props => props.fontSize ? props.fontSize : '0.85rem'};
+  font-size: ${(props) => (props.fontSize ? props.fontSize : '0.85rem')};
   margin-bottom: 0;
   margin-top: 30px;
 `
@@ -110,34 +109,42 @@ const BreakDown = (props) => {
         >
           {percentage.toFixed(1)} %
         </text>
-        {!noCenterText && <text
-          x={centerX}
-          y={centerY + 10}
-          textAnchor="middle"
-          dominantBaseline="central"
-          style={{
-            fontSize: valueFontSize ?? '20px',
-            fontWeight: '700',
-          }}
-        >
-          {t('Used', { ns: 'buildingPerformance' })}
-        </text>}
+        {!noCenterText && (
+          <text
+            x={centerX}
+            y={centerY + 10}
+            textAnchor="middle"
+            dominantBaseline="central"
+            style={{
+              fontSize: valueFontSize ?? '20px',
+              fontWeight: '700',
+            }}
+          >
+            {t('Used', { ns: 'buildingPerformance' })}
+          </text>
+        )}
       </>
     )
   }
 
-  const list = data.map(x => <li className="d-flex justify-content-between" key={x.id}>
+  const list = data.map((x) => (
+    <li className="d-flex justify-content-between" key={x.id}>
       <span className="d-flex">
-        <ColorBlock bgColor={x.color}/>
-           <Label style={{ fontSize: informationFontSize }}>{t(x.id, { ns: 'buildingPerformance' })}:</Label>
+        <ColorBlock bgColor={x.color} />
+        <Label style={{ fontSize: informationFontSize }}>
+          {t(x.id, { ns: 'buildingPerformance' })}:
+        </Label>
       </span>
-    <span style={{ fontSize: informationFontSize }}>{x.value}</span>
-  </li>)
+      <span style={{ fontSize: informationFontSize }}>{x.value}</span>
+    </li>
+  ))
 
   return (
     <BreakDownBlock marginRight={marginRight}>
       <BreakDownTitle>{t(title, { ns: 'improvement' })}</BreakDownTitle>
-      <BreakDownSubTitle>{t(subTitle, { ns: 'improvement' })}</BreakDownSubTitle>
+      <BreakDownSubTitle>
+        {t(subTitle, { ns: 'improvement' })}
+      </BreakDownSubTitle>
       <ResponsivePieWrapper height={chartHeight}>
         <ResponsivePie
           {...commonProperties}
@@ -158,13 +165,16 @@ const BreakDown = (props) => {
               {/*{t(subTitle, {ns: "improvement"})}*/}
             </div>
           )}
-          arcLabel={function (e) {return e.value + '%'}}
+          arcLabel={function (e) {
+            return e.value + '%'
+          }}
           radialLabelsLinkColor={{
             from: 'color',
           }}
-
-
-          arcLabelsTextColor={{ from: 'color', modifiers: [['brighter', 3]] }}
+          arcLabelsTextColor={{
+            from: 'color',
+            modifiers: [['brighter', 3]],
+          }}
           enableSliceLabels={true}
           enableRadialLabels={enableRadialLabels ?? true}
           layers={[
@@ -172,15 +182,11 @@ const BreakDown = (props) => {
             hasArcLabels !== false ? 'arcLabels' : '',
             // 'arcLinkLabels',
             'legends',
-            isCenteredPercentage === true ? CenteredPercentage : '']}
+            isCenteredPercentage === true ? CenteredPercentage : '',
+          ]}
         />
       </ResponsivePieWrapper>
-      {
-        hasDescription && <Ul>
-          {list}
-        </Ul>
-      }
-
+      {hasDescription && <Ul>{list}</Ul>}
     </BreakDownBlock>
   )
 }

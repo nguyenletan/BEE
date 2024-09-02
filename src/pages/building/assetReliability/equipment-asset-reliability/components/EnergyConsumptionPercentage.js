@@ -6,9 +6,7 @@ import { getEnergyConsumptionPercentage } from 'api/EquipmentAPI'
 import { useAuth } from 'AuthenticateProvider'
 import { useTranslation } from 'react-i18next'
 
-const Wrapper = styled.div`
-
-`
+const Wrapper = styled.div``
 
 const Row = styled.div`
   display: flex;
@@ -23,9 +21,13 @@ const Label = styled.label`
 `
 
 const EnergyConsumptionPercentage = (props) => {
-
   const {
-    equipmentId, equipmentTypeId, subSystemId, buildingId, startDate, endDate,
+    equipmentId,
+    equipmentTypeId,
+    subSystemId,
+    buildingId,
+    startDate,
+    endDate,
   } = props
 
   const { t } = useTranslation('equipmentAssetReliability')
@@ -42,50 +44,49 @@ const EnergyConsumptionPercentage = (props) => {
         id: 'equipment',
         label: 'Equipment',
         value: +tmp?.percentageOfEquipmentType?.toFixed(0),
-        color: '#87972f'
+        color: '#87972f',
       },
       {
         id: 'remaining',
         label: 'remaining',
-        value: 100 - (+tmp?.percentageOfEquipmentType?.toFixed(0)),
-        color: '#ecedef'
+        value: 100 - +tmp?.percentageOfEquipmentType?.toFixed(0),
+        color: '#ecedef',
       },
     ]
     setEquipmentGroup(_equipmentGroup)
 
     const _subSystem = [
-        {
-          id: 'equipment',
-          label: 'equipment',
-          value: +tmp?.percentageOfSubSystem?.toFixed(0),
-          color: '#87972f',
-
-        },
-        {
-          id: 'remaining',
-          label: 'Remaining',
-          value:  100 - (+tmp?.percentageOfSubSystem?.toFixed(0)),
-          color: '#ecedef'
-        },
-      ]
+      {
+        id: 'equipment',
+        label: 'equipment',
+        value: +tmp?.percentageOfSubSystem?.toFixed(0),
+        color: '#87972f',
+      },
+      {
+        id: 'remaining',
+        label: 'Remaining',
+        value: 100 - +tmp?.percentageOfSubSystem?.toFixed(0),
+        color: '#ecedef',
+      },
+    ]
     setSubSystem(_subSystem)
 
     const _building = [
-        {
-          id: 'building',
-          label: 'Building',
-          value: +tmp?.percentageOfBuilding?.toFixed(0),
-          color: '#87972f',
-          remaining: 77691,
-        },
-        {
-          id: 'remaining',
-          label: 'Remaining',
-          value: 100 - (+tmp?.percentageOfBuilding?.toFixed(0)),
-          color: '#ecedef',
-          remaining: 77691,
-        },
-      ]
+      {
+        id: 'building',
+        label: 'Building',
+        value: +tmp?.percentageOfBuilding?.toFixed(0),
+        color: '#87972f',
+        remaining: 77691,
+      },
+      {
+        id: 'remaining',
+        label: 'Remaining',
+        value: 100 - +tmp?.percentageOfBuilding?.toFixed(0),
+        color: '#ecedef',
+        remaining: 77691,
+      },
+    ]
     setBuilding(_building)
   }
 
@@ -110,16 +111,28 @@ const EnergyConsumptionPercentage = (props) => {
   const getEnergyConsumptionPercentageInfo = async () => {
     const idToken = await user.getIdToken()
     // moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'),
-    const tmp = await getEnergyConsumptionPercentage(equipmentId, equipmentTypeId, subSystemId, buildingId, startDate,
-      endDate, idToken)
+    const tmp = await getEnergyConsumptionPercentage(
+      equipmentId,
+      equipmentTypeId,
+      subSystemId,
+      buildingId,
+      startDate,
+      endDate,
+      idToken
+    )
     convertRawDataToChartData(tmp[0])
-
   }
 
   useEffect(() => {
     getEnergyConsumptionPercentageInfo()
-  }, [equipmentId, equipmentTypeId, subSystemId, buildingId, startDate, endDate])
-
+  }, [
+    equipmentId,
+    equipmentTypeId,
+    subSystemId,
+    buildingId,
+    startDate,
+    endDate,
+  ])
 
   return (
     <Wrapper>
@@ -140,7 +153,6 @@ const EnergyConsumptionPercentage = (props) => {
       </Row>
     </Wrapper>
   )
-
 }
 
 export default EnergyConsumptionPercentage

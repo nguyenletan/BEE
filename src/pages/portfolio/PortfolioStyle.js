@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
-export const PortfolioWrapper = styled.div`
-
-`
+export const PortfolioWrapper = styled.div``
 
 export const Description = styled.p`
   margin-bottom: 0;
@@ -13,7 +11,7 @@ export const BuildingBlocks = styled.ol`
   list-style-type: none;
   margin-block-start: 0;
   margin-block-end: 0;
-  padding-inline-start:0;
+  padding-inline-start: 0;
 `
 
 export const AddingIcon = styled.i`

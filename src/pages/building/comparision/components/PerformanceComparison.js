@@ -56,24 +56,23 @@ const PopupTitle = styled.h3`
 
 const PopupCategory = styled.section`
   margin-top: 1.5rem;
-
 `
 
 const PopupCategoryTitle = styled.h4`
-  font-size: .95rem;
-  margin-bottom: .5rem;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
 `
 
 const ParameterList = styled.ul`
   padding-inline-start: 10px;
-  font-size: .9rem;
+  font-size: 0.9rem;
   max-height: 125px;
   overflow: auto;
 `
 
 const ParameterItem = styled.li`
   list-style-type: none;
-  margin-top: .3rem;
+  margin-top: 0.3rem;
 
   &.sub-systems .custom-control-label::before {
     //top: 0.5rem;
@@ -81,7 +80,7 @@ const ParameterItem = styled.li`
 `
 
 const ParameterItemIcon = styled.img`
-  margin-right: .5rem;
+  margin-right: 0.5rem;
   width: 27px;
   height: 27px;
 `
@@ -89,14 +88,14 @@ const ParameterItemIcon = styled.img`
 const UpdateBtn = styled.button`
   border-radius: 15px;
   margin-right: 15px;
-  font-size: .8rem;
+  font-size: 0.8rem;
   padding-left: 20px;
   padding-right: 20px;
 `
 const CancelBtn = styled.button`
   border-width: 0;
   border-radius: 15px;
-  font-size: .85rem;
+  font-size: 0.85rem;
   padding-left: 20px;
   padding-right: 20px;
 `
@@ -196,7 +195,6 @@ const data = [
         x: 'Plug Loads',
         y: 6,
       },
-
     ],
   },
   {
@@ -287,7 +285,6 @@ const data = [
         x: 'Cooling',
         y: 1,
       },
-
     ],
   },
   {
@@ -297,7 +294,6 @@ const data = [
         x: 'Cooling',
         y: 1,
       },
-
     ],
   },
   {
@@ -311,9 +307,7 @@ const data = [
   },
 ]
 
-
 const PerformanceComparison = () => {
-
   const { t } = useTranslation('comparison')
   const [show, setShow] = useState(false)
   const [chartData, setChartData] = useState(deepClone(data))
@@ -326,9 +320,7 @@ const PerformanceComparison = () => {
     'Add additional equipment',
   ]
 
-
   const commonProps = {
-
     margin: { top: 0, right: 140, bottom: 108, left: 25 },
     titleOffsetX: -80,
     data: chartData,
@@ -359,7 +351,8 @@ const PerformanceComparison = () => {
       'transparent',
       'transparent',
       'transparent',
-      'transparent'],
+      'transparent',
+    ],
   }
 
   const handleClose = () => setShow(false)
@@ -423,22 +416,28 @@ const PerformanceComparison = () => {
     // const selectedBuildings = [];
     const { t } = useTranslation('comparisonParametersPopup')
 
-    let selectedBuildings = data.map(d => d.id)
-    let selectedSubSystems = data[0].data.map(d => d.x)
+    let selectedBuildings = data.map((d) => d.id)
+    let selectedSubSystems = data[0].data.map((d) => d.x)
 
     const onSelectBuilding = (e) => {
       if (e.target.checked) {
         selectedBuildings = [...new Set([...selectedBuildings, e.target.value])]
       } else {
-        selectedBuildings = selectedBuildings.filter((value) => e.target.value !== value)
+        selectedBuildings = selectedBuildings.filter(
+          (value) => e.target.value !== value
+        )
       }
     }
 
     const onSelectSubSystem = (e) => {
       if (e.target.checked) {
-        selectedSubSystems = [...new Set([...selectedSubSystems, e.target.value])]
+        selectedSubSystems = [
+          ...new Set([...selectedSubSystems, e.target.value]),
+        ]
       } else {
-        selectedSubSystems = selectedSubSystems.filter((value) => e.target.value !== value)
+        selectedSubSystems = selectedSubSystems.filter(
+          (value) => e.target.value !== value
+        )
       }
     }
 
@@ -451,9 +450,17 @@ const PerformanceComparison = () => {
           {/*/>*/}
           <div className="custom-control custom-checkbox">
             <input
-              onChange={onSelectBuilding} type="checkbox" className="custom-control-input me-1"
-              id={'checkbox_building_' + index} value={item.id} defaultChecked/>
-            <label className="custom-control-label" htmlFor={'checkbox_building_' + index}>
+              onChange={onSelectBuilding}
+              type="checkbox"
+              className="custom-control-input me-1"
+              id={'checkbox_building_' + index}
+              value={item.id}
+              defaultChecked
+            />
+            <label
+              className="custom-control-label"
+              htmlFor={'checkbox_building_' + index}
+            >
               {t(item.id)}
             </label>
           </div>
@@ -466,11 +473,22 @@ const PerformanceComparison = () => {
         <ParameterItem key={item.id} className="sub-systems">
           <div className="custom-control custom-checkbox">
             <input
-              onChange={onSelectSubSystem} type="checkbox" className="custom-control-input me-1"
-              id={'checkbox_subsystem_' + index} value={item.x} defaultChecked
+              onChange={onSelectSubSystem}
+              type="checkbox"
+              className="custom-control-input me-1"
+              id={'checkbox_subsystem_' + index}
+              value={item.x}
+              defaultChecked
             />
-            <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + index}>
-              <ParameterItemIcon src={getIcon(item.x)} alt={item.x} title={item.x}/>
+            <label
+              className="custom-control-label"
+              htmlFor={'checkbox_subsystem_' + index}
+            >
+              <ParameterItemIcon
+                src={getIcon(item.x)}
+                alt={item.x}
+                title={item.x}
+              />
               {t(item.x)}
             </label>
           </div>
@@ -478,23 +496,27 @@ const PerformanceComparison = () => {
       )
     })
 
-    const otherMonitoredEquipmentItems = otherMonitoredEquipments.map((item, index) => {
-      return (
-        <ParameterItem key={item.id}>
-          <div className="custom-control custom-checkbox">
-            <input
-              type="checkbox" className="custom-control-input me-1"
-              id={'checkbox_otherMonitoredEquipments_' + index}
-            />
-            <label
-              className="custom-control-label"
-              htmlFor={'checkbox_otherMonitoredEquipments_' + index}
-            >{t(item)}
-            </label>
-          </div>
-        </ParameterItem>
-      )
-    })
+    const otherMonitoredEquipmentItems = otherMonitoredEquipments.map(
+      (item, index) => {
+        return (
+          <ParameterItem key={item.id}>
+            <div className="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                className="custom-control-input me-1"
+                id={'checkbox_otherMonitoredEquipments_' + index}
+              />
+              <label
+                className="custom-control-label"
+                htmlFor={'checkbox_otherMonitoredEquipments_' + index}
+              >
+                {t(item)}
+              </label>
+            </div>
+          </ParameterItem>
+        )
+      }
+    )
 
     return (
       <Modal show={show} onHide={handleClose} size="sm">
@@ -503,32 +525,34 @@ const PerformanceComparison = () => {
             <PopupTitle>{t('Comparison Parameters')}</PopupTitle>
             <PopupCategory>
               <PopupCategoryTitle>{t('Building')}</PopupCategoryTitle>
-              <ParameterList>
-                {buildingItems}
-              </ParameterList>
+              <ParameterList>{buildingItems}</ParameterList>
             </PopupCategory>
 
             <PopupCategory>
               <PopupCategoryTitle>{t('Sub-Systems')}</PopupCategoryTitle>
-              <ParameterList>
-                {subSystemItems}
-              </ParameterList>
+              <ParameterList>{subSystemItems}</ParameterList>
             </PopupCategory>
 
             <PopupCategory>
-              <PopupCategoryTitle>{t('Other Monitored Equipment')}</PopupCategoryTitle>
-              <ParameterList>
-                {otherMonitoredEquipmentItems}
-              </ParameterList>
+              <PopupCategoryTitle>
+                {t('Other Monitored Equipment')}
+              </PopupCategoryTitle>
+              <ParameterList>{otherMonitoredEquipmentItems}</ParameterList>
             </PopupCategory>
 
             <div className="d-flex justify-content-center mb-2 mt-5">
               <UpdateBtn
                 className="btn btn-primary btn-sm"
                 onClick={() => onUpdate(selectedBuildings, selectedSubSystems)}
-              >{t('Update')}
+              >
+                {t('Update')}
               </UpdateBtn>
-              <CancelBtn className="btn btn-outline-primary btn-sm" onClick={handleClose}>{t('Cancel')}</CancelBtn>
+              <CancelBtn
+                className="btn btn-outline-primary btn-sm"
+                onClick={handleClose}
+              >
+                {t('Cancel')}
+              </CancelBtn>
             </div>
           </Container>
         </Modal.Body>
@@ -539,36 +563,65 @@ const PerformanceComparison = () => {
   return (
     <PerformanceComparisonWrapper>
       <ChartHeader className="d-flex justify-content-between mb-5 flex-wrap">
-        <PerformanceComparisonTitle className="mb-2 mb-md-0">{t(
-          'C02 Emissions - Sub-System Performance')}</PerformanceComparisonTitle>
+        <PerformanceComparisonTitle className="mb-2 mb-md-0">
+          {t('C02 Emissions - Sub-System Performance')}
+        </PerformanceComparisonTitle>
 
         <EditConfigurationButton
           type="button"
           onClick={onClick}
           className="btn btn-primary btn-sm"
-        >{t('Edit Comparison')}
+        >
+          {t('Edit Comparison')}
         </EditConfigurationButton>
-
       </ChartHeader>
 
       <div className="d-flex">
         <div className=" mt-2">
-          <BarBlock width="36px" marginBottom="20px" backgroundColor="#93d2f0" text="A"/>
-          <BarBlock width="36px" marginBottom="20px" backgroundColor="#63bcf2" text="B"/>
-          <BarBlock width="36px" marginBottom="20px" backgroundColor="#52a8d9" text="C"/>
-          <BarBlock width="36px" marginBottom="20px" backgroundColor="#3c82c6" text="D"/>
-          <BarBlock width="36px" marginBottom="20px" backgroundColor="#c4c4c4" text="E"/>
-          <BarBlock width="36px" marginBottom="20px" backgroundColor="#a9a9a9" text="F"/>
-          <BarBlock width="36px" backgroundColor="#8b8b8b" text="G"/>
+          <BarBlock
+            width="36px"
+            marginBottom="20px"
+            backgroundColor="#93d2f0"
+            text="A"
+          />
+          <BarBlock
+            width="36px"
+            marginBottom="20px"
+            backgroundColor="#63bcf2"
+            text="B"
+          />
+          <BarBlock
+            width="36px"
+            marginBottom="20px"
+            backgroundColor="#52a8d9"
+            text="C"
+          />
+          <BarBlock
+            width="36px"
+            marginBottom="20px"
+            backgroundColor="#3c82c6"
+            text="D"
+          />
+          <BarBlock
+            width="36px"
+            marginBottom="20px"
+            backgroundColor="#c4c4c4"
+            text="E"
+          />
+          <BarBlock
+            width="36px"
+            marginBottom="20px"
+            backgroundColor="#a9a9a9"
+            text="F"
+          />
+          <BarBlock width="36px" backgroundColor="#8b8b8b" text="G" />
         </div>
         <LineChartWrapper>
-          <ResponsiveBump
-            {...commonProps}
-          />
+          <ResponsiveBump {...commonProps} />
         </LineChartWrapper>
       </div>
 
-      <Popup/>
+      <Popup />
     </PerformanceComparisonWrapper>
   )
 }

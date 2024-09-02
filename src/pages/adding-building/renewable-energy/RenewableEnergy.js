@@ -13,9 +13,7 @@ import { useTranslation } from 'react-i18next'
 import { useAuth } from 'AuthenticateProvider'
 import { trackingUser } from 'api/UserAPI'
 
-const Form = styled.form`
-
-`
+const Form = styled.form``
 
 const Title = styled.h2`
   color: var(--bs-primary);
@@ -38,13 +36,14 @@ const Ul = styled.ul`
 `
 
 const RenewableEnergy = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const [solarSystemList, setSolarSystemList] = useRecoilState(
-    solarPanelSystemListState)
+    solarPanelSystemListState
+  )
 
-  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
-    addingBuildingProgressState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] =
+    useRecoilState(addingBuildingProgressState)
 
   const { t } = useTranslation('buildingInput')
 
@@ -83,12 +82,11 @@ const RenewableEnergy = () => {
     shouldUnregister: false,
   })
 
-  const lis = solarSystemList.map(item =>
-
+  const lis = solarSystemList.map((item) => (
     <li className="col-12 col-lg-6 mb-4" key={item.id}>
-      <SolarPanel data={item} control={control} setValue={setValue}/>
-    </li>,
-  )
+      <SolarPanel data={item} control={control} setValue={setValue} />
+    </li>
+  ))
 
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
@@ -105,7 +103,6 @@ const RenewableEnergy = () => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <div className="d-flex mt-5 mb-4">
-
         <Title>{t('New Building')}</Title>
 
         <BackNextGroupButton
@@ -114,17 +111,16 @@ const RenewableEnergy = () => {
           progressValue={addingBuildingProgress}
           isDisabledSave={false}
         />
-
       </div>
 
-      <StepNav/>
+      <StepNav />
 
       <div className="row">
         <div className="col-12 col-lg-8">
           <Header className="d-flex justify-content-between">
             <h6>{t('Solar P.V. System')}</h6>
-            <Adding title={t("Add new item")} onClick={onAddSolarSystemList}>
-              <i className="bi bi-plus-lg font-weight-bolder"/>
+            <Adding title={t('Add new item')} onClick={onAddSolarSystemList}>
+              <i className="bi bi-plus-lg font-weight-bolder" />
             </Adding>
           </Header>
           <Ul className="row">{lis}</Ul>

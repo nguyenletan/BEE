@@ -30,7 +30,6 @@ import {
 import UrlButton from 'components/UrlButton'
 
 const ChartHeader = styled.div`
-
   margin-right: 20px;
 `
 
@@ -68,24 +67,23 @@ const PopupTitle = styled.h3`
 
 const PopupCategory = styled.section`
   margin-top: 1.5rem;
-
 `
 
 const PopupCategoryTitle = styled.h4`
-  font-size: .95rem;
-  margin-bottom: .5rem;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
 `
 
 const ParameterList = styled.ul`
   padding-inline-start: 10px;
-  font-size: .9rem;
+  font-size: 0.9rem;
   max-height: 125px;
   overflow: auto;
 `
 
 const ParameterItem = styled.li`
   list-style-type: none;
-  margin-top: .3rem;
+  margin-top: 0.3rem;
 
   &.sub-systems .custom-control-label::before {
     //top: 0.5rem;
@@ -93,7 +91,7 @@ const ParameterItem = styled.li`
 `
 
 const ParameterItemIcon = styled.img`
-  margin-right: .5rem;
+  margin-right: 0.5rem;
   width: 27px;
   height: 27px;
 `
@@ -101,14 +99,14 @@ const ParameterItemIcon = styled.img`
 const UpdateBtn = styled.button`
   border-radius: 15px;
   margin-right: 15px;
-  font-size: .8rem;
+  font-size: 0.8rem;
   padding-left: 20px;
   padding-right: 20px;
 `
 const CancelBtn = styled.button`
   border-width: 0;
   border-radius: 15px;
-  font-size: .85rem;
+  font-size: 0.85rem;
   padding-left: 20px;
   padding-right: 20px;
 `
@@ -120,7 +118,6 @@ const LineChartWrapper = styled.div`
 `
 
 const PerformanceComparison2 = () => {
-
   const { t, i18n } = useTranslation('comparison')
 
   const data = [
@@ -220,7 +217,6 @@ const PerformanceComparison2 = () => {
         {
           x: 'Cooling',
           y: '4',
-
         },
         {
           x: 'Heating',
@@ -302,9 +298,9 @@ const PerformanceComparison2 = () => {
   }
 
   const filterData = (buildings, subSystems) => {
-    const arr = [...data.filter(i => buildings.includes(i.id))]
-    arr.forEach(a => {
-      a.data = [...a.data.filter(d => subSystems.includes(d.x))]
+    const arr = [...data.filter((i) => buildings.includes(i.id))]
+    arr.forEach((a) => {
+      a.data = [...a.data.filter((d) => subSystems.includes(d.x))]
     })
     setChartData(arr)
   }
@@ -354,22 +350,28 @@ const PerformanceComparison2 = () => {
     // const selectedBuildings = [];
     const { t } = useTranslation('comparisonParametersPopup')
 
-    let selectedBuildings = data.map(d => d.id)
-    let selectedSubSystems = data[0].data.map(d => d.x)
+    let selectedBuildings = data.map((d) => d.id)
+    let selectedSubSystems = data[0].data.map((d) => d.x)
 
     const onSelectBuilding = (e) => {
       if (e.target.checked) {
         selectedBuildings = [...new Set([...selectedBuildings, e.target.value])]
       } else {
-        selectedBuildings = selectedBuildings.filter((value) => e.target.value !== value)
+        selectedBuildings = selectedBuildings.filter(
+          (value) => e.target.value !== value
+        )
       }
     }
 
     const onSelectSubSystem = (e) => {
       if (e.target.checked) {
-        selectedSubSystems = [...new Set([...selectedSubSystems, e.target.value])]
+        selectedSubSystems = [
+          ...new Set([...selectedSubSystems, e.target.value]),
+        ]
       } else {
-        selectedSubSystems = selectedSubSystems.filter((value) => e.target.value !== value)
+        selectedSubSystems = selectedSubSystems.filter(
+          (value) => e.target.value !== value
+        )
       }
     }
 
@@ -382,9 +384,17 @@ const PerformanceComparison2 = () => {
           {/*/>*/}
           <div className="custom-control custom-checkbox">
             <input
-              onChange={onSelectBuilding} type="checkbox" className="custom-control-input me-1"
-              id={'checkbox_building_' + index} value={item.id} defaultChecked/>
-            <label className="custom-control-label" htmlFor={'checkbox_building_' + index}>
+              onChange={onSelectBuilding}
+              type="checkbox"
+              className="custom-control-input me-1"
+              id={'checkbox_building_' + index}
+              value={item.id}
+              defaultChecked
+            />
+            <label
+              className="custom-control-label"
+              htmlFor={'checkbox_building_' + index}
+            >
               {t(item.id)}
             </label>
           </div>
@@ -397,11 +407,22 @@ const PerformanceComparison2 = () => {
         <ParameterItem key={item.id} className="sub-systems">
           <div className="custom-control custom-checkbox">
             <input
-              onChange={onSelectSubSystem} type="checkbox" className="custom-control-input me-1"
-              id={'checkbox_subsystem_' + index} value={item.x} defaultChecked
+              onChange={onSelectSubSystem}
+              type="checkbox"
+              className="custom-control-input me-1"
+              id={'checkbox_subsystem_' + index}
+              value={item.x}
+              defaultChecked
             />
-            <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + index}>
-              <ParameterItemIcon src={getIcon(item.x)} alt={item.x} title={item.x}/>
+            <label
+              className="custom-control-label"
+              htmlFor={'checkbox_subsystem_' + index}
+            >
+              <ParameterItemIcon
+                src={getIcon(item.x)}
+                alt={item.x}
+                title={item.x}
+              />
               {t(item.x)}
             </label>
           </div>
@@ -409,23 +430,27 @@ const PerformanceComparison2 = () => {
       )
     })
 
-    const otherMonitoredEquipmentItems = otherMonitoredEquipments.map((item, index) => {
-      return (
-        <ParameterItem key={item.id}>
-          <div className="custom-control custom-checkbox">
-            <input
-              type="checkbox" className="custom-control-input me-1"
-              id={'checkbox_otherMonitoredEquipments_' + index}
-            />
-            <label
-              className="custom-control-label"
-              htmlFor={'checkbox_otherMonitoredEquipments_' + index}
-            >{t(item)}
-            </label>
-          </div>
-        </ParameterItem>
-      )
-    })
+    const otherMonitoredEquipmentItems = otherMonitoredEquipments.map(
+      (item, index) => {
+        return (
+          <ParameterItem key={item.id}>
+            <div className="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                className="custom-control-input me-1"
+                id={'checkbox_otherMonitoredEquipments_' + index}
+              />
+              <label
+                className="custom-control-label"
+                htmlFor={'checkbox_otherMonitoredEquipments_' + index}
+              >
+                {t(item)}
+              </label>
+            </div>
+          </ParameterItem>
+        )
+      }
+    )
 
     return (
       <Modal show={show} onHide={handleClose} size="sm">
@@ -434,32 +459,34 @@ const PerformanceComparison2 = () => {
             <PopupTitle>{t('Comparison Parameters')}</PopupTitle>
             <PopupCategory>
               <PopupCategoryTitle>{t('Building')}</PopupCategoryTitle>
-              <ParameterList>
-                {buildingItems}
-              </ParameterList>
+              <ParameterList>{buildingItems}</ParameterList>
             </PopupCategory>
 
             <PopupCategory>
               <PopupCategoryTitle>{t('Sub-Systems')}</PopupCategoryTitle>
-              <ParameterList>
-                {subSystemItems}
-              </ParameterList>
+              <ParameterList>{subSystemItems}</ParameterList>
             </PopupCategory>
 
             <PopupCategory>
-              <PopupCategoryTitle>{t('Other Monitored Equipment')}</PopupCategoryTitle>
-              <ParameterList>
-                {otherMonitoredEquipmentItems}
-              </ParameterList>
+              <PopupCategoryTitle>
+                {t('Other Monitored Equipment')}
+              </PopupCategoryTitle>
+              <ParameterList>{otherMonitoredEquipmentItems}</ParameterList>
             </PopupCategory>
 
             <div className="d-flex justify-content-center mb-2 mt-5">
               <UpdateBtn
                 className="btn btn-primary btn-sm"
                 onClick={() => onUpdate(selectedBuildings, selectedSubSystems)}
-              >{t('Update')}
+              >
+                {t('Update')}
               </UpdateBtn>
-              <CancelBtn className="btn btn-outline-primary btn-sm" onClick={handleClose}>{t('Cancel')}</CancelBtn>
+              <CancelBtn
+                className="btn btn-outline-primary btn-sm"
+                onClick={handleClose}
+              >
+                {t('Cancel')}
+              </CancelBtn>
             </div>
           </Container>
         </Modal.Body>
@@ -483,36 +510,46 @@ const PerformanceComparison2 = () => {
     const xPlugLoads = xScale('Plug Loads')
     return (
       <>
-        {(xCooling !== undefined) && <g transform={`translate(${xCooling - 16}, ${y})`}>
-          {coolingSVG()}
-        </g>}
-        {(xHeating !== undefined) && <g transform={`translate(${xHeating - 8}, ${y})`}>
-          {heatingSVG()}
-        </g>}
-        {(xLighting !== undefined) && <g transform={`translate(${xLighting - 12}, ${y})`}>
-          {lightingSVG()}
-        </g>}
-        {(xMechanicalVentilation !== undefined) && <g transform={`translate(${xMechanicalVentilation - 18}, ${y})`}>
-          {mechVentSVG()}
-        </g>}
-        {(xRoof !== undefined) && <g transform={`translate(${xRoof - 26}, ${y})`}>
-          {roofSVG()}
-        </g>}
-        {(xWall !== undefined) && <g transform={`translate(${xWall - 28}, ${y})`}>
-          {wallSVG()}
-        </g>}
-        {(xOpenings !== undefined) && <g transform={`translate(${xOpenings - 28}, ${y})`}>
-          {openingsSVG()}
-        </g>}
-        {(xFloor !== undefined) && <g transform={`translate(${xFloor - 28}, ${y})`}>
-          {floorSVG()}
-        </g>}
-        {(xRenewable !== undefined) && <g transform={`translate(${xRenewable - 20}, ${y})`}>
-          {renewableSVG()}
-        </g>}
-        {(xPlugLoads !== undefined) && <g transform={`translate(${xPlugLoads - 20}, ${y})`}>
-          {plugLoadSVG()}
-        </g>}
+        {xCooling !== undefined && (
+          <g transform={`translate(${xCooling - 16}, ${y})`}>{coolingSVG()}</g>
+        )}
+        {xHeating !== undefined && (
+          <g transform={`translate(${xHeating - 8}, ${y})`}>{heatingSVG()}</g>
+        )}
+        {xLighting !== undefined && (
+          <g transform={`translate(${xLighting - 12}, ${y})`}>
+            {lightingSVG()}
+          </g>
+        )}
+        {xMechanicalVentilation !== undefined && (
+          <g transform={`translate(${xMechanicalVentilation - 18}, ${y})`}>
+            {mechVentSVG()}
+          </g>
+        )}
+        {xRoof !== undefined && (
+          <g transform={`translate(${xRoof - 26}, ${y})`}>{roofSVG()}</g>
+        )}
+        {xWall !== undefined && (
+          <g transform={`translate(${xWall - 28}, ${y})`}>{wallSVG()}</g>
+        )}
+        {xOpenings !== undefined && (
+          <g transform={`translate(${xOpenings - 28}, ${y})`}>
+            {openingsSVG()}
+          </g>
+        )}
+        {xFloor !== undefined && (
+          <g transform={`translate(${xFloor - 28}, ${y})`}>{floorSVG()}</g>
+        )}
+        {xRenewable !== undefined && (
+          <g transform={`translate(${xRenewable - 20}, ${y})`}>
+            {renewableSVG()}
+          </g>
+        )}
+        {xPlugLoads !== undefined && (
+          <g transform={`translate(${xPlugLoads - 20}, ${y})`}>
+            {plugLoadSVG()}
+          </g>
+        )}
       </>
     )
   }
@@ -520,27 +557,62 @@ const PerformanceComparison2 = () => {
   return (
     <PerformanceComparisonWrapper>
       <ChartHeader className="d-flex justify-content-between mb-5 flex-wrap">
-        <PerformanceComparisonTitle className="mb-2 mb-md-0">{t(
-          'Building Energy - Sub-System Performance')}</PerformanceComparisonTitle>
+        <PerformanceComparisonTitle className="mb-2 mb-md-0">
+          {t('Building Energy - Sub-System Performance')}
+        </PerformanceComparisonTitle>
         <div className="d-flex">
-          <UrlButton url="comparison-building-subsystem-performance" textWidth='70ch'/>
+          <UrlButton
+            url="comparison-building-subsystem-performance"
+            textWidth="70ch"
+          />
           <EditConfigurationButton
             type="button"
             onClick={onClick}
             className="btn btn-primary btn-sm ms-1"
-          >{t('Edit Comparison')}
+          >
+            {t('Edit Comparison')}
           </EditConfigurationButton>
         </div>
       </ChartHeader>
       <div className="d-flex">
         <div className="me-2">
-          <BarBlock width="36px" marginBottom="30px" backgroundColor="#478D58" text="A"/>
-          <BarBlock width="36px" marginBottom="30px" backgroundColor="#63AE62" text="B"/>
-          <BarBlock width="36px" marginBottom="30px" backgroundColor="#AACC72" text="C"/>
-          <BarBlock width="36px" marginBottom="31px" backgroundColor="#F0EA6F" text="D"/>
-          <BarBlock width="36px" marginBottom="31px" backgroundColor="#ECB75F" text="E"/>
-          <BarBlock width="36px" marginBottom="31px" backgroundColor="#DF7F4F" text="F"/>
-          <BarBlock width="36px" backgroundColor="#D94545" text="G"/>
+          <BarBlock
+            width="36px"
+            marginBottom="30px"
+            backgroundColor="#478D58"
+            text="A"
+          />
+          <BarBlock
+            width="36px"
+            marginBottom="30px"
+            backgroundColor="#63AE62"
+            text="B"
+          />
+          <BarBlock
+            width="36px"
+            marginBottom="30px"
+            backgroundColor="#AACC72"
+            text="C"
+          />
+          <BarBlock
+            width="36px"
+            marginBottom="31px"
+            backgroundColor="#F0EA6F"
+            text="D"
+          />
+          <BarBlock
+            width="36px"
+            marginBottom="31px"
+            backgroundColor="#ECB75F"
+            text="E"
+          />
+          <BarBlock
+            width="36px"
+            marginBottom="31px"
+            backgroundColor="#DF7F4F"
+            text="F"
+          />
+          <BarBlock width="36px" backgroundColor="#D94545" text="G" />
         </div>
         <LineChartWrapper>
           <ResponsiveLine
@@ -567,14 +639,13 @@ const PerformanceComparison2 = () => {
               'points',
               'legends',
             ]}
-            yScale={
-              {
-                type: 'linear',
-                min: 1,
-                max: 7,
-              }
-            }
-            axisLeft={null
+            yScale={{
+              type: 'linear',
+              min: 1,
+              max: 7,
+            }}
+            axisLeft={
+              null
               // {
               //   tickValues: [1, 2, 3, 4, 5, 6, 7],
               //   format: value => {
@@ -583,12 +654,8 @@ const PerformanceComparison2 = () => {
               //   },
               // }
             }
-            pointBorderColor={
-              { from: 'serieColor' }
-            }
-            xScale={
-              { type: 'point' }
-            }
+            pointBorderColor={{ from: 'serieColor' }}
+            xScale={{ type: 'point' }}
             axisBottom={{
               orient: 'bottom',
               tickSize: 6,
@@ -599,35 +666,35 @@ const PerformanceComparison2 = () => {
               legendPosition: 'middle',
             }}
             colors={['#AACC72', '#44D7B6', '#478D58']}
-            legends={
-              [
-                {
-                  anchor: 'top',
-                  direction: 'row',
-                  justify: false,
-                  translateX: 0,
-                  translateY: -35,
-                  itemWidth: 180,
-                  itemHeight: 20,
-                  itemsSpacing: 4,
-                  symbolSize: 20,
-                  symbolShape: 'circle',
-                  itemDirection: 'left-to-right',
-                  itemTextColor: '#777',
-                  effects: [
-                    {
-                      on: 'hover',
-                      style: {
-                        itemBackground: 'rgba(0, 0, 0, .03)',
-                        itemOpacity: 1,
-                      },
-                    }],
-                }]
-            }
+            legends={[
+              {
+                anchor: 'top',
+                direction: 'row',
+                justify: false,
+                translateX: 0,
+                translateY: -35,
+                itemWidth: 180,
+                itemHeight: 20,
+                itemsSpacing: 4,
+                symbolSize: 20,
+                symbolShape: 'circle',
+                itemDirection: 'left-to-right',
+                itemTextColor: '#777',
+                effects: [
+                  {
+                    on: 'hover',
+                    style: {
+                      itemBackground: 'rgba(0, 0, 0, .03)',
+                      itemOpacity: 1,
+                    },
+                  },
+                ],
+              },
+            ]}
           />
         </LineChartWrapper>
       </div>
-      <Popup/>
+      <Popup />
     </PerformanceComparisonWrapper>
   )
 }

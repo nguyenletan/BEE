@@ -3,7 +3,10 @@ import { ResponsiveBar } from '@nivo/bar'
 import styled from 'styled-components'
 import _ from 'lodash'
 import {
-  calculate12MonthPeriod, calculateAverageSameDayInLast4Week, calculateDayLastWeek, calculatePrevDay,
+  calculate12MonthPeriod,
+  calculateAverageSameDayInLast4Week,
+  calculateDayLastWeek,
+  calculatePrevDay,
   calculateSameThingLastPeriod,
   calculateSameThingLastYear,
   formatNumber,
@@ -16,13 +19,13 @@ import { useAuth } from 'AuthenticateProvider'
 import { breakdownState, originalConsumptionBreakdownState } from 'atoms'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import HistoricalComparison from '../pages/building/components/HistoricalComparison'
-import "../style/context-menu.css"
+import '../style/context-menu.css'
 import { useTranslation } from 'react-i18next'
 
 //Performance please - Reason since we are looking at the Energy, CO2, and Building U-Value and Energy Cost ($) it would be more appropriate.
 // Thanks this is related to the Energy Performance, Comparison, Improve, Asset Reliability section of the Application -
 // Thank You in advance
-// 
+//
 // update the data on the rigt boxes when selecting the bar
 
 const SummaryBoxWrapper = styled.div`
@@ -105,7 +108,6 @@ const Wrapper = styled.div`
 `
 
 const BuildingHistorical = (props) => {
-
   const {
     energyConsumptions,
     electricConsumptionsFromHistorizedLogs,
@@ -124,10 +126,12 @@ const BuildingHistorical = (props) => {
   let buildingEnergyUsageData = []
 
   if (energyConsumptions && energyConsumptions.length > 0) {
-    buildingEnergyUsageData = _.reverse(_.take(props.energyConsumptions, 12)).map(x => {
+    buildingEnergyUsageData = _.reverse(
+      _.take(props.energyConsumptions, 12)
+    ).map((x) => {
       return {
         ...x,
-        value: Math.round((x.monthlyValue / 1000)),
+        value: Math.round(x.monthlyValue / 1000),
         label: getMonthName(x.month + 1) + ' ' + x.year,
       }
     })
@@ -147,35 +151,53 @@ const BuildingHistorical = (props) => {
   const [axisBottom, setAxisBottom] = useState({})
 
   const [totalEnergyConsumption, setTotalEnergyConsumption] = useState(
-    overallEnergyConsumptionInformation?.totalEnergyConsumption)
-  const [totalEnergyCost, setTotalEnergyCost] = useState(overallEnergyConsumptionInformation?.totalEnergyCost)
-  const [totalCarbonEmissions, setTotalCarbonEmissions] = useState(overallEnergyConsumptionInformation?.totalCarbonEmissions)
+    overallEnergyConsumptionInformation?.totalEnergyConsumption
+  )
+  const [totalEnergyCost, setTotalEnergyCost] = useState(
+    overallEnergyConsumptionInformation?.totalEnergyCost
+  )
+  const [totalCarbonEmissions, setTotalCarbonEmissions] = useState(
+    overallEnergyConsumptionInformation?.totalCarbonEmissions
+  )
 
   const [breakdown, setBreakdown] = useRecoilState(breakdownState)
-  const originalConsumptionBreakdown = useRecoilValue(originalConsumptionBreakdownState)
-
-
+  const originalConsumptionBreakdown = useRecoilValue(
+    originalConsumptionBreakdownState
+  )
 
   useEffect(() => {
-    if (electricConsumptionsFromHistorizedLogs &&
-      electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByMonth.length > 0) {
+    if (
+      electricConsumptionsFromHistorizedLogs &&
+      electricConsumptionsFromHistorizedLogs.overall
+        .electricConsumptionGroupByMonth.length > 0
+    ) {
       switch (energyPerformanceGroupBy) {
         case 'year':
           // eslint-disable-next-line react-hooks/exhaustive-deps
-          datasource = electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByYear
+          datasource =
+            electricConsumptionsFromHistorizedLogs.overall
+              .electricConsumptionGroupByYear
           break
         case 'quarter':
-          datasource = electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByQuarter
+          datasource =
+            electricConsumptionsFromHistorizedLogs.overall
+              .electricConsumptionGroupByQuarter
           break
         case 'week':
-          datasource = electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByWeek
+          datasource =
+            electricConsumptionsFromHistorizedLogs.overall
+              .electricConsumptionGroupByWeek
           break
         case 'day':
-          datasource = electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByDay
+          datasource =
+            electricConsumptionsFromHistorizedLogs.overall
+              .electricConsumptionGroupByDay
           break
         case 'month':
         default:
-          datasource = electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByMonth
+          datasource =
+            electricConsumptionsFromHistorizedLogs.overall
+              .electricConsumptionGroupByMonth
           break
       }
     }
@@ -190,27 +212,35 @@ const BuildingHistorical = (props) => {
     } else {
       setAxisBottom({})
       setEnableLabel(true)
-      setTotalEnergyConsumption(overallEnergyConsumptionInformation?.totalEnergyConsumption)
+      setTotalEnergyConsumption(
+        overallEnergyConsumptionInformation?.totalEnergyConsumption
+      )
       setTotalEnergyCost(overallEnergyConsumptionInformation?.totalEnergyCost)
-      setTotalCarbonEmissions(overallEnergyConsumptionInformation?.totalEnergyCost)
+      setTotalCarbonEmissions(
+        overallEnergyConsumptionInformation?.totalEnergyCost
+      )
     }
     setBarData([...datasource])
     setThe1stHistoricalComparison(null)
     setThe2ndHistoricalComparison(null)
     setThe3rdHistoricalComparison(null)
-    setTotalEnergyConsumption(overallEnergyConsumptionInformation?.totalEnergyConsumption)
+    setTotalEnergyConsumption(
+      overallEnergyConsumptionInformation?.totalEnergyConsumption
+    )
     setTotalEnergyCost(overallEnergyConsumptionInformation?.totalEnergyCost)
-    setTotalCarbonEmissions(overallEnergyConsumptionInformation?.totalEnergyCost)
+    setTotalCarbonEmissions(
+      overallEnergyConsumptionInformation?.totalEnergyCost
+    )
 
     // setSameThingLastYearComparison(calculateSameThingLastYear(electricConsumptionsFromHistorizedLogs.overall[],
     //   e.index, prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
     //   electricConsumptionsFromHistorizedLogs.overall, energyPerformanceGroupBy))
-
   }, [energyPerformanceGroupBy, electricConsumptionsFromHistorizedLogs])
 
   const selectBar = async (e) => {
-    if (barData[e.index].isUnselected === false) { // deselected a bar
-      const newBarData = barData.map(x => {
+    if (barData[e.index].isUnselected === false) {
+      // deselected a bar
+      const newBarData = barData.map((x) => {
         return {
           ...x,
           isUnselected: undefined,
@@ -219,11 +249,19 @@ const BuildingHistorical = (props) => {
       setBarData([...newBarData])
       setThe1stHistoricalComparison(null)
       setThe2ndHistoricalComparison(null)
-      setTotalEnergyConsumption(overallEnergyConsumptionInformation?.totalEnergyConsumption)
+      setTotalEnergyConsumption(
+        overallEnergyConsumptionInformation?.totalEnergyConsumption
+      )
       setTotalEnergyCost(overallEnergyConsumptionInformation?.totalEnergyCost)
-      setTotalCarbonEmissions(overallEnergyConsumptionInformation?.totalCarbonEmissions)
-      setBreakdown({ ...breakdown, ...{ consumptionBreakdown: originalConsumptionBreakdown } })
-    } else { // select a bar
+      setTotalCarbonEmissions(
+        overallEnergyConsumptionInformation?.totalCarbonEmissions
+      )
+      setBreakdown({
+        ...breakdown,
+        ...{ consumptionBreakdown: originalConsumptionBreakdown },
+      })
+    } else {
+      // select a bar
       const newBarData = barData.map((x, index) => {
         return {
           ...x,
@@ -232,17 +270,35 @@ const BuildingHistorical = (props) => {
       })
       setBarData([...newBarData])
       setThe1stHistoricalComparison(
-        calculateSameThingLastYear(e.value, e.index, prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
-          electricConsumptionsFromHistorizedLogs.overall, energyPerformanceGroupBy))
+        calculateSameThingLastYear(
+          e.value,
+          e.index,
+          prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
+          electricConsumptionsFromHistorizedLogs.overall,
+          energyPerformanceGroupBy
+        )
+      )
 
       setThe2ndHistoricalComparison(
-        calculateSameThingLastPeriod(e.value, e.index, prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
-          electricConsumptionsFromHistorizedLogs.overall, energyPerformanceGroupBy))
+        calculateSameThingLastPeriod(
+          e.value,
+          e.index,
+          prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
+          electricConsumptionsFromHistorizedLogs.overall,
+          energyPerformanceGroupBy
+        )
+      )
 
       setThe3rdHistoricalComparison(
-        calculate12MonthPeriod(e.value, e.index, prev24MonthsElectricityConsumptionsFromHistorizedLogs.overall,
+        calculate12MonthPeriod(
+          e.value,
+          e.index,
+          prev24MonthsElectricityConsumptionsFromHistorizedLogs.overall,
           prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
-          electricConsumptionsFromHistorizedLogs.overall, energyPerformanceGroupBy))
+          electricConsumptionsFromHistorizedLogs.overall,
+          energyPerformanceGroupBy
+        )
+      )
 
       setTotalEnergyConsumption(e.data.value)
       setTotalEnergyCost(e.data.value * 0.23 * 1000)
@@ -252,24 +308,51 @@ const BuildingHistorical = (props) => {
       let breakdown
       switch (energyPerformanceGroupBy) {
         case 'year':
-          breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, '00', '00')
+          breakdown = await getBreakdownByTime(
+            idToken,
+            id,
+            energyPerformanceGroupBy,
+            e.data.year,
+            '00',
+            '00'
+          )
           break
         case 'quarter':
-          breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.quarter, '00')
+          breakdown = await getBreakdownByTime(
+            idToken,
+            id,
+            energyPerformanceGroupBy,
+            e.data.year,
+            e.data.quarter,
+            '00'
+          )
           break
         // case 'week':
         //   await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.week, '00')
         //   break;
         case 'day':
-          breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.month, e.data.day)
+          breakdown = await getBreakdownByTime(
+            idToken,
+            id,
+            energyPerformanceGroupBy,
+            e.data.year,
+            e.data.month,
+            e.data.day
+          )
           break
         case 'month':
         default:
-          breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.month, '01')
+          breakdown = await getBreakdownByTime(
+            idToken,
+            id,
+            energyPerformanceGroupBy,
+            e.data.year,
+            e.data.month,
+            '01'
+          )
           break
       }
       setBreakdown({ ...breakdown })
-
     }
 
     // switch (energyPerformanceGroupBy) {
@@ -294,7 +377,6 @@ const BuildingHistorical = (props) => {
 
     //setSameMonthLastYearComparison(buildingEnergyUsageData[e.index]?.sameMonthLastYearComparison)
     //setLastMonthComparison(buildingEnergyUsageData[e.index]?.lastMonthComparison)
-
   }
 
   const selectLine = async (day, value, index) => {
@@ -305,20 +387,42 @@ const BuildingHistorical = (props) => {
         setTotalEnergyConsumption(value)
 
         setThe1stHistoricalComparison(
-          calculatePrevDay(value, index, prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
-            electricConsumptionsFromHistorizedLogs.overall))
+          calculatePrevDay(
+            value,
+            index,
+            prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
+            electricConsumptionsFromHistorizedLogs.overall
+          )
+        )
 
         setThe2ndHistoricalComparison(
-          calculateDayLastWeek(value, index, prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
-            electricConsumptionsFromHistorizedLogs.overall))
+          calculateDayLastWeek(
+            value,
+            index,
+            prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
+            electricConsumptionsFromHistorizedLogs.overall
+          )
+        )
 
         setThe3rdHistoricalComparison(
-          calculateAverageSameDayInLast4Week(value, index, prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
-            electricConsumptionsFromHistorizedLogs.overall))
+          calculateAverageSameDayInLast4Week(
+            value,
+            index,
+            prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
+            electricConsumptionsFromHistorizedLogs.overall
+          )
+        )
 
         setTotalEnergyCost(value * 0.23 * 1000)
         setTotalCarbonEmissions(value * 0.000208 * 1000)
-        breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, day.getFullYear(), day.getMonth() + 1, day.getDate())
+        breakdown = await getBreakdownByTime(
+          idToken,
+          id,
+          energyPerformanceGroupBy,
+          day.getFullYear(),
+          day.getMonth() + 1,
+          day.getDate()
+        )
         setBreakdown({ ...breakdown })
         break
       default:
@@ -371,66 +475,83 @@ const BuildingHistorical = (props) => {
   return (
     <Wrapper className="">
       <HistoricalComparisonContainer className=" mt-5 row">
-
         <BuildingEnergyUsageWrapper className="col col-12 col-lg-8 col-xl-9 mb-5 mb-lg-0">
+          <BuildingEnergyUsageChartTitle>
+            {t('Building Energy Usage (MWh)')}
+          </BuildingEnergyUsageChartTitle>
 
-          <BuildingEnergyUsageChartTitle>{t('Building Energy Usage (MWh)')}</BuildingEnergyUsageChartTitle>
+          {(props.energyPerformanceGroupBy === 'week' ||
+            props.energyPerformanceGroupBy === 'day') && (
+            <EnergyConsumptionLineChartForGroupByDayOrWeek
+              onSelectDay={selectLine}
+              data={barData}
+              groupBy={props.energyPerformanceGroupBy}
+            />
+          )}
 
-          {(props.energyPerformanceGroupBy === 'week' || props.energyPerformanceGroupBy === 'day') &&
-          <EnergyConsumptionLineChartForGroupByDayOrWeek onSelectDay={selectLine} data={barData} groupBy={props.energyPerformanceGroupBy}/>}
-
-          {(props.energyPerformanceGroupBy === 'year' || props.energyPerformanceGroupBy === 'quarter' ||
-            props.energyPerformanceGroupBy === 'month') &&
-          <ResponsiveBar
-            {...commonProps}
-            onClick={selectBar}
-            // barComponent={CustomBarComponent}
-            tooltip={({ id, indexValue, value, color }) => (
-              <div
-                style={{
-                  padding: 8,
-                  color: 'white',
-                  fontSize: '13px',
-                  fontWeight: 'normal',
-                  background: '#373637cc',
-                  borderRadius: '10px',
-                  top: 0,
-                }}
-              >
-                {indexValue} <br/>
-                {t('Value')}: <b>{value}</b>
-              </div>
-            )}
-          />}
+          {(props.energyPerformanceGroupBy === 'year' ||
+            props.energyPerformanceGroupBy === 'quarter' ||
+            props.energyPerformanceGroupBy === 'month') && (
+            <ResponsiveBar
+              {...commonProps}
+              onClick={selectBar}
+              // barComponent={CustomBarComponent}
+              tooltip={({ id, indexValue, value, color }) => (
+                <div
+                  style={{
+                    padding: 8,
+                    color: 'white',
+                    fontSize: '13px',
+                    fontWeight: 'normal',
+                    background: '#373637cc',
+                    borderRadius: '10px',
+                    top: 0,
+                  }}
+                >
+                  {indexValue} <br />
+                  {t('Value')}: <b>{value}</b>
+                </div>
+              )}
+            />
+          )}
         </BuildingEnergyUsageWrapper>
 
         <SummaryBoxWrapper className="col col-12 col-lg-4 col-xl-3">
           <SummaryBox className="mb-3">
-            <SummaryBoxTitle>{t('Total Energy Consumption (MWh)')}</SummaryBoxTitle>
-            <SummaryBoxValue>{formatNumber(totalEnergyConsumption, 2)}</SummaryBoxValue>
+            <SummaryBoxTitle>
+              {t('Total Energy Consumption (MWh)')}
+            </SummaryBoxTitle>
+            <SummaryBoxValue>
+              {formatNumber(totalEnergyConsumption, 2)}
+            </SummaryBoxValue>
           </SummaryBox>
           <SummaryBox className="mb-3">
             <SummaryBoxTitle>{t('Total Energy Cost ($)')}</SummaryBoxTitle>
-            <SummaryBoxValue>{formatNumber(totalEnergyCost, 0)}</SummaryBoxValue>
+            <SummaryBoxValue>
+              {formatNumber(totalEnergyCost, 0)}
+            </SummaryBoxValue>
           </SummaryBox>
           <SummaryBox className="mb-3 mb-lg-0">
-            <SummaryBoxTitle>{t('Total Carbon Emissions (Tons)')}</SummaryBoxTitle>
-            <SummaryBoxValue>{formatNumber(totalCarbonEmissions)}</SummaryBoxValue>
+            <SummaryBoxTitle>
+              {t('Total Carbon Emissions (Tons)')}
+            </SummaryBoxTitle>
+            <SummaryBoxValue>
+              {formatNumber(totalCarbonEmissions)}
+            </SummaryBoxValue>
           </SummaryBox>
         </SummaryBoxWrapper>
-
       </HistoricalComparisonContainer>
 
       <HistoricalComparison
         groupBy={energyPerformanceGroupBy}
         the1stHistoricalComparison={the1stHistoricalComparison}
         the2ndHistoricalComparison={the2ndHistoricalComparison}
-        the3rdHistoricalComparison={the3rdHistoricalComparison}/>
+        the3rdHistoricalComparison={the3rdHistoricalComparison}
+      />
     </Wrapper>
   )
 }
 
-BuildingHistorical.propTypes =
-  {}
+BuildingHistorical.propTypes = {}
 
 export default BuildingHistorical

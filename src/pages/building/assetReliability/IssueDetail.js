@@ -23,7 +23,7 @@ const BreadcrumbItem = styled.a`
   line-height: 28px;
   color: var(--bs-primary);
   cursor: pointer;
-  margin-right: .3rem;
+  margin-right: 0.3rem;
 `
 
 const BreadcrumbItemActive = styled.span`
@@ -35,7 +35,7 @@ const BreadcrumbItemActive = styled.span`
 const IssueDetail = ({ data }) => {
   const { id } = useParams()
   //const history = useHistory()
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const { user } = useAuth()
   const annualMaintenanceCost = [
     {
@@ -112,7 +112,6 @@ const IssueDetail = ({ data }) => {
           y: 690000,
           x: 5,
         },
-
       ],
     },
   ]
@@ -196,7 +195,6 @@ const IssueDetail = ({ data }) => {
           y: 69,
           x: 5,
         },
-
       ],
     },
   ]
@@ -212,50 +210,56 @@ const IssueDetail = ({ data }) => {
   return (
     <>
       <Breadcrumb>
-        <BreadcrumbItem onClick={() => navigate(-1)}><ArrowLeft
-          color="#87972f" size={28}
-        /> Asset Reliability /
-        </BreadcrumbItem><BreadcrumbItemActive>{data[id].asset} Issue</BreadcrumbItemActive>
+        <BreadcrumbItem onClick={() => navigate(-1)}>
+          <ArrowLeft color="#87972f" size={28} /> Asset Reliability /
+        </BreadcrumbItem>
+        <BreadcrumbItemActive>{data[id].asset} Issue</BreadcrumbItemActive>
       </Breadcrumb>
       <div className="mt-5 row">
         <div className="col col-12 col-xl-4 mb-5">
-          <IssueDetailOverall data={data[id]}/>
+          <IssueDetailOverall data={data[id]} />
         </div>
         <div className="col col-12 col-xl-8">
-          <EquipmentDetail/>
+          <EquipmentDetail />
         </div>
-
       </div>
 
       <div className="mt-5 mb-5 row">
         <div className="col col-12 col-xl-4 mb-5">
-          <StraightLineDepreciation/>
+          <StraightLineDepreciation />
         </div>
 
         <div className="col col-12 col-xl-4 mb-5">
-          <DoubleDecliningBalanceDepreciation/>
+          <DoubleDecliningBalanceDepreciation />
         </div>
 
         <div className="col col-12 col-xl-4 ">
-          <UnitsOfProductionDepreciation/>
+          <UnitsOfProductionDepreciation />
         </div>
       </div>
 
       <div className="row mt-5 mb-5">
         <div className="col col-12 col-xl-6 mb-5 mb-xl-0">
-          <Obsolescence/>
+          <Obsolescence />
         </div>
         <div className="col col-12 col-xl-6">
-          <ObsolescenceMoreInfo/>
+          <ObsolescenceMoreInfo />
         </div>
       </div>
 
       <div className="row mt-5 mb-5">
         <div className="col col-12 col-xl-6">
-          <WallLineChart title="Annual Maintenance Cost ($)" data={annualMaintenanceCost}/>
+          <WallLineChart
+            title="Annual Maintenance Cost ($)"
+            data={annualMaintenanceCost}
+          />
         </div>
         <div className="col col-12 col-xl-6">
-          <WallLineChart title="Energy Consumption (MWh)" noWall data={energyConsumption}/>
+          <WallLineChart
+            title="Energy Consumption (MWh)"
+            noWall
+            data={energyConsumption}
+          />
         </div>
       </div>
     </>

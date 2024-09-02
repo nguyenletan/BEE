@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
 
-import {Add} from '@mui/icons-material'
+import { Add } from '@mui/icons-material'
 import StepNav from '../step-nav/StepNav'
 import OneMonthHeatConsumption from './OneMonthHeatConsumption'
 
@@ -17,9 +17,7 @@ import { useTranslation } from 'react-i18next'
 import { trackingUser } from 'api/UserAPI'
 import { useAuth } from 'AuthenticateProvider'
 
-const Form = styled.form`
-
-`
+const Form = styled.form``
 
 const Title = styled.h2`
   color: var(--bs-primary);
@@ -32,7 +30,7 @@ const Header = styled.div`
   font-weight: 500;
 
   span {
-    font-size: .95em;
+    font-size: 0.95em;
     font-weight: 400;
     color: var(--bs-primary);
   }
@@ -49,13 +47,14 @@ const Adding = styled(Add)`
 `
 
 const HeatConsumption = () => {
-  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
-    addingBuildingProgressState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] =
+    useRecoilState(addingBuildingProgressState)
   const { t } = useTranslation('buildingInput')
 
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
-  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/hvac')
+  const moveNextUrl =
+    parentUrl + (id ? '/adding-building-successfully' : '/hvac')
   const { user } = useAuth()
   const navigate = useNavigate()
 
@@ -65,11 +64,7 @@ const HeatConsumption = () => {
     //navigate(moveNextUrl)
   }
 
-  const {
-    handleSubmit,
-    control,
-    setValue,
-  } = useForm({
+  const { handleSubmit, control, setValue } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     defaultValues: {},
@@ -81,19 +76,19 @@ const HeatConsumption = () => {
   })
 
   const [heatConsumptionList, setHeatConsumptionList] = useRecoilState(
-    heatConsumptionListState)
+    heatConsumptionListState
+  )
 
   const onAddHeatConsumption = () => {
     let nextMonthYear = {
       month: new Date().getMonth(),
       year: new Date().getFullYear(),
     }
-    if (heatConsumptionList !== null &&
-      heatConsumptionList.length > 0) {
-      
+    if (heatConsumptionList !== null && heatConsumptionList.length > 0) {
       nextMonthYear = getPrevMonthYear(
         heatConsumptionList[heatConsumptionList.length - 1].month,
-        heatConsumptionList[heatConsumptionList.length - 1].year)
+        heatConsumptionList[heatConsumptionList.length - 1].year
+      )
     }
 
     setHeatConsumptionList((oldHeatConsumptionList) => [
@@ -109,15 +104,14 @@ const HeatConsumption = () => {
     ])
   }
 
-  const lis = heatConsumptionList.map(item =>
+  const lis = heatConsumptionList.map((item) => (
     <OneMonthHeatConsumption
       key={'HeatConsumption' + item.id}
       data={item}
       control={control}
       setValue={setValue}
-    />,
-  )
-
+    />
+  ))
 
   useEffect(() => {
     async function tracking() {
@@ -138,38 +132,27 @@ const HeatConsumption = () => {
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
-
       </div>
 
-      <StepNav activePositon={2}/>
+      <StepNav activePositon={2} />
       <div className="">
         <Header className="row">
-          <div className="col-3">
-            {t('Month / Year')}
-          </div>
+          <div className="col-3">{t('Month / Year')}</div>
 
-          <div className="col-3">
-            {t('Heating Type')}
-          </div>
+          <div className="col-3">{t('Heating Type')}</div>
 
-          <div className="col-2">
-            {t('Cost ($)')}
-          </div>
+          <div className="col-2">{t('Cost ($)')}</div>
 
-          <div className="col-3">
-            {t('Consumption (kWh)')}
-          </div>
+          <div className="col-3">{t('Consumption (kWh)')}</div>
           <div className="col-1">
             <Adding
-              titleAccess={t("Add new item")} fontSize="large"
+              titleAccess={t('Add new item')}
+              fontSize="large"
               onClick={onAddHeatConsumption}
             />
           </div>
         </Header>
-        <UL>
-          {lis}
-        </UL>
-
+        <UL>{lis}</UL>
       </div>
     </Form>
   )

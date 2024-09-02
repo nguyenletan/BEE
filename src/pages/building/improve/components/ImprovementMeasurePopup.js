@@ -13,7 +13,7 @@ import {
 } from 'api/ImproveAPI'
 import { Col, Container, Modal, Row } from 'react-bootstrap'
 import { LinkExternalIcon, XCircleIcon } from '@primer/octicons-react'
-import {Input, Slider} from '@mui/material'
+import { Input, Slider } from '@mui/material'
 import ImprovementMeasureSkeleton from 'pages/building/improve/components/ImprovementMeasureSkeleton'
 import { deepClone, formatNumber } from 'Utilities'
 import ImprovementBarChart from 'pages/building/improve/components/ImprovementBarChart'
@@ -21,7 +21,12 @@ import styled from 'styled-components'
 
 import { useParams } from 'react-router-dom'
 import ImprovementRaidalBarChart from 'pages/building/improve/components/ImprovementRaidalBarChart'
-import { EuiFieldNumber, EuiDatePicker, EuiFormRow, EuiSelect } from '@elastic/eui'
+import {
+  EuiFieldNumber,
+  EuiDatePicker,
+  EuiFormRow,
+  EuiSelect,
+} from '@elastic/eui'
 import moment from 'moment'
 import _ from 'lodash'
 import { getLightingSystemByBuildingId } from 'api/LightingAPI'
@@ -37,9 +42,7 @@ const PopupTitle = styled.h3`
   color: var(--bs-primary);
 `
 
-const HeaderGroupButton = styled.div`
-
-`
+const HeaderGroupButton = styled.div``
 
 const HeaderButton = styled.a`
   color: var(--bs-primary);
@@ -60,7 +63,6 @@ const PopupIcon = styled.img`
   color: var(--bs-primary);
   margin-right: 2rem;
   width: 55px;
-
 `
 
 const PopupValueWrapper = styled.div`
@@ -85,11 +87,11 @@ const MeasureNumber = styled.span`
 `
 
 const RangeWrapper = styled.div`
-  visibility: ${props => props.show === false ? 'hidden' : 'visible'};
+  visibility: ${(props) => (props.show === false ? 'hidden' : 'visible')};
 `
 
 const PopupBodyInnerWrapper = styled.div`
-  font-size: .9rem;
+  font-size: 0.9rem;
 
   .col {
     line-height: 2.5rem;
@@ -111,7 +113,7 @@ const SubLightingSystemList = styled.ul`
 `
 
 const Message = styled.div`
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: var(--bs-danger);
   font-weight: 500;
 `
@@ -162,7 +164,6 @@ const valuetext = (value) => {
 }
 
 const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
-
   const { id } = useParams()
   const { t, i18n } = useTranslation('improvement')
 
@@ -180,28 +181,35 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
   const [barChartValue, setBarChartValue] = React.useState(null)
 
-  const [costRadialBarChartValue, setCostRadialBarChartValue] = React.useState(null)
-  const [energySavingRadialBarChartValue, setEnergySavingRadialBarChartValue] = React.useState(null)
-  const [co2EmissionsAvoidRadialBarChartValue, setCO2EmissionsAvoidRadialBarChartValue] = React.useState(null)
-  const [newAnnualLightingSystemEnergyConsumptionRadialBarChartValue, setNewAnnualLightingSystemEnergyConsumptionRadialBarChartValue] = React.useState(
-    null)
-  const [oneHundredPercentChartValue, setOneHundredPercentChartValue] = React.useState(null)
+  const [costRadialBarChartValue, setCostRadialBarChartValue] =
+    React.useState(null)
+  const [energySavingRadialBarChartValue, setEnergySavingRadialBarChartValue] =
+    React.useState(null)
+  const [
+    co2EmissionsAvoidRadialBarChartValue,
+    setCO2EmissionsAvoidRadialBarChartValue,
+  ] = React.useState(null)
+  const [
+    newAnnualLightingSystemEnergyConsumptionRadialBarChartValue,
+    setNewAnnualLightingSystemEnergyConsumptionRadialBarChartValue,
+  ] = React.useState(null)
+  const [oneHundredPercentChartValue, setOneHundredPercentChartValue] =
+    React.useState(null)
   const [lightingSystemInfo, setLightingSystemInfo] = useState(null)
   const [numberOfLEDBulbs, setNumberOfLEDBulbs] = useState(null)
   const [lumensOfBulb, setLumensOfBulb] = useState(null)
   const [wattRatingOfBulb, setWattRatingOfBulb] = useState(null)
-
 
   //const [newAnnualLightingSystemEnergyConsumption, setNewAnnualLightingSystemEnergyConsumption] = useState()
 
   const { user } = useAuth()
 
   const getCurrentLightingSybSystem = (lightingSystem) => {
-    const LEDdata = _.filter(lightingSystem, {lightingFittingTypeId: 1})
-    let _numberOfLEDBulbs =  0;
-    let _lumensOfBulb =  0;
-    let _wattRatingOfBulb =  0;
-    for(let item of LEDdata) {
+    const LEDdata = _.filter(lightingSystem, { lightingFittingTypeId: 1 })
+    let _numberOfLEDBulbs = 0
+    let _lumensOfBulb = 0
+    let _wattRatingOfBulb = 0
+    for (let item of LEDdata) {
       _numberOfLEDBulbs += item.numberOfBulbs
       _lumensOfBulb += item.lumensOfBulb
       _wattRatingOfBulb += item.wattRatingOfBulb
@@ -216,29 +224,73 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
     return await getLightingSystemByBuildingId(buildingId, idToken)
   }
 
-  const getAnnualLightingSystemEnergyConsumptionAPI = async (buildingId, percentReplacement) => {
+  const getAnnualLightingSystemEnergyConsumptionAPI = async (
+    buildingId,
+    percentReplacement
+  ) => {
     const idToken = await user.getIdToken()
     // trackingUser(user.uid, 'AssetReliability', idToken)
-    const _startDate =  moment(startDate).format('YYYY-MM-DD')
+    const _startDate = moment(startDate).format('YYYY-MM-DD')
 
-    return await getNewAnnualLightingSystemEnergyConsumption(buildingId, percentReplacement, period, _startDate, idToken)
+    return await getNewAnnualLightingSystemEnergyConsumption(
+      buildingId,
+      percentReplacement,
+      period,
+      _startDate,
+      idToken
+    )
   }
 
   const getImproveFormulasAPI = async (buildingId, percentReplacement) => {
     const idToken = await user.getIdToken()
     // trackingUser(user.uid, 'AssetReliability', idToken)
-    const _startDate =  moment(startDate).format('YYYY-MM-DD')
-    const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
-      percentReplacement, period, startDate, idToken)
-    const annualEnergySavings = await getAnnualEnergySavings(buildingId, percentReplacement, period, _startDate, idToken)
-    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, 0,
-      percentReplacement, period, _startDate, idToken)
-    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, percentReplacement, period, _startDate, idToken)
-    const costOfImprovement = await getCostOfImprovement(buildingId, percentReplacement, idToken)
-    const payback = await getPayback(buildingId, percentReplacement, period, _startDate, idToken)
+    const _startDate = moment(startDate).format('YYYY-MM-DD')
+    const newAnnualLightingSystemEnergyConsumption =
+      await getNewAnnualLightingSystemEnergyConsumption(
+        buildingId,
+        percentReplacement,
+        period,
+        startDate,
+        idToken
+      )
+    const annualEnergySavings = await getAnnualEnergySavings(
+      buildingId,
+      percentReplacement,
+      period,
+      _startDate,
+      idToken
+    )
+    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(
+      buildingId,
+      0,
+      percentReplacement,
+      period,
+      _startDate,
+      idToken
+    )
+    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(
+      buildingId,
+      percentReplacement,
+      period,
+      _startDate,
+      idToken
+    )
+    const costOfImprovement = await getCostOfImprovement(
+      buildingId,
+      percentReplacement,
+      idToken
+    )
+    const payback = await getPayback(
+      buildingId,
+      percentReplacement,
+      period,
+      _startDate,
+      idToken
+    )
 
     return {
-      newAnnualLightingSystemEnergyConsumption: newAnnualLightingSystemEnergyConsumption,
+      newAnnualLightingSystemEnergyConsumption:
+        newAnnualLightingSystemEnergyConsumption,
       annualEnergySavings: annualEnergySavings,
       annualCarbonEmissionsAvoided: annualCarbonEmissionsAvoided,
       costOfImprovement: costOfImprovement,
@@ -247,32 +299,75 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
     }
   }
 
-  const getImproveFormulasAPIFor100Percent = async (buildingId, lightingSystem) => {
+  const getImproveFormulasAPIFor100Percent = async (
+    buildingId,
+    lightingSystem
+  ) => {
     const idToken = await user.getIdToken()
     // trackingUser(user.uid, 'AssetReliability', idToken)
 
     if (lightingSystem === null) {
       lightingSystem = lightingSystemInfo
     }
-    const _startDate =  moment(startDate).format('YYYY-MM-DD')
-    const newAnnualLightingSystemEnergyConsumption = await getNewAnnualLightingSystemEnergyConsumption(buildingId,
-      100, period, _startDate, idToken)
-    const annualEnergySavings = await getAnnualEnergySavings(buildingId, 100, period, _startDate, lightingSystem, idToken)
-    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(buildingId, 100, period, _startDate, idToken)
-    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(buildingId, 100, period, _startDate, idToken)
-    const costOfImprovement = await getCostOfImprovement(buildingId, 100, idToken)
-    const payback = await getPayback(buildingId, 100, period, _startDate, idToken)
+    const _startDate = moment(startDate).format('YYYY-MM-DD')
+    const newAnnualLightingSystemEnergyConsumption =
+      await getNewAnnualLightingSystemEnergyConsumption(
+        buildingId,
+        100,
+        period,
+        _startDate,
+        idToken
+      )
+    const annualEnergySavings = await getAnnualEnergySavings(
+      buildingId,
+      100,
+      period,
+      _startDate,
+      lightingSystem,
+      idToken
+    )
+    const annualEnergyCostSavings = await getAnnualEnergyCostSavings(
+      buildingId,
+      100,
+      period,
+      _startDate,
+      idToken
+    )
+    const annualCarbonEmissionsAvoided = await getAnnualCarbonEmissionsAvoided(
+      buildingId,
+      100,
+      period,
+      _startDate,
+      idToken
+    )
+    const costOfImprovement = await getCostOfImprovement(
+      buildingId,
+      100,
+      idToken
+    )
+    const payback = await getPayback(
+      buildingId,
+      100,
+      period,
+      _startDate,
+      idToken
+    )
 
-    const investmentCost = +(costOfImprovement.toFixed(2))//(60000 * value / 100) // => change
-    const energyCostSavings = +(annualEnergyCostSavings.toFixed(2)) //(32167 * value / 100)
+    const investmentCost = +costOfImprovement.toFixed(2) //(60000 * value / 100) // => change
+    const energyCostSavings = +annualEnergyCostSavings.toFixed(2) //(32167 * value / 100)
     return {
-      energySavings: +(annualEnergySavings).toFixed(2),
+      energySavings: +annualEnergySavings.toFixed(2),
       investmentCost: investmentCost,
       energyCostSavings: energyCostSavings,
-      co2EmissionsAvoided: +(annualCarbonEmissionsAvoided).toFixed(2), //108.3 * value / 100,
-      paybackPeriod: +payback.toFixed(2),//value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
-      internalRateOfReturn: +(calculateIRRValue(-investmentCost, Math.abs(energyCostSavings), 20)),
-      newAnnualLightingSystemEnergyConsumption: +(newAnnualLightingSystemEnergyConsumption).toFixed(2),
+      co2EmissionsAvoided: +annualCarbonEmissionsAvoided.toFixed(2), //108.3 * value / 100,
+      paybackPeriod: +payback.toFixed(2), //value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
+      internalRateOfReturn: +calculateIRRValue(
+        -investmentCost,
+        Math.abs(energyCostSavings),
+        20
+      ),
+      newAnnualLightingSystemEnergyConsumption:
+        +newAnnualLightingSystemEnergyConsumption.toFixed(2),
     }
   }
 
@@ -282,19 +377,26 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
   const saveHandle = async () => {
     setIsLoading(true)
-    getImproveFormulasAPI(id, value).then(r => {
-      const investmentCost = +(r.costOfImprovement.toFixed(2))//(60000 * value / 100) // => change
-      const energyCostSavings = +(r.annualEnergyCostSavings.toFixed(2)) //(32167 * value / 100)
+    getImproveFormulasAPI(id, value).then((r) => {
+      const investmentCost = +r.costOfImprovement.toFixed(2) //(60000 * value / 100) // => change
+      const energyCostSavings = +r.annualEnergyCostSavings.toFixed(2) //(32167 * value / 100)
       const tmp = {
-        energySavings: +(r.annualEnergySavings).toFixed(2), //123.8 * value / 100,
+        energySavings: +r.annualEnergySavings.toFixed(2), //123.8 * value / 100,
         investmentCost: investmentCost,
         energyCostSavings: energyCostSavings,
-        co2EmissionsAvoided: +(r.annualCarbonEmissionsAvoided).toFixed(2), //108.3 * value / 100,
-        paybackPeriod: +r.payback.toFixed(2),//value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
-        internalRateOfReturn: value > 0 ? +(calculateIRRValue(-investmentCost, Math.abs(energyCostSavings), 20)).toFixed(
-          2) : 0,
+        co2EmissionsAvoided: +r.annualCarbonEmissionsAvoided.toFixed(2), //108.3 * value / 100,
+        paybackPeriod: +r.payback.toFixed(2), //value > 0 ? +(investmentCost / -energyCostSavings).toFixed(2) : 0,
+        internalRateOfReturn:
+          value > 0
+            ? +calculateIRRValue(
+                -investmentCost,
+                Math.abs(energyCostSavings),
+                20
+              ).toFixed(2)
+            : 0,
         usagePercent: value,
-        newAnnualLightingSystemEnergyConsumption: +(r.newAnnualLightingSystemEnergyConsumption).toFixed(2),
+        newAnnualLightingSystemEnergyConsumption:
+          +r.newAnnualLightingSystemEnergyConsumption.toFixed(2),
         measures: measures,
       }
       const chartValue = {
@@ -403,7 +505,8 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
           },
           {
             name: 'max(100%)',
-            value: +oneHundredPercentChartValue.internalRateOfReturn?.toFixed(2),
+            value:
+              +oneHundredPercentChartValue.internalRateOfReturn?.toFixed(2),
           },
         ],
         newAnnualLightingSystemEnergyConsumption: [
@@ -421,7 +524,9 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
           },
           {
             name: 'max(100%)',
-            value: oneHundredPercentChartValue.newAnnualLightingSystemEnergyConsumption / 1000,
+            value:
+              oneHundredPercentChartValue.newAnnualLightingSystemEnergyConsumption /
+              1000,
           },
         ],
       }
@@ -508,7 +613,9 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
           data: [
             {
               x: 'Before (' + detailValue.usagePercent + '%)',
-              y: +detailValue.newAnnualLightingSystemEnergyConsumption.toFixed(2),
+              y: +detailValue.newAnnualLightingSystemEnergyConsumption.toFixed(
+                2
+              ),
             },
             {
               x: 'After (' + tmp.usagePercent + '%)',
@@ -516,7 +623,9 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
             },
             {
               x: 'Max (100%)',
-              y: +oneHundredPercentChartValue?.newAnnualLightingSystemEnergyConsumption.toFixed(2),
+              y: +oneHundredPercentChartValue?.newAnnualLightingSystemEnergyConsumption.toFixed(
+                2
+              ),
             },
           ],
         },
@@ -525,7 +634,9 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
       setCostRadialBarChartValue(costRadialChartValue)
       setEnergySavingRadialBarChartValue(energySavingRadialChartValue)
       setCO2EmissionsAvoidRadialBarChartValue(co2EmissionsAvoidRadialChartValue)
-      setNewAnnualLightingSystemEnergyConsumptionRadialBarChartValue(annualLightingSystemEnergyConsumptionRadialChartValue)
+      setNewAnnualLightingSystemEnergyConsumptionRadialBarChartValue(
+        annualLightingSystemEnergyConsumptionRadialChartValue
+      )
 
       setBarChartValue(chartValue)
 
@@ -558,21 +669,27 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
   useEffect(() => {
     if (data !== {}) {
-      getAnnualLightingSystemEnergyConsumptionAPI(id, data.usagePercent).then(r => {
-        setDetailValue({
-          investmentCost: data.investmentCost,
-          energyCostSavings: data.energyCostSavings,
-          energySavings: data.energySavings,
-          paybackPeriod: data.paybackPeriod,
-          co2EmissionsAvoided: data.co2EmissionsAvoided,
-          internalRateOfReturn: calculateIRRValue(-data.investmentCost, Math.abs(data.energyCostSavings), 20),
-          usagePercent: data.usagePercent,
-          oldUsagePercent: data.usagePercent,
-          newAnnualLightingSystemEnergyConsumption: +r.toFixed(2),
-        })
-        setValue(data.usagePercent)
-        //setIsLoading(false)
-      })
+      getAnnualLightingSystemEnergyConsumptionAPI(id, data.usagePercent).then(
+        (r) => {
+          setDetailValue({
+            investmentCost: data.investmentCost,
+            energyCostSavings: data.energyCostSavings,
+            energySavings: data.energySavings,
+            paybackPeriod: data.paybackPeriod,
+            co2EmissionsAvoided: data.co2EmissionsAvoided,
+            internalRateOfReturn: calculateIRRValue(
+              -data.investmentCost,
+              Math.abs(data.energyCostSavings),
+              20
+            ),
+            usagePercent: data.usagePercent,
+            oldUsagePercent: data.usagePercent,
+            newAnnualLightingSystemEnergyConsumption: +r.toFixed(2),
+          })
+          setValue(data.usagePercent)
+          //setIsLoading(false)
+        }
+      )
     }
   }, [data])
 
@@ -582,26 +699,24 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
   }, [i18n.language])
 
   useEffect(() => {
-
-    if(!lightingSystemInfo) {
-      getLightingSystemInfo(id).then(r => {
+    if (!lightingSystemInfo) {
+      getLightingSystemInfo(id).then((r) => {
         setLightingSystemInfo(r)
         getCurrentLightingSybSystem(r)
         if (oneHundredPercentChartValue === null) {
           setIsLoading(true)
-          getImproveFormulasAPIFor100Percent(id, r).then(d => {
+          getImproveFormulasAPIFor100Percent(id, r).then((d) => {
             setOneHundredPercentChartValue(d)
             setIsLoading(false)
           })
         }
       })
     }
-
   }, [])
 
   useEffect(() => {
     // console.log(lightingSystemInfo)
-    if(lightingSystemInfo) {
+    if (lightingSystemInfo) {
       const _totalOfBulbs = _.sumBy(lightingSystemInfo, 'numberOfBulbs')
       const _totalOfNonLEDBubls = _.sumBy(lightingSystemInfo, (item) => {
         //console.log(item.numberOfBulbs)
@@ -611,7 +726,11 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
         return 0
       })
 
-      const tmp = _.orderBy(deepClone(lightingSystemInfo), ['lightingFittingTypeId'], ['desc'])
+      const tmp = _.orderBy(
+        deepClone(lightingSystemInfo),
+        ['lightingFittingTypeId'],
+        ['desc']
+      )
 
       //console.log(_numberOfLEDBulbs)
       // console.log('_totalOfNonLEDBubls')
@@ -624,16 +743,22 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
 
       for (let item of tmp) {
         if (item.lightingFittingTypeId !== 1) {
-          item.percentage = (item.numberOfBulbs / _totalOfNonLEDBubls)
+          item.percentage = item.numberOfBulbs / _totalOfNonLEDBubls
           const takeAwayBulbs = Math.ceil((item.numberOfBulbs * value) / 100)
           item.takeAwayBulbs = takeAwayBulbs
           item.addNewBulbs = 0
-          item.percentageOfFittingTypeUsed = +(((item.numberOfBulbs - takeAwayBulbs) * 100) / _totalOfBulbs).toFixed(2)
+          item.percentageOfFittingTypeUsed = +(
+            ((item.numberOfBulbs - takeAwayBulbs) * 100) /
+            _totalOfBulbs
+          ).toFixed(2)
           _newNumberOfLEDBulbs += takeAwayBulbs
         } else {
-          item.addNewBulbs =  (_newNumberOfLEDBulbs)
+          item.addNewBulbs = _newNumberOfLEDBulbs
           item.takeAwayBulbs = 0
-          item.percentageOfFittingTypeUsed = +(((item.numberOfBulbs + item.addNewBulbs) * 100) / _totalOfBulbs).toFixed(2)
+          item.percentageOfFittingTypeUsed = +(
+            ((item.numberOfBulbs + item.addNewBulbs) * 100) /
+            _totalOfBulbs
+          ).toFixed(2)
           item.wattRatingOfBulb = wattRatingOfBulb
           item.lumensOfBulb = lumensOfBulb
         }
@@ -651,49 +776,62 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
     }
   }, [value, lumensOfBulb, wattRatingOfBulb])
 
-  const subLightingSystemRows= lightingSystemInfo?.map((item) => {
-    return <li className="mb-3">
-      <SubLightingSystem data={item}/>
-    </li>
+  const subLightingSystemRows = lightingSystemInfo?.map((item) => {
+    return (
+      <li className="mb-3">
+        <SubLightingSystem data={item} />
+      </li>
+    )
   })
-
 
   return (
     <Modal show={show} onHide={handleClose} size="xl">
-
       <Modal.Header>
         <Container className="mt-0">
           <div className="d-flex justify-content-between align-items-center">
             <PopupTitle>{t('Improvement Measures')}</PopupTitle>
             <HeaderGroupButton>
-              {!isLoading &&
+              {!isLoading && (
                 <HeaderButton
-                  className="me-4" onClick={() => {
-                  if (showSlider === false) {
-                    setValue(data.usagePercent)
-                    setShowSlider(true)
-                  } else {
-                    saveHandle()
-                  }
-                }}
+                  className="me-4"
+                  onClick={() => {
+                    if (showSlider === false) {
+                      setValue(data.usagePercent)
+                      setShowSlider(true)
+                    } else {
+                      saveHandle()
+                    }
+                  }}
                 >
-                  <LinkExternalIcon size={16} className="me-1"/><span>{showSlider ? saveText : editText}</span>
+                  <LinkExternalIcon size={16} className="me-1" />
+                  <span>{showSlider ? saveText : editText}</span>
                 </HeaderButton>
-              }
-              <HeaderButton className="" onClick={() => { handleClose(isChanged, detailValue) }}>
-                <XCircleIcon size={16} className="me-1"/><span>{t('Close')}</span>
+              )}
+              <HeaderButton
+                className=""
+                onClick={() => {
+                  handleClose(isChanged, detailValue)
+                }}
+              >
+                <XCircleIcon size={16} className="me-1" />
+                <span>{t('Close')}</span>
               </HeaderButton>
             </HeaderGroupButton>
           </div>
 
           <div className="d-flex">
-            <PopupIcon src={icon} alt={measures}/>
+            <PopupIcon src={icon} alt={measures} />
             <PopupValueWrapper className="d-flex flex-column justify-content-start align-items-start">
               <PopupValue>{value}%</PopupValue>
               <MeasureName>{t(measures)}</MeasureName>
-              <MeasureNumber>Number of adding new LED: {numberOfLEDBulbs}</MeasureNumber>
+              <MeasureNumber>
+                Number of adding new LED: {numberOfLEDBulbs}
+              </MeasureNumber>
             </PopupValueWrapper>
-            <RangeWrapper className="d-flex justify-content-between w-100  align-items-center" show={showSlider}>
+            <RangeWrapper
+              className="d-flex justify-content-between w-100  align-items-center"
+              show={showSlider}
+            >
               <Slider
                 className="me-4"
                 marks={marks}
@@ -705,7 +843,10 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
                 value={value}
                 step={1}
               />
-              <div style={{ width: '200px' }} className="d-flex flex-column align-items-center justify-content-center">
+              <div
+                style={{ width: '200px' }}
+                className="d-flex flex-column align-items-center justify-content-center"
+              >
                 <Input
                   className="ms-2"
                   onChange={handleInputChange}
@@ -721,7 +862,9 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
                   }}
                 />
                 <Message className="d-flex justify-content-end mt-2">
-                  <span>{'0 <='} {t('Value')} {'<= 100'}</span>
+                  <span>
+                    {'0 <='} {t('Value')} {'<= 100'}
+                  </span>
                 </Message>
               </div>
             </RangeWrapper>
@@ -735,14 +878,19 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
                   { value: 2, text: '2 Years' },
                 ]}
                 value={period}
-                onChange={(e) => { setPeriod(e.target.value)}}
+                onChange={(e) => {
+                  setPeriod(e.target.value)
+                }}
               />
             </EuiFormRow>
 
             <EuiFormRow label="Select Start Date" className="mt-0 ms-3">
-              <EuiDatePicker selected={startDate} onChange={(date) => {
-                setStartDate(date)
-              }}/>
+              <EuiDatePicker
+                selected={startDate}
+                onChange={(date) => {
+                  setStartDate(date)
+                }}
+              />
             </EuiFormRow>
             {/*<EuiFormRow label="Number Of LED Bulbs" className="mt-0 ms-3">*/}
             {/*  <EuiFieldNumber*/}
@@ -785,86 +933,154 @@ const ImprovementMeasurePopup = ({ data, show, handleClose }) => {
           <SubLightingSystemList className="d-flex mt-4">
             {subLightingSystemRows}
           </SubLightingSystemList>
-
         </Container>
       </Modal.Header>
 
       <Modal.Body>
         <PopupBodyInnerWrapper className="container my-2">
-          {isLoading ? <>
-            <ImprovementMeasureSkeleton/>
-          </> : <>
-            <Row>
-              <Col xs={8} sm={4} className="col">{t('Annual Energy Savings')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.energySavings)} MWh</Col>
-              <Col xs={8} sm={4} className="col">{t('Investment Cost')}</Col>
-              <Col xs={4} sm={2} className="col col-value">${formatNumber(detailValue.investmentCost)}</Col>
-            </Row>
-            <Row>
-              <Col xs={8} sm={4} className="col">{t('Annual Energy Cost Savings')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.energyCostSavings)} {t('$')}/ {t(
-                'Yr')}</Col>
-              <Col xs={8} sm={4} className="col">{t('Simple Payback')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.paybackPeriod)} {t('Yr')}</Col>
-            </Row>
-            <Row>
-              <Col xs={8} sm={4} className="col">{t('Annual CO2 Emissions Avoided')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.co2EmissionsAvoided)} {t(
-                'Tons/Yr')}</Col>
-              <Col xs={8} sm={4} className="col">{t('Internal Rate of Return')}</Col>
-              <Col xs={4} sm={2} className="col col-value">{formatNumber(detailValue.internalRateOfReturn)} %</Col>
-            </Row>
-            <Row>
-              <Col xs={8} sm={4} className="col">{t('Annual Lighting System Energy Consumption')}</Col>
-              <Col xs={4} sm={2} className="col col-value">
-                {formatNumber(detailValue.newAnnualLightingSystemEnergyConsumption)} {t('(kWh)')}
-              </Col>
-            </Row>
-            {barChartValue && <>
+          {isLoading ? (
+            <>
+              <ImprovementMeasureSkeleton />
+            </>
+          ) : (
+            <>
               <Row>
-                <Col md={8} xl={4} className="col">
-                  <ImprovementBarChart data={barChartValue.energySavings} title="Energy Savings" unit="MWh"/>
+                <Col xs={8} sm={4} className="col">
+                  {t('Annual Energy Savings')}
                 </Col>
-                <Col md={8} xl={4} className="col">
-                  <ImprovementBarChart data={barChartValue.investmentCost} title="Investment Cost" unit="$"/>
+                <Col xs={4} sm={2} className="col col-value">
+                  {formatNumber(detailValue.energySavings)} MWh
                 </Col>
-                <Col md={8} xl={4} className="col">
-                  <ImprovementBarChart data={barChartValue.energyCostSavings} title="Energy Cost Savings" unit="$"/>
+                <Col xs={8} sm={4} className="col">
+                  {t('Investment Cost')}
+                </Col>
+                <Col xs={4} sm={2} className="col col-value">
+                  ${formatNumber(detailValue.investmentCost)}
                 </Col>
               </Row>
               <Row>
-                <Col md={8} xl={4} className="col">
-                  <ImprovementBarChart data={barChartValue.co2EmissionsAvoided} title="CO2 Emissions Avoided"
-                                       unit="Tons/Yr"/>
+                <Col xs={8} sm={4} className="col">
+                  {t('Annual Energy Cost Savings')}
                 </Col>
-                <Col md={8} xl={4} className="col">
-                  <ImprovementBarChart data={barChartValue.paybackPeriod} title="Payback" unit="Yr"/>
+                <Col xs={4} sm={2} className="col col-value">
+                  {formatNumber(detailValue.energyCostSavings)} {t('$')}/{' '}
+                  {t('Yr')}
                 </Col>
-                <Col md={8} xl={4} className="col">
-                  <ImprovementBarChart data={barChartValue.newAnnualLightingSystemEnergyConsumption}
-                                       title="Annual Lighting System Energy Consumption" unit="MWh"/>
+                <Col xs={8} sm={4} className="col">
+                  {t('Simple Payback')}
                 </Col>
-
+                <Col xs={4} sm={2} className="col col-value">
+                  {formatNumber(detailValue.paybackPeriod)} {t('Yr')}
+                </Col>
               </Row>
-              {/*<Row>*/}
-              {/*  <Col md={8} xl={4} className="col">*/}
-              {/*    <ImprovementBarChart data={barChartvalue.internalRateOfReturn} title="Internal Rate Of Return" unit="%"/>*/}
-              {/*  </Col>*/}
-              {/*</Row>*/}
               <Row>
-                <ImprovementRaidalBarChart data={costRadialBarChartValue} title="Cost Saving"/>
-                <ImprovementRaidalBarChart data={energySavingRadialBarChartValue} title="Energy Saving"/>
-                <ImprovementRaidalBarChart data={co2EmissionsAvoidRadialBarChartValue} title="C02 Emissions Avoid"/>
-                <ImprovementRaidalBarChart data={newAnnualLightingSystemEnergyConsumptionRadialBarChartValue}
-                                           title="Annual Lighting System Energy Consumption"/>
+                <Col xs={8} sm={4} className="col">
+                  {t('Annual CO2 Emissions Avoided')}
+                </Col>
+                <Col xs={4} sm={2} className="col col-value">
+                  {formatNumber(detailValue.co2EmissionsAvoided)} {t('Tons/Yr')}
+                </Col>
+                <Col xs={8} sm={4} className="col">
+                  {t('Internal Rate of Return')}
+                </Col>
+                <Col xs={4} sm={2} className="col col-value">
+                  {formatNumber(detailValue.internalRateOfReturn)} %
+                </Col>
               </Row>
-            </>}
-          </>}
+              <Row>
+                <Col xs={8} sm={4} className="col">
+                  {t('Annual Lighting System Energy Consumption')}
+                </Col>
+                <Col xs={4} sm={2} className="col col-value">
+                  {formatNumber(
+                    detailValue.newAnnualLightingSystemEnergyConsumption
+                  )}{' '}
+                  {t('(kWh)')}
+                </Col>
+              </Row>
+              {barChartValue && (
+                <>
+                  <Row>
+                    <Col md={8} xl={4} className="col">
+                      <ImprovementBarChart
+                        data={barChartValue.energySavings}
+                        title="Energy Savings"
+                        unit="MWh"
+                      />
+                    </Col>
+                    <Col md={8} xl={4} className="col">
+                      <ImprovementBarChart
+                        data={barChartValue.investmentCost}
+                        title="Investment Cost"
+                        unit="$"
+                      />
+                    </Col>
+                    <Col md={8} xl={4} className="col">
+                      <ImprovementBarChart
+                        data={barChartValue.energyCostSavings}
+                        title="Energy Cost Savings"
+                        unit="$"
+                      />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md={8} xl={4} className="col">
+                      <ImprovementBarChart
+                        data={barChartValue.co2EmissionsAvoided}
+                        title="CO2 Emissions Avoided"
+                        unit="Tons/Yr"
+                      />
+                    </Col>
+                    <Col md={8} xl={4} className="col">
+                      <ImprovementBarChart
+                        data={barChartValue.paybackPeriod}
+                        title="Payback"
+                        unit="Yr"
+                      />
+                    </Col>
+                    <Col md={8} xl={4} className="col">
+                      <ImprovementBarChart
+                        data={
+                          barChartValue.newAnnualLightingSystemEnergyConsumption
+                        }
+                        title="Annual Lighting System Energy Consumption"
+                        unit="MWh"
+                      />
+                    </Col>
+                  </Row>
+                  {/*<Row>*/}
+                  {/*  <Col md={8} xl={4} className="col">*/}
+                  {/*    <ImprovementBarChart data={barChartvalue.internalRateOfReturn} title="Internal Rate Of Return" unit="%"/>*/}
+                  {/*  </Col>*/}
+                  {/*</Row>*/}
+                  <Row>
+                    <ImprovementRaidalBarChart
+                      data={costRadialBarChartValue}
+                      title="Cost Saving"
+                    />
+                    <ImprovementRaidalBarChart
+                      data={energySavingRadialBarChartValue}
+                      title="Energy Saving"
+                    />
+                    <ImprovementRaidalBarChart
+                      data={co2EmissionsAvoidRadialBarChartValue}
+                      title="C02 Emissions Avoid"
+                    />
+                    <ImprovementRaidalBarChart
+                      data={
+                        newAnnualLightingSystemEnergyConsumptionRadialBarChartValue
+                      }
+                      title="Annual Lighting System Energy Consumption"
+                    />
+                  </Row>
+                </>
+              )}
+            </>
+          )}
         </PopupBodyInnerWrapper>
       </Modal.Body>
     </Modal>
   )
-
 }
 
 export default ImprovementMeasurePopup

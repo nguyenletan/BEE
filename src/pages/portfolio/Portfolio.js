@@ -17,23 +17,26 @@ import { useTranslation } from 'react-i18next'
 import { trackingUser } from 'api/UserAPI'
 
 const BuildingListBlocks = ({ buildings }) => {
-
   console.log(buildings)
 
-  const buildingList = buildings?.map(b => {
-    return <BuildingBlock key={b.id} data={{
-      streetNumber: b.streetNumber,
-      streetName: b.streetName,
-      photo: b.photo,
-      id: b.id,
-      title: b.name,
-      statusId: b.statusId,
-    }}/>
+  const buildingList = buildings?.map((b) => {
+    return (
+      <BuildingBlock
+        key={b.id}
+        data={{
+          streetNumber: b.streetNumber,
+          streetName: b.streetName,
+          photo: b.photo,
+          id: b.id,
+          title: b.name,
+          statusId: b.statusId,
+        }}
+      />
+    )
   })
 
   return (
-    <BuildingBlocks
-      className="d-flex justify-content-center justify-content-md-start flex-wrap mb-3">
+    <BuildingBlocks className="d-flex justify-content-center justify-content-md-start flex-wrap mb-3">
       {buildingList}
     </BuildingBlocks>
   )
@@ -48,7 +51,7 @@ const Portfolio = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    async function fetchMyAPI () {
+    async function fetchMyAPI() {
       setIsLoading(true)
       const idToken = await user.getIdToken()
 
@@ -62,7 +65,7 @@ const Portfolio = () => {
     fetchMyAPI()
 
     //  eslint-disable-next-line
-    async function tracking () {
+    async function tracking() {
       const idToken = await user.getIdToken()
       trackingUser(user.uid, 'Portfolio', idToken)
     }
@@ -72,53 +75,59 @@ const Portfolio = () => {
 
   return (
     <>
-      <Header/>
+      <Header />
       <PortfolioWrapper className="container-fluid container-md">
-
         <div className="d-flex justify-content-between">
-          <Description className="">{t(
-            'Please select a building to see it’s energy performance and asset health')}</Description>
+          <Description className="">
+            {t(
+              'Please select a building to see it’s energy performance and asset health'
+            )}
+          </Description>
 
           <div>
             <Link to="/adding-building">
-              <AddBuildingText className="text-primary font-weight-bold">{t(
-                'Add building')}</AddBuildingText>
-              <AddingIcon className="bi bi-plus-circle-fill"/>
+              <AddBuildingText className="text-primary font-weight-bold">
+                {t('Add building')}
+              </AddBuildingText>
+              <AddingIcon className="bi bi-plus-circle-fill" />
             </Link>
           </div>
         </div>
         {isLoading ? (
-            <div
-              className="d-flex justify-content-center justify-content-md-start flex-wrap">
-              <div>
-                {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
-                <h2 className="skeleton-box skeleton-square-box shadow-sm"/>
-                <p className="skeleton-box skeleton-line-box"/>
-                <p className="skeleton-box skeleton-line-box2"/>
-              </div>
-              <div>
-                {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
-                <h2 className="skeleton-box skeleton-square-box shadow-sm"/>
-                <p className="skeleton-box skeleton-line-box"/>
-                <p className="skeleton-box skeleton-line-box2 "/>
-              </div>
-              <div>
-                {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
-                <h2 className="skeleton-box skeleton-square-box shadow-sm"/>
-                <p className="skeleton-box skeleton-line-box "/>
-                <p className="skeleton-box skeleton-line-box2 "/>
-              </div>
-            </div>) :
-          <><BuildingListBlocks
-            buildings={buildings?.filter(b => b.statusId === 2)}/>
-            <h3 className="bold display-6 mt-5 color-primary">Temporary
-              Building</h3>
+          <div className="d-flex justify-content-center justify-content-md-start flex-wrap">
+            <div>
+              {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
+              <h2 className="skeleton-box skeleton-square-box shadow-sm" />
+              <p className="skeleton-box skeleton-line-box" />
+              <p className="skeleton-box skeleton-line-box2" />
+            </div>
+            <div>
+              {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
+              <h2 className="skeleton-box skeleton-square-box shadow-sm" />
+              <p className="skeleton-box skeleton-line-box" />
+              <p className="skeleton-box skeleton-line-box2 " />
+            </div>
+            <div>
+              {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
+              <h2 className="skeleton-box skeleton-square-box shadow-sm" />
+              <p className="skeleton-box skeleton-line-box " />
+              <p className="skeleton-box skeleton-line-box2 " />
+            </div>
+          </div>
+        ) : (
+          <>
             <BuildingListBlocks
-              buildings={buildings?.filter(b => b.statusId === 3)}/>
-          </>}
-
+              buildings={buildings?.filter((b) => b.statusId === 2)}
+            />
+            <h3 className="bold display-6 mt-5 color-primary">
+              Temporary Building
+            </h3>
+            <BuildingListBlocks
+              buildings={buildings?.filter((b) => b.statusId === 3)}
+            />
+          </>
+        )}
       </PortfolioWrapper>
-
     </>
   )
 }

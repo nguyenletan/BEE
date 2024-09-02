@@ -13,9 +13,7 @@ import { useTranslation } from 'react-i18next'
 import { trackingUser } from 'api/UserAPI'
 import { useAuth } from 'AuthenticateProvider'
 
-const Form = styled.form`
-
-`
+const Form = styled.form``
 
 const Title = styled.h2`
   color: var(--bs-primary);
@@ -24,7 +22,6 @@ const Title = styled.h2`
 `
 
 const HVAC = () => {
-
   const { handleSubmit, control, setValue } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
@@ -40,11 +37,12 @@ const HVAC = () => {
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
 
-  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/lighting')
+  const moveNextUrl =
+    parentUrl + (id ? '/adding-building-successfully' : '/lighting')
   const { user } = useAuth()
 
-  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(
-    addingBuildingProgressState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] =
+    useRecoilState(addingBuildingProgressState)
 
   const { t } = useTranslation('buildingInput')
 
@@ -64,9 +62,7 @@ const HVAC = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-
       <div className="d-flex mt-5 mb-4">
-
         <Title>{t('New Building')}</Title>
 
         <BackNextGroupButton
@@ -75,18 +71,16 @@ const HVAC = () => {
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
-
       </div>
 
-      <StepNav activePositon={2}/>
+      <StepNav activePositon={2} />
       <div className="row">
-
         <div className="col-12 col-lg-6 col-xxl-5">
-          <CoolingSystem control={control} setValue={setValue}/>
+          <CoolingSystem control={control} setValue={setValue} />
         </div>
 
         <div className="col-12 col-lg-6 col-xxl-5">
-          <HeatingSystem control={control} setValue={setValue}/>
+          <HeatingSystem control={control} setValue={setValue} />
         </div>
       </div>
     </Form>

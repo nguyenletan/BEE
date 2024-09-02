@@ -2,7 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import SpaceUsageGFAForm from './SpaceUsageGFAForm'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { spaceUsageGFAListState, totalPercentageOfSpaceUsageGFAListState } from '../../../atoms'
+import {
+  spaceUsageGFAListState,
+  totalPercentageOfSpaceUsageGFAListState,
+} from '../../../atoms'
 import _ from 'lodash'
 import { useTranslation } from 'react-i18next'
 
@@ -24,8 +27,10 @@ const UL = styled.ul`
   }
 `
 
-const SpaceUsageGFA = ({ control, setValue}) => {
-  const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(spaceUsageGFAListState)
+const SpaceUsageGFA = ({ control, setValue }) => {
+  const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(
+    spaceUsageGFAListState
+  )
   //const totalPercentageOfSpaceUsageGFAList = useRecoilValue(totalPercentageOfSpaceUsageGFAListState)
   const { t } = useTranslation('buildingInput')
   const onAddSpaceUsageGFA = () => {
@@ -43,18 +48,18 @@ const SpaceUsageGFA = ({ control, setValue}) => {
     ])
   }
 
-  const lis = spaceUsageGFAList.map(item =>
+  const lis = spaceUsageGFAList.map((item) => (
     <li className="col-12 col-lg-6 mb-4" key={item.id}>
-      <SpaceUsageGFAForm data={item} control={control} setValue={setValue}/>
-    </li>,
-  )
+      <SpaceUsageGFAForm data={item} control={control} setValue={setValue} />
+    </li>
+  ))
 
   return (
     <>
       <Header className="d-flex justify-content-between">
         <h6>{t('Space usage and %GFA')}</h6>
-        <Adding onClick={onAddSpaceUsageGFA} title={t("Add new item")}>
-          <i className="bi bi-plus-lg font-weight-bolder"/>
+        <Adding onClick={onAddSpaceUsageGFA} title={t('Add new item')}>
+          <i className="bi bi-plus-lg font-weight-bolder" />
         </Adding>
       </Header>
       {/*<Controller*/}
@@ -81,9 +86,7 @@ const SpaceUsageGFA = ({ control, setValue}) => {
       {/*  }}*/}
       {/*/>*/}
 
-      <UL className="row">
-        {lis}
-      </UL>
+      <UL className="row">{lis}</UL>
     </>
   )
 }

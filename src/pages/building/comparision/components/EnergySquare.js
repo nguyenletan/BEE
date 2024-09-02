@@ -11,11 +11,12 @@ const Square = Styled.div`
   width: 56px;
   height: 38px;
   border-radius: 8px;
-  background-color: ${props => props.color ? props.color : 'green'};
-`; const EnergySquare = (props) => {
+  background-color: ${(props) => (props.color ? props.color : 'green')};
+`
+const EnergySquare = (props) => {
   const { text, color } = props
 
-  return (<Square color={color}>{text}</Square>)
+  return <Square color={color}>{text}</Square>
 }
 
 export default EnergySquare

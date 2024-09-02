@@ -1,7 +1,4 @@
-import React from 'react'
-import SubSystemPerformance from '../../pages/building/comparision/components/SubSystemPerformance'
-
-const subSystemPerformanceData = {
+export const subSystemPerformanceDataEN = {
   data: [
     {
       name: 'Energy Usage Intensity',
@@ -53,7 +50,52 @@ const subSystemPerformanceData = {
   ],
   indexBy: ['name'],
 }
-const ComparisonSubSystemPerformance = () => {
-  return <SubSystemPerformance data={subSystemPerformanceData} />
+
+export const subSystemPerformanceDataDE = {
+  data: [
+    {
+      name: 'Elektr. Energiebedarf',
+      'Gesetzl. Mindest-anforderungen': 46,
+      Aktuell: 53,
+      Optimal: 76,
+    },
+    {
+      name: 'Kühllast',
+      'Gesetzl. Mindest-anforderungen': 30,
+      Aktuell: 28,
+      Optimal: 70,
+    },
+    {
+      name: 'Heizlast',
+      'Gesetzl. Mindest-anforderungen': 40,
+      Aktuell: 53,
+      Optimal: 76,
+    },
+    {
+      name: 'Beleuchtungs-effizienz',
+      'Gesetzl. Mindest-anforderungen': 40,
+      Aktuell: 38,
+      Optimal: 76,
+    },
+    {
+      name: 'Effizienz der Lüftungsanlagen',
+      'Gesetzl. Mindest-anforderungen': 49,
+      Aktuell: 51,
+      Optimal: 68,
+    },
+    {
+      name: 'Isolierung',
+      'Gesetzl. Mindest-anforderungen': 20,
+      Aktuell: 72,
+      Optimal: 76,
+    },
+    {
+      name: 'Einsatz erneuerbarer Energien',
+      'Gesetzl. Mindest-anforderungen': 19,
+      Aktuell: 53,
+      Optimal: 64,
+    },
+  ],
+  keys: ['Aktuell', 'Optimal', 'Gesetzl. Mindest-anforderungen'],
+  indexBy: ['name'],
 }
-export default ComparisonSubSystemPerformance

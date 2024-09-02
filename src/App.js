@@ -4,7 +4,11 @@ import { useAuth } from 'AuthenticateProvider'
 import FirebaseAuth from './FirebaseAuthenticate'
 import { EuiProvider } from '@elastic/eui'
 
-import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles'
+import {
+  createTheme,
+  responsiveFontSizes,
+  ThemeProvider,
+} from '@mui/material/styles'
 import 'analytics_log_event'
 // import Login from './pages/login/Login';
 import Portfolio from './pages/portfolio/Portfolio'
@@ -16,7 +20,7 @@ import { RecoilRoot, useRecoilCallback, useRecoilSnapshot } from 'recoil'
 import { useEffect } from 'react'
 import IFrame from 'iframes/IFrame'
 
-function DebugObserver () {
+function DebugObserver() {
   const snapshot = useRecoilSnapshot()
   useEffect(() => {
     console.debug('The following atoms were modified:')
@@ -28,19 +32,27 @@ function DebugObserver () {
   return null
 }
 
-function DebugButton () {
-  const onClick = useRecoilCallback(({ snapshot }) => async () => {
-    console.log('Atom values:')
-    for (const node of snapshot.getNodes_UNSTABLE()) {
-      const value = await snapshot.getPromise(node)
-      console.log(node.key, value)
-    }
-  }, [])
+function DebugButton() {
+  const onClick = useRecoilCallback(
+    ({ snapshot }) =>
+      async () => {
+        console.log('Atom values:')
+        for (const node of snapshot.getNodes_UNSTABLE()) {
+          const value = await snapshot.getPromise(node)
+          console.log(node.key, value)
+        }
+      },
+    []
+  )
 
-  return <button onClick={onClick} className="visually-hidden">Dump State</button>
+  return (
+    <button onClick={onClick} className="-visually-hidden">
+      Dump State
+    </button>
+  )
 }
 
-function App () {
+function App() {
   const { user, loading } = useAuth()
   const { pathname } = useLocation()
 
@@ -68,26 +80,29 @@ function App () {
   // const noAuthList = ['/iframe']
 
   if (!pathname.includes('/iframe') && !user) {
-    return <FirebaseAuth/>
+    return <FirebaseAuth />
   }
 
   return (
     <ThemeProvider theme={theme}>
       <EuiProvider colorMode="light">
         <RecoilRoot>
-          <DebugObserver/>
+          <DebugObserver />
           <div className="App container-fluid gx-0">
             <Routes>
-              <Route path="/" element={<Portfolio/>} exact/>
-              <Route path="/register" element={<Register/>}/>
-              <Route path="/terms-of-service" element={<TermOfService/>}/>
-              <Route path="/building" element={<Portfolio/>} exact/>
-              <Route path="/building/:id/*" element={<Building/>}/>
-              <Route path="/adding-building/*" element={<AddingBuilding/>}/>
-              <Route path="/editing-building/:id/*" element={<AddingBuilding/>}/>
-              <Route path="/iframe/*" element={<IFrame/>}/>
+              <Route path="/" element={<Portfolio />} exact />
+              <Route path="/register" element={<Register />} />
+              <Route path="/terms-of-service" element={<TermOfService />} />
+              <Route path="/building" element={<Portfolio />} exact />
+              <Route path="/building/:id/*" element={<Building />} />
+              <Route path="/adding-building/*" element={<AddingBuilding />} />
+              <Route
+                path="/editing-building/:id/*"
+                element={<AddingBuilding />}
+              />
+              <Route path="/iframe/*" element={<IFrame />} />
             </Routes>
-            <DebugButton/>
+            <DebugButton />
             <footer className="mt-5">&nbsp;</footer>
           </div>
         </RecoilRoot>

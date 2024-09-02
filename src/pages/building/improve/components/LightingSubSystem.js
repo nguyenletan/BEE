@@ -7,14 +7,21 @@ import {
   EuiFlexItem,
   EuiFormRow,
   EuiText,
-  EuiTitle
+  EuiTitle,
 } from '@elastic/eui'
 
-import { EuiSelect } from '@elastic/eui';
-import LightingFittingType, { getLightingFittingTypeImage, getLightingFittingTypeName } from 'reference-tables/LightingFittingType'
+import { EuiSelect } from '@elastic/eui'
+import LightingFittingType, {
+  getLightingFittingTypeImage,
+  getLightingFittingTypeName,
+} from 'reference-tables/LightingFittingType'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { calculateEnergyConsumption, formatNumber, replaceItemAtIndex } from 'Utilities'
+import {
+  calculateEnergyConsumption,
+  formatNumber,
+  replaceItemAtIndex,
+} from 'Utilities'
 import { differenceInCalendarWeeks } from 'date-fns'
 import { useRecoilState } from 'recoil'
 import { totalAnnualSavingState } from 'atoms'
@@ -36,53 +43,66 @@ const Item = styled.p`
 `
 
 const LightingSubSystem = ({ subSystem }) => {
-
   const [energyConsumption, setEnergyConsumption] = useState(0)
   const [energyCost, setEnergyCost] = useState(0)
   const [emissions, setEmissions] = useState(0)
   const [investmentCost, setInvestmentCost] = useState(0)
   const [simplePayback, setSimplePayback] = useState(0)
-  const [percentageOfLEDReplacement, setPercentageOfLEDReplacement] = useState(0)
+  const [percentageOfLEDReplacement, setPercentageOfLEDReplacement] =
+    useState(0)
   const [IRR, setIRR] = useState(0)
   const [costPerBulb, setCostPerBulb] = useState()
   const [numberOfBulbs, setNumberOfBulbs] = useState()
   const [wattRatingOfBulb, setWattRatingOfBulb] = useState()
-  const [numberOfDaysPerWeek, setNumberOfDaysPerWeek] = useState(subSystem.numberOfDaysUsedPerWeek)
-  const [numberOfHoursPerDay, setNumberOfHoursPerDay] = useState(subSystem.numberOfHoursUsedPerDay)
-  const [totalAnnualSaving, setTotalAnnualSavingState] = useRecoilState(totalAnnualSavingState)
+  const [numberOfDaysPerWeek, setNumberOfDaysPerWeek] = useState(
+    subSystem.numberOfDaysUsedPerWeek
+  )
+  const [numberOfHoursPerDay, setNumberOfHoursPerDay] = useState(
+    subSystem.numberOfHoursUsedPerDay
+  )
+  const [totalAnnualSaving, setTotalAnnualSavingState] = useRecoilState(
+    totalAnnualSavingState
+  )
 
   useEffect(() => {
-
-    if (wattRatingOfBulb === undefined || numberOfBulbs === undefined || costPerBulb === undefined) {
+    if (
+      wattRatingOfBulb === undefined ||
+      numberOfBulbs === undefined ||
+      costPerBulb === undefined
+    ) {
       return
     }
 
-    const consumption = calculateEnergyConsumption(
-      numberOfBulbs,
-      wattRatingOfBulb,
-      -differenceInCalendarWeeks(
-        new Date(new Date().getFullYear(), 1, 1),
-        new Date(new Date().getFullYear(), 12, 31),
-      ),
-      numberOfDaysPerWeek,
-      numberOfHoursPerDay,
-    ) + calculateEnergyConsumption(
-      subSystem.numberOfBulbs - numberOfBulbs,
-      subSystem.wattRatingOfBulb,
-      -differenceInCalendarWeeks(
-        new Date(new Date().getFullYear(), 1, 1),
-        new Date(new Date().getFullYear(), 12, 31),
-      ),
-      subSystem.numberOfDaysUsedPerWeek,
-      subSystem.numberOfHoursUsedPerDay)
+    const consumption =
+      calculateEnergyConsumption(
+        numberOfBulbs,
+        wattRatingOfBulb,
+        -differenceInCalendarWeeks(
+          new Date(new Date().getFullYear(), 1, 1),
+          new Date(new Date().getFullYear(), 12, 31)
+        ),
+        numberOfDaysPerWeek,
+        numberOfHoursPerDay
+      ) +
+      calculateEnergyConsumption(
+        subSystem.numberOfBulbs - numberOfBulbs,
+        subSystem.wattRatingOfBulb,
+        -differenceInCalendarWeeks(
+          new Date(new Date().getFullYear(), 1, 1),
+          new Date(new Date().getFullYear(), 12, 31)
+        ),
+        subSystem.numberOfDaysUsedPerWeek,
+        subSystem.numberOfHoursUsedPerDay
+      )
 
     const energySavings = subSystem.energyConsumption - consumption
-    const costSavings = subSystem.energyCost - (consumption * 0.023)
+    const costSavings = subSystem.energyCost - consumption * 0.023
     const emissionsAvoided = consumption * 0.1
     const investmentCost = numberOfBulbs * costPerBulb
     const simplePayback = investmentCost / costSavings
     const _IRR = calculateIRRValue(-investmentCost, costSavings)
-    const _percentageOfLEDReplacement = numberOfBulbs * 100 / subSystem.numberOfBulbs
+    const _percentageOfLEDReplacement =
+      (numberOfBulbs * 100) / subSystem.numberOfBulbs
 
     setEnergyConsumption(consumption)
     setEnergyCost(costSavings)
@@ -121,7 +141,8 @@ const LightingSubSystem = ({ subSystem }) => {
     subSystem.numberOfDaysUsedPerWeek,
     subSystem.numberOfHoursUsedPerDay,
     subSystem.wattRatingOfBulb,
-    wattRatingOfBulb])
+    wattRatingOfBulb,
+  ])
 
   const onChanges = (e) => {
     switch (e.target.name) {
@@ -154,7 +175,7 @@ const LightingSubSystem = ({ subSystem }) => {
     <div>
       <EuiFlexGroup gutterSize="s" alignItems="center" responsive={false}>
         <EuiFlexItem grow={false}>
-          <Icon src={getLightingFittingTypeImage(data.lightingFittingTypeId)}/>
+          <Icon src={getLightingFittingTypeImage(data.lightingFittingTypeId)} />
         </EuiFlexItem>
 
         <EuiFlexItem>
@@ -167,7 +188,6 @@ const LightingSubSystem = ({ subSystem }) => {
   )
 
   return (
-
     <EuiAccordion
       id={subSystem.title + '_' + subSystem.id}
       buttonContent={buttonContent(subSystem)}
@@ -175,16 +195,22 @@ const LightingSubSystem = ({ subSystem }) => {
     >
       <EuiText size="s">
         <Item>
-          Bulb: <span className="text-primary">{getLightingFittingTypeName(subSystem.lightingFittingTypeId)}</span>
+          Bulb:{' '}
+          <span className="text-primary">
+            {getLightingFittingTypeName(subSystem.lightingFittingTypeId)}
+          </span>
         </Item>
         <Item>
-          Number: <span className="text-primary">{subSystem.numberOfBulbs}</span>
+          Number:{' '}
+          <span className="text-primary">{subSystem.numberOfBulbs}</span>
         </Item>
         <Item>
-          Watt Ratting (W): <span className="text-primary">{subSystem.wattRatingOfBulb}</span>
+          Watt Ratting (W):{' '}
+          <span className="text-primary">{subSystem.wattRatingOfBulb}</span>
         </Item>
         <Item>
-          Lumen Rating (lm): <span className="text-primary">{subSystem.lumensOfBulb}</span>
+          Lumen Rating (lm):{' '}
+          <span className="text-primary">{subSystem.lumensOfBulb}</span>
         </Item>
         {/*<Item>*/}
         {/*  Energy Consumption (kWh/Yr): <span className="text-primary">{formatNumber(subSystem.energyConsumption, 0)}</span>*/}
@@ -196,49 +222,67 @@ const LightingSubSystem = ({ subSystem }) => {
         {/*  Emissions (Tons/Yr): <span className="text-primary">{formatNumber(subSystem.emissions, 2)}</span>*/}
         {/*</Item>*/}
         <Item>
-          Energy Consumption Savings (kWh/Yr): <span className="fw-bold text-primary">{energyConsumption !== 0
-          ? formatNumber(subSystem.energyConsumption - energyConsumption, 0)
-          : 0}</span>
+          Energy Consumption Savings (kWh/Yr):{' '}
+          <span className="fw-bold text-primary">
+            {energyConsumption !== 0
+              ? formatNumber(subSystem.energyConsumption - energyConsumption, 0)
+              : 0}
+          </span>
         </Item>
         <Item>
-          Energy Cost Savings ($/Yr): <span className="fw-bold text-primary">{energyCost !== 0 ? formatNumber(
-          subSystem.energyCost - energyCost, 0) : 0}</span>
+          Energy Cost Savings ($/Yr):{' '}
+          <span className="fw-bold text-primary">
+            {energyCost !== 0
+              ? formatNumber(subSystem.energyCost - energyCost, 0)
+              : 0}
+          </span>
         </Item>
         <Item>
-          Emissions Savings (Tons/Yr): <span className="fw-bold text-primary">{emissions !== 0 ? formatNumber(
-          subSystem.emissions - emissions, 2) : 0}</span>
+          Emissions Savings (Tons/Yr):{' '}
+          <span className="fw-bold text-primary">
+            {emissions !== 0
+              ? formatNumber(subSystem.emissions - emissions, 2)
+              : 0}
+          </span>
         </Item>
         <Item>
-          Investment Cost ($): <span className="fw-bold text-primary">{investmentCost !== 0 ? formatNumber(
-          investmentCost, 2) : 0}</span>
+          Investment Cost ($):{' '}
+          <span className="fw-bold text-primary">
+            {investmentCost !== 0 ? formatNumber(investmentCost, 2) : 0}
+          </span>
         </Item>
         <Item>
-          Simple Payback ($): <span className="fw-bold text-primary">{simplePayback !== 0
-          ? formatNumber(simplePayback, 2)
-          : 0}</span>
+          Simple Payback ($):{' '}
+          <span className="fw-bold text-primary">
+            {simplePayback !== 0 ? formatNumber(simplePayback, 2) : 0}
+          </span>
         </Item>
         <Item>
-          Internal Rate of Return: <span className="fw-bold text-primary">{IRR}</span>
+          Internal Rate of Return:{' '}
+          <span className="fw-bold text-primary">{IRR}</span>
         </Item>
         <Item>
-          % Light Replacement: <span className="fw-bold text-primary">{formatNumber(percentageOfLEDReplacement, 2)}</span></Item>
+          % Light Replacement:{' '}
+          <span className="fw-bold text-primary">
+            {formatNumber(percentageOfLEDReplacement, 2)}
+          </span>
+        </Item>
       </EuiText>
 
       <EuiFormRow label="Replacement Bulb Type" className="mt-4">
         {/*<EuiFieldText compressed eadOnly value="LED"/>*/}
         <EuiSelect
           compressed
-          options={LightingFittingType.map(t => {
-              if (t.id === subSystem.id) return null
-              return {
-                value: t.id,
-                text: t.name,
-              }
-            },
-          )}
+          options={LightingFittingType.map((t) => {
+            if (t.id === subSystem.id) return null
+            return {
+              value: t.id,
+              text: t.name,
+            }
+          })}
           name="lightingFittingTypeId"
           onChange={onChanges}
-          value={{ value: "LED", text: "LED" }}
+          value={{ value: 'LED', text: 'LED' }}
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormRow>
@@ -299,10 +343,8 @@ const LightingSubSystem = ({ subSystem }) => {
           onChange={onChanges}
         />
       </EuiFormRow>
-
     </EuiAccordion>
-
-)
+  )
 }
 
 export default LightingSubSystem

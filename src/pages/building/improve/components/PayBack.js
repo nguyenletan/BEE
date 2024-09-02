@@ -2,7 +2,13 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ResponsiveScatterPlot } from '@nivo/scatterplot'
-import { coolingSVG, heatingSVG, lightingSVG, openingsSVG, wallSVG } from 'SvgConstants'
+import {
+  coolingSVG,
+  heatingSVG,
+  lightingSVG,
+  openingsSVG,
+  wallSVG,
+} from 'SvgConstants'
 import { useTranslation } from 'react-i18next'
 import coolingImg from 'assets/images/cooling.svg'
 import openingsImg from 'assets/images/openings.svg'
@@ -17,7 +23,7 @@ const PayBackWrapper = styled.div`
   border-radius: 20px;
   padding: 20px;
   width: 100%;
-  height: 550px
+  height: 550px;
 `
 
 const PayBackTitle = styled.h4`
@@ -25,38 +31,37 @@ const PayBackTitle = styled.h4`
   font-weight: 700;
 `
 
-
 const PayBack = ({ data, setResult }) => {
   const { t, i18n } = useTranslation('improvement')
 
-  const payBackData = data.map(item => {
-
+  const payBackData = data.map((item) => {
     return {
       id: t(item.measures),
       data: [
         {
-          x: +(item.internalRateOfReturn.toFixed(2)),
-          y: +(item.paybackPeriod.toFixed(2)),
+          x: +item.internalRateOfReturn.toFixed(2),
+          y: +item.paybackPeriod.toFixed(2),
           subSystem: item.subSystem,
           ...item,
-        }],
+        },
+      ],
     }
   })
 
   const [dataSource, setDataSource] = useState(payBackData)
 
   useEffect(() => {
-    const payBackData = data.map(item => {
-
+    const payBackData = data.map((item) => {
       return {
         id: t(item.measures),
         data: [
           {
-            x: +(item.internalRateOfReturn.toFixed(2)),
-            y: +(item.paybackPeriod.toFixed(2)),
+            x: +item.internalRateOfReturn.toFixed(2),
+            y: +item.paybackPeriod.toFixed(2),
             subSystem: item.subSystem,
             ...item,
-          }],
+          },
+        ],
       }
     })
 
@@ -70,15 +75,15 @@ const PayBack = ({ data, setResult }) => {
     nodeSize: 20,
     useMesh: true,
     blendMode: 'multiply',
-    xFormat: d => `${d}%`,
-    yFormat: d => `${d} Yr`,
+    xFormat: (d) => `${d}%`,
+    yFormat: (d) => `${d} Yr`,
     axisBottom: {
-      format: d => `${d} %`,
+      format: (d) => `${d} %`,
       legend: t('Internal Rate of Return (%)'),
       legendOffset: 40,
     },
     axisLeft: {
-      format: d => `${d} Yr`,
+      format: (d) => `${d} Yr`,
       legend: t('Simple Payback (Yr)'),
       legendOffset: -50,
     },
@@ -93,50 +98,32 @@ const PayBack = ({ data, setResult }) => {
         }}
       >
         <strong>{node.serieId}</strong>
-        <br/>
+        <br />
         Internal Rate of Return: <strong>{node.formattedX}</strong>
-        <br/>
+        <br />
         Simple Payback: <strong>{node.formattedY}</strong>
       </div>
     ),
   }
 
-  const CustomNode = ({
-    node,
-    x,
-    y,
-  }) => {
+  const CustomNode = ({ node, x, y }) => {
     switch (node.data.subSystem) {
       case 'Cooling':
         return (
-          <g transform={`translate(${node.x},${node.y})`}>
-            {coolingSVG()}
-          </g>
+          <g transform={`translate(${node.x},${node.y})`}>{coolingSVG()}</g>
         )
       case 'Heating':
-        return (
-          <g transform={`translate(${x},${y})`}>
-            {heatingSVG()}
-          </g>
-        )
+        return <g transform={`translate(${x},${y})`}>{heatingSVG()}</g>
       case 'Lighting':
         return (
-          <g transform={`translate(${node.x},${node.y})`}>
-            {lightingSVG()}
-          </g>
+          <g transform={`translate(${node.x},${node.y})`}>{lightingSVG()}</g>
         )
       case 'Openings':
         return (
-          <g transform={`translate(${node.x},${node.y})`}>
-            {openingsSVG()}
-          </g>
+          <g transform={`translate(${node.x},${node.y})`}>{openingsSVG()}</g>
         )
       case 'Walls':
-        return (
-          <g transform={`translate(${node.x},${node.y})`}>
-            {wallSVG()}
-          </g>
-        )
+        return <g transform={`translate(${node.x},${node.y})`}>{wallSVG()}</g>
       default:
         return null
     }
@@ -146,7 +133,6 @@ const PayBack = ({ data, setResult }) => {
   const [popUpProps, setPopupProps] = useState({})
 
   const handleClose = (isChanged, result) => {
-
     if (isChanged && setResult !== undefined) {
       // setPopUpResult({ ...result })]
       setResult({ ...result })
@@ -206,7 +192,7 @@ const PayBack = ({ data, setResult }) => {
     <PayBackWrapper>
       <div className="d-flex justify-content-between">
         <PayBackTitle>{t('Payback')}</PayBackTitle>
-        <UrlButton url="improve-payback" textWidth='45ch'/>
+        <UrlButton url="improve-payback" textWidth="45ch" />
       </div>
       <ResponsiveScatterPlot
         {...commonProps}
@@ -215,7 +201,13 @@ const PayBack = ({ data, setResult }) => {
         nodeComponent={CustomNode}
         onClick={handleClick}
       />
-      {show && <ImprovementMeasurePopup data={popUpProps} handleClose={handleClose} show={true}/>}
+      {show && (
+        <ImprovementMeasurePopup
+          data={popUpProps}
+          handleClose={handleClose}
+          show={true}
+        />
+      )}
     </PayBackWrapper>
   )
 }

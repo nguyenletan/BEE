@@ -27,89 +27,89 @@ const UnitsOfProductionDepreciation = () => {
       data: [
         {
           y: 1500000,
-          x: 0
+          x: 0,
         },
         {
           y: 1439250,
-          x: 1
+          x: 1,
         },
         {
           y: 1347750,
-          x: 2
+          x: 2,
         },
         {
           y: 1236750,
-          x: 3
+          x: 3,
         },
         {
           y: 1146000,
-          x: 4
+          x: 4,
         },
         {
           y: 1064250,
-          x: 5
+          x: 5,
         },
         {
           y: 978000,
-          x: 6
+          x: 6,
         },
         {
           y: 888000,
-          x: 7
+          x: 7,
         },
         {
           y: 795000,
-          x: 8
+          x: 8,
         },
         {
           y: 708000,
-          x: 9
+          x: 9,
         },
         {
           y: 604500,
-          x: 10
+          x: 10,
         },
         {
           y: 504750,
-          x: 11
+          x: 11,
         },
         {
           y: 461250,
-          x: 12
+          x: 12,
         },
         {
           y: 399750,
-          x: 13
+          x: 13,
         },
         {
           y: 357750,
-          x: 14
+          x: 14,
         },
         {
           y: 307500,
-          x: 15
+          x: 15,
         },
         {
           y: 234000,
-          x: 16
+          x: 16,
         },
         {
           y: 161250,
-          x: 17
+          x: 17,
         },
         {
           y: 95250,
-          x: 18
+          x: 18,
         },
         {
           y: 42000,
-          x: 19
+          x: 19,
         },
         {
           y: 0,
-          x: 20
-        }
-      ]
+          x: 20,
+        },
+      ],
     },
     {
       id: 'Condition Based Depreciation',
@@ -117,95 +117,103 @@ const UnitsOfProductionDepreciation = () => {
       data: [
         {
           y: 1500000,
-          x: 0
+          x: 0,
         },
         {
           y: 1380882,
-          x: 1
+          x: 1,
         },
         {
           y: 1296176,
-          x: 2
+          x: 2,
         },
         {
           y: 1171765,
-          x: 3
+          x: 3,
         },
         {
           y: 1079118,
-          x: 4
+          x: 4,
         },
         {
           y: 953824,
-          x: 5
+          x: 5,
         },
         {
           y: 855882,
-          x: 6
+          x: 6,
         },
         {
           y: 748235,
-          x: 7
+          x: 7,
         },
         {
           y: 615882,
-          x: 8
+          x: 8,
         },
         {
           y: 509118,
-          x: 9
+          x: 9,
         },
         {
           y: 401471,
-          x: 10
+          x: 10,
         },
         {
           y: 279706,
-          x: 11
+          x: 11,
         },
         {
           y: 187059,
-          x: 12
+          x: 12,
         },
         {
           y: 68824,
-          x: 13
+          x: 13,
         },
         {
           y: 34412,
-          x: 14
+          x: 14,
         },
         {
           y: 17206,
-          x: 15
+          x: 15,
         },
         {
           y: 8603,
-          x: 16
+          x: 16,
         },
         {
           y: 0,
-          x: 17
-        }
-      ]
-    }
-
+          x: 17,
+        },
+      ],
+    },
   ]
 
   const Line = ({ series, innerHeight }) => {
-    const data0 = series[0]?.data.filter(d => d.data.x === 17)
+    const data0 = series[0]?.data.filter((d) => d.data.x === 17)
     const x = data0[0]?.position?.x
 
     return (
       <>
-        <text x={x - 30} y='0' className='small'>Current Age</text>
-        <line x1={x} y1={8} x2={x} y2={innerHeight} stroke='#5F5283' strokeDasharray='8' strokeWidth={1} />
+        <text x={x - 30} y="0" className="small">
+          Current Age
+        </text>
+        <line
+          x1={x}
+          y1={8}
+          x2={x}
+          y2={innerHeight}
+          stroke="#5F5283"
+          strokeDasharray="8"
+          strokeWidth={1}
+        />
       </>
     )
   }
 
   const commonProperties = {
-
     margin: { top: 30, right: 10, bottom: 35, left: 55 },
     data,
     animate: true,
@@ -222,7 +230,7 @@ const UnitsOfProductionDepreciation = () => {
       tickRotation: 0,
       legend: 'Asset Value ($)',
       legendOffset: -65,
-      legendPosition: 'middle'
+      legendPosition: 'middle',
     },
     axisBottom: {
       orient: 'bottom',
@@ -231,7 +239,7 @@ const UnitsOfProductionDepreciation = () => {
       tickRotation: 0,
       legend: 'Equipment Age (Yrs)',
       legendOffset: 36,
-      legendPosition: 'middle'
+      legendPosition: 'middle',
     },
     legends: [
       {
@@ -253,13 +261,25 @@ const UnitsOfProductionDepreciation = () => {
             on: 'hover',
             style: {
               itemBackground: 'rgba(0, 0, 0, .03)',
-              itemOpacity: 1
-            }
-          }
-        ]
-      }
+              itemOpacity: 1,
+            },
+          },
+        ],
+      },
     ],
-    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends', Line]
+    layers: [
+      'grid',
+      'markers',
+      'axes',
+      'areas',
+      'crosshair',
+      'lines',
+      'points',
+      'slices',
+      'mesh',
+      'legends',
+      Line,
+    ],
   }
 
   return (
@@ -269,13 +289,11 @@ const UnitsOfProductionDepreciation = () => {
       <ChartWrapper>
         <ResponsiveLine
           {...commonProperties}
-
           yScale={{
             type: 'linear',
-            stacked: false
+            stacked: false,
           }}
         />
-
       </ChartWrapper>
     </Wrapper>
   )

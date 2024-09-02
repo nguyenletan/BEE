@@ -12,15 +12,17 @@ export const getTodayWeather = async (lat, lon) => {
     },
     data: {},
     body: {},
-  }).then((response) => {
-    result = response.data
-    console.log(response.data)
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      result = response.data
+      console.log(response.data)
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
 
   return result
 }
@@ -38,16 +40,17 @@ export const get15DayForecastWeather = async (lat, lon) => {
     },
     data: {},
     body: {},
-  }).then((response) => {
-    result = response.data
-    console.log(response.data)
-  }).catch(error => {
-    if (error.response) {
-      // setErrorMsg(error.response.data.message)
-      result = error.response.data.message
-    }
   })
+    .then((response) => {
+      result = response.data
+      console.log(response.data)
+    })
+    .catch((error) => {
+      if (error.response) {
+        // setErrorMsg(error.response.data.message)
+        result = error.response.data.message
+      }
+    })
 
   return result
 }
-

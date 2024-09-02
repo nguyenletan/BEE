@@ -2,7 +2,15 @@ import styled from 'styled-components'
 import { EuiAccordion, EuiPanel } from '@elastic/eui'
 import React from 'react'
 import { getWeatherIcon } from 'WeatherIcons'
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@mui/material'
 
 const Wrapper = styled.section`
   display: flex;
@@ -18,10 +26,19 @@ const H4 = styled.h4`
 const Summary = styled.p`
   font-size: 0.9em;
   font-weight: 500;
-
 `
 
-function createData (month, tempmax, tempmin, rain, snow, wind, humidity, pressure, uv) {
+function createData(
+  month,
+  tempmax,
+  tempmin,
+  rain,
+  snow,
+  wind,
+  humidity,
+  pressure,
+  uv
+) {
   return { month, tempmax, tempmin, rain, snow, wind, humidity, pressure, uv }
 }
 
@@ -41,20 +58,31 @@ const rows = [
 ]
 
 const AvgWeatherInformation = () => {
-
   const buttonContent = (
     <div className="d-flex align-items-center">
-      <img className="me-3" src={getWeatherIcon('wind')} alt="windy" width="32px"/>
+      <img
+        className="me-3"
+        src={getWeatherIcon('wind')}
+        alt="windy"
+        width="32px"
+      />
       <H4 className="font-bold">Average Weather</H4>
     </div>
   )
 
   return (
-
-    <EuiAccordion initialIsOpen={true} className="mb-5" buttonContent={buttonContent}>
+    <EuiAccordion
+      initialIsOpen={true}
+      className="mb-5"
+      buttonContent={buttonContent}
+    >
       <EuiPanel color="subdued">
         <Wrapper>
-          <Summary>This week will be mostly Cloudy. The average daily high/low will be 16°C/8°C. The expected highest/lowest temperature is 20°C/2°C. There will be 15 rainy day.</Summary>
+          <Summary>
+            This week will be mostly Cloudy. The average daily high/low will be
+            16°C/8°C. The expected highest/lowest temperature is 20°C/2°C. There
+            will be 15 rainy day.
+          </Summary>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
@@ -73,10 +101,16 @@ const AvgWeatherInformation = () => {
                 {rows.map((row) => (
                   <TableRow
                     key={row.month}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    sx={{
+                      '&:last-child td, &:last-child th': { border: 0 },
+                    }}
                   >
-                    <TableCell component="th" scope="row">{row.month}</TableCell>
-                    <TableCell>{row.tempmax}° / {row.tempmin}°</TableCell>
+                    <TableCell component="th" scope="row">
+                      {row.month}
+                    </TableCell>
+                    <TableCell>
+                      {row.tempmax}° / {row.tempmin}°
+                    </TableCell>
                     <TableCell>{row.rain} days</TableCell>
                     <TableCell>{row.snow} days</TableCell>
                     <TableCell>{row.wind} kmph</TableCell>
@@ -88,7 +122,6 @@ const AvgWeatherInformation = () => {
               </TableBody>
             </Table>
           </TableContainer>
-
         </Wrapper>
       </EuiPanel>
     </EuiAccordion>

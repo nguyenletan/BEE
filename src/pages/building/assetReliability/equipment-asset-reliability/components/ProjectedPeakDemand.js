@@ -8,9 +8,7 @@ import { deepClone, getMonthName } from 'Utilities'
 import { EuiRange } from '@elastic/eui'
 import { useTranslation } from 'react-i18next'
 
-const Wrapper = styled.div`
-
-`
+const Wrapper = styled.div``
 
 const ChartWrapper = styled.div`
   height: 350px;
@@ -26,7 +24,6 @@ const NumberOfDaysLabel = styled.div`
 `
 
 const ProjectedPeakDemand = (props) => {
-
   const { equipmentId } = props
   const { user } = useAuth()
   const [depreciationData, setDepreciationData] = useState([])
@@ -38,13 +35,14 @@ const ProjectedPeakDemand = (props) => {
     const dataSource = [
       {
         id: 'ProjectPeakDemand',
-        data: rawData.map(d => {
+        data: rawData.map((d) => {
           return {
             x: t(getMonthName(d.month), { ns: 'common' }) + ' ' + d.day,
             y: +d.average.toFixed(2),
           }
         }),
-      }]
+      },
+    ]
     setDepreciationData([...dataSource])
     setFilterData(deepClone(dataSource))
   }
@@ -77,17 +75,47 @@ const ProjectedPeakDemand = (props) => {
     return (
       <>
         {/*<text x={x - 40} y="-5" className="small">Current Age</text>*/}
-        <text x={260} y="-5" className="small" strokeWidth={1} stroke="#87972f">{t('2 Potential Problems')}</text>
-        <text x={460} y="-5" className="small" strokeWidth={1} stroke="#87972f">{t('1 Potential Problems')}</text>
-        <text x={660} y="-5" className="small" strokeWidth={1} stroke="#87972f">{t('1 Potential Problems')}</text>
+        <text x={260} y="-5" className="small" strokeWidth={1} stroke="#87972f">
+          {t('2 Potential Problems')}
+        </text>
+        <text x={460} y="-5" className="small" strokeWidth={1} stroke="#87972f">
+          {t('1 Potential Problems')}
+        </text>
+        <text x={660} y="-5" className="small" strokeWidth={1} stroke="#87972f">
+          {t('1 Potential Problems')}
+        </text>
         {/*<line*/}
         {/*  x1={x} y1={0} x2={x} y2={innerHeight} stroke="#87972f" strokeDasharray="3"*/}
         {/*  strokeWidth={1}*/}
         {/*/>*/}
 
-        <line x1="300" y1="10" x2="300" y2="285" stroke="#87972f" strokeDasharray="2" strokeWidth={1}/>
-        <line x1="500" y1="10" x2="500" y2="285" stroke="#87972f" strokeDasharray="2" strokeWidth={1}/>
-        <line x1="700" y1="10" x2="700" y2="285" stroke="#87972f" strokeDasharray="2" strokeWidth={1}/>
+        <line
+          x1="300"
+          y1="10"
+          x2="300"
+          y2="285"
+          stroke="#87972f"
+          strokeDasharray="2"
+          strokeWidth={1}
+        />
+        <line
+          x1="500"
+          y1="10"
+          x2="500"
+          y2="285"
+          stroke="#87972f"
+          strokeDasharray="2"
+          strokeWidth={1}
+        />
+        <line
+          x1="700"
+          y1="10"
+          x2="700"
+          y2="285"
+          stroke="#87972f"
+          strokeDasharray="2"
+          strokeWidth={1}
+        />
       </>
     )
   }
@@ -122,7 +150,19 @@ const ProjectedPeakDemand = (props) => {
       legendPosition: 'middle',
     },
 
-    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends', Line],
+    layers: [
+      'grid',
+      'markers',
+      'axes',
+      'areas',
+      'crosshair',
+      'lines',
+      'points',
+      'slices',
+      'mesh',
+      'legends',
+      Line,
+    ],
   }
 
   const onChange = (e) => {
@@ -140,7 +180,9 @@ const ProjectedPeakDemand = (props) => {
       <div className="d-flex justify-content-between mb-5">
         <h5>{t('Projected Peak Demand (kW)')}</h5>
         <NumberOfDaysWrapper className="d-flex justify-content-between">
-          <NumberOfDaysLabel for="number-of-next-days">{t('Number of days')}: </NumberOfDaysLabel>
+          <NumberOfDaysLabel for="number-of-next-days">
+            {t('Number of days')}:{' '}
+          </NumberOfDaysLabel>
           <EuiRange
             id="number-of-next-days"
             min={1}
@@ -149,19 +191,15 @@ const ProjectedPeakDemand = (props) => {
             showTicks
             value={numberOfNextDays}
             onChange={onChange}
-
             aria-label="Number of Next Days"
           />
         </NumberOfDaysWrapper>
       </div>
       <ChartWrapper>
-        <ResponsiveLine
-          {...commonProperties}
-        />
+        <ResponsiveLine {...commonProperties} />
       </ChartWrapper>
     </Wrapper>
   )
-
 }
 
 export default ProjectedPeakDemand

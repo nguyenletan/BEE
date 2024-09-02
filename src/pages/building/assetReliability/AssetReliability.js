@@ -9,7 +9,6 @@ import { useSetRecoilState } from 'recoil'
 import { isDisplayPerformanceFilterState } from 'atoms'
 import EquipmentAssetReliability from 'pages/building/assetReliability/equipment-asset-reliability/EquipmentAssetReliability'
 
-
 const AssetReliabilityWrapper = styled.div`
   margin-bottom: 50px;
 `
@@ -26,7 +25,7 @@ const AssetReliability = () => {
         sparePartsLeadTime: 23,
         estimatedTimeToFailure: 4,
         likelihood: 5,
-        impact: 5
+        impact: 5,
       },
       {
         id: 1,
@@ -37,7 +36,7 @@ const AssetReliability = () => {
         sparePartsLeadTime: 6,
         estimatedTimeToFailure: 34,
         likelihood: 1,
-        impact: 1
+        impact: 1,
       },
       {
         id: 2,
@@ -48,7 +47,7 @@ const AssetReliability = () => {
         sparePartsLeadTime: 1,
         estimatedTimeToFailure: 12,
         likelihood: 3,
-        impact: 4
+        impact: 4,
       },
       {
         id: 3,
@@ -59,7 +58,7 @@ const AssetReliability = () => {
         sparePartsLeadTime: 23,
         estimatedTimeToFailure: 19,
         likelihood: 2,
-        impact: 4
+        impact: 4,
       },
       {
         id: 4,
@@ -70,7 +69,7 @@ const AssetReliability = () => {
         sparePartsLeadTime: 4,
         estimatedTimeToFailure: 21,
         likelihood: 2,
-        impact: 4
+        impact: 4,
       },
       {
         id: 5,
@@ -81,7 +80,7 @@ const AssetReliability = () => {
         sparePartsLeadTime: 0,
         estimatedTimeToFailure: 14,
         likelihood: 3,
-        impact: 3
+        impact: 3,
       },
       {
         id: 6,
@@ -92,24 +91,25 @@ const AssetReliability = () => {
         sparePartsLeadTime: 19,
         estimatedTimeToFailure: 9,
         likelihood: 1,
-        impact: 2
-      }
+        impact: 2,
+      },
     ],
     currentSubSystemHealth: {
-      data: [{
-        name: 'Cooling',
-        value: 55
-      },
+      data: [
+        {
+          name: 'Cooling',
+          value: 55,
+        },
         {
           name: 'Heating',
-          value: 95
+          value: 95,
         },
         {
           name: 'Mechanical Ventilation',
-          value: 71
-        }
+          value: 71,
+        },
       ],
-      keys: ['value']
+      keys: ['value'],
     },
     maintenanceBudget: [
       {
@@ -117,15 +117,15 @@ const AssetReliability = () => {
         label: 'Used',
         value: 236850,
         color: '#87972f',
-        remaining: 77691
+        remaining: 77691,
       },
       {
         id: 'remaining',
         label: 'Remaining',
         value: 77691,
         color: '#ecedef',
-        remaining: 77691
-      }
+        remaining: 77691,
+      },
     ],
     maintenanceBudgetBySubSystemEN: [
       {
@@ -133,50 +133,50 @@ const AssetReliability = () => {
         subSystem: 'cooling',
         used: 5000,
         accrued: 1300,
-        allocated: 7300
+        allocated: 7300,
       },
       {
         id: 1,
         subSystem: 'heating',
         used: 3000,
         accrued: 5100,
-        allocated: 6500
+        allocated: 6500,
       },
       {
         id: 2,
         subSystem: 'lighting',
         used: 3100,
         accrued: 200,
-        allocated: 4300
+        allocated: 4300,
       },
       {
         id: 3,
         subSystem: 'mechanical ventilation',
         used: 5900,
         accrued: 900,
-        allocated: 7200
+        allocated: 7200,
       },
       {
         id: 4,
         subSystem: 'facility envelope',
         used: 4000,
         accrued: 5900,
-        allocated: 4300
+        allocated: 4300,
       },
       {
         id: 5,
         subSystem: 'renewables',
         used: 1800,
         accrued: 500,
-        allocated: 3100
+        allocated: 3100,
       },
       {
         id: 6,
         subSystem: 'others',
         used: 2100,
         accrued: 300,
-        allocated: 3100
-      }
+        allocated: 3100,
+      },
     ],
     maintenanceBudgetBySubSystemDE: [
       {
@@ -184,54 +184,56 @@ const AssetReliability = () => {
         subSystem: 'kühlung',
         verwendet: 5000,
         erwachsen: 1300,
-        zugewiesen: 7300
+        zugewiesen: 7300,
       },
       {
         id: 1,
         subSystem: 'heizung',
         verwendet: 3000,
         erwachsen: 5100,
-        zugewiesen: 6500
+        zugewiesen: 6500,
       },
       {
         id: 2,
         subSystem: 'beleuchtung',
         verwendet: 3100,
         erwachsen: 200,
-        zugewiesen: 4300
+        zugewiesen: 4300,
       },
       {
         id: 3,
         subSystem: 'mechanische lüftung',
         verwendet: 5900,
         erwachsen: 900,
-        zugewiesen: 7200
+        zugewiesen: 7200,
       },
       {
         id: 4,
         subSystem: 'dach- und fach',
         verwendet: 4000,
         erwachsen: 5900,
-        zugewiesen: 4300
+        zugewiesen: 4300,
       },
       {
         id: 5,
         subSystem: 'erneuerbare energie',
         verwendet: 1800,
         erwachsen: 500,
-        zugewiesen: 3100
+        zugewiesen: 3100,
       },
       {
         id: 6,
         subSystem: 'sonstige elektr. systeme',
         verwendet: 2100,
         erwachsen: 300,
-        zugewiesen: 3100
-      }
-    ]
+        zugewiesen: 3100,
+      },
+    ],
   }
 
-  const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
+  const setIsDisplayPerformanceFilter = useSetRecoilState(
+    isDisplayPerformanceFilterState
+  )
 
   setIsDisplayPerformanceFilter(false)
 
@@ -239,13 +241,17 @@ const AssetReliability = () => {
 
   return (
     <AssetReliabilityWrapper>
-
       <Routes>
         <Route exact path="/" element={<AssetReliabilityMain data={data} />} />
-        <Route path="issue/:id" element={<IssueDetail data={data.listOfPotentialFaults} />}/>
-        <Route path="equipment/:equipmentId/:subBreakdownName/*" element={<EquipmentAssetReliability />}/>
+        <Route
+          path="issue/:id"
+          element={<IssueDetail data={data.listOfPotentialFaults} />}
+        />
+        <Route
+          path="equipment/:equipmentId/:subBreakdownName/*"
+          element={<EquipmentAssetReliability />}
+        />
       </Routes>
-
     </AssetReliabilityWrapper>
   )
 }
