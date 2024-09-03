@@ -48,8 +48,7 @@ const IRR = (values, guess) => {
   let contLoop = true
   do {
     resultValue = irrResult(values, dates, resultRate)
-    newRate =
-      resultRate - resultValue / irrResultDeriv(values, dates, resultRate)
+    newRate = resultRate - resultValue / irrResultDeriv(values, dates, resultRate)
     epsRate = Math.abs(newRate - resultRate)
     resultRate = newRate
     contLoop = epsRate > epsMax && Math.abs(resultValue) > epsMax

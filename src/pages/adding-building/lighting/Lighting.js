@@ -47,26 +47,18 @@ const Ul = styled.ul`
 `
 
 const Lighting = () => {
-  const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
-    lightingSubSystemListState
-  )
+  const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(lightingSubSystemListState)
 
-  const [addingBuildingProgress, setAddingBuildingProgressState] =
-    useRecoilState(addingBuildingProgressState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(addingBuildingProgressState)
 
   const { t } = useTranslation('buildingInput')
   const navigate = useNavigate()
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
-  const moveNextUrl =
-    parentUrl + (id ? '/adding-building-successfully' : '/envelope-facade')
-  const lightingSubSystemListSelector = useRecoilValue(
-    lightingSubSystemListSelectorState
-  )
+  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/envelope-facade')
+  const lightingSubSystemListSelector = useRecoilValue(lightingSubSystemListSelectorState)
   const totalWatt = useRecoilValue(totalWattOfLightingSubSystemListState)
-  const overallEfficacy = useRecoilValue(
-    totalEfficacyOfLightingSubSystemListState
-  )
+  const overallEfficacy = useRecoilValue(totalEfficacyOfLightingSubSystemListState)
 
   const { user } = useAuth()
   useEffect(() => {
@@ -144,20 +136,15 @@ const Lighting = () => {
           <Header className="d-flex justify-content-between">
             <h6>{t('Lighting Subsystem')}</h6>
 
-            <Adding
-              onClick={onAddLightingSubSystemList}
-              title={t('Add new item')}
-            >
+            <Adding onClick={onAddLightingSubSystemList} title={t('Add new item')}>
               <i className="bi bi-plus-lg font-weight-bolder" />
             </Adding>
           </Header>
           <p>
-            Total Watt (W):{' '}
-            <strong className="text-primary">{totalWatt}</strong>
+            Total Watt (W): <strong className="text-primary">{totalWatt}</strong>
           </p>
           <p>
-            Overall Efficacy (lm/W):{' '}
-            <strong className="text-success">{overallEfficacy}</strong>
+            Overall Efficacy (lm/W): <strong className="text-success">{overallEfficacy}</strong>
           </p>
           {/* <p>{t('Total light fitting usage')}: {totalPercentageOfLightingSubSystemList}%</p> */}
           {/* <Controller

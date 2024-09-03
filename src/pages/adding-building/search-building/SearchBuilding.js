@@ -7,26 +7,15 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 
 import { Controller, useForm } from 'react-hook-form'
 
-import Countries, {
-  findCountryByCountryCode,
-} from '../../../reference-tables/Country'
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  NativeSelect,
-  TextField,
-} from '@mui/material'
+import Countries, { findCountryByCountryCode } from '../../../reference-tables/Country'
+import { Button, FormControl, InputLabel, NativeSelect, TextField } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import StepNav from '../step-nav/StepNav'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useRecoilState } from 'recoil'
-import {
-  addingBuildingProgressState,
-  generalBuildingInformationState,
-} from 'atoms'
+import { addingBuildingProgressState, generalBuildingInformationState } from 'atoms'
 import { useTranslation } from 'react-i18next'
 import { trackingUser } from 'api/UserAPI'
 import { useAuth } from 'AuthenticateProvider'
@@ -65,10 +54,8 @@ const SearchBuilding = () => {
 
   const [searchValue, setSearchValue] = useState('')
 
-  const [generalBuildingInformation, setGeneralBuildingInformation] =
-    useRecoilState(generalBuildingInformationState)
-  const [addingBuildingProgress, setAddingBuildingProgressState] =
-    useRecoilState(addingBuildingProgressState)
+  const [generalBuildingInformation, setGeneralBuildingInformation] = useRecoilState(generalBuildingInformationState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(addingBuildingProgressState)
 
   const [isShowTheMap, setIsShowTheMap] = useState(false)
 
@@ -108,15 +95,9 @@ const SearchBuilding = () => {
       if (item.types.includes('route')) {
         information.streetName = item.long_name
       }
-      if (
-        item.types.includes('street_number') ||
-        item.types.includes('route')
-      ) {
+      if (item.types.includes('street_number') || item.types.includes('route')) {
         information.address += item.long_name + ' '
-      } else if (
-        item.types.includes('postal_town') ||
-        item.types.includes('locality')
-      ) {
+      } else if (item.types.includes('postal_town') || item.types.includes('locality')) {
         information.city += item.long_name
       } else if (item.types.includes('country')) {
         const country = findCountryByCountryCode(item.short_name)
@@ -155,10 +136,7 @@ const SearchBuilding = () => {
 
   const NoOptionsMessage = (props) => {
     return (
-      <div
-        content="Custom NoOptionsMessage Component"
-        className="text-secondary px-2 py-1"
-      >
+      <div content="Custom NoOptionsMessage Component" className="text-secondary px-2 py-1">
         <span {...props}>No suggestion</span>
       </div>
     )
@@ -204,9 +182,7 @@ const SearchBuilding = () => {
         <div className="col-12 col-lg-7">
           <div className="row">
             <div className="form-group col-12 col-lg-12 ms-0">
-              <label htmlFor="building-name">
-                {t('Enter Building Name or Address')}
-              </label>
+              <label htmlFor="building-name">{t('Enter Building Name or Address')}</label>
               <div className="d-flex">
                 <div className="w-75 me-1">
                   <GooglePlacesAutocomplete
@@ -238,24 +214,11 @@ const SearchBuilding = () => {
               <div className="col-12 col-lg-12">
                 <div className="shadow-sm rounded">
                   {/*<LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>*/}
-                  <GoogleMap
-                    mapContainerStyle={mapStyles}
-                    zoom={18}
-                    center={generalBuildingInformation.location}
-                  >
-                    <OverlayView
-                      position={generalBuildingInformation.location}
-                      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-                    >
-                      <div style={divStyle}>
-                        {generalBuildingInformation.formatted_address}
-                      </div>
+                  <GoogleMap mapContainerStyle={mapStyles} zoom={18} center={generalBuildingInformation.location}>
+                    <OverlayView position={generalBuildingInformation.location} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
+                      <div style={divStyle}>{generalBuildingInformation.formatted_address}</div>
                     </OverlayView>
-                    <Marker
-                      position={generalBuildingInformation.location}
-                      title={searchValue}
-                      zIndex={1}
-                    ></Marker>
+                    <Marker position={generalBuildingInformation.location} title={searchValue} zIndex={1}></Marker>
                   </GoogleMap>
                   {/*</LoadScript>*/}
                 </div>
@@ -267,16 +230,9 @@ const SearchBuilding = () => {
         {isShowTheMap && (
           <div className="col-12 col-lg-5">
             <form onSubmit={handleSubmit(onSubmit)}>
-              <h5 className="text-primary">
-                {t('Is the information correct?')}
-              </h5>
+              <h5 className="text-primary">{t('Is the information correct?')}</h5>
 
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                className="mb-3 mt-2"
-              >
+              <Button type="submit" variant="contained" color="primary" className="mb-3 mt-2">
                 {t('Yes')}
               </Button>
 
@@ -284,10 +240,7 @@ const SearchBuilding = () => {
                 <Controller
                   name="buildingName"
                   control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
+                  render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <TextField
                       variant="standard"
                       label={t('Building Name')}
@@ -304,10 +257,7 @@ const SearchBuilding = () => {
                 <Controller
                   name="streetNumber"
                   control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
+                  render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <TextField
                       variant="standard"
                       label={t('Building Number')}
@@ -324,10 +274,7 @@ const SearchBuilding = () => {
                 <Controller
                   name="streetName"
                   control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
+                  render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <TextField
                       variant="standard"
                       label={t('Street Name')}
@@ -344,10 +291,7 @@ const SearchBuilding = () => {
                 <Controller
                   control={control}
                   name="address"
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
+                  render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <TextField
                       variant="standard"
                       label={t('Address')}
@@ -365,10 +309,7 @@ const SearchBuilding = () => {
                 <Controller
                   name="postalCode"
                   control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
+                  render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <TextField
                       variant="standard"
                       label={t('Post Code')}
@@ -386,10 +327,7 @@ const SearchBuilding = () => {
                 <Controller
                   name="city"
                   control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
+                  render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <TextField
                       variant="standard"
                       aria-describedby="City"
@@ -407,10 +345,7 @@ const SearchBuilding = () => {
                 <Controller
                   name="state"
                   control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
+                  render={({ field: { onChange, value }, fieldState: { error } }) => (
                     <TextField
                       variant="standard"
                       aria-describedby="State"
@@ -430,12 +365,7 @@ const SearchBuilding = () => {
                 render={({ field }) => (
                   <FormControl className={classes.formControl}>
                     <InputLabel id="country-label">{t('Country')}</InputLabel>
-                    <NativeSelect
-                      labelId="country-label"
-                      name="countryCode"
-                      value={field.value}
-                      {...field}
-                    >
+                    <NativeSelect labelId="country-label" name="countryCode" value={field.value} {...field}>
                       {Countries.map((o) => (
                         <option key={o.alpha2Code} value={o.alpha2Code}>
                           {o.name}

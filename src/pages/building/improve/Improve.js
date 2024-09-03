@@ -24,9 +24,7 @@ const BreakDownWrapper = styled.div`
 const Improve = (props) => {
   const { consumptionBreakdown, costBreakdown, co2EmissionsBreakdown } = props
 
-  const setIsDisplayPerformanceFilter = useSetRecoilState(
-    isDisplayPerformanceFilterState
-  )
+  const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
   setIsDisplayPerformanceFilter(false)
 
   const { user } = useAuth()
@@ -188,11 +186,7 @@ const Improve = (props) => {
         'Potential Best In Class': 64,
       },
     ],
-    keys: [
-      'Potential Best In Class',
-      'Current Performance',
-      'Minimum Requirement',
-    ],
+    keys: ['Potential Best In Class', 'Current Performance', 'Minimum Requirement'],
     indexBy: ['name'],
   }
 
@@ -287,19 +281,13 @@ const Improve = (props) => {
       },
     ],
   })
-  const [breakDownConsumption, setBreakDownConsumption] = useState([
-    ...consumptionBreakdown,
-  ])
+  const [breakDownConsumption, setBreakDownConsumption] = useState([...consumptionBreakdown])
   const [breakDownCost, setBreakDownCost] = useState([...costBreakdown])
-  const [breakDownCO2Emissions, setBreakDownCO2Emissions] = useState([
-    ...co2EmissionsBreakdown,
-  ])
+  const [breakDownCO2Emissions, setBreakDownCO2Emissions] = useState([...co2EmissionsBreakdown])
   const [subSystemPerformance, setSubSystemPerformanceData] = useState({
     ...subSystemPerformanceDataEN,
   })
-  const [improvementMeasuresData, setImprovementMeasuresData] = useState(
-    improveData.improvementMeasuresData
-  )
+  const [improvementMeasuresData, setImprovementMeasuresData] = useState(improveData.improvementMeasuresData)
 
   useEffect(() => {
     if (i18n.language === 'en') {
@@ -329,52 +317,30 @@ const Improve = (props) => {
       for (let i = 0; i < tmp.saving.length; i++) {
         switch (tmp.saving[i].title) {
           case 'Investment Cost':
-            investmentCost = +(
-              460 -
-              tmp.saving[i].value / 1000 +
-              popupResult.investmentCost / 1000
-            ).toFixed(2)
+            investmentCost = +(460 - tmp.saving[i].value / 1000 + popupResult.investmentCost / 1000).toFixed(2)
             tmp.saving[i].value = investmentCost
             break
 
           case 'Annual Energy Savings':
-            annualEnergySavings = +(
-              -618 +
-              tmp.saving[i].value -
-              popupResult.energySavings
-            ).toFixed(2)
+            annualEnergySavings = +(-618 + tmp.saving[i].value - popupResult.energySavings).toFixed(2)
             tmp.saving[i].value = annualEnergySavings
             break
 
           case 'Annual Energy Cost Savings':
-            energyCostSavings = +(
-              -68.2 +
-              tmp.saving[i].value / 1000 -
-              popupResult.energyCostSavings / 1000
-            ).toFixed(2)
+            energyCostSavings = +(-68.2 + tmp.saving[i].value / 1000 - popupResult.energyCostSavings / 1000).toFixed(2)
             tmp.saving[i].value = energyCostSavings
             break
 
           case 'Annual CO2 Emissions Avoided':
-            tmp.saving[i].value = +(
-              -189 +
-              tmp.saving[i].value -
-              popupResult.co2EmissionsAvoided
-            ).toFixed(2)
+            tmp.saving[i].value = +(-189 + tmp.saving[i].value - popupResult.co2EmissionsAvoided).toFixed(2)
             break
 
           case 'Simple Payback':
-            tmp.saving[i].value = +(
-              investmentCost /
-              (0 - energyCostSavings)
-            ).toFixed(2)
+            tmp.saving[i].value = +(investmentCost / (0 - energyCostSavings)).toFixed(2)
             break
 
           case 'Energy Usage Intensity Reduction':
-            tmp.saving[i].value = +(
-              (annualEnergySavings * 1000) /
-              25949
-            ).toFixed(2)
+            tmp.saving[i].value = +((annualEnergySavings * 1000) / 25949).toFixed(2)
             break
 
           default:
@@ -382,10 +348,8 @@ const Improve = (props) => {
         }
       }
 
-      tmp.energyPerformance.improved =
-        popupResult.percentageLEDUsage >= 90 ? 'B' : 'C' // IF(C65>=0.9,"B","C")
-      tmp.CO2EmissionsPerformance.improved =
-        popupResult.percentageLEDUsage >= 90 ? 'B' : 'C' // IF(C65>=0.9,"B","C")
+      tmp.energyPerformance.improved = popupResult.percentageLEDUsage >= 90 ? 'B' : 'C' // IF(C65>=0.9,"B","C")
+      tmp.CO2EmissionsPerformance.improved = popupResult.percentageLEDUsage >= 90 ? 'B' : 'C' // IF(C65>=0.9,"B","C")
 
       setPotentialSavingsData({ ...tmp })
 
@@ -395,34 +359,19 @@ const Improve = (props) => {
       for (let i = 0; i < tmp.length; i++) {
         switch (tmp[i].id) {
           case 'cooling':
-            tmp[i].value = +(
-              (tmp[i].value * 100) /
-              (total + annualEnergySavings)
-            ).toFixed(2)
+            tmp[i].value = +((tmp[i].value * 100) / (total + annualEnergySavings)).toFixed(2)
             break
           case 'heating':
-            tmp[i].value = +(
-              (tmp[i].value * 100) /
-              (total + annualEnergySavings)
-            ).toFixed(2)
+            tmp[i].value = +((tmp[i].value * 100) / (total + annualEnergySavings)).toFixed(2)
             break
           case 'lighting':
-            tmp[i].value = +(
-              (energyCostSavings * 100) /
-              (total + annualEnergySavings)
-            ).toFixed(2)
+            tmp[i].value = +((energyCostSavings * 100) / (total + annualEnergySavings)).toFixed(2)
             break
           case 'mechanical ventilation':
-            tmp[i].value = +(
-              (tmp[i].value * 100) /
-              (total + annualEnergySavings)
-            ).toFixed(2)
+            tmp[i].value = +((tmp[i].value * 100) / (total + annualEnergySavings)).toFixed(2)
             break
           case 'others':
-            tmp[i].value = +(
-              (tmp[i].value * 100) /
-              (total + annualEnergySavings)
-            ).toFixed(2)
+            tmp[i].value = +((tmp[i].value * 100) / (total + annualEnergySavings)).toFixed(2)
             break
           default:
             break
@@ -435,34 +384,19 @@ const Improve = (props) => {
       for (let i = 0; i < tmp.length; i++) {
         switch (tmp[i].id) {
           case 'cooling':
-            tmp[i].value = +(
-              (tmp[i].value * 100) /
-              (total + energyCostSavings / 1000)
-            ).toFixed(2)
+            tmp[i].value = +((tmp[i].value * 100) / (total + energyCostSavings / 1000)).toFixed(2)
             break
           case 'heating':
-            tmp[i].value = +(
-              (tmp[i].value * 100) /
-              (total + energyCostSavings / 1000)
-            ).toFixed(2)
+            tmp[i].value = +((tmp[i].value * 100) / (total + energyCostSavings / 1000)).toFixed(2)
             break
           case 'lighting':
-            tmp[i].value = +(
-              ((energyCostSavings / 1000) * 100) /
-              (total + energyCostSavings / 1000)
-            ).toFixed(2)
+            tmp[i].value = +(((energyCostSavings / 1000) * 100) / (total + energyCostSavings / 1000)).toFixed(2)
             break
           case 'mechanical ventilation':
-            tmp[i].value = +(
-              (tmp[i].value * 100) /
-              (total + energyCostSavings / 1000)
-            ).toFixed(2)
+            tmp[i].value = +((tmp[i].value * 100) / (total + energyCostSavings / 1000)).toFixed(2)
             break
           case 'others':
-            tmp[i].value = +(
-              (tmp[i].value * 100) /
-              (total + energyCostSavings / 1000)
-            ).toFixed(2)
+            tmp[i].value = +((tmp[i].value * 100) / (total + energyCostSavings / 1000)).toFixed(2)
             break
           default:
             break
@@ -471,12 +405,7 @@ const Improve = (props) => {
       setBreakDownCost([...tmp])
 
       tmp = deepClone(breakDownCO2Emissions)
-      total =
-        tmp[0].value +
-        tmp[1].value +
-        tmp[3].value +
-        tmp[4].value +
-        popupResult.co2EmissionsAvoided
+      total = tmp[0].value + tmp[1].value + tmp[3].value + tmp[4].value + popupResult.co2EmissionsAvoided
       for (let i = 0; i < tmp.length; i++) {
         switch (tmp[i].id) {
           case 'cooling':
@@ -486,10 +415,7 @@ const Improve = (props) => {
             tmp[i].value = +((tmp[i].value * 100) / total).toFixed(2)
             break
           case 'lighting':
-            tmp[i].value = +(
-              (popupResult.co2EmissionsAvoided * 100) /
-              (total + energyCostSavings / 1000)
-            ).toFixed(2)
+            tmp[i].value = +((popupResult.co2EmissionsAvoided * 100) / (total + energyCostSavings / 1000)).toFixed(2)
             break
           case 'mechanical ventilation':
             tmp[i].value = +((tmp[i].value * 100) / total).toFixed(2)
@@ -505,13 +431,10 @@ const Improve = (props) => {
 
       tmp = deepClone(subSystemPerformance)
 
-      tmp.data[3]['Potential Best In Class'] =
-        ((0.54 - 0.38) / 0.6) * popupResult.percentageLEDUsage + 0.38
+      tmp.data[3]['Potential Best In Class'] = ((0.54 - 0.38) / 0.6) * popupResult.percentageLEDUsage + 0.38
       setSubSystemPerformanceData(tmp)
 
-      let idx = improvementMeasuresData.findIndex(
-        ({ measures }) => measures === popupResult.measures
-      )
+      let idx = improvementMeasuresData.findIndex(({ measures }) => measures === popupResult.measures)
 
       improvementMeasuresData[idx] = {
         ...improvementMeasuresData[idx],
@@ -533,33 +456,15 @@ const Improve = (props) => {
 
       <BreakDownWrapper className="d-flex row justify-content-center">
         <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
-          <BreakDown
-            title="Energy Savings"
-            subTitle="MWH/Yr"
-            data={breakDownConsumption}
-            informationFontSize="16px"
-            hasDescription
-          />
+          <BreakDown title="Energy Savings" subTitle="MWH/Yr" data={breakDownConsumption} informationFontSize="16px" hasDescription />
         </div>
 
         <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
-          <BreakDown
-            title="Energy Cost Savings"
-            subTitle="$/Yr"
-            data={breakDownCost}
-            informationFontSize="16px"
-            hasDescription
-          />
+          <BreakDown title="Energy Cost Savings" subTitle="$/Yr" data={breakDownCost} informationFontSize="16px" hasDescription />
         </div>
 
         <div className="col col-12 col-md-8 col-xl-4">
-          <BreakDown
-            title="CO2 Emissions Avoided"
-            subTitle="Tons/Yr"
-            data={breakDownCO2Emissions}
-            hasDescription
-            informationFontSize="16px"
-          />
+          <BreakDown title="CO2 Emissions Avoided" subTitle="Tons/Yr" data={breakDownCO2Emissions} hasDescription informationFontSize="16px" />
         </div>
       </BreakDownWrapper>
 
@@ -572,10 +477,7 @@ const Improve = (props) => {
         </div>
       </div>
 
-      <ImprovementMeasures
-        data={improvementMeasuresData}
-        setResult={setResult}
-      />
+      <ImprovementMeasures data={improvementMeasuresData} setResult={setResult} />
     </ImproveWrapper>
   )
 }

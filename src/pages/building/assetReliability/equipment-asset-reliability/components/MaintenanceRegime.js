@@ -35,9 +35,7 @@ const MaintenanceRegime = () => {
         <Label>{t('Tasks Missed in Past 2 Weeks')}</Label>
         <Value>1</Value>
       </Content>
-      <button className="btn btn-primary btn-sm float-end">
-        {t('Details')}
-      </button>
+      <button className="btn btn-primary btn-sm float-end">{t('Details')}</button>
     </Wrapper>
   )
 }

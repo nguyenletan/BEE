@@ -14,10 +14,7 @@ import { useTranslation } from 'react-i18next'
 // import RadialBar from 'pages/building/comparision/components/RadialBar'
 import { trackingUser } from 'api/UserAPI'
 import { useAuth } from 'AuthenticateProvider'
-import {
-  subSystemPerformanceDataDE,
-  subSystemPerformanceDataEN,
-} from '../../../MockData'
+import { subSystemPerformanceDataDE, subSystemPerformanceDataEN } from '../../../MockData'
 //import PerformanceComparison from 'pages/building/comparision/components/PerformanceComparison'
 
 const ComparisonWrapper = styled.div`
@@ -27,9 +24,7 @@ const ComparisonWrapper = styled.div`
 const Comparison = () => {
   const { i18n } = useTranslation('comparison')
 
-  const [subSystemPerformanceData, setSubSystemPerformanceData] = useState(
-    subSystemPerformanceDataEN
-  )
+  const [subSystemPerformanceData, setSubSystemPerformanceData] = useState(subSystemPerformanceDataEN)
   const { user } = useAuth()
   useEffect(() => {
     async function tracking() {
@@ -48,9 +43,7 @@ const Comparison = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [i18n.language])
 
-  const setIsDisplayPerformanceFilter = useSetRecoilState(
-    isDisplayPerformanceFilterState
-  )
+  const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
   setIsDisplayPerformanceFilter(false)
 
   return (

@@ -26,14 +26,11 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
     // new Date("2014-08-18T21:11:54")
   )
   const { t, i18n } = useTranslation('buildingInput')
-  const [electricityConsumptionList, setElectricityConsumptionList] =
-    useRecoilState(electricityConsumptionListState)
+  const [electricityConsumptionList, setElectricityConsumptionList] = useRecoilState(electricityConsumptionListState)
 
   const onRemoveItem = () => {
     if (electricityConsumptionList.length > 1) {
-      const index = electricityConsumptionList.findIndex(
-        (listItem) => listItem.id === data.id
-      )
+      const index = electricityConsumptionList.findIndex((listItem) => listItem.id === data.id)
 
       const newList = removeItemAtIndex(electricityConsumptionList, index)
       setElectricityConsumptionList(newList)
@@ -44,9 +41,7 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
     if (date) {
       setSelectedDate(dayjs(`${data.year}/${data.month + 1}/01`))
       const day = dayjs(date)
-      const index = electricityConsumptionList.findIndex(
-        (o) => o.id === data.id
-      )
+      const index = electricityConsumptionList.findIndex((o) => o.id === data.id)
       const newList = replaceItemAtIndex(electricityConsumptionList, index, {
         ...data,
         month: day.get('month'),
@@ -91,10 +86,7 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
           control={control}
           setValue={setValue}
           render={({ field: { onChange }, fieldState: { error } }) => (
-            <LocalizationProvider
-              dateAdapter={AdapterDayjs}
-              adapterLocale={locale}
-            >
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={locale}>
               <Grid container justifyContent="flex-start">
                 <DatePicker
                   views={['year', 'month']}
@@ -106,9 +98,7 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
                     onDateChange(date)
                     onChange(date)
                   }}
-                  renderInput={(params) => (
-                    <TextField variant="standard" {...params} />
-                  )}
+                  renderInput={(params) => <TextField variant="standard" {...params} />}
                 />
               </Grid>
             </LocalizationProvider>
@@ -136,11 +126,7 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
               placeholder={t('Cost')}
               error={!!error}
             />
-            {error && (
-              <FormHelperText className="text-danger">
-                {t('This field is not empty and >= 0')}
-              </FormHelperText>
-            )}
+            {error && <FormHelperText className="text-danger">{t('This field is not empty and >= 0')}</FormHelperText>}
           </div>
         )}
         rules={{
@@ -166,11 +152,7 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
               value={data.value}
               placeholder={t('Value')}
             />
-            {error && (
-              <FormHelperText className="text-danger">
-                {t('This field is not empty and >= 0')}
-              </FormHelperText>
-            )}
+            {error && <FormHelperText className="text-danger">{t('This field is not empty and >= 0')}</FormHelperText>}
           </div>
         )}
         rules={{
@@ -180,11 +162,7 @@ const OneMonthElectricityConsumption = ({ data, control, setValue }) => {
       />
 
       <div className="col-3">
-        <Subtraction
-          titleAccess={t('Remove Item')}
-          onClick={onRemoveItem}
-          fontSize="large"
-        />
+        <Subtraction titleAccess={t('Remove Item')} onClick={onRemoveItem} fontSize="large" />
       </div>
     </li>
   )

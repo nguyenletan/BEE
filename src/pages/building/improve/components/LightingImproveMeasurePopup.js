@@ -122,18 +122,12 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
   const [isLoading, setIsLoading] = useState(true)
   //const [detailValue, setDetailValue] = useState()
 
-  const valueAnnualEnergySavingsSelector = useRecoilValue(
-    getTotalValueAnnualEnergySavings
-  )
+  const valueAnnualEnergySavingsSelector = useRecoilValue(getTotalValueAnnualEnergySavings)
   const getTotalInvestmentCostSelector = useRecoilValue(getTotalInvestmentCost)
   const getTotalSimplePaybackSelector = useRecoilValue(getTotalSimplePayback)
   const getTotalIRRSelector = useRecoilValue(getTotalIRR)
-  const getTotalPercentageOfLEDReplacementSelector = useRecoilValue(
-    getTotalPercentageOfLEDReplacement
-  )
-  const [totalAnnualSaving, setAnnualEnergySavingsState] = useRecoilState(
-    totalAnnualSavingState
-  )
+  const getTotalPercentageOfLEDReplacementSelector = useRecoilValue(getTotalPercentageOfLEDReplacement)
+  const [totalAnnualSaving, setAnnualEnergySavingsState] = useRecoilState(totalAnnualSavingState)
 
   const { user } = useAuth()
 
@@ -159,27 +153,16 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
         }
 
         setLightingSystemInfo(sortBy(r, 'title'))
-        getAnnualLightingSystemEnergyConsumptionAPI(id, data.usagePercent).then(
-          (r) => {
-            setIsLoading(false)
-          }
-        )
+        getAnnualLightingSystemEnergyConsumptionAPI(id, data.usagePercent).then((r) => {
+          setIsLoading(false)
+        })
       })
     }
   }, [data])
 
-  const getAnnualLightingSystemEnergyConsumptionAPI = async (
-    buildingId,
-    percentReplacement
-  ) => {
+  const getAnnualLightingSystemEnergyConsumptionAPI = async (buildingId, percentReplacement) => {
     const idToken = await user.getIdToken()
-    return await getNewAnnualLightingSystemEnergyConsumption(
-      buildingId,
-      percentReplacement,
-      1,
-      '2020-01-01',
-      idToken
-    )
+    return await getNewAnnualLightingSystemEnergyConsumption(buildingId, percentReplacement, 1, '2020-01-01', idToken)
   }
 
   const getLightingSystemInfo = async (buildingId) => {
@@ -201,10 +184,7 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
     //setAnnualEnergySavingsState([...annualEnergySavingsState, {id: x.id, value: 0}])
 
     return (
-      <LI
-        className="shadow-sm rounded-3 m-2 border border-1 px-2 py-4"
-        key={x.id}
-      >
+      <LI className="shadow-sm rounded-3 m-2 border border-1 px-2 py-4" key={x.id}>
         <LightingSubSystem subSystem={x} value={value} />
       </LI>
     )
@@ -245,9 +225,7 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
               <div className="d-flex my-3">
                 <PopupIcon src={icon} alt={measures} />
                 <PopupValueWrapper className="d-flex flex-column justify-content-start align-items-start mt-2 text-center">
-                  <PopupValue>
-                    {getTotalPercentageOfLEDReplacementSelector}%
-                  </PopupValue>
+                  <PopupValue>{getTotalPercentageOfLEDReplacementSelector}%</PopupValue>
                   <MeasureName>{t(measures)}</MeasureName>
                 </PopupValueWrapper>
               </div>
@@ -272,8 +250,7 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
                       {t('Annual Energy Cost Savings')}
                     </Col>
                     <Col xs={4} sm={2} className="col col-value text-primary">
-                      {formatNumber(valueAnnualEnergySavingsSelector * 0.023)}{' '}
-                      {t('$')}/ {t('Yr')}
+                      {formatNumber(valueAnnualEnergySavingsSelector * 0.023)} {t('$')}/ {t('Yr')}
                     </Col>
                     <Col xs={8} sm={4} className="col">
                       {t('Simple Payback')}
@@ -287,8 +264,7 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
                       {t('Annual CO2 Emissions Avoided')}
                     </Col>
                     <Col xs={4} sm={2} className="col col-value text-primary">
-                      {formatNumber(valueAnnualEnergySavingsSelector * 0.1)}{' '}
-                      {t('Tons/Yr')}
+                      {formatNumber(valueAnnualEnergySavingsSelector * 0.1)} {t('Tons/Yr')}
                     </Col>
                     <Col xs={8} sm={4} className="col">
                       {t('Internal Rate of Return')}
@@ -309,12 +285,7 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
             <BodyTitle>Existing Lighting</BodyTitle>
             <span>
               <strong>Number of weeks a year: </strong>
-              {
-                -differenceInCalendarWeeks(
-                  new Date(new Date().getFullYear(), 1, 1),
-                  new Date(new Date().getFullYear(), 12, 31)
-                )
-              }
+              {-differenceInCalendarWeeks(new Date(new Date().getFullYear(), 1, 1), new Date(new Date().getFullYear(), 12, 31))}
             </span>
             <span>
               <strong>Tariff Rate ($/kWh): </strong>0.023
@@ -323,9 +294,7 @@ const LightingImprovementMeasurePopup = ({ data, show, handleClose }) => {
               <strong>Grid Emission Rate (Tons/kWh): </strong>0.1
             </span>
           </TitleWrapper>
-          <ul className="d-flex flex-wrap align-items-start">
-            {subSystemRows}
-          </ul>
+          <ul className="d-flex flex-wrap align-items-start">{subSystemRows}</ul>
         </PopupBodyInnerWrapper>
       </Modal.Body>
     </Modal>

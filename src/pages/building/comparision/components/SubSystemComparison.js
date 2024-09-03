@@ -173,15 +173,8 @@ const SubSystemComparison = () => {
   }
 
   const Popup = (props) => {
-    const {
-      type,
-      fittingLabel,
-      currentFittingName,
-      potentialBestInClassFittingName,
-      energyPerformance,
-      CO2Emissions,
-      supplementaryText,
-    } = props?.data
+    const { type, fittingLabel, currentFittingName, potentialBestInClassFittingName, energyPerformance, CO2Emissions, supplementaryText } =
+      props?.data
     const { t } = useTranslation('comparisonInfoPopup')
 
     let icon = ''
@@ -236,9 +229,7 @@ const SubSystemComparison = () => {
 
                 <ComparisonTable>
                   <div className="row mt-3">
-                    <div className="col-6 text-center">
-                      {t('Current Energy Performance')}
-                    </div>
+                    <div className="col-6 text-center">{t('Current Energy Performance')}</div>
                     <div className="col-6 text-center">
                       {t('Potential')}
                       <br />
@@ -248,18 +239,10 @@ const SubSystemComparison = () => {
 
                   <div className="row mt-3">
                     <div className="col-6 text-center">
-                      <EnergySquare
-                        color={getCurrentColor(energyPerformance?.current)}
-                        text={energyPerformance?.current}
-                      />
+                      <EnergySquare color={getCurrentColor(energyPerformance?.current)} text={energyPerformance?.current} />
                     </div>
                     <div className="col-6 text-center">
-                      <EnergySquare
-                        color={getCurrentColor(
-                          energyPerformance?.potentialBestInClass
-                        )}
-                        text={energyPerformance?.potentialBestInClass}
-                      />
+                      <EnergySquare color={getCurrentColor(energyPerformance?.potentialBestInClass)} text={energyPerformance?.potentialBestInClass} />
                     </div>
                   </div>
 
@@ -270,30 +253,18 @@ const SubSystemComparison = () => {
                     </div>
                     <div className="col-6 text-center">
                       <FirstLine>{t(fittingLabel)}</FirstLine>
-                      <SecondLine>
-                        {t(potentialBestInClassFittingName)}
-                      </SecondLine>
+                      <SecondLine>{t(potentialBestInClassFittingName)}</SecondLine>
                     </div>
                   </div>
 
                   <div className="row mt-3">
                     <div className="col-6 text-center">
-                      <FirstLine>
-                        {t(energyPerformance?.firstMetricLabel)}
-                      </FirstLine>
-                      <SecondLine>
-                        {energyPerformance?.currentFirstMetricValue}
-                      </SecondLine>
+                      <FirstLine>{t(energyPerformance?.firstMetricLabel)}</FirstLine>
+                      <SecondLine>{energyPerformance?.currentFirstMetricValue}</SecondLine>
                     </div>
                     <div className="col-6 text-center">
-                      <FirstLine>
-                        {t(energyPerformance?.firstMetricLabel)}
-                      </FirstLine>
-                      <SecondLine>
-                        {
-                          energyPerformance?.potentialBestInClassFirstMetricValue
-                        }
-                      </SecondLine>
+                      <FirstLine>{t(energyPerformance?.firstMetricLabel)}</FirstLine>
+                      <SecondLine>{energyPerformance?.potentialBestInClassFirstMetricValue}</SecondLine>
                     </div>
                   </div>
                 </ComparisonTable>
@@ -302,9 +273,7 @@ const SubSystemComparison = () => {
                 <PopupSubtitle>{t('C02 Emission')}</PopupSubtitle>
                 <ComparisonTable>
                   <div className="row mt-3">
-                    <div className="col-6 text-center">
-                      {t('Current CO2 Emission')}
-                    </div>
+                    <div className="col-6 text-center">{t('Current CO2 Emission')}</div>
                     <div className="col-6 text-center">
                       {t('Potential')}
                       <br />
@@ -314,18 +283,10 @@ const SubSystemComparison = () => {
 
                   <div className="row mt-3">
                     <div className="col-6 text-center">
-                      <EnergySquare
-                        color={getPotentialColor(CO2Emissions?.current)}
-                        text={CO2Emissions?.current}
-                      />
+                      <EnergySquare color={getPotentialColor(CO2Emissions?.current)} text={CO2Emissions?.current} />
                     </div>
                     <div className="col-6 text-center">
-                      <EnergySquare
-                        color={getPotentialColor(
-                          CO2Emissions?.potentialBestInClass
-                        )}
-                        text={CO2Emissions?.potentialBestInClass}
-                      />
+                      <EnergySquare color={getPotentialColor(CO2Emissions?.potentialBestInClass)} text={CO2Emissions?.potentialBestInClass} />
                     </div>
                   </div>
 
@@ -336,34 +297,25 @@ const SubSystemComparison = () => {
                     </div>
                     <div className="col-6 text-center">
                       <FirstLine>{t(fittingLabel)}</FirstLine>
-                      <SecondLine>
-                        {t(potentialBestInClassFittingName)}
-                      </SecondLine>
+                      <SecondLine>{t(potentialBestInClassFittingName)}</SecondLine>
                     </div>
                   </div>
 
                   <div className="row mt-3">
                     <div className="col-6 text-center">
                       <FirstLine>{t(CO2Emissions?.firstMetricLabel)}</FirstLine>
-                      <SecondLine>
-                        {CO2Emissions?.currentFirstMetricValue}
-                      </SecondLine>
+                      <SecondLine>{CO2Emissions?.currentFirstMetricValue}</SecondLine>
                     </div>
                     <div className="col-6 text-center">
                       <FirstLine>{t(CO2Emissions?.firstMetricLabel)}</FirstLine>
-                      <SecondLine>
-                        {CO2Emissions?.potentialBestInClassFirstMetricValue}
-                      </SecondLine>
+                      <SecondLine>{CO2Emissions?.potentialBestInClassFirstMetricValue}</SecondLine>
                     </div>
                   </div>
                 </ComparisonTable>
               </div>
             </div>
             <PopupDescription>{t(supplementaryText)}.</PopupDescription>
-            <CloseBtn
-              className="btn btn-outline-primary btn-sm mb-3"
-              onClick={handleClose}
-            >
+            <CloseBtn className="btn btn-outline-primary btn-sm mb-3" onClick={handleClose}>
               {t('Close')}
             </CloseBtn>
           </Container>
@@ -374,24 +326,18 @@ const SubSystemComparison = () => {
 
   return (
     <SubSystemComparisonWrapper>
-      <SubSystemComparisonTitle>
-        {t('Sub-System Comparison')}
-      </SubSystemComparisonTitle>
+      <SubSystemComparisonTitle>{t('Sub-System Comparison')}</SubSystemComparisonTitle>
 
       <HeadRow className="row">
         <ListHeader className="col-2" />
-        <ListHeader className="col-2">
-          {t('Current Energy Performance')}
-        </ListHeader>
+        <ListHeader className="col-2">{t('Current Energy Performance')}</ListHeader>
         <ListHeader className="col-2">
           {t('Potential')}
           <br />
           {t('Best-In-Class')}
         </ListHeader>
 
-        <ListHeader className="col-2">
-          {t('Current CO2 Performance')}
-        </ListHeader>
+        <ListHeader className="col-2">{t('Current CO2 Performance')}</ListHeader>
         <ListHeader className="col-2">
           {t('Potential')}
           <br />
@@ -409,22 +355,19 @@ const SubSystemComparison = () => {
             potentialBestInClassFittingName: 'Electricity',
             energyPerformance: {
               current: subSystemComparisonData.cooling.currentEnergyPerformance,
-              potentialBestInClass:
-                subSystemComparisonData.cooling.potentialBestInClass,
+              potentialBestInClass: subSystemComparisonData.cooling.potentialBestInClass,
               firstMetricLabel: 'Efficiency %',
               currentFirstMetricValue: '54',
               potentialBestInClassFirstMetricValue: '77',
             },
             CO2Emissions: {
               current: subSystemComparisonData.cooling.currentCO2Performance,
-              potentialBestInClass:
-                subSystemComparisonData.cooling.potentialCO2BestInClass,
+              potentialBestInClass: subSystemComparisonData.cooling.potentialCO2BestInClass,
               firstMetricLabel: 'Annual CO2 Emissions (Tons/Yr)',
               currentFirstMetricValue: '0.8',
               potentialBestInClassFirstMetricValue: '0.4',
             },
-            supplementaryText:
-              'Improving the Boiler/Heater energy efficiency reduces the energy consumption of the heating system',
+            supplementaryText: 'Improving the Boiler/Heater energy efficiency reduces the energy consumption of the heating system',
           })
         }
       >
@@ -434,34 +377,26 @@ const SubSystemComparison = () => {
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getCurrentColor(
-              subSystemComparisonData.cooling.currentEnergyPerformance
-            )}
+            color={getCurrentColor(subSystemComparisonData.cooling.currentEnergyPerformance)}
             text={subSystemComparisonData.cooling.currentEnergyPerformance}
           />
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getCurrentColor(
-              subSystemComparisonData.cooling.potentialBestInClass
-            )}
+            color={getCurrentColor(subSystemComparisonData.cooling.potentialBestInClass)}
             text={subSystemComparisonData.cooling.potentialBestInClass}
           />
         </ListItem>
 
         <ListItem className="col-2">
           <EnergySquare
-            color={getPotentialColor(
-              subSystemComparisonData.cooling.currentCO2Performance
-            )}
+            color={getPotentialColor(subSystemComparisonData.cooling.currentCO2Performance)}
             text={subSystemComparisonData.cooling.currentCO2Performance}
           />
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getPotentialColor(
-              subSystemComparisonData.cooling.potentialCO2BestInClass
-            )}
+            color={getPotentialColor(subSystemComparisonData.cooling.potentialCO2BestInClass)}
             text={subSystemComparisonData.cooling.potentialCO2BestInClass}
           />
         </ListItem>
@@ -477,22 +412,19 @@ const SubSystemComparison = () => {
             potentialBestInClassFittingName: 'Air Source Heat Pump',
             energyPerformance: {
               current: subSystemComparisonData.heating.currentEnergyPerformance,
-              potentialBestInClass:
-                subSystemComparisonData.heating.potentialBestInClass,
+              potentialBestInClass: subSystemComparisonData.heating.potentialBestInClass,
               firstMetricLabel: 'Efficacy Lm/W',
               currentFirstMetricValue: '45',
               potentialBestInClassFirstMetricValue: '55',
             },
             CO2Emissions: {
               current: subSystemComparisonData.heating.currentCO2Performance,
-              potentialBestInClass:
-                subSystemComparisonData.heating.potentialCO2BestInClass,
+              potentialBestInClass: subSystemComparisonData.heating.potentialCO2BestInClass,
               firstMetricLabel: 'Annual CO2 Emissions (Tons/Yr)',
               currentFirstMetricValue: '0.1',
               potentialBestInClassFirstMetricValue: '0.07',
             },
-            supplementaryText:
-              'Improving the light fitting efficacy reduces the energy consumption of the lighting system',
+            supplementaryText: 'Improving the light fitting efficacy reduces the energy consumption of the lighting system',
           })
         }
       >
@@ -502,34 +434,26 @@ const SubSystemComparison = () => {
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getCurrentColor(
-              subSystemComparisonData.heating.currentEnergyPerformance
-            )}
+            color={getCurrentColor(subSystemComparisonData.heating.currentEnergyPerformance)}
             text={subSystemComparisonData.heating.currentEnergyPerformance}
           />
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getCurrentColor(
-              subSystemComparisonData.heating.potentialBestInClass
-            )}
+            color={getCurrentColor(subSystemComparisonData.heating.potentialBestInClass)}
             text={subSystemComparisonData.heating.potentialBestInClass}
           />
         </ListItem>
 
         <ListItem className="col-2">
           <EnergySquare
-            color={getPotentialColor(
-              subSystemComparisonData.heating.currentCO2Performance
-            )}
+            color={getPotentialColor(subSystemComparisonData.heating.currentCO2Performance)}
             text={subSystemComparisonData.heating.currentCO2Performance}
           />
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getPotentialColor(
-              subSystemComparisonData.heating.potentialCO2BestInClass
-            )}
+            color={getPotentialColor(subSystemComparisonData.heating.potentialCO2BestInClass)}
             text={subSystemComparisonData.heating.potentialCO2BestInClass}
           />
         </ListItem>
@@ -544,24 +468,20 @@ const SubSystemComparison = () => {
             currentFittingName: 'Fluorescent T5 Tube',
             potentialBestInClassFittingName: 'LED',
             energyPerformance: {
-              current:
-                subSystemComparisonData.lighting.currentEnergyPerformance,
-              potentialBestInClass:
-                subSystemComparisonData.lighting.potentialBestInClass,
+              current: subSystemComparisonData.lighting.currentEnergyPerformance,
+              potentialBestInClass: subSystemComparisonData.lighting.potentialBestInClass,
               firstMetricLabel: 'Efficacy %',
               currentFirstMetricValue: '53',
               potentialBestInClassFirstMetricValue: '77',
             },
             CO2Emissions: {
               current: subSystemComparisonData.lighting.currentCO2Performance,
-              potentialBestInClass:
-                subSystemComparisonData.lighting.potentialCO2BestInClass,
+              potentialBestInClass: subSystemComparisonData.lighting.potentialCO2BestInClass,
               firstMetricLabel: 'Annual CO2 Emissions (Tons/Yr)',
               currentFirstMetricValue: '0.2',
               potentialBestInClassFirstMetricValue: '0.09',
             },
-            supplementaryText:
-              'Improving the fan energy efficiency reduces the energy consumption of the mechanical ventilation system',
+            supplementaryText: 'Improving the fan energy efficiency reduces the energy consumption of the mechanical ventilation system',
           })
         }
       >
@@ -571,34 +491,26 @@ const SubSystemComparison = () => {
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getCurrentColor(
-              subSystemComparisonData.lighting.currentEnergyPerformance
-            )}
+            color={getCurrentColor(subSystemComparisonData.lighting.currentEnergyPerformance)}
             text={subSystemComparisonData.lighting.currentEnergyPerformance}
           />
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getCurrentColor(
-              subSystemComparisonData.lighting.potentialBestInClass
-            )}
+            color={getCurrentColor(subSystemComparisonData.lighting.potentialBestInClass)}
             text={subSystemComparisonData.lighting.potentialBestInClass}
           />
         </ListItem>
 
         <ListItem className="col-2">
           <EnergySquare
-            color={getPotentialColor(
-              subSystemComparisonData.lighting.currentCO2Performance
-            )}
+            color={getPotentialColor(subSystemComparisonData.lighting.currentCO2Performance)}
             text={subSystemComparisonData.lighting.currentCO2Performance}
           />
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getPotentialColor(
-              subSystemComparisonData.lighting.potentialCO2BestInClass
-            )}
+            color={getPotentialColor(subSystemComparisonData.lighting.potentialCO2BestInClass)}
             text={subSystemComparisonData.lighting.potentialCO2BestInClass}
           />
         </ListItem>
@@ -613,85 +525,50 @@ const SubSystemComparison = () => {
             currentFittingName: 'Fixed Speed Fan',
             potentialBestInClassFittingName: 'Variable Speed Drive Fan',
             energyPerformance: {
-              current:
-                subSystemComparisonData.mechanicalVentilation
-                  .currentEnergyPerformance,
-              potentialBestInClass:
-                subSystemComparisonData.mechanicalVentilation
-                  .potentialBestInClass,
+              current: subSystemComparisonData.mechanicalVentilation.currentEnergyPerformance,
+              potentialBestInClass: subSystemComparisonData.mechanicalVentilation.potentialBestInClass,
               firstMetricLabel: 'Capacity kWp',
               currentFirstMetricValue: '0',
               potentialBestInClassFirstMetricValue: '60',
             },
             CO2Emissions: {
-              current:
-                subSystemComparisonData.mechanicalVentilation
-                  .currentCO2Performance,
-              potentialBestInClass:
-                subSystemComparisonData.mechanicalVentilation
-                  .potentialCO2BestInClass,
+              current: subSystemComparisonData.mechanicalVentilation.currentCO2Performance,
+              potentialBestInClass: subSystemComparisonData.mechanicalVentilation.potentialCO2BestInClass,
               firstMetricLabel: 'Annual CO2 Emissions (Tons/Yr)',
               currentFirstMetricValue: '0',
               potentialBestInClassFirstMetricValue: '1.5',
             },
-            supplementaryText:
-              'Improving the solar panel capacity reduces the energy consumption of the building from the grid',
+            supplementaryText: 'Improving the solar panel capacity reduces the energy consumption of the building from the grid',
           })
         }
       >
         <ListItem className="col-2">
-          <ItemImg
-            src={mechVentImg}
-            alt="Mechanical Ventilation"
-            height="45px"
-          />
+          <ItemImg src={mechVentImg} alt="Mechanical Ventilation" height="45px" />
           <ItemImgSubTitle>{t('Mechanical Ventilation')}</ItemImgSubTitle>
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getCurrentColor(
-              subSystemComparisonData.mechanicalVentilation
-                .currentEnergyPerformance
-            )}
-            text={
-              subSystemComparisonData.mechanicalVentilation
-                .currentEnergyPerformance
-            }
+            color={getCurrentColor(subSystemComparisonData.mechanicalVentilation.currentEnergyPerformance)}
+            text={subSystemComparisonData.mechanicalVentilation.currentEnergyPerformance}
           />
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getCurrentColor(
-              subSystemComparisonData.mechanicalVentilation.potentialBestInClass
-            )}
-            text={
-              subSystemComparisonData.mechanicalVentilation.potentialBestInClass
-            }
+            color={getCurrentColor(subSystemComparisonData.mechanicalVentilation.potentialBestInClass)}
+            text={subSystemComparisonData.mechanicalVentilation.potentialBestInClass}
           />
         </ListItem>
 
         <ListItem className="col-2">
           <EnergySquare
-            color={getPotentialColor(
-              subSystemComparisonData.mechanicalVentilation
-                .currentCO2Performance
-            )}
-            text={
-              subSystemComparisonData.mechanicalVentilation
-                .currentCO2Performance
-            }
+            color={getPotentialColor(subSystemComparisonData.mechanicalVentilation.currentCO2Performance)}
+            text={subSystemComparisonData.mechanicalVentilation.currentCO2Performance}
           />
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getPotentialColor(
-              subSystemComparisonData.mechanicalVentilation
-                .potentialCO2BestInClass
-            )}
-            text={
-              subSystemComparisonData.mechanicalVentilation
-                .potentialCO2BestInClass
-            }
+            color={getPotentialColor(subSystemComparisonData.mechanicalVentilation.potentialCO2BestInClass)}
+            text={subSystemComparisonData.mechanicalVentilation.potentialCO2BestInClass}
           />
         </ListItem>
       </ItemRow>
@@ -705,24 +582,20 @@ const SubSystemComparison = () => {
             currentFittingName: 'No Solar Panel System',
             potentialBestInClassFittingName: 'Solar Panel',
             energyPerformance: {
-              current:
-                subSystemComparisonData.renewable.currentEnergyPerformance,
-              potentialBestInClass:
-                subSystemComparisonData.renewable.potentialBestInClass,
+              current: subSystemComparisonData.renewable.currentEnergyPerformance,
+              potentialBestInClass: subSystemComparisonData.renewable.potentialBestInClass,
               firstMetricLabel: 'Energy Usage kWh',
               currentFirstMetricValue: '6300',
               potentialBestInClassFirstMetricValue: '4800',
             },
             CO2Emissions: {
               current: subSystemComparisonData.renewable.currentCO2Performance,
-              potentialBestInClass:
-                subSystemComparisonData.renewable.potentialCO2BestInClass,
+              potentialBestInClass: subSystemComparisonData.renewable.potentialCO2BestInClass,
               firstMetricLabel: 'Annual CO2 Emissions (Tons/Yr)',
               currentFirstMetricValue: '1',
               potentialBestInClassFirstMetricValue: '0.4',
             },
-            supplementaryText:
-              'Managing the plug loads and switching them off when not in use reduces the energy consumption',
+            supplementaryText: 'Managing the plug loads and switching them off when not in use reduces the energy consumption',
           })
         }
       >
@@ -732,34 +605,26 @@ const SubSystemComparison = () => {
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getCurrentColor(
-              subSystemComparisonData.renewable.currentEnergyPerformance
-            )}
+            color={getCurrentColor(subSystemComparisonData.renewable.currentEnergyPerformance)}
             text={subSystemComparisonData.renewable.currentEnergyPerformance}
           />
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getCurrentColor(
-              subSystemComparisonData.renewable.potentialBestInClass
-            )}
+            color={getCurrentColor(subSystemComparisonData.renewable.potentialBestInClass)}
             text={subSystemComparisonData.renewable.potentialBestInClass}
           />
         </ListItem>
 
         <ListItem className="col-2">
           <EnergySquare
-            color={getPotentialColor(
-              subSystemComparisonData.renewable.currentCO2Performance
-            )}
+            color={getPotentialColor(subSystemComparisonData.renewable.currentCO2Performance)}
             text={subSystemComparisonData.renewable.currentCO2Performance}
           />
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getPotentialColor(
-              subSystemComparisonData.renewable.potentialCO2BestInClass
-            )}
+            color={getPotentialColor(subSystemComparisonData.renewable.potentialCO2BestInClass)}
             text={subSystemComparisonData.renewable.potentialCO2BestInClass}
           />
         </ListItem>
@@ -774,18 +639,15 @@ const SubSystemComparison = () => {
             currentFittingName: 'NA',
             potentialBestInClassFittingName: 'Smart Plugs',
             energyPerformance: {
-              current:
-                subSystemComparisonData.plugLoads.currentEnergyPerformance,
-              potentialBestInClass:
-                subSystemComparisonData.plugLoads.potentialBestInClass,
+              current: subSystemComparisonData.plugLoads.currentEnergyPerformance,
+              potentialBestInClass: subSystemComparisonData.plugLoads.potentialBestInClass,
               firstMetricLabel: 'Energy Usage kWh',
               currentFirstMetricValue: '6300',
               potentialBestInClassFirstMetricValue: '4800',
             },
             CO2Emissions: {
               current: subSystemComparisonData.plugLoads.currentCO2Performance,
-              potentialBestInClass:
-                subSystemComparisonData.plugLoads.potentialCO2BestInClass,
+              potentialBestInClass: subSystemComparisonData.plugLoads.potentialCO2BestInClass,
               firstMetricLabel: 'Annual CO2 Emissions (Tons/Yr)',
               currentFirstMetricValue: '1',
               potentialBestInClassFirstMetricValue: '0.4',
@@ -800,34 +662,26 @@ const SubSystemComparison = () => {
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getCurrentColor(
-              subSystemComparisonData.plugLoads.currentEnergyPerformance
-            )}
+            color={getCurrentColor(subSystemComparisonData.plugLoads.currentEnergyPerformance)}
             text={subSystemComparisonData.plugLoads.currentEnergyPerformance}
           />
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getCurrentColor(
-              subSystemComparisonData.plugLoads.potentialBestInClass
-            )}
+            color={getCurrentColor(subSystemComparisonData.plugLoads.potentialBestInClass)}
             text={subSystemComparisonData.plugLoads.potentialBestInClass}
           />
         </ListItem>
 
         <ListItem className="col-2">
           <EnergySquare
-            color={getPotentialColor(
-              subSystemComparisonData.plugLoads.currentCO2Performance
-            )}
+            color={getPotentialColor(subSystemComparisonData.plugLoads.currentCO2Performance)}
             text={subSystemComparisonData.plugLoads.currentCO2Performance}
           />
         </ListItem>
         <ListItem className="col-2">
           <EnergySquare
-            color={getPotentialColor(
-              subSystemComparisonData.plugLoads.potentialCO2BestInClass
-            )}
+            color={getPotentialColor(subSystemComparisonData.plugLoads.potentialCO2BestInClass)}
             text={subSystemComparisonData.plugLoads.potentialCO2BestInClass}
           />
         </ListItem>

@@ -2,10 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import SpaceUsageGFAForm from './SpaceUsageGFAForm'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import {
-  spaceUsageGFAListState,
-  totalPercentageOfSpaceUsageGFAListState,
-} from '../../../atoms'
+import { spaceUsageGFAListState, totalPercentageOfSpaceUsageGFAListState } from '../../../atoms'
 import _ from 'lodash'
 import { useTranslation } from 'react-i18next'
 
@@ -28,9 +25,7 @@ const UL = styled.ul`
 `
 
 const SpaceUsageGFA = ({ control, setValue }) => {
-  const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(
-    spaceUsageGFAListState
-  )
+  const [spaceUsageGFAList, setSpaceUsageGFAList] = useRecoilState(spaceUsageGFAListState)
   //const totalPercentageOfSpaceUsageGFAList = useRecoilValue(totalPercentageOfSpaceUsageGFAListState)
   const { t } = useTranslation('buildingInput')
   const onAddSpaceUsageGFA = () => {

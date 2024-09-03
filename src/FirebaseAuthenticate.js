@@ -24,16 +24,7 @@ const FirebaseAuth = () => {
     setShow(true)
   }, [])
 
-  return (
-    <div>
-      {show && (
-        <StyledFirebaseAuth
-          uiConfig={firebaseAuthConfig}
-          firebaseAuth={firebase.auth()}
-        />
-      )}
-    </div>
-  )
+  return <div>{show && <StyledFirebaseAuth uiConfig={firebaseAuthConfig} firebaseAuth={firebase.auth()} />}</div>
 }
 
 export default FirebaseAuth

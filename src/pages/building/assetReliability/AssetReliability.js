@@ -231,9 +231,7 @@ const AssetReliability = () => {
     ],
   }
 
-  const setIsDisplayPerformanceFilter = useSetRecoilState(
-    isDisplayPerformanceFilterState
-  )
+  const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
 
   setIsDisplayPerformanceFilter(false)
 
@@ -243,14 +241,8 @@ const AssetReliability = () => {
     <AssetReliabilityWrapper>
       <Routes>
         <Route exact path="/" element={<AssetReliabilityMain data={data} />} />
-        <Route
-          path="issue/:id"
-          element={<IssueDetail data={data.listOfPotentialFaults} />}
-        />
-        <Route
-          path="equipment/:equipmentId/:subBreakdownName/*"
-          element={<EquipmentAssetReliability />}
-        />
+        <Route path="issue/:id" element={<IssueDetail data={data.listOfPotentialFaults} />} />
+        <Route path="equipment/:equipmentId/:subBreakdownName/*" element={<EquipmentAssetReliability />} />
       </Routes>
     </AssetReliabilityWrapper>
   )

@@ -1,13 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
-import {
-  FormControl,
-  FormHelperText,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from '@mui/material'
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import styled from 'styled-components'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import LightingFittingType from '../../../reference-tables/LightingFittingType'
@@ -42,20 +35,10 @@ const Total = styled.p`
 //   margin-left: .5em;
 // `
 
-const LightingSubSystem = ({
-  data,
-  totalWatt,
-  percentage,
-  efficacy,
-  order,
-  control,
-  setValue,
-}) => {
+const LightingSubSystem = ({ data, totalWatt, percentage, efficacy, order, control, setValue }) => {
   const classes = makeStyles(() => MaterialFormStyle)()
   const { t } = useTranslation(['buildingInput', 'common'])
-  const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(
-    lightingSubSystemListState
-  )
+  const [lightingSubSystemList, setLightingSubSystemList] = useRecoilState(lightingSubSystemListState)
 
   const handleChange = (e) => {
     const index = lightingSubSystemList.findIndex((o) => o.id === data.id)
@@ -78,20 +61,14 @@ const LightingSubSystem = ({
   }
 
   const onRemoveItem = () => {
-    const index = lightingSubSystemList.findIndex(
-      (listItem) => listItem.id === data.id
-    )
+    const index = lightingSubSystemList.findIndex((listItem) => listItem.id === data.id)
 
     const newList = removeItemAtIndex(lightingSubSystemList, index)
     setLightingSubSystemList(newList)
   }
 
   useEffect(() => {
-    setValue(
-      `lighting-fitting-type${data.id}`,
-      data.indoorLightingSystemTypeId,
-      { shouldValidate: true }
-    )
+    setValue(`lighting-fitting-type${data.id}`, data.indoorLightingSystemTypeId, { shouldValidate: true })
     setValue(`percentage-of-all-light-fittings${data.id}`, data.percentage, {
       shouldValidate: true,
     })
@@ -105,16 +82,8 @@ const LightingSubSystem = ({
       shouldValidate: true,
     })
     setValue(`title${data.id}`, data.title, { shouldValidate: true })
-    setValue(
-      `numberOfDaysUsedPerWeek${data.id}`,
-      data.numberOfDaysUsedPerWeek,
-      { shouldValidate: true }
-    )
-    setValue(
-      `numberOfHoursUsedPerDay${data.id}`,
-      data.numberOfHoursUsedPerDay,
-      { shouldValidate: true }
-    )
+    setValue(`numberOfDaysUsedPerWeek${data.id}`, data.numberOfDaysUsedPerWeek, { shouldValidate: true })
+    setValue(`numberOfHoursUsedPerDay${data.id}`, data.numberOfHoursUsedPerDay, { shouldValidate: true })
   }, [
     data.id,
     data.title,
@@ -185,10 +154,7 @@ const LightingSubSystem = ({
           setValue={setValue}
           render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl className={classes.formControl}>
-              <InputLabel
-                id={`lighting-fitting-type-label${data.id}`}
-                className={error && 'text-danger'}
-              >
+              <InputLabel id={`lighting-fitting-type-label${data.id}`} className={error && 'text-danger'}>
                 {t('Light Bulb Type')}
               </InputLabel>
               <Select
@@ -208,11 +174,7 @@ const LightingSubSystem = ({
                   </MenuItem>
                 ))}
               </Select>
-              {error && (
-                <FormHelperText className="text-danger">
-                  {t('This field is required')}
-                </FormHelperText>
-              )}
+              {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
             </FormControl>
           )}
           rules={{

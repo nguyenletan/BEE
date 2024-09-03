@@ -47,14 +47,12 @@ const Adding = styled(Add)`
 `
 
 const HeatConsumption = () => {
-  const [addingBuildingProgress, setAddingBuildingProgressState] =
-    useRecoilState(addingBuildingProgressState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(addingBuildingProgressState)
   const { t } = useTranslation('buildingInput')
 
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
-  const moveNextUrl =
-    parentUrl + (id ? '/adding-building-successfully' : '/hvac')
+  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/hvac')
   const { user } = useAuth()
   const navigate = useNavigate()
 
@@ -75,9 +73,7 @@ const HeatConsumption = () => {
     shouldUnregister: false,
   })
 
-  const [heatConsumptionList, setHeatConsumptionList] = useRecoilState(
-    heatConsumptionListState
-  )
+  const [heatConsumptionList, setHeatConsumptionList] = useRecoilState(heatConsumptionListState)
 
   const onAddHeatConsumption = () => {
     let nextMonthYear = {
@@ -105,12 +101,7 @@ const HeatConsumption = () => {
   }
 
   const lis = heatConsumptionList.map((item) => (
-    <OneMonthHeatConsumption
-      key={'HeatConsumption' + item.id}
-      data={item}
-      control={control}
-      setValue={setValue}
-    />
+    <OneMonthHeatConsumption key={'HeatConsumption' + item.id} data={item} control={control} setValue={setValue} />
   ))
 
   useEffect(() => {
@@ -145,11 +136,7 @@ const HeatConsumption = () => {
 
           <div className="col-3">{t('Consumption (kWh)')}</div>
           <div className="col-1">
-            <Adding
-              titleAccess={t('Add new item')}
-              fontSize="large"
-              onClick={onAddHeatConsumption}
-            />
+            <Adding titleAccess={t('Add new item')} fontSize="large" onClick={onAddHeatConsumption} />
           </div>
         </Header>
         <UL>{lis}</UL>

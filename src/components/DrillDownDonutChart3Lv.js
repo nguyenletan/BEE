@@ -2,13 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ResponsivePie } from '@nivo/pie'
 import { deepClone, formatNumber, getColorPattern } from 'Utilities'
-import {
-  breakDownLevelState,
-  breakdownState,
-  consumptionBreakdownState,
-  isBreakDownDrillDownState,
-  selectedSubBreakdownState,
-} from 'atoms'
+import { breakDownLevelState, breakdownState, consumptionBreakdownState, isBreakDownDrillDownState, selectedSubBreakdownState } from 'atoms'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { Item, Menu, useContextMenu } from 'react-contexify'
 import 'react-contexify/dist/ReactContexify.css'
@@ -87,18 +81,12 @@ const DrillDownDonutChart3Lv = (props) => {
   } = props
 
   const [dataSource, setDataSource] = useState(data)
-  const [selectedSubBreakdown, setSelectedSubBreakdown] = useRecoilState(
-    selectedSubBreakdownState
-  )
-  const [isBreakDownDrillDown, setIsBreakDownDrillDown] = useRecoilState(
-    isBreakDownDrillDownState
-  )
-  const [breakDownLevel, setBreakDownLevel] =
-    useRecoilState(breakDownLevelState)
+  const [selectedSubBreakdown, setSelectedSubBreakdown] = useRecoilState(selectedSubBreakdownState)
+  const [isBreakDownDrillDown, setIsBreakDownDrillDown] = useRecoilState(isBreakDownDrillDownState)
+  const [breakDownLevel, setBreakDownLevel] = useRecoilState(breakDownLevelState)
   const breakdownSt = useRecoilValue(breakdownState)
   const setConsumptionBreakdownSt = useSetRecoilState(consumptionBreakdownState)
-  const [selectedBreakdownItemMenuItem, setSelectedBreakdownItemMenuItem] =
-    useState()
+  const [selectedBreakdownItemMenuItem, setSelectedBreakdownItemMenuItem] = useState()
   const [equipmentId, setEquipmentId] = useState()
 
   const { t, i18n } = useTranslation('buildingPerformance')
@@ -269,9 +257,7 @@ const DrillDownDonutChart3Lv = (props) => {
           <ColorBlock bgColor={colors[index]} />
           <Label fontSize={informationFontSize}>{x.id}:</Label>
         </span>
-        <Value fontSize={informationFontSize}>
-          {getValue(x.consumption, title)}
-        </Value>
+        <Value fontSize={informationFontSize}>{getValue(x.consumption, title)}</Value>
       </li>
     )
   })
@@ -285,10 +271,7 @@ const DrillDownDonutChart3Lv = (props) => {
         </div>
         <div>
           {isBreakDownDrillDown === true && (
-            <button
-              className="btn btn-sm btn-outline-primary"
-              onClick={handleBackBtn}
-            >
+            <button className="btn btn-sm btn-outline-primary" onClick={handleBackBtn}>
               {t('Reset')}
             </button>
           )}
@@ -298,11 +281,8 @@ const DrillDownDonutChart3Lv = (props) => {
       <Menu id="MENU_ID">
         {selectedBreakdownItemMenuItem && (
           <Item>
-            <Link
-              to={`/building/${id}/asset-reliability/equipment/${equipmentId}/${selectedSubBreakdown}`}
-            >
-              {t('Go to Asset Reliability')} -{' '}
-              {selectedBreakdownItemMenuItem?.name}
+            <Link to={`/building/${id}/asset-reliability/equipment/${equipmentId}/${selectedSubBreakdown}`}>
+              {t('Go to Asset Reliability')} - {selectedBreakdownItemMenuItem?.name}
             </Link>
           </Item>
         )}
@@ -336,13 +316,7 @@ const DrillDownDonutChart3Lv = (props) => {
           // enableSliceLabels={false}
           // enableRadialLabels={enableRadialLabels ?? true}
           onClick={handleClick}
-          layers={[
-            'arcs',
-            'arcLabels',
-            'legends',
-            SubCategoryName,
-            isCenteredPercentage === true ? CenteredPercentage : '',
-          ]}
+          layers={['arcs', 'arcLabels', 'legends', SubCategoryName, isCenteredPercentage === true ? CenteredPercentage : '']}
         />
       </ResponsivePieWrapper>
       {hasDescription && <Ul>{list}</Ul>}

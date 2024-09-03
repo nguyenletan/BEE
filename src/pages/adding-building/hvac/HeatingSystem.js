@@ -1,14 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import {
-  Select,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  InputLabel,
-  MenuItem,
-} from '@mui/material'
+import { Select, Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem } from '@mui/material'
 import { Controller } from 'react-hook-form'
 
 import HeatingSystemType from '../../../reference-tables/HeatingSystemType'
@@ -29,9 +21,7 @@ const HeatingSystem = ({ control, setValue }) => {
   const { t } = useTranslation('buildingInput')
   const [heatingSystem, setHeatingSystem] = useRecoilState(heatingSystemState)
 
-  const [energySourceType, setEnergySourceType] = React.useState(
-    HeaterEnergySourceType
-  )
+  const [energySourceType, setEnergySourceType] = React.useState(HeaterEnergySourceType)
 
   const onHasHeatingSystemChange = () => {
     setHeatingSystem({
@@ -52,38 +42,21 @@ const HeatingSystem = ({ control, setValue }) => {
     if (e.target.value === 5) {
       //Central Boiler
       // Energy Source == [Natural Gas, Fuel Oil, Propane]
-      setEnergySourceType(
-        HeaterEnergySourceType.filter(
-          (x) =>
-            x.name === 'Natural Gas' ||
-            x.name === 'Fuel Oil' ||
-            x.name === 'Propane'
-        )
-      )
+      setEnergySourceType(HeaterEnergySourceType.filter((x) => x.name === 'Natural Gas' || x.name === 'Fuel Oil' || x.name === 'Propane'))
     } else if (e.target.value === 1 || e.target.value === 2) {
       // Energy Source == [Electricity]
-      setEnergySourceType(
-        HeaterEnergySourceType.filter((x) => x.name === 'Electricity')
-      )
+      setEnergySourceType(HeaterEnergySourceType.filter((x) => x.name === 'Electricity'))
     } else if (e.target.value === 6 || e.target.value === 3) {
       // Energy Source == [Geothermal Hot Water]
-      setEnergySourceType(
-        HeaterEnergySourceType.filter((x) => x.name === 'Geothermal Hot Water')
-      )
+      setEnergySourceType(HeaterEnergySourceType.filter((x) => x.name === 'Geothermal Hot Water'))
     } else if (e.target.value === 4) {
       // Energy Source == [District Hot Water]
-      setEnergySourceType(
-        HeaterEnergySourceType.filter((x) => x.name === 'District Hot Water')
-      )
+      setEnergySourceType(HeaterEnergySourceType.filter((x) => x.name === 'District Hot Water'))
     } else if (e.target.value === 7) {
       // Energy Source == [Natural Gas, Fuel Oil, Propane, Geothermal Hot Water]
       setEnergySourceType(
         HeaterEnergySourceType.filter(
-          (x) =>
-            x.name === 'Natural Gas' ||
-            x.name === 'Fuel Oil' ||
-            x.name === 'Propane' ||
-            x.name === 'Geothermal Hot Water'
+          (x) => x.name === 'Natural Gas' || x.name === 'Fuel Oil' || x.name === 'Propane' || x.name === 'Geothermal Hot Water'
         )
       )
     } else {
@@ -105,31 +78,15 @@ const HeatingSystem = ({ control, setValue }) => {
     setValue(`heaterTypeId`, heatingSystem.heaterTypeId, {
       shouldValidate: true,
     })
-    setValue(
-      `heaterEnergySourceTypeId`,
-      heatingSystem.heaterEnergySourceTypeId,
-      { shouldValidate: true }
-    )
-  }, [
-    heatingSystem.heaterEnergySourceTypeId,
-    heatingSystem.heaterTypeId,
-    heatingSystem.heatingSystemTypeId,
-    setValue,
-  ])
+    setValue(`heaterEnergySourceTypeId`, heatingSystem.heaterEnergySourceTypeId, { shouldValidate: true })
+  }, [heatingSystem.heaterEnergySourceTypeId, heatingSystem.heaterTypeId, heatingSystem.heatingSystemTypeId, setValue])
 
   return (
     <>
       <Title>{t('Heating System Installed')}</Title>
       <FormControlLabel
         className="mb-3"
-        control={
-          <Checkbox
-            name="checkedB"
-            color="primary"
-            checked={heatingSystem.hasHeatingSystem}
-            onChange={onHasHeatingSystemChange}
-          />
-        }
+        control={<Checkbox name="checkedB" color="primary" checked={heatingSystem.hasHeatingSystem} onChange={onHasHeatingSystemChange} />}
         label={t('Yes')}
       />
 
@@ -140,10 +97,7 @@ const HeatingSystem = ({ control, setValue }) => {
             control={control}
             render={({ field: { onChange }, fieldState: { error } }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel
-                  id="heating-system-type-label"
-                  className={error && 'text-danger'}
-                >
+                <InputLabel id="heating-system-type-label" className={error && 'text-danger'}>
                   {t('Heating System Type')}
                 </InputLabel>
                 <Select
@@ -163,11 +117,7 @@ const HeatingSystem = ({ control, setValue }) => {
                     </MenuItem>
                   ))}
                 </Select>
-                {error && (
-                  <FormHelperText className="text-danger">
-                    {t('This field is required')}
-                  </FormHelperText>
-                )}
+                {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
               </FormControl>
             )}
             rules={{
@@ -180,10 +130,7 @@ const HeatingSystem = ({ control, setValue }) => {
             control={control}
             render={({ field: { onChange }, fieldState: { error } }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel
-                  id="heater-type-label"
-                  className={error && 'text-danger'}
-                >
+                <InputLabel id="heater-type-label" className={error && 'text-danger'}>
                   {t('Heater Type')}
                 </InputLabel>
                 <Select
@@ -203,11 +150,7 @@ const HeatingSystem = ({ control, setValue }) => {
                     </MenuItem>
                   ))}
                 </Select>
-                {error && (
-                  <FormHelperText className="text-danger">
-                    {t('This field is required')}
-                  </FormHelperText>
-                )}
+                {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
               </FormControl>
             )}
             rules={{
@@ -220,10 +163,7 @@ const HeatingSystem = ({ control, setValue }) => {
             control={control}
             render={({ field: { onChange }, fieldState: { error } }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel
-                  id="heater-energy-source-label"
-                  className={error && 'text-danger'}
-                >
+                <InputLabel id="heater-energy-source-label" className={error && 'text-danger'}>
                   {t('Heater Energy Source')}
                 </InputLabel>
                 <Select
@@ -243,11 +183,7 @@ const HeatingSystem = ({ control, setValue }) => {
                     </MenuItem>
                   ))}
                 </Select>
-                {error && (
-                  <FormHelperText className="text-danger">
-                    {t('This field is required')}
-                  </FormHelperText>
-                )}
+                {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
               </FormControl>
             )}
             rules={{

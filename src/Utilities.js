@@ -4,13 +4,7 @@ import lightingImg from './assets/images/lighting.svg'
 import heatingImg from './assets/images/heating.svg'
 import wallImg from './assets/images/wall.svg'
 import mechVentImg from './assets/images/mechanical-ventilation.svg'
-import {
-  addMonths,
-  eachWeekOfInterval,
-  lastDayOfMonth,
-  lastDayOfQuarter,
-  startOfQuarter,
-} from 'date-fns'
+import { addMonths, eachWeekOfInterval, lastDayOfMonth, lastDayOfQuarter, startOfQuarter } from 'date-fns'
 import moment from 'moment'
 import IRR from 'IRR'
 
@@ -63,19 +57,7 @@ export const getColorPattern = (lv) => {
 
   // return ['#064E3B', '#065F46', '#047857', '#059669', '#10B981', '#34D399', '#6EE7B7', '#A7F3D0', '#D1FAE5', '#ECFDF5']
 
-  return [
-    '#3D511B',
-    '#95C34A',
-    '#4A6321',
-    '#A7CD69',
-    '#567426',
-    '#B9D787',
-    '#63852C',
-    '#CBE1A6',
-    '#7DA838',
-    '#D4E7B5',
-    '#DDECC5',
-  ]
+  return ['#3D511B', '#95C34A', '#4A6321', '#A7CD69', '#567426', '#B9D787', '#63852C', '#CBE1A6', '#7DA838', '#D4E7B5', '#DDECC5']
 }
 
 export const getLikelihoodTitle = (value) => {
@@ -161,15 +143,9 @@ export const replaceAll = (str, replaceWith = '+') => {
 }
 
 export const getLatLngFromAddress = async (address) => {
-  const googleMapAPIEndPoint =
-    'https://maps.googleapis.com/maps/api/geocode/json'
+  const googleMapAPIEndPoint = 'https://maps.googleapis.com/maps/api/geocode/json'
   let location = null
-  const url =
-    googleMapAPIEndPoint +
-    '?address=' +
-    address +
-    '&key=' +
-    process.env.REACT_APP_GOOGLE_API_KEY
+  const url = googleMapAPIEndPoint + '?address=' + address + '&key=' + process.env.REACT_APP_GOOGLE_API_KEY
   await fetch(url)
     .then((response) => response.json())
     .then((data) => {
@@ -180,15 +156,9 @@ export const getLatLngFromAddress = async (address) => {
 }
 
 export const getPlaceDetail = async (placeId) => {
-  const googleMapAPIEndPoint =
-    'https://maps.googleapis.com/maps/api/place/details/json'
+  const googleMapAPIEndPoint = 'https://maps.googleapis.com/maps/api/place/details/json'
   let placeDetail = null
-  const url =
-    googleMapAPIEndPoint +
-    '?place_id=' +
-    placeId +
-    '&fields=name,rating,formatted_phone_number&key=' +
-    process.env.REACT_APP_GOOGLE_API_KEY
+  const url = googleMapAPIEndPoint + '?place_id=' + placeId + '&fields=name,rating,formatted_phone_number&key=' + process.env.REACT_APP_GOOGLE_API_KEY
   await fetch(url, {
     mode: 'cors',
   })
@@ -229,11 +199,7 @@ export const getNextMonthYear = (month, year) => {
 
 export const printDateTime = (dateString, localeString) => {
   const date = new Date(dateString)
-  return (
-    date.toLocaleDateString(localeString) +
-    ' ' +
-    date.toLocaleTimeString(localeString)
-  )
+  return date.toLocaleDateString(localeString) + ' ' + date.toLocaleTimeString(localeString)
 }
 
 export const formatNumber = (num, decimal = 2, unit = '') => {
@@ -332,7 +298,7 @@ export const shortMonthOptions = () => {
       text: 'Aug',
     },
     {
-      value: 8,
+      value: 9,
       text: 'Sep',
     },
     {
@@ -414,51 +380,27 @@ export const selectEndMonth = (year, month) => {
   return lastDayOfMonth(new Date(year + '-' + month + '-01'))
 }
 
-export const calculatePrevDay = (
-  value,
-  index,
-  prev12MonthsElectricityConsumptionsFromHistorizedLogs,
-  electricConsumptionsFromHistorizedLogs
-) => {
+export const calculatePrevDay = (value, index, prev12MonthsElectricityConsumptionsFromHistorizedLogs, electricConsumptionsFromHistorizedLogs) => {
   if (index >= 1) {
-    return (
-      value -
-      electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay[
-        index - 1
-      ].value
-    )
+    return value - electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay[index - 1].value
   } else {
     return (
       value -
-      prev12MonthsElectricityConsumptionsFromHistorizedLogs
-        .electricConsumptionGroupByDay[
-        prev12MonthsElectricityConsumptionsFromHistorizedLogs
-          .electricConsumptionGroupByYear.length - 1
+      prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay[
+        prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear.length - 1
       ].value
     )
   }
 }
 
-export const calculateDayLastWeek = (
-  value,
-  index,
-  prev12MonthsElectricityConsumptionsFromHistorizedLogs,
-  electricConsumptionsFromHistorizedLogs
-) => {
+export const calculateDayLastWeek = (value, index, prev12MonthsElectricityConsumptionsFromHistorizedLogs, electricConsumptionsFromHistorizedLogs) => {
   if (index >= 7) {
-    return (
-      value -
-      electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay[
-        index - 7
-      ].value
-    )
+    return value - electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay[index - 7].value
   } else {
     return (
       value -
-      prev12MonthsElectricityConsumptionsFromHistorizedLogs
-        .electricConsumptionGroupByDay[
-        prev12MonthsElectricityConsumptionsFromHistorizedLogs
-          .electricConsumptionGroupByDay.length - index
+      prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay[
+        prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay.length - index
       ].value
     )
   }
@@ -473,15 +415,9 @@ export const calculateAverageSameDayInLast4Week = (
   if (index >= 21) {
     return (
       (value +
-        electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay[
-          index - 7
-        ].value +
-        electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay[
-          index - 14
-        ].value +
-        electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay[
-          index - 21
-        ].value) /
+        electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay[index - 7].value +
+        electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay[index - 14].value +
+        electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay[index - 21].value) /
       4
     )
   } else {
@@ -489,17 +425,8 @@ export const calculateAverageSameDayInLast4Week = (
       ...prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay,
       ...electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay,
     ]
-    const newIndex =
-      index +
-      prev12MonthsElectricityConsumptionsFromHistorizedLogs
-        .electricConsumptionGroupByDay.length
-    return (
-      (value +
-        mergeArray[newIndex - 7].value +
-        mergeArray[newIndex - 14].value +
-        mergeArray[newIndex - 21].value) /
-      3
-    )
+    const newIndex = index + prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByDay.length
+    return (value + mergeArray[newIndex - 7].value + mergeArray[newIndex - 14].value + mergeArray[newIndex - 21].value) / 3
   }
 }
 
@@ -513,47 +440,22 @@ export const calculateSameThingLastYear = (
   switch (energyPerformanceGroupBy) {
     case 'year':
       if (index >= 1) {
-        return (
-          value -
-          electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[
-            index - 1
-          ].value
-        )
+        return value - electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[index - 1].value
       } else {
-        return (
-          value -
-          prev12MonthsElectricityConsumptionsFromHistorizedLogs
-            .electricConsumptionGroupByYear[index].value
-        )
+        return value - prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByYear[index].value
       }
     case 'quarter':
       if (index >= 4) {
-        return (
-          value -
-          electricConsumptionsFromHistorizedLogs
-            .electricConsumptionGroupByQuarter[index - 4].value
-        )
+        return value - electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter[index - 4].value
       } else {
-        return (
-          value -
-          prev12MonthsElectricityConsumptionsFromHistorizedLogs
-            .electricConsumptionGroupByQuarter[index].value
-        )
+        return value - prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter[index].value
       }
     case 'month':
     default:
       if (index >= 12) {
-        return (
-          value -
-          electricConsumptionsFromHistorizedLogs
-            .electricConsumptionGroupByMonth[index - 12].value
-        )
+        return value - electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth[index - 12].value
       } else {
-        return (
-          value -
-          prev12MonthsElectricityConsumptionsFromHistorizedLogs
-            .electricConsumptionGroupByMonth[index].value
-        )
+        return value - prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth[index].value
       }
   }
 }
@@ -587,40 +489,24 @@ export const calculateSameThingLastPeriod = (
     // }
     case 'quarter':
       if (index > 0) {
-        return (
-          value -
-          electricConsumptionsFromHistorizedLogs
-            .electricConsumptionGroupByQuarter[index - 1].value
-        )
+        return value - electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter[index - 1].value
       } else {
         return (
           value -
-          prev12MonthsElectricityConsumptionsFromHistorizedLogs
-            .electricConsumptionGroupByQuarter[
-            prev12MonthsElectricityConsumptionsFromHistorizedLogs
-              .electricConsumptionGroupByQuarter.length - 1
+          prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter[
+            prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter.length - 1
           ].value
         )
       }
     case 'month':
     default:
-      if (
-        index > 0 &&
-        electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth
-          .length > 0
-      ) {
-        return (
-          value -
-          electricConsumptionsFromHistorizedLogs
-            .electricConsumptionGroupByMonth[index - 1].value
-        )
+      if (index > 0 && electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth.length > 0) {
+        return value - electricConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth[index - 1].value
       } else {
         return (
           value -
-          prev12MonthsElectricityConsumptionsFromHistorizedLogs
-            .electricConsumptionGroupByMonth[
-            prev12MonthsElectricityConsumptionsFromHistorizedLogs
-              .electricConsumptionGroupByMonth.length - 1
+          prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth[
+            prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth.length - 1
           ].value
         )
       }
@@ -685,10 +571,8 @@ export const calculate12MonthPeriod = (
       ]
       idx =
         index +
-        prev24MonthsElectricityConsumptionsFromHistorizedLogs
-          .electricConsumptionGroupByQuarter.length +
-        prev12MonthsElectricityConsumptionsFromHistorizedLogs
-          .electricConsumptionGroupByQuarter.length
+        prev24MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter.length +
+        prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByQuarter.length
 
       let sumCurrent4Quarter = 0
       for (let i = idx; i > idx - 4 && i >= 0; i--) {
@@ -709,10 +593,8 @@ export const calculate12MonthPeriod = (
       ]
       idx =
         index +
-        prev24MonthsElectricityConsumptionsFromHistorizedLogs
-          .electricConsumptionGroupByMonth.length +
-        prev12MonthsElectricityConsumptionsFromHistorizedLogs
-          .electricConsumptionGroupByMonth.length
+        prev24MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth.length +
+        prev12MonthsElectricityConsumptionsFromHistorizedLogs.electricConsumptionGroupByMonth.length
 
       let sumCurrent12Month = 0
       for (let i = idx; i > idx - 12 && i >= 0; i--) {
@@ -731,11 +613,7 @@ export const formatDate = (date) => {
   return moment(date).format('DD/MM/YYYY')
 }
 
-export const getTheTimeDifference = (
-  datetime1,
-  datetime2,
-  measurement = 'days'
-) => {
+export const getTheTimeDifference = (datetime1, datetime2, measurement = 'days') => {
   return moment(datetime1).diff(datetime2, measurement)
 }
 
@@ -763,14 +641,7 @@ export const calculateEnergyConsumption = (
   numberOfDaysUsedPerWeek = 6,
   numberOfHoursUsedPerDay = 8
 ) => {
-  return (
-    (numberOfBulb *
-      wattRatingOfBulb *
-      numberOfDaysUsedPerWeek *
-      numberOfHoursUsedPerDay *
-      numberOfWeeksAYear) /
-    1000
-  )
+  return (numberOfBulb * wattRatingOfBulb * numberOfDaysUsedPerWeek * numberOfHoursUsedPerDay * numberOfWeeksAYear) / 1000
 }
 
 export const calculateEnergyCost = (
@@ -781,15 +652,7 @@ export const calculateEnergyCost = (
   numberOfHoursUsedPerDay = 8,
   tariffRate = 0.023
 ) => {
-  return (
-    calculateEnergyConsumption(
-      numberOfBulb,
-      wattRatingOfBulb,
-      numberOfDaysUsedPerWeek,
-      numberOfHoursUsedPerDay,
-      numberOfWeeksAYear
-    ) * tariffRate
-  )
+  return calculateEnergyConsumption(numberOfBulb, wattRatingOfBulb, numberOfDaysUsedPerWeek, numberOfHoursUsedPerDay, numberOfWeeksAYear) * tariffRate
 }
 
 export const calculateEmissions = (
@@ -801,12 +664,7 @@ export const calculateEmissions = (
   gridEmissionRate = 0.1
 ) => {
   return (
-    calculateEnergyConsumption(
-      numberOfBulb,
-      wattRatingOfBulb,
-      numberOfDaysUsedPerWeek,
-      numberOfHoursUsedPerDay,
-      numberOfWeeksAYear
-    ) * gridEmissionRate
+    calculateEnergyConsumption(numberOfBulb, wattRatingOfBulb, numberOfDaysUsedPerWeek, numberOfHoursUsedPerDay, numberOfWeeksAYear) *
+    gridEmissionRate
   )
 }

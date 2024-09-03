@@ -1,12 +1,6 @@
 export const rainSvg = () => {
   return (
-    <svg
-      data-v-3cdad65e=""
-      width="50px"
-      height="50px"
-      viewBox="0 0 148 148"
-      className="owm-weather-icon"
-    >
+    <svg data-v-3cdad65e="" width="50px" height="50px" viewBox="0 0 148 148" className="owm-weather-icon">
       <path
         d="M112.411 57.87c0 11.433-9.27 20.702-20.7 20.702-11.435 0-20.702-9.27-20.702-20.702 0-11.433 9.267-20.701 20.702-20.701 11.43 0 20.7 9.268 20.7 20.701"
         fill="#f15d46"
@@ -25,13 +19,7 @@ export const rainSvg = () => {
 
 export const showerRainSvg = () => {
   return (
-    <svg
-      data-v-3cdad65e=""
-      width="50px"
-      height="50px"
-      viewBox="0 0 148 148"
-      className="owm-weather-icon"
-    >
+    <svg data-v-3cdad65e="" width="50px" height="50px" viewBox="0 0 148 148" className="owm-weather-icon">
       <path
         d="M79.92 95.53l.422-1.131a2.172 2.172 0 10-4.067-1.523l-.422 1.133a2.171 2.171 0 104.067 1.521M67.17 51.652c.517 0 1.023.046 1.517.115a12.517 12.517 0 01-.277-2.597c0-6.85 5.555-12.4 12.404-12.4 6.664 0 12.084 5.26 12.372 11.852a7.407 7.407 0 014.991-1.93 7.44 7.44 0 017.44 7.44c0 .938-.181 1.832-.496 2.655a8.81 8.81 0 011.738-.173 8.68 8.68 0 110 17.36H67.17c-6.165 0-11.161-4.995-11.161-11.16 0-6.163 4.996-11.162 11.161-11.162"
         fill="#3b3c40"

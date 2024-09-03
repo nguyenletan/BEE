@@ -34,29 +34,17 @@ const ChartType = ({ onChange, type }) => {
 
   return (
     <Wrapper className="d-flex">
-      <span
-        onClick={() => onClick('year')}
-        className={type === 'year' ? 'active' : ''}
-      >
+      <span onClick={() => onClick('year')} className={type === 'year' ? 'active' : ''}>
         {t('Year')}
       </span>
-      <span
-        onClick={() => onClick('quarter')}
-        className={type === 'quarter' ? 'active' : ''}
-      >
+      <span onClick={() => onClick('quarter')} className={type === 'quarter' ? 'active' : ''}>
         {t('Quarter')}
       </span>
-      <span
-        onClick={() => onClick('month')}
-        className={type === 'month' ? 'active' : ''}
-      >
+      <span onClick={() => onClick('month')} className={type === 'month' ? 'active' : ''}>
         {t('Month')}
       </span>
       {/*<span onClick={() => onClick('week')} className={type==='week' ? 'active' : ''}>Week</span>*/}
-      <span
-        onClick={() => onClick('day')}
-        className={type === 'day' ? 'active' : ''}
-      >
+      <span onClick={() => onClick('day')} className={type === 'day' ? 'active' : ''}>
         {t('Day')}
       </span>
     </Wrapper>

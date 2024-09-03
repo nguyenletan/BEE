@@ -15,9 +15,7 @@ const Wrapper = styled.div`
 
 const Weather = (props) => {
   const { lat, lon } = props
-  const setIsDisplayPerformanceFilter = useSetRecoilState(
-    isDisplayPerformanceFilterState
-  )
+  const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
   setIsDisplayPerformanceFilter(false)
 
   const { user } = useAuth()

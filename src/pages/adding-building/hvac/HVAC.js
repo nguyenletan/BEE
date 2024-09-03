@@ -37,12 +37,10 @@ const HVAC = () => {
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
 
-  const moveNextUrl =
-    parentUrl + (id ? '/adding-building-successfully' : '/lighting')
+  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/lighting')
   const { user } = useAuth()
 
-  const [addingBuildingProgress, setAddingBuildingProgressState] =
-    useRecoilState(addingBuildingProgressState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(addingBuildingProgressState)
 
   const { t } = useTranslation('buildingInput')
 

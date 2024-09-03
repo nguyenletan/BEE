@@ -1,9 +1,4 @@
-import {
-  getAnalytics,
-  setUserId,
-  setUserProperties,
-  setCurrentScreen,
-} from 'firebase/analytics'
+import { getAnalytics, setUserId, setUserProperties, setCurrentScreen } from 'firebase/analytics'
 
 class Analytics {
   setUser(id, pageName, props) {

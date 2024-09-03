@@ -131,9 +131,7 @@ const BreakDown = (props) => {
     <li className="d-flex justify-content-between" key={x.id}>
       <span className="d-flex">
         <ColorBlock bgColor={x.color} />
-        <Label style={{ fontSize: informationFontSize }}>
-          {t(x.id, { ns: 'buildingPerformance' })}:
-        </Label>
+        <Label style={{ fontSize: informationFontSize }}>{t(x.id, { ns: 'buildingPerformance' })}:</Label>
       </span>
       <span style={{ fontSize: informationFontSize }}>{x.value}</span>
     </li>
@@ -142,9 +140,7 @@ const BreakDown = (props) => {
   return (
     <BreakDownBlock marginRight={marginRight}>
       <BreakDownTitle>{t(title, { ns: 'improvement' })}</BreakDownTitle>
-      <BreakDownSubTitle>
-        {t(subTitle, { ns: 'improvement' })}
-      </BreakDownSubTitle>
+      <BreakDownSubTitle>{t(subTitle, { ns: 'improvement' })}</BreakDownSubTitle>
       <ResponsivePieWrapper height={chartHeight}>
         <ResponsivePie
           {...commonProperties}

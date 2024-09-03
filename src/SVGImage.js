@@ -1,12 +1,7 @@
 export const plugLoadsSvg = (color) => {
   const stroke = color ?? '#000000'
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="45.7"
-      height="43.929"
-      viewBox="0 0 45.7 43.929"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="45.7" height="43.929" viewBox="0 0 45.7 43.929">
       <path
         id="Icon_awesome-plug"
         data-name="Icon awesome-plug"

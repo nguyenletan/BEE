@@ -21,14 +21,7 @@ const Label = styled.label`
 `
 
 const EnergyConsumptionPercentage = (props) => {
-  const {
-    equipmentId,
-    equipmentTypeId,
-    subSystemId,
-    buildingId,
-    startDate,
-    endDate,
-  } = props
+  const { equipmentId, equipmentTypeId, subSystemId, buildingId, startDate, endDate } = props
 
   const { t } = useTranslation('equipmentAssetReliability')
 
@@ -111,28 +104,13 @@ const EnergyConsumptionPercentage = (props) => {
   const getEnergyConsumptionPercentageInfo = async () => {
     const idToken = await user.getIdToken()
     // moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'),
-    const tmp = await getEnergyConsumptionPercentage(
-      equipmentId,
-      equipmentTypeId,
-      subSystemId,
-      buildingId,
-      startDate,
-      endDate,
-      idToken
-    )
+    const tmp = await getEnergyConsumptionPercentage(equipmentId, equipmentTypeId, subSystemId, buildingId, startDate, endDate, idToken)
     convertRawDataToChartData(tmp[0])
   }
 
   useEffect(() => {
     getEnergyConsumptionPercentageInfo()
-  }, [
-    equipmentId,
-    equipmentTypeId,
-    subSystemId,
-    buildingId,
-    startDate,
-    endDate,
-  ])
+  }, [equipmentId, equipmentTypeId, subSystemId, buildingId, startDate, endDate])
 
   return (
     <Wrapper>

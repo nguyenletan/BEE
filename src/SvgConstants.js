@@ -27,14 +27,8 @@ export const envelopeSVG = () => (
       strokeWidth=".5"
     />
     <g stroke="#879637" strokeLinecap="round">
-      <path
-        d="m11.824324 12.218074h10.247748v9.459459h-10.247748z"
-        strokeLinejoin="round"
-      />
-      <path
-        d="m27.59009 12.218074h9.459459v19.707207h-9.459459z"
-        strokeLinejoin="round"
-      />
+      <path d="m11.824324 12.218074h10.247748v9.459459h-10.247748z" strokeLinejoin="round" />
+      <path d="m27.59009 12.218074h9.459459v19.707207h-9.459459z" strokeLinejoin="round" />
       <path d="m25.218059 0-23.326167 10.534398" />
       <path d="m48.544226 10.534398-23.326167-10.534398" />
       <path d="m8 12v21.283784" />
@@ -75,14 +69,7 @@ export const mechVentSVG = () => (
 )
 
 export const renewableSVG = () => (
-  <g
-    fill="none"
-    fillRule="evenodd"
-    stroke="#363536"
-    strokeLinejoin="round"
-    strokeWidth=".5"
-    transform="translate(1 1)"
-  >
+  <g fill="none" fillRule="evenodd" stroke="#363536" strokeLinejoin="round" strokeWidth=".5" transform="translate(1 1)">
     <path d="m17.5 30.138889h5.833333v3.888889h-5.833333z" />
     <path d="m13.611111 33.055556h14.583333v1.944444h-14.583333z" fill="#fff" />
     <path
@@ -109,12 +96,7 @@ export const renewableSVG = () => (
 )
 
 export const openingsSVG = () => (
-  <g
-    fill="none"
-    fillRule="evenodd"
-    strokeLinejoin="round"
-    transform="translate(1)"
-  >
+  <g fill="none" fillRule="evenodd" strokeLinejoin="round" transform="translate(1)">
     <path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -168,12 +150,7 @@ export const floorSVG = () => (
       strokeWidth="0.5"
       strokeLinejoin="round"
     />
-    <path
-      d="M42.3613 34.8044H9.75"
-      stroke="#879637"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
+    <path d="M42.3613 34.8044H9.75" stroke="#879637" strokeWidth="2" strokeLinecap="round" />
   </g>
 )
 
@@ -188,12 +165,7 @@ export const roofSVG = () => (
 )
 
 export const plugLoadSVG = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="37.399"
-    height="36.555"
-    viewBox="0 0 37.399 36.555"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="37.399" height="36.555" viewBox="0 0 37.399 36.555">
     <path
       id="Icon_awesome-plug"
       data-name="Icon awesome-plug"

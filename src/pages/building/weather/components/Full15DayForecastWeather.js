@@ -53,37 +53,23 @@ const Full15DayForecastWeather = (props) => {
   const buttonContent = (
     <div className="d-flex align-items-center">
       {weatherInfo && weatherInfo?.days && weatherInfo?.days.length > 0 && (
-        <img
-          className="me-3"
-          src={getWeatherIcon(weatherInfo?.days[1].icon)}
-          alt={weatherInfo?.days[1].icon}
-          width="32px"
-        />
+        <img className="me-3" src={getWeatherIcon(weatherInfo?.days[1].icon)} alt={weatherInfo?.days[1].icon} width="32px" />
       )}
       <H4 className="font-bold">7-day forecasts</H4>
     </div>
   )
 
   return (
-    <EuiAccordion
-      initialIsOpen={true}
-      className="mb-5"
-      buttonContent={buttonContent}
-    >
+    <EuiAccordion initialIsOpen={true} className="mb-5" buttonContent={buttonContent}>
       <EuiPanel color="subdued">
         {weatherInfo && weatherInfo?.days && (
           <Wrapper>
             {weatherInfo?.days.map((day, index) => (
               <Information key={index}>
-                <img
-                  src={getWeatherIcon(day.icon)}
-                  alt={day.icon}
-                  width="72px"
-                />
+                <img src={getWeatherIcon(day.icon)} alt={day.icon} width="72px" />
                 <p>
                   <H5>
-                    {moment(day.datetime).format('ddd')}{' '}
-                    {moment(day.datetime).format('DD MMM YYYY')}
+                    {moment(day.datetime).format('ddd')} {moment(day.datetime).format('DD MMM YYYY')}
                   </H5>
                   <span>
                     {day.tempmin}℃ - {day.tempmax}℃

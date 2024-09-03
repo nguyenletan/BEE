@@ -128,10 +128,7 @@ const Register = () => {
         })
     }
 
-    const comparePassword = () =>
-      getValues('password') === getValues('confirmPassword')
-        ? true
-        : 'The passwords you entered do not match.'
+    const comparePassword = () => (getValues('password') === getValues('confirmPassword') ? true : 'The passwords you entered do not match.')
 
     return (
       <RegisterPage className="d-flex justify-content-center justify-content-sm-around align-items-center align-content-center flex-wrap">
@@ -160,19 +157,12 @@ const Register = () => {
               {...register('email', {
                 required: true,
                 maxLength: 100,
-                pattern:
-                  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
               })}
             />
-            {errors?.email?.type === 'required' && (
-              <ErrorMsg>Email is required</ErrorMsg>
-            )}
-            {errors?.email?.type === 'pattern' && (
-              <ErrorMsg>Invalid email address</ErrorMsg>
-            )}
-            {errors?.email?.type === 'maxLength' && (
-              <ErrorMsg>Max length is 100</ErrorMsg>
-            )}
+            {errors?.email?.type === 'required' && <ErrorMsg>Email is required</ErrorMsg>}
+            {errors?.email?.type === 'pattern' && <ErrorMsg>Invalid email address</ErrorMsg>}
+            {errors?.email?.type === 'maxLength' && <ErrorMsg>Max length is 100</ErrorMsg>}
           </div>
 
           <div className="form-group">
@@ -185,23 +175,17 @@ const Register = () => {
               {...register('password', {
                 required: true,
                 maxLength: 100,
-                pattern:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
               })}
             />
-            {errors.password?.type === 'required' && (
-              <ErrorMsg>Password is required</ErrorMsg>
-            )}
+            {errors.password?.type === 'required' && <ErrorMsg>Password is required</ErrorMsg>}
             {errors.password?.type === 'pattern' && (
               <ErrorMsg>
-                Minimum of 8 characters must contain at least 1 lowercase
-                alphabetical character, at least 1 uppercase, at least 1 numeric
-                character, at least one special character such as !@#$%^&*
+                Minimum of 8 characters must contain at least 1 lowercase alphabetical character, at least 1 uppercase, at least 1 numeric character,
+                at least one special character such as !@#$%^&*
               </ErrorMsg>
             )}
-            {errors.password?.type === 'maxLength' && (
-              <ErrorMsg>Max length is 100</ErrorMsg>
-            )}
+            {errors.password?.type === 'maxLength' && <ErrorMsg>Max length is 100</ErrorMsg>}
           </div>
           <div className="form-group">
             <RegisterInput
@@ -215,9 +199,7 @@ const Register = () => {
                 validate: comparePassword,
               })}
             />
-            {errors.confirmPassword?.type === 'validate' && (
-              <ErrorMsg>The passwords you entered do not match.</ErrorMsg>
-            )}
+            {errors.confirmPassword?.type === 'validate' && <ErrorMsg>The passwords you entered do not match.</ErrorMsg>}
           </div>
           <div className="form-group">
             <AgreementCheckbox
@@ -235,11 +217,7 @@ const Register = () => {
             </label>
           </div>
           <div className="form-group d-flex justify-content-between">
-            <RegisterButton
-              type="submit"
-              className="btn btn-primary"
-              disabled={isAgree ? null : 'disabled'}
-            >
+            <RegisterButton type="submit" className="btn btn-primary" disabled={isAgree ? null : 'disabled'}>
               Complete Registration
             </RegisterButton>
           </div>

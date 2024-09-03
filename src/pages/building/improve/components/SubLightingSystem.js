@@ -1,10 +1,7 @@
 import React from 'react'
 
 import styled from 'styled-components'
-import {
-  getLightingFittingTypeImage,
-  getLightingFittingTypeName,
-} from 'reference-tables/LightingFittingType'
+import { getLightingFittingTypeImage, getLightingFittingTypeName } from 'reference-tables/LightingFittingType'
 
 const Wrapper = styled.section`
   //border: 1px solid var(--bs-primary);
@@ -49,18 +46,13 @@ const NewNumberBulbs = styled.span`
 const SubLightingSystem = ({ data }) => {
   return (
     <Wrapper className={data.lightingFittingTypeId === 1 ? 'LED' : ''}>
-      <Icon
-        src={getLightingFittingTypeImage(data.lightingFittingTypeId)}
-      ></Icon>
+      <Icon src={getLightingFittingTypeImage(data.lightingFittingTypeId)}></Icon>
       <Title>{getLightingFittingTypeName(data.lightingFittingTypeId)}</Title>
       <p>
-        Current: <OldNumberBulbs>{data.numberOfBulbs}</OldNumberBulbs> Bulbs{' '}
-        <br />
+        Current: <OldNumberBulbs>{data.numberOfBulbs}</OldNumberBulbs> Bulbs <br />
         New:{' '}
         <NewNumberBulbs>
-          {data.lightingFittingTypeId !== 1
-            ? data.numberOfBulbs - data.takeAwayBulbs
-            : data.numberOfBulbs + data.addNewBulbs}
+          {data.lightingFittingTypeId !== 1 ? data.numberOfBulbs - data.takeAwayBulbs : data.numberOfBulbs + data.addNewBulbs}
         </NewNumberBulbs>{' '}
         Bulbs
       </p>

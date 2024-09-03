@@ -36,11 +36,7 @@ function LinearProgressWithLabel(props) {
     <Box display="flex" alignItems="center">
       <Box width="100%" mr={1} className="position-relative">
         <LinearProgress variant="determinate" {...props} />
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          className={classes.root}
-        >
+        <Typography variant="body2" color="textSecondary" className={classes.root}>
           {`${Math.round(props.value)}% `}
           {t('Complete')}
         </Typography>

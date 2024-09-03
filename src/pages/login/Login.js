@@ -1,15 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import {
-  ErrorMsg,
-  LoginButton,
-  LoginForm,
-  LoginInput,
-  LoginPage,
-  LoginText,
-  SubTitle,
-  Title,
-} from './LoginStyle'
+import { ErrorMsg, LoginButton, LoginForm, LoginInput, LoginPage, LoginText, SubTitle, Title } from './LoginStyle'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 
@@ -74,12 +65,8 @@ const Login = () => {
                 maxLength: 100,
               })}
             />
-            {errors?.email?.type === 'required' && (
-              <ErrorMsg>Email is required</ErrorMsg>
-            )}
-            {errors?.email?.type === 'maxLength' && (
-              <ErrorMsg>Max length is 100</ErrorMsg>
-            )}
+            {errors?.email?.type === 'required' && <ErrorMsg>Email is required</ErrorMsg>}
+            {errors?.email?.type === 'maxLength' && <ErrorMsg>Max length is 100</ErrorMsg>}
           </div>
 
           <div className="form-group">
@@ -91,19 +78,14 @@ const Login = () => {
               aria-describedby="password"
               {...register('password', { maxLength: 100 })}
             />
-            {errors?.email?.type === 'maxLength' && (
-              <ErrorMsg>Max length is 100</ErrorMsg>
-            )}
+            {errors?.email?.type === 'maxLength' && <ErrorMsg>Max length is 100</ErrorMsg>}
           </div>
           <div className="form-group d-flex justify-content-between">
             <LoginButton type="submit" className="btn btn-primary">
               <LoginText>Login</LoginText>
             </LoginButton>
             <Link to="/register">
-              <LoginButton
-                type="submit"
-                className="btn btn-outline-primary text-right"
-              >
+              <LoginButton type="submit" className="btn btn-outline-primary text-right">
                 SignUp
               </LoginButton>
             </Link>

@@ -37,9 +37,7 @@ const AssetPartsServiceSourcing = () => {
         <Label>{t('Potential Replacement Options')}</Label>
         <Value>{t('Yes')}</Value>
       </Content>
-      <button className="btn btn-primary btn-sm float-end">
-        {t('Details')}
-      </button>
+      <button className="btn btn-primary btn-sm float-end">{t('Details')}</button>
     </Wrapper>
   )
 }

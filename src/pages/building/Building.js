@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import styled from 'styled-components'
 import Header from '../../components/Header'
 import BuildingInfo from '../../components/BuildingInfo'
@@ -24,12 +24,7 @@ import {
   shortMonthOptions,
 } from 'Utilities'
 import moment from 'moment'
-import {
-  EuiDatePicker,
-  EuiDatePickerRange,
-  EuiFieldNumber,
-  EuiSelect,
-} from '@elastic/eui'
+import { EuiDatePicker, EuiDatePickerRange, EuiFieldNumber, EuiSelect } from '@elastic/eui'
 import BuildingSkeleton from '../../components/BuildingSkeleton'
 import {
   energyPerformanceEndTimeState,
@@ -85,11 +80,7 @@ const Building = () => {
   const { id } = useParams()
   const { user } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
-
-  const [startTime, setStartTime] = useRecoilState(
-    energyPerformanceStartTimeState
-  )
-
+  const [startTime, setStartTime] = useRecoilState(energyPerformanceStartTimeState)
   const [endTime, setEndTime] = useRecoilState(energyPerformanceEndTimeState)
 
   const todayLastYear = moment().subtract(1, 'year')
@@ -106,24 +97,20 @@ const Building = () => {
   const [endQuarter, setEndQuarter] = useState(moment().quarter())
   const [endYear, setEndYear] = useState(moment().year())
   const [groupBy, setGroupBy] = useState('month')
-  const [energyPerformanceGroupBy, setEnergyPerformanceGroupBy] =
-    useState('month')
+  const [energyPerformanceGroupBy, setEnergyPerformanceGroupBy] = useState('month')
   const [isInValid, setIsInValid] = useState(false)
+  const [generalBuildingInformation, setGeneralBuildingInformation] = useState(null)
+  const isDisplayPerformanceFilter = useRecoilValue(isDisplayPerformanceFilterState)
+  const setOriginalConsumptionBreakdown = useSetRecoilState(originalConsumptionBreakdownState)
+  const { t } = useTranslation('buildingPerformance')
 
-  const handleGroupByChange = (group) => {
+  console.log('startMonth', startMonth)
+
+  const handleGroupByChange = useCallback((group) => {
     setGroupBy(group)
-  }
+  }, [])
 
-  const [generalBuildingInformation, setGeneralBuildingInformation] =
-    useState(null)
-  const isDisplayPerformanceFilter = useRecoilValue(
-    isDisplayPerformanceFilterState
-  )
-  const setOriginalConsumptionBreakdown = useSetRecoilState(
-    originalConsumptionBreakdownState
-  )
-
-  const getBuildingInfo = async () => {
+  const getBuildingInfo = useCallback(async () => {
     const idToken = await user.getIdToken()
     if (!isInValid) {
       setIsLoading(true)
@@ -136,50 +123,29 @@ const Building = () => {
           _endTime = selectEndYear(moment(endTime).year())
           break
         case 'quarter':
-          _startTime = selectStartQuarter(
-            moment(startTime).year(),
-            moment(startTime).quarter()
-          )
-          _endTime = selectEndQuarter(
-            moment(endTime).year(),
-            moment(endTime).quarter()
-          )
+          _startTime = selectStartQuarter(moment(startTime).year(), moment(startTime).quarter())
+          _endTime = selectEndQuarter(moment(endTime).year(), moment(endTime).quarter())
           break
         case 'month':
-          console.log('by month: ')
-          _startTime = selectStartMonth(
-            moment(startTime).year(),
-            moment(startTime).month() + 1
-          )
-
-          console.log('startTime', startTime)
-          _endTime = selectEndMonth(
-            moment(endTime).year(),
-            moment(endTime).month() + 1
-          )
-          console.log('by month: ', _startTime, _endTime)
+          _startTime = selectStartMonth(moment(startTime).year(), moment(startTime).month() + 1)
+          _endTime = selectEndMonth(moment(endTime).year(), moment(endTime).month() + 1)
           break
         case 'day':
         default:
           break
       }
 
-      const tmp = await getBuildingById(
-        id,
-        moment(_startTime).format('YYYY-MM-DD'),
-        moment(_endTime).format('YYYY-MM-DD'),
-        idToken
-      )
+      const tmp = await getBuildingById(id, moment(_startTime).format('YYYY-MM-DD'), moment(_endTime).format('YYYY-MM-DD'), idToken)
       setOriginalConsumptionBreakdown([...tmp?.consumptionBreakdown])
       setEnergyPerformanceGroupBy(groupBy)
       setGeneralBuildingInformation(tmp)
       setIsLoading(false)
     }
-  }
+  }, [user, isInValid, startTime, endTime, groupBy, setOriginalConsumptionBreakdown])
 
-  const handleApply = () => {
-    getBuildingInfo().then()
-  }
+  const handleApply = useCallback(() => {
+    getBuildingInfo()
+  }, [getBuildingInfo])
 
   useEffect(() => {
     getBuildingInfo()
@@ -198,7 +164,6 @@ const Building = () => {
         _endTime = selectEndQuarter(endYear, endQuarter)
         break
       case 'month':
-        console.log('by month: ')
         _startTime = selectStartMonth(startYear, startMonth)
         _endTime = selectEndMonth(endYear, endMonth)
         break
@@ -209,25 +174,8 @@ const Building = () => {
 
     setStartTime(_startTime)
     setEndTime(_endTime)
-    if (_startTime > _endTime) {
-      setIsInValid(true)
-    } else {
-      setIsInValid(false)
-    }
-    //  eslint-disable-next-line
-  }, [
-    startMonth,
-    startYear,
-    startDate,
-    startQuarter,
-    endMonth,
-    endYear,
-    endDate,
-    endQuarter,
-    groupBy,
-  ])
-
-  const { t } = useTranslation('buildingPerformance')
+    setIsInValid(_startTime > _endTime)
+  }, [startMonth, startYear, startDate, startQuarter, endMonth, endYear, endDate, endQuarter, groupBy, setStartTime, setEndTime])
 
   return (
     <>
@@ -255,27 +203,16 @@ const Building = () => {
                 useType={generalBuildingInformation.prop.useTypeName}
                 tfa={generalBuildingInformation.prop.grossInteriorArea}
                 tfaUnit={generalBuildingInformation.prop.grossInteriorAreaUnit}
-                storey={
-                  generalBuildingInformation.prop.storeysAboveGround +
-                  generalBuildingInformation.prop.storeysBelowGround
-                }
+                storey={generalBuildingInformation.prop.storeysAboveGround + generalBuildingInformation.prop.storeysBelowGround}
                 constructed={`${generalBuildingInformation.prop.completionYear} - ${generalBuildingInformation.prop.completionYear + 10}`}
                 greenBuildingRating={`${generalBuildingInformation.prop.sustainabilityRatingSchemeName} - ${generalBuildingInformation.prop.sustainabilityRatingName}`}
                 email={generalBuildingInformation.prop.email}
                 buildingInfoLastEdited={
                   generalBuildingInformation.prop.updatedAt
-                    ? printDateTime(
-                        generalBuildingInformation.prop.updatedAt,
-                        'en-GB'
-                      )
-                    : printDateTime(
-                        generalBuildingInformation.prop.createdAt,
-                        'en-GB'
-                      )
+                    ? printDateTime(generalBuildingInformation.prop.updatedAt, 'en-GB')
+                    : printDateTime(generalBuildingInformation.prop.createdAt, 'en-GB')
                 }
-                totalOperatingHours={
-                  generalBuildingInformation.totalOperatingHours
-                }
+                totalOperatingHours={generalBuildingInformation.totalOperatingHours}
               />
 
               <BuildingHistoricalNav />
@@ -285,13 +222,7 @@ const Building = () => {
                   <GroupBy className="d-flex justify-content-start align-content-end mb-2">
                     <ChartType type={groupBy} onChange={handleGroupByChange} />
 
-                    <div>
-                      {isInValid && (
-                        <ErrorMsg>
-                          {t('Start date should be greater than End date')}
-                        </ErrorMsg>
-                      )}
-                    </div>
+                    <div>{isInValid && <ErrorMsg>{t('Start date should be greater than End date')}</ErrorMsg>}</div>
                   </GroupBy>
 
                   <div className="d-flex mb-2">
@@ -302,10 +233,7 @@ const Building = () => {
                           compressed
                           fullWidth={false}
                           value={startMonth}
-                          onChange={(e) => {
-                            console.log('startMonth', e.target.value)
-                            setStartMonth(e.target.value)
-                          }}
+                          onChange={(e) => setStartMonth(e.target.value)}
                           options={shortMonthOptions()}
                         />
                         <EuiFieldNumber
@@ -426,11 +354,7 @@ const Building = () => {
                       />
                     )}
                     <div className="ms-3 d-flex">
-                      <button
-                        disabled={isInValid}
-                        className="btn btn-primary"
-                        onClick={handleApply}
-                      >
+                      <button disabled={isInValid} className="btn btn-primary" onClick={handleApply}>
                         {t('Apply')}
                       </button>
                     </div>
@@ -443,12 +367,8 @@ const Building = () => {
                   path="energy-performance"
                   element={
                     <EnergyPerformance
-                      electricConsumptions={
-                        generalBuildingInformation.electricConsumptions
-                      }
-                      electricConsumptionsFromHistorizedLogs={
-                        generalBuildingInformation.electricConsumptionsFromHistorizedLogs
-                      }
+                      electricConsumptions={generalBuildingInformation.electricConsumptions}
+                      electricConsumptionsFromHistorizedLogs={generalBuildingInformation.electricConsumptionsFromHistorizedLogs}
                       prev12MonthsElectricityConsumptionsFromHistorizedLogs={
                         generalBuildingInformation.prev12MonthsElectricityConsumptionsFromHistorizedLogs
                       }
@@ -456,47 +376,21 @@ const Building = () => {
                         generalBuildingInformation.prev24MonthsElectricityConsumptionsFromHistorizedLogs
                       }
                       energyPerformanceGroupBy={energyPerformanceGroupBy}
-                      overallEnergyConsumptionInformation={
-                        generalBuildingInformation.overallEnergyConsumptionInformation
-                      }
+                      overallEnergyConsumptionInformation={generalBuildingInformation.overallEnergyConsumptionInformation}
                       annualCost={generalBuildingInformation.annualCost}
-                      annualConsumption={
-                        generalBuildingInformation.annualConsumption
-                      }
-                      annualCarbonEmissions={
-                        generalBuildingInformation.annualCarbonEmissions
-                      }
-                      lastMonthComparison={
-                        generalBuildingInformation.lastMonthComparison
-                      }
-                      annualCoolingSystemConsumption={
-                        generalBuildingInformation.annualCoolingSystemConsumption
-                      }
-                      annualHeatingSystemConsumption={
-                        generalBuildingInformation.annualHeatingSystemConsumption
-                      }
-                      annualMechanicalVentilationSystemConsumption={
-                        generalBuildingInformation.annualMechanicalVentilationSystemConsumption
-                      }
-                      annualLightingConsumption={
-                        generalBuildingInformation.annualLightingConsumption
-                      }
-                      pvSolarSystemLoad={
-                        generalBuildingInformation.pvSolarSystemLoad
-                      }
-                      periodOf12Month={
-                        generalBuildingInformation.periodOf12Month
-                      }
-                      consumptionBreakdown={
-                        generalBuildingInformation.consumptionBreakdown
-                      }
+                      annualConsumption={generalBuildingInformation.annualConsumption}
+                      annualCarbonEmissions={generalBuildingInformation.annualCarbonEmissions}
+                      lastMonthComparison={generalBuildingInformation.lastMonthComparison}
+                      annualCoolingSystemConsumption={generalBuildingInformation.annualCoolingSystemConsumption}
+                      annualHeatingSystemConsumption={generalBuildingInformation.annualHeatingSystemConsumption}
+                      annualMechanicalVentilationSystemConsumption={generalBuildingInformation.annualMechanicalVentilationSystemConsumption}
+                      annualLightingConsumption={generalBuildingInformation.annualLightingConsumption}
+                      pvSolarSystemLoad={generalBuildingInformation.pvSolarSystemLoad}
+                      periodOf12Month={generalBuildingInformation.periodOf12Month}
+                      consumptionBreakdown={generalBuildingInformation.consumptionBreakdown}
                       costBreakdown={generalBuildingInformation.costBreakdown}
-                      co2EmissionsBreakdown={
-                        generalBuildingInformation.co2EmissionsBreakdown
-                      }
-                      incidentalGainsOtherInformation={
-                        generalBuildingInformation.incidentalGainsOtherInformation
-                      }
+                      co2EmissionsBreakdown={generalBuildingInformation.co2EmissionsBreakdown}
+                      incidentalGainsOtherInformation={generalBuildingInformation.incidentalGainsOtherInformation}
                     />
                   }
                 />
@@ -515,45 +409,19 @@ const Building = () => {
                   path="improve"
                   element={
                     <Improve
-                      consumptionBreakdown={
-                        generalBuildingInformation.consumptionBreakdown
-                      }
-                      costBreakdown={
-                        generalBuildingInformation.consumptionBreakdown
-                      }
-                      co2EmissionsBreakdown={
-                        generalBuildingInformation.consumptionBreakdown
-                      }
+                      consumptionBreakdown={generalBuildingInformation.consumptionBreakdown}
+                      costBreakdown={generalBuildingInformation.consumptionBreakdown}
+                      co2EmissionsBreakdown={generalBuildingInformation.consumptionBreakdown}
                       data={generalBuildingInformation.consumptionBreakdown}
                     />
                   }
                 />
-
-                {/*<Route path={`${path}/equipment-asset-reliability/:equipmentId/:subBreakdownName`}>*/}
-                {/*  <EquipmentAssetReliability />*/}
-                {/*</Route>*/}
-                <Route
-                  path="asset-reliability/*"
-                  element={
-                    <AssetReliability
-                      data={generalBuildingInformation.energyPerformance}
-                    />
-                  }
-                />
+                <Route path="asset-reliability/*" element={<AssetReliability data={generalBuildingInformation.energyPerformance} />} />
                 <Route
                   path="weather/*"
-                  element={
-                    <Weather
-                      lat={generalBuildingInformation?.prop?.latitude}
-                      lon={generalBuildingInformation?.prop?.longitude}
-                    />
-                  }
+                  element={<Weather lat={generalBuildingInformation?.prop?.latitude} lon={generalBuildingInformation?.prop?.longitude} />}
                 />
-                {/*<Redirect to={`${path}/energy-performance`}/>*/}
-                <Route
-                  path="/"
-                  element={<Navigate to="energy-performance" replace />}
-                />
+                <Route path="/" element={<Navigate to="energy-performance" replace />} />
               </Routes>
             </BuildingWrapper>
           )}

@@ -15,18 +15,7 @@ import plugloadImg from '../../../../assets/images/plugload.svg'
 import { useTranslation } from 'react-i18next'
 import { deepClone } from 'Utilities'
 import BarBlock from 'pages/building/comparision/components/BarBlock'
-import {
-  coolingSVG,
-  floorSVG,
-  heatingSVG,
-  lightingSVG,
-  mechVentSVG,
-  openingsSVG,
-  plugLoadSVG,
-  renewableSVG,
-  roofSVG,
-  wallSVG,
-} from 'SvgConstants'
+import { coolingSVG, floorSVG, heatingSVG, lightingSVG, mechVentSVG, openingsSVG, plugLoadSVG, renewableSVG, roofSVG, wallSVG } from 'SvgConstants'
 import UrlButton from 'components/UrlButton'
 
 const ChartHeader = styled.div`
@@ -258,14 +247,7 @@ const PerformanceComparison2 = () => {
     },
   ]
 
-  const otherMonitoredEquipments = [
-    'Photocopy Printers',
-    'Computers',
-    'Water Heaters',
-    'Water Cooler',
-    'Server Rack',
-    'Add additional equipment',
-  ]
+  const otherMonitoredEquipments = ['Photocopy Printers', 'Computers', 'Water Heaters', 'Water Cooler', 'Server Rack', 'Add additional equipment']
 
   const commonProperties = {
     margin: { top: 0, right: 20, bottom: 80, left: 25 },
@@ -357,21 +339,15 @@ const PerformanceComparison2 = () => {
       if (e.target.checked) {
         selectedBuildings = [...new Set([...selectedBuildings, e.target.value])]
       } else {
-        selectedBuildings = selectedBuildings.filter(
-          (value) => e.target.value !== value
-        )
+        selectedBuildings = selectedBuildings.filter((value) => e.target.value !== value)
       }
     }
 
     const onSelectSubSystem = (e) => {
       if (e.target.checked) {
-        selectedSubSystems = [
-          ...new Set([...selectedSubSystems, e.target.value]),
-        ]
+        selectedSubSystems = [...new Set([...selectedSubSystems, e.target.value])]
       } else {
-        selectedSubSystems = selectedSubSystems.filter(
-          (value) => e.target.value !== value
-        )
+        selectedSubSystems = selectedSubSystems.filter((value) => e.target.value !== value)
       }
     }
 
@@ -391,10 +367,7 @@ const PerformanceComparison2 = () => {
               value={item.id}
               defaultChecked
             />
-            <label
-              className="custom-control-label"
-              htmlFor={'checkbox_building_' + index}
-            >
+            <label className="custom-control-label" htmlFor={'checkbox_building_' + index}>
               {t(item.id)}
             </label>
           </div>
@@ -414,15 +387,8 @@ const PerformanceComparison2 = () => {
               value={item.x}
               defaultChecked
             />
-            <label
-              className="custom-control-label"
-              htmlFor={'checkbox_subsystem_' + index}
-            >
-              <ParameterItemIcon
-                src={getIcon(item.x)}
-                alt={item.x}
-                title={item.x}
-              />
+            <label className="custom-control-label" htmlFor={'checkbox_subsystem_' + index}>
+              <ParameterItemIcon src={getIcon(item.x)} alt={item.x} title={item.x} />
               {t(item.x)}
             </label>
           </div>
@@ -430,27 +396,18 @@ const PerformanceComparison2 = () => {
       )
     })
 
-    const otherMonitoredEquipmentItems = otherMonitoredEquipments.map(
-      (item, index) => {
-        return (
-          <ParameterItem key={item.id}>
-            <div className="custom-control custom-checkbox">
-              <input
-                type="checkbox"
-                className="custom-control-input me-1"
-                id={'checkbox_otherMonitoredEquipments_' + index}
-              />
-              <label
-                className="custom-control-label"
-                htmlFor={'checkbox_otherMonitoredEquipments_' + index}
-              >
-                {t(item)}
-              </label>
-            </div>
-          </ParameterItem>
-        )
-      }
-    )
+    const otherMonitoredEquipmentItems = otherMonitoredEquipments.map((item, index) => {
+      return (
+        <ParameterItem key={item.id}>
+          <div className="custom-control custom-checkbox">
+            <input type="checkbox" className="custom-control-input me-1" id={'checkbox_otherMonitoredEquipments_' + index} />
+            <label className="custom-control-label" htmlFor={'checkbox_otherMonitoredEquipments_' + index}>
+              {t(item)}
+            </label>
+          </div>
+        </ParameterItem>
+      )
+    })
 
     return (
       <Modal show={show} onHide={handleClose} size="sm">
@@ -468,23 +425,15 @@ const PerformanceComparison2 = () => {
             </PopupCategory>
 
             <PopupCategory>
-              <PopupCategoryTitle>
-                {t('Other Monitored Equipment')}
-              </PopupCategoryTitle>
+              <PopupCategoryTitle>{t('Other Monitored Equipment')}</PopupCategoryTitle>
               <ParameterList>{otherMonitoredEquipmentItems}</ParameterList>
             </PopupCategory>
 
             <div className="d-flex justify-content-center mb-2 mt-5">
-              <UpdateBtn
-                className="btn btn-primary btn-sm"
-                onClick={() => onUpdate(selectedBuildings, selectedSubSystems)}
-              >
+              <UpdateBtn className="btn btn-primary btn-sm" onClick={() => onUpdate(selectedBuildings, selectedSubSystems)}>
                 {t('Update')}
               </UpdateBtn>
-              <CancelBtn
-                className="btn btn-outline-primary btn-sm"
-                onClick={handleClose}
-              >
+              <CancelBtn className="btn btn-outline-primary btn-sm" onClick={handleClose}>
                 {t('Cancel')}
               </CancelBtn>
             </div>
@@ -510,46 +459,16 @@ const PerformanceComparison2 = () => {
     const xPlugLoads = xScale('Plug Loads')
     return (
       <>
-        {xCooling !== undefined && (
-          <g transform={`translate(${xCooling - 16}, ${y})`}>{coolingSVG()}</g>
-        )}
-        {xHeating !== undefined && (
-          <g transform={`translate(${xHeating - 8}, ${y})`}>{heatingSVG()}</g>
-        )}
-        {xLighting !== undefined && (
-          <g transform={`translate(${xLighting - 12}, ${y})`}>
-            {lightingSVG()}
-          </g>
-        )}
-        {xMechanicalVentilation !== undefined && (
-          <g transform={`translate(${xMechanicalVentilation - 18}, ${y})`}>
-            {mechVentSVG()}
-          </g>
-        )}
-        {xRoof !== undefined && (
-          <g transform={`translate(${xRoof - 26}, ${y})`}>{roofSVG()}</g>
-        )}
-        {xWall !== undefined && (
-          <g transform={`translate(${xWall - 28}, ${y})`}>{wallSVG()}</g>
-        )}
-        {xOpenings !== undefined && (
-          <g transform={`translate(${xOpenings - 28}, ${y})`}>
-            {openingsSVG()}
-          </g>
-        )}
-        {xFloor !== undefined && (
-          <g transform={`translate(${xFloor - 28}, ${y})`}>{floorSVG()}</g>
-        )}
-        {xRenewable !== undefined && (
-          <g transform={`translate(${xRenewable - 20}, ${y})`}>
-            {renewableSVG()}
-          </g>
-        )}
-        {xPlugLoads !== undefined && (
-          <g transform={`translate(${xPlugLoads - 20}, ${y})`}>
-            {plugLoadSVG()}
-          </g>
-        )}
+        {xCooling !== undefined && <g transform={`translate(${xCooling - 16}, ${y})`}>{coolingSVG()}</g>}
+        {xHeating !== undefined && <g transform={`translate(${xHeating - 8}, ${y})`}>{heatingSVG()}</g>}
+        {xLighting !== undefined && <g transform={`translate(${xLighting - 12}, ${y})`}>{lightingSVG()}</g>}
+        {xMechanicalVentilation !== undefined && <g transform={`translate(${xMechanicalVentilation - 18}, ${y})`}>{mechVentSVG()}</g>}
+        {xRoof !== undefined && <g transform={`translate(${xRoof - 26}, ${y})`}>{roofSVG()}</g>}
+        {xWall !== undefined && <g transform={`translate(${xWall - 28}, ${y})`}>{wallSVG()}</g>}
+        {xOpenings !== undefined && <g transform={`translate(${xOpenings - 28}, ${y})`}>{openingsSVG()}</g>}
+        {xFloor !== undefined && <g transform={`translate(${xFloor - 28}, ${y})`}>{floorSVG()}</g>}
+        {xRenewable !== undefined && <g transform={`translate(${xRenewable - 20}, ${y})`}>{renewableSVG()}</g>}
+        {xPlugLoads !== undefined && <g transform={`translate(${xPlugLoads - 20}, ${y})`}>{plugLoadSVG()}</g>}
       </>
     )
   }
@@ -557,61 +476,22 @@ const PerformanceComparison2 = () => {
   return (
     <PerformanceComparisonWrapper>
       <ChartHeader className="d-flex justify-content-between mb-5 flex-wrap">
-        <PerformanceComparisonTitle className="mb-2 mb-md-0">
-          {t('Building Energy - Sub-System Performance')}
-        </PerformanceComparisonTitle>
+        <PerformanceComparisonTitle className="mb-2 mb-md-0">{t('Building Energy - Sub-System Performance')}</PerformanceComparisonTitle>
         <div className="d-flex">
-          <UrlButton
-            url="comparison-building-subsystem-performance"
-            textWidth="70ch"
-          />
-          <EditConfigurationButton
-            type="button"
-            onClick={onClick}
-            className="btn btn-primary btn-sm ms-1"
-          >
+          <UrlButton url="comparison-building-subsystem-performance" textWidth="70ch" />
+          <EditConfigurationButton type="button" onClick={onClick} className="btn btn-primary btn-sm ms-1">
             {t('Edit Comparison')}
           </EditConfigurationButton>
         </div>
       </ChartHeader>
       <div className="d-flex">
         <div className="me-2">
-          <BarBlock
-            width="36px"
-            marginBottom="30px"
-            backgroundColor="#478D58"
-            text="A"
-          />
-          <BarBlock
-            width="36px"
-            marginBottom="30px"
-            backgroundColor="#63AE62"
-            text="B"
-          />
-          <BarBlock
-            width="36px"
-            marginBottom="30px"
-            backgroundColor="#AACC72"
-            text="C"
-          />
-          <BarBlock
-            width="36px"
-            marginBottom="31px"
-            backgroundColor="#F0EA6F"
-            text="D"
-          />
-          <BarBlock
-            width="36px"
-            marginBottom="31px"
-            backgroundColor="#ECB75F"
-            text="E"
-          />
-          <BarBlock
-            width="36px"
-            marginBottom="31px"
-            backgroundColor="#DF7F4F"
-            text="F"
-          />
+          <BarBlock width="36px" marginBottom="30px" backgroundColor="#478D58" text="A" />
+          <BarBlock width="36px" marginBottom="30px" backgroundColor="#63AE62" text="B" />
+          <BarBlock width="36px" marginBottom="30px" backgroundColor="#AACC72" text="C" />
+          <BarBlock width="36px" marginBottom="31px" backgroundColor="#F0EA6F" text="D" />
+          <BarBlock width="36px" marginBottom="31px" backgroundColor="#ECB75F" text="E" />
+          <BarBlock width="36px" marginBottom="31px" backgroundColor="#DF7F4F" text="F" />
           <BarBlock width="36px" backgroundColor="#D94545" text="G" />
         </div>
         <LineChartWrapper>
@@ -628,17 +508,7 @@ const PerformanceComparison2 = () => {
             enableGridX={false}
             lineWidth={2}
             isInteractive={true}
-            layers={[
-              'grid',
-              'markers',
-              'areas',
-              IconLayer,
-              'lines',
-              'slices',
-              'axes',
-              'points',
-              'legends',
-            ]}
+            layers={['grid', 'markers', 'areas', IconLayer, 'lines', 'slices', 'axes', 'points', 'legends']}
             yScale={{
               type: 'linear',
               min: 1,

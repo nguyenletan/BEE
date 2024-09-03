@@ -20,8 +20,7 @@ const Title = styled.h2`
 `
 
 const Activity = () => {
-  const [addingBuildingProgress, setAddingBuildingProgressState] =
-    useRecoilState(addingBuildingProgressState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(addingBuildingProgressState)
 
   // const [isMovingNext, setIsMovingNext] = useState(false)
 
@@ -29,9 +28,7 @@ const Activity = () => {
   const { user } = useAuth()
   const navigate = useNavigate()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
-  const moveNextUrl =
-    parentUrl +
-    (id ? '/adding-building-successfully' : '/electricity-consumption')
+  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/electricity-consumption')
   const { t } = useTranslation('buildingInput')
 
   useEffect(() => {

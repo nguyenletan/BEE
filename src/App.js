@@ -4,11 +4,7 @@ import { useAuth } from 'AuthenticateProvider'
 import FirebaseAuth from './FirebaseAuthenticate'
 import { EuiProvider } from '@elastic/eui'
 
-import {
-  createTheme,
-  responsiveFontSizes,
-  ThemeProvider,
-} from '@mui/material/styles'
+import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles'
 import 'analytics_log_event'
 // import Login from './pages/login/Login';
 import Portfolio from './pages/portfolio/Portfolio'
@@ -96,10 +92,7 @@ function App() {
               <Route path="/building" element={<Portfolio />} exact />
               <Route path="/building/:id/*" element={<Building />} />
               <Route path="/adding-building/*" element={<AddingBuilding />} />
-              <Route
-                path="/editing-building/:id/*"
-                element={<AddingBuilding />}
-              />
+              <Route path="/editing-building/:id/*" element={<AddingBuilding />} />
               <Route path="/iframe/*" element={<IFrame />} />
             </Routes>
             <DebugButton />

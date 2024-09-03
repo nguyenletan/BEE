@@ -47,22 +47,16 @@ const AddingBuilding = () => {
 
   const setBuildingActivity = useSetRecoilState(buildingActivityState)
 
-  const setGeneralBuildingInformation = useSetRecoilState(
-    generalBuildingInformationState
-  )
+  const setGeneralBuildingInformation = useSetRecoilState(generalBuildingInformationState)
   const setSpaceUsageGFAList = useSetRecoilState(spaceUsageGFAListState)
-  const setElectricityConsumptionList = useSetRecoilState(
-    electricityConsumptionListState
-  )
+  const setElectricityConsumptionList = useSetRecoilState(electricityConsumptionListState)
   const setHeatConsumptionList = useSetRecoilState(heatConsumptionListState)
   const setCoolingSystem = useSetRecoilState(coolingSystemState)
   const setHeatingSystem = useSetRecoilState(heatingSystemState)
   const setLightingSubSystemList = useSetRecoilState(lightingSubSystemListState)
   const setEnvelopFacade = useSetRecoilState(envelopFacadeState)
   const setSolarPanelSystemList = useSetRecoilState(solarPanelSystemListState)
-  const setAddingBuildingProgressState = useSetRecoilState(
-    addingBuildingProgressState
-  )
+  const setAddingBuildingProgressState = useSetRecoilState(addingBuildingProgressState)
 
   //console.log(id)
 
@@ -118,15 +112,9 @@ const AddingBuilding = () => {
         <Routes>
           <Route path={`/`} element={<AskQuestion />} exact />
           <Route path={`search-building`} element={<SearchBuilding />} />
-          <Route
-            path={`general-information`}
-            element={<GeneralInformation />}
-          />
+          <Route path={`general-information`} element={<GeneralInformation />} />
           <Route path={`activity`} element={<Activity />} />
-          <Route
-            path={`electricity-consumption`}
-            element={<ElectricityConsumption />}
-          />
+          <Route path={`electricity-consumption`} element={<ElectricityConsumption />} />
 
           <Route path={`heat-consumption`} element={<HeatConsumption />} />
 
@@ -134,10 +122,7 @@ const AddingBuilding = () => {
           <Route path={`lighting`} element={<Lighting />} />
           <Route path={`envelope-facade`} element={<EnvelopFacade />} />
           <Route path={`renewable-energy`} element={<RenewableEnergy />} />
-          <Route
-            path={`adding-building-successfully`}
-            element={<AddingBuildingSuccessfully />}
-          />
+          <Route path={`adding-building-successfully`} element={<AddingBuildingSuccessfully />} />
         </Routes>
       </div>
     </>

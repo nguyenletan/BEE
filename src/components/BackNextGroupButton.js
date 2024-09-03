@@ -2,13 +2,7 @@
 import React, { useState } from 'react'
 import CircularProgressBarWithLabel from './CircularProgressBarWithLabel'
 import { Button, CircularProgress } from '@mui/material'
-import {
-  ArrowBack,
-  ArrowForward,
-  DoneAll,
-  Save,
-  Delete,
-} from '@mui/icons-material'
+import { ArrowBack, ArrowForward, DoneAll, Save, Delete } from '@mui/icons-material'
 import { Link, useParams } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import {
@@ -60,18 +54,14 @@ const BackNextGroupButton = ({
   isInDoneStep,
   // submitFunc,
 }) => {
-  const generalBuildingInformation = useRecoilValue(
-    generalBuildingInformationState
-  )
+  const generalBuildingInformation = useRecoilValue(generalBuildingInformationState)
 
   const buildingActivity = useRecoilValue(buildingActivityState)
 
   const spaceUsageGFAList = useRecoilValue(spaceUsageGFAListState)
   const lightingSubSystemList = useRecoilValue(lightingSubSystemListState)
   const solarPanelSystemList = useRecoilValue(solarPanelSystemListState)
-  const electricityConsumptionList = useRecoilValue(
-    electricityConsumptionListState
-  )
+  const electricityConsumptionList = useRecoilValue(electricityConsumptionListState)
 
   const heatConsumptionList = useRecoilValue(heatConsumptionListState)
 
@@ -107,9 +97,7 @@ const BackNextGroupButton = ({
     const idToken = await user.getIdToken()
     setIsOpenSavingPopup(true)
     setIsSaving(true)
-    const message = id
-      ? await updateBuilding(id, submitData, idToken)
-      : await createBuilding(submitData, idToken)
+    const message = id ? await updateBuilding(id, submitData, idToken) : await createBuilding(submitData, idToken)
     setIsSaving(false)
 
     //setSavingMessage(message)
@@ -161,23 +149,13 @@ const BackNextGroupButton = ({
           {/*{progressValue !== undefined && <CircularProgressBarWithLabel value={progressValue}/>}*/}
           {backLink && (
             <Link to={backLink}>
-              <Button
-                startIcon={<ArrowBack />}
-                variant="contained"
-                color="default"
-                className="me-2"
-              >
+              <Button startIcon={<ArrowBack />} variant="contained" color="default" className="me-2">
                 {t('Back')}
               </Button>
             </Link>
           )}
           <Link to="/building">
-            <Button
-              endIcon={<DoneAll />}
-              variant="contained"
-              color="primary"
-              className="me-2"
-            >
+            <Button endIcon={<DoneAll />} variant="contained" color="primary" className="me-2">
               {t('Done')}
             </Button>
           </Link>
@@ -208,12 +186,7 @@ const BackNextGroupButton = ({
 
           {backLink && (
             <Link to={backLink}>
-              <Button
-                startIcon={<ArrowBack />}
-                variant="contained"
-                color="primary"
-                className="me-2"
-              >
+              <Button startIcon={<ArrowBack />} variant="contained" color="primary" className="me-2">
                 {t('Back')}
               </Button>
             </Link>

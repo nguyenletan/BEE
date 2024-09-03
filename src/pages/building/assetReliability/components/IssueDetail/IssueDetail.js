@@ -48,11 +48,7 @@ const IssueDetailOverall = ({ data }) => {
         <div className="me-5 d-flex flex-column">
           <RowItemTitle>System</RowItemTitle>
           <RowItemValue>
-            <Image
-              src={subSystemIconObj.imgSrc}
-              alt={data.subSystem}
-              width={subSystemIconObj.width}
-            />
+            <Image src={subSystemIconObj.imgSrc} alt={data.subSystem} width={subSystemIconObj.width} />
             <span>{data.subSystem}</span>
           </RowItemValue>
         </div>

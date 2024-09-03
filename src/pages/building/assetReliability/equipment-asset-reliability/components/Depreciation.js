@@ -161,15 +161,7 @@ const Depreciation = () => {
         <text x={x - 40} y="-5" className="small">
           {t('Current Age')}
         </text>
-        <line
-          x1={x}
-          y1={0}
-          x2={x}
-          y2={innerHeight}
-          stroke="#87972f"
-          strokeDasharray="3"
-          strokeWidth={1}
-        />
+        <line x1={x} y1={0} x2={x} y2={innerHeight} stroke="#87972f" strokeDasharray="3" strokeWidth={1} />
         {/*<line x1="300" y1="10" x2="300" y2="285" stroke="#87972f" strokeDasharray="2" strokeWidth={1}/>*/}
       </>
     )
@@ -232,19 +224,7 @@ const Depreciation = () => {
       legendOffset: 36,
       legendPosition: 'middle',
     },
-    layers: [
-      'grid',
-      'markers',
-      'axes',
-      'areas',
-      'crosshair',
-      'points',
-      'slices',
-      'mesh',
-      'legends',
-      Line,
-      DashedLine,
-    ],
+    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'points', 'slices', 'mesh', 'legends', Line, DashedLine],
   }
 
   return (

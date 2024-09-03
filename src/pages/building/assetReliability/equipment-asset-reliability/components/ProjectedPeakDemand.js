@@ -89,33 +89,9 @@ const ProjectedPeakDemand = (props) => {
         {/*  strokeWidth={1}*/}
         {/*/>*/}
 
-        <line
-          x1="300"
-          y1="10"
-          x2="300"
-          y2="285"
-          stroke="#87972f"
-          strokeDasharray="2"
-          strokeWidth={1}
-        />
-        <line
-          x1="500"
-          y1="10"
-          x2="500"
-          y2="285"
-          stroke="#87972f"
-          strokeDasharray="2"
-          strokeWidth={1}
-        />
-        <line
-          x1="700"
-          y1="10"
-          x2="700"
-          y2="285"
-          stroke="#87972f"
-          strokeDasharray="2"
-          strokeWidth={1}
-        />
+        <line x1="300" y1="10" x2="300" y2="285" stroke="#87972f" strokeDasharray="2" strokeWidth={1} />
+        <line x1="500" y1="10" x2="500" y2="285" stroke="#87972f" strokeDasharray="2" strokeWidth={1} />
+        <line x1="700" y1="10" x2="700" y2="285" stroke="#87972f" strokeDasharray="2" strokeWidth={1} />
       </>
     )
   }
@@ -150,19 +126,7 @@ const ProjectedPeakDemand = (props) => {
       legendPosition: 'middle',
     },
 
-    layers: [
-      'grid',
-      'markers',
-      'axes',
-      'areas',
-      'crosshair',
-      'lines',
-      'points',
-      'slices',
-      'mesh',
-      'legends',
-      Line,
-    ],
+    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends', Line],
   }
 
   const onChange = (e) => {
@@ -180,9 +144,7 @@ const ProjectedPeakDemand = (props) => {
       <div className="d-flex justify-content-between mb-5">
         <h5>{t('Projected Peak Demand (kW)')}</h5>
         <NumberOfDaysWrapper className="d-flex justify-content-between">
-          <NumberOfDaysLabel for="number-of-next-days">
-            {t('Number of days')}:{' '}
-          </NumberOfDaysLabel>
+          <NumberOfDaysLabel for="number-of-next-days">{t('Number of days')}: </NumberOfDaysLabel>
           <EuiRange
             id="number-of-next-days"
             min={1}

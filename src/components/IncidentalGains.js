@@ -57,9 +57,7 @@ const IncidentalGains = (props) => {
 
   return (
     <IncidentalGainsWrapper>
-      <IncidentalGainsTitle>
-        {t('Incidental Gains & Other Information')}
-      </IncidentalGainsTitle>
+      <IncidentalGainsTitle>{t('Incidental Gains & Other Information')}</IncidentalGainsTitle>
       <IncidentalGainsList className="d-flex justify-content-start row">
         <IncidentalGainsItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2">
           <div className="me-1">
@@ -82,11 +80,7 @@ const IncidentalGains = (props) => {
             <IncidentalGainsItemTitle>{t('Openings')}</IncidentalGainsItemTitle>
             <IncidentalGainsItemValue>{openings}W/m2</IncidentalGainsItemValue>
           </div>
-          <IncidentalGainsItemImage
-            src={openingImg}
-            alt="Openings"
-            width="33"
-          />
+          <IncidentalGainsItemImage src={openingImg} alt="Openings" width="33" />
         </IncidentalGainsItem>
 
         <IncidentalGainsItem className="d-flex col col-6 col-lg-2 mb-3 mb-lg-0 justify-content-start align-items-center me-2">

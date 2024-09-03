@@ -199,10 +199,7 @@ const DrillDownDonutChart = (props) => {
         </div>
         <div>
           {isDrillDown && (
-            <button
-              className="btn btn-sm btn-outline-primary"
-              onClick={handleBackToOverallClick}
-            >
+            <button className="btn btn-sm btn-outline-primary" onClick={handleBackToOverallClick}>
               Back
             </button>
           )}
@@ -249,14 +246,7 @@ const DrillDownDonutChart = (props) => {
           enableSliceLabels={true}
           enableRadialLabels={enableRadialLabels ?? true}
           onClick={handleClick}
-          layers={[
-            'arcs',
-            'arcLabels',
-            'arcLinkLabels',
-            'legends',
-            SubCategoryName,
-            isCenteredPercentage === true ? CenteredPercentage : '',
-          ]}
+          layers={['arcs', 'arcLabels', 'arcLinkLabels', 'legends', SubCategoryName, isCenteredPercentage === true ? CenteredPercentage : '']}
         />
       </ResponsivePieWrapper>
       {hasDescription && <Ul>{list}</Ul>}

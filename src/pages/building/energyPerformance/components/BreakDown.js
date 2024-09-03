@@ -2,12 +2,7 @@ import DrillDownDonutChart3Lv from '../../../../components/DrillDownDonutChart3L
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import {
-  breakDownLevelState,
-  consumptionBreakdownState,
-  isBreakDownDrillDownState,
-  selectedSubBreakdownState,
-} from 'atoms'
+import { breakDownLevelState, consumptionBreakdownState, isBreakDownDrillDownState, selectedSubBreakdownState } from 'atoms'
 import { useTranslation } from 'react-i18next'
 
 const BreakdownWrapper = styled.div`
@@ -22,55 +17,32 @@ const BreakDown = (props) => {
   const setBreakDownLevel = useSetRecoilState(breakDownLevelState)
   const setIsBreakDownDrillDown = useSetRecoilState(isBreakDownDrillDownState)
   const setSelectedSubBreakdown = useSetRecoilState(selectedSubBreakdownState)
-  const [consumptionBreakdownSt, setConsumptionBreakdownSt] = useRecoilState(
-    consumptionBreakdownState
-  )
+  const [consumptionBreakdownSt, setConsumptionBreakdownSt] = useRecoilState(consumptionBreakdownState)
 
   useEffect(() => {
     setConsumptionBreakdownSt(consumptionBreakdown)
     setSelectedSubBreakdown(null)
     setBreakDownLevel(0)
     setIsBreakDownDrillDown(false)
-  }, [
-    consumptionBreakdown,
-    setBreakDownLevel,
-    setConsumptionBreakdownSt,
-    setIsBreakDownDrillDown,
-    setSelectedSubBreakdown,
-  ])
+  }, [consumptionBreakdown, setBreakDownLevel, setConsumptionBreakdownSt, setIsBreakDownDrillDown, setSelectedSubBreakdown])
 
   return (
     <BreakdownWrapper className="d-flex row justify-content-center">
       {consumptionBreakdownSt && (
         <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
-          <DrillDownDonutChart3Lv
-            title={t('Consumption Breakdown')}
-            subTitle="MWh"
-            hasDescription
-            data={consumptionBreakdownSt}
-          />
+          <DrillDownDonutChart3Lv title={t('Consumption Breakdown')} subTitle="MWh" hasDescription data={consumptionBreakdownSt} />
         </div>
       )}
 
       {consumptionBreakdownSt && (
         <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
-          <DrillDownDonutChart3Lv
-            title={t('Cost Breakdown')}
-            subTitle={t('$')}
-            data={consumptionBreakdownSt}
-            hasDescription
-          />
+          <DrillDownDonutChart3Lv title={t('Cost Breakdown')} subTitle={t('$')} data={consumptionBreakdownSt} hasDescription />
         </div>
       )}
 
       {consumptionBreakdownSt && (
         <div className="col col-12 col-md-8 col-xl-4">
-          <DrillDownDonutChart3Lv
-            title={t('CO2 Emissions Breakdown')}
-            subTitle={t('Ton')}
-            data={consumptionBreakdownSt}
-            hasDescription
-          />
+          <DrillDownDonutChart3Lv title={t('CO2 Emissions Breakdown')} subTitle={t('Ton')} data={consumptionBreakdownSt} hasDescription />
         </div>
       )}
     </BreakdownWrapper>

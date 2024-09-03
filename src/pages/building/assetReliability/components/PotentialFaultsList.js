@@ -138,9 +138,7 @@ const PotentialFaultList = ({ data }) => {
 
   return (
     <ImprovementMeasuresWrapper>
-      <ImprovementMeasuresTitle>
-        {t('Improvement Measures')}
-      </ImprovementMeasuresTitle>
+      <ImprovementMeasuresTitle>{t('Improvement Measures')}</ImprovementMeasuresTitle>
       <ImprovementMeasuresTable className="table">
         <thead>
           <tr>

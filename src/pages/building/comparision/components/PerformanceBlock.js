@@ -126,41 +126,19 @@ const PerformanceBlock = ({ data }) => {
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
-                  <BarBlock
-                    width="64px"
-                    backgroundColor="#F0EA6F"
-                    text="D"
-                    isArrow
-                    textAlign="center"
-                  />
+                  <BarBlock width="64px" backgroundColor="#F0EA6F" text="D" isArrow textAlign="center" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
-                  <BarBlock
-                    width="1px"
-                    backgroundColor="transparent"
-                    text=""
-                    marginBottom="0px"
-                  />
+                  <BarBlock width="1px" backgroundColor="transparent" text="" marginBottom="0px" />
                 </BarIndicatorColumn>
                 <div className="col-6">
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
-                  <BarBlock
-                    width="64px"
-                    backgroundColor="#63AE62"
-                    text="B"
-                    isArrow
-                    textAlign="center"
-                  />
+                  <BarBlock width="64px" backgroundColor="#63AE62" text="B" isArrow textAlign="center" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
-                  <BarBlock
-                    width="1px"
-                    backgroundColor="transparent"
-                    text=""
-                    marginBottom="0px"
-                  />
+                  <BarBlock width="1px" backgroundColor="transparent" text="" marginBottom="0px" />
                 </div>
               </div>
             </BarIndicatorBody>
@@ -218,41 +196,19 @@ const PerformanceBlock = ({ data }) => {
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
-                  <BarBlock
-                    width="64px"
-                    backgroundColor="#3c82c6"
-                    text="D"
-                    isArrow
-                    textAlign="center"
-                  />
+                  <BarBlock width="64px" backgroundColor="#3c82c6" text="D" isArrow textAlign="center" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
-                  <BarBlock
-                    width="1px"
-                    backgroundColor="transparent"
-                    text=""
-                    marginBottom="0px"
-                  />
+                  <BarBlock width="1px" backgroundColor="transparent" text="" marginBottom="0px" />
                 </BarIndicatorColumn>
                 <div className="col-6">
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
-                  <BarBlock
-                    width="64px"
-                    backgroundColor="#63bcf2"
-                    text="B"
-                    isArrow
-                    textAlign="center"
-                  />
+                  <BarBlock width="64px" backgroundColor="#63bcf2" text="B" isArrow textAlign="center" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
                   <BarBlock width="1px" backgroundColor="transparent" text="" />
-                  <BarBlock
-                    width="1px"
-                    backgroundColor="transparent"
-                    text=""
-                    marginBottom="0px"
-                  />
+                  <BarBlock width="1px" backgroundColor="transparent" text="" marginBottom="0px" />
                 </div>
               </div>
             </BarIndicatorBody>

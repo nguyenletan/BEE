@@ -46,11 +46,7 @@ const subSystemPerformanceData = {
       'Potential Best In Class': 64,
     },
   ],
-  keys: [
-    'Potential Best In Class',
-    'Current Performance',
-    'Minimum Requirement',
-  ],
+  keys: ['Potential Best In Class', 'Current Performance', 'Minimum Requirement'],
   indexBy: ['name'],
 }
 const ComparisonSubSystemPerformance = () => {

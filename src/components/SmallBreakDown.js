@@ -135,11 +135,7 @@ const SmallBreakDown = (props) => {
           }}
           enableSliceLabels={false}
           enableRadialLabels={enableRadialLabels ?? true}
-          layers={[
-            'arcs',
-            'legends',
-            isCenteredPercentage === true ? CenteredPercentage : '',
-          ]}
+          layers={['arcs', 'legends', isCenteredPercentage === true ? CenteredPercentage : '']}
 
           //layers={['slices', 'sliceLabels', 'radialLabels', 'legends', isCenteredPercentage === true ? CenteredPercentage : '']}
         />

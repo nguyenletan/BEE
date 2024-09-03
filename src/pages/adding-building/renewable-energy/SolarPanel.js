@@ -47,27 +47,19 @@ const Content = styled.div``
 const SolarPanel = ({ data, control, setValue }) => {
   const classes = makeStyles(() => MaterialFormStyle)()
   const { t } = useTranslation(['buildingInput', 'common'])
-  const [solarSystemList, setSolarSystemList] = useRecoilState(
-    solarPanelSystemListState
-  )
+  const [solarSystemList, setSolarSystemList] = useRecoilState(solarPanelSystemListState)
 
   const [showInclineAngle, setShowInclineAngle] = React.useState(false)
-  const [showInclineAngleSlider, setShowInclineAngleSlider] =
-    React.useState(true)
+  const [showInclineAngleSlider, setShowInclineAngleSlider] = React.useState(true)
   const [showOrientationAngle, setShowOrientationAngle] = React.useState(false)
-  const [showOrientationAngleSlider, setShowOrientationAngleSlider] =
-    React.useState(true)
+  const [showOrientationAngleSlider, setShowOrientationAngleSlider] = React.useState(true)
 
   const handleInclineAngleSliderChange = (event, newValue) => {
     setInclineAngleValue(newValue)
   }
 
   const handleInclineAngleInputBlur = () => {
-    if (
-      data.inclineAngle < 0 ||
-      data.inclineAngle === '' ||
-      data.inclineAngle === null
-    ) {
+    if (data.inclineAngle < 0 || data.inclineAngle === '' || data.inclineAngle === null) {
       setInclineAngleValue(0)
     } else if (data.inclineAngle > 90) {
       setInclineAngleValue(90)
@@ -109,11 +101,7 @@ const SolarPanel = ({ data, control, setValue }) => {
   }
 
   const handleOrientationAngleInputBlur = () => {
-    if (
-      data.orientationAngle < -180 ||
-      data.orientationAngle === '' ||
-      data.orientationAngle === null
-    ) {
+    if (data.orientationAngle < -180 || data.orientationAngle === '' || data.orientationAngle === null) {
       setOrientationAngleValue(-180)
     } else if (data.orientationAngle > 180) {
       setOrientationAngleValue(180)
@@ -125,11 +113,7 @@ const SolarPanel = ({ data, control, setValue }) => {
   }
 
   const handleSetSystemLossValueInputBlur = () => {
-    if (
-      data.systemLoss < 0 ||
-      data.systemLoss === '' ||
-      data.systemLoss === null
-    ) {
+    if (data.systemLoss < 0 || data.systemLoss === '' || data.systemLoss === null) {
       setSystemLossValue(0)
     } else if (data.systemLoss > 100) {
       setSystemLossValue(100)
@@ -216,19 +200,10 @@ const SolarPanel = ({ data, control, setValue }) => {
     setValue(`mountingTypeId${data.id}`, data.mountingTypeId, {
       shouldValidate: true,
     })
-  }, [
-    data.id,
-    data.installedCapacity,
-    data.mountingTypeId,
-    data.pvTechChoiceId,
-    data.trackingTypeId,
-    setValue,
-  ])
+  }, [data.id, data.installedCapacity, data.mountingTypeId, data.pvTechChoiceId, data.trackingTypeId, setValue])
 
   const onRemoveItem = () => {
-    const index = solarSystemList.findIndex(
-      (listItem) => listItem.id === data.id
-    )
+    const index = solarSystemList.findIndex((listItem) => listItem.id === data.id)
 
     const newList = removeItemAtIndex(solarSystemList, index)
     setSolarSystemList(newList)
@@ -278,10 +253,7 @@ const SolarPanel = ({ data, control, setValue }) => {
           setValue={setValue}
           render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl className={classes.formControl}>
-              <InputLabel
-                id={`tracking-type-label${data.id}`}
-                className={error && 'text-danger'}
-              >
+              <InputLabel id={`tracking-type-label${data.id}`} className={error && 'text-danger'}>
                 {t('Tracking Type')}
               </InputLabel>
               <Select
@@ -301,11 +273,7 @@ const SolarPanel = ({ data, control, setValue }) => {
                   </MenuItem>
                 ))}
               </Select>
-              {error && (
-                <FormHelperText className="text-danger">
-                  {t('This field is required')}
-                </FormHelperText>
-              )}
+              {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
             </FormControl>
           )}
           rules={{
@@ -323,10 +291,7 @@ const SolarPanel = ({ data, control, setValue }) => {
                   color="primary"
                   checked={data.unknownInclineAngle}
                   onChange={() => {
-                    handleCheckBoxChange(
-                      'unknownInclineAngle',
-                      !data.unknownInclineAngle
-                    )
+                    handleCheckBoxChange('unknownInclineAngle', !data.unknownInclineAngle)
                   }}
                 />
               }
@@ -393,10 +358,7 @@ const SolarPanel = ({ data, control, setValue }) => {
                   color="primary"
                   checked={data.unknownOrientationAngle}
                   onChange={() => {
-                    handleCheckBoxChange(
-                      'unknownOrientationAngle',
-                      !data.unknownOrientationAngle
-                    )
+                    handleCheckBoxChange('unknownOrientationAngle', !data.unknownOrientationAngle)
                   }}
                 />
               }
@@ -506,10 +468,7 @@ const SolarPanel = ({ data, control, setValue }) => {
           setValue={setValue}
           render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl className={classes.formControl}>
-              <InputLabel
-                id={`pv-tech-choice-label${data.id}`}
-                className={error && 'text-danger'}
-              >
+              <InputLabel id={`pv-tech-choice-label${data.id}`} className={error && 'text-danger'}>
                 {t('P.V. Panel Type')}
               </InputLabel>
               <Select
@@ -529,11 +488,7 @@ const SolarPanel = ({ data, control, setValue }) => {
                   </MenuItem>
                 ))}
               </Select>
-              {error && (
-                <FormHelperText className="text-danger">
-                  {t('This field is required')}
-                </FormHelperText>
-              )}
+              {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
             </FormControl>
           )}
           rules={{
@@ -547,10 +502,7 @@ const SolarPanel = ({ data, control, setValue }) => {
           setValue={setValue}
           render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl className={classes.formControl}>
-              <InputLabel
-                id={`mounting-type-label${data.id}`}
-                className={error && 'text-danger'}
-              >
+              <InputLabel id={`mounting-type-label${data.id}`} className={error && 'text-danger'}>
                 {t('Mounting Type')}
               </InputLabel>
               <Select
@@ -569,11 +521,7 @@ const SolarPanel = ({ data, control, setValue }) => {
                   </MenuItem>
                 ))}
               </Select>
-              {error && (
-                <FormHelperText className="text-danger">
-                  {t('This field is required')}
-                </FormHelperText>
-              )}
+              {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
             </FormControl>
           )}
           rules={{

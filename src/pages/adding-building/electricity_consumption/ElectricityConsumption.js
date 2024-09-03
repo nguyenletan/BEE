@@ -9,10 +9,7 @@ import { Add } from '@mui/icons-material'
 import StepNav from '../step-nav/StepNav'
 import OneMonthElectricityConsumption from './OneMonthElectricityConsumption'
 
-import {
-  addingBuildingProgressState,
-  electricityConsumptionListState,
-} from 'atoms'
+import { addingBuildingProgressState, electricityConsumptionListState } from 'atoms'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getPrevMonthYear } from 'Utilities'
@@ -50,14 +47,12 @@ const Adding = styled(Add)`
 `
 
 const ElectricityConsumption = () => {
-  const [addingBuildingProgress, setAddingBuildingProgressState] =
-    useRecoilState(addingBuildingProgressState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(addingBuildingProgressState)
   const { t } = useTranslation('buildingInput')
 
   const { id } = useParams()
   const parentUrl = id ? `/editing-building/${id}` : '/adding-building'
-  const moveNextUrl =
-    parentUrl + (id ? '/adding-building-successfully' : '/hvac')
+  const moveNextUrl = parentUrl + (id ? '/adding-building-successfully' : '/hvac')
   const { user } = useAuth()
   const navigate = useNavigate()
 
@@ -78,18 +73,14 @@ const ElectricityConsumption = () => {
     shouldUnregister: false,
   })
 
-  const [electricityConsumptionList, setElectricityConsumptionList] =
-    useRecoilState(electricityConsumptionListState)
+  const [electricityConsumptionList, setElectricityConsumptionList] = useRecoilState(electricityConsumptionListState)
 
   const onAddElectricityConsumption = () => {
     let nextMonthYear = {
       month: new Date().getMonth(),
       year: new Date().getFullYear(),
     }
-    if (
-      electricityConsumptionList !== null &&
-      electricityConsumptionList.length > 0
-    ) {
+    if (electricityConsumptionList !== null && electricityConsumptionList.length > 0) {
       //console.log(electricityConsumptionList[electricityConsumptionList.length - 1])
       nextMonthYear = getPrevMonthYear(
         electricityConsumptionList[electricityConsumptionList.length - 1].month,
@@ -110,22 +101,13 @@ const ElectricityConsumption = () => {
   }
 
   const lis = electricityConsumptionList.map((item) => (
-    <OneMonthElectricityConsumption
-      key={'ElectricityConsumption' + item.id}
-      data={item}
-      control={control}
-      setValue={setValue}
-    />
+    <OneMonthElectricityConsumption key={'ElectricityConsumption' + item.id} data={item} control={control} setValue={setValue} />
   ))
 
   useEffect(() => {
     async function tracking() {
       const idToken = await user.getIdToken()
-      trackingUser(
-        user.uid,
-        'Electricity Consumption - Adding Building',
-        idToken
-      )
+      trackingUser(user.uid, 'Electricity Consumption - Adding Building', idToken)
     }
     tracking()
   }, [])
@@ -150,11 +132,7 @@ const ElectricityConsumption = () => {
           <div className="col-3">{t('Cost ($)')}</div>
           <div className="col-3">{t('Consumption (kWh)')}</div>
           <div className="col-3">
-            <Adding
-              titleAccess={t('Add new item')}
-              fontSize="large"
-              onClick={onAddElectricityConsumption}
-            />
+            <Adding titleAccess={t('Add new item')} fontSize="large" onClick={onAddElectricityConsumption} />
           </div>
         </Header>
         <UL>{lis}</UL>

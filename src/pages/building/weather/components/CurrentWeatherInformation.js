@@ -53,23 +53,14 @@ const CurrentWeatherInformation = (props) => {
   const buttonContent = (
     <div className="d-flex align-items-center">
       {weatherInfo && weatherInfo?.days && weatherInfo?.days.length > 0 && (
-        <img
-          className="me-3"
-          src={getWeatherIcon(weatherInfo?.days[0].icon)}
-          alt={weatherInfo?.days[0].icon}
-          width="32px"
-        />
+        <img className="me-3" src={getWeatherIcon(weatherInfo?.days[0].icon)} alt={weatherInfo?.days[0].icon} width="32px" />
       )}
       <H4 className="font-bold">Current Weather</H4>
     </div>
   )
 
   return (
-    <EuiAccordion
-      initialIsOpen={true}
-      className="mb-5"
-      buttonContent={buttonContent}
-    >
+    <EuiAccordion initialIsOpen={true} className="mb-5" buttonContent={buttonContent}>
       <EuiPanel color="subdued">
         {weatherInfo && weatherInfo?.days && (
           <Wrapper>
@@ -92,26 +83,20 @@ const CurrentWeatherInformation = (props) => {
             </div>
             <div>
               <H5 className="pb-2 bold">
-                Weather:{' '}
-                <strong className="text-primary">
-                  {weatherInfo?.days[0].description}
-                </strong>
+                Weather: <strong className="text-primary">{weatherInfo?.days[0].description}</strong>
               </H5>
               <Information>
                 <span>
-                  <label>{weatherInfo?.days[0].preciptype ?? 'Rain'}:</label>{' '}
-                  {weatherInfo?.days[0].precipprob} %
+                  <label>{weatherInfo?.days[0].preciptype ?? 'Rain'}:</label> {weatherInfo?.days[0].precipprob} %
                 </span>
                 <span>
                   <label>Humidity:</label> {weatherInfo?.days[0].humidity} %
                 </span>
                 <span>
-                  <label>Precipitation:</label>{' '}
-                  {weatherInfo?.days[0].precipprob} %
+                  <label>Precipitation:</label> {weatherInfo?.days[0].precipprob} %
                 </span>
                 <span>
-                  <label>Cloud Cover:</label> {weatherInfo?.days[0].cloudcover}{' '}
-                  %
+                  <label>Cloud Cover:</label> {weatherInfo?.days[0].cloudcover} %
                 </span>
                 <span>
                   <label>Snow:</label> {weatherInfo?.days[0].snow} %
@@ -120,12 +105,10 @@ const CurrentWeatherInformation = (props) => {
                   <label>Snow Depth:</label> {weatherInfo?.days[0].snowdepth} mm
                 </span>
                 <span>
-                  <label>Solar radiation:</label>{' '}
-                  {weatherInfo?.days[0].solarradiation}
+                  <label>Solar radiation:</label> {weatherInfo?.days[0].solarradiation}
                 </span>
                 <span>
-                  <label>Solar Energy:</label>{' '}
-                  {weatherInfo?.days[0].solarenergy}
+                  <label>Solar Energy:</label> {weatherInfo?.days[0].solarenergy}
                 </span>
                 <span>
                   <label>UV:</label> {weatherInfo?.days[0].uvindex}

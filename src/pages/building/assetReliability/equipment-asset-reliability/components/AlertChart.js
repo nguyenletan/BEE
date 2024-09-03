@@ -61,41 +61,26 @@ const AlertChart = () => {
           <span>{t('Critical')}</span>
           <AlertBlock
             className={data.critical === 0 ? 'empty' : ''}
-            backgroundColor={
-              data.critical > 0 ? colors['critical'][0] : colors['critical'][1]
-            }
+            backgroundColor={data.critical > 0 ? colors['critical'][0] : colors['critical'][1]}
           >
             {data.critical > 0 ? data.critical : ''}
           </AlertBlock>
         </AlertRow>
         <AlertRow>
           <span>{t('High')}</span>
-          <AlertBlock
-            className={data.high === 0 ? 'empty' : ''}
-            backgroundColor={
-              data.high > 0 ? colors['high'][0] : colors['high'][1]
-            }
-          >
+          <AlertBlock className={data.high === 0 ? 'empty' : ''} backgroundColor={data.high > 0 ? colors['high'][0] : colors['high'][1]}>
             {data.high > 0 ? data.high : ''}
           </AlertBlock>
         </AlertRow>
         <AlertRow>
           <span>{t('Medium')}</span>
-          <AlertBlock
-            className={data.medium === 0 ? 'empty' : ''}
-            backgroundColor={
-              data.medium > 0 ? colors['medium'][0] : colors['medium'][1]
-            }
-          >
+          <AlertBlock className={data.medium === 0 ? 'empty' : ''} backgroundColor={data.medium > 0 ? colors['medium'][0] : colors['medium'][1]}>
             {data.medium > 0 ? data.medium : ''}
           </AlertBlock>
         </AlertRow>
         <AlertRow>
           <span>{t('Low')}</span>
-          <AlertBlock
-            className={data.low === 0 ? 'empty' : ''}
-            backgroundColor={data.low > 0 ? colors['low'][0] : colors['low'][1]}
-          >
+          <AlertBlock className={data.low === 0 ? 'empty' : ''} backgroundColor={data.low > 0 ? colors['low'][0] : colors['low'][1]}>
             {data.low > 0 ? data.low : ''}
           </AlertBlock>
         </AlertRow>

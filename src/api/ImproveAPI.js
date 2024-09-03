@@ -1,12 +1,6 @@
 import axios from 'axios'
 
-export const getNewAnnualLightingSystemEnergyConsumption = async (
-  buildingId,
-  percentReplacement,
-  period,
-  startDate,
-  idToken
-) => {
+export const getNewAnnualLightingSystemEnergyConsumption = async (buildingId, percentReplacement, period, startDate, idToken) => {
   let result
   await axios({
     method: 'get',
@@ -36,19 +30,11 @@ export const getNewAnnualLightingSystemEnergyConsumption = async (
   return result
 }
 
-export const getAnnualEnergySavings = async (
-  buildingId,
-  percentReplacement,
-  period,
-  startDate,
-  lightingSystem,
-  idToken
-) => {
+export const getAnnualEnergySavings = async (buildingId, percentReplacement, period, startDate, lightingSystem, idToken) => {
   let result
   await axios({
     method: 'post',
-    url:
-      process.env.REACT_APP_BACKEND_API + `/improvement/getAnnualEnergySavings`,
+    url: process.env.REACT_APP_BACKEND_API + `/improvement/getAnnualEnergySavings`,
     data: {
       buildingId: buildingId,
       percentReplacement: percentReplacement,
@@ -79,19 +65,11 @@ export const getAnnualEnergySavings = async (
   return result
 }
 
-export const getAnnualEnergyCostSavings = async (
-  buildingId,
-  percentReplacement,
-  period,
-  startDate,
-  idToken
-) => {
+export const getAnnualEnergyCostSavings = async (buildingId, percentReplacement, period, startDate, idToken) => {
   let result
   await axios({
     method: 'get',
-    url:
-      process.env.REACT_APP_BACKEND_API +
-      `/improvement/getAnnualEnergyCostSavings/${buildingId}/${percentReplacement}/${period}/${startDate}`,
+    url: process.env.REACT_APP_BACKEND_API + `/improvement/getAnnualEnergyCostSavings/${buildingId}/${percentReplacement}/${period}/${startDate}`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,
@@ -115,19 +93,12 @@ export const getAnnualEnergyCostSavings = async (
   return result
 }
 
-export const getAnnualCarbonEmissionsAvoided = async (
-  buildingId,
-  percentReplacement,
-  period,
-  startDate,
-  idToken
-) => {
+export const getAnnualCarbonEmissionsAvoided = async (buildingId, percentReplacement, period, startDate, idToken) => {
   let result
   await axios({
     method: 'get',
     url:
-      process.env.REACT_APP_BACKEND_API +
-      `/improvement/getAnnualCarbonEmissionsAvoided/${buildingId}/${percentReplacement}/${period}/${startDate}`,
+      process.env.REACT_APP_BACKEND_API + `/improvement/getAnnualCarbonEmissionsAvoided/${buildingId}/${percentReplacement}/${period}/${startDate}`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,
@@ -151,17 +122,11 @@ export const getAnnualCarbonEmissionsAvoided = async (
   return result
 }
 
-export const getCostOfImprovement = async (
-  buildingId,
-  percentReplacement,
-  idToken
-) => {
+export const getCostOfImprovement = async (buildingId, percentReplacement, idToken) => {
   let result
   await axios({
     method: 'get',
-    url:
-      process.env.REACT_APP_BACKEND_API +
-      `/improvement/getCostOfImprovement/${buildingId}/${percentReplacement}`,
+    url: process.env.REACT_APP_BACKEND_API + `/improvement/getCostOfImprovement/${buildingId}/${percentReplacement}`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,
@@ -185,19 +150,11 @@ export const getCostOfImprovement = async (
   return result
 }
 
-export const getPayback = async (
-  buildingId,
-  percentReplacement,
-  period,
-  startDate,
-  idToken
-) => {
+export const getPayback = async (buildingId, percentReplacement, period, startDate, idToken) => {
   let result
   await axios({
     method: 'get',
-    url:
-      process.env.REACT_APP_BACKEND_API +
-      `/improvement/getPayback/${buildingId}/${percentReplacement}/${period}/${startDate}`,
+    url: process.env.REACT_APP_BACKEND_API + `/improvement/getPayback/${buildingId}/${percentReplacement}/${period}/${startDate}`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${idToken}`,

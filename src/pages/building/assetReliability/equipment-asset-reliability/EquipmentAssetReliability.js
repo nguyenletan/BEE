@@ -3,11 +3,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import {
-  energyPerformanceEndTimeState,
-  energyPerformanceStartTimeState,
-  isDisplayPerformanceFilterState,
-} from 'atoms'
+import { energyPerformanceEndTimeState, energyPerformanceStartTimeState, isDisplayPerformanceFilterState } from 'atoms'
 import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
 import AlertChart from 'pages/building/assetReliability/equipment-asset-reliability/components/AlertChart'
@@ -100,10 +96,7 @@ const Row2ColsGrid = styled.div`
 
 const Row3ColsGrid = styled.div`
   display: grid;
-  grid-template-columns: minmax(300px, 2fr) minmax(150px, 1fr) minmax(
-      150px,
-      1fr
-    );
+  grid-template-columns: minmax(300px, 2fr) minmax(150px, 1fr) minmax(150px, 1fr);
   grid-gap: 25px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -194,9 +187,7 @@ const ProjectedPeakDemandWrapper = styled.div`
 `
 
 const EquipmentAssetReliability = () => {
-  const setIsDisplayPerformanceFilter = useSetRecoilState(
-    isDisplayPerformanceFilterState
-  )
+  const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
   const [equipment, setEquipment] = useState()
   setIsDisplayPerformanceFilter(false)
   const { equipmentId } = useParams()
@@ -248,19 +239,10 @@ const EquipmentAssetReliability = () => {
             <BreadcrumbItem onClick={() => navigate(-1)}>
               <ArrowLeft color="#87972f" size={28} />
             </BreadcrumbItem>
-            <BreadcrumbItem className="breadcrumb-item">
-              {t('Equipment')}
-            </BreadcrumbItem>
-            <BreadcrumbItem className="breadcrumb-item">
-              {t(subSystemName)}
-            </BreadcrumbItem>
-            <BreadcrumbItem className="breadcrumb-item">
-              {t(equipment?.R_EquipmentTypes?.name)}
-            </BreadcrumbItem>
-            <BreadcrumbItemActive
-              className="breadcrumb-item active text-primary font-bold"
-              aria-current="page"
-            >
+            <BreadcrumbItem className="breadcrumb-item">{t('Equipment')}</BreadcrumbItem>
+            <BreadcrumbItem className="breadcrumb-item">{t(subSystemName)}</BreadcrumbItem>
+            <BreadcrumbItem className="breadcrumb-item">{t(equipment?.R_EquipmentTypes?.name)}</BreadcrumbItem>
+            <BreadcrumbItemActive className="breadcrumb-item active text-primary font-bold" aria-current="page">
               {equipment?.dis}
             </BreadcrumbItemActive>
           </ol>
@@ -270,105 +252,75 @@ const EquipmentAssetReliability = () => {
             <h3>{t('Equipment Details')}</h3>
             <EquipmentDetailContent>
               <div>
-                <EquipmentPhoto
-                  src={equipment?.EquipmentDetail[0]?.imageUrl}
-                  alt="Chiller"
-                />
+                <EquipmentPhoto src={equipment?.EquipmentDetail[0]?.imageUrl} alt="Chiller" />
               </div>
               <EquipmentDetailInformation>
                 {/*row 1*/}
                 <EquipmentDetailInformationCol>
                   <span>{t('Asset ID')}</span>
-                  <EquipmentDetailInformationRowValue>
-                    {equipment?.dis}
-                  </EquipmentDetailInformationRowValue>
+                  <EquipmentDetailInformationRowValue>{equipment?.dis}</EquipmentDetailInformationRowValue>
                 </EquipmentDetailInformationCol>
 
                 <EquipmentDetailInformationCol>
                   <span>{t('Installed')}</span>
-                  <EquipmentDetailInformationRowValue>
-                    {formatDate(equipment?.EquipmentDetail[0]?.installDate)}
-                  </EquipmentDetailInformationRowValue>
+                  <EquipmentDetailInformationRowValue>{formatDate(equipment?.EquipmentDetail[0]?.installDate)}</EquipmentDetailInformationRowValue>
                 </EquipmentDetailInformationCol>
 
                 <EquipmentDetailInformationCol>
                   <span>{t('Capacity')} (kWh)</span>
-                  <EquipmentDetailInformationRowValue>
-                    {equipment?.EquipmentDetail[0]?.capacity}
-                  </EquipmentDetailInformationRowValue>
+                  <EquipmentDetailInformationRowValue>{equipment?.EquipmentDetail[0]?.capacity}</EquipmentDetailInformationRowValue>
                 </EquipmentDetailInformationCol>
 
                 {/*row 2*/}
                 <EquipmentDetailInformationCol>
                   <span>{t('Model')}</span>
-                  <EquipmentDetailInformationRowValue>
-                    {t(equipment?.EquipmentDetail[0]?.model)}
-                  </EquipmentDetailInformationRowValue>
+                  <EquipmentDetailInformationRowValue>{t(equipment?.EquipmentDetail[0]?.model)}</EquipmentDetailInformationRowValue>
                 </EquipmentDetailInformationCol>
 
                 <EquipmentDetailInformationCol>
                   <span>{t('Commissioned')}</span>
-                  <EquipmentDetailInformationRowValue>
-                    {formatDate(equipment?.EquipmentDetail[0]?.commissioned)}
-                  </EquipmentDetailInformationRowValue>
+                  <EquipmentDetailInformationRowValue>{formatDate(equipment?.EquipmentDetail[0]?.commissioned)}</EquipmentDetailInformationRowValue>
                 </EquipmentDetailInformationCol>
 
                 <EquipmentDetailInformationCol>
                   <span>{t('Initial Value ($)')}</span>
                   <EquipmentDetailInformationRowValue>
-                    {formatNumber(
-                      equipment?.EquipmentDetail[0]?.initialAssetCost,
-                      0
-                    )}
+                    {formatNumber(equipment?.EquipmentDetail[0]?.initialAssetCost, 0)}
                   </EquipmentDetailInformationRowValue>
                 </EquipmentDetailInformationCol>
 
                 {/*row 3*/}
                 <EquipmentDetailInformationCol>
                   <span>{t('Manufacturer')}</span>
-                  <EquipmentDetailInformationRowValue>
-                    {equipment?.EquipmentDetail[0]?.manufacturer}
-                  </EquipmentDetailInformationRowValue>
+                  <EquipmentDetailInformationRowValue>{equipment?.EquipmentDetail[0]?.manufacturer}</EquipmentDetailInformationRowValue>
                 </EquipmentDetailInformationCol>
 
                 <EquipmentDetailInformationCol>
                   <span>{t('Age (Years)')}</span>
                   <EquipmentDetailInformationRowValue>
-                    {getTheTimeDifference(
-                      new Date(),
-                      equipment?.EquipmentDetail[0]?.installDate,
-                      'years'
-                    )}
+                    {getTheTimeDifference(new Date(), equipment?.EquipmentDetail[0]?.installDate, 'years')}
                   </EquipmentDetailInformationRowValue>
                 </EquipmentDetailInformationCol>
 
                 <EquipmentDetailInformationCol>
                   <span>{t('Depreciation Mode')}</span>
-                  <EquipmentDetailInformationRowValue>
-                    {t(equipment?.EquipmentDetail[0]?.depreciationMode)}
-                  </EquipmentDetailInformationRowValue>
+                  <EquipmentDetailInformationRowValue>{t(equipment?.EquipmentDetail[0]?.depreciationMode)}</EquipmentDetailInformationRowValue>
                 </EquipmentDetailInformationCol>
 
                 {/*row 4*/}
                 <EquipmentDetailInformationCol>
                   <span>{t('Location')}</span>
-                  <EquipmentDetailInformationRowValue>
-                    {equipment?.EquipmentDetail[0]?.location}
-                  </EquipmentDetailInformationRowValue>
+                  <EquipmentDetailInformationRowValue>{equipment?.EquipmentDetail[0]?.location}</EquipmentDetailInformationRowValue>
                 </EquipmentDetailInformationCol>
 
                 <EquipmentDetailInformationCol>
                   <span>{t('Expected Life (Years)')}</span>
-                  <EquipmentDetailInformationRowValue>
-                    {equipment?.EquipmentDetail[0]?.estimatedUsefulLife}
-                  </EquipmentDetailInformationRowValue>
+                  <EquipmentDetailInformationRowValue>{equipment?.EquipmentDetail[0]?.estimatedUsefulLife}</EquipmentDetailInformationRowValue>
                 </EquipmentDetailInformationCol>
               </EquipmentDetailInformation>
             </EquipmentDetailContent>
             <div className="d-flex justify-content-end mt-5">
-              <button className="btn btn-sm btn-primary right">
-                {t('Maintenance & Sensor Logs')}
-              </button>
+              <button className="btn btn-sm btn-primary right">{t('Maintenance & Sensor Logs')}</button>
             </div>
           </EquipmentDetailWrapper>
           <AlertWrapper>
@@ -388,11 +340,7 @@ const EquipmentAssetReliability = () => {
             <EnergyConsumptionPercentage
               equipmentId={equipmentId}
               equipmentTypeId={equipment?.R_EquipmentTypes?.id}
-              subSystemId={
-                equipment?.coolingSystemId ||
-                equipment?.heatingSystemId ||
-                equipment?.mechanicalVentilationSystemId
-              }
+              subSystemId={equipment?.coolingSystemId || equipment?.heatingSystemId || equipment?.mechanicalVentilationSystemId}
               buildingId={equipment?.Property?.buildingId}
               startDate={moment(startTime).format('YYYY-MM-DD')}
               endDate={moment(endTime).format('YYYY-MM-DD')}

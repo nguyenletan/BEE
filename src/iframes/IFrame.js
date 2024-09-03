@@ -14,30 +14,15 @@ const Iframe = () => {
   // const { path } = useRouteMatch()
   return (
     <Routes>
-      <Route
-        path={`improve-subsystem-performance`}
-        element={<ImproveSubSystemPerformance />}
-      />
+      <Route path={`improve-subsystem-performance`} element={<ImproveSubSystemPerformance />} />
 
-      <Route
-        path={`improve-building-energy-performance`}
-        element={<ImproveBuildingEnergyPerformance />}
-      />
+      <Route path={`improve-building-energy-performance`} element={<ImproveBuildingEnergyPerformance />} />
 
-      <Route
-        path={`improve-co2-emission-performance`}
-        element={<ImproveCO2EmissionsPerformance />}
-      />
+      <Route path={`improve-co2-emission-performance`} element={<ImproveCO2EmissionsPerformance />} />
 
-      <Route
-        path={`comparison-building-subsystem-performance`}
-        element={<ComparisonPerformanceComparison />}
-      />
+      <Route path={`comparison-building-subsystem-performance`} element={<ComparisonPerformanceComparison />} />
 
-      <Route
-        path={`comparison-subsystem-performance`}
-        element={<ComparisonSubSystemPerformance />}
-      />
+      <Route path={`comparison-subsystem-performance`} element={<ComparisonSubSystemPerformance />} />
 
       <Route path={`improve-payback`} element={<ImprovePayback />} />
 

@@ -633,26 +633,18 @@ const AssetHealth = () => {
         <AssetHealthTitle>{t('Asset Health')}</AssetHealthTitle>
 
         <AssetHealthOptions className="d-flex">
-          <AssetHealthOptionItem
-            className={selectedData.name === 'cooling' ? 'active' : ''}
-            onClick={() => onSelect('cooling')}
-          >
+          <AssetHealthOptionItem className={selectedData.name === 'cooling' ? 'active' : ''} onClick={() => onSelect('cooling')}>
             <AssetHealthOptionIcons src={coolingImg} />
             {t('Cooling')}
           </AssetHealthOptionItem>
 
-          <AssetHealthOptionItem
-            className={selectedData.name === 'heating' ? 'active' : ''}
-            onClick={() => onSelect('heating')}
-          >
+          <AssetHealthOptionItem className={selectedData.name === 'heating' ? 'active' : ''} onClick={() => onSelect('heating')}>
             <AssetHealthOptionIcons src={heatingImg} />
             {t('Heating')}
           </AssetHealthOptionItem>
 
           <AssetHealthOptionItem
-            className={
-              selectedData.name === 'mechanical ventilation' ? 'active' : ''
-            }
+            className={selectedData.name === 'mechanical ventilation' ? 'active' : ''}
             onClick={() => onSelect('mechanical ventilation')}
           >
             <AssetHealthOptionIcons src={mechVenImg} />
@@ -663,18 +655,10 @@ const AssetHealth = () => {
 
       <div className="d-flex justify-content-end">
         <AssetHealthTimeLineOptions>
-          <AssetHealthTimeLineOptionItem className="active">
-            {t('This Year')}
-          </AssetHealthTimeLineOptionItem>
-          <AssetHealthTimeLineOptionItem>
-            {t('This Month')}
-          </AssetHealthTimeLineOptionItem>
-          <AssetHealthTimeLineOptionItem>
-            {t('This Week')}
-          </AssetHealthTimeLineOptionItem>
-          <AssetHealthTimeLineOptionItem>
-            {t('Today')}
-          </AssetHealthTimeLineOptionItem>
+          <AssetHealthTimeLineOptionItem className="active">{t('This Year')}</AssetHealthTimeLineOptionItem>
+          <AssetHealthTimeLineOptionItem>{t('This Month')}</AssetHealthTimeLineOptionItem>
+          <AssetHealthTimeLineOptionItem>{t('This Week')}</AssetHealthTimeLineOptionItem>
+          <AssetHealthTimeLineOptionItem>{t('Today')}</AssetHealthTimeLineOptionItem>
         </AssetHealthTimeLineOptions>
       </div>
 

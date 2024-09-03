@@ -3,14 +3,7 @@ import styled from 'styled-components'
 import 'date-fns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import RemoveIcon from '@mui/icons-material/Remove'
-import {
-  Input,
-  Grid,
-  FormHelperText,
-  TextField,
-  Select,
-  MenuItem,
-} from '@mui/material'
+import { Input, Grid, FormHelperText, TextField, Select, MenuItem } from '@mui/material'
 import { useRecoilState } from 'recoil'
 import { Controller } from 'react-hook-form'
 import { heatConsumptionListState } from 'atoms'
@@ -33,15 +26,11 @@ const OneMonthHeatConsumption = ({ data, control, setValue }) => {
     // new Date("2014-08-18T21:11:54")
   )
   const { t, i18n } = useTranslation('buildingInput')
-  const [heatConsumptionList, setHeatConsumptionList] = useRecoilState(
-    heatConsumptionListState
-  )
+  const [heatConsumptionList, setHeatConsumptionList] = useRecoilState(heatConsumptionListState)
 
   const onRemoveItem = () => {
     if (heatConsumptionList.length > 1) {
-      const index = heatConsumptionList.findIndex(
-        (listItem) => listItem.id === data.id
-      )
+      const index = heatConsumptionList.findIndex((listItem) => listItem.id === data.id)
 
       const newList = removeItemAtIndex(heatConsumptionList, index)
       setHeatConsumptionList(newList)
@@ -98,10 +87,7 @@ const OneMonthHeatConsumption = ({ data, control, setValue }) => {
           control={control}
           setValue={setValue}
           render={({ field: { onChange }, fieldState: { error } }) => (
-            <LocalizationProvider
-              dateAdapter={AdapterDayjs}
-              adapterLocale={locale}
-            >
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={locale}>
               <Grid container justifyContent="flex-start">
                 <DatePicker
                   views={['year', 'month']}
@@ -113,9 +99,7 @@ const OneMonthHeatConsumption = ({ data, control, setValue }) => {
                     onDateChange(date)
                     onChange(date)
                   }}
-                  renderInput={(params) => (
-                    <TextField variant="standard" {...params} />
-                  )}
+                  renderInput={(params) => <TextField variant="standard" {...params} />}
                 />
               </Grid>
             </LocalizationProvider>
@@ -148,11 +132,7 @@ const OneMonthHeatConsumption = ({ data, control, setValue }) => {
               <MenuItem value={2}>{t('District Heating')}</MenuItem>
             </Select>
 
-            {error && (
-              <FormHelperText className="text-danger">
-                {t('This field must be selected')}
-              </FormHelperText>
-            )}
+            {error && <FormHelperText className="text-danger">{t('This field must be selected')}</FormHelperText>}
           </div>
         )}
         rules={{
@@ -181,11 +161,7 @@ const OneMonthHeatConsumption = ({ data, control, setValue }) => {
               placeholder={t('Cost')}
               error={!!error}
             />
-            {error && (
-              <FormHelperText className="text-danger">
-                {t('This field is not empty and >= 0')}
-              </FormHelperText>
-            )}
+            {error && <FormHelperText className="text-danger">{t('This field is not empty and >= 0')}</FormHelperText>}
           </div>
         )}
         rules={{
@@ -211,11 +187,7 @@ const OneMonthHeatConsumption = ({ data, control, setValue }) => {
               value={data.value}
               placeholder={t('Value')}
             />
-            {error && (
-              <FormHelperText className="text-danger">
-                {t('This field is not empty and >= 0')}
-              </FormHelperText>
-            )}
+            {error && <FormHelperText className="text-danger">{t('This field is not empty and >= 0')}</FormHelperText>}
           </div>
         )}
         rules={{
@@ -225,11 +197,7 @@ const OneMonthHeatConsumption = ({ data, control, setValue }) => {
       />
 
       <div className="col-1">
-        <Subtraction
-          titleAccess={t('Remove Item')}
-          onClick={onRemoveItem}
-          fontSize="large"
-        />
+        <Subtraction titleAccess={t('Remove Item')} onClick={onRemoveItem} fontSize="large" />
       </div>
     </li>
   )

@@ -47,12 +47,7 @@ const HistoricalComparisonInnerWrapper = styled.div`
   }
 `
 
-const HistoricalComparison = ({
-  groupBy,
-  the1stHistoricalComparison,
-  the2ndHistoricalComparison,
-  the3rdHistoricalComparison,
-}) => {
+const HistoricalComparison = ({ groupBy, the1stHistoricalComparison, the2ndHistoricalComparison, the3rdHistoricalComparison }) => {
   const { t } = useTranslation('buildingPerformance')
 
   let the1stText = t('Same Month') + '<br/>' + t('Last Year')
@@ -86,36 +81,24 @@ const HistoricalComparison = ({
         {t('Historical')} <br /> {t('Comparison')}
       </h4>
       <div className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap">
-        <UpAndDownImg
-          src={the1stHistoricalComparison >= 0 ? redUpImage : greenDownImage}
-        />
+        <UpAndDownImg src={the1stHistoricalComparison >= 0 ? redUpImage : greenDownImage} />
         <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
           <UpAndDownImgTitle dangerouslySetInnerHTML={{ __html: the1stText }} />
-          <UpAndDownImgValue>
-            {formatNumber(the1stHistoricalComparison, 2)} MWh
-          </UpAndDownImgValue>
+          <UpAndDownImgValue>{formatNumber(the1stHistoricalComparison, 2)} MWh</UpAndDownImgValue>
         </HistoricalComparisonInnerWrapper>
       </div>
       <div className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap">
-        <UpAndDownImg
-          src={the2ndHistoricalComparison >= 0 ? redUpImage : greenDownImage}
-        />
+        <UpAndDownImg src={the2ndHistoricalComparison >= 0 ? redUpImage : greenDownImage} />
         <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
           <UpAndDownImgTitle>{the2ndText}</UpAndDownImgTitle>
-          <UpAndDownImgValue>
-            {formatNumber(the2ndHistoricalComparison, 2)} MWh
-          </UpAndDownImgValue>
+          <UpAndDownImgValue>{formatNumber(the2ndHistoricalComparison, 2)} MWh</UpAndDownImgValue>
         </HistoricalComparisonInnerWrapper>
       </div>
       <div className="col col-12 col-md-3 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start flex-wrap">
-        <UpAndDownImg
-          src={the3rdHistoricalComparison >= 0 ? redUpImage : greenDownImage}
-        />
+        <UpAndDownImg src={the3rdHistoricalComparison >= 0 ? redUpImage : greenDownImage} />
         <HistoricalComparisonInnerWrapper className="ms-2 d-flex flex-column justify-content-end mt-1 mt-lg-0">
           <UpAndDownImgTitle>{the3rdText}</UpAndDownImgTitle>
-          <UpAndDownImgValue>
-            {formatNumber(the3rdHistoricalComparison, 2)} MWh
-          </UpAndDownImgValue>
+          <UpAndDownImgValue>{formatNumber(the3rdHistoricalComparison, 2)} MWh</UpAndDownImgValue>
         </HistoricalComparisonInnerWrapper>
       </div>
     </Wrapper>

@@ -9,26 +9,13 @@ import { SustainabilityRatingScheme } from 'reference-tables/GreenBuildingRating
 import { useNavigate, useParams } from 'react-router-dom'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
 import StepNav from '../step-nav/StepNav'
-import {
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  Grid,
-} from '@mui/material'
+import { Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem, Select, TextField, Grid } from '@mui/material'
 
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import Countries from '../../../reference-tables/Country'
 import UseType from '../../../reference-tables/UseType'
 import { useRecoilState } from 'recoil'
-import {
-  addingBuildingProgressState,
-  generalBuildingInformationState,
-} from 'atoms'
+import { addingBuildingProgressState, generalBuildingInformationState } from 'atoms'
 import { makeStyles } from '@mui/styles'
 import Orientation from '../../../reference-tables/Orientation'
 import Period from '../../../reference-tables/Period'
@@ -74,20 +61,13 @@ const Message = styled.p`
 const GeneralInformation = () => {
   //const complexityWeight = 15
 
-  const [generalBuildingInformation, setGeneralBuildingInformation] =
-    useRecoilState(generalBuildingInformationState)
+  const [generalBuildingInformation, setGeneralBuildingInformation] = useRecoilState(generalBuildingInformationState)
 
-  const [addingBuildingProgress, setAddingBuildingProgressState] =
-    useRecoilState(addingBuildingProgressState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(addingBuildingProgressState)
 
-  const [
-    latestYearForRefurbishmentOrExtension,
-    setLatestYearForRefurbishmentOrExtension,
-  ] = React.useState(
+  const [latestYearForRefurbishmentOrExtension, setLatestYearForRefurbishmentOrExtension] = React.useState(
     generalBuildingInformation?.latestYearForRefurbishmentOrExtension
-      ? dayjs(
-          `${generalBuildingInformation?.latestYearForRefurbishmentOrExtension}/01/01`
-        )
+      ? dayjs(`${generalBuildingInformation?.latestYearForRefurbishmentOrExtension}/01/01`)
       : null
     // new Date("2014-08-18T21:11:54")
   )
@@ -95,8 +75,7 @@ const GeneralInformation = () => {
   const onHasMajorRefurbishmentOrExtensionsDoneChange = () => {
     setGeneralBuildingInformation({
       ...generalBuildingInformation,
-      hasMajorRefurbishmentOrExtensionsDone:
-        !generalBuildingInformation.hasMajorRefurbishmentOrExtensionsDone,
+      hasMajorRefurbishmentOrExtensionsDone: !generalBuildingInformation.hasMajorRefurbishmentOrExtensionsDone,
     })
   }
 
@@ -180,71 +159,38 @@ const GeneralInformation = () => {
     setValue('buildingName', generalBuildingInformation?.buildingName, {
       shouldValidate: true,
     })
-    setValue(
-      'constructionPeriodValue',
-      generalBuildingInformation?.constructionPeriodValue,
-      { shouldValidate: true }
-    )
+    setValue('constructionPeriodValue', generalBuildingInformation?.constructionPeriodValue, { shouldValidate: true })
     setValue('useTypeId', generalBuildingInformation?.useTypeId, {
       shouldValidate: true,
     })
-    setValue(
-      'buildingOrientedId',
-      generalBuildingInformation?.buildingOrientedId,
-      { shouldValidate: true }
-    )
+    setValue('buildingOrientedId', generalBuildingInformation?.buildingOrientedId, { shouldValidate: true })
     // setValue('sustainabilityRatingSchemeId', generalBuildingInformation?.sustainabilityRatingSchemeId)
     // setValue('sustainabilityRatingId', generalBuildingInformation?.sustainabilityRatingId)
-    setValue(
-      'storeysAboveGround',
-      generalBuildingInformation?.storeysAboveGround,
-      { shouldValidate: true }
-    )
-    setValue(
-      'storeysBelowGround',
-      generalBuildingInformation?.storeysBelowGround,
-      { shouldValidate: true }
-    )
-    setValue(
-      'grossInteriorArea',
-      generalBuildingInformation?.grossInteriorArea,
-      { shouldValidate: true }
-    )
+    setValue('storeysAboveGround', generalBuildingInformation?.storeysAboveGround, { shouldValidate: true })
+    setValue('storeysBelowGround', generalBuildingInformation?.storeysBelowGround, { shouldValidate: true })
+    setValue('grossInteriorArea', generalBuildingInformation?.grossInteriorArea, { shouldValidate: true })
     setValue('netUsableArea', generalBuildingInformation?.netUsableArea, {
       shouldValidate: true,
     })
-    setValue(
-      'avgInternalFloorToCeilingHeight',
-      generalBuildingInformation?.avgInternalFloorToCeilingHeight,
-      { shouldValidate: true }
-    )
-    setValue(
-      'latestYearForRefurbishmentOrExtension',
-      generalBuildingInformation?.latestYearForRefurbishmentOrExtension,
-      { shouldValidate: true }
-    )
+    setValue('avgInternalFloorToCeilingHeight', generalBuildingInformation?.avgInternalFloorToCeilingHeight, {
+      shouldValidate: true,
+    })
+    setValue('latestYearForRefurbishmentOrExtension', generalBuildingInformation?.latestYearForRefurbishmentOrExtension, {
+      shouldValidate: true,
+    })
     setValue('buildingPhoto', generalBuildingInformation?.buildingPhoto)
   }, [generalBuildingInformation, setValue])
 
   const { t } = useTranslation(['buildingInput', 'common'])
 
   useEffect(() => {
-    if (
-      generalBuildingInformation !== null &&
-      generalBuildingInformation?.sustainabilityRatingSchemeId !== null
-    ) {
+    if (generalBuildingInformation !== null && generalBuildingInformation?.sustainabilityRatingSchemeId !== null) {
       setSustainabilityRating(
-        SustainabilityRatingScheme.filter(
-          (item) =>
-            item.id.toString() ===
-            generalBuildingInformation?.sustainabilityRatingSchemeId?.toString()
-        )[0]?.ratingLevels
+        SustainabilityRatingScheme.filter((item) => item.id.toString() === generalBuildingInformation?.sustainabilityRatingSchemeId?.toString())[0]
+          ?.ratingLevels
       )
     }
-  }, [
-    generalBuildingInformation,
-    generalBuildingInformation?.sustainabilityRatingSchemeId,
-  ])
+  }, [generalBuildingInformation, generalBuildingInformation?.sustainabilityRatingSchemeId])
 
   const { user } = useAuth()
 
@@ -256,9 +202,7 @@ const GeneralInformation = () => {
     tracking()
   }, [])
 
-  const [sustainabilityRating, setSustainabilityRating] = useState(
-    SustainabilityRatingScheme[0].ratingLevels
-  )
+  const [sustainabilityRating, setSustainabilityRating] = useState(SustainabilityRatingScheme[0].ratingLevels)
 
   const { id } = useParams()
   const navigate = useNavigate()
@@ -276,10 +220,7 @@ const GeneralInformation = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="d-flex mt-5 mb-4 align-items-baseline">
-        <Title>
-          {`${generalBuildingInformation.buildingName} building` ??
-            t('New Building')}
-        </Title>
+        <Title>{`${generalBuildingInformation.buildingName} building` ?? t('New Building')}</Title>
 
         <BackNextGroupButton
           backLink={parentUrl + '/search-building'}
@@ -330,10 +271,7 @@ const GeneralInformation = () => {
                 control={control}
                 render={({ field: { onChange }, fieldState: { error } }) => (
                   <FormControl className={classes.formControl}>
-                    <InputLabel
-                      id="building-orientation-label"
-                      className={error && 'text-danger'}
-                    >
+                    <InputLabel id="building-orientation-label" className={error && 'text-danger'}>
                       {t('Building Orientation')}
                     </InputLabel>
                     <Select
@@ -354,11 +292,7 @@ const GeneralInformation = () => {
                         </MenuItem>
                       ))}
                     </Select>
-                    {error && (
-                      <FormHelperText className="text-danger">
-                        {t('This field is required')}
-                      </FormHelperText>
-                    )}
+                    {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
                   </FormControl>
                 )}
                 rules={{
@@ -458,23 +392,15 @@ const GeneralInformation = () => {
                 control={control}
                 render={({ field: { onChange } }) => (
                   <FormControl className={classes.formControl}>
-                    <InputLabel id="sustainability-rating-scheme-label">
-                      {t('Sustainability Rating Scheme')}
-                    </InputLabel>
+                    <InputLabel id="sustainability-rating-scheme-label">{t('Sustainability Rating Scheme')}</InputLabel>
                     <Select
                       id="sustainability-rating-scheme"
                       variant="standard"
                       labelId="sustainability-rating-scheme-label"
-                      value={
-                        generalBuildingInformation?.sustainabilityRatingSchemeId ||
-                        ''
-                      }
+                      value={generalBuildingInformation?.sustainabilityRatingSchemeId || ''}
                       onChange={(e) => {
                         onChange(e)
-                        onInputChange(
-                          'sustainabilityRatingSchemeId',
-                          e.target.value
-                        )
+                        onInputChange('sustainabilityRatingSchemeId', e.target.value)
                       }}
                     >
                       {SustainabilityRatingScheme.map((o) => (
@@ -518,16 +444,12 @@ const GeneralInformation = () => {
                 control={control}
                 render={({ field: { onChange } }) => (
                   <FormControl className={classes.formControl}>
-                    <InputLabel id="sustainability-rating-label">
-                      {t('Sustainability Rating')}
-                    </InputLabel>
+                    <InputLabel id="sustainability-rating-label">{t('Sustainability Rating')}</InputLabel>
                     <Select
                       id="sustainability-rating-select"
                       variant="standard"
                       labelId="sustainability-rating-label"
-                      value={
-                        generalBuildingInformation.sustainabilityRatingId || ''
-                      }
+                      value={generalBuildingInformation.sustainabilityRatingId || ''}
                       onChange={(e) => {
                         onChange(e)
                         onInputChange('sustainabilityRatingId', e.target.value)
@@ -611,10 +533,7 @@ const GeneralInformation = () => {
                 control={control}
                 render={({ field: { onChange }, fieldState: { error } }) => (
                   <FormControl className={classes.formControl}>
-                    <InputLabel
-                      className={error && 'text-danger'}
-                      id="country-code-label"
-                    >
+                    <InputLabel className={error && 'text-danger'} id="country-code-label">
                       {t('Country')}
                     </InputLabel>
                     <Select
@@ -634,11 +553,7 @@ const GeneralInformation = () => {
                         </MenuItem>
                       ))}
                     </Select>
-                    {error && (
-                      <FormHelperText className="text-danger">
-                        {t('This field is required')}
-                      </FormHelperText>
-                    )}
+                    {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
                   </FormControl>
                 )}
                 rules={{
@@ -686,19 +601,14 @@ const GeneralInformation = () => {
                 control={control}
                 render={({ field: { onChange }, fieldState: { error } }) => (
                   <FormControl className={classes.formControl}>
-                    <InputLabel
-                      id="construction-period-label"
-                      className={error && 'text-danger'}
-                    >
+                    <InputLabel id="construction-period-label" className={error && 'text-danger'}>
                       {t('Construction Period')}
                     </InputLabel>
                     <Select
                       id="construction-period"
                       variant="standard"
                       label="construction-period-label"
-                      value={
-                        generalBuildingInformation?.constructionPeriodValue
-                      }
+                      value={generalBuildingInformation?.constructionPeriodValue}
                       onChange={(e) => {
                         onChange(e)
                         onInputChange('constructionPeriodValue', e.target.value)
@@ -711,11 +621,7 @@ const GeneralInformation = () => {
                         </MenuItem>
                       ))}
                     </Select>
-                    {error && (
-                      <FormHelperText className="text-danger">
-                        {t('This field is required')}
-                      </FormHelperText>
-                    )}
+                    {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
                   </FormControl>
                 )}
                 rules={{
@@ -791,10 +697,7 @@ const GeneralInformation = () => {
                 control={control}
                 render={({ field: { onChange }, fieldState: { error } }) => (
                   <FormControl className={classes.formControl}>
-                    <InputLabel
-                      id="use-type-label"
-                      className={error && 'text-danger'}
-                    >
+                    <InputLabel id="use-type-label" className={error && 'text-danger'}>
                       {t('Use Type')}
                     </InputLabel>
                     <Select
@@ -816,11 +719,7 @@ const GeneralInformation = () => {
                         </MenuItem>
                       ))}
                     </Select>
-                    {error && (
-                      <FormHelperText className="text-danger">
-                        {t('This field is required')}
-                      </FormHelperText>
-                    )}
+                    {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
                   </FormControl>
                 )}
                 rules={{
@@ -896,15 +795,11 @@ const GeneralInformation = () => {
                 control={control}
                 render={({ field: { onChange } }) => (
                   <div className="form-group">
-                    <label className="form-label d-block mb-0">
-                      {t('Has Major Refurbishment or Extension Done?')}
-                    </label>
+                    <label className="form-label d-block mb-0">{t('Has Major Refurbishment or Extension Done?')}</label>
                     <FormControlLabel
                       control={
                         <Checkbox
-                          checked={
-                            generalBuildingInformation?.hasMajorRefurbishmentOrExtensionsDone
-                          }
+                          checked={generalBuildingInformation?.hasMajorRefurbishmentOrExtensionsDone}
                           onChange={(e) => {
                             onChange(e)
                             onHasMajorRefurbishmentOrExtensionsDoneChange(e)
@@ -930,16 +825,10 @@ const GeneralInformation = () => {
                     aria-describedby="Avg. Internal Floor to Ceiling Height"
                     className={classes.valueUnit}
                     label={t('Avg. Internal Floor to Ceiling Height')}
-                    value={
-                      generalBuildingInformation?.avgInternalFloorToCeilingHeight ||
-                      ''
-                    }
+                    value={generalBuildingInformation?.avgInternalFloorToCeilingHeight || ''}
                     onChange={(e) => {
                       onChange(e)
-                      onInputChange(
-                        'avgInternalFloorToCeilingHeight',
-                        e.target.value
-                      )
+                      onInputChange('avgInternalFloorToCeilingHeight', e.target.value)
                     }}
                     error={!!error}
                     helperText={error ? error.message : null}
@@ -964,15 +853,10 @@ const GeneralInformation = () => {
                       id="avg-internal-floor-to-ceiling-height-unit-select"
                       labelId="avg-internal-floor-to-ceiling-height-unit-label"
                       className={classes.unit}
-                      value={
-                        generalBuildingInformation?.avgInternalFloorToCeilingHeightUnit
-                      }
+                      value={generalBuildingInformation?.avgInternalFloorToCeilingHeightUnit}
                       onChange={(e) => {
                         onChange(e)
-                        onInputChange(
-                          'avgInternalFloorToCeilingHeightUnit',
-                          e.target.value
-                        )
+                        onInputChange('avgInternalFloorToCeilingHeightUnit', e.target.value)
                       }}
                       defaultValue="m"
                     >
@@ -986,17 +870,14 @@ const GeneralInformation = () => {
           </div>
 
           <div className="row">
-            {generalBuildingInformation.hasMajorRefurbishmentOrExtensionsDone ===
-              true && (
+            {generalBuildingInformation.hasMajorRefurbishmentOrExtensionsDone === true && (
               <div className="col-12 col-lg-6 d-flex justify-content-start mb-8">
                 <Controller
                   name="latestYearForRefurbishmentOrExtension"
                   control={control}
                   render={({ field: { onChange }, fieldState: { error } }) => (
                     <FormControl className={classes.formControl}>
-                      <label className={error && 'text-danger'}>
-                        {t('Latest Year for Refurbishment or Extension')}
-                      </label>
+                      <label className={error && 'text-danger'}>{t('Latest Year for Refurbishment or Extension')}</label>
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <Grid container justifyContent="flex-start">
                           <DatePicker
@@ -1005,15 +886,11 @@ const GeneralInformation = () => {
                             value={latestYearForRefurbishmentOrExtension}
                             onChange={(date) => {
                               onChange(date)
-                              onLatestYearForRefurbishmentOrExtensionChange(
-                                date
-                              )
+                              onLatestYearForRefurbishmentOrExtensionChange(date)
                             }}
                             error={!!error}
                             helperText={error ? error.message : null}
-                            renderInput={(params) => (
-                              <TextField variant="standard" {...params} />
-                            )}
+                            renderInput={(params) => <TextField variant="standard" {...params} />}
                           />
                         </Grid>
                       </LocalizationProvider>
@@ -1031,23 +908,11 @@ const GeneralInformation = () => {
         <div className="col-12 col-lg-4">
           <h5>{t('Building Photo (Optional)')}</h5>
           <UploadImage>
-            <label
-              htmlFor="upload-button"
-              title="Upload image"
-              className="w-100 h-100 d-flex overflow-hidden m-0 cursor-pointer"
-            >
-              <Image
-                src={generalBuildingInformation.buildingPhoto ?? cameraImg}
-                alt="upload"
-              />
+            <label htmlFor="upload-button" title="Upload image" className="w-100 h-100 d-flex overflow-hidden m-0 cursor-pointer">
+              <Image src={generalBuildingInformation.buildingPhoto ?? cameraImg} alt="upload" />
             </label>
           </UploadImage>
-          <input
-            type="file"
-            id="upload-button"
-            className="d-none"
-            onChange={handleChangeBuildingPhoto}
-          />
+          <input type="file" id="upload-button" className="d-none" onChange={handleChangeBuildingPhoto} />
           <Controller
             name="buildingPhoto"
             control={control}
@@ -1063,11 +928,7 @@ const GeneralInformation = () => {
               />
             )}
           />
-          <label
-            className="mt-3 btn btn-primary border shadow"
-            htmlFor="upload-button"
-            title="Upload image"
-          >
+          <label className="mt-3 btn btn-primary border shadow" htmlFor="upload-button" title="Upload image">
             {t('Upload Photo')}
           </label>
         </div>

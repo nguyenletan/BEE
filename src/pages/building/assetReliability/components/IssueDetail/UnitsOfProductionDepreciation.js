@@ -200,15 +200,7 @@ const UnitsOfProductionDepreciation = () => {
         <text x={x - 30} y="0" className="small">
           Current Age
         </text>
-        <line
-          x1={x}
-          y1={8}
-          x2={x}
-          y2={innerHeight}
-          stroke="#5F5283"
-          strokeDasharray="8"
-          strokeWidth={1}
-        />
+        <line x1={x} y1={8} x2={x} y2={innerHeight} stroke="#5F5283" strokeDasharray="8" strokeWidth={1} />
       </>
     )
   }
@@ -267,19 +259,7 @@ const UnitsOfProductionDepreciation = () => {
         ],
       },
     ],
-    layers: [
-      'grid',
-      'markers',
-      'axes',
-      'areas',
-      'crosshair',
-      'lines',
-      'points',
-      'slices',
-      'mesh',
-      'legends',
-      Line,
-    ],
+    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends', Line],
   }
 
   return (

@@ -158,12 +158,7 @@ const TotalBreakDownPieChart = (props) => {
           arcLabel={function (e) {
             return e.value + '%'
           }}
-          layers={[
-            'arcs',
-            'arcLabels',
-            'legends',
-            isCenteredPercentage === true ? CenteredPercentage : '',
-          ]}
+          layers={['arcs', 'arcLabels', 'legends', isCenteredPercentage === true ? CenteredPercentage : '']}
         />
       </ResponsivePieWrapper>
       {hasDescription && <Ul>{list}</Ul>}

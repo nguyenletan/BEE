@@ -45,27 +45,17 @@ const Header = () => {
       </Menu>
 
       <LangWrapper className="d-flex justify-content-between">
-        <span
-          onClick={() => changeLanguage('en')}
-          style={{ fontWeight: i18n.language === 'en' ? 'bold' : '' }}
-        >
+        <span onClick={() => changeLanguage('en')} style={{ fontWeight: i18n.language === 'en' ? 'bold' : '' }}>
           EN
         </span>{' '}
         /
-        <span
-          onClick={() => changeLanguage('de')}
-          style={{ fontWeight: i18n.language === 'de' ? 'bold' : '' }}
-        >
+        <span onClick={() => changeLanguage('de')} style={{ fontWeight: i18n.language === 'de' ? 'bold' : '' }}>
           DE
         </span>
       </LangWrapper>
       <SearchMenu>
         <InputGroup className="input-group">
-          <SearchInput
-            type="text"
-            className="form-control"
-            aria-label="Amount (to the nearest dollar)"
-          />
+          <SearchInput type="text" className="form-control" aria-label="Amount (to the nearest dollar)" />
           <SearchIcon className="input-group-text">
             <i className="bi bi-search" />
           </SearchIcon>

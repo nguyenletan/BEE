@@ -34,40 +34,20 @@ const BuildingHistoricalNav = () => {
   const { t } = useTranslation('common')
   return (
     <SubNav className="nav nav-pills flex-column flex-sm-row">
-      <NavLink
-        activeClassName="active"
-        className="flex-sm-fill text-sm-center nav-link"
-        to="energy-performance"
-      >
+      <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to="energy-performance">
         {t('Building Performance')}
         <i className="bi bi-caret-down-fill" />
       </NavLink>
-      <NavLink
-        activeClassName="active"
-        className="flex-sm-fill text-sm-center nav-link"
-        to="comparison"
-      >
+      <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to="comparison">
         {t('Comparison')}
       </NavLink>
-      <NavLink
-        activeClassName="active"
-        className="flex-sm-fill text-sm-center nav-link"
-        to="improve"
-      >
+      <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to="improve">
         {t('Improve')}
       </NavLink>
-      <NavLink
-        activeClassName="active"
-        className="flex-sm-fill text-sm-center nav-link"
-        to="asset-reliability"
-      >
+      <NavLink activeClassName="active" className="flex-sm-fill text-sm-center nav-link" to="asset-reliability">
         {t('Asset Reliability')}
       </NavLink>
-      <NavLink
-        to="weather"
-        className="flex-sm-fill text-sm-center nav-link"
-        activeClassName="active"
-      >
+      <NavLink to="weather" className="flex-sm-fill text-sm-center nav-link" activeClassName="active">
         Weather Information
       </NavLink>
     </SubNav>

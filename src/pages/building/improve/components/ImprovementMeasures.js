@@ -87,8 +87,7 @@ const InfoButton = styled.button`
 
 const ImprovementMeasures = ({ data, setResult }) => {
   const [showOtherSubSystemPopup, setShowOtherSubSystemPopup] = useState(false)
-  const [showLightingSubSystemPopup, setShowLightingSubSystemPopup] =
-    useState(false)
+  const [showLightingSubSystemPopup, setShowLightingSubSystemPopup] = useState(false)
   const [popUpProps, setPopupProps] = useState({})
   const { t } = useTranslation('improvement')
 
@@ -186,9 +185,7 @@ const ImprovementMeasures = ({ data, setResult }) => {
 
   return (
     <ImprovementMeasuresWrapper>
-      <ImprovementMeasuresTitle>
-        {t('Improvement Measures')}
-      </ImprovementMeasuresTitle>
+      <ImprovementMeasuresTitle>{t('Improvement Measures')}</ImprovementMeasuresTitle>
       <ImprovementMeasuresTable className="table">
         <thead>
           <tr>
@@ -223,19 +220,9 @@ const ImprovementMeasures = ({ data, setResult }) => {
         </ImprovementMeasuresTable>
       </ImprovementMeasuresTableWrapper>
 
-      {showOtherSubSystemPopup && (
-        <ImprovementMeasurePopup
-          data={popUpProps}
-          handleClose={handleCloseOtherSubSystemPopup}
-          show={true}
-        />
-      )}
+      {showOtherSubSystemPopup && <ImprovementMeasurePopup data={popUpProps} handleClose={handleCloseOtherSubSystemPopup} show={true} />}
       {showLightingSubSystemPopup && (
-        <LightingImprovementMeasurePopup
-          data={popUpProps}
-          handleClose={handleCloseLightingSubSystemPopup}
-          show={true}
-        />
+        <LightingImprovementMeasurePopup data={popUpProps} handleClose={handleCloseLightingSubSystemPopup} show={true} />
       )}
     </ImprovementMeasuresWrapper>
   )

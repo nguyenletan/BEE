@@ -1,21 +1,10 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import {
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  InputLabel,
-  MenuItem,
-  Select,
-} from '@mui/material'
+import { Checkbox, FormControl, FormControlLabel, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material'
 import CoolingSystemType from '../../../reference-tables/CoolingSystemType'
 import ChillerEnergySourceType from '../../../reference-tables/ChillerEnergySourceType'
 import CompressorType from '../../../reference-tables/CompressorType'
-import {
-  AbsorptionChillerRefrigerantType,
-  RefrigerantType,
-} from 'reference-tables/RefrigerantType'
+import { AbsorptionChillerRefrigerantType, RefrigerantType } from 'reference-tables/RefrigerantType'
 import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import { makeStyles } from '@mui/styles'
 import { useRecoilState } from 'recoil'
@@ -32,13 +21,10 @@ const CoolingSystem = ({ control, setValue }) => {
   const { t } = useTranslation(['buildingInput', 'common'])
   const [coolingSystem, setCoolingSystem] = useRecoilState(coolingSystemState)
 
-  const [compressorTypeList, setCompressorTypeList] =
-    React.useState(CompressorType)
+  const [compressorTypeList, setCompressorTypeList] = React.useState(CompressorType)
   //const [absorptionChillerCompressorTypeList, setAbsorptionChillerCompressorTypeList] = React.useState(AbsorptionChillerCompressorType)
-  const [chillerEnergySourceTypeList, setChillerEnergySourceTypeList] =
-    React.useState(ChillerEnergySourceType)
-  const [refrigerantTypeList, setRefrigerantTypeList] =
-    React.useState(RefrigerantType)
+  const [chillerEnergySourceTypeList, setChillerEnergySourceTypeList] = React.useState(ChillerEnergySourceType)
+  const [refrigerantTypeList, setRefrigerantTypeList] = React.useState(RefrigerantType)
 
   const onHasCoolingSystemChange = () => {
     setCoolingSystem({
@@ -55,38 +41,21 @@ const CoolingSystem = ({ control, setValue }) => {
     if (e.target.value === 4) {
       //'Split Unit AC'
       // compressor types : Reciprocating, Scroll, Rotary Vane
-      setCompressorTypeList(
-        CompressorType.filter(
-          (x) =>
-            x.name === 'Scroll' ||
-            x.name === 'Reciprocating' ||
-            x.name === 'Rotary Vane'
-        )
-      )
+      setCompressorTypeList(CompressorType.filter((x) => x.name === 'Scroll' || x.name === 'Reciprocating' || x.name === 'Rotary Vane'))
 
       // energy source: Electricity
-      setChillerEnergySourceTypeList(
-        ChillerEnergySourceType.filter((x) => x.name === 'Electricity')
-      )
+      setChillerEnergySourceTypeList(ChillerEnergySourceType.filter((x) => x.name === 'Electricity'))
 
       // Refrigerant: no filter
       setRefrigerantTypeList(RefrigerantType)
     } else if (e.target.value === 1 || e.target.value === 2) {
       // compressor type: Centrifugal, Reciprocating, Scroll, Screw
       setCompressorTypeList(
-        CompressorType.filter(
-          (x) =>
-            x.name === 'Scroll' ||
-            x.name === 'Reciprocating' ||
-            x.name === 'Centrifugal' ||
-            x.name === 'Screw'
-        )
+        CompressorType.filter((x) => x.name === 'Scroll' || x.name === 'Reciprocating' || x.name === 'Centrifugal' || x.name === 'Screw')
       )
 
       // energy source: Electricity
-      setChillerEnergySourceTypeList(
-        ChillerEnergySourceType.filter((x) => x.name === 'Electricity')
-      )
+      setChillerEnergySourceTypeList(ChillerEnergySourceType.filter((x) => x.name === 'Electricity'))
 
       // Refrigerant: no filter
       setRefrigerantTypeList(RefrigerantType)
@@ -96,12 +65,7 @@ const CoolingSystem = ({ control, setValue }) => {
       setCompressorTypeList(null)
 
       // energy source: Hot Water, Steam, Exhaust
-      setChillerEnergySourceTypeList(
-        ChillerEnergySourceType.filter(
-          (x) =>
-            x.name === 'Hot Water' || x.name === 'Steam' || x.name === 'Exhaust'
-        )
-      )
+      setChillerEnergySourceTypeList(ChillerEnergySourceType.filter((x) => x.name === 'Hot Water' || x.name === 'Steam' || x.name === 'Exhaust'))
 
       // Refrigerant: Water-Ammonia, Water-Lithium Bromide
       setRefrigerantTypeList(AbsorptionChillerRefrigerantType)
@@ -111,9 +75,7 @@ const CoolingSystem = ({ control, setValue }) => {
       setCompressorTypeList(null)
 
       // energy source: Electricity
-      setChillerEnergySourceTypeList(
-        ChillerEnergySourceType.filter((x) => x.name === 'Electricity')
-      )
+      setChillerEnergySourceTypeList(ChillerEnergySourceType.filter((x) => x.name === 'Electricity'))
 
       // Refrigerant: []
       setRefrigerantTypeList(null)
@@ -152,11 +114,7 @@ const CoolingSystem = ({ control, setValue }) => {
     setValue(`refrigerantTypeId`, coolingSystem.refrigerantTypeId, {
       shouldValidate: true,
     })
-    setValue(
-      `chillerEnergySourceTypeId`,
-      coolingSystem.chillerEnergySourceTypeId,
-      { shouldValidate: true }
-    )
+    setValue(`chillerEnergySourceTypeId`, coolingSystem.chillerEnergySourceTypeId, { shouldValidate: true })
   }, [
     coolingSystem.chillerEnergySourceTypeId,
     coolingSystem.compressorTypeId,
@@ -170,14 +128,7 @@ const CoolingSystem = ({ control, setValue }) => {
       <Title>{t('Cooling System Installed')}</Title>
       <FormControlLabel
         className="mb-3"
-        control={
-          <Checkbox
-            name="hasCoolingSystem"
-            color="primary"
-            checked={coolingSystem.hasCoolingSystem}
-            onChange={onHasCoolingSystemChange}
-          />
-        }
+        control={<Checkbox name="hasCoolingSystem" color="primary" checked={coolingSystem.hasCoolingSystem} onChange={onHasCoolingSystemChange} />}
         label={t('Yes')}
       />
 
@@ -188,10 +139,7 @@ const CoolingSystem = ({ control, setValue }) => {
             control={control}
             render={({ field: { onChange }, fieldState: { error } }) => (
               <FormControl className={classes.formControl}>
-                <InputLabel
-                  id="cooling-system-type-id-label"
-                  className={error && 'text-danger'}
-                >
+                <InputLabel id="cooling-system-type-id-label" className={error && 'text-danger'}>
                   {t('Cooling System Type')}
                 </InputLabel>
                 <Select
@@ -212,11 +160,7 @@ const CoolingSystem = ({ control, setValue }) => {
                     </MenuItem>
                   ))}
                 </Select>
-                {error && (
-                  <FormHelperText className="text-danger">
-                    {t('This field is required')}
-                  </FormHelperText>
-                )}
+                {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
               </FormControl>
             )}
             rules={{
@@ -230,10 +174,7 @@ const CoolingSystem = ({ control, setValue }) => {
               control={control}
               render={({ field: { onChange }, fieldState: { error } }) => (
                 <FormControl className={classes.formControl}>
-                  <InputLabel
-                    id="compressor-type-label"
-                    className={error && 'text-danger'}
-                  >
+                  <InputLabel id="compressor-type-label" className={error && 'text-danger'}>
                     {t('Compressor Type')}
                   </InputLabel>
                   <Select
@@ -253,11 +194,7 @@ const CoolingSystem = ({ control, setValue }) => {
                       </MenuItem>
                     ))}
                   </Select>
-                  {error && (
-                    <FormHelperText className="text-danger">
-                      {t('This field is required')}
-                    </FormHelperText>
-                  )}
+                  {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
                 </FormControl>
               )}
               rules={{
@@ -272,10 +209,7 @@ const CoolingSystem = ({ control, setValue }) => {
               control={control}
               render={({ field: { onChange }, fieldState: { error } }) => (
                 <FormControl className={classes.formControl}>
-                  <InputLabel
-                    id="refrigerant-type-label"
-                    className={error && 'text-danger'}
-                  >
+                  <InputLabel id="refrigerant-type-label" className={error && 'text-danger'}>
                     {t('Refrigerant Type')}
                   </InputLabel>
                   <Select
@@ -295,11 +229,7 @@ const CoolingSystem = ({ control, setValue }) => {
                       </MenuItem>
                     ))}
                   </Select>
-                  {error && (
-                    <FormHelperText className="text-danger">
-                      {t('This field is required')}
-                    </FormHelperText>
-                  )}
+                  {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
                 </FormControl>
               )}
               rules={{
@@ -314,10 +244,7 @@ const CoolingSystem = ({ control, setValue }) => {
               control={control}
               render={({ field: { onChange }, fieldState: { error } }) => (
                 <FormControl className={classes.formControl}>
-                  <InputLabel
-                    id="chiller-energy-label"
-                    className={error && 'text-danger'}
-                  >
+                  <InputLabel id="chiller-energy-label" className={error && 'text-danger'}>
                     {t('Chiller Energy Source')}
                   </InputLabel>
                   <Select
@@ -340,11 +267,7 @@ const CoolingSystem = ({ control, setValue }) => {
                       </MenuItem>
                     ))}
                   </Select>
-                  {error && (
-                    <FormHelperText className="text-danger">
-                      {t('This field is required')}
-                    </FormHelperText>
-                  )}
+                  {error && <FormHelperText className="text-danger">{t('This field is required')}</FormHelperText>}
                 </FormControl>
               )}
               rules={{

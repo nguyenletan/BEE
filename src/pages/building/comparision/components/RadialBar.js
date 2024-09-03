@@ -136,15 +136,7 @@ const RadialBar = () => {
           padding={0.4}
           enableRadialGrid={true}
           enableCircularGrid={false}
-          colors={[
-            '#2d6a4f',
-            '#40916c',
-            '#52b788',
-            '#74c69d',
-            '#95d5b2',
-            '#b7e4c7',
-            '#d8f3dc',
-          ]}
+          colors={['#2d6a4f', '#40916c', '#52b788', '#74c69d', '#95d5b2', '#b7e4c7', '#d8f3dc']}
           cornerRadius={0}
           margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
           radialAxisStart={{

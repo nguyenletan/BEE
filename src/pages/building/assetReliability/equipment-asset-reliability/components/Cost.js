@@ -211,18 +211,7 @@ const Cost = () => {
       legendOffset: 36,
       legendPosition: 'middle',
     },
-    layers: [
-      'grid',
-      'markers',
-      'axes',
-      'areas',
-      'crosshair',
-      'lines',
-      'points',
-      'slices',
-      'mesh',
-      'legends',
-    ],
+    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends'],
   }
 
   return (

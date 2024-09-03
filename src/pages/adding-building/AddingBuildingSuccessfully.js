@@ -22,22 +22,14 @@ const AddingBuildingSuccessfully = () => {
       <div className="d-flex mt-5 mb-5">
         {/*<Title>New Building</Title>*/}
 
-        <BackNextGroupButton
-          progressValue={addingBuildingProgress}
-          isInDoneStep
-        />
+        <BackNextGroupButton progressValue={addingBuildingProgress} isInDoneStep />
       </div>
 
       {/*<StepNav />*/}
 
       <div className="text-center mt-5 pt-5">
         <Icon color="primary" />
-        <Typography
-          variant="h3"
-          gutterBottom
-          className="text-center"
-          color="primary"
-        >
+        <Typography variant="h3" gutterBottom className="text-center" color="primary">
           {t('The building was successfully created')}!
         </Typography>
       </div>

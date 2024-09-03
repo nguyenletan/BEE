@@ -22,10 +22,7 @@ export const totalPercentageOfSpaceUsageGFAListState = selector({
   get: ({ get }) => {
     const spaceUsageGFAList = get(spaceUsageGFAListState)
     let total = 0
-    console.log(
-      'totalPercentageOfSpaceUsageGFAListState',
-      spaceUsageGFAList.length
-    )
+    console.log('totalPercentageOfSpaceUsageGFAListState', spaceUsageGFAList.length)
     // for (let i = 0; i < spaceUsageGFAList.length; i++) {
     //   if (spaceUsageGFAList[i] && typeof spaceUsageGFAList[i].percentage ===
     //     'number') {
@@ -71,8 +68,7 @@ export const lightingSubSystemListSelectorState = selector({
     for (let lightingSubSystem of lightingSubSystemList) {
       let efficacy = 0
       let percentage = 0
-      let watt =
-        lightingSubSystem.numberOfBulbs * lightingSubSystem.wattRatingOfBulb
+      let watt = lightingSubSystem.numberOfBulbs * lightingSubSystem.wattRatingOfBulb
       if (totalOfBulbs > 0) {
         percentage = (lightingSubSystem.numberOfBulbs / totalOfBulbs) * 100
       }
@@ -108,11 +104,7 @@ export const totalWattOfLightingSubSystemListState = selector({
   get: ({ get }) => {
     const lightingSubSystemList = get(lightingSubSystemListState)
     return _.sumBy(lightingSubSystemList, (item) => {
-      if (
-        item &&
-        typeof +item.wattRatingOfBulb === 'number' &&
-        typeof +item.numberOfBulbs === 'number'
-      ) {
+      if (item && typeof +item.wattRatingOfBulb === 'number' && typeof +item.numberOfBulbs === 'number') {
         return +item.wattRatingOfBulb * +item.numberOfBulbs
       }
       return 0
@@ -125,13 +117,8 @@ export const totalEfficacyOfLightingSubSystemListState = selector({
   get: ({ get }) => {
     const lightingSubSystemList = get(lightingSubSystemListState)
     return _.sumBy(lightingSubSystemList, (item) => {
-      if (
-        item &&
-        typeof +item.wattRatingOfBulb === 'number' &&
-        typeof +item.lumensOfBulb === 'number'
-      ) {
-        if (+item.lumensOfBulb > 0)
-          return +(+item.wattRatingOfBulb / +item.lumensOfBulb).toFixed(2)
+      if (item && typeof +item.wattRatingOfBulb === 'number' && typeof +item.lumensOfBulb === 'number') {
+        if (+item.lumensOfBulb > 0) return +(+item.wattRatingOfBulb / +item.lumensOfBulb).toFixed(2)
       }
       return 0
     })
@@ -450,10 +437,7 @@ export const getTotalPercentageOfLEDReplacement = selector({
     let numberOfReplacingBulbs = 0
     let numberOfOldBulbs = 0
     for (let i = 0; i < arr.length; i++) {
-      if (
-        !isNaN(arr[i].numberOfReplacingBulbs) &&
-        !isNaN(arr[i].numberOfOldBulbs)
-      ) {
+      if (!isNaN(arr[i].numberOfReplacingBulbs) && !isNaN(arr[i].numberOfOldBulbs)) {
         numberOfReplacingBulbs += arr[i].numberOfReplacingBulbs
         numberOfOldBulbs += arr[i].numberOfOldBulbs
       }

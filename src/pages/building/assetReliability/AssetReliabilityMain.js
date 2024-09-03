@@ -19,15 +19,12 @@ const TheSecondWrapper = styled.div`
 `
 
 const AssetReliabilityMain = ({ data }) => {
-  const setIsDisplayPerformanceFilter = useSetRecoilState(
-    isDisplayPerformanceFilterState
-  )
+  const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
   setIsDisplayPerformanceFilter(false)
 
   const { i18n } = useTranslation('assetReliability')
 
-  const [maintenanceBudgetBySubSystem, setMaintenanceBudgetBySubSystem] =
-    useState(data.maintenanceBudgetBySubSystemEN)
+  const [maintenanceBudgetBySubSystem, setMaintenanceBudgetBySubSystem] = useState(data.maintenanceBudgetBySubSystemEN)
 
   const { user } = useAuth()
   useEffect(() => {

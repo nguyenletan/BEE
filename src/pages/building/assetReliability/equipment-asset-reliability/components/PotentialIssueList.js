@@ -69,9 +69,7 @@ const PotentialIssueList = () => {
             <td>{t('1 Day')}</td>
             <td>{t('1 Day')}</td>
             <td>
-              <InfoButton className="btn btn-primary btn-sm">
-                {t('INFO')}
-              </InfoButton>
+              <InfoButton className="btn btn-primary btn-sm">{t('INFO')}</InfoButton>
             </td>
           </tr>
           <tr>
@@ -80,9 +78,7 @@ const PotentialIssueList = () => {
             <td>{t('In Inventory')}</td>
             <td>{t('2 Days')}</td>
             <td>
-              <InfoButton className="btn btn-primary btn-sm">
-                {t('INFO')}
-              </InfoButton>
+              <InfoButton className="btn btn-primary btn-sm">{t('INFO')}</InfoButton>
             </td>
           </tr>
           <tr>
@@ -91,9 +87,7 @@ const PotentialIssueList = () => {
             <td>{t('NA')}</td>
             <td>{t('1 Day')}</td>
             <td>
-              <InfoButton className="btn btn-primary btn-sm">
-                {t('INFO')}
-              </InfoButton>
+              <InfoButton className="btn btn-primary btn-sm">{t('INFO')}</InfoButton>
             </td>
           </tr>
         </tbody>

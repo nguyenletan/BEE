@@ -71,14 +71,7 @@ const TotalCostBreakDown = () => {
     <Wrapper>
       <h5>{t('Total Cost Breakdown')}</h5>
 
-      <TotalBreakDownPieChart
-        title=""
-        startAngle={-100}
-        data={data}
-        innerRadius={0.55}
-        marginRight="0px"
-        hasDescription
-      />
+      <TotalBreakDownPieChart title="" startAngle={-100} data={data} innerRadius={0.55} marginRight="0px" hasDescription />
     </Wrapper>
   )
 }

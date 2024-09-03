@@ -1,14 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ScatterPlot } from '@nivo/scatterplot'
-import {
-  coolingSVG,
-  heatingSVG,
-  lightingSVG,
-  mechVentSVG,
-  openingsSVG,
-  wallSVG,
-} from '../../../../SvgConstants'
+import { coolingSVG, heatingSVG, lightingSVG, mechVentSVG, openingsSVG, wallSVG } from '../../../../SvgConstants'
 import { area, curveMonotoneX } from 'd3-shape'
 
 const PotentialFaultRiskWrapper = styled.div`
@@ -169,46 +162,18 @@ const PotentialFaultRisk = ({ data }) => {
 
   const areaLayer = ({ nodes, xScale, yScale }) => {
     return (
-      <g
-        transform="translate(0,0)"
-        className="Quadrant__Background"
-        opacity={1}
-      >
+      <g transform="translate(0,0)" className="Quadrant__Background" opacity={1}>
         <g>
-          <rect
-            x="0"
-            y="0"
-            width={areaWidth}
-            height={areaHeight}
-            fill="#f7e2d8"
-          />
+          <rect x="0" y="0" width={areaWidth} height={areaHeight} fill="#f7e2d8" />
         </g>
         <g>
-          <rect
-            x={areaWidth}
-            y="0"
-            width={areaWidth}
-            height={areaHeight}
-            fill="#f5d7d7"
-          />
+          <rect x={areaWidth} y="0" width={areaWidth} height={areaHeight} fill="#f5d7d7" />
         </g>
         <g>
-          <rect
-            x="0"
-            y={areaHeight}
-            width={areaWidth}
-            height={areaHeight}
-            fill="#e4e7d3"
-          />
+          <rect x="0" y={areaHeight} width={areaWidth} height={areaHeight} fill="#e4e7d3" />
         </g>
         <g>
-          <rect
-            x={areaWidth}
-            y={areaHeight}
-            width={areaWidth}
-            height={areaHeight}
-            fill="#f7e2d5"
-          />
+          <rect x={areaWidth} y={areaHeight} width={areaWidth} height={areaHeight} fill="#f7e2d5" />
         </g>
       </g>
     )
@@ -241,15 +206,7 @@ const PotentialFaultRisk = ({ data }) => {
         colors={{ scheme: 'set2' }}
         nodeSize={32}
         renderNode={customNode}
-        layers={[
-          'axes',
-          areaLayer,
-          'nodes',
-          'markers',
-          'mesh',
-          'legends',
-          'annotations',
-        ]}
+        layers={['axes', areaLayer, 'nodes', 'markers', 'mesh', 'legends', 'annotations']}
       />
     </PotentialFaultRiskWrapper>
   )

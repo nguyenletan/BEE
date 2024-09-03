@@ -157,9 +157,7 @@ const BuildingInfo = (props) => {
             <TypeCol className="mb-1">
               <Label>{t('Total operating hours')}</Label>
             </TypeCol>
-            <TypeCol className="mb-0">
-              {totalOperatingHours?.toFixed(0)}
-            </TypeCol>
+            <TypeCol className="mb-0">{totalOperatingHours?.toFixed(0)}</TypeCol>
           </div>
         </div>
 
@@ -180,9 +178,7 @@ const BuildingInfo = (props) => {
       </GeneralInformation>
       <div>
         <button className="btn btn-sm btn-outline-primary mt-3">
-          <Link to={'/editing-building/' + id + '/general-information'}>
-            {t('Edit')}
-          </Link>
+          <Link to={'/editing-building/' + id + '/general-information'}>{t('Edit')}</Link>
         </button>
       </div>
     </BuildingInfoWrapper>

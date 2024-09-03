@@ -3,13 +3,7 @@ import React, { useEffect, useState } from 'react'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Header from '../../components/Header'
 import BuildingBlock from '../../components/BuildingBlock'
-import {
-  AddBuildingText,
-  AddingIcon,
-  BuildingBlocks,
-  Description,
-  PortfolioWrapper,
-} from './PortfolioStyle'
+import { AddBuildingText, AddingIcon, BuildingBlocks, Description, PortfolioWrapper } from './PortfolioStyle'
 import { Link } from 'react-router-dom'
 import { getAllBuilding } from 'api/BuildidingAPI'
 import { useAuth } from 'AuthenticateProvider'
@@ -35,11 +29,7 @@ const BuildingListBlocks = ({ buildings }) => {
     )
   })
 
-  return (
-    <BuildingBlocks className="d-flex justify-content-center justify-content-md-start flex-wrap mb-3">
-      {buildingList}
-    </BuildingBlocks>
-  )
+  return <BuildingBlocks className="d-flex justify-content-center justify-content-md-start flex-wrap mb-3">{buildingList}</BuildingBlocks>
 }
 
 const Portfolio = () => {
@@ -78,17 +68,11 @@ const Portfolio = () => {
       <Header />
       <PortfolioWrapper className="container-fluid container-md">
         <div className="d-flex justify-content-between">
-          <Description className="">
-            {t(
-              'Please select a building to see it’s energy performance and asset health'
-            )}
-          </Description>
+          <Description className="">{t('Please select a building to see it’s energy performance and asset health')}</Description>
 
           <div>
             <Link to="/adding-building">
-              <AddBuildingText className="text-primary font-weight-bold">
-                {t('Add building')}
-              </AddBuildingText>
+              <AddBuildingText className="text-primary font-weight-bold">{t('Add building')}</AddBuildingText>
               <AddingIcon className="bi bi-plus-circle-fill" />
             </Link>
           </div>
@@ -116,15 +100,9 @@ const Portfolio = () => {
           </div>
         ) : (
           <>
-            <BuildingListBlocks
-              buildings={buildings?.filter((b) => b.statusId === 2)}
-            />
-            <h3 className="bold display-6 mt-5 color-primary">
-              Temporary Building
-            </h3>
-            <BuildingListBlocks
-              buildings={buildings?.filter((b) => b.statusId === 3)}
-            />
+            <BuildingListBlocks buildings={buildings?.filter((b) => b.statusId === 2)} />
+            <h3 className="bold display-6 mt-5 color-primary">Temporary Building</h3>
+            <BuildingListBlocks buildings={buildings?.filter((b) => b.statusId === 3)} />
           </>
         )}
       </PortfolioWrapper>

@@ -249,17 +249,10 @@ const IssueDetail = ({ data }) => {
 
       <div className="row mt-5 mb-5">
         <div className="col col-12 col-xl-6">
-          <WallLineChart
-            title="Annual Maintenance Cost ($)"
-            data={annualMaintenanceCost}
-          />
+          <WallLineChart title="Annual Maintenance Cost ($)" data={annualMaintenanceCost} />
         </div>
         <div className="col col-12 col-xl-6">
-          <WallLineChart
-            title="Energy Consumption (MWh)"
-            noWall
-            data={energyConsumption}
-          />
+          <WallLineChart title="Energy Consumption (MWh)" noWall data={energyConsumption} />
         </div>
       </div>
     </>

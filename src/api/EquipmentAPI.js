@@ -72,12 +72,7 @@ export const getProjectPeakDemand = async (id, numberOfNextDays, idToken) => {
   return result
 }
 
-export const getEnergyConsumptionEquipmentByIdAndDatePeriod = async (
-  id,
-  startDate,
-  endDate,
-  idToken
-) => {
+export const getEnergyConsumptionEquipmentByIdAndDatePeriod = async (id, startDate, endDate, idToken) => {
   let result
   await axios({
     method: 'get',
@@ -101,15 +96,7 @@ export const getEnergyConsumptionEquipmentByIdAndDatePeriod = async (
   return result
 }
 
-export const getEnergyConsumptionPercentage = async (
-  equipmentId,
-  equipmentTypeId,
-  subSystemId,
-  buildingId,
-  startDate,
-  endDate,
-  idToken
-) => {
+export const getEnergyConsumptionPercentage = async (equipmentId, equipmentTypeId, subSystemId, buildingId, startDate, endDate, idToken) => {
   let result
   await axios({
     method: 'get',

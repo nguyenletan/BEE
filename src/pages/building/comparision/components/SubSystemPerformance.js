@@ -2,15 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ResponsiveRadar } from '@nivo/radar'
 
-import {
-  coolingSVG,
-  energySVG,
-  envelopeSVG,
-  heatingSVG,
-  lightingSVG,
-  mechVentSVG,
-  renewableSVG,
-} from 'SvgConstants'
+import { coolingSVG, energySVG, envelopeSVG, heatingSVG, lightingSVG, mechVentSVG, renewableSVG } from 'SvgConstants'
 import { useTranslation } from 'react-i18next'
 import { deepClone } from 'Utilities'
 
@@ -193,9 +185,7 @@ const SubSystemPerformance = ({ data }) => {
 
   return (
     <SubSystemPerformanceWrapper>
-      <SubSystemPerformanceTitle>
-        {t('Sub-System Performance')}
-      </SubSystemPerformanceTitle>
+      <SubSystemPerformanceTitle>{t('Sub-System Performance')}</SubSystemPerformanceTitle>
 
       <ResponsiveRadar
         {...commonProperties}

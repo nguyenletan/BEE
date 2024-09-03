@@ -6,8 +6,7 @@ const Block = styled.div`
   height: 58px;
   color: ${(props) => (props.textColor ? props.textColor : '#fff')};
   height: ${(props) => (props.height ? props.height : '58px')};
-  background-color: ${(props) =>
-    props.backgroundColor ? props.backgroundColor : 'transparent'};
+  background-color: ${(props) => (props.backgroundColor ? props.backgroundColor : 'transparent')};
   text-align: center;
   line-height: 58px;
   font-size: 1.1rem;

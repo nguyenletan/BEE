@@ -38,12 +38,9 @@ const Ul = styled.ul`
 const RenewableEnergy = () => {
   const navigate = useNavigate()
 
-  const [solarSystemList, setSolarSystemList] = useRecoilState(
-    solarPanelSystemListState
-  )
+  const [solarSystemList, setSolarSystemList] = useRecoilState(solarPanelSystemListState)
 
-  const [addingBuildingProgress, setAddingBuildingProgressState] =
-    useRecoilState(addingBuildingProgressState)
+  const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(addingBuildingProgressState)
 
   const { t } = useTranslation('buildingInput')
 
@@ -105,12 +102,7 @@ const RenewableEnergy = () => {
       <div className="d-flex mt-5 mb-4">
         <Title>{t('New Building')}</Title>
 
-        <BackNextGroupButton
-          backLink={parentUrl + '/envelope-facade'}
-          noNextLink
-          progressValue={addingBuildingProgress}
-          isDisabledSave={false}
-        />
+        <BackNextGroupButton backLink={parentUrl + '/envelope-facade'} noNextLink progressValue={addingBuildingProgress} isDisabledSave={false} />
       </div>
 
       <StepNav />

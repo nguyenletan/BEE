@@ -4,15 +4,7 @@ import { line } from 'd3-shape'
 import styled from 'styled-components'
 // import { monotoneX } from 'd3-shape/src/curve/monotone'
 import { ResponsiveBar } from '@nivo/bar'
-import {
-  coolingSVG,
-  envelopeSVG,
-  heatingSVG,
-  lightingSVG,
-  mechVentSVG,
-  plugLoadSVG,
-  renewableSVG,
-} from 'SvgConstants'
+import { coolingSVG, envelopeSVG, heatingSVG, lightingSVG, mechVentSVG, plugLoadSVG, renewableSVG } from 'SvgConstants'
 import { useTranslation } from 'react-i18next'
 
 const lineColor = '#636c2e'
@@ -42,17 +34,14 @@ const Legend = styled.ul`
 `
 
 const LegendBox = styled.span`
-  background-color: ${(props) =>
-    props.backgroundColor ? props.backgroundColor : 'var(--bs-primary)'};
-  border-radius: ${(props) =>
-    props.borderRadius ? props.borderRadius : '50%;'};
+  background-color: ${(props) => (props.backgroundColor ? props.backgroundColor : 'var(--bs-primary)')};
+  border-radius: ${(props) => (props.borderRadius ? props.borderRadius : '50%;')};
   width: ${(props) => (props.weight ? props.weight : '12px')};
   height: ${(props) => (props.height ? props.height : '12px')};
   display: inline-block;
   line-height: 12px;
   margin-right: 6px;
-  vertical-align: ${(props) =>
-    props.verticleAlign ? props.verticleAlign : 'bottom'};
+  vertical-align: ${(props) => (props.verticleAlign ? props.verticleAlign : 'bottom')};
 `
 
 const ResponsiveBarWrapper = styled.div`
@@ -108,14 +97,7 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
 
     return (
       <>
-        <path
-          d={pathString}
-          fill="none"
-          stroke={lineColor}
-          strokeWidth={2.5}
-          strokeDasharray="18"
-          style={{ pointerEvents: 'none' }}
-        />
+        <path d={pathString} fill="none" stroke={lineColor} strokeWidth={2.5} strokeDasharray="18" style={{ pointerEvents: 'none' }} />
 
         {bars.map((bar) => {
           if (bar.data.id !== t('accrued')) {
@@ -158,33 +140,23 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
           return <g transform={`translate(${imgX}, ${imgY})`}>{heatingSVG()}</g>
 
         case t('mechanical ventilation'):
-          return (
-            <g transform={`translate(${imgX}, ${imgY})`}>{mechVentSVG()}</g>
-          )
+          return <g transform={`translate(${imgX}, ${imgY})`}>{mechVentSVG()}</g>
 
         case t('lighting'):
           imgX = 6
-          return (
-            <g transform={`translate(${imgX}, ${imgY})`}>{lightingSVG()}</g>
-          )
+          return <g transform={`translate(${imgX}, ${imgY})`}>{lightingSVG()}</g>
         case t('facility envelope'):
           imgX = -8
-          return (
-            <g transform={`translate(${imgX}, ${imgY})`}>{envelopeSVG()}</g>
-          )
+          return <g transform={`translate(${imgX}, ${imgY})`}>{envelopeSVG()}</g>
 
         case t('renewables'):
           imgX = -5
-          return (
-            <g transform={`translate(${imgX}, ${imgY})`}>{renewableSVG()}</g>
-          )
+          return <g transform={`translate(${imgX}, ${imgY})`}>{renewableSVG()}</g>
 
         case t('others'):
           imgX = 3
           imgY = 3
-          return (
-            <g transform={`translate(${imgX}, ${imgY})`}>{plugLoadSVG()}</g>
-          )
+          return <g transform={`translate(${imgX}, ${imgY})`}>{plugLoadSVG()}</g>
 
         default:
           return ''
@@ -212,9 +184,7 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
 
   return (
     <MaintenanceBudgetBySubSystemWrapper>
-      <MaintenanceBudgetBySubSystemTitle>
-        {t('Maintenance Budget By Sub-System')}
-      </MaintenanceBudgetBySubSystemTitle>
+      <MaintenanceBudgetBySubSystemTitle>{t('Maintenance Budget By Sub-System')}</MaintenanceBudgetBySubSystemTitle>
       <ResponsiveBarWrapper>
         <ResponsiveBar
           {...commonProps}
@@ -236,13 +206,7 @@ const MaintenanceBudgetBySubSystem = ({ data }) => {
           {t('Accrued')}
         </li>
         <li>
-          <LegendBox
-            backgroundColor="#636c2e"
-            height="3px"
-            weight="20px"
-            borderRadius="20%"
-            verticleAlign="middle"
-          />
+          <LegendBox backgroundColor="#636c2e" height="3px" weight="20px" borderRadius="20%" verticleAlign="middle" />
           {t('Allocated')}
         </li>
       </Legend>

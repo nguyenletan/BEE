@@ -2,13 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ResponsiveScatterPlot } from '@nivo/scatterplot'
-import {
-  coolingSVG,
-  heatingSVG,
-  lightingSVG,
-  openingsSVG,
-  wallSVG,
-} from 'SvgConstants'
+import { coolingSVG, heatingSVG, lightingSVG, openingsSVG, wallSVG } from 'SvgConstants'
 import { useTranslation } from 'react-i18next'
 import coolingImg from 'assets/images/cooling.svg'
 import openingsImg from 'assets/images/openings.svg'
@@ -109,19 +103,13 @@ const PayBack = ({ data, setResult }) => {
   const CustomNode = ({ node, x, y }) => {
     switch (node.data.subSystem) {
       case 'Cooling':
-        return (
-          <g transform={`translate(${node.x},${node.y})`}>{coolingSVG()}</g>
-        )
+        return <g transform={`translate(${node.x},${node.y})`}>{coolingSVG()}</g>
       case 'Heating':
         return <g transform={`translate(${x},${y})`}>{heatingSVG()}</g>
       case 'Lighting':
-        return (
-          <g transform={`translate(${node.x},${node.y})`}>{lightingSVG()}</g>
-        )
+        return <g transform={`translate(${node.x},${node.y})`}>{lightingSVG()}</g>
       case 'Openings':
-        return (
-          <g transform={`translate(${node.x},${node.y})`}>{openingsSVG()}</g>
-        )
+        return <g transform={`translate(${node.x},${node.y})`}>{openingsSVG()}</g>
       case 'Walls':
         return <g transform={`translate(${node.x},${node.y})`}>{wallSVG()}</g>
       default:
@@ -194,20 +182,8 @@ const PayBack = ({ data, setResult }) => {
         <PayBackTitle>{t('Payback')}</PayBackTitle>
         <UrlButton url="improve-payback" textWidth="45ch" />
       </div>
-      <ResponsiveScatterPlot
-        {...commonProps}
-        colors={{ scheme: 'set2' }}
-        nodeSize={32}
-        nodeComponent={CustomNode}
-        onClick={handleClick}
-      />
-      {show && (
-        <ImprovementMeasurePopup
-          data={popUpProps}
-          handleClose={handleClose}
-          show={true}
-        />
-      )}
+      <ResponsiveScatterPlot {...commonProps} colors={{ scheme: 'set2' }} nodeSize={32} nodeComponent={CustomNode} onClick={handleClick} />
+      {show && <ImprovementMeasurePopup data={popUpProps} handleClose={handleClose} show={true} />}
     </PayBackWrapper>
   )
 }

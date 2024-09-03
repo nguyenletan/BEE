@@ -6,13 +6,7 @@ import CO2EmissionsPerformance from './CO2EmissionsPerformance'
 import { useTranslation } from 'react-i18next'
 import { deepClone, formatNumber } from 'Utilities'
 import { useRecoilValue } from 'recoil'
-import {
-  getTotalInvestmentCost,
-  getTotalIRR,
-  getTotalSimplePayback,
-  getTotalValueAnnualEnergySavings,
-  totalAnnualSavingState,
-} from 'atoms'
+import { getTotalInvestmentCost, getTotalIRR, getTotalSimplePayback, getTotalValueAnnualEnergySavings, totalAnnualSavingState } from 'atoms'
 
 const PotentialSavingsWrapper = styled.div`
   margin-bottom: 40px;
@@ -51,9 +45,7 @@ const PotentialSavingItemValue = styled.h4`
 const PotentialSavings = ({ data }) => {
   const { t, i18n } = useTranslation('improvement')
   const totalAnnualSaving = useRecoilValue(totalAnnualSavingState)
-  const valueAnnualEnergySavingsSelector = useRecoilValue(
-    getTotalValueAnnualEnergySavings
-  )
+  const valueAnnualEnergySavingsSelector = useRecoilValue(getTotalValueAnnualEnergySavings)
   const getTotalInvestmentCostSelector = useRecoilValue(getTotalInvestmentCost)
   const getTotalSimplePaybackSelector = useRecoilValue(getTotalSimplePayback)
   const getTotalIRRSelector = useRecoilValue(getTotalIRR)
@@ -73,9 +65,7 @@ const PotentialSavings = ({ data }) => {
             item.value = formatNumber(getTotalInvestmentCostSelector / 1000)
             break
           case 'Annual Energy Cost Savings':
-            item.value = formatNumber(
-              (valueAnnualEnergySavingsSelector * 0.23) / 1000
-            )
+            item.value = formatNumber((valueAnnualEnergySavingsSelector * 0.23) / 1000)
             break
           case 'Annual CO2 Emissions Avoided':
             item.value = formatNumber(valueAnnualEnergySavingsSelector * 0.1)
@@ -121,19 +111,13 @@ const PotentialSavings = ({ data }) => {
     <PotentialSavingsWrapper className="row">
       <div className="col-5">
         <PotentialSavingsTitle>{t('Potential Savings')}</PotentialSavingsTitle>
-        <div className="d-flex justify-content-between flex-wrap">
-          {PotentialSavingItems}
-        </div>
+        <div className="d-flex justify-content-between flex-wrap">{PotentialSavingItems}</div>
       </div>
 
       <div className="col-7">
         <div className="d-flex">
-          <BuildingEnergyPerformance
-            improved={data.energyPerformance.improved}
-          />
-          <CO2EmissionsPerformance
-            improved={data.CO2EmissionsPerformance.improved}
-          />
+          <BuildingEnergyPerformance improved={data.energyPerformance.improved} />
+          <CO2EmissionsPerformance improved={data.CO2EmissionsPerformance.improved} />
         </div>
       </div>
     </PotentialSavingsWrapper>

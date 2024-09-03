@@ -80,12 +80,7 @@ const Line = ({ bars, xScale, yScale }) => {
 
   return (
     <>
-      <path
-        d={lineGenerator(bars)}
-        fill="none"
-        stroke={lineColor}
-        style={{ pointerEvents: 'none' }}
-      />
+      <path d={lineGenerator(bars)} fill="none" stroke={lineColor} style={{ pointerEvents: 'none' }} />
       {bars.map((bar) => (
         <circle
           key={bar.key}

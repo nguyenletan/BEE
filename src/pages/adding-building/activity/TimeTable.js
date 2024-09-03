@@ -19,9 +19,7 @@ const Header = styled.div`
 const Content = styled.div``
 
 const Row = ({ data, control, setValue }) => {
-  const [buildingActivity, setBuildingActivity] = useRecoilState(
-    buildingActivityState
-  )
+  const [buildingActivity, setBuildingActivity] = useRecoilState(buildingActivityState)
   const { t } = useTranslation('buildingInput')
   useEffect(() => {
     setValue(`${data.codeName}StartTime`, data.startTime, {
@@ -85,17 +83,11 @@ const Row = ({ data, control, setValue }) => {
                   handleChange('startTime', date)
                   onChange(date)
                 }}
-                renderInput={(params) => (
-                  <TextField variant="standard" {...params} />
-                )}
+                renderInput={(params) => <TextField variant="standard" {...params} />}
               />
             </LocalizationProvider>
           )}
-          rules={
-            data.isEnable
-              ? { required: `${data.name}StartTime is not empty` }
-              : {}
-          }
+          rules={data.isEnable ? { required: `${data.name}StartTime is not empty` } : {}}
         />
       </div>
       <div className="col-4">
@@ -120,9 +112,7 @@ const Row = ({ data, control, setValue }) => {
                 }}
                 autoOk
                 fullWidth
-                renderInput={(params) => (
-                  <TextField variant="standard" {...params} />
-                )}
+                renderInput={(params) => <TextField variant="standard" {...params} />}
               />
             </LocalizationProvider>
           )}
@@ -143,14 +133,7 @@ const TimeTable = ({ control, setValue }) => {
   const buildingActivity = useRecoilValue(buildingActivityState)
 
   const { t } = useTranslation('buildingInput')
-  const rows = buildingActivity.map((t) => (
-    <Row
-      key={`${t.name}_${t.id}`}
-      data={t}
-      control={control}
-      setValue={setValue}
-    />
-  ))
+  const rows = buildingActivity.map((t) => <Row key={`${t.name}_${t.id}`} data={t} control={control} setValue={setValue} />)
   return (
     <>
       <Header className="row">

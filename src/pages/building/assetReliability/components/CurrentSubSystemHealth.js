@@ -2,14 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Radar } from '@nivo/radar'
-import {
-  coolingSVG,
-  envelopeSVG,
-  heatingSVG,
-  lightingSVG,
-  mechVentSVG,
-  renewableSVG,
-} from 'SvgConstants'
+import { coolingSVG, envelopeSVG, heatingSVG, lightingSVG, mechVentSVG, renewableSVG } from 'SvgConstants'
 import { useTranslation } from 'react-i18next'
 
 const CurrentSubSystemHealthWrapper = styled.div`
@@ -188,9 +181,7 @@ const CurrentSubSystemHealth = ({ data }) => {
 
   return (
     <CurrentSubSystemHealthWrapper className="mb-4">
-      <CurrentSubSystemHealthTitle>
-        {t('Current Sub-System Health')}
-      </CurrentSubSystemHealthTitle>
+      <CurrentSubSystemHealthTitle>{t('Current Sub-System Health')}</CurrentSubSystemHealthTitle>
       <Radar {...commonProperties} colors={['#87972f']} />
       <CurrentSubSystemHealthList>{list}</CurrentSubSystemHealthList>
     </CurrentSubSystemHealthWrapper>
