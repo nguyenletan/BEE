@@ -42,7 +42,7 @@ function DebugButton() {
   )
 
   return (
-    <button onClick={onClick} className="-visually-hidden">
+    <button onClick={onClick} className="visually-hidden">
       Dump State
     </button>
   )
