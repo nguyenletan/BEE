@@ -1,186 +1,50 @@
-import axios from 'axios'
+import axios from 'axios';
 
-// const returnAxiosInstance = () => {
-//   return Axios.create(initializers);
-// }
+const API_BASE_URL = process.env.REACT_APP_BACKEND_API;
 
-export const createBuilding = async (data, idToken) => {
-  let result
-  await axios({
-    method: 'post',
-    url: process.env.REACT_APP_BACKEND_API + '/buildings/create-partial',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${idToken}`,
-    },
-    data: data,
-    body: {},
-  })
-    .then((response) => {
-      //console.log(response)
-      // result = response
-      result = 'Saving successfully!'
-    })
-    .catch((error) => {
-      if (error.response) {
-        // setErrorMsg(error.response.data.message)
-        result = error.response.data.message
-      }
-    })
+const axiosInstance = (idToken) => axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${idToken}`,
+  },
+});
 
-  return result
-}
+const handleApiCall = async (apiCall) => {
+  try {
+    const response = await apiCall();
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      throw new Error(error.response.data.message);
+    }
+    throw error;
+  }
+};
 
-export const deleteBuilding = async (propertyId, idToken) => {
-  let result
-  await axios({
-    method: 'delete',
-    url: process.env.REACT_APP_BACKEND_API + '/buildings/' + propertyId,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${idToken}`,
-    },
-    data: {},
-    body: {},
-  })
-    .then((response) => {
-      //console.log(response)
-      // result = response
-      result = 'Delete successfully!'
-    })
-    .catch((error) => {
-      if (error.response) {
-        // setErrorMsg(error.response.data.message)
-        result = error.response.data.message
-      }
-    })
+export const createBuilding = (data, idToken) =>
+  handleApiCall(() => axiosInstance(idToken).post('/buildings/create-partial', data));
 
-  return result
-}
+export const deleteBuilding = (propertyId, idToken) =>
+  handleApiCall(() => axiosInstance(idToken).delete(`/buildings/${propertyId}`));
 
-export const updateBuilding = async (id, data, idToken) => {
-  let result
-  //console.log(data)
-  await axios({
-    method: 'post',
-    url: process.env.REACT_APP_BACKEND_API + '/buildings/edit/' + id,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${idToken}`,
-    },
-    data: data,
-    body: {},
-  })
-    .then((response) => {
-      console.log(response)
-      // result = response
-      result = 'Saving successfully!'
-    })
-    .catch((error) => {
-      if (error.response) {
-        // setErrorMsg(error.response.data.message)
-        result = error.response.data.message
-      }
-    })
+export const updateBuilding = (id, data, idToken) =>
+  handleApiCall(() => axiosInstance(idToken).post(`/buildings/edit/${id}`, data));
 
-  return result
-}
+export const getAllBuilding = (idToken) =>
+  handleApiCall(() => axiosInstance(idToken).get('/buildings/'));
 
-export const getAllBuilding = async (idToken) => {
-  let result
-  await axios({
-    method: 'get',
-    url: process.env.REACT_APP_BACKEND_API + '/buildings/',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${idToken}`,
-    },
-    //data: data,
-    body: {},
-  })
-    .then((response) => {
-      console.log(response.data)
-      result = response.data
-      //result = 'Retrieve successfully!'
-      //return response.data
-    })
-    .catch((error) => {
-      if (error.response) {
-        // setErrorMsg(error.response.data.message)
-        result = error.response.data.message
-      }
-    })
+export const getBuildingById = (id, startDay, endDay, idToken) =>
+  handleApiCall(() => axiosInstance(idToken).get(`/buildings/${id}/${startDay}/${endDay}`));
 
-  return result
-}
+export const getBuildingByIdForEditing = (id, idToken) =>
+  handleApiCall(() => axiosInstance(idToken).get(`/buildings/edit/${id}`));
 
-export const getBuildingById = async (id, startDay, endDay, idToken) => {
-  let result
-  await axios({
-    method: 'get',
-    url: `${process.env.REACT_APP_BACKEND_API}/buildings/${id}/${startDay}/${endDay}`,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${idToken}`,
-    },
-    body: {},
-  })
-    .then((response) => {
-      result = response.data
-    })
-    .catch((error) => {
-      if (error.response) {
-        // setErrorMsg(error.response.data.message)
-        result = error.response.data.message
-      }
-    })
-
-  return result
-}
-
-export const getBuildingByIdForEditing = async (id, idToken) => {
-  let result
-  await axios({
-    method: 'get',
-    url: process.env.REACT_APP_BACKEND_API + '/buildings/edit/' + id,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${idToken}`,
-    },
-    body: {},
-  })
-    .then((response) => {
-      result = response.data
-    })
-    .catch((error) => {
-      if (error.response) {
-        // setErrorMsg(error.response.data.message)
-        result = error.response.data.message
-      }
-    })
-
-  return result
-}
-
-export const getBreakdownByTime = async (idToken, id, type, firstParam, secondParam, thirdParam) => {
-  let result
-  await axios({
-    method: 'get',
-    url: process.env.REACT_APP_BACKEND_API + '/buildings/get-breakdown/' + id + '/' + type + '/' + firstParam + '/' + secondParam + '/' + thirdParam,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${idToken}`,
-    },
-    body: {},
-  })
-    .then((response) => {
-      result = response.data
-    })
-    .catch((error) => {
-      if (error.response) {
-        // setErrorMsg(error.response.data.message)
-        result = error.response.data.message
-      }
-    })
-  return result
+export const getBreakdownByTime = (idToken, id, type, firstParam, secondParam, thirdParam) => {
+  console.log('id:', id);
+  console.log('type:', type);
+  console.log('firstParam:', firstParam);
+  console.log('secondParam:', secondParam);
+  console.log('thirdParam:', thirdParam);
+  return handleApiCall(() => axiosInstance(idToken).get(`/buildings/get-breakdown/${id}/${type}/${firstParam}/${secondParam}/${thirdParam}`));
 }

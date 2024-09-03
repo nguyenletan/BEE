@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo, useCallback } from 'react'
 import { ResponsiveBar } from '@nivo/bar'
 import styled from 'styled-components'
 import _ from 'lodash'
@@ -48,7 +48,6 @@ const SummaryBoxWrapper = styled.div`
 const SummaryBox = styled.div`
   background-color: #fafafa;
   padding: 15px 20px;
-  // margin-bottom: 30px;
   border-radius: 15px;
   width: 100%;
   min-width: 0;
@@ -75,10 +74,6 @@ const SummaryBoxValue = styled.p`
 
 const BuildingEnergyUsageWrapper = styled.div`
   background-color: #fafafa;
-
-  //margin-right: 30px;
-  //margin-bottom: 50px;
-
   padding: 25px 10px 0 10px;
   height: 491px;
   border-radius: 25px;
@@ -123,17 +118,16 @@ const BuildingHistorical = (props) => {
 
   const { t } = useTranslation('buildingPerformance')
 
-  let buildingEnergyUsageData = []
-
-  if (energyConsumptions && energyConsumptions.length > 0) {
-    buildingEnergyUsageData = _.reverse(_.take(props.energyConsumptions, 12)).map((x) => {
-      return {
+  const buildingEnergyUsageData = useMemo(() => {
+    if (energyConsumptions && energyConsumptions.length > 0) {
+      return _.reverse(_.take(props.energyConsumptions, 12)).map((x) => ({
         ...x,
         value: Math.round(x.monthlyValue / 1000),
-        label: getMonthName(x.month + 1) + ' ' + x.year,
-      }
-    })
-  }
+        label: `${getMonthName(x.month + 1)} ${x.year}`,
+      }))
+    }
+    return []
+  }, [energyConsumptions, props.energyConsumptions])
 
   const [the1stHistoricalComparison, setThe1stHistoricalComparison] = useState()
 
@@ -141,7 +135,24 @@ const BuildingHistorical = (props) => {
 
   const [the3rdHistoricalComparison, setThe3rdHistoricalComparison] = useState()
 
-  let datasource = buildingEnergyUsageData
+  const datasource = useMemo(() => {
+    if (electricConsumptionsFromHistorizedLogs?.overall) {
+      switch (energyPerformanceGroupBy) {
+        case 'year':
+          return electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByYear
+        case 'quarter':
+          return electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByQuarter
+        case 'week':
+          return electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByWeek
+        case 'day':
+          return electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByDay
+        case 'month':
+        default:
+          return electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByMonth
+      }
+    }
+    return []
+  }, [electricConsumptionsFromHistorizedLogs, energyPerformanceGroupBy])
 
   const [barData, setBarData] = useState([])
 
@@ -156,64 +167,31 @@ const BuildingHistorical = (props) => {
   const originalConsumptionBreakdown = useRecoilValue(originalConsumptionBreakdownState)
 
   useEffect(() => {
-    if (electricConsumptionsFromHistorizedLogs && electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByMonth.length > 0) {
-      switch (energyPerformanceGroupBy) {
-        case 'year':
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-          datasource = electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByYear
-          break
-        case 'quarter':
-          datasource = electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByQuarter
-          break
-        case 'week':
-          datasource = electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByWeek
-          break
-        case 'day':
-          datasource = electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByDay
-          break
-        case 'month':
-        default:
-          datasource = electricConsumptionsFromHistorizedLogs.overall.electricConsumptionGroupByMonth
-          break
-      }
-    }
-
     if (datasource.length > 13 && props.energyPerformanceGroupBy !== 'year') {
       setEnableLabel(false)
-      const tickValues = []
-      for (let i = 0; i < datasource.length; i += 5) {
-        tickValues.push(datasource[i].label)
-      }
-      setAxisBottom({ tickValues: tickValues })
+      const tickValues = datasource.filter((_, i) => i % 5 === 0).map(item => item.label)
+      setAxisBottom({ tickValues })
     } else {
       setAxisBottom({})
       setEnableLabel(true)
-      setTotalEnergyConsumption(overallEnergyConsumptionInformation?.totalEnergyConsumption)
-      setTotalEnergyCost(overallEnergyConsumptionInformation?.totalEnergyCost)
-      setTotalCarbonEmissions(overallEnergyConsumptionInformation?.totalEnergyCost)
     }
+    
     setBarData([...datasource])
     setThe1stHistoricalComparison(null)
     setThe2ndHistoricalComparison(null)
     setThe3rdHistoricalComparison(null)
     setTotalEnergyConsumption(overallEnergyConsumptionInformation?.totalEnergyConsumption)
     setTotalEnergyCost(overallEnergyConsumptionInformation?.totalEnergyCost)
-    setTotalCarbonEmissions(overallEnergyConsumptionInformation?.totalEnergyCost)
+    setTotalCarbonEmissions(overallEnergyConsumptionInformation?.totalCarbonEmissions)
+  }, [datasource, props.energyPerformanceGroupBy, overallEnergyConsumptionInformation])
 
-    // setSameThingLastYearComparison(calculateSameThingLastYear(electricConsumptionsFromHistorizedLogs.overall[],
-    //   e.index, prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
-    //   electricConsumptionsFromHistorizedLogs.overall, energyPerformanceGroupBy))
-  }, [energyPerformanceGroupBy, electricConsumptionsFromHistorizedLogs])
-
-  const selectBar = async (e) => {
+  const selectBar = useCallback(async (e) => {
     if (barData[e.index].isUnselected === false) {
       // deselected a bar
-      const newBarData = barData.map((x) => {
-        return {
-          ...x,
-          isUnselected: undefined,
-        }
-      })
+      const newBarData = barData.map((x) => ({
+        ...x,
+        isUnselected: undefined,
+      }))
       setBarData([...newBarData])
       setThe1stHistoricalComparison(null)
       setThe2ndHistoricalComparison(null)
@@ -226,12 +204,10 @@ const BuildingHistorical = (props) => {
       })
     } else {
       // select a bar
-      const newBarData = barData.map((x, index) => {
-        return {
-          ...x,
-          isUnselected: e.index !== index,
-        }
-      })
+      const newBarData = barData.map((x, index) => ({
+        ...x,
+        isUnselected: e.index !== index,
+      }))
       setBarData([...newBarData])
       setThe1stHistoricalComparison(
         calculateSameThingLastYear(
@@ -290,32 +266,11 @@ const BuildingHistorical = (props) => {
       }
       setBreakdown({ ...breakdown })
     }
+  }, [barData, energyPerformanceGroupBy, user, id, breakdown, originalConsumptionBreakdown, 
+      overallEnergyConsumptionInformation, prev12MonthsElectricityConsumptionsFromHistorizedLogs, 
+      prev24MonthsElectricityConsumptionsFromHistorizedLogs, electricConsumptionsFromHistorizedLogs])
 
-    // switch (energyPerformanceGroupBy) {
-    //   case 'year':
-    //     barData[e.index].coolingValue = electricConsumptionsFromHistorizedLogs.coolingSystem.electricConsumptionGroupByYear[e.index].value
-    //     break
-    //   case 'quarter':
-    //     barData[e.index].coolingValue = electricConsumptionsFromHistorizedLogs.coolingSystem.electricConsumptionGroupByQuarter[e.index].value
-    //     break
-    //   case 'week':
-    //     barData[e.index].coolingValue = electricConsumptionsFromHistorizedLogs.coolingSystem.electricConsumptionGroupByWeek[e.index].value
-    //     break
-    //   case 'day':
-    //     barData[e.index].cooling = electricConsumptionsFromHistorizedLogs.coolingSystem.electricConsumptionGroupByDay[e.index].value
-    //     break
-    //   case 'month':
-    //   default:
-    //     console.log(electricConsumptionsFromHistorizedLogs.coolingSystem.electricConsumptionGroupByMonth[e.index])
-    //     barData[e.index].cooling = electricConsumptionsFromHistorizedLogs.coolingSystem.electricConsumptionGroupByMonth[e.index].value
-    //     break
-    // }
-
-    //setSameMonthLastYearComparison(buildingEnergyUsageData[e.index]?.sameMonthLastYearComparison)
-    //setLastMonthComparison(buildingEnergyUsageData[e.index]?.lastMonthComparison)
-  }
-
-  const selectLine = async (day, value, index) => {
+  const selectLine = useCallback(async (day, value, index) => {
     const idToken = await user.getIdToken()
     let breakdown
     switch (energyPerformanceGroupBy) {
@@ -357,14 +312,13 @@ const BuildingHistorical = (props) => {
       default:
         break
     }
-  }
+  }, [energyPerformanceGroupBy, user, id, prev12MonthsElectricityConsumptionsFromHistorizedLogs, 
+      electricConsumptionsFromHistorizedLogs])
 
-  let keys = ['value', 'cooling']
-  let index = 'label'
+  const keys = ['value', 'cooling']
+  const index = 'label'
 
-  const commonProps = {
-    // width: 920,
-    // height: 350,
+  const commonProps = useMemo(() => ({
     margin: { top: 0, right: 0, bottom: 100, left: 30 },
     data: barData, // generateCountriesData(keys, { size: 7 }),
     indexBy: index,
@@ -399,7 +353,7 @@ const BuildingHistorical = (props) => {
       }
       return '#87972f'
     },
-  }
+  }), [barData, enableLabel, axisBottom])
 
   return (
     <Wrapper className="">
@@ -434,6 +388,7 @@ const BuildingHistorical = (props) => {
                   {t('Value')}: <b>{value}</b>
                 </div>
               )}
+              aria-label="Building Energy Usage Bar Chart"
             />
           )}
         </BuildingEnergyUsageWrapper>
@@ -464,6 +419,4 @@ const BuildingHistorical = (props) => {
   )
 }
 
-BuildingHistorical.propTypes = {}
-
-export default BuildingHistorical
+export default React.memo(BuildingHistorical)

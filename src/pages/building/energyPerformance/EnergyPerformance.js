@@ -55,7 +55,7 @@ const EnergyPerformance = (props) => {
 
   useEffect(() => {
     setBreakdownRecoilState({ consumptionBreakdown })
-  }, [consumptionBreakdown, setBreakdownRecoilState])
+  }, [consumptionBreakdown])
 
   return (
     <>
