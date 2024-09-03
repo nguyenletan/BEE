@@ -1,5 +1,5 @@
 import DrillDownDonutChart3Lv from '../../../../components/DrillDownDonutChart3Lv'
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import styled from 'styled-components'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { breakDownLevelState, consumptionBreakdownState, isBreakDownDrillDownState, selectedSubBreakdownState } from 'atoms'
@@ -9,9 +9,7 @@ const BreakdownWrapper = styled.div`
   margin-bottom: 50px;
 `
 
-const BreakDown = (props) => {
-  const { consumptionBreakdown } = props
-
+const BreakDown = ({ consumptionBreakdown }) => {
   const { t } = useTranslation('buildingPerformance')
 
   const setBreakDownLevel = useSetRecoilState(breakDownLevelState)
@@ -26,25 +24,24 @@ const BreakDown = (props) => {
     setIsBreakDownDrillDown(false)
   }, [consumptionBreakdown, setBreakDownLevel, setConsumptionBreakdownSt, setIsBreakDownDrillDown, setSelectedSubBreakdown])
 
+  const chartData = useMemo(() => [
+    { title: t('Consumption Breakdown'), subTitle: 'MWh' },
+    { title: t('Cost Breakdown'), subTitle: t('$') },
+    { title: t('CO2 Emissions Breakdown'), subTitle: t('Ton') },
+  ], [t])
+
   return (
     <BreakdownWrapper className="d-flex row justify-content-center">
-      {consumptionBreakdownSt && (
-        <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
-          <DrillDownDonutChart3Lv title={t('Consumption Breakdown')} subTitle="MWh" hasDescription data={consumptionBreakdownSt} />
+      {consumptionBreakdownSt && chartData.map((chart, index) => (
+        <div key={index} className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
+          <DrillDownDonutChart3Lv
+            title={chart.title}
+            subTitle={chart.subTitle}
+            data={consumptionBreakdownSt}
+            hasDescription
+          />
         </div>
-      )}
-
-      {consumptionBreakdownSt && (
-        <div className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
-          <DrillDownDonutChart3Lv title={t('Cost Breakdown')} subTitle={t('$')} data={consumptionBreakdownSt} hasDescription />
-        </div>
-      )}
-
-      {consumptionBreakdownSt && (
-        <div className="col col-12 col-md-8 col-xl-4">
-          <DrillDownDonutChart3Lv title={t('CO2 Emissions Breakdown')} subTitle={t('Ton')} data={consumptionBreakdownSt} hasDescription />
-        </div>
-      )}
+      ))}
     </BreakdownWrapper>
   )
 }

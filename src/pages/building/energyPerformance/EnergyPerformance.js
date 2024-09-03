@@ -30,8 +30,6 @@ const EnergyPerformance = (props) => {
     incidentalGainsOtherInformation,
   } = props
 
-  console.log('prev12MonthsElectricityConsumptionsFromHistorizedLogs', prev12MonthsElectricityConsumptionsFromHistorizedLogs)
-
   const setIsDisplayPerformanceFilter = useSetRecoilState(isDisplayPerformanceFilterState)
   const [breakdownRecoilState, setBreakdownRecoilState] = useRecoilState(breakdownState)
   const [subSystemPerformanceData, setSubSystemPerformanceData] = useState(subSystemPerformanceDataEN)

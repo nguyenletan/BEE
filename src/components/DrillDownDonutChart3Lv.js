@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 import { ResponsivePie } from '@nivo/pie'
 import { deepClone, formatNumber, getColorPattern } from 'Utilities'
@@ -8,6 +8,7 @@ import { Item, Menu, useContextMenu } from 'react-contexify'
 import 'react-contexify/dist/ReactContexify.css'
 import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import Popover from '@mui/material/Popover';
 
 const BreakDownBlock = styled.div`
   background-color: #fafafa;
@@ -65,6 +66,21 @@ const ColorBlock = styled.span`
   margin-right: 0.5em;
 `
 
+const ContextMenu = styled.div`
+  padding: 10px;
+  background-color: #f9f3f2;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  a {
+    text-decoration: none;
+    color: var(--bs-primary);
+    font-size: 0.9rem;
+  }
+  span {
+    font-weight: bold;
+  }
+`
+
 const DrillDownDonutChart3Lv = (props) => {
   const {
     valueFontSize,
@@ -80,7 +96,6 @@ const DrillDownDonutChart3Lv = (props) => {
     noCenterText,
   } = props
 
-  const [dataSource, setDataSource] = useState(data)
   const [selectedSubBreakdown, setSelectedSubBreakdown] = useRecoilState(selectedSubBreakdownState)
   const [isBreakDownDrillDown, setIsBreakDownDrillDown] = useRecoilState(isBreakDownDrillDownState)
   const [breakDownLevel, setBreakDownLevel] = useRecoilState(breakDownLevelState)
@@ -88,17 +103,19 @@ const DrillDownDonutChart3Lv = (props) => {
   const setConsumptionBreakdownSt = useSetRecoilState(consumptionBreakdownState)
   const [selectedBreakdownItemMenuItem, setSelectedBreakdownItemMenuItem] = useState()
   const [equipmentId, setEquipmentId] = useState()
-
   const { t, i18n } = useTranslation('buildingPerformance')
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [isOpenContextMenu, setIsOpenContextMenu] = useState(false)
 
-  useEffect(() => {
+  const handleCloseContextMenu = () => {
+    setAnchorEl(null);
+    setIsOpenContextMenu(false)
+  };
+
+  const dataSource = useMemo(() => {
     const tmp = deepClone(data)
-    for (let item of tmp) {
-      item.id = t(item.id)
-    }
-    setDataSource(tmp)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, i18n.language])
+    return tmp.map(item => ({ ...item, id: t(item.id) }))
+  }, [data, t])
 
   const commonProperties = {
     margin: { top: 40, right: 20, bottom: 20, left: 20 },
@@ -112,10 +129,6 @@ const DrillDownDonutChart3Lv = (props) => {
   const chartHeight = hasDescription ? '250px' : '150px'
 
   const { id } = useParams()
-
-  const { show } = useContextMenu({
-    id: 'MENU_ID',
-  })
 
   const CenteredPercentage = ({ dataWithArc, centerX, centerY }) => {
     const total = dataWithArc[0].value + dataWithArc[1].value
@@ -205,51 +218,40 @@ const DrillDownDonutChart3Lv = (props) => {
     )
   }
 
-  const handleClick = (node, event) => {
-    console.log(breakDownLevel)
+  const handleClick = useCallback((node, event) => {
     if (node.data?.subBreakdown) {
-      setBreakDownLevel(breakDownLevel + 1)
+      setBreakDownLevel((prevLevel) => prevLevel + 1)
       setSelectedSubBreakdown(node.id)
       setIsBreakDownDrillDown(true)
       setConsumptionBreakdownSt(node.data.subBreakdown)
-    } else {
-      if (breakDownLevel === 2) {
-        console.log(event)
-        setEquipmentId(node?.data.equipmentId)
-        setSelectedBreakdownItemMenuItem({
-          name: node.label,
-          id: node.label,
-        })
-
-        show(event, {
-          props: {
-            key: 'value',
-          },
-        })
-      }
+    } else if (breakDownLevel === 2) {
+      setEquipmentId(node?.data.equipmentId)
+      setSelectedBreakdownItemMenuItem({
+        name: node.label,
+        id: node.label,
+      })
+      setAnchorEl(event.currentTarget);
+      setIsOpenContextMenu(true)
     }
-  }
+  }, [breakDownLevel, setBreakDownLevel, setSelectedSubBreakdown, setIsBreakDownDrillDown, setConsumptionBreakdownSt])
 
-  const handleBackBtn = () => {
+  const handleBackBtn = useCallback(() => {
     setSelectedSubBreakdown(null)
     setIsBreakDownDrillDown(false)
     setBreakDownLevel(0)
     setConsumptionBreakdownSt(breakdownSt.consumptionBreakdown)
-  }
+  }, [setSelectedSubBreakdown, setIsBreakDownDrillDown, setBreakDownLevel, setConsumptionBreakdownSt, breakdownSt.consumptionBreakdown])
 
-  const getValue = (value, title) => {
-    if (title === t('Consumption Breakdown')) {
-      return formatNumber(value / 1000, 2, 'MWh')
-    } else {
-      if (title === t('Cost Breakdown')) {
-        return formatNumber(value * 0.23, 2, t('$'))
-      } else {
-        return formatNumber(value * 0.000208, 2, t('Ton'))
-      }
+  const getValue = useCallback((value, title) => {
+    const formatters = {
+      [t('Consumption Breakdown')]: (v) => formatNumber(v / 1000, 2, 'MWh'),
+      [t('Cost Breakdown')]: (v) => formatNumber(v * 0.23, 2, t('$')),
+      default: (v) => formatNumber(v * 0.000208, 2, t('Ton'))
     }
-  }
+    return (formatters[title] || formatters.default)(value)
+  }, [t])
 
-  const list = dataSource.map((x, index) => {
+  const list = useMemo(() => dataSource.map((x, index) => {
     const colors = getColorPattern(isBreakDownDrillDown ? 1 : 0)
     return (
       <li className="d-flex justify-content-between" key={x.id}>
@@ -260,7 +262,7 @@ const DrillDownDonutChart3Lv = (props) => {
         <Value fontSize={informationFontSize}>{getValue(x.consumption, title)}</Value>
       </li>
     )
-  })
+  }), [dataSource, isBreakDownDrillDown, informationFontSize, getValue, title])
 
   return (
     <BreakDownBlock marginRight={marginRight}>
@@ -277,16 +279,25 @@ const DrillDownDonutChart3Lv = (props) => {
           )}
         </div>
       </div>
-
-      <Menu id="MENU_ID">
+      <Popover
+        id="context-menu"
+        open={isOpenContextMenu}
+        anchorEl={anchorEl}
+        onClose={handleCloseContextMenu}
+        anchorOrigin={{
+          vertical: 'middle',
+          horizontal: 'left',
+        }}
+      >
         {selectedBreakdownItemMenuItem && (
-          <Item>
+          <ContextMenu>
             <Link to={`/building/${id}/asset-reliability/equipment/${equipmentId}/${selectedSubBreakdown}`}>
-              {t('Go to Asset Reliability')} - {selectedBreakdownItemMenuItem?.name}
+              {t('Go to Asset Reliability')} - <span>{selectedBreakdownItemMenuItem?.name}</span>
             </Link>
-          </Item>
+          </ContextMenu>
         )}
-      </Menu>
+      </Popover>
+
       <ResponsivePieWrapper height={chartHeight}>
         <ResponsivePie
           {...commonProperties}
@@ -315,7 +326,7 @@ const DrillDownDonutChart3Lv = (props) => {
           }}
           // enableSliceLabels={false}
           // enableRadialLabels={enableRadialLabels ?? true}
-          onClick={handleClick}
+          onClick={(node, event) => handleClick(node, event)}
           layers={['arcs', 'arcLabels', 'legends', SubCategoryName, isCenteredPercentage === true ? CenteredPercentage : '']}
         />
       </ResponsivePieWrapper>

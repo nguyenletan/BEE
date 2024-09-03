@@ -80,15 +80,16 @@ const Building = () => {
   const { id } = useParams()
   const { user } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
+
   const [startTime, setStartTime] = useRecoilState(energyPerformanceStartTimeState)
   const [endTime, setEndTime] = useRecoilState(energyPerformanceEndTimeState)
 
   const todayLastYear = moment().subtract(1, 'year')
   const firstDayOfMonthLastYear = todayLastYear.startOf('month')
-  //console.log('firstDayOfMonthLastYear: ', firstDayOfMonthLastYear)
 
   const [startDate, setStartDate] = useState(firstDayOfMonthLastYear)
   const [endDate, setEndDate] = useState(moment())
+
   const [startMonth, setStartMonth] = useState(todayLastYear.month() + 1)
   const [startQuarter, setStartQuarter] = useState(todayLastYear.quarter())
   const [startYear, setStartYear] = useState(todayLastYear.year())
@@ -96,6 +97,7 @@ const Building = () => {
   const [endMonth, setEndMonth] = useState(moment().month() + 1)
   const [endQuarter, setEndQuarter] = useState(moment().quarter())
   const [endYear, setEndYear] = useState(moment().year())
+
   const [groupBy, setGroupBy] = useState('month')
   const [energyPerformanceGroupBy, setEnergyPerformanceGroupBy] = useState('month')
   const [isInValid, setIsInValid] = useState(false)
@@ -103,8 +105,6 @@ const Building = () => {
   const isDisplayPerformanceFilter = useRecoilValue(isDisplayPerformanceFilterState)
   const setOriginalConsumptionBreakdown = useSetRecoilState(originalConsumptionBreakdownState)
   const { t } = useTranslation('buildingPerformance')
-
-  console.log('startMonth', startMonth)
 
   const handleGroupByChange = useCallback((group) => {
     setGroupBy(group)
