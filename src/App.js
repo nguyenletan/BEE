@@ -7,14 +7,18 @@ import { EuiProvider } from '@elastic/eui'
 import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles'
 import 'analytics_log_event'
 // import Login from './pages/login/Login';
-import Portfolio from './pages/portfolio/Portfolio'
-import Building from './pages/building/Building'
-import Register from './pages/register/Register'
-import TermOfService from './pages/TermsOfService'
-import AddingBuilding from './pages/adding-building/AddingBuilding'
+
 import { RecoilRoot, useRecoilCallback, useRecoilSnapshot } from 'recoil'
 import { useEffect } from 'react'
-import IFrame from 'iframes/IFrame'
+import { lazy, Suspense } from 'react'
+
+// Lazy load components
+const Portfolio = lazy(() => import('./pages/portfolio/Portfolio'))
+const Building = lazy(() => import('./pages/building/Building'))
+const Register = lazy(() => import('./pages/register/Register'))
+const TermOfService = lazy(() => import('./pages/TermsOfService'))
+const AddingBuilding = lazy(() => import('./pages/adding-building/AddingBuilding'))
+const IFrame = lazy(() => import('iframes/IFrame'))
 
 function DebugObserver() {
   const snapshot = useRecoilSnapshot()
@@ -85,16 +89,18 @@ function App() {
         <RecoilRoot>
           <DebugObserver />
           <div className="App container-fluid gx-0">
-            <Routes>
-              <Route path="/" element={<Portfolio />} exact />
-              <Route path="/register" element={<Register />} />
-              <Route path="/terms-of-service" element={<TermOfService />} />
-              <Route path="/building" element={<Portfolio />} exact />
-              <Route path="/building/:id/*" element={<Building />} />
-              <Route path="/adding-building/*" element={<AddingBuilding />} />
-              <Route path="/editing-building/:id/*" element={<AddingBuilding />} />
-              <Route path="/iframe/*" element={<IFrame />} />
-            </Routes>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Routes>
+                <Route path="/" element={<Portfolio />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/terms-of-service" element={<TermOfService />} />
+                <Route path="/building" element={<Portfolio />} />
+                <Route path="/building/:id/*" element={<Building />} />
+                <Route path="/adding-building/*" element={<AddingBuilding />} />
+                <Route path="/editing-building/:id/*" element={<AddingBuilding />} />
+                <Route path="/iframe/*" element={<IFrame />} />
+              </Routes>
+            </Suspense>
             <DebugButton />
             <footer className="mt-5">&nbsp;</footer>
           </div>
