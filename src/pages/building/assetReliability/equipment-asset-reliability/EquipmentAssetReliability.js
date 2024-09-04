@@ -381,7 +381,8 @@ const EquipmentAssetReliability = () => {
 
         <Row2ColsGrid>
           <ProjectedPeakDemandWrapper>
-            <ProjectedPeakDemand equipmentId={equipmentId} />
+            No data
+            {/*<ProjectedPeakDemand equipmentId={equipmentId} />*/}
           </ProjectedPeakDemandWrapper>
           <MaintenanceRegimeWrapper>
             <MaintenanceRegime />
