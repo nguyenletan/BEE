@@ -1,12 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { ResponsiveLine } from '@nivo/line'
-import _ from 'lodash'
 import { useAuth } from 'AuthenticateProvider'
 import { getEquipmentByIdAndGroupByYear } from 'api/EquipmentAPI'
 import { useTranslation } from 'react-i18next'
-import { deepClone } from 'Utilities'
+import PropTypes from 'prop-types'
 
 const Wrapper = styled.div``
 
@@ -14,75 +12,52 @@ const ChartWrapper = styled.div`
   height: 350px;
 `
 
-const EnergyConsumption = (props) => {
-  const { t, i18n } = useTranslation('equipmentAssetReliability')
+const Y_SCALE_CONFIG = { type: 'linear', stacked: false }
+const CHART_COLOR = ['#87972f']
+const CHART_LAYERS = ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends']
 
-  const { equipmentId } = props
+const EnergyConsumption = ({ equipmentId }) => {
+  const { t, i18n } = useTranslation('equipmentAssetReliability')
   const { user } = useAuth()
   const [data, setData] = useState([])
   const [minValue, setMinValue] = useState(0)
   const [maxValue, setMaxValue] = useState(0)
-  // let data = [
-  //   {
-  //     id: 'Energy Consumption',
-  //     //hard code or dummy data
-  //     data: [
-  //       { x: 2007, y: 205 },
-  //       { x: 2008, y: 320 },
-  //       { x: 2009, y: 555 },
-  //       { x: 2010, y: 450 },
-  //       { x: 2011, y: 680 },
-  //       { x: 2012, y: 720 },
-  //       { x: 2013, y: 777 },
-  //     ],
-  //   },
-  // ]
 
-  const convertRawDataToChartData = (rawData) => {
-    setMinValue(_.minBy(rawData, 'sum').sum / 1.01)
-    setMaxValue(_.maxBy(rawData, 'sum').sum * 1.01)
-    const dataSource = [
-      {
-        id: 'Energy Consumption',
-        data: rawData.map((d) => {
-          return {
-            x: d.year,
-            y: +d.sum.toFixed(2),
-          }
-        }),
-      },
-    ]
+  const convertRawDataToChartData = useCallback((rawData) => {
+    const minSum = Math.min(...rawData.map(d => d.sum))
+    const maxSum = Math.max(...rawData.map(d => d.sum))
+    setMinValue(minSum / 1.01)
+    setMaxValue(maxSum * 1.01)
+    const dataSource = [{
+      id: t('Energy Consumption'),
+      data: rawData.map(({ year, sum }) => ({ x: year, y: +sum.toFixed(2) })),
+    }]
     setData(dataSource)
-  }
+  }, [t])
 
-  const getEquipmentByIdAndGroupByYearInfo = async () => {
+  const fetchData = useCallback(async () => {
     const idToken = await user.getIdToken()
-    // moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'),
-    const tmp = await getEquipmentByIdAndGroupByYear(equipmentId, idToken)
-    convertRawDataToChartData(tmp)
-  }
+    const rawData = await getEquipmentByIdAndGroupByYear(equipmentId, idToken)
+    convertRawDataToChartData(rawData)
+  }, [equipmentId, user, convertRawDataToChartData])
+
+  const updateChartDataLanguage = useCallback(() => {
+    setData(prevData => prevData.map(item => ({ ...item, id: t(item.id) })))
+  }, [t])
 
   useEffect(() => {
-    const tmp = deepClone(data)
-    for (let item of tmp) {
-      item.id = t(item.id)
-    }
-
-    setData(tmp)
-
-    //TS
-  }, [i18n.language])
+    fetchData()
+  }, [fetchData])
 
   useEffect(() => {
-    getEquipmentByIdAndGroupByYearInfo()
-    //TS
-  }, [equipmentId])
+    updateChartDataLanguage()
+  }, [i18n.language, updateChartDataLanguage])
 
-  const commonProperties = {
+  const chartProperties = {
     margin: { top: 10, right: 0, bottom: 25, left: 40 },
     data,
     animate: true,
-    colors: ['#87972f'],
+    colors: CHART_COLOR,
     enableSlices: 'x',
     enableGridX: false,
     enableGridY: true,
@@ -92,12 +67,7 @@ const EnergyConsumption = (props) => {
     pointBorderColor: { from: 'serieColor' },
     pointColor: { theme: 'background' },
     isInteractive: true,
-    yScale: {
-      type: 'linear',
-      stacked: false,
-      min: minValue,
-      max: maxValue,
-    },
+    yScale: { ...Y_SCALE_CONFIG, min: minValue, max: maxValue },
     curve: 'linear',
     axisLeft: {
       orient: 'left',
@@ -117,17 +87,21 @@ const EnergyConsumption = (props) => {
       legendOffset: 36,
       legendPosition: 'middle',
     },
-    layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends'],
+    layers: CHART_LAYERS,
   }
 
   return (
     <Wrapper>
       <h5>{t('Energy Consumption (mWh)')}</h5>
       <ChartWrapper>
-        <ResponsiveLine {...commonProperties} />
+        {data.length > 0 && <ResponsiveLine {...chartProperties} />}
       </ChartWrapper>
     </Wrapper>
   )
+}
+
+EnergyConsumption.propTypes = {
+  equipmentId: PropTypes.string.isRequired,
 }
 
 export default EnergyConsumption
