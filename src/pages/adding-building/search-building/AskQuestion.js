@@ -1,7 +1,5 @@
 import React from 'react'
-
 import styled from 'styled-components'
-
 import SearchIcon from '../../../assets/images/search.svg'
 import { Link } from 'react-router-dom'
 import { Button } from '@mui/material'
@@ -28,14 +26,14 @@ const AskQuestion = () => {
       <Wrapper className="row mt-6">
         <div className="col-12 col-md-5 m-auto">
           <div className="w-50 m-auto text-center">
-            <label htmlFor="" className="font-bold mb-3">
+            <label htmlFor="buildingSearch" className="font-bold mb-3">
               {t('Search building online')}
             </label>
             <Link to="/adding-building/search-building">
               <div className="input-group">
-                <input type="text" className="form-control" />
+                <input type="text" id="buildingSearch" className="form-control" aria-label={t('Search building')} />
                 <div className="input-group-append">
-                  <img className="input-group-text" src={SearchIcon} alt="Search" />
+                  <img className="input-group-text" src={SearchIcon} alt={t('Search')} />
                 </div>
               </div>
             </Link>

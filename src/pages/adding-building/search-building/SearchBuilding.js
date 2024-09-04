@@ -1,81 +1,85 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import React, { useEffect, useState, useMemo } from 'react'
+import styled from '@emotion/styled'
 import { getLatLngFromAddress } from 'Utilities'
 import { GoogleMap, Marker, OverlayView } from '@react-google-maps/api'
 import { useNavigate } from 'react-router-dom'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
-
 import { Controller, useForm } from 'react-hook-form'
+import { useRecoilState } from 'recoil'
+import { useTranslation } from 'react-i18next'
+import { useAuth } from 'AuthenticateProvider'
+import { Button, FormControl, InputLabel, NativeSelect, TextField } from '@mui/material'
 
 import Countries, { findCountryByCountryCode } from '../../../reference-tables/Country'
-import { Button, FormControl, InputLabel, NativeSelect, TextField } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-
-import MaterialFormStyle from '../../../style/MaterialFormStyle'
 import StepNav from '../step-nav/StepNav'
 import BackNextGroupButton from '../../../components/BackNextGroupButton'
-import { useRecoilState } from 'recoil'
 import { addingBuildingProgressState, generalBuildingInformationState } from 'atoms'
-import { useTranslation } from 'react-i18next'
 import { trackingUser } from 'api/UserAPI'
-import { useAuth } from 'AuthenticateProvider'
 
 const Title = styled.h2`
-  color: var(--bs-primary);
+  color: ${props => props.theme.palette.primary.main};
   font-weight: 500;
   margin-bottom: 0;
 `
 
+const FormControlStyled = styled(FormControl)`
+  width: 100%;
+  margin-bottom: 1rem;
+`
+
+const mapStyles = {
+  height: '493px',
+  width: '100%',
+}
+
+const divStyle = {
+  width: 'auto',
+  maxWidth: '180px',
+  height: 'auto',
+  fontSize: '12px',
+  fontWeight: 'bold',
+  backgroundColor: '#303246',
+  color: '#F9F3F2',
+  padding: '10px',
+  marginLeft: '-82px',
+  marginTop: '-100px',
+  borderRadius: '10px',
+  opacity: 0.8,
+}
+
 const SearchBuilding = () => {
-  const mapStyles = {
-    height: '493px',
-    width: '100%',
-  }
-
-  const divStyle = {
-    width: 'auto',
-    maxWidth: '180px',
-    height: 'auto',
-    fontSize: '12px',
-    fontWeight: 'bold',
-    backgroundColor: '#303246',
-    color: '#F9F3F2',
-    padding: '10px',
-    marginLeft: '-82px',
-    marginTop: '-100px',
-    borderRadius: '10px',
-    opacity: 0.8,
-  }
-
   const { t } = useTranslation('buildingInput')
   const { user } = useAuth()
   const navigate = useNavigate()
-  const classes = makeStyles(() => MaterialFormStyle)()
 
   const [searchValue, setSearchValue] = useState('')
-
   const [generalBuildingInformation, setGeneralBuildingInformation] = useRecoilState(generalBuildingInformationState)
   const [addingBuildingProgress, setAddingBuildingProgressState] = useRecoilState(addingBuildingProgressState)
-
   const [isShowTheMap, setIsShowTheMap] = useState(false)
 
+  const { control, handleSubmit, setValue } = useForm({
+    mode: 'onSubmit',
+    defaultValues: {},
+  })
+
   const setValueToForm = (information) => {
-    setValue('streetNumber', information?.streetNumber)
-    setValue('streetName', information?.streetName)
-    setValue('address', information?.address)
-    setValue('city', information?.city)
-    setValue('state', information?.state)
-    setValue('countryCode', information?.countryCode)
-    setValue('postalCode', information?.postalCode)
-    setValue('buildingName', information?.buildingName)
+    Object.entries(information).forEach(([key, value]) => setValue(key, value))
   }
 
   const onSearch = async () => {
-    const result = await getLatLngFromAddress(searchValue?.value?.description)
+    if (!searchValue?.value?.description) return
 
-    //console.log(result)
+    const result = await getLatLngFromAddress(searchValue.value.description)
+    if (!result?.results?.[0]) return
 
-    let information = {
+    const information = parseAddressComponents(result.results[0])
+    setGeneralBuildingInformation({ ...generalBuildingInformation, ...information })
+    setValueToForm(information)
+    setIsShowTheMap(true)
+  }
+
+  const parseAddressComponents = (result) => {
+    const information = {
       buildingName: searchValue?.value?.structured_formatting?.main_text,
       address: '',
       city: '',
@@ -83,94 +87,54 @@ const SearchBuilding = () => {
       countryCode: '',
       suburb: '',
       postalCode: '',
-      location: result?.results[0]?.geometry?.location,
-      formatted_address: result?.results[0]?.formatted_address,
-      streetNumber: result?.results[0]?.formatted_address,
-      // address_components: result?.results[0]?.address_components,
-    }
-    for (let item of result?.results[0]?.address_components) {
-      if (item.types.includes('street_number')) {
-        information.streetNumber = item.long_name
-      }
-      if (item.types.includes('route')) {
-        information.streetName = item.long_name
-      }
-      if (item.types.includes('street_number') || item.types.includes('route')) {
-        information.address += item.long_name + ' '
-      } else if (item.types.includes('postal_town') || item.types.includes('locality')) {
-        information.city += item.long_name
-      } else if (item.types.includes('country')) {
-        const country = findCountryByCountryCode(item.short_name)
-        information.countryCode = country.alpha2Code
-      } else if (item.types.includes('postal_code')) {
-        information.postalCode += item.long_name
-      } else if (item.types.includes('administrative_area_level_1')) {
-        information.state += item.long_name
-      } else if (item.types.includes('administrative_area_level_2')) {
-        information.suburb += item.long_name
-      }
+      location: result.geometry?.location,
+      formatted_address: result.formatted_address,
+      streetNumber: result.formatted_address,
     }
 
-    setGeneralBuildingInformation({
-      ...generalBuildingInformation,
-      ...information,
+    result.address_components.forEach(component => {
+      const { long_name, short_name, types } = component
+      if (types.includes('street_number')) information.streetNumber = long_name
+      if (types.includes('route')) information.streetName = long_name
+      if (types.includes('street_number') || types.includes('route')) information.address += long_name + ' '
+      if (types.includes('postal_town') || types.includes('locality')) information.city += long_name
+      if (types.includes('country')) information.countryCode = findCountryByCountryCode(short_name).alpha2Code
+      if (types.includes('postal_code')) information.postalCode += long_name
+      if (types.includes('administrative_area_level_1')) information.state += long_name
+      if (types.includes('administrative_area_level_2')) information.suburb += long_name
     })
-    setValueToForm(information)
-    setIsShowTheMap(true)
+
+    return information
   }
 
   useEffect(() => {
     setValueToForm(generalBuildingInformation)
-
-    async function tracking() {
+    const tracking = async () => {
       const idToken = await user.getIdToken()
       trackingUser(user.uid, 'SearchBuilding', idToken)
     }
     tracking()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const DropdownIndicator = (props) => {
-    return <div {...props} />
-  }
-
-  const NoOptionsMessage = (props) => {
-    return (
-      <div content="Custom NoOptionsMessage Component" className="text-secondary px-2 py-1">
-        <span {...props}>No suggestion</span>
-      </div>
-    )
-  }
-
-  const { control, handleSubmit, setValue } = useForm({
-    mode: 'onSubmit',
-    reValidateMode: 'onChange',
-    defaultValues: {},
-    resolver: undefined,
-    context: undefined,
-    criteriaMode: 'firstError',
-    shouldFocusError: true,
-    shouldUnregister: false,
-    spaceUsageGFA: [{}],
-  })
-
   const onSubmit = (data) => {
-    setGeneralBuildingInformation({
-      ...generalBuildingInformation,
-      ...data,
-    })
+    setGeneralBuildingInformation({ ...generalBuildingInformation, ...data })
     setAddingBuildingProgressState(5)
     navigate('/adding-building/general-information')
   }
+
+  const DropdownIndicator = useMemo(() => props => <div {...props} />, [])
+  const NoOptionsMessage = useMemo(() => props => (
+    <div className="text-secondary px-2 py-1">
+      <span {...props}>No suggestion</span>
+    </div>
+  ), [])
 
   return (
     <>
       <div className="d-flex mt-5 mb-4">
         <Title>{t('Search Online')}</Title>
-
         <BackNextGroupButton
           noNextLink={true}
-          //nextLink="/adding-building/general-information"
           progressValue={addingBuildingProgress}
           isDisabledSave={addingBuildingProgress < 100}
         />
@@ -213,14 +177,12 @@ const SearchBuilding = () => {
             <div className="row mt-3 mb-5">
               <div className="col-12 col-lg-12">
                 <div className="shadow-sm rounded">
-                  {/*<LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>*/}
                   <GoogleMap mapContainerStyle={mapStyles} zoom={18} center={generalBuildingInformation.location}>
                     <OverlayView position={generalBuildingInformation.location} mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
                       <div style={divStyle}>{generalBuildingInformation.formatted_address}</div>
                     </OverlayView>
                     <Marker position={generalBuildingInformation.location} title={searchValue} zIndex={1}></Marker>
                   </GoogleMap>
-                  {/*</LoadScript>*/}
                 </div>
               </div>
             </div>
@@ -236,7 +198,7 @@ const SearchBuilding = () => {
                 {t('Yes')}
               </Button>
 
-              <FormControl className={classes.formControl}>
+              <FormControlStyled>
                 <Controller
                   name="buildingName"
                   control={control}
@@ -248,12 +210,13 @@ const SearchBuilding = () => {
                       onChange={onChange}
                       error={!!error}
                       helperText={error ? error.message : null}
+                      fullWidth
                     />
                   )}
                 />
-              </FormControl>
+              </FormControlStyled>
 
-              <FormControl className={classes.formControl}>
+              <FormControlStyled>
                 <Controller
                   name="streetNumber"
                   control={control}
@@ -265,12 +228,13 @@ const SearchBuilding = () => {
                       onChange={onChange}
                       error={!!error}
                       helperText={error ? error.message : null}
+                      fullWidth
                     />
                   )}
                 />
-              </FormControl>
+              </FormControlStyled>
 
-              <FormControl className={classes.formControl}>
+              <FormControlStyled>
                 <Controller
                   name="streetName"
                   control={control}
@@ -282,12 +246,13 @@ const SearchBuilding = () => {
                       onChange={onChange}
                       error={!!error}
                       helperText={error ? error.message : null}
+                      fullWidth
                     />
                   )}
                 />
-              </FormControl>
+              </FormControlStyled>
 
-              <FormControl className={classes.formControl}>
+              <FormControlStyled>
                 <Controller
                   control={control}
                   name="address"
@@ -300,12 +265,13 @@ const SearchBuilding = () => {
                       onChange={onChange}
                       error={!!error}
                       helperText={error ? error.message : null}
+                      fullWidth
                     />
                   )}
                 />
-              </FormControl>
+              </FormControlStyled>
 
-              <FormControl className={classes.formControl}>
+              <FormControlStyled>
                 <Controller
                   name="postalCode"
                   control={control}
@@ -318,12 +284,13 @@ const SearchBuilding = () => {
                       onChange={onChange}
                       error={!!error}
                       helperText={error ? error.message : null}
+                      fullWidth
                     />
                   )}
                 />
-              </FormControl>
+              </FormControlStyled>
 
-              <FormControl className={classes.formControl}>
+              <FormControlStyled>
                 <Controller
                   name="city"
                   control={control}
@@ -336,12 +303,13 @@ const SearchBuilding = () => {
                       onChange={onChange}
                       error={!!error}
                       helperText={error ? error.message : null}
+                      fullWidth
                     />
                   )}
                 />
-              </FormControl>
+              </FormControlStyled>
 
-              <FormControl className={classes.formControl}>
+              <FormControlStyled>
                 <Controller
                   name="state"
                   control={control}
@@ -354,16 +322,17 @@ const SearchBuilding = () => {
                       onChange={onChange}
                       error={!!error}
                       helperText={error ? error.message : null}
+                      fullWidth
                     />
                   )}
                 />
-              </FormControl>
+              </FormControlStyled>
 
               <Controller
                 name="countryCode"
                 control={control}
                 render={({ field }) => (
-                  <FormControl className={classes.formControl}>
+                  <FormControlStyled>
                     <InputLabel id="country-label">{t('Country')}</InputLabel>
                     <NativeSelect labelId="country-label" name="countryCode" value={field.value} {...field}>
                       {Countries.map((o) => (
@@ -372,7 +341,7 @@ const SearchBuilding = () => {
                         </option>
                       ))}
                     </NativeSelect>
-                  </FormControl>
+                  </FormControlStyled>
                 )}
               />
             </form>
