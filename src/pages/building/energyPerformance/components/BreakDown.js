@@ -24,24 +24,23 @@ const BreakDown = ({ consumptionBreakdown }) => {
     setIsBreakDownDrillDown(false)
   }, [consumptionBreakdown, setBreakDownLevel, setConsumptionBreakdownSt, setIsBreakDownDrillDown, setSelectedSubBreakdown])
 
-  const chartData = useMemo(() => [
-    { title: t('Consumption Breakdown'), subTitle: 'MWh' },
-    { title: t('Cost Breakdown'), subTitle: t('$') },
-    { title: t('CO2 Emissions Breakdown'), subTitle: t('Ton') },
-  ], [t])
+  const chartData = useMemo(
+    () => [
+      { title: t('Consumption Breakdown'), subTitle: 'MWh' },
+      { title: t('Cost Breakdown'), subTitle: t('$') },
+      { title: t('CO2 Emissions Breakdown'), subTitle: t('Ton') },
+    ],
+    [t]
+  )
 
   return (
     <BreakdownWrapper className="d-flex row justify-content-center">
-      {consumptionBreakdownSt && chartData.map((chart, index) => (
-        <div key={index} className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
-          <DrillDownDonutChart3Lv
-            title={chart.title}
-            subTitle={chart.subTitle}
-            data={consumptionBreakdownSt}
-            hasDescription
-          />
-        </div>
-      ))}
+      {consumptionBreakdownSt &&
+        chartData.map((chart, index) => (
+          <div key={index} className="col col-12 col-md-8 col-xl-4 mb-5 mb-xl-0">
+            <DrillDownDonutChart3Lv title={chart.title} subTitle={chart.subTitle} data={consumptionBreakdownSt} hasDescription />
+          </div>
+        ))}
     </BreakdownWrapper>
   )
 }

@@ -23,17 +23,22 @@ const EnergyConsumption = ({ equipmentId }) => {
   const [minValue, setMinValue] = useState(0)
   const [maxValue, setMaxValue] = useState(0)
 
-  const convertRawDataToChartData = useCallback((rawData) => {
-    const minSum = Math.min(...rawData.map(d => d.sum))
-    const maxSum = Math.max(...rawData.map(d => d.sum))
-    setMinValue(minSum / 1.01)
-    setMaxValue(maxSum * 1.01)
-    const dataSource = [{
-      id: t('Energy Consumption'),
-      data: rawData.map(({ year, sum }) => ({ x: year, y: +sum.toFixed(2) })),
-    }]
-    setData(dataSource)
-  }, [t])
+  const convertRawDataToChartData = useCallback(
+    (rawData) => {
+      const minSum = Math.min(...rawData.map((d) => d.sum))
+      const maxSum = Math.max(...rawData.map((d) => d.sum))
+      setMinValue(minSum / 1.01)
+      setMaxValue(maxSum * 1.01)
+      const dataSource = [
+        {
+          id: t('Energy Consumption'),
+          data: rawData.map(({ year, sum }) => ({ x: year, y: +sum.toFixed(2) })),
+        },
+      ]
+      setData(dataSource)
+    },
+    [t]
+  )
 
   const fetchData = useCallback(async () => {
     const idToken = await user.getIdToken()
@@ -42,7 +47,7 @@ const EnergyConsumption = ({ equipmentId }) => {
   }, [equipmentId, user, convertRawDataToChartData])
 
   const updateChartDataLanguage = useCallback(() => {
-    setData(prevData => prevData.map(item => ({ ...item, id: t(item.id) })))
+    setData((prevData) => prevData.map((item) => ({ ...item, id: t(item.id) })))
   }, [t])
 
   useEffect(() => {
@@ -93,9 +98,7 @@ const EnergyConsumption = ({ equipmentId }) => {
   return (
     <Wrapper>
       <h5>{t('Energy Consumption (mWh)')}</h5>
-      <ChartWrapper>
-        {data.length > 0 && <ResponsiveLine {...chartProperties} />}
-      </ChartWrapper>
+      <ChartWrapper>{data.length > 0 && <ResponsiveLine {...chartProperties} />}</ChartWrapper>
     </Wrapper>
   )
 }

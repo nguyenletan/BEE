@@ -169,13 +169,13 @@ const BuildingHistorical = (props) => {
   useEffect(() => {
     if (datasource.length > 13 && props.energyPerformanceGroupBy !== 'year') {
       setEnableLabel(false)
-      const tickValues = datasource.filter((_, i) => i % 5 === 0).map(item => item.label)
+      const tickValues = datasource.filter((_, i) => i % 5 === 0).map((item) => item.label)
       setAxisBottom({ tickValues })
     } else {
       setAxisBottom({})
       setEnableLabel(true)
     }
-    
+
     setBarData([...datasource])
     setThe1stHistoricalComparison(null)
     setThe2ndHistoricalComparison(null)
@@ -185,175 +185,192 @@ const BuildingHistorical = (props) => {
     setTotalCarbonEmissions(overallEnergyConsumptionInformation?.totalCarbonEmissions)
   }, [datasource, props.energyPerformanceGroupBy, overallEnergyConsumptionInformation])
 
-  const selectBar = useCallback(async (e) => {
-    if (barData[e.index].isUnselected === false) {
-      // deselected a bar
-      const newBarData = barData.map((x) => ({
-        ...x,
-        isUnselected: undefined,
-      }))
-      setBarData([...newBarData])
-      setThe1stHistoricalComparison(null)
-      setThe2ndHistoricalComparison(null)
-      setTotalEnergyConsumption(overallEnergyConsumptionInformation?.totalEnergyConsumption)
-      setTotalEnergyCost(overallEnergyConsumptionInformation?.totalEnergyCost)
-      setTotalCarbonEmissions(overallEnergyConsumptionInformation?.totalCarbonEmissions)
-      setBreakdown({
-        ...breakdown,
-        ...{ consumptionBreakdown: originalConsumptionBreakdown },
-      })
-    } else {
-      // select a bar
-      const newBarData = barData.map((x, index) => ({
-        ...x,
-        isUnselected: e.index !== index,
-      }))
-      setBarData([...newBarData])
-      setThe1stHistoricalComparison(
-        calculateSameThingLastYear(
-          e.value,
-          e.index,
-          prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
-          electricConsumptionsFromHistorizedLogs.overall,
-          energyPerformanceGroupBy
-        )
-      )
-
-      setThe2ndHistoricalComparison(
-        calculateSameThingLastPeriod(
-          e.value,
-          e.index,
-          prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
-          electricConsumptionsFromHistorizedLogs.overall,
-          energyPerformanceGroupBy
-        )
-      )
-
-      setThe3rdHistoricalComparison(
-        calculate12MonthPeriod(
-          e.value,
-          e.index,
-          prev24MonthsElectricityConsumptionsFromHistorizedLogs.overall,
-          prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
-          electricConsumptionsFromHistorizedLogs.overall,
-          energyPerformanceGroupBy
-        )
-      )
-
-      setTotalEnergyConsumption(e.data.value)
-      setTotalEnergyCost(e.data.value * 0.23 * 1000)
-      setTotalCarbonEmissions(e.data.value * 0.000208 * 1000)
-
-      const idToken = await user.getIdToken()
-      let breakdown
-      switch (energyPerformanceGroupBy) {
-        case 'year':
-          breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, '00', '00')
-          break
-        case 'quarter':
-          breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.quarter, '00')
-          break
-        // case 'week':
-        //   await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.week, '00')
-        //   break;
-        case 'day':
-          breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.month, e.data.day)
-          break
-        case 'month':
-        default:
-          breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.month, '01')
-          break
-      }
-      setBreakdown({ ...breakdown })
-    }
-  }, [barData, energyPerformanceGroupBy, user, id, breakdown, originalConsumptionBreakdown, 
-      overallEnergyConsumptionInformation, prev12MonthsElectricityConsumptionsFromHistorizedLogs, 
-      prev24MonthsElectricityConsumptionsFromHistorizedLogs, electricConsumptionsFromHistorizedLogs])
-
-  const selectLine = useCallback(async (day, value, index) => {
-    const idToken = await user.getIdToken()
-    let breakdown
-    switch (energyPerformanceGroupBy) {
-      case 'day':
-        setTotalEnergyConsumption(value)
-
+  const selectBar = useCallback(
+    async (e) => {
+      if (barData[e.index].isUnselected === false) {
+        // deselected a bar
+        const newBarData = barData.map((x) => ({
+          ...x,
+          isUnselected: undefined,
+        }))
+        setBarData([...newBarData])
+        setThe1stHistoricalComparison(null)
+        setThe2ndHistoricalComparison(null)
+        setTotalEnergyConsumption(overallEnergyConsumptionInformation?.totalEnergyConsumption)
+        setTotalEnergyCost(overallEnergyConsumptionInformation?.totalEnergyCost)
+        setTotalCarbonEmissions(overallEnergyConsumptionInformation?.totalCarbonEmissions)
+        setBreakdown({
+          ...breakdown,
+          ...{ consumptionBreakdown: originalConsumptionBreakdown },
+        })
+      } else {
+        // select a bar
+        const newBarData = barData.map((x, index) => ({
+          ...x,
+          isUnselected: e.index !== index,
+        }))
+        setBarData([...newBarData])
         setThe1stHistoricalComparison(
-          calculatePrevDay(
-            value,
-            index,
+          calculateSameThingLastYear(
+            e.value,
+            e.index,
             prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
-            electricConsumptionsFromHistorizedLogs.overall
+            electricConsumptionsFromHistorizedLogs.overall,
+            energyPerformanceGroupBy
           )
         )
 
         setThe2ndHistoricalComparison(
-          calculateDayLastWeek(
-            value,
-            index,
+          calculateSameThingLastPeriod(
+            e.value,
+            e.index,
             prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
-            electricConsumptionsFromHistorizedLogs.overall
+            electricConsumptionsFromHistorizedLogs.overall,
+            energyPerformanceGroupBy
           )
         )
 
         setThe3rdHistoricalComparison(
-          calculateAverageSameDayInLast4Week(
-            value,
-            index,
+          calculate12MonthPeriod(
+            e.value,
+            e.index,
+            prev24MonthsElectricityConsumptionsFromHistorizedLogs.overall,
             prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
-            electricConsumptionsFromHistorizedLogs.overall
+            electricConsumptionsFromHistorizedLogs.overall,
+            energyPerformanceGroupBy
           )
         )
 
-        setTotalEnergyCost(value * 0.23 * 1000)
-        setTotalCarbonEmissions(value * 0.000208 * 1000)
-        breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, day.getFullYear(), day.getMonth() + 1, day.getDate())
+        setTotalEnergyConsumption(e.data.value)
+        setTotalEnergyCost(e.data.value * 0.23 * 1000)
+        setTotalCarbonEmissions(e.data.value * 0.000208 * 1000)
+
+        const idToken = await user.getIdToken()
+        let breakdown
+        switch (energyPerformanceGroupBy) {
+          case 'year':
+            breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, '00', '00')
+            break
+          case 'quarter':
+            breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.quarter, '00')
+            break
+          // case 'week':
+          //   await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.week, '00')
+          //   break;
+          case 'day':
+            breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.month, e.data.day)
+            break
+          case 'month':
+          default:
+            breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, e.data.year, e.data.month, '01')
+            break
+        }
         setBreakdown({ ...breakdown })
-        break
-      default:
-        break
-    }
-  }, [energyPerformanceGroupBy, user, id, prev12MonthsElectricityConsumptionsFromHistorizedLogs, 
-      electricConsumptionsFromHistorizedLogs])
+      }
+    },
+    [
+      barData,
+      energyPerformanceGroupBy,
+      user,
+      id,
+      breakdown,
+      originalConsumptionBreakdown,
+      overallEnergyConsumptionInformation,
+      prev12MonthsElectricityConsumptionsFromHistorizedLogs,
+      prev24MonthsElectricityConsumptionsFromHistorizedLogs,
+      electricConsumptionsFromHistorizedLogs,
+    ]
+  )
+
+  const selectLine = useCallback(
+    async (day, value, index) => {
+      const idToken = await user.getIdToken()
+      let breakdown
+      switch (energyPerformanceGroupBy) {
+        case 'day':
+          setTotalEnergyConsumption(value)
+
+          setThe1stHistoricalComparison(
+            calculatePrevDay(
+              value,
+              index,
+              prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
+              electricConsumptionsFromHistorizedLogs.overall
+            )
+          )
+
+          setThe2ndHistoricalComparison(
+            calculateDayLastWeek(
+              value,
+              index,
+              prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
+              electricConsumptionsFromHistorizedLogs.overall
+            )
+          )
+
+          setThe3rdHistoricalComparison(
+            calculateAverageSameDayInLast4Week(
+              value,
+              index,
+              prev12MonthsElectricityConsumptionsFromHistorizedLogs.overall,
+              electricConsumptionsFromHistorizedLogs.overall
+            )
+          )
+
+          setTotalEnergyCost(value * 0.23 * 1000)
+          setTotalCarbonEmissions(value * 0.000208 * 1000)
+          breakdown = await getBreakdownByTime(idToken, id, energyPerformanceGroupBy, day.getFullYear(), day.getMonth() + 1, day.getDate())
+          setBreakdown({ ...breakdown })
+          break
+        default:
+          break
+      }
+    },
+    [energyPerformanceGroupBy, user, id, prev12MonthsElectricityConsumptionsFromHistorizedLogs, electricConsumptionsFromHistorizedLogs]
+  )
 
   const keys = ['value', 'cooling']
   const index = 'label'
 
-  const commonProps = useMemo(() => ({
-    margin: { top: 0, right: 0, bottom: 100, left: 30 },
-    data: barData, // generateCountriesData(keys, { size: 7 }),
-    indexBy: index,
-    keys,
-    groupMode: 'group',
-    borderRadius: '6px',
-    borderColor: { from: 'color', modifiers: [['darker', 2.6]] },
-    padding: 0.59,
-    labelTextColor: 'white', // 'inherit:lighter(1.4)',
-    labelSkipWidth: 0,
-    labelSkipHeight: 16,
-    enableLabel: enableLabel,
-    animate: true,
-    motionConfig: 'default',
-    valueScale: { type: 'linear' },
-    indexScale: { type: 'band', round: true },
-    axisBottom: axisBottom,
-    axisLeft: {
-      tickSize: 2,
-      tickPadding: 5,
-      tickRotation: 0,
-      tickValues: 10,
-      legend: 'MWh',
-      legendPosition: 'middle',
-      legendOffset: -45,
-    },
-    // colors: { scheme: 'category10' },
-    //colors: { datum: 'data.color' },
-    colors: ({ id, data }) => {
-      if (data.isUnselected === true) {
-        return '#d5dfa3'
-      }
-      return '#87972f'
-    },
-  }), [barData, enableLabel, axisBottom])
+  const commonProps = useMemo(
+    () => ({
+      margin: { top: 0, right: 0, bottom: 100, left: 30 },
+      data: barData, // generateCountriesData(keys, { size: 7 }),
+      indexBy: index,
+      keys,
+      groupMode: 'group',
+      borderRadius: '6px',
+      borderColor: { from: 'color', modifiers: [['darker', 2.6]] },
+      padding: 0.59,
+      labelTextColor: 'white', // 'inherit:lighter(1.4)',
+      labelSkipWidth: 0,
+      labelSkipHeight: 16,
+      enableLabel: enableLabel,
+      animate: true,
+      motionConfig: 'default',
+      valueScale: { type: 'linear' },
+      indexScale: { type: 'band', round: true },
+      axisBottom: axisBottom,
+      axisLeft: {
+        tickSize: 2,
+        tickPadding: 5,
+        tickRotation: 0,
+        tickValues: 10,
+        legend: 'MWh',
+        legendPosition: 'middle',
+        legendOffset: -45,
+      },
+      // colors: { scheme: 'category10' },
+      //colors: { datum: 'data.color' },
+      colors: ({ id, data }) => {
+        if (data.isUnselected === true) {
+          return '#d5dfa3'
+        }
+        return '#87972f'
+      },
+    }),
+    [barData, enableLabel, axisBottom]
+  )
 
   return (
     <Wrapper className="">

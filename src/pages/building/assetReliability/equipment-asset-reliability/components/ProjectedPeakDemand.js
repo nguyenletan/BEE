@@ -4,74 +4,56 @@ import { ResponsiveLine } from '@nivo/line'
 import styled from 'styled-components'
 import { getProjectPeakDemand } from 'api/EquipmentAPI'
 import { useAuth } from 'AuthenticateProvider'
-import { deepClone, getMonthName } from 'Utilities'
+import { getMonthName } from 'Utilities'
 import { EuiRange } from '@elastic/eui'
 import { useTranslation } from 'react-i18next'
+import { useCallback } from 'react'
 
 const Wrapper = styled.div``
-
 const ChartWrapper = styled.div`
   height: 350px;
 `
-
 const NumberOfDaysWrapper = styled.div`
   width: 400px;
 `
-
 const NumberOfDaysLabel = styled.div`
   width: 150px;
   font-size: 0.9rem;
 `
 
-const ProjectedPeakDemand = (props) => {
-  const { equipmentId } = props
+const DEFAULT_NUMBER_OF_DAYS = 14
+
+const ProjectedPeakDemand = ({ equipmentId }) => {
   const { user } = useAuth()
-  const [depreciationData, setDepreciationData] = useState([])
-  const [filterData, setFilterData] = useState([])
-  const [numberOfNextDays, setNumberOfNextDays] = useState(14)
+  const [chartData, setChartData] = useState([])
+  const [filteredData, setFilteredData] = useState([])
+  const [numberOfDays, setNumberOfDays] = useState(DEFAULT_NUMBER_OF_DAYS)
   const { t, i18n } = useTranslation(['equipmentAssetReliability', 'common'])
 
-  const convertRawDataToChartData = (rawData) => {
-    const dataSource = [
-      {
-        id: 'ProjectPeakDemand',
-        data: rawData.map((d) => {
-          return {
-            x: t(getMonthName(d.month), { ns: 'common' }) + ' ' + d.day,
-            y: +d.average.toFixed(2),
-          }
-        }),
-      },
-    ]
-    setDepreciationData([...dataSource])
-    setFilterData(deepClone(dataSource))
-  }
+  const convertRawDataToChartData = useCallback(
+    (rawData) => {
+      const processedData = rawData.map((d) => ({
+        x: `${t(getMonthName(d.month), { ns: 'common' })} ${d.day}`,
+        y: +d.average.toFixed(2),
+      }))
+      const dataSource = [{ id: 'ProjectPeakDemand', data: processedData }]
+      setChartData(dataSource)
+      setFilteredData(dataSource)
+    },
+    [t]
+  )
 
-  const getProjectPeakDemandInfo = async () => {
+  const getProjectPeakDemandInfo = useCallback(async () => {
     const idToken = await user.getIdToken()
-    // moment(startTime).format('YYYY-MM-DD'), moment(endTime).format('YYYY-MM-DD'),
-    const tmp = await getProjectPeakDemand(equipmentId, 14, idToken)
-    console.log(tmp)
-    convertRawDataToChartData(tmp)
-  }
+    const data = await getProjectPeakDemand(equipmentId, DEFAULT_NUMBER_OF_DAYS, idToken)
+    convertRawDataToChartData(data)
+  }, [equipmentId, user, convertRawDataToChartData])
 
   useEffect(() => {
     getProjectPeakDemandInfo()
-    //TS
   }, [equipmentId, i18n.language])
 
   const Line = ({ series, innerHeight, margin }) => {
-    // let data0
-    // for (let i = 0; i < series[0]?.data.length; i++) {
-    //   console.log(series[0]?.data[i].data.x)
-    //   if (series[0]?.data[i].data.x >= currentAge) {
-    //     data0 = series[0]?.data[i]
-    //     break
-    //   }
-    // }
-    //
-    // const x = data0?.position?.x
-    //
     return (
       <>
         {/*<text x={x - 40} y="-5" className="small">Current Age</text>*/}
@@ -98,7 +80,7 @@ const ProjectedPeakDemand = (props) => {
 
   const commonProperties = {
     margin: { top: 30, right: 20, bottom: 25, left: 40 },
-    data: filterData,
+    data: filteredData,
     animate: true,
     colors: ['#87972f'],
     enableSlices: false,
@@ -129,29 +111,33 @@ const ProjectedPeakDemand = (props) => {
     layers: ['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends', Line],
   }
 
-  const onChange = (e) => {
-    setNumberOfNextDays(e.target.value)
-    let tmp = [...filterData]
-    tmp[0].data = []
-    for (let i = 0; i <= e.target.value; i++) {
-      tmp[0].data.push(deepClone(depreciationData[0].data[i]))
-    }
-    setFilterData([...tmp])
-  }
+  const onChange = useCallback(
+    (e) => {
+      const newNumberOfDays = parseInt(e.target.value, 10)
+      setNumberOfDays(newNumberOfDays)
+      setFilteredData([
+        {
+          ...chartData[0],
+          data: chartData[0].data.slice(0, newNumberOfDays + 1),
+        },
+      ])
+    },
+    [chartData]
+  )
 
   return (
     <Wrapper>
       <div className="d-flex justify-content-between mb-5">
         <h5>{t('Projected Peak Demand (kW)')}</h5>
         <NumberOfDaysWrapper className="d-flex justify-content-between">
-          <NumberOfDaysLabel for="number-of-next-days">{t('Number of days')}: </NumberOfDaysLabel>
+          <NumberOfDaysLabel htmlFor="number-of-next-days">{t('Number of days')}:</NumberOfDaysLabel>
           <EuiRange
             id="number-of-next-days"
-            min={1}
-            max={14}
+            min={0}
+            max={DEFAULT_NUMBER_OF_DAYS}
             step={1}
             showTicks
-            value={numberOfNextDays}
+            value={numberOfDays}
             onChange={onChange}
             aria-label="Number of Next Days"
           />
@@ -164,4 +150,4 @@ const ProjectedPeakDemand = (props) => {
   )
 }
 
-export default ProjectedPeakDemand
+export default React.memo(ProjectedPeakDemand)

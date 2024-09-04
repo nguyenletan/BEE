@@ -8,7 +8,7 @@ import { Item, Menu, useContextMenu } from 'react-contexify'
 import 'react-contexify/dist/ReactContexify.css'
 import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import Popover from '@mui/material/Popover';
+import Popover from '@mui/material/Popover'
 
 const BreakDownBlock = styled.div`
   background-color: #fafafa;
@@ -104,17 +104,17 @@ const DrillDownDonutChart3Lv = (props) => {
   const [selectedBreakdownItemMenuItem, setSelectedBreakdownItemMenuItem] = useState()
   const [equipmentId, setEquipmentId] = useState()
   const { t, i18n } = useTranslation('buildingPerformance')
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null)
   const [isOpenContextMenu, setIsOpenContextMenu] = useState(false)
 
   const handleCloseContextMenu = () => {
-    setAnchorEl(null);
+    setAnchorEl(null)
     setIsOpenContextMenu(false)
-  };
+  }
 
   const dataSource = useMemo(() => {
     const tmp = deepClone(data)
-    return tmp.map(item => ({ ...item, id: t(item.id) }))
+    return tmp.map((item) => ({ ...item, id: t(item.id) }))
   }, [data, t])
 
   const commonProperties = {
@@ -218,22 +218,25 @@ const DrillDownDonutChart3Lv = (props) => {
     )
   }
 
-  const handleClick = useCallback((node, event) => {
-    if (node.data?.subBreakdown) {
-      setBreakDownLevel((prevLevel) => prevLevel + 1)
-      setSelectedSubBreakdown(node.id)
-      setIsBreakDownDrillDown(true)
-      setConsumptionBreakdownSt(node.data.subBreakdown)
-    } else if (breakDownLevel === 2) {
-      setEquipmentId(node?.data.equipmentId)
-      setSelectedBreakdownItemMenuItem({
-        name: node.label,
-        id: node.label,
-      })
-      setAnchorEl(event.currentTarget);
-      setIsOpenContextMenu(true)
-    }
-  }, [breakDownLevel, setBreakDownLevel, setSelectedSubBreakdown, setIsBreakDownDrillDown, setConsumptionBreakdownSt])
+  const handleClick = useCallback(
+    (node, event) => {
+      if (node.data?.subBreakdown) {
+        setBreakDownLevel((prevLevel) => prevLevel + 1)
+        setSelectedSubBreakdown(node.id)
+        setIsBreakDownDrillDown(true)
+        setConsumptionBreakdownSt(node.data.subBreakdown)
+      } else if (breakDownLevel === 2) {
+        setEquipmentId(node?.data.equipmentId)
+        setSelectedBreakdownItemMenuItem({
+          name: node.label,
+          id: node.label,
+        })
+        setAnchorEl(event.currentTarget)
+        setIsOpenContextMenu(true)
+      }
+    },
+    [breakDownLevel, setBreakDownLevel, setSelectedSubBreakdown, setIsBreakDownDrillDown, setConsumptionBreakdownSt]
+  )
 
   const handleBackBtn = useCallback(() => {
     setSelectedSubBreakdown(null)
@@ -242,27 +245,34 @@ const DrillDownDonutChart3Lv = (props) => {
     setConsumptionBreakdownSt(breakdownSt.consumptionBreakdown)
   }, [setSelectedSubBreakdown, setIsBreakDownDrillDown, setBreakDownLevel, setConsumptionBreakdownSt, breakdownSt.consumptionBreakdown])
 
-  const getValue = useCallback((value, title) => {
-    const formatters = {
-      [t('Consumption Breakdown')]: (v) => formatNumber(v / 1000, 2, 'MWh'),
-      [t('Cost Breakdown')]: (v) => formatNumber(v * 0.23, 2, t('$')),
-      default: (v) => formatNumber(v * 0.000208, 2, t('Ton'))
-    }
-    return (formatters[title] || formatters.default)(value)
-  }, [t])
+  const getValue = useCallback(
+    (value, title) => {
+      const formatters = {
+        [t('Consumption Breakdown')]: (v) => formatNumber(v / 1000, 2, 'MWh'),
+        [t('Cost Breakdown')]: (v) => formatNumber(v * 0.23, 2, t('$')),
+        default: (v) => formatNumber(v * 0.000208, 2, t('Ton')),
+      }
+      return (formatters[title] || formatters.default)(value)
+    },
+    [t]
+  )
 
-  const list = useMemo(() => dataSource.map((x, index) => {
-    const colors = getColorPattern(isBreakDownDrillDown ? 1 : 0)
-    return (
-      <li className="d-flex justify-content-between" key={x.id}>
-        <span className="d-flex">
-          <ColorBlock bgColor={colors[index]} />
-          <Label fontSize={informationFontSize}>{x.id}:</Label>
-        </span>
-        <Value fontSize={informationFontSize}>{getValue(x.consumption, title)}</Value>
-      </li>
-    )
-  }), [dataSource, isBreakDownDrillDown, informationFontSize, getValue, title])
+  const list = useMemo(
+    () =>
+      dataSource.map((x, index) => {
+        const colors = getColorPattern(isBreakDownDrillDown ? 1 : 0)
+        return (
+          <li className="d-flex justify-content-between" key={x.id}>
+            <span className="d-flex">
+              <ColorBlock bgColor={colors[index]} />
+              <Label fontSize={informationFontSize}>{x.id}:</Label>
+            </span>
+            <Value fontSize={informationFontSize}>{getValue(x.consumption, title)}</Value>
+          </li>
+        )
+      }),
+    [dataSource, isBreakDownDrillDown, informationFontSize, getValue, title]
+  )
 
   return (
     <BreakDownBlock marginRight={marginRight}>
