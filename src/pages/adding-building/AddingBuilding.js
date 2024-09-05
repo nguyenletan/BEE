@@ -105,15 +105,15 @@ const AddingBuilding = () => {
         <Routes>
           <Route path="/" element={<AskQuestion />} exact />
           <Route path="search-building" element={<SearchBuilding />} />
-          {/*<Route path="general-information" element={<GeneralInformation />} />*/}
-          {/*<Route path="activity" element={<Activity />} />*/}
-          {/*<Route path="electricity-consumption" element={<ElectricityConsumption />} />*/}
-          {/*<Route path="heat-consumption" element={<HeatConsumption />} />*/}
-          {/*<Route path="hvac" element={<HVAC />} />*/}
-          {/*<Route path="lighting" element={<Lighting />} />*/}
-          {/*<Route path="envelope-facade" element={<EnvelopFacade />} />*/}
-          {/*<Route path="renewable-energy" element={<RenewableEnergy />} />*/}
-          {/*<Route path="adding-building-successfully" element={<AddingBuildingSuccessfully />} />*/}
+          <Route path="general-information" element={<GeneralInformation />} />
+          <Route path="activity" element={<Activity />} />
+          <Route path="electricity-consumption" element={<ElectricityConsumption />} />
+          <Route path="heat-consumption" element={<HeatConsumption />} />
+          <Route path="hvac" element={<HVAC />} />
+          <Route path="lighting" element={<Lighting />} />
+          <Route path="envelope-facade" element={<EnvelopFacade />} />
+          <Route path="renewable-energy" element={<RenewableEnergy />} />
+          <Route path="adding-building-successfully" element={<AddingBuildingSuccessfully />} />
         </Routes>
       </div>
     </>
