@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react'
+import React, { useEffect, createContext } from 'react'
 import Header from '../../components/Header'
-
 import { Route, Routes, useParams } from 'react-router-dom'
 import GeneralInformation from './general-information/GeneralInformation'
 import SearchBuilding from './search-building/SearchBuilding'
@@ -40,69 +39,64 @@ import {
   spaceUsageGFAListState,
 } from 'atoms'
 
-export const BuildingInformationContext = React.createContext()
+export const BuildingInformationContext = createContext()
 
 const AddingBuilding = () => {
   const { id } = useParams()
 
-  const setBuildingActivity = useSetRecoilState(buildingActivityState)
+  const recoilSetters = {
+    setBuildingActivity: useSetRecoilState(buildingActivityState),
+    setGeneralBuildingInformation: useSetRecoilState(generalBuildingInformationState),
+    setSpaceUsageGFAList: useSetRecoilState(spaceUsageGFAListState),
+    setElectricityConsumptionList: useSetRecoilState(electricityConsumptionListState),
+    setHeatConsumptionList: useSetRecoilState(heatConsumptionListState),
+    setCoolingSystem: useSetRecoilState(coolingSystemState),
+    setHeatingSystem: useSetRecoilState(heatingSystemState),
+    setLightingSubSystemList: useSetRecoilState(lightingSubSystemListState),
+    setEnvelopFacade: useSetRecoilState(envelopFacadeState),
+    setSolarPanelSystemList: useSetRecoilState(solarPanelSystemListState),
+    setAddingBuildingProgressState: useSetRecoilState(addingBuildingProgressState),
+  }
 
-  const setGeneralBuildingInformation = useSetRecoilState(generalBuildingInformationState)
-  const setSpaceUsageGFAList = useSetRecoilState(spaceUsageGFAListState)
-  const setElectricityConsumptionList = useSetRecoilState(electricityConsumptionListState)
-  const setHeatConsumptionList = useSetRecoilState(heatConsumptionListState)
-  const setCoolingSystem = useSetRecoilState(coolingSystemState)
-  const setHeatingSystem = useSetRecoilState(heatingSystemState)
-  const setLightingSubSystemList = useSetRecoilState(lightingSubSystemListState)
-  const setEnvelopFacade = useSetRecoilState(envelopFacadeState)
-  const setSolarPanelSystemList = useSetRecoilState(solarPanelSystemListState)
-  const setAddingBuildingProgressState = useSetRecoilState(addingBuildingProgressState)
+  const setBuildingData = (building) => {
+    recoilSetters.setGeneralBuildingInformation(building?.generalBuildingInformation)
+    recoilSetters.setBuildingActivity(building?.buildingActivity)
+    recoilSetters.setSpaceUsageGFAList(building?.spaceUsageGFAList)
+    recoilSetters.setElectricityConsumptionList(building?.electricityConsumptionList)
+    recoilSetters.setHeatConsumptionList(building?.heatConsumptionList)
+    if (building?.coolingSystem) recoilSetters.setCoolingSystem(building?.coolingSystem)
+    if (building?.heatingSystem) recoilSetters.setHeatingSystem(building?.heatingSystem)
+    recoilSetters.setLightingSubSystemList(building?.lightingSubSystemList)
+    recoilSetters.setEnvelopFacade(building?.envelopFacade)
+    recoilSetters.setSolarPanelSystemList(building?.solarPanelSystemList)
+    recoilSetters.setAddingBuildingProgressState(100)
+  }
 
-  //console.log(id)
+  const resetDefaults = () => {
+    recoilSetters.setGeneralBuildingInformation(defaultGeneralBuildingInformationState)
+    recoilSetters.setBuildingActivity(defaultBuildingActivityState)
+    recoilSetters.setSpaceUsageGFAList(defaultSpaceUsageGFAListState)
+    recoilSetters.setElectricityConsumptionList(defaultElectricityConsumptionListState)
+    recoilSetters.setHeatConsumptionList(defaultHeatConsumptionListState)
+    recoilSetters.setCoolingSystem(defaultCoolingSystemState)
+    recoilSetters.setHeatingSystem(defaultHeatingSystemState)
+    recoilSetters.setLightingSubSystemList(defaultLightingSubSystemListState)
+    recoilSetters.setEnvelopFacade(defaultEnvelopFacadeState)
+    recoilSetters.setSolarPanelSystemList(defaultSolarPanelSystemListState)
+    recoilSetters.setAddingBuildingProgressState(0)
+  }
 
   useEffect(() => {
-    const fetchApi = async () => {
-      const building = await getBuildingByIdForEditing(id)
-      setGeneralBuildingInformation(building?.generalBuildingInformation)
-      setBuildingActivity(building?.buildingActivity)
-      setSpaceUsageGFAList(building?.spaceUsageGFAList)
-      setElectricityConsumptionList(building?.electricityConsumptionList)
-      setHeatConsumptionList(building?.heatConsumptionList)
-
-      if (building?.coolingSystem) {
-        setCoolingSystem(building?.coolingSystem)
+    const fetchData = async () => {
+      if (id) {
+        const building = await getBuildingByIdForEditing(id)
+        setBuildingData(building)
+      } else {
+        resetDefaults()
       }
-
-      if (building?.heatingSystem) {
-        setHeatingSystem(building?.heatingSystem)
-      }
-
-      setLightingSubSystemList(building?.lightingSubSystemList)
-      setEnvelopFacade(building?.envelopFacade)
-      setSolarPanelSystemList(building?.solarPanelSystemList)
-      setAddingBuildingProgressState(100)
-
-      return building
     }
-
-    if (id) {
-      fetchApi()
-    } else {
-      setGeneralBuildingInformation(defaultGeneralBuildingInformationState)
-      setBuildingActivity(defaultBuildingActivityState)
-      setSpaceUsageGFAList(defaultSpaceUsageGFAListState)
-      setElectricityConsumptionList(defaultElectricityConsumptionListState)
-      setHeatConsumptionList(defaultHeatConsumptionListState)
-      setCoolingSystem(defaultCoolingSystemState)
-      setHeatingSystem(defaultHeatingSystemState)
-      setLightingSubSystemList(defaultLightingSubSystemListState)
-      setEnvelopFacade(defaultEnvelopFacadeState)
-      setSolarPanelSystemList(defaultSolarPanelSystemListState)
-      setAddingBuildingProgressState(0)
-    }
-
-    // eslint-disable-line
-  }, [])
+    fetchData()
+  }, [id])
 
   return (
     <>
